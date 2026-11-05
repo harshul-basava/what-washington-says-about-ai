@@ -74,3 +74,14 @@ Options for Checkpoint 0:
 
 - `legislators-current.json` lists 539 members: 100 senators and 439 House members, including delegates.
 - 505 of them have a Twitter handle in `legislators-social-media.json`.
+
+## X via emusks (decision 2026-11-05, approved by Harshul)
+
+**Plan change:** X posts are collected for free with [emusks](https://emusks.tiago.zip/). It is an unofficial JS client that calls X's internal web API, logged in with a throwaway account's `auth_token` (`X_AUTH_TOKEN` in `.env`). Harshul explicitly approved overriding the "no ToS-violating scraping" rule for X only. Risks accepted: the throwaway account may be suspended, and the method is unofficial. The paid API is kept only as a fallback.
+
+- Script: `scripts/x_emusks.mjs`. It sends one query per person (same keywords as the plan, `since:2023-01-01 -filter:retweets`) to the "Latest" search tab.
+- X's web search stops paginating early. The fix is to **walk backwards in time**: when the cursor dries up, restart with `until:<oldest day seen + 1>`.
+- Throttle: 1 request every 20 seconds, about 45 per 15 minutes, under the documented 50 for SearchTimeline. It takes about 12 pages (≈4 minutes) for a heavy poster.
+- **Recall test (Obernolte, 2023-01-01 → now):** the paid full-archive API (cost $0.63) found 125 posts and emusks found 120. 118 overlap, **94% recall**. emusks also found 2 posts the paid API didn't.
+- Handles must be correct and active. `RepObernolte` didn't resolve, so the roster step must validate each handle (emusks `users.getByUsername`, free).
+- X spend so far: $0.70, all on ground-truth checks.
