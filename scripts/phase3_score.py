@@ -190,6 +190,17 @@ def combine():
                        "statement_ids": ids[:6]}
         out[p["id"]] = {"dimensions": dims, "summary": A.get("summary"), "evidence_strength": A.get("evidence_strength"),
                         "topics": A.get("topics", {}), "flag": flag, "flag_reasons": why, "rubric_version": RUBRIC_VERSION}
+    # human review decisions (scripts/phase4_apply_review.py) override the model's score
+    hr_f = ROOT / "data/human_review.json"
+    for key, d in (json.loads(hr_f.read_text()) if hr_f.exists() else {}).items():
+        pid, k = key.split("|")
+        if pid not in out or k not in out[pid]["dimensions"] or d.get("verdict") not in ("agree", "change"):
+            continue
+        dim = out[pid]["dimensions"][k]
+        dim["human"] = {"verdict": d["verdict"], "score": d.get("score"), "note": d.get("note", ""), "model_score": dim["score"]}
+        if d["verdict"] == "change":
+            dim["score"] = d["score"]
+        out[pid]["human_reviewed"] = True
     (ROOT / "data/scores.json").write_text(json.dumps(out, indent=1))
     print("scored", sum(1 for v in out.values() if v.get("summary")), "flagged", sum(v["flag"] for v in out.values()))
 

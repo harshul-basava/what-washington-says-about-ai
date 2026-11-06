@@ -111,6 +111,7 @@ def main():
             "strength": sc.get("evidence_strength") or "none",
             "summary": sc.get("summary"),
             "flag": sc.get("flag", False),
+            "reviewed": bool(sc.get("human_reviewed")),
             "next": group,
             "next_chamber": (nxt.get(p["id"]) or {}).get("chamber", p["chamber"]),
             "committees": roles.get(p["id"], []),

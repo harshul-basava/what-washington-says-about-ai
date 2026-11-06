@@ -603,7 +603,7 @@ function renderTable(){
   const f = SORTV[sortKey] || (m=>m.scores[sortKey] ?? (sortDir>0?99:-99));
   rows.sort((a,b)=>{const x=f(a),y=f(b);return (x>y?1:x<y?-1:0)*sortDir || a.name.localeCompare(b.name);});
   const tb = document.querySelector("#tbl tbody");
-  tb.innerHTML = rows.map(m=>`<tr class="row" data-id="${m.id}"><td>${esc(m.name)}${m.status==="member_elect"?'<span class="badge">new member</span>':""}${m.next==="departing"?'<span class="badge">leaving</span>':""}${m.flag?'<span class="badge" title="The two scoring runs disagreed; reviewed">reviewed</span>':""}</td>
+  tb.innerHTML = rows.map(m=>`<tr class="row" data-id="${m.id}"><td>${esc(m.name)}${m.status==="member_elect"?'<span class="badge">new member</span>':""}${m.next==="departing"?'<span class="badge">leaving</span>':""}${m.reviewed?'<span class="badge" title="Checked by a person">human-reviewed</span>':""}</td>
     <td class="p${m.party}">${m.party}-${seat(m)}</td><td>${m.chamber==="senate"?"Senate":"House"}${m.next_chamber!==m.chamber?` → ${m.next_chamber==="senate"?"Senate":"House"}`:""}</td>
     ${DIMS.map(([k])=>`<td class="num"><span class="sc" style="${shade(m.scores[k])}">${fmt(m.scores[k])}</span></td>`).join("")}
     <td>${m.strength==="none"?"—":m.strength}</td><td class="num">${m.n}</td></tr>`).join("");
