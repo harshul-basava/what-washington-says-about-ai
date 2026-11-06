@@ -128,7 +128,7 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
 <p class="note" id="hemi-note"></p>
 
 <h3 id="ideo-title"></h3>
-<p class="sub">Each dot is a member: left to right by ideology, up and down by score. The most outspoken high scorers are named.</p>
+<p class="sub">Each dot is a member: left to right by ideology, up and down by score. Hover over a dot to see who it is, or click it to read their quotes.</p>
 <div class="chart">
   <div id="ideo"></div>
   <div class="legend" id="ideo-legend" style="justify-content:center"></div>
@@ -374,20 +374,13 @@ function drawHemis(){
 function drawIdeology(){
   const k=S.dim, d=DIMS.find(x=>x[0]===k), el=document.getElementById("ideo"); el.innerHTML="";
   const data = M.filter(m=>inCong(m) && m.ideology!=null && m.scores[k]!=null).map(m=>({m, x:m.ideology, y:m.scores[k]+(hash(m.id)-.5)*0.4}));
-  const last = n => n.replace(/,? (Jr\.|Sr\.|II|III|IV)$/,"").replace(/"[^"]*"\s*/,"").trim().split(" ").pop();
-  // name the strongest, most outspoken members, skipping any label that would collide with one already placed
-  const W=widthOf(el), plotW = W-190, named=[];
-  for (const p of [...data].sort((a,b)=>b.m.scores[k]-a.m.scores[k] || b.m.n-a.m.n)){
-    if (named.length>=10 || p.m.scores[k] < 3) break;
-    const wPx = last(p.m.name).length*6.5+8;
-    if (named.every(q=> Math.abs(q.y-p.y)>0.3 || Math.abs(q.x-p.x)*plotW > (wPx+last(q.m.name).length*6.5+8)/2)) named.push(p);
-  }
+  const W=widthOf(el);
   document.getElementById("ideo-title").textContent = `Political ideology vs. ${d[1]} score`;
   const svg = Plot.plot({width:W, height:420, marginLeft:170, marginBottom:46, marginTop:24, style:plotStyle(),
     x:{label:"Ideology (0 = progressive, 1 = conservative) →", domain:[-0.02,1.02], labelAnchor:"center", labelOffset:38, grid:true},
     y:{label:`↑ ${d[1]} score`, domain:[-0.4,4.4], ticks:[0,1,2,3,4], tickFormat:v=>`${v} · ${LEVELS[k][v]}`, grid:true},
     marks:[Plot.dot(data,{x:"x", y:"y", r:5, fill:p=>PC(p.m.party), fillOpacity:.85, stroke:css("--card"), strokeWidth:1}),
-      Plot.text(named,{x:"x", y:"y", text:p=>last(p.m.name), dy:-11, fill:css("--muted"), fontSize:11})]});
+]});
   svg.style.overflow="visible";
   el.append(svg);
   bindHover(svg.querySelectorAll("g[aria-label=dot] circle"), data, p=>memberTip(p.m), p=>goMember(p.m));
