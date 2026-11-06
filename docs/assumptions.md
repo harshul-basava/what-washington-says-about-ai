@@ -85,3 +85,12 @@ Options for Checkpoint 0:
 - **Recall test (Obernolte, 2023-01-01 → now):** the paid full-archive API (cost $0.63) found 125 posts and emusks found 120. 118 overlap, **94% recall**. emusks also found 2 posts the paid API didn't.
 - Handles must be correct and active. `RepObernolte` didn't resolve, so the roster step must validate each handle (emusks `users.getByUsername`, free).
 - X spend so far: $0.70, all on ground-truth checks.
+
+## X: switched to the paid API partway through (2026-11-05, approved by Harshul)
+
+emusks was rate-limited to about 45 searches per 15 minutes, which put the full run at 15+ hours. After the first 132 people, Harshul approved using the paid API for everyone else.
+- `scripts/x_paid.py`: the same keyword query on `tweets/search/all` (`-is:retweet`, from 2023-01-01). It writes the same file schema as emusks, with `source: "x_api_full_archive"`.
+- Each person is capped at 500 posts (newest first). A capped file has `truncated: true`, so the oldest AI posts of the heaviest posters may be missing.
+- Mixed sources: the first 132 people came from emusks (about 94% recall vs. the paid API, from the Obernolte test). Everyone else came from the paid API.
+- Handle validation uses the post authors in each file (`phase1_handles_finalize.py`), not a separate lookup.
+- Other data-source substitutions: GovTrack ideology comes from the copy in Roe's repo, because govtrack.us sits behind a Cloudflare check. Quote verification falls back to Exa's page text when the source page blocks fetches (`ok_search_text`).

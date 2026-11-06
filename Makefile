@@ -5,19 +5,21 @@
 
 PY = uv run python
 
-.PHONY: roster handles x web assemble score site refresh clean-evidence serve
+.PHONY: roster handles x x-free web assemble score site refresh clean-evidence serve
 
 roster:            ## Phase 1: current members + called 2026 races
 	$(PY) scripts/phase1_roster.py
 	$(PY) scripts/phase1_handles_elect.py
 	$(PY) scripts/phase1_roster.py
 
-handles:           ## validate X handles (free), pick primary, write handle_review.csv
-	node scripts/x_validate.mjs
+handles:           ## pick primary handles from post authors, write handle_review.csv (run after x)
 	$(PY) scripts/phase1_handles_finalize.py
 
-x:                 ## Phase 2: X posts via emusks (free, slow: ~1 request / 20s)
-	node scripts/x_emusks.mjs data/x_people.json
+x:                 ## Phase 2: X posts via paid full-archive API ($0.005/post, capped 500/person)
+	$(PY) scripts/x_paid.py data/x_people_prelim.json
+
+x-free:            ## alternative: X posts via emusks (free, slow: ~1 request / 20s)
+	node scripts/x_emusks.mjs data/x_people_prelim.json
 
 web:               ## Phase 2: web research + quote verification (~$0.12/person)
 	$(PY) scripts/phase2_web.py --workers 6
@@ -33,7 +35,7 @@ score:             ## Phase 3: two shuffled scoring runs via OpenRouter batch
 site:              ## Phase 5: build site/data
 	$(PY) scripts/phase5_build_site.py
 
-refresh: roster handles x web assemble score site
+refresh: roster x handles web assemble score site
 
 clean-evidence:    ## force full re-research on next refresh (costs money)
 	rm -rf data/raw/web data/raw/x_emusks data/raw/scores
