@@ -322,7 +322,7 @@ function drawHemis(){
   const W = Math.min(760, widthOf(el.parentElement));
   const Rh = W/2 - 4, Rs = Rh*0.6;
   const nS = M.filter(m=>inCong(m) && chamberOf(m)==="senate").length, nH = M.filter(m=>inCong(m) && chamberOf(m)==="house").length;
-  const dS = hemiLayout(nS+30,6).dot*Rs, dH = hemiLayout(nH+55,11).dot*Rh;
+  const dS = hemiLayout(nS,5).dot*Rs, dH = hemiLayout(nH,11).dot*Rh;
   // flat edges: Senate seats sit on ySen, House seats hang from yHouse, with a small band between
   const cx = W/2, ySen = Rs + 2, yHouse = ySen + dS + dH + 16, H = yHouse + Rh + 4;
   const svg = d3.select(el).append("svg").attr("viewBox",`0 0 ${W} ${H}`).attr("width",W).attr("height",H).attr("role","img")
@@ -332,10 +332,7 @@ function drawHemis(){
     // left to right: not enough evidence, then score 0 up to 4
     const order = M.filter(m=>inCong(m) && chamberOf(m)===ch).sort((a,b)=>lvl(a)-lvl(b) || (a.scores[k]??0)-(b.scores[k]??0) || a.name.localeCompare(b.name));
     all.push(...order);
-    // empty seats between score groups so each group reads as its own wedge
-    const rows = ch==="senate" ? 6 : 11, slots = [];
-    order.forEach((m,i)=>{ if (i && lvl(m)!==lvl(order[i-1])) for (let j=0;j<rows;j++) slots.push(null); slots.push(m); });
-    const {seats, dot} = hemiLayout(slots.length, rows);
+    const slots = order, {seats, dot} = hemiLayout(order.length, ch==="senate" ? 5 : 11);
     const Rad = ch==="senate" ? Rs : Rh, R = dot*Rad;
     const Rp = Rad - R;   // keep whole dots inside the frame
     const px = s => cx + s.x*Rp, py = s => ch==="senate" ? ySen - s.y*Rp : yHouse + s.y*Rp;
