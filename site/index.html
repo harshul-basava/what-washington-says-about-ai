@@ -121,7 +121,7 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
   <div id="hemi" style="max-width:760px;margin:0 auto"></div>
   <div class="legend" id="seat-legend" style="justify-content:center;margin-top:10px"></div>
   <div class="controls" style="justify-content:center;margin-top:14px;border-top:1px solid var(--line);padding-top:12px">
-    <span class="seg" id="dimbtns" role="group" aria-label="Question"></span>
+    <span class="seg dimbtns" role="group" aria-label="Question"></span>
     <span class="seg" role="group" aria-label="Congress"><button data-cong="119" aria-pressed="true">Today's Congress</button><button data-cong="120">January 2027</button></span>
   </div>
 </div>
@@ -129,8 +129,14 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
 
 <h3 id="ideo-title"></h3>
 <p class="sub">Each dot is a member: left to right by ideology, up and down by score. The most outspoken high scorers are named.</p>
-<div class="chart" id="ideo"></div>
-<div class="legend" id="ideo-legend"></div>
+<div class="chart">
+  <div id="ideo"></div>
+  <div class="legend" id="ideo-legend" style="justify-content:center"></div>
+  <div class="controls" style="justify-content:center;margin-top:14px;border-top:1px solid var(--line);padding-top:12px">
+    <span class="seg dimbtns" role="group" aria-label="Question"></span>
+    <span class="seg" role="group" aria-label="Congress"><button data-cong="119" aria-pressed="true">Today's Congress</button><button data-cong="120">January 2027</button></span>
+  </div>
+</div>
 <p class="note">Ideology is GovTrack's 0 (progressive) to 1 (conservative) score, based on bill cosponsorship in the 119th Congress. Newly elected members don't have one yet, so they aren't shown. Scores are nudged up or down slightly so dots don't sit on top of each other.</p>
 
 <div class="tiles" id="tiles"></div>
@@ -289,11 +295,11 @@ async function init(){
   document.getElementById("nmembers").textContent = M.length.toLocaleString();
   document.getElementById("nquotes").textContent = M.reduce((a,m)=>a+m.n,0).toLocaleString();
   const opts = DIMS.map(([k,l])=>`<option value="${k}">${l}</option>`).join("");
-  document.getElementById("dimbtns").innerHTML = DIMS.map(([k,l])=>`<button data-dim="${k}" aria-pressed="${k===S.dim}">${l}</button>`).join("");
+  document.querySelectorAll(".dimbtns").forEach(e=>e.innerHTML = DIMS.map(([k,l])=>`<button data-dim="${k}" aria-pressed="${k===S.dim}">${l}</button>`).join(""));
   const topicOpts = TOPICS.map(t=>`<option>${t}</option>`).join("");
   focustopic.innerHTML = topicOpts; focustopic.value="x-risk/loss of control"; focustopic.onchange=drawFocus;
   voicetopic.innerHTML = `<option value="__all">All AI statements</option>`+topicOpts; voicetopic.value="x-risk/loss of control"; voicetopic.onchange=drawVoices;
-  const seg = (attr, key, after) => document.querySelectorAll(`[data-${attr}]`).forEach(b=>b.onclick=()=>{S[key]=b.dataset[attr]; document.querySelectorAll(`[data-${attr}]`).forEach(x=>x.setAttribute("aria-pressed",x===b)); after();});
+  const seg = (attr, key, after) => document.querySelectorAll(`[data-${attr}]`).forEach(b=>b.onclick=()=>{S[key]=b.dataset[attr]; document.querySelectorAll(`[data-${attr}]`).forEach(x=>x.setAttribute("aria-pressed",x.dataset[attr]===S[key])); after();});
   seg("cong","cong",drawAll); seg("dim","dim",drawAll); seg("tlmode","tlmode",drawTL);
   ["q","fch","fpa","fst","fev"].forEach(id=>document.getElementById(id).oninput=renderTable);
   drawPresets(); renderHead(); renderTable(); drawAll();
