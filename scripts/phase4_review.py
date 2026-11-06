@@ -58,8 +58,10 @@ def main():
         return v if isinstance(v, (int, float)) else None
 
     scored = [pid for pid in roster if scores.get(pid, {}).get("summary")]
-    top_x = sorted([p for p in scored if num(p, "x_risk") is not None], key=lambda p: -num(p, "x_risk"))[:15]
-    top_a = sorted([p for p in scored if num(p, "agi_pilled") is not None], key=lambda p: -num(p, "agi_pilled"))[:10]
+    def top(k, n):  # top n, extended to include everyone tied with the n-th score
+        r = sorted([p for p in scored if num(p, k) is not None], key=lambda p: -num(p, k))
+        return [p for p in r if num(p, k) >= num(r[min(n, len(r)) - 1], k)] if r else []
+    top_x, top_a = top("x_risk", 15), [p for p in top("agi_pilled", 10) if num(p, "agi_pilled") >= 3.5]
     flagged = [p for p in scored if scores[p].get("flag")]
     rest = [p for p in scored if p not in set(top_x + top_a + flagged)]
     rand = random.Random(42).sample(rest, min(10, len(rest)))
