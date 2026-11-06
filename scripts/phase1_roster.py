@@ -111,6 +111,9 @@ def main():
         for h in sorted(wd.get(bio, [])):
             if h.lower() not in {x.lower() for x in handles}:
                 handles.append(h)
+        for h in json.loads((RAW / "elect_handles.json").read_text()).get(bio, []) if (RAW / "elect_handles.json").exists() else []:
+            if h["handle"].lower() not in {x.lower() for x in handles}:
+                handles.append(h["handle"])
         name = m["name"].get("official_full") or f"{m['name']['first']} {m['name']['last']}"
         p = {
             "id": bio, "name": name, "chamber": "senate" if t["type"] == "sen" else "house",

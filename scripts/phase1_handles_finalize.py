@@ -29,7 +29,9 @@ def main():
     prof = json.loads(prof_f.read_text()) if prof_f.exists() else {}
     primary, people, review = {}, [], []
     for p in roster:
-        name_toks = [t for t in toks(p["name"]) if len(t) > 2 and t not in {"jr", "iii"}]
+        clean = re.sub(r'"[^"]*"|\(.*?\)', " ", p["name"])
+        clean = unicodedata.normalize("NFKD", clean).encode("ascii", "ignore").decode().lower()
+        name_toks = [t for t in re.sub(r"[^a-z ]", " ", clean).split() if len(t) > 2 and t not in {"jr", "iii", "sr"}]
         last = name_toks[-1] if name_toks else ""
         authors = {}
         f = ROOT / "data/raw/x_emusks" / f"{p['id']}.json"

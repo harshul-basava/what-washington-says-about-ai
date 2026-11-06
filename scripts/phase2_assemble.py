@@ -23,7 +23,7 @@ AI_BARE = re.compile(r"\bAI\b")
 def cesia_type(url):
     if "/CREC-" in url or "congressional-record" in url:
         return "floor"
-    if "/meeting/" in url or "hearing" in url.lower() or "/event/" in url:
+    if "/CHRG-" in url or "/meeting/" in url or "hearing" in url.lower() or "/event/" in url:
         return "hearing"
     return "official"
 
@@ -93,7 +93,10 @@ def web_statements(pid):
     f = RAW / "web" / f"{pid}.json"
     if not f.exists():
         return []
-    return [{**s, "date": norm_date(s.get("date")), "origin": "web"}
+    def typ(u):
+        t = cesia_type(u)
+        return t if t in ("floor", "hearing") and any(d in u for d in ("govinfo.gov", "congress.gov")) else "web"
+    return [{**s, "date": norm_date(s.get("date")), "origin": "web", "source_type": typ(s["url"])}
             for s in json.loads(f.read_text())["statements"] if s["verified"]]
 
 
