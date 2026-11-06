@@ -36,6 +36,18 @@ def quarter(d):
     return f"{m.group(1)}-Q{(int(m.group(2)) - 1) // 3 + 1}"
 
 
+TOPICS = ["jobs/economy", "China/competition", "national security", "kids/online safety", "deepfakes/elections",
+          "copyright", "energy/data centers", "regulation", "AGI/transformative", "x-risk/loss of control",
+          "misuse (bio/cyber)", "other"]
+_TKEY = {re.sub(r"[^a-z]", "", t.lower()): t for t in TOPICS}
+_TKEY.update({"misuse": "misuse (bio/cyber)", "xrisk": "x-risk/loss of control", "agi": "AGI/transformative"})
+
+
+def canon_topic(t):
+    """Map the scorer's off-list topic variants ('energy data centers', 'misuse') onto the fixed list."""
+    return _TKEY.get(re.sub(r"[^a-z]", "", str(t).lower()), "other")
+
+
 def main():
     roster = json.loads((ROOT / "data/roster.json").read_text())
     scores = json.loads((ROOT / "data/scores.json").read_text())
@@ -52,7 +64,7 @@ def main():
         pl = party_letter(p["party"])
         quotes = []
         for s in ev["statements"]:
-            t = topics.get(s["sid"]) or []
+            t = list(dict.fromkeys(canon_topic(x) for x in (topics.get(s["sid"]) or [])))
             quotes.append({"sid": s["sid"], "text": s["text"], "date": s.get("date"), "src": s["source_type"],
                            "url": s["url"], "topics": t})
             q = quarter(s.get("date"))
