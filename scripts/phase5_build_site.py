@@ -48,11 +48,32 @@ def canon_topic(t):
     return _TKEY.get(re.sub(r"[^a-z]", "", str(t).lower()), "other")
 
 
+# AI-relevant full committees (thomas_id -> short label), for the committee view
+COMMITTEES = {
+    "SSCM": "Senate Commerce", "SSJU": "Senate Judiciary", "SSAS": "Senate Armed Services", "SLIN": "Senate Intelligence",
+    "SSHR": "Senate HELP", "SSGA": "Senate Homeland Security",
+    "HSIF": "House Energy & Commerce", "HSSY": "House Science", "HSJU": "House Judiciary",
+    "HSZS": "House Select Cmte on China", "HSAS": "House Armed Services", "HLIG": "House Intelligence",
+}
+
+
+def committee_roles():
+    mem = json.loads((ROOT / "data/raw/committee-membership-current.json").read_text())
+    out = defaultdict(list)
+    for cid in COMMITTEES:
+        for r in mem.get(cid, []):
+            out[r["bioguide"]].append({"c": cid, "title": r.get("title"), "side": r.get("party")})
+    return out
+
+
 def main():
     roster = json.loads((ROOT / "data/roster.json").read_text())
     scores = json.loads((ROOT / "data/scores.json").read_text())
     legis = {m["id"]["bioguide"]: m for m in json.loads((ROOT / "data/raw/legislators-current.json").read_text())}
     gt = govtrack_ideology()
+    nxt_f = ROOT / "data/next_congress.json"
+    nxt = json.loads(nxt_f.read_text()) if nxt_f.exists() else {}
+    roles = committee_roles()
     handles = json.loads((ROOT / "data/handles.json").read_text()) if (ROOT / "data/handles.json").exists() else {}
 
     members, timeline = [], defaultdict(Counter)
@@ -63,6 +84,8 @@ def main():
         gid = legis.get(p["id"], {}).get("id", {}).get("govtrack")
         pl = party_letter(p["party"])
         quotes = []
+        group = (nxt.get(p["id"]) or {}).get("status", "continuing")
+        mtopics = Counter()
         for s in ev["statements"]:
             t = list(dict.fromkeys(canon_topic(x) for x in (topics.get(s["sid"]) or [])))
             quotes.append({"sid": s["sid"], "text": s["text"], "date": s.get("date"), "src": s["source_type"],
@@ -70,7 +93,9 @@ def main():
             q = quarter(s.get("date"))
             if q and q >= "2023-Q1":
                 for tp in (t or ["untagged"]):
-                    timeline[(q, pl)][tp] += 1 / max(1, len(t))  # split multi-tag statements evenly
+                    timeline[(q, pl, group)][tp] += 1 / max(1, len(t))
+            for tp in (t or ["untagged"]):
+                mtopics[tp] += 1 / max(1, len(t))  # split multi-tag statements evenly
         cited = {k: (sc.get("dimensions", {}).get(k, {}).get("statement_ids") or []) for k in DIMS}
         (DATA / "quotes" / f"{p['id']}.json").write_text(json.dumps({"quotes": quotes, "cited": cited}))
         dims = sc.get("dimensions", {})
@@ -86,16 +111,21 @@ def main():
             "strength": sc.get("evidence_strength") or "none",
             "summary": sc.get("summary"),
             "flag": sc.get("flag", False),
+            "next": group,
+            "next_chamber": (nxt.get(p["id"]) or {}).get("chamber", p["chamber"]),
+            "committees": roles.get(p["id"], []),
+            "topics": {k: round(v, 2) for k, v in mtopics.items()},
         })
     (DATA / "members.json").write_text(json.dumps({"updated": date.today().isoformat(), "members": members}))
-    tl = [{"q": q, "party": pa, "topic": t, "n": round(n, 2)} for (q, pa), c in sorted(timeline.items()) for t, n in c.items()]
+    tl = [{"q": q, "party": pa, "g": g, "topic": t, "n": round(n, 2)} for (q, pa, g), c in sorted(timeline.items()) for t, n in c.items()]
+    (DATA / "committees.json").write_text(json.dumps(COMMITTEES))
     (DATA / "timeline.json").write_text(json.dumps(tl))
     with open(DATA / "members.csv", "w", newline="") as f:
         w = csv.writer(f)
-        w.writerow(["id", "name", "chamber", "state", "district", "party", "status", "x_handle", "govtrack_ideology",
+        w.writerow(["id", "name", "chamber", "state", "district", "party", "status", "next_congress", "x_handle", "govtrack_ideology",
                     "n_statements", "evidence_strength", *DIMS, "summary"])
         for m in members:
-            w.writerow([m["id"], m["name"], m["chamber"], m["state"], m["district"], m["party"], m["status"], m["handle"],
+            w.writerow([m["id"], m["name"], m["chamber"], m["state"], m["district"], m["party"], m["status"], m["next"], m["handle"],
                         m["ideology"], m["n"], m["strength"], *[m["scores"][k] for k in DIMS], m["summary"]])
     print("members", len(members), "timeline rows", len(tl))
 

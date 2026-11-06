@@ -32,7 +32,8 @@ score:             ## Phase 3: two shuffled scoring runs via OpenRouter batch
 	$(PY) scripts/phase3_score.py collect
 	$(PY) scripts/phase3_score.py combine
 
-site:              ## Phase 5: build site/data
+site:              ## Phase 5: build site/data (+ who sits in the next Congress, committees)
+	$(PY) scripts/phase1_next_congress.py
 	$(PY) scripts/phase5_build_site.py
 
 refresh: roster x handles web assemble score site

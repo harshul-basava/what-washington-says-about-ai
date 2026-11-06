@@ -9,32 +9,78 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#fbfaf7;--fg:#1c1b19;--muted:#6b675f;--line:#e4e0d8;--card:#ffffff;--accent:#9a3412;
-  --d:#2563eb;--r:#dc2626;--i:#7c3aed;--chip:#f1eee7;--hover:#f5f2ec;
+  color-scheme:light;
+  --bg:#fbfaf7;--fg:#1c1b19;--muted:#6b675f;--line:#e4e0d8;--card:#fcfcfb;--accent:#9a3412;--chip:#f1eee7;--hover:#f5f2ec;
+  --grid:#e1e0d9;
+  /* parties (validated all-pairs; independents also labelled "I") */
+  --pD:#2a78d6;--pR:#e34948;--pI:#eda100;
+  /* topic groups: categorical slots 1-6 in validated order + neutral other */
+  --s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;--s5:#e87ba4;--s6:#008300;--sOther:#c3c2b7;
+  /* score ramp 0..4 (ordinal, one hue, validated) */
+  --r0:#eb9c63;--r1:#d97a3c;--r2:#bd5c22;--r3:#924215;--r4:#632a0b;--nodata:#d6d4cd;
+  /* sequential (counts) */
+  --leave:#a8a69f;--yes:#c9632a;--no:#dedad1;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#141413;--fg:#ecebe6;--muted:#a19d94;--line:#2c2b28;--card:#1b1b19;--accent:#f97316;
-  --d:#60a5fa;--r:#f87171;--i:#a78bfa;--chip:#252421;--hover:#20201d;}}
+  color-scheme:dark;
+  --bg:#141413;--fg:#ecebe6;--muted:#a19d94;--line:#2c2b28;--card:#1a1a19;--accent:#f0894a;--chip:#252421;--hover:#20201d;--grid:#2c2c2a;
+  --pD:#3987e5;--pR:#e66767;--pI:#eda100;
+  --s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--s5:#d55181;--s6:#008300;--sOther:#5a5955;
+  --r0:#7a3d18;--r1:#a0501d;--r2:#c96625;--r3:#e8884a;--r4:#f8b886;--nodata:#3a3936;
+  --leave:#6b6a64;--yes:#e8884a;--no:#46453f;}}
 :root[data-theme="dark"]{
-  --bg:#141413;--fg:#ecebe6;--muted:#a19d94;--line:#2c2b28;--card:#1b1b19;--accent:#f97316;
-  --d:#60a5fa;--r:#f87171;--i:#a78bfa;--chip:#252421;--hover:#20201d;}
+  color-scheme:dark;
+  --bg:#141413;--fg:#ecebe6;--muted:#a19d94;--line:#2c2b28;--card:#1a1a19;--accent:#f0894a;--chip:#252421;--hover:#20201d;--grid:#2c2c2a;
+  --pD:#3987e5;--pR:#e66767;--pI:#eda100;
+  --s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--s5:#d55181;--s6:#008300;--sOther:#5a5955;
+  --r0:#7a3d18;--r1:#a0501d;--r2:#c96625;--r3:#e8884a;--r4:#f8b886;--nodata:#3a3936;
+  --leave:#6b6a64;--yes:#e8884a;--no:#46453f;}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 Inter,system-ui,sans-serif}
-main{max-width:1040px;margin:0 auto;padding:40px 16px 80px}
+main{max-width:1080px;margin:0 auto;padding:40px 16px 80px}
 h1,h2{font-family:"Source Serif 4",Georgia,serif;font-weight:600;letter-spacing:-.01em}
 h1{font-size:clamp(30px,5vw,46px);line-height:1.1;margin:0 0 12px}
-h2{font-size:26px;margin:56px 0 12px;padding-top:16px;border-top:1px solid var(--line)}
+h2{font-size:26px;margin:56px 0 6px;padding-top:16px;border-top:1px solid var(--line)}
+h3{font-size:17px;margin:36px 0 4px;font-weight:600}
+.sub{color:var(--muted);margin:0 0 12px;max-width:760px}
 .lede{font-size:18px;color:var(--muted);max-width:720px;margin:0}
 .meta{font-size:13px;color:var(--muted);margin-top:14px}
 a{color:var(--accent)}
-.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
 select,input,button{font:inherit;font-size:14px;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:6px 10px}
 button{cursor:pointer}
 button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.seg{display:inline-flex}.seg button{border-radius:0;margin-left:-1px}.seg button:first-child{border-radius:6px 0 0 6px;margin-left:0}.seg button:last-child{border-radius:0 6px 6px 0}
+.bar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:8px 0;margin:24px 0 0}
+.bar .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-right:2px}
 .chart{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto}
-.chart svg{max-width:100%;height:auto;background:transparent!important;color:var(--fg)}
-.grid2{display:grid;grid-template-columns:1fr;gap:20px}
+.chart svg{max-width:100%;height:auto;color:var(--fg)}
 .note{font-size:13px;color:var(--muted)}
+.two{display:grid;grid-template-columns:1fr;gap:16px}
+@media (min-width:860px){.two{grid-template-columns:1fr 1fr}}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0}
+@media (min-width:760px){.tiles{grid-template-columns:repeat(3,1fr)}}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.tile .v{font-size:30px;font-weight:600;line-height:1.1}
+.tile .d{font-size:13px;font-weight:500;margin-left:6px}
+.tile .t{font-size:13px;color:var(--muted)}
+.up{color:#006300}.down{color:#b42318}
+:root[data-theme="dark"] .up{color:#0ca30c}:root[data-theme="dark"] .down{color:#f97066}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .up{color:#0ca30c}:root:not([data-theme="light"]) .down{color:#f97066}}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted);margin-top:8px;align-items:center}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.legend i.dot{border-radius:50%}
+.legend i.ring{border-radius:50%;background:transparent!important;border:1.5px solid var(--muted)}
+.hemi{display:grid;grid-template-columns:1fr;gap:6px}
+@media (min-width:860px){.hemi{grid-template-columns:2fr 3fr;align-items:end}}
+.hemi h4{margin:0;font-size:14px;font-weight:600}
+.hemi .cap{font-size:13px;color:var(--muted);margin:0 0 4px}
+.namelist{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.nm{font-size:13px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:2px 10px;cursor:pointer}
+.nm:hover{background:var(--hover)}
+.nm b{font-weight:600;margin-left:4px}
+.presets{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.presets button{font-size:13px;padding:4px 10px}
 table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
 th{font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);cursor:pointer;white-space:nowrap;position:sticky;top:0;background:var(--bg)}
@@ -42,7 +88,9 @@ th.num,td.num{text-align:center}
 tbody tr.row{cursor:pointer}
 tbody tr.row:hover{background:var(--hover)}
 .tablewrap{overflow-x:auto;max-height:80vh;overflow-y:auto;border:1px solid var(--line);border-radius:10px;background:var(--card)}
-.pD{color:var(--d)}.pR{color:var(--r)}.pI{color:var(--i)}
+.pD{color:var(--pD)}.pR{color:var(--pR)}.pI{color:#a86f00}
+:root[data-theme="dark"] .pI{color:var(--pI)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .pI{color:var(--pI)}}
 .sc{display:inline-block;min-width:30px;padding:1px 6px;border-radius:4px;font-variant-numeric:tabular-nums;font-weight:500}
 .badge{font-size:11px;padding:1px 6px;border-radius:999px;background:var(--chip);color:var(--muted);margin-left:6px;white-space:nowrap}
 .detail td{background:var(--bg);padding:16px}
@@ -55,9 +103,8 @@ tbody tr.row:hover{background:var(--hover)}
 .chip{display:inline-block;font-size:11px;background:var(--chip);border-radius:4px;padding:0 5px;margin-right:4px;color:var(--muted)}
 ol li{margin-bottom:8px}
 footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:16px}
-.tip{position:fixed;pointer-events:none;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 10px;max-width:320px;font-size:13px;box-shadow:0 4px 18px rgba(0,0,0,.12);display:none;z-index:10}
-.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--muted);margin-top:8px}
-.legend span i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.tip{position:fixed;pointer-events:none;background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;max-width:320px;font-size:13px;box-shadow:0 4px 18px rgba(0,0,0,.14);display:none;z-index:20}
+.hit{cursor:pointer}
 </style>
 </head>
 <body>
@@ -68,33 +115,82 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
   <p class="meta">Last updated <span id="updated">…</span> · <span id="nmembers">…</span> people · <span id="nquotes">…</span> verified statements</p>
 </header>
 
-<h2 id="explore">Explore</h2>
-<div class="grid2">
-  <div>
-    <div class="controls"><strong style="font-size:14px">AI statements per quarter, by topic</strong>
-      <span style="flex:1"></span>
-      <button data-party="all" aria-pressed="true">All</button><button data-party="D">Democrats</button><button data-party="R">Republicans</button>
-    </div>
-    <div class="chart" id="tl"></div>
-    <div class="legend" id="tl-legend"></div>
-    <p class="note">Each statement is split evenly across its 1–3 topics. Recent quarters fill in over time, and official records lag by a few months.</p>
-  </div>
-  <div>
-    <div class="controls"><strong style="font-size:14px">Ideology vs.</strong>
-      <select id="dimsel"></select>
-      <span class="note">Hover over a dot for details. People with too little evidence for this question are hidden.</span>
-    </div>
-    <div class="chart" id="scatter"></div>
-    <p class="note">Ideology is GovTrack's 0 (left) to 1 (right) score, based on bill cosponsorship in the 119th Congress. Newly elected members don't have one yet. Scores are jittered slightly so dots don't overlap.</p>
-  </div>
+<div class="bar controls" role="toolbar" aria-label="Filters for all charts">
+  <span class="lbl">Congress</span>
+  <span class="seg"><button data-cong="119" aria-pressed="true">Today (119th)</button><button data-cong="120">January 2027 (120th)</button></span>
+  <span class="lbl" style="margin-left:8px">Party</span>
+  <span class="seg"><button data-party="all" aria-pressed="true">All</button><button data-party="D">Dem</button><button data-party="R">Rep</button></span>
+  <span class="lbl" style="margin-left:8px">Question</span>
+  <select id="dimsel" aria-label="Question"></select>
 </div>
+
+<h2 id="chamber"></h2>
+<p class="sub" id="hemi-sub"></p>
+<div class="chart">
+  <div id="hemi" style="max-width:760px;margin:0 auto"></div>
+  <div class="legend" id="seat-legend"></div>
+</div>
+<p class="note" id="hemi-note"></p>
+
+<div class="tiles" id="tiles"></div>
+
+<h3>How each party answers the question</h3>
+<p class="sub">Share of each party's members at each score. "Not enough evidence" means they haven't said enough in public to score.</p>
+<div class="chart" id="partydist"></div>
+<div class="legend" id="pd-legend"></div>
+
+<h2 id="topics">What they talk about</h2>
+<div class="controls"><strong style="font-size:14px">AI statements per quarter, by topic</strong><span style="flex:1"></span>
+  <span class="seg"><button data-tlmode="count" aria-pressed="true">Count</button><button data-tlmode="share">Share of all AI talk</button></span></div>
+<div class="chart" id="tl"></div>
+<div class="legend" id="tl-legend"></div>
+<p class="note">Each statement is split evenly across its 1–3 topics, and the 12 topics are grouped into six themes. Frontier risk covers AGI, loss of control and bio/cyber misuse. Everyday harms covers kids' online safety, deepfakes and copyright. Energy and data centers stays separate because it's the fastest-growing topic. Use the topic picker below to see any single topic. The share view shows each theme's slice of all AI statements in that quarter, so you can compare quarters with very different volumes. Volume grows over time partly because of how the data was collected: X posts start in 2023, web search favors recent statements, and official records lag. The latest quarter is still partial.</p>
+
+<h3>One topic over time, by party</h3>
+<div class="controls"><select id="focustopic" aria-label="Topic"></select><span class="note">Share of each party's AI statements on this topic</span></div>
+<div class="chart" id="focuschart"></div>
+
+<div class="two">
+  <div><h3>What's rising, what's fading</h3>
+    <p class="sub" id="mom-sub"></p>
+    <div class="chart" id="momentum"></div></div>
+  <div><h3>Which party owns which topic</h3>
+    <p class="sub">Share of each party's AI statements on each topic. The wider the gap, the more the topic is coded to one party.</p>
+    <div class="chart" id="partisan"></div></div>
+</div>
+
+<h3>Who drives the conversation</h3>
+<div class="controls"><select id="voicetopic" aria-label="Topic"></select><span class="note">Top 15 members by number of statements on this topic. Click a bar to see their quotes.</span></div>
+<div class="chart" id="voices"></div>
+
+<h2 id="lists">Lists worth knowing</h2>
+<p class="sub">Groups of members that are useful to know about, based on their scores. Click a name to see their quotes.</p>
+<div class="presets" id="presets"></div>
+<p class="note" id="list-cap"></p>
+<div class="namelist" id="list-names"></div>
+
+<h2 id="turnover">Who's leaving, who's arriving</h2>
+<p class="sub">Members leaving after this term (they lost, retired or ran for another office) compared with the members-elect who replace them. Bars count people scoring 3 or more on each question. This uses called races only, whatever Congress is selected above.</p>
+<div class="chart" id="turn"></div>
+<div class="legend"><span><i style="background:var(--leave)"></i>Leaving</span><span><i style="background:var(--r2)"></i>Arriving</span></div>
+<div class="two">
+  <div><h3 style="margin-top:20px">Leaving: strongest voices on <span class="dimname"></span></h3><div class="namelist" id="leaving"></div></div>
+  <div><h3 style="margin-top:20px">Arriving: strongest voices on <span class="dimname"></span></h3><div class="namelist" id="arriving"></div></div>
+</div>
+
+<h2 id="committees">Committee gatekeepers</h2>
+<p class="sub">How many members of each committee that writes AI law <b class="dimphrase"></b>. Click a bar to list them. These are today's committees; seats for January 2027 aren't assigned yet.</p>
+<div class="chart" id="comm"></div>
+<div class="legend" id="comm-legend"></div>
+<p class="note" id="comm-cap"></p>
+<div class="namelist" id="comm-names"></div>
 
 <h2 id="members">Members</h2>
 <div class="controls">
   <input id="q" type="search" placeholder="Search name or state…" style="flex:1;min-width:180px">
   <select id="fch"><option value="">Both chambers</option><option value="senate">Senate</option><option value="house">House</option></select>
   <select id="fpa"><option value="">All parties</option><option value="D">Democrats</option><option value="R">Republicans</option><option value="I">Independents</option></select>
-  <select id="fst"><option value="">Current + new</option><option value="current">Current</option><option value="member_elect">New members</option></select>
+  <select id="fst"><option value="">Everyone</option><option value="c119">Today's Congress</option><option value="c120">January 2027 Congress</option><option value="arriving">New members</option><option value="departing">Leaving in January</option></select>
   <select id="fev"><option value="">Any evidence</option><option value="some">Has evidence</option></select>
 </div>
 <div class="tablewrap"><table id="tbl"><thead></thead><tbody></tbody></table></div>
@@ -102,14 +198,15 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
 
 <h2 id="method">Method</h2>
 <ol>
-  <li><b>Who:</b> all 539 current members (senators, representatives and delegates) from the <a href="https://github.com/unitedstates/congress-legislators">unitedstates/congress-legislators</a> project, plus winners of the November 2026 elections who aren't already in Congress, taken from called races only.</li>
+  <li><b>Who:</b> all 539 current members (senators, representatives and delegates) from the <a href="https://github.com/unitedstates/congress-legislators">unitedstates/congress-legislators</a> project, plus winners of the November 2026 elections who aren't already in Congress, taken from called races only. The January 2027 view combines continuing members with members-elect. A senator stays unless their seat was up in 2026 and someone else won it; a member who won a 2026 race stays, in the chamber they won.</li>
   <li><b>Official records:</b> AI-related quotes from the Congressional Record and hearings, from <a href="https://cesia.org/en/data/attention/">CeSIA's Politicians on AI</a> dataset (CC BY 4.0). Only the quote text, date and source are used. CeSIA's own labels are not.</li>
-  <li><b>X:</b> each person's posts since January 2023 that match AI keywords (retweets excluded), collected through X's web search. In a check against the official full-archive API, this found about 94% of matching posts.</li>
+  <li><b>X:</b> each person's posts since January 2023 that match AI keywords (retweets excluded), from X's full-archive search. For the first 132 people we used X's web search instead, which found about 94% as many posts in a side-by-side check.</li>
   <li><b>Web:</b> a language model (Claude Sonnet 5.5) with web search looked for every substantive public statement about AI and was told explicitly that finding nothing is fine. We fetched every source page and kept a quote only if it appears there with a fuzzy match of at least 90%. When a site blocks automated access, we checked against the page text the search engine had retrieved.</li>
-  <li><b>Scoring:</b> the model saw only the verified statements for one person (no names of other sources, no party labels and no prior scores) and scored five questions on a written 0–4 rubric, or answered "insufficient evidence". We ran it twice with the statements shuffled. If the two runs differed by 2 or more on any question, the person was flagged for human review; otherwise the two scores were averaged.</li>
-  <li><b>Human check:</b> we hand-reviewed the people with the highest scores on AGI and existential risk, a random sample, and everyone who was flagged.</li>
+  <li><b>Scoring:</b> the model saw only the verified statements for one person (no names of other sources, no party labels and no prior scores) and scored five questions on a written 0–4 rubric, or answered "insufficient evidence". We ran it twice with the statements shuffled. If the two runs differed by 2 or more on any question, the person was flagged for review; otherwise the two scores were averaged.</li>
+  <li><b>Review:</b> a model from a different family re-scored everyone blind and audited the highest scores on AGI and existential risk, a random sample, and every case where the two models disagreed.</li>
+  <li><b>Committees:</b> current full-committee rosters from the @unitedstates project.</li>
 </ol>
-<p><b>Caveats.</b> What people say in public is not the same as what they believe or how they vote. Scores are produced by a language model and only spot-checked by people. Official records lag by months. X coverage depends on knowing the right accounts, and some members barely post. Members who rarely talk about AI will have little or no evidence. That doesn't mean they hold no views.</p>
+<p><b>Caveats.</b> What people say in public is not the same as what they believe or how they vote. Scores are produced by language models and only spot-checked. Official records lag by months. X coverage depends on knowing the right accounts, and some members barely post. Members who rarely talk about AI will have little or no evidence. That doesn't mean they hold no views.</p>
 <p class="note">Thanks to <a href="https://cesia.org/en/data/attention/">CeSIA</a>, the <a href="https://github.com/unitedstates/congress-legislators">@unitedstates project</a>, <a href="https://www.govtrack.us/">GovTrack</a>, and Roe's earlier <a href="https://www.lesswrong.com/">"What Washington Says About AGI"</a>, which this project builds on.</p>
 
 <footer>
@@ -119,94 +216,364 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
   <button id="theme" style="margin-left:auto">Toggle theme</button>
 </footer>
 </main>
-<div class="tip" id="tip"></div>
+<div class="tip" id="tip" role="tooltip"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.16/dist/plot.umd.min.js"></script>
 <script>
 const DIMS = [
-  ["ai_overall","AI overall","0 = very concerned · 4 = very optimistic"],
-  ["agi_pilled","AGI-pilled","0 = dismissive · 4 = AGI is central"],
-  ["x_risk","AI x-risk","0 = dismissive · 4 = major priority"],
-  ["china_race","China race","0 = rejects race framing · 4 = race dominates"],
-  ["regulation","Regulation","0 = strongly anti · 4 = strongly pro"],
+  ["ai_overall","AI overall","0 = very concerned · 4 = very optimistic","are mostly optimistic about AI"],
+  ["agi_pilled","AGI-pilled","0 = dismissive · 4 = AGI is central","see AGI as a real possibility"],
+  ["x_risk","AI x-risk","0 = dismissive · 4 = major priority","treat loss of control as a real risk"],
+  ["china_race","China race","0 = rejects race framing · 4 = race dominates","frame AI mainly as a race with China"],
+  ["regulation","Regulation","0 = strongly anti · 4 = strongly pro","back substantial AI rules"],
 ];
 const TOPICS = ["jobs/economy","China/competition","national security","kids/online safety","deepfakes/elections","copyright","energy/data centers","regulation","AGI/transformative","x-risk/loss of control","misuse (bio/cyber)","other"];
-const TCOL = ["#4e79a7","#e15759","#76b7b2","#f28e2b","#59a14f","#edc948","#b07aa1","#ff9da7","#9c755f","#d62728","#8c564b","#bab0ac"];
-const PCOL = p => getComputedStyle(document.documentElement).getPropertyValue(p==="D"?"--d":p==="R"?"--r":"--i").trim();
+// six themes + other; slot order is the validated stacking order (frontier risk sits on the baseline)
+const GROUPS = [
+  ["Frontier risk & AGI",["AGI/transformative","x-risk/loss of control","misuse (bio/cyber)"],"--s1"],
+  ["China & national security",["China/competition","national security"],"--s2"],
+  ["Regulation",["regulation"],"--s3"],
+  ["Jobs & economy",["jobs/economy"],"--s4"],
+  ["Everyday harms (kids, deepfakes, copyright)",["kids/online safety","deepfakes/elections","copyright"],"--s5"],
+  ["Energy & data centers",["energy/data centers"],"--s6"],
+  ["Other",["other","untagged"],"--sOther"],
+];
+const T2G = Object.fromEntries(GROUPS.flatMap(([g,ts])=>ts.map(t=>[t,g])));
+const PNAME = {D:"Democrats",R:"Republicans",I:"Independents"};
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const PC = p => css(p==="D"?"--pD":p==="R"?"--pR":"--pI");
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-let M = [], TL = [], party = "all", sortKey = "n", sortDir = -1, open = null;
+let M = [], TL = [], COMM = {}, UPDATED = "";
+const S = {cong:"119", party:"all", dim:"x_risk", tlmode:"count", preset:null};
+let sortKey = "n", sortDir = -1, open = null;
 
+/* ---------- helpers ---------- */
+function inCong(m, c=S.cong){ return c==="119" ? m.status==="current" : (m.next==="continuing"||m.next==="arriving"); }
+function chamberOf(m, c=S.cong){ return c==="119" ? m.chamber : m.next_chamber; }
+const GROUPS_IN = c => c==="119" ? new Set(["continuing","departing","pending"]) : new Set(["continuing","arriving"]);
+function partyOk(m){ return S.party==="all" || m.party===S.party; }
 function seat(m){ return m.chamber==="senate" ? `${m.state}` : `${m.state}-${(m.district===0||m.district==="0"||m.district==null)?"AL":m.district}`; }
 function clean(t){ return String(t??"").replace(/\s*\((?:s\d+(?:\s*[,;–-]\s*|\s+and\s+)?)+\)/g,"").replace(/\bs\d+\b,?\s*/g,"").replace(/\s{2,}/g," "); }
 function fmt(v){ return v==null ? "—" : (Math.round(v*10)/10).toString(); }
-function shade(v){ if(v==null) return ""; const a = 0.08 + v/4*0.42; return `background:rgba(154,52,18,${a.toFixed(2)})`; }
+function hash(s){let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))|0;return ((h>>>0)%1000)/1000;}
+function ramp(){ return [0,1,2,3,4].map(i=>css("--r"+i)); }
+function scoreColor(v){ if(v==null) return css("--nodata"); const r=ramp(); const lo=Math.floor(v), hi=Math.min(4,lo+1); return lo===hi?r[lo]:d3.interpolateLab(r[lo],r[hi])(v-lo); }
+function dimLabel(k=S.dim){ return DIMS.find(d=>d[0]===k)[1]; }
+function plotStyle(){ return {background:"transparent",fontSize:"11px",color:css("--fg")}; }
+function widthOf(el){ return Math.max(300, el.clientWidth-24); }
+const tip = document.getElementById("tip");
+function showTip(e, html){ tip.style.display="block"; tip.innerHTML=html; const w=tip.offsetWidth; tip.style.left=Math.min(e.clientX+14, innerWidth-w-8)+"px"; tip.style.top=Math.min(e.clientY+14, innerHeight-tip.offsetHeight-8)+"px"; }
+function hideTip(){ tip.style.display="none"; }
+function memberTip(m, k=S.dim){ return `<b class="p${m.party}">${esc(m.name)}</b> (${m.party}-${seat(m)})${m.status==="member_elect"?' · <i>new member</i>':m.next==="departing"?' · <i>leaving</i>':""}<br>${dimLabel(k)}: <b>${fmt(m.scores[k])}</b> · ${m.n} statements<br><span class="note">${esc((m.summary||"Not enough public statements about AI to summarize.").slice(0,260))}${(m.summary||"").length>260?"…":""}</span>`; }
+function goMember(m){ document.getElementById("q").value=m.name; document.getElementById("fst").value=""; renderTable(); openRow(m.id); document.getElementById("members").scrollIntoView({behavior:"smooth"}); }
+function bindHover(nodes, data, html, click){
+  [...nodes].forEach((n,i)=>{ const d=data[i]; if(d===undefined) return; n.classList.add("hit");
+    n.onmousemove=e=>showTip(e,html(d)); n.onmouseleave=hideTip; n.onclick=()=>{hideTip(); click&&click(d);}; });
+}
+function legendHTML(items){ return items.map(([lab,col,cls])=>`<span><i class="${cls||""}" style="background:${col}"></i>${esc(lab)}</span>`).join(""); }
 
+/* ---------- init ---------- */
 async function init(){
-  const [mj, tl] = await Promise.all([fetch("data/members.json").then(r=>r.json()), fetch("data/timeline.json").then(r=>r.json())]);
-  M = mj.members; TL = tl;
+  const [mj, tl, cm] = await Promise.all(["members","timeline","committees"].map(f=>fetch(`data/${f}.json`).then(r=>r.json())));
+  M = mj.members; TL = tl; COMM = cm; UPDATED = mj.updated;
   document.getElementById("updated").textContent = mj.updated;
   document.getElementById("nmembers").textContent = M.length.toLocaleString();
   document.getElementById("nquotes").textContent = M.reduce((a,m)=>a+m.n,0).toLocaleString();
-  const sel = document.getElementById("dimsel");
-  sel.innerHTML = DIMS.map(([k,l])=>`<option value="${k}">${l}</option>`).join("");
-  sel.value = "agi_pilled";
-  sel.onchange = drawScatter;
-  document.querySelectorAll("[data-party]").forEach(b=>b.onclick=()=>{party=b.dataset.party;document.querySelectorAll("[data-party]").forEach(x=>x.setAttribute("aria-pressed",x===b));drawTL();});
+  const opts = DIMS.map(([k,l])=>`<option value="${k}">${l}</option>`).join("");
+  dimsel.innerHTML = opts; dimsel.value=S.dim;
+  dimsel.onchange=()=>{S.dim=dimsel.value; drawAll();};
+  const topicOpts = TOPICS.map(t=>`<option>${t}</option>`).join("");
+  focustopic.innerHTML = topicOpts; focustopic.value="x-risk/loss of control"; focustopic.onchange=drawFocus;
+  voicetopic.innerHTML = `<option value="__all">All AI statements</option>`+topicOpts; voicetopic.value="x-risk/loss of control"; voicetopic.onchange=drawVoices;
+  const seg = (attr, key, after) => document.querySelectorAll(`[data-${attr}]`).forEach(b=>b.onclick=()=>{S[key]=b.dataset[attr]; document.querySelectorAll(`[data-${attr}]`).forEach(x=>x.setAttribute("aria-pressed",x===b)); after();});
+  seg("cong","cong",drawAll); seg("party","party",drawAll); seg("tlmode","tlmode",drawTL);
   ["q","fch","fpa","fst","fev"].forEach(id=>document.getElementById(id).oninput=renderTable);
-  document.getElementById("tl-legend").innerHTML = TOPICS.map((t,i)=>`<span><i style="background:${TCOL[i]}"></i>${t}</span>`).join("");
-  drawTL(); drawScatter(); renderHead(); renderTable();
-  addEventListener("resize", ()=>{drawTL();drawScatter();});
+  drawPresets(); renderHead(); renderTable(); drawAll();
+  let t; addEventListener("resize", ()=>{clearTimeout(t); t=setTimeout(drawAll,150);});
+}
+function drawAll(){
+  const d = DIMS.find(x=>x[0]===S.dim);
+  document.querySelectorAll(".dimname").forEach(e=>e.textContent=d[1]);
+  document.querySelectorAll(".dimphrase").forEach(e=>e.textContent=d[3]);
+  drawHemis(); drawTiles(); drawPartyDist(); drawTL(); drawFocus(); drawMomentum(); drawPartisan(); drawVoices(); drawList(); drawTurnover(); drawComm();
+}
+// three states used by the seat chart and the committee bars
+const STATES = [["yes","Scores 3 or more","--yes"],["no","Scores 0 to 2","--no"],["none","Hasn't said enough to score","--card"]];
+const stateOf = (m,k=S.dim) => m.scores[k]==null ? "none" : m.scores[k]>=3 ? "yes" : "no";
+function stateLegend(){ return `<span><i class="dot" style="background:${css("--yes")}"></i>Scores 3 or more</span><span><i class="dot" style="background:${css("--no")}"></i>Scores 0 to 2</span><span><i class="ring"></i>Hasn't said enough to score</span>`; }
+
+/* ---------- seating chart ---------- */
+function hemiLayout(n, rows){
+  const r0 = 0.38, radii = d3.range(rows).map(i=> r0 + (1-r0)*i/(rows-1));
+  const tot = d3.sum(radii); let per = radii.map(r=>Math.round(n*r/tot));
+  let diff = n - d3.sum(per); for (let i=rows-1; diff!==0; i=(i-1+rows)%rows){ per[i]+=Math.sign(diff); diff-=Math.sign(diff); }
+  const seats = [];
+  radii.forEach((r,i)=>{ const k=per[i]; for(let j=0;j<k;j++){ const th = k===1?Math.PI/2:Math.PI*(1-j/(k-1)); seats.push({r,th,x:r*Math.cos(th),y:r*Math.sin(th)}); }});
+  seats.sort((a,b)=> (b.th-a.th) || (a.r-b.r));
+  const spacing = Math.min((1-r0)/(rows-1), Math.PI/(per[rows-1]-1 || 1));
+  return {seats, dot: spacing*0.42};
+}
+function drawHemis(){
+  const k=S.dim, d=DIMS.find(x=>x[0]===k);
+  const RANK = {yes:0, no:1, none:2};
+  const el = document.getElementById("hemi"); el.innerHTML="";
+  const W = Math.min(760, widthOf(el.parentElement));
+  const Rh = W/2 - 4, Rs = Rh*0.6, gap = 96;            // House bowl radius, Senate dome radius, label band
+  const H = Rs + gap + Rh + 4, cx = W/2, ySen = Rs + 2, yHouse = Rs + gap;   // flat edges of the two halves
+  const svg = d3.select(el).append("svg").attr("viewBox",`0 0 ${W} ${H}`).attr("width",W).attr("height",H).attr("role","img")
+    .attr("aria-label",`Senate and House seats colored by whether the member ${d[3]}`);
+  let total=0, yes=0;
+  for (const ch of ["senate","house"]){
+    const list = M.filter(m=>inCong(m) && chamberOf(m)===ch);
+    // Democrats on the left, Republicans on the right; within each party the "yes" seats sit at the outer edge
+    const by = p => list.filter(m=>m.party===p).sort((a,b)=>RANK[stateOf(a)]-RANK[stateOf(b)] || (b.scores[k]??0)-(a.scores[k]??0) || b.n-a.n);
+    const order = [...by("D"), ...by("I").reverse(), ...by("R").reverse()];
+    const {seats, dot} = hemiLayout(order.length, ch==="senate" ? 5 : 11);
+    const Rad = ch==="senate" ? Rs : Rh, R = dot*Rad;
+    // Senate: dome above its flat edge. House: upside-down bowl below its flat edge.
+    const px = s => cx + s.x*Rad, py = s => ch==="senate" ? ySen - s.y*Rad + R : yHouse + s.y*Rad - R;
+    svg.append("g").selectAll("circle").data(order.map((m,i)=>({m, s:seats[i]}))).join("circle")
+      .attr("cx",x=>px(x.s)).attr("cy",x=>py(x.s)).attr("r",x=>stateOf(x.m)==="none"?R-0.75:R)
+      .attr("fill",x=>css(STATES.find(t=>t[0]===stateOf(x.m))[2]))
+      .attr("stroke",x=>stateOf(x.m)==="none"?css("--muted"):"none").attr("stroke-width",1.2).classed("hit",true)
+      .on("mousemove",(e,x)=>showTip(e, memberTip(x.m))).on("mouseleave",hideTip).on("click",(e,x)=>{hideTip(); goMember(x.m);});
+    const c = p => order.filter(m=>m.party===p).length, cy = p => order.filter(m=>m.party===p && stateOf(m)==="yes").length;
+    const ny = order.filter(m=>stateOf(m)==="yes").length; total+=order.length; yes+=ny;
+    // labels in the band between the two halves
+    const ty = ch==="senate" ? ySen + 2*R + 16 : yHouse - 2*R - 8, x0 = cx - Rad, x1 = cx + Rad;
+    const t = (x, anchor, fill, txt, weight=600, size=12) => svg.append("text").attr("x",x).attr("y",ty).attr("text-anchor",anchor).attr("fill",fill).attr("font-size",size).attr("font-weight",weight).text(txt);
+    t(x0, "start", PC("D"), `Democrats ${c("D")}`);
+    t(x1, "end", PC("R"), `Republicans ${c("R")}`);
+    t(cx, "middle", css("--fg"), `${ch==="senate"?"Senate":"House"}: ${ny} of ${order.length} seats`, 600, 13);
+    svg.append("title").text(`${ch}: ${ny} of ${order.length} seats. Democrats ${cy("D")}, Republicans ${cy("R")}${c("I")?`, independents ${cy("I")}`:""}.`);
+  }
+  const q = {ai_overall:"Who is mostly optimistic about AI?", agi_pilled:"Who sees AGI as a real possibility?", x_risk:"Who treats loss of control as a real risk?", china_race:"Who frames AI mainly as a race with China?", regulation:"Who backs substantial AI rules?"}[k];
+  document.getElementById("chamber").textContent = q;
+  document.getElementById("hemi-sub").innerHTML = `<b>${yes} of ${total}</b> members of ${S.cong==="119"?"today's Congress":"the Congress that takes office in January 2027"} score 3 or more on <b>${d[1]}</b> (${d[2]}). Each dot is one seat: the Senate on top, the House below. Change the question at the top of the page.`;
+  document.getElementById("seat-legend").innerHTML = stateLegend();
+  const pend = M.filter(m=>m.next==="pending").length;
+  document.getElementById("hemi-note").textContent = "Hover over a seat to see who it is, or click it to read their quotes. Independents (who caucus with Democrats) sit in the middle. House delegates are included." + (S.cong==="120" ? ` ${pend} seats whose 2026 race hasn't been called yet are left out.` : "");
 }
 
+/* ---------- tiles ---------- */
+function drawTiles(){
+  const pop = c => M.filter(m=>inCong(m,c) && partyOk(m));
+  const cnt = (c,k) => pop(c).filter(m=>(m.scores[k]??-1)>=3).length;
+  const now = pop(S.cong);
+  const talk = now.filter(m=>m.n>0).length;
+  const tiles = [[`${talk}`, `of ${now.length} members have said something about AI on the record since 2023`, null]];
+  for (const [k,l,,phrase] of DIMS){
+    const v = cnt(S.cong,k), base = cnt("119",k);
+    tiles.push([v, phrase + ` (${l}, score 3+)`, S.cong==="120" ? v-base : null]);
+  }
+  document.getElementById("tiles").innerHTML = tiles.map(([v,t,d])=>`<div class="tile"><div class="v">${v}${d!=null?`<span class="d ${d>0?"up":d<0?"down":""}">${d>0?"▲ +":d<0?"▼ ":"±"}${d} vs today</span>`:""}</div><div class="t">${esc(t)}</div></div>`).join("");
+}
+
+/* ---------- party distribution ---------- */
+function drawPartyDist(){
+  const k=S.dim, el=document.getElementById("partydist"); el.innerHTML="";
+  const levels = ["0","1","2","3","4","not enough evidence"];
+  const rows = [];
+  for (const p of ["D","R","I"]){
+    const xs = M.filter(m=>inCong(m) && m.party===p); if(!xs.length) continue;
+    for (const m of xs){ const v=m.scores[k]; rows.push({party:`${PNAME[p]} (${xs.length})`, p, level: v==null?"not enough evidence":String(Math.round(v)), n:1/xs.length}); }
+  }
+  const agg = d3.rollups(rows, v=>({n:d3.sum(v,d=>d.n), c:v.length}), d=>d.party, d=>d.level).flatMap(([party,ls])=>ls.map(([level,o])=>({party,level,...o})));
+  const col = [...ramp(), css("--nodata")];
+  const W = widthOf(el);
+  el.append(Plot.plot({width:W, height:150, marginLeft:140, marginRight:20, style:plotStyle(),
+    x:{label:"share of members →", percent:true, grid:false}, y:{label:null, domain:[...new Set(agg.map(d=>d.party))].sort((a,b)=>"DRI".indexOf(a[0])-"DRI".indexOf(b[0]))},
+    color:{domain:levels, range:col},
+    marks:[Plot.barX(agg,{y:"party", x:"n", fill:"level", order:levels, inset:1, rx:2,
+      tip:{fill:css("--card"), stroke:css("--line")}, channels:{Score:"level", Members:"c"}, title:d=>`${d.party}\nscore ${d.level}: ${d.c} members (${Math.round(d.n*100)}%)`})]}));
+  document.getElementById("pd-legend").innerHTML = legendHTML(levels.map((l,i)=>[l==="not enough evidence"?l:`score ${l}`, col[i]]));
+}
+
+/* ---------- topics ---------- */
+function tlRows(){
+  const gs = GROUPS_IN(S.cong);
+  return TL.filter(r=>gs.has(r.g) && (S.party==="all"||r.party===S.party));
+}
+function quarters(){ return [...new Set(TL.map(r=>r.q))].sort(); }
 function drawTL(){
-  const rows = d3.rollups(TL.filter(r=>party==="all"||r.party===party), v=>d3.sum(v,d=>d.n), d=>d.q, d=>d.topic)
-    .flatMap(([q,ts])=>ts.map(([topic,n])=>({q,topic,n})));
-  const el = document.getElementById("tl"); el.innerHTML="";
-  const w = Math.max(320, el.clientWidth-24);
-  el.append(Plot.plot({width:w, height:300, marginLeft:44, style:{background:"transparent",fontSize:"11px"},
-    x:{label:null, tickRotate: w<600?-45:0, tickFormat:(d,i)=> w<600 && i%2 ? "" : d},
-    y:{label:"statements", grid:true},
-    color:{domain:[...TOPICS,"untagged"], range:[...TCOL,"#ccc"]},
-    marks:[Plot.barY(rows,{x:"q",y:"n",fill:"topic",order:TOPICS,title:d=>`${d.q} · ${d.topic}: ${Math.round(d.n)}`}),Plot.ruleY([0])]}));
+  const el=document.getElementById("tl"); el.innerHTML="";
+  const rows = d3.rollups(tlRows(), v=>d3.sum(v,d=>d.n), d=>d.q, d=>T2G[d.topic]||"Other").flatMap(([q,gs])=>{ const tot=d3.sum(gs,g=>g[1]); return gs.map(([g,n])=>({q,g,n,share:n/tot})); });
+  const share = S.tlmode==="share", W=widthOf(el);
+  el.append(Plot.plot({width:W, height:320, marginLeft:48, style:plotStyle(),
+    x:{label:null, tickRotate: W<640?-45:0, tickFormat:(d,i)=> W<640 && i%2 ? "" : d, padding:.15},
+    y:{label: share?"share of AI statements":"statements", grid:true, percent:share, tickFormat: share? d=>d+"%" : undefined},
+    color:{domain:GROUPS.map(g=>g[0]), range:GROUPS.map(g=>css(g[2]))},
+    marks:[Plot.barY(rows,{x:"q", y: share?"share":"n", fill:"g", order:GROUPS.map(g=>g[0]), insetTop:1, insetBottom:1,
+      tip:{fill:css("--card"), stroke:css("--line"), format:{x:true, y:false, fill:false}}, channels:{Theme:"g", Statements:d=>Math.round(d.n), Share:d=>`${(d.share*100).toFixed(1)}%`}}),
+      Plot.ruleY([0],{stroke:css("--line")})]}));
+  document.getElementById("tl-legend").innerHTML = legendHTML(GROUPS.map(([g,ts,v])=>[g, css(v)]));
 }
-
-function drawScatter(){
-  const k = document.getElementById("dimsel").value;
-  const label = DIMS.find(d=>d[0]===k);
-  const data = M.filter(m=>m.ideology!=null && m.scores[k]!=null).map(m=>({...m, y:m.scores[k] + (hash(m.id)-.5)*0.35}));
-  const el = document.getElementById("scatter"); el.innerHTML="";
-  const w = Math.max(320, el.clientWidth-24);
-  const svg = Plot.plot({width:w, height:340, marginLeft:44, marginBottom:44, style:{background:"transparent",fontSize:"11px"},
-    x:{label:"← left · ideology (GovTrack) · right →", domain:[0,1], labelAnchor:"center", labelOffset:38},
-    y:{label:label[1]+" score", domain:[-0.3,4.3], ticks:[0,1,2,3,4], grid:true},
-    marks:[Plot.dot(data,{x:"ideology",y:"y",r:4,fill:d=>PCOL(d.party),fillOpacity:.75,stroke:"var(--bg)",strokeWidth:.5})]});
+function drawFocus(){
+  const t=focustopic.value, el=document.getElementById("focuschart"); el.innerHTML="";
+  const gs = GROUPS_IN(S.cong), Q=quarters();
+  const data = [];
+  for (const p of ["D","R"]){
+    const rows = TL.filter(r=>gs.has(r.g) && r.party===p);
+    const tot = d3.rollup(rows, v=>d3.sum(v,d=>d.n), d=>d.q), on = d3.rollup(rows.filter(r=>r.topic===t), v=>d3.sum(v,d=>d.n), d=>d.q);
+    for (const q of Q) if ((tot.get(q)||0) >= 15) data.push({q, p, party:PNAME[p], share:(on.get(q)||0)/tot.get(q), n:Math.round(on.get(q)||0), tot:Math.round(tot.get(q))});
+  }
+  const W=widthOf(el);
+  el.append(Plot.plot({width:W, height:240, marginLeft:48, marginRight:96, style:plotStyle(),
+    x:{type:"point", label:null, domain:Q, tickRotate:W<640?-45:0, tickFormat:(d,i)=> W<640 && i%2 ? "" : d},
+    y:{label:"share of party's AI statements", percent:true, grid:true, tickFormat:d=>d+"%"},
+    color:{domain:["Democrats","Republicans"], range:[PC("D"),PC("R")]},
+    marks:[Plot.ruleY([0],{stroke:css("--line")}),
+      Plot.line(data,{x:"q", y:"share", stroke:"party", strokeWidth:2, curve:"monotone-x"}),
+      Plot.dot(data,{x:"q", y:"share", fill:"party", r:3.5, stroke:css("--card"), strokeWidth:1}),
+      Plot.text(data.filter(d=>d.q===data.filter(x=>x.p===d.p).at(-1)?.q),{x:"q", y:"share", text:"party", fill:"party", dx:6, textAnchor:"start", fontWeight:600}),
+      Plot.tip(data, Plot.pointer({x:"q", y:"share", fill:css("--card"), stroke:css("--line"), channels:{Party:"party", Statements:d=>`${d.n} of ${d.tot}`}, format:{x:true, y:d=>`${(d*100).toFixed(1)}%`, fill:false, stroke:false}}))]}));
+}
+function shareBy(rows, filterQ){
+  const r = rows.filter(x=>filterQ(x.q)); const tot = d3.sum(r,d=>d.n);
+  const by = d3.rollup(r, v=>d3.sum(v,d=>d.n), d=>d.topic);
+  return t => tot ? (by.get(t)||0)/tot : 0;
+}
+function drawMomentum(){
+  const el=document.getElementById("momentum"); el.innerHTML="";
+  let Q = quarters(); const curQ = (()=>{const d=new Date(UPDATED); return `${d.getFullYear()}-Q${Math.floor(d.getMonth()/3)+1}`;})();
+  if (Q.at(-1)===curQ) Q = Q.slice(0,-1);
+  const recent = new Set(Q.slice(-4)), prior = new Set(Q.slice(-8,-4));
+  const rows = tlRows();
+  const a = shareBy(rows, q=>prior.has(q)), b = shareBy(rows, q=>recent.has(q));
+  const data = TOPICS.filter(t=>t!=="other").map(t=>({t, before:a(t), after:b(t), d:b(t)-a(t)})).sort((x,y)=>y.d-x.d);
+  document.getElementById("mom-sub").textContent = `Share of AI statements in the last four full quarters (${[...recent][0]} to ${[...recent].at(-1)}) compared with the four before. Hollow dot = before, solid = now.`;
+  const W=widthOf(el), up=css("--r3"), mut=css("--muted");
+  el.append(Plot.plot({width:W, height:360, marginLeft:150, marginRight:48, style:plotStyle(),
+    x:{label:"share of AI statements →", percent:true, grid:true, tickFormat:d=>d+"%"}, y:{label:null, domain:data.map(d=>d.t)},
+    marks:[Plot.link(data,{y1:"t", y2:"t", x1:"before", x2:"after", stroke:d=>d.d>=0?up:mut, strokeWidth:2, markerEnd:"arrow"}),
+      Plot.dot(data,{y:"t", x:"before", r:4, stroke:mut, fill:css("--card"), strokeWidth:1.5}),
+      Plot.text(data,{y:"t", x:d=>Math.max(d.before,d.after), text:d=>`${d.d>=0?"+":""}${(d.d*100).toFixed(1)} pt`, dx:8, textAnchor:"start", fill:css("--muted")}),
+      Plot.tip(data, Plot.pointerY({y:"t", x:"after", fill:css("--card"), stroke:css("--line"), channels:{Before:d=>`${(d.before*100).toFixed(1)}%`, Now:d=>`${(d.after*100).toFixed(1)}%`}, format:{x:false,y:true}}))]}));
+}
+function drawPartisan(){
+  const el=document.getElementById("partisan"); el.innerHTML="";
+  const gs = GROUPS_IN(S.cong), rows = TL.filter(r=>gs.has(r.g));
+  const fD = shareBy(rows.filter(r=>r.party==="D"), ()=>true), fR = shareBy(rows.filter(r=>r.party==="R"), ()=>true);
+  const data = TOPICS.filter(t=>t!=="other").map(t=>({t, D:fD(t), R:fR(t)})).sort((a,b)=>(b.R-b.D)-(a.R-a.D));
+  const long = data.flatMap(d=>[{t:d.t, party:"Democrats", v:d.D}, {t:d.t, party:"Republicans", v:d.R}]);
+  const W=widthOf(el);
+  el.append(Plot.plot({width:W, height:360, marginLeft:150, marginRight:16, style:plotStyle(),
+    x:{label:"share of the party's AI statements →", percent:true, grid:true, tickFormat:d=>d+"%"}, y:{label:null, domain:data.map(d=>d.t)},
+    color:{domain:["Democrats","Republicans"], range:[PC("D"),PC("R")], legend:true},
+    marks:[Plot.link(data,{y1:"t", y2:"t", x1:"D", x2:"R", stroke:css("--line"), strokeWidth:3}),
+      Plot.dot(long,{y:"t", x:"v", fill:"party", r:5, stroke:css("--card"), strokeWidth:1.5,
+        tip:{fill:css("--card"), stroke:css("--line")}, channels:{Party:"party"}, title:d=>`${d.party}: ${(d.v*100).toFixed(1)}% of AI statements are about ${d.t}`})]}));
+  el.querySelector("figure")?.style.setProperty("margin","0");
+}
+function drawVoices(){
+  const t=voicetopic.value, el=document.getElementById("voices"); el.innerHTML="";
+  const xs = M.filter(m=>inCong(m) && partyOk(m)).map(m=>({m, v: t==="__all" ? m.n : (m.topics?.[t]||0)})).filter(d=>d.v>0).sort((a,b)=>b.v-a.v).slice(0,15);
+  if (!xs.length){ el.innerHTML='<p class="note">Nobody in this selection has statements on this topic.</p>'; return; }
+  const data = xs.map(d=>({name:`${d.m.name} (${d.m.party}-${seat(d.m)})`, v:Math.round(d.v), m:d.m}));
+  const W=widthOf(el);
+  const svg = Plot.plot({width:W, height:28*data.length+40, marginLeft:230, marginRight:40, style:plotStyle(),
+    x:{label:"statements →", grid:true}, y:{label:null, domain:data.map(d=>d.name)},
+    marks:[Plot.barX(data,{y:"name", x:"v", fill:d=>PC(d.m.party), insetTop:4, insetBottom:4, rx:3}),
+      Plot.text(data,{y:"name", x:"v", text:"v", dx:6, textAnchor:"start", fill:css("--muted")})]});
   el.append(svg);
-  const tip = document.getElementById("tip");
-  d3.select(svg).selectAll("circle").data(data)
-    .on("mousemove",(e,d)=>{tip.style.display="block";tip.style.left=Math.min(e.clientX+14,innerWidth-340)+"px";tip.style.top=(e.clientY+14)+"px";
-      tip.innerHTML=`<b class="p${d.party}">${esc(d.name)}</b> (${d.party}-${seat(d)})<br>${label[1]}: <b>${fmt(d.scores[k])}</b><br><span class="note">${esc(d.summary||"")}</span>`;})
-    .on("mouseleave",()=>tip.style.display="none")
-    .on("click",(e,d)=>{document.getElementById("q").value=d.name;renderTable();openRow(d.id);document.getElementById("members").scrollIntoView({behavior:"smooth"});});
-  const p = document.createElement("p"); p.className="note"; p.textContent = label[2] + ` · n = ${data.length}`; el.append(p);
+  bindHover(svg.querySelectorAll("g[aria-label=bar] rect"), data, d=>memberTip(d.m), d=>goMember(d.m));
 }
-function hash(s){let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))|0;return ((h>>>0)%1000)/1000;}
 
+/* ---------- opportunity map ---------- */
+const PRESETS = [
+  {label:"Expect AGI, but not worried about losing control", f:m=>(m.scores.agi_pilled??-1)>=3 && (m.scores.x_risk==null || m.scores.x_risk<=1.5)},
+  {label:"Worried about losing control, but lukewarm on rules", f:m=>(m.scores.x_risk??-1)>=3 && (m.scores.regulation==null || m.scores.regulation<=2)},
+  {label:"China hawks who also take x-risk seriously", f:m=>(m.scores.china_race??-1)>=3 && (m.scores.x_risk??-1)>=3},
+  {label:"Pro-regulation, but haven't engaged with x-risk", f:m=>(m.scores.regulation??-1)>=3 && (m.scores.x_risk==null || m.scores.x_risk<=1)},
+  {label:"Optimists who still back strong rules", f:m=>(m.scores.ai_overall??-1)>=3 && (m.scores.regulation??-1)>=3},
+];
+function drawPresets(){
+  document.getElementById("presets").innerHTML = PRESETS.map((p,i)=>`<button data-preset="${i}" aria-pressed="${i===S.preset}">${esc(p.label)}</button>`).join("");
+  document.querySelectorAll("[data-preset]").forEach(b=>b.onclick=()=>{S.preset=+b.dataset.preset; drawList();});
+}
+function drawList(){
+  if (S.preset==null) S.preset = 2;
+  document.querySelectorAll("[data-preset]").forEach(b=>b.setAttribute("aria-pressed", S.preset===+b.dataset.preset));
+  const list = M.filter(m=>inCong(m) && partyOk(m)).filter(PRESETS[S.preset].f).sort((a,b)=>b.n-a.n);
+  const byP = d3.rollup(list, v=>v.length, m=>m.party);
+  document.getElementById("list-cap").innerHTML = `<b>${list.length}</b> members${list.length?` (${["D","R","I"].filter(p=>byP.get(p)).map(p=>`${PNAME[p]} ${byP.get(p)}`).join(", ")})`:""}. Most outspoken first.`;
+  nameChips(document.getElementById("list-names"), list);
+}
+function nameChips(box, list, extra){
+  box.innerHTML = list.slice(0,80).map(m=>`<span class="nm" data-id="${m.id}"><span class="p${m.party}">●</span> ${esc(m.name)} <span class="note">${m.party}-${seat(m)}</span>${extra?`<b>${extra(m)}</b>`:""}</span>`).join("") + (list.length>80?`<span class="note">…and ${list.length-80} more</span>`:"");
+  box.querySelectorAll(".nm").forEach(n=>{ const m=M.find(x=>x.id===n.dataset.id); n.onmousemove=e=>showTip(e,memberTip(m)); n.onmouseleave=hideTip; n.onclick=()=>{hideTip();goMember(m);}; });
+}
+
+/* ---------- turnover ---------- */
+function drawTurnover(){
+  const el=document.getElementById("turn"); el.innerHTML="";
+  const out = M.filter(m=>m.next==="departing" && partyOk(m)), inn = M.filter(m=>m.next==="arriving" && partyOk(m));
+  const data = DIMS.flatMap(([k,l])=>{ const a=out.filter(m=>(m.scores[k]??-1)>=3).length, b=inn.filter(m=>(m.scores[k]??-1)>=3).length;
+    return [{l, side:"Leaving", v:-a, c:a}, {l, side:"Arriving", v:b, c:b, net:b-a}]; });
+  const W=widthOf(el), mx=d3.max(data,d=>Math.abs(d.v))||1;
+  el.append(Plot.plot({width:W, height:230, marginLeft:110, marginRight:90, style:plotStyle(),
+    x:{label:`← leaving (${out.length} members) · arriving (${inn.length} members) →`, labelAnchor:"center", domain:[-mx*1.15, mx*1.15], tickFormat:d=>Math.abs(d), grid:true},
+    y:{label:null, domain:DIMS.map(d=>d[1])},
+    color:{domain:["Leaving","Arriving"], range:[css("--leave"), css("--r2")]},
+    marks:[Plot.barX(data,{y:"l", x:"v", fill:"side", insetTop:6, insetBottom:6, rx:3,
+        tip:{fill:css("--card"), stroke:css("--line"), format:{x:false, y:true, fill:false}}, channels:{Who:"side", "Score 3+":"c"}}),
+      Plot.ruleX([0],{stroke:css("--muted")}),
+      Plot.text(data,{y:"l", x:"v", text:d=>d.c||"", dx:d=>d.v<0?-6:6, textAnchor:d=>d.v<0?"end":"start", fill:css("--muted")}),
+      Plot.text(data.filter(d=>d.side==="Arriving"),{y:"l", x:mx*1.15, text:d=>`net ${d.net>0?"+":""}${d.net}`, dx:8, textAnchor:"start", fontWeight:600, fill:css("--fg")})]}));
+  const k=S.dim, strong = xs => xs.filter(m=>(m.scores[k]??-1)>=3).sort((a,b)=>b.scores[k]-a.scores[k] || b.n-a.n);
+  const L=strong(out), A=strong(inn);
+  L.length ? nameChips(document.getElementById("leaving"), L, m=>fmt(m.scores[k])) : (document.getElementById("leaving").innerHTML='<span class="note">Nobody leaving scores 3 or more.</span>');
+  A.length ? nameChips(document.getElementById("arriving"), A, m=>fmt(m.scores[k])) : (document.getElementById("arriving").innerHTML='<span class="note">No arriving member scores 3 or more yet.</span>');
+}
+
+/* ---------- committees ---------- */
+let commSel = null;
+function drawComm(){
+  const k=S.dim, el=document.getElementById("comm"); el.innerHTML="";
+  const rows = [];
+  for (const [c,label] of Object.entries(COMM)){
+    const ms = M.filter(m=>m.status==="current" && partyOk(m) && m.committees.some(x=>x.c===c));
+    for (const [st,lab] of STATES) { const n = ms.filter(m=>stateOf(m)===st).length; rows.push({c, label, st, lab, n, tot:ms.length, share:n/(ms.length||1)}); }
+  }
+  const order = Object.keys(COMM).sort((a,b)=>{ const f=c=>rows.find(r=>r.c===c&&r.st==="yes").share; return f(b)-f(a); }).map(c=>COMM[c]);
+  const W=widthOf(el);
+  const svg = Plot.plot({width:W, height:order.length*30+40, marginLeft:190, marginRight:70, style:plotStyle(),
+    x:{label:"share of committee members →", percent:true, grid:true, tickFormat:d=>d+"%"}, y:{label:null, domain:order},
+    color:{domain:STATES.map(s=>s[0]), range:STATES.map(s=>css(s[2]))},
+    marks:[Plot.barX(rows.filter(r=>r.n>0),{y:"label", x:"share", fill:"st", order:STATES.map(s=>s[0]), stroke:d=>d.st==="none"?css("--muted"):css("--card"), strokeWidth:d=>d.st==="none"?1:1.5, insetTop:5, insetBottom:5}),
+      Plot.text(rows.filter(r=>r.st==="yes"),{y:"label", x:1, text:d=>`${d.n} of ${d.tot}`, dx:8, textAnchor:"start", fill:css("--muted")})]});
+  el.append(svg);
+  bindHover(svg.querySelectorAll("g[aria-label=bar] rect"), rows.filter(r=>r.n>0), d=>`<b>${esc(d.label)}</b><br>${esc(d.lab)}: ${d.n} of ${d.tot} members`, d=>{commSel=d; listComm();});
+  document.getElementById("comm-legend").innerHTML = stateLegend();
+  listComm();
+}
+function listComm(){
+  const cap=document.getElementById("comm-cap"), box=document.getElementById("comm-names");
+  if (!commSel){ cap.textContent="Click a bar to list those members."; box.innerHTML=""; return; }
+  const k=S.dim, list = M.filter(m=>m.status==="current" && partyOk(m) && m.committees.some(x=>x.c===commSel.c) && stateOf(m)===commSel.st).sort((a,b)=>(b.scores[k]??0)-(a.scores[k]??0) || b.n-a.n);
+  cap.innerHTML = `<b>${esc(commSel.label)}</b>: ${esc(commSel.lab.toLowerCase())} on ${esc(dimLabel())} (${list.length})`;
+  nameChips(box, list, m=>{ const r=m.committees.find(x=>x.c===commSel.c); return (r.title?esc(r.title)+" · ":"")+fmt(m.scores[k]); });
+}
+
+/* ---------- table ---------- */
 function renderHead(){
   const cols = [["name","Name"],["seat","Party–seat"],["chamber","Chamber"],...DIMS.map(([k,l])=>[k,l]),["strength","Evidence"],["n","Quotes"]];
   document.querySelector("#tbl thead").innerHTML = "<tr>"+cols.map(([k,l])=>`<th data-k="${k}" class="${DIMS.some(d=>d[0]===k)||k==="n"?"num":""}">${l}${sortKey===k?(sortDir>0?" ▲":" ▼"):""}</th>`).join("")+"</tr>";
   document.querySelectorAll("#tbl th").forEach(th=>th.onclick=()=>{const k=th.dataset.k; sortDir = sortKey===k ? -sortDir : (k==="name"||k==="seat"?1:-1); sortKey=k; renderHead(); renderTable();});
 }
 const SORTV = {name:m=>m.name, seat:m=>m.state+String(m.district??"").padStart(2,"0"), chamber:m=>m.chamber, strength:m=>({high:3,medium:2,low:1}[m.strength]||0), n:m=>m.n};
+function shade(v){ if(v==null) return ""; const c=d3.color(scoreColor(v)); c.opacity=0.55; return `background:${c.formatRgb()}`; }
 function renderTable(){
   const q = document.getElementById("q").value.toLowerCase().trim(), ch=fch.value, pa=fpa.value, st=fst.value, evf=fev.value;
+  const stOk = m => !st || (st==="c119"?inCong(m,"119"): st==="c120"?inCong(m,"120"): m.next===st);
   let rows = M.filter(m=>(!q || m.name.toLowerCase().includes(q) || m.state.toLowerCase()===q || seat(m).toLowerCase()===q)
-    && (!ch||m.chamber===ch) && (!pa||m.party===pa) && (!st||m.status===st) && (!evf||m.n>0));
+    && (!ch||m.chamber===ch) && (!pa||m.party===pa) && stOk(m) && (!evf||m.n>0));
   const f = SORTV[sortKey] || (m=>m.scores[sortKey] ?? (sortDir>0?99:-99));
   rows.sort((a,b)=>{const x=f(a),y=f(b);return (x>y?1:x<y?-1:0)*sortDir || a.name.localeCompare(b.name);});
   const tb = document.querySelector("#tbl tbody");
-  tb.innerHTML = rows.map(m=>`<tr class="row" data-id="${m.id}"><td>${esc(m.name)}${m.status==="member_elect"?'<span class="badge">new member</span>':""}${m.flag?'<span class="badge" title="The two scoring runs disagreed; human-reviewed">reviewed</span>':""}</td>
-    <td class="p${m.party}">${m.party}-${seat(m)}</td><td>${m.chamber==="senate"?"Senate":"House"}</td>
+  tb.innerHTML = rows.map(m=>`<tr class="row" data-id="${m.id}"><td>${esc(m.name)}${m.status==="member_elect"?'<span class="badge">new member</span>':""}${m.next==="departing"?'<span class="badge">leaving</span>':""}${m.flag?'<span class="badge" title="The two scoring runs disagreed; reviewed">reviewed</span>':""}</td>
+    <td class="p${m.party}">${m.party}-${seat(m)}</td><td>${m.chamber==="senate"?"Senate":"House"}${m.next_chamber!==m.chamber?` → ${m.next_chamber==="senate"?"Senate":"House"}`:""}</td>
     ${DIMS.map(([k])=>`<td class="num"><span class="sc" style="${shade(m.scores[k])}">${fmt(m.scores[k])}</span></td>`).join("")}
     <td>${m.strength==="none"?"—":m.strength}</td><td class="num">${m.n}</td></tr>`).join("");
   tb.querySelectorAll("tr.row").forEach(tr=>tr.onclick=()=>openRow(tr.dataset.id));
@@ -224,15 +591,17 @@ async function openRow(id){
   const cited = new Set(Object.values(d.cited).flat());
   const qs = [...d.quotes].sort((a,b)=>(cited.has(b.sid)-cited.has(a.sid)) || String(b.date).localeCompare(String(a.date)));
   const srcName = {floor:"Floor speech",hearing:"Hearing",x:"X post",web:"Web",official:"Official"};
+  const comms = (m.committees||[]).map(c=>COMM[c.c]+(c.title?` (${c.title})`:"")).join(" · ");
   det.innerHTML = `<td colspan="${5+DIMS.length}">
     <p style="margin:0 0 6px">${esc(m.summary || "Not enough public statements about AI to summarize.")}</p>
     ${m.handle?`<p class="note" style="margin:0">X: <a href="https://x.com/${esc(m.handle)}" target="_blank" rel="noopener">@${esc(m.handle)}</a></p>`:""}
-    <div class="dims">${DIMS.map(([k,l,a])=>`<div class="dim"><b>${l}: ${fmt(m.scores[k])}</b>${esc(clean(m.just[k])||"Insufficient evidence.")}</div>`).join("")}</div>
+    ${comms?`<p class="note" style="margin:0">Committees: ${esc(comms)}</p>`:""}
+    <div class="dims">${DIMS.map(([k,l])=>`<div class="dim"><b>${l}: ${fmt(m.scores[k])}</b>${esc(clean(m.just[k])||"Insufficient evidence.")}</div>`).join("")}</div>
     <p class="note">${qs.length} verified statement${qs.length===1?"":"s"}. The ones cited in the scores are marked in color and listed first.</p>
     ${qs.slice(0,60).map(q=>`<div class="quote ${cited.has(q.sid)?"cited":""}">“${esc(q.text)}”<div class="src">${srcName[q.src]||q.src} · ${esc(q.date||"undated")} · <a href="${esc(q.url)}" target="_blank" rel="noopener">source</a> ${q.topics.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}</div></div>`).join("")}
     ${qs.length>60?`<p class="note">…and ${qs.length-60} more in the CSV and the GitHub data.</p>`:""}</td>`;
 }
-document.getElementById("theme").onclick=()=>{const r=document.documentElement;const dark=matchMedia("(prefers-color-scheme: dark)").matches;const cur=r.dataset.theme||(dark?"dark":"light");r.dataset.theme=cur==="dark"?"light":"dark";drawTL();drawScatter();};
+document.getElementById("theme").onclick=()=>{const r=document.documentElement;const dark=matchMedia("(prefers-color-scheme: dark)").matches;const cur=r.dataset.theme||(dark?"dark":"light");r.dataset.theme=cur==="dark"?"light":"dark";drawAll();renderTable();};
 init();
 </script>
 </body>
