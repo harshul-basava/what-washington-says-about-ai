@@ -10,6 +10,7 @@ const CACHE = path.join(ROOT, "data/raw/x_profiles.json");
 const env = Object.fromEntries(fs.readFileSync(path.join(ROOT, ".env"), "utf8").split("\n")
   .filter((l) => l.includes("=") && !l.startsWith("#")).map((l) => [l.slice(0, l.indexOf("=")), l.slice(l.indexOf("=") + 1).trim()]));
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const withTimeout = (pr, ms = 30_000) => Promise.race([pr, new Promise((_, rej) => setTimeout(() => rej(new Error("timeout")), ms))]);
 
 const cache = fs.existsSync(CACHE) ? JSON.parse(fs.readFileSync(CACHE, "utf8")) : {};
 const roster = JSON.parse(fs.readFileSync(path.join(ROOT, "data/roster.json"), "utf8"));
@@ -23,7 +24,7 @@ for (const h of handles) {
   i++;
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
-      const u = await client.users.getByUsername(h);
+      const u = await withTimeout(client.users.getByUsername(h));
       cache[h] = { exists: true, id: u.id, username: u.username, name: u.name, posts: u.stats?.posts,
         followers: u.stats?.followers?.count, protected: u.protected ?? null, description: u.description ?? u.bio ?? null,
         created_at: u.created_at ?? null };
@@ -31,6 +32,7 @@ for (const h of handles) {
     } catch (e) {
       const msg = String(e?.message || e);
       if (/"data":\{\}|not found|suspended|User has been/i.test(msg)) { cache[h] = { exists: false }; break; }
+      if (/timeout/.test(msg) && attempt < 2) { await sleep(10_000); continue; }
       if (/429|rate/i.test(msg)) { console.error("rate limited; sleeping 15m"); await sleep(15 * 60_000); continue; }
       cache[h] = { exists: null, error: msg.slice(0, 200) }; break;
     }

@@ -56,12 +56,27 @@ def load_cesia():
     return by
 
 
+_VALID = None
+
+
+def valid_handles():
+    """Validated handles per person (phase1_handles_finalize.py). Posts by other authors are dropped."""
+    global _VALID
+    if _VALID is None:
+        f = ROOT / "data/x_people.json"
+        _VALID = {p["id"]: {h.lower() for h in p["handles"]} for p in json.loads(f.read_text())} if f.exists() else {}
+    return _VALID
+
+
 def x_statements(pid):
     f = RAW / "x_emusks" / f"{pid}.json"
     if not f.exists():
         return []
+    ok = valid_handles().get(pid, set())
     out = []
     for p in json.loads(f.read_text())["posts"]:
+        if (p.get("author") or "").lower() not in ok:
+            continue
         t = (p.get("text") or "").strip()
         body = re.sub(r"https?://\S+", "", t).strip()
         if len(body.split()) < 8:

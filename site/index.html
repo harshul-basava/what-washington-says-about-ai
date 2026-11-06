@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Washington Says About AI</title>
+<meta name="description" content="Evidence-backed scores of how every member of Congress talks about AI, AGI, AI risk, China and regulation, from verified quotes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbfaf7;--fg:#1c1b19;--muted:#6b675f;--line:#e4e0d8;--card:#ffffff;--accent:#9a3412;
+  --d:#2563eb;--r:#dc2626;--i:#7c3aed;--chip:#f1eee7;--hover:#f5f2ec;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141413;--fg:#ecebe6;--muted:#a19d94;--line:#2c2b28;--card:#1b1b19;--accent:#f97316;
+  --d:#60a5fa;--r:#f87171;--i:#a78bfa;--chip:#252421;--hover:#20201d;}}
+:root[data-theme="dark"]{
+  --bg:#141413;--fg:#ecebe6;--muted:#a19d94;--line:#2c2b28;--card:#1b1b19;--accent:#f97316;
+  --d:#60a5fa;--r:#f87171;--i:#a78bfa;--chip:#252421;--hover:#20201d;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 Inter,system-ui,sans-serif}
+main{max-width:1040px;margin:0 auto;padding:40px 16px 80px}
+h1,h2{font-family:"Source Serif 4",Georgia,serif;font-weight:600;letter-spacing:-.01em}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.1;margin:0 0 12px}
+h2{font-size:26px;margin:56px 0 12px;padding-top:16px;border-top:1px solid var(--line)}
+.lede{font-size:18px;color:var(--muted);max-width:720px;margin:0}
+.meta{font-size:13px;color:var(--muted);margin-top:14px}
+a{color:var(--accent)}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+select,input,button{font:inherit;font-size:14px;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:6px 10px}
+button{cursor:pointer}
+button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.chart{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto}
+.chart svg{max-width:100%;height:auto;background:transparent!important;color:var(--fg)}
+.grid2{display:grid;grid-template-columns:1fr;gap:20px}
+.note{font-size:13px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);cursor:pointer;white-space:nowrap;position:sticky;top:0;background:var(--bg)}
+th.num,td.num{text-align:center}
+tbody tr.row{cursor:pointer}
+tbody tr.row:hover{background:var(--hover)}
+.tablewrap{overflow-x:auto;max-height:80vh;overflow-y:auto;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.pD{color:var(--d)}.pR{color:var(--r)}.pI{color:var(--i)}
+.sc{display:inline-block;min-width:30px;padding:1px 6px;border-radius:4px;font-variant-numeric:tabular-nums;font-weight:500}
+.badge{font-size:11px;padding:1px 6px;border-radius:999px;background:var(--chip);color:var(--muted);margin-left:6px;white-space:nowrap}
+.detail td{background:var(--bg);padding:16px}
+.dims{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:12px 0}
+.dim{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px;font-size:13px}
+.dim b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.quote{border-left:3px solid var(--line);padding:4px 0 4px 12px;margin:10px 0;font-size:14px}
+.quote.cited{border-left-color:var(--accent)}
+.quote .src{font-size:12px;color:var(--muted)}
+.chip{display:inline-block;font-size:11px;background:var(--chip);border-radius:4px;padding:0 5px;margin-right:4px;color:var(--muted)}
+ol li{margin-bottom:8px}
+footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:16px}
+.tip{position:fixed;pointer-events:none;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 10px;max-width:320px;font-size:13px;box-shadow:0 4px 18px rgba(0,0,0,.12);display:none;z-index:10}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--muted);margin-top:8px}
+.legend span i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>What does Washington say about AI?</h1>
+  <p class="lede">For every member of Congress and every newly elected member, we collected what they have said publicly about AI: floor speeches, hearings, posts on X, interviews and press releases. We checked every quote against its source. A language model then rated each person on five questions, citing only those quotes.</p>
+  <p class="meta">Last updated <span id="updated">…</span> · <span id="nmembers">…</span> people · <span id="nquotes">…</span> verified statements</p>
+</header>
+
+<h2 id="explore">Explore</h2>
+<div class="grid2">
+  <div>
+    <div class="controls"><strong style="font-size:14px">AI statements per quarter, by topic</strong>
+      <span style="flex:1"></span>
+      <button data-party="all" aria-pressed="true">All</button><button data-party="D">Democrats</button><button data-party="R">Republicans</button>
+    </div>
+    <div class="chart" id="tl"></div>
+    <div class="legend" id="tl-legend"></div>
+    <p class="note">Each statement is split evenly across its 1–3 topics. Recent quarters fill in over time, and official records lag by a few months.</p>
+  </div>
+  <div>
+    <div class="controls"><strong style="font-size:14px">Ideology vs.</strong>
+      <select id="dimsel"></select>
+      <span class="note">Hover over a dot for details. People with too little evidence for this question are hidden.</span>
+    </div>
+    <div class="chart" id="scatter"></div>
+    <p class="note">Ideology is GovTrack's 0 (left) to 1 (right) score, based on bill cosponsorship in the 119th Congress. Newly elected members don't have one yet. Scores are jittered slightly so dots don't overlap.</p>
+  </div>
+</div>
+
+<h2 id="members">Members</h2>
+<div class="controls">
+  <input id="q" type="search" placeholder="Search name or state…" style="flex:1;min-width:180px">
+  <select id="fch"><option value="">Both chambers</option><option value="senate">Senate</option><option value="house">House</option></select>
+  <select id="fpa"><option value="">All parties</option><option value="D">Democrats</option><option value="R">Republicans</option><option value="I">Independents</option></select>
+  <select id="fst"><option value="">Current + new</option><option value="current">Current</option><option value="member_elect">New members</option></select>
+  <select id="fev"><option value="">Any evidence</option><option value="some">Has evidence</option></select>
+</div>
+<div class="tablewrap"><table id="tbl"><thead></thead><tbody></tbody></table></div>
+<p class="note">Scores run from 0 to 4; see the method below. A dash means there's not enough evidence. Click a row to see the summary and the verified quotes behind the scores.</p>
+
+<h2 id="method">Method</h2>
+<ol>
+  <li><b>Who:</b> all 539 current members (senators, representatives and delegates) from the <a href="https://github.com/unitedstates/congress-legislators">unitedstates/congress-legislators</a> project, plus winners of the November 2026 elections who aren't already in Congress, taken from called races only.</li>
+  <li><b>Official records:</b> AI-related quotes from the Congressional Record and hearings, from <a href="https://cesia.org/en/data/attention/">CeSIA's Politicians on AI</a> dataset (CC BY 4.0). Only the quote text, date and source are used. CeSIA's own labels are not.</li>
+  <li><b>X:</b> each person's posts since January 2023 that match AI keywords (retweets excluded), collected through X's web search. In a check against the official full-archive API, this found about 94% of matching posts.</li>
+  <li><b>Web:</b> a language model (Claude Sonnet 5.5) with web search looked for every substantive public statement about AI and was told explicitly that finding nothing is fine. We fetched every source page and kept a quote only if it appears there with a fuzzy match of at least 90%. When a site blocks automated access, we checked against the page text the search engine had retrieved.</li>
+  <li><b>Scoring:</b> the model saw only the verified statements for one person (no names of other sources, no party labels and no prior scores) and scored five questions on a written 0–4 rubric, or answered "insufficient evidence". We ran it twice with the statements shuffled. If the two runs differed by 2 or more on any question, the person was flagged for human review; otherwise the two scores were averaged.</li>
+  <li><b>Human check:</b> we hand-reviewed the people with the highest scores on AGI and existential risk, a random sample, and everyone who was flagged.</li>
+</ol>
+<p><b>Caveats.</b> What people say in public is not the same as what they believe or how they vote. Scores are produced by a language model and only spot-checked by people. Official records lag by months. X coverage depends on knowing the right accounts, and some members barely post. Members who rarely talk about AI will have little or no evidence. That doesn't mean they hold no views.</p>
+<p class="note">Thanks to <a href="https://cesia.org/en/data/attention/">CeSIA</a>, the <a href="https://github.com/unitedstates/congress-legislators">@unitedstates project</a>, <a href="https://www.govtrack.us/">GovTrack</a>, and Roe's earlier <a href="https://www.lesswrong.com/">"What Washington Says About AGI"</a>, which this project builds on.</p>
+
+<footer>
+  <a href="data/members.csv" download>Download CSV</a>
+  <a href="https://github.com/" id="gh">GitHub</a>
+  <a href="https://github.com/" id="contact">Contact / corrections (GitHub issues)</a>
+  <button id="theme" style="margin-left:auto">Toggle theme</button>
+</footer>
+</main>
+<div class="tip" id="tip"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.16/dist/plot.umd.min.js"></script>
+<script>
+const DIMS = [
+  ["ai_overall","AI overall","0 = very concerned · 4 = very optimistic"],
+  ["agi_pilled","AGI-pilled","0 = dismissive · 4 = AGI is central"],
+  ["x_risk","AI x-risk","0 = dismissive · 4 = major priority"],
+  ["china_race","China race","0 = rejects race framing · 4 = race dominates"],
+  ["regulation","Regulation","0 = strongly anti · 4 = strongly pro"],
+];
+const TOPICS = ["jobs/economy","China/competition","national security","kids/online safety","deepfakes/elections","copyright","energy/data centers","regulation","AGI/transformative","x-risk/loss of control","misuse (bio/cyber)","other"];
+const TCOL = ["#4e79a7","#e15759","#76b7b2","#f28e2b","#59a14f","#edc948","#b07aa1","#ff9da7","#9c755f","#d62728","#8c564b","#bab0ac"];
+const PCOL = p => getComputedStyle(document.documentElement).getPropertyValue(p==="D"?"--d":p==="R"?"--r":"--i").trim();
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let M = [], TL = [], party = "all", sortKey = "n", sortDir = -1, open = null;
+
+function seat(m){ return m.chamber==="senate" ? `${m.state}` : `${m.state}-${(m.district===0||m.district==="0"||m.district==null)?"AL":m.district}`; }
+function clean(t){ return String(t??"").replace(/\s*\((?:s\d+(?:\s*[,;–-]\s*|\s+and\s+)?)+\)/g,"").replace(/\bs\d+\b,?\s*/g,"").replace(/\s{2,}/g," "); }
+function fmt(v){ return v==null ? "—" : (Math.round(v*10)/10).toString(); }
+function shade(v){ if(v==null) return ""; const a = 0.08 + v/4*0.42; return `background:rgba(154,52,18,${a.toFixed(2)})`; }
+
+async function init(){
+  const [mj, tl] = await Promise.all([fetch("data/members.json").then(r=>r.json()), fetch("data/timeline.json").then(r=>r.json())]);
+  M = mj.members; TL = tl;
+  document.getElementById("updated").textContent = mj.updated;
+  document.getElementById("nmembers").textContent = M.length.toLocaleString();
+  document.getElementById("nquotes").textContent = M.reduce((a,m)=>a+m.n,0).toLocaleString();
+  const sel = document.getElementById("dimsel");
+  sel.innerHTML = DIMS.map(([k,l])=>`<option value="${k}">${l}</option>`).join("");
+  sel.value = "agi_pilled";
+  sel.onchange = drawScatter;
+  document.querySelectorAll("[data-party]").forEach(b=>b.onclick=()=>{party=b.dataset.party;document.querySelectorAll("[data-party]").forEach(x=>x.setAttribute("aria-pressed",x===b));drawTL();});
+  ["q","fch","fpa","fst","fev"].forEach(id=>document.getElementById(id).oninput=renderTable);
+  document.getElementById("tl-legend").innerHTML = TOPICS.map((t,i)=>`<span><i style="background:${TCOL[i]}"></i>${t}</span>`).join("");
+  drawTL(); drawScatter(); renderHead(); renderTable();
+  addEventListener("resize", ()=>{drawTL();drawScatter();});
+}
+
+function drawTL(){
+  const rows = d3.rollups(TL.filter(r=>party==="all"||r.party===party), v=>d3.sum(v,d=>d.n), d=>d.q, d=>d.topic)
+    .flatMap(([q,ts])=>ts.map(([topic,n])=>({q,topic,n})));
+  const el = document.getElementById("tl"); el.innerHTML="";
+  const w = Math.max(320, el.clientWidth-24);
+  el.append(Plot.plot({width:w, height:300, marginLeft:44, style:{background:"transparent",fontSize:"11px"},
+    x:{label:null, tickRotate: w<600?-45:0, tickFormat:(d,i)=> w<600 && i%2 ? "" : d},
+    y:{label:"statements", grid:true},
+    color:{domain:[...TOPICS,"untagged"], range:[...TCOL,"#ccc"]},
+    marks:[Plot.barY(rows,{x:"q",y:"n",fill:"topic",order:TOPICS,title:d=>`${d.q} · ${d.topic}: ${Math.round(d.n)}`}),Plot.ruleY([0])]}));
+}
+
+function drawScatter(){
+  const k = document.getElementById("dimsel").value;
+  const label = DIMS.find(d=>d[0]===k);
+  const data = M.filter(m=>m.ideology!=null && m.scores[k]!=null).map(m=>({...m, y:m.scores[k] + (hash(m.id)-.5)*0.35}));
+  const el = document.getElementById("scatter"); el.innerHTML="";
+  const w = Math.max(320, el.clientWidth-24);
+  const svg = Plot.plot({width:w, height:340, marginLeft:44, marginBottom:44, style:{background:"transparent",fontSize:"11px"},
+    x:{label:"← left · ideology (GovTrack) · right →", domain:[0,1], labelAnchor:"center", labelOffset:38},
+    y:{label:label[1]+" score", domain:[-0.3,4.3], ticks:[0,1,2,3,4], grid:true},
+    marks:[Plot.dot(data,{x:"ideology",y:"y",r:4,fill:d=>PCOL(d.party),fillOpacity:.75,stroke:"var(--bg)",strokeWidth:.5})]});
+  el.append(svg);
+  const tip = document.getElementById("tip");
+  d3.select(svg).selectAll("circle").data(data)
+    .on("mousemove",(e,d)=>{tip.style.display="block";tip.style.left=Math.min(e.clientX+14,innerWidth-340)+"px";tip.style.top=(e.clientY+14)+"px";
+      tip.innerHTML=`<b class="p${d.party}">${esc(d.name)}</b> (${d.party}-${seat(d)})<br>${label[1]}: <b>${fmt(d.scores[k])}</b><br><span class="note">${esc(d.summary||"")}</span>`;})
+    .on("mouseleave",()=>tip.style.display="none")
+    .on("click",(e,d)=>{document.getElementById("q").value=d.name;renderTable();openRow(d.id);document.getElementById("members").scrollIntoView({behavior:"smooth"});});
+  const p = document.createElement("p"); p.className="note"; p.textContent = label[2] + ` · n = ${data.length}`; el.append(p);
+}
+function hash(s){let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))|0;return ((h>>>0)%1000)/1000;}
+
+function renderHead(){
+  const cols = [["name","Name"],["seat","Party–seat"],["chamber","Chamber"],...DIMS.map(([k,l])=>[k,l]),["strength","Evidence"],["n","Quotes"]];
+  document.querySelector("#tbl thead").innerHTML = "<tr>"+cols.map(([k,l])=>`<th data-k="${k}" class="${DIMS.some(d=>d[0]===k)||k==="n"?"num":""}">${l}${sortKey===k?(sortDir>0?" ▲":" ▼"):""}</th>`).join("")+"</tr>";
+  document.querySelectorAll("#tbl th").forEach(th=>th.onclick=()=>{const k=th.dataset.k; sortDir = sortKey===k ? -sortDir : (k==="name"||k==="seat"?1:-1); sortKey=k; renderHead(); renderTable();});
+}
+const SORTV = {name:m=>m.name, seat:m=>m.state+String(m.district??"").padStart(2,"0"), chamber:m=>m.chamber, strength:m=>({high:3,medium:2,low:1}[m.strength]||0), n:m=>m.n};
+function renderTable(){
+  const q = document.getElementById("q").value.toLowerCase().trim(), ch=fch.value, pa=fpa.value, st=fst.value, evf=fev.value;
+  let rows = M.filter(m=>(!q || m.name.toLowerCase().includes(q) || m.state.toLowerCase()===q || seat(m).toLowerCase()===q)
+    && (!ch||m.chamber===ch) && (!pa||m.party===pa) && (!st||m.status===st) && (!evf||m.n>0));
+  const f = SORTV[sortKey] || (m=>m.scores[sortKey] ?? (sortDir>0?99:-99));
+  rows.sort((a,b)=>{const x=f(a),y=f(b);return (x>y?1:x<y?-1:0)*sortDir || a.name.localeCompare(b.name);});
+  const tb = document.querySelector("#tbl tbody");
+  tb.innerHTML = rows.map(m=>`<tr class="row" data-id="${m.id}"><td>${esc(m.name)}${m.status==="member_elect"?'<span class="badge">new member</span>':""}${m.flag?'<span class="badge" title="The two scoring runs disagreed; human-reviewed">reviewed</span>':""}</td>
+    <td class="p${m.party}">${m.party}-${seat(m)}</td><td>${m.chamber==="senate"?"Senate":"House"}</td>
+    ${DIMS.map(([k])=>`<td class="num"><span class="sc" style="${shade(m.scores[k])}">${fmt(m.scores[k])}</span></td>`).join("")}
+    <td>${m.strength==="none"?"—":m.strength}</td><td class="num">${m.n}</td></tr>`).join("");
+  tb.querySelectorAll("tr.row").forEach(tr=>tr.onclick=()=>openRow(tr.dataset.id));
+  if (open) { const id = open; open = null; openRow(id); }
+}
+async function openRow(id){
+  document.querySelectorAll("tr.detail").forEach(x=>x.remove());
+  if (open===id){ open=null; return; }
+  open = id;
+  const tr = document.querySelector(`tr.row[data-id="${id}"]`); if(!tr) return;
+  const m = M.find(x=>x.id===id);
+  const det = document.createElement("tr"); det.className="detail";
+  det.innerHTML = `<td colspan="${5+DIMS.length}">Loading…</td>`; tr.after(det);
+  const d = await fetch(`data/quotes/${id}.json`).then(r=>r.json());
+  const cited = new Set(Object.values(d.cited).flat());
+  const qs = [...d.quotes].sort((a,b)=>(cited.has(b.sid)-cited.has(a.sid)) || String(b.date).localeCompare(String(a.date)));
+  const srcName = {floor:"Floor speech",hearing:"Hearing",x:"X post",web:"Web",official:"Official"};
+  det.innerHTML = `<td colspan="${5+DIMS.length}">
+    <p style="margin:0 0 6px">${esc(m.summary || "Not enough public statements about AI to summarize.")}</p>
+    ${m.handle?`<p class="note" style="margin:0">X: <a href="https://x.com/${esc(m.handle)}" target="_blank" rel="noopener">@${esc(m.handle)}</a></p>`:""}
+    <div class="dims">${DIMS.map(([k,l,a])=>`<div class="dim"><b>${l}: ${fmt(m.scores[k])}</b>${esc(clean(m.just[k])||"Insufficient evidence.")}</div>`).join("")}</div>
+    <p class="note">${qs.length} verified statement${qs.length===1?"":"s"}. The ones cited in the scores are marked in color and listed first.</p>
+    ${qs.slice(0,60).map(q=>`<div class="quote ${cited.has(q.sid)?"cited":""}">“${esc(q.text)}”<div class="src">${srcName[q.src]||q.src} · ${esc(q.date||"undated")} · <a href="${esc(q.url)}" target="_blank" rel="noopener">source</a> ${q.topics.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}</div></div>`).join("")}
+    ${qs.length>60?`<p class="note">…and ${qs.length-60} more in the CSV and the GitHub data.</p>`:""}</td>`;
+}
+document.getElementById("theme").onclick=()=>{const r=document.documentElement;const dark=matchMedia("(prefers-color-scheme: dark)").matches;const cur=r.dataset.theme||(dark?"dark":"light");r.dataset.theme=cur==="dark"?"light":"dark";drawTL();drawScatter();};
+init();
+</script>
+</body>
+</html>

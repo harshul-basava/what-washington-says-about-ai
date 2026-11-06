@@ -23,6 +23,7 @@ const MIN_GAP_MS = 20_000; // ~45 req / 15 min, under the documented 50
 const MAX_PAGES = 40; // safety cap per person (~800 posts)
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const withTimeout = (pr, ms = 45_000) => Promise.race([pr, new Promise((_, rej) => setTimeout(() => rej(new Error("timeout")), ms))]);
 let last = 0;
 async function throttled(fn) {
   const wait = last + MIN_GAP_MS - Date.now();
@@ -30,9 +31,10 @@ async function throttled(fn) {
   for (let attempt = 0; ; attempt++) {
     last = Date.now();
     try {
-      return await fn();
+      return await withTimeout(fn());
     } catch (e) {
       const msg = String(e?.message || e);
+      if (attempt < 3 && /timeout/.test(msg)) { await sleep(15_000); continue; }
       if (attempt < 4 && /429|rate|limit|88/i.test(msg)) {
         console.error(`  rate limited, sleeping 15m (attempt ${attempt + 1})`);
         await sleep(15 * 60_000);
@@ -70,11 +72,14 @@ async function collect(client, person) {
       let added = 0;
       for (const t of tweets) if (t?.id && !posts.has(t.id)) { posts.set(t.id, t); added++; }
       newThisRound += added;
+      // X sometimes returns an empty page mid-stream; only stop after two in a row.
       empties = added === 0 ? empties + 1 : 0;
       if (!res.nextCursor || empties >= 2) break;
       cursor = res.nextCursor;
     }
-    if (newThisRound === 0) break;
+    // A round that returned less than one full page has reached the end; only walk back
+    // in time when pagination may have been cut off early.
+    if (newThisRound < 20) break;
     const oldest = Math.min(...[...posts.values()].map((t) => new Date(t.created_at).getTime()));
     const next = new Date(oldest + 86_400_000).toISOString().slice(0, 10); // until: is exclusive
     if (next <= SINCE || next === until) break;
