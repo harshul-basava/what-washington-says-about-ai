@@ -17,7 +17,7 @@
   /* topic groups: categorical slots 1-6 in validated order + neutral other */
   --s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;--s5:#e87ba4;--s6:#008300;--sOther:#c3c2b7;
   /* score ramp 0..4 (ordinal, one hue, validated) */
-  --r0:#eb9c63;--r1:#d97a3c;--r2:#bd5c22;--r3:#924215;--r4:#632a0b;--nodata:#d6d4cd;
+  --r0:#e0a030;--r1:#dd7029;--r2:#bf3d2c;--r3:#8c1f3a;--r4:#521433;--nodata:#d6d4cd;
   /* sequential (counts) */
   --leave:#a8a69f;--yes:#c9632a;--no:#dedad1;
 }
@@ -26,14 +26,14 @@
   --bg:#141413;--fg:#ecebe6;--muted:#a19d94;--line:#2c2b28;--card:#1a1a19;--accent:#f0894a;--chip:#252421;--hover:#20201d;--grid:#2c2c2a;
   --pD:#3987e5;--pR:#e66767;--pI:#eda100;
   --s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--s5:#d55181;--s6:#008300;--sOther:#5a5955;
-  --r0:#7a3d18;--r1:#a0501d;--r2:#c96625;--r3:#e8884a;--r4:#f8b886;--nodata:#3a3936;
+  --r0:#853059;--r1:#b33a3c;--r2:#de5a2e;--r3:#f29a3c;--r4:#f8d870;--nodata:#3a3936;
   --leave:#6b6a64;--yes:#e8884a;--no:#46453f;}}
 :root[data-theme="dark"]{
   color-scheme:dark;
   --bg:#141413;--fg:#ecebe6;--muted:#a19d94;--line:#2c2b28;--card:#1a1a19;--accent:#f0894a;--chip:#252421;--hover:#20201d;--grid:#2c2c2a;
   --pD:#3987e5;--pR:#e66767;--pI:#eda100;
   --s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--s5:#d55181;--s6:#008300;--sOther:#5a5955;
-  --r0:#7a3d18;--r1:#a0501d;--r2:#c96625;--r3:#e8884a;--r4:#f8b886;--nodata:#3a3936;
+  --r0:#853059;--r1:#b33a3c;--r2:#de5a2e;--r3:#f29a3c;--r4:#f8d870;--nodata:#3a3936;
   --leave:#6b6a64;--yes:#e8884a;--no:#46453f;}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 Inter,system-ui,sans-serif}
@@ -115,20 +115,15 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
   <p class="meta">Last updated <span id="updated">…</span> · <span id="nmembers">…</span> people · <span id="nquotes">…</span> verified statements</p>
 </header>
 
-<div class="bar controls" role="toolbar" aria-label="Filters for all charts">
-  <span class="lbl">Congress</span>
-  <span class="seg"><button data-cong="119" aria-pressed="true">Today (119th)</button><button data-cong="120">January 2027 (120th)</button></span>
-  <span class="lbl" style="margin-left:8px">Party</span>
-  <span class="seg"><button data-party="all" aria-pressed="true">All</button><button data-party="D">Dem</button><button data-party="R">Rep</button></span>
-  <span class="lbl" style="margin-left:8px">Question</span>
-  <select id="dimsel" aria-label="Question"></select>
-</div>
-
 <h2 id="chamber"></h2>
 <p class="sub" id="hemi-sub"></p>
 <div class="chart">
   <div id="hemi" style="max-width:760px;margin:0 auto"></div>
-  <div class="legend" id="seat-legend"></div>
+  <div class="legend" id="seat-legend" style="justify-content:center;margin-top:10px"></div>
+  <div class="controls" style="justify-content:center;margin-top:14px;border-top:1px solid var(--line);padding-top:12px">
+    <span class="seg" id="dimbtns" role="group" aria-label="Question"></span>
+    <span class="seg" role="group" aria-label="Congress"><button data-cong="119" aria-pressed="true">Today's Congress</button><button data-cong="120">January 2027</button></span>
+  </div>
 </div>
 <p class="note" id="hemi-note"></p>
 
@@ -239,6 +234,13 @@ const GROUPS = [
   ["Energy & data centers",["energy/data centers"],"--s6"],
   ["Other",["other","untagged"],"--sOther"],
 ];
+const LEVELS = {
+  ai_overall:["Very concerned","Mostly concerned","Mixed","Mostly optimistic","Very optimistic"],
+  agi_pilled:["Dismissive","Sees ordinary tech","Very transformative","AGI is plausible","AGI is central"],
+  x_risk:["Dismissive","Ordinary harms only","Serious misuse","Loss of control is real","A top priority"],
+  china_race:["Rejects the race","Barely mentions it","Present","Strong","Dominant"],
+  regulation:["Strongly against","Mostly against","Targeted rules","Pro-regulation","Strongly for"],
+};
 const T2G = Object.fromEntries(GROUPS.flatMap(([g,ts])=>ts.map(t=>[t,g])));
 const PNAME = {D:"Democrats",R:"Republicans",I:"Independents"};
 const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
@@ -281,13 +283,12 @@ async function init(){
   document.getElementById("nmembers").textContent = M.length.toLocaleString();
   document.getElementById("nquotes").textContent = M.reduce((a,m)=>a+m.n,0).toLocaleString();
   const opts = DIMS.map(([k,l])=>`<option value="${k}">${l}</option>`).join("");
-  dimsel.innerHTML = opts; dimsel.value=S.dim;
-  dimsel.onchange=()=>{S.dim=dimsel.value; drawAll();};
+  document.getElementById("dimbtns").innerHTML = DIMS.map(([k,l])=>`<button data-dim="${k}" aria-pressed="${k===S.dim}">${l}</button>`).join("");
   const topicOpts = TOPICS.map(t=>`<option>${t}</option>`).join("");
   focustopic.innerHTML = topicOpts; focustopic.value="x-risk/loss of control"; focustopic.onchange=drawFocus;
   voicetopic.innerHTML = `<option value="__all">All AI statements</option>`+topicOpts; voicetopic.value="x-risk/loss of control"; voicetopic.onchange=drawVoices;
   const seg = (attr, key, after) => document.querySelectorAll(`[data-${attr}]`).forEach(b=>b.onclick=()=>{S[key]=b.dataset[attr]; document.querySelectorAll(`[data-${attr}]`).forEach(x=>x.setAttribute("aria-pressed",x===b)); after();});
-  seg("cong","cong",drawAll); seg("party","party",drawAll); seg("tlmode","tlmode",drawTL);
+  seg("cong","cong",drawAll); seg("dim","dim",drawAll); seg("tlmode","tlmode",drawTL);
   ["q","fch","fpa","fst","fev"].forEach(id=>document.getElementById(id).oninput=renderTable);
   drawPresets(); renderHead(); renderTable(); drawAll();
   let t; addEventListener("resize", ()=>{clearTimeout(t); t=setTimeout(drawAll,150);});
@@ -316,44 +317,47 @@ function hemiLayout(n, rows){
 }
 function drawHemis(){
   const k=S.dim, d=DIMS.find(x=>x[0]===k);
-  const RANK = {yes:0, no:1, none:2};
+  const lvl = m => m.scores[k]==null ? -1 : Math.floor(m.scores[k]+0.5);   // averaged scores like 2.5 round up
   const el = document.getElementById("hemi"); el.innerHTML="";
   const W = Math.min(760, widthOf(el.parentElement));
-  const Rh = W/2 - 4, Rs = Rh*0.6, gap = 96;            // House bowl radius, Senate dome radius, label band
-  const H = Rs + gap + Rh + 4, cx = W/2, ySen = Rs + 2, yHouse = Rs + gap;   // flat edges of the two halves
+  const Rh = W/2 - 4, Rs = Rh*0.6;
+  const nS = M.filter(m=>inCong(m) && chamberOf(m)==="senate").length, nH = M.filter(m=>inCong(m) && chamberOf(m)==="house").length;
+  const dS = hemiLayout(nS+30,6).dot*Rs, dH = hemiLayout(nH+55,11).dot*Rh;
+  const gap = 2*dS + 2*dH + 18;                       // small band between the two halves
+  const H = Rs + gap + Rh + 4, cx = W/2, ySen = Rs + 2, yHouse = Rs + gap;
   const svg = d3.select(el).append("svg").attr("viewBox",`0 0 ${W} ${H}`).attr("width",W).attr("height",H).attr("role","img")
-    .attr("aria-label",`Senate and House seats colored by whether the member ${d[3]}`);
-  let total=0, yes=0;
+    .attr("aria-label",`Senate and House seats, ordered and colored by ${d[1]} score`);
+  const all = [];
   for (const ch of ["senate","house"]){
-    const list = M.filter(m=>inCong(m) && chamberOf(m)===ch);
-    // Democrats on the left, Republicans on the right; within each party the "yes" seats sit at the outer edge
-    const by = p => list.filter(m=>m.party===p).sort((a,b)=>RANK[stateOf(a)]-RANK[stateOf(b)] || (b.scores[k]??0)-(a.scores[k]??0) || b.n-a.n);
-    const order = [...by("D"), ...by("I").reverse(), ...by("R").reverse()];
-    const {seats, dot} = hemiLayout(order.length, ch==="senate" ? 5 : 11);
+    // left to right: not enough evidence, then score 0 up to 4
+    const order = M.filter(m=>inCong(m) && chamberOf(m)===ch).sort((a,b)=>lvl(a)-lvl(b) || (a.scores[k]??0)-(b.scores[k]??0) || a.name.localeCompare(b.name));
+    all.push(...order);
+    // empty seats between score groups so each group reads as its own wedge
+    const rows = ch==="senate" ? 6 : 11, slots = [];
+    order.forEach((m,i)=>{ if (i && lvl(m)!==lvl(order[i-1])) for (let j=0;j<rows;j++) slots.push(null); slots.push(m); });
+    const {seats, dot} = hemiLayout(slots.length, rows);
     const Rad = ch==="senate" ? Rs : Rh, R = dot*Rad;
-    // Senate: dome above its flat edge. House: upside-down bowl below its flat edge.
     const px = s => cx + s.x*Rad, py = s => ch==="senate" ? ySen - s.y*Rad + R : yHouse + s.y*Rad - R;
-    svg.append("g").selectAll("circle").data(order.map((m,i)=>({m, s:seats[i]}))).join("circle")
-      .attr("cx",x=>px(x.s)).attr("cy",x=>py(x.s)).attr("r",x=>stateOf(x.m)==="none"?R-0.75:R)
-      .attr("fill",x=>css(STATES.find(t=>t[0]===stateOf(x.m))[2]))
-      .attr("stroke",x=>stateOf(x.m)==="none"?css("--muted"):"none").attr("stroke-width",1.2).classed("hit",true)
+    svg.append("g").selectAll("circle").data(slots.map((m,i)=>({m, s:seats[i]})).filter(x=>x.m)).join("circle")
+      .attr("cx",x=>px(x.s)).attr("cy",x=>py(x.s)).attr("r",x=>lvl(x.m)<0?R-0.75:R)
+      .attr("fill",x=>lvl(x.m)<0?"none":css("--r"+lvl(x.m)))
+      .attr("stroke",x=>lvl(x.m)<0?css("--muted"):"none").attr("stroke-width",1.2).classed("hit",true)
       .on("mousemove",(e,x)=>showTip(e, memberTip(x.m))).on("mouseleave",hideTip).on("click",(e,x)=>{hideTip(); goMember(x.m);});
-    const c = p => order.filter(m=>m.party===p).length, cy = p => order.filter(m=>m.party===p && stateOf(m)==="yes").length;
-    const ny = order.filter(m=>stateOf(m)==="yes").length; total+=order.length; yes+=ny;
-    // labels in the band between the two halves
-    const ty = ch==="senate" ? ySen + 2*R + 16 : yHouse - 2*R - 8, x0 = cx - Rad, x1 = cx + Rad;
-    const t = (x, anchor, fill, txt, weight=600, size=12) => svg.append("text").attr("x",x).attr("y",ty).attr("text-anchor",anchor).attr("fill",fill).attr("font-size",size).attr("font-weight",weight).text(txt);
-    t(x0, "start", PC("D"), `Democrats ${c("D")}`);
-    t(x1, "end", PC("R"), `Republicans ${c("R")}`);
-    t(cx, "middle", css("--fg"), `${ch==="senate"?"Senate":"House"}: ${ny} of ${order.length} seats`, 600, 13);
-    svg.append("title").text(`${ch}: ${ny} of ${order.length} seats. Democrats ${cy("D")}, Republicans ${cy("R")}${c("I")?`, independents ${cy("I")}`:""}.`);
+    // chamber name sits in the empty center of its own half
+    const ly = ch==="senate" ? ySen - Rad*0.12 : yHouse + Rad*0.2;
+    svg.append("text").attr("x",cx).attr("y",ly).attr("text-anchor","middle").attr("fill",css("--fg")).attr("font-size",15).attr("font-weight",600).text(ch==="senate"?"Senate":"House");
+    svg.append("text").attr("x",cx).attr("y",ly+17).attr("text-anchor","middle").attr("fill",css("--muted")).attr("font-size",12).text(`${order.length} seats`);
   }
-  const q = {ai_overall:"Who is mostly optimistic about AI?", agi_pilled:"Who sees AGI as a real possibility?", x_risk:"Who treats loss of control as a real risk?", china_race:"Who frames AI mainly as a race with China?", regulation:"Who backs substantial AI rules?"}[k];
+  const q = {ai_overall:"How optimistic is Congress about AI?", agi_pilled:"Does Congress expect AGI?", x_risk:"Does Congress take loss of control seriously?", china_race:"How much does Congress frame AI as a race with China?", regulation:"How much does Congress back AI rules?"}[k];
+  const ends = {ai_overall:["very concerned","very optimistic"], agi_pilled:["dismissive","AGI is central"], x_risk:["dismissive","a top priority"], china_race:["rejects race framing","the race dominates"], regulation:["strongly against","strongly for"]}[k];
   document.getElementById("chamber").textContent = q;
-  document.getElementById("hemi-sub").innerHTML = `<b>${yes} of ${total}</b> members of ${S.cong==="119"?"today's Congress":"the Congress that takes office in January 2027"} score 3 or more on <b>${d[1]}</b> (${d[2]}). Each dot is one seat: the Senate on top, the House below. Change the question at the top of the page.`;
-  document.getElementById("seat-legend").innerHTML = stateLegend();
+  document.getElementById("hemi-sub").innerHTML = `Every seat in ${S.cong==="119"?"today's Congress":"the Congress that takes office in January 2027"}, sorted from ${LEVELS[k][0].toLowerCase()} to ${LEVELS[k][4].toLowerCase()} on <b>${d[1]}</b>. The Senate is on top and the House below.`;
+  const cnt = v => all.filter(m=>lvl(m)===v).length;
+  document.getElementById("seat-legend").innerHTML =
+    `<span><i class="ring"></i>Not enough evidence: <b>${cnt(-1)}</b></span>` +
+    [0,1,2,3,4].map(v=>`<span><i class="dot" style="background:${css("--r"+v)}"></i>${LEVELS[k][v]}: <b>${cnt(v)}</b></span>`).join("");
   const pend = M.filter(m=>m.next==="pending").length;
-  document.getElementById("hemi-note").textContent = "Hover over a seat to see who it is, or click it to read their quotes. Independents (who caucus with Democrats) sit in the middle. House delegates are included." + (S.cong==="120" ? ` ${pend} seats whose 2026 race hasn't been called yet are left out.` : "");
+  document.getElementById("hemi-note").textContent = "Hover over a seat to see who it is and their party, or click it to read their quotes. Scores are the average of two scoring runs, rounded. House delegates are included." + (S.cong==="120" ? ` ${pend} seats whose 2026 race hasn't been called yet are left out.` : "");
 }
 
 /* ---------- tiles ---------- */
@@ -386,8 +390,8 @@ function drawPartyDist(){
     x:{label:"share of members →", percent:true, grid:false}, y:{label:null, domain:[...new Set(agg.map(d=>d.party))].sort((a,b)=>"DRI".indexOf(a[0])-"DRI".indexOf(b[0]))},
     color:{domain:levels, range:col},
     marks:[Plot.barX(agg,{y:"party", x:"n", fill:"level", order:levels, inset:1, rx:2,
-      tip:{fill:css("--card"), stroke:css("--line")}, channels:{Score:"level", Members:"c"}, title:d=>`${d.party}\nscore ${d.level}: ${d.c} members (${Math.round(d.n*100)}%)`})]}));
-  document.getElementById("pd-legend").innerHTML = legendHTML(levels.map((l,i)=>[l==="not enough evidence"?l:`score ${l}`, col[i]]));
+      tip:{fill:css("--card"), stroke:css("--line")}, channels:{Score:"level", Members:"c"}, title:d=>`${d.party}\n${d.level==="not enough evidence"?"Not enough evidence":LEVELS[k][+d.level]}: ${d.c} members (${Math.round(d.n*100)}%)`})]}));
+  document.getElementById("pd-legend").innerHTML = legendHTML(levels.map((l,i)=>[l==="not enough evidence"?"Not enough evidence":LEVELS[k][+l], col[i]]));
 }
 
 /* ---------- topics ---------- */
