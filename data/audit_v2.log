@@ -1,1 +1,81 @@
-(eval):1: command not found: uv run python
+auditing 49 people with openai/gpt-6.1-sol
+Yassamin Ansari: disagree=[] bad_citations=['ai_overall', 'agi_pilled', 'regulation'] $0.029
+Julia Brownley: disagree=['agi_pilled', 'regulation'] bad_citations=['agi_pilled', 'regulation'] $0.014
+Ami Bera: disagree=['agi_pilled', 'x_risk', 'regulation'] bad_citations=['ai_overall', 'agi_pilled', 'x_risk', 'china_race', 'regulation'] $0.024
+Shelley Moore Capito: disagree=['agi_pilled'] bad_citations=['ai_overall', 'agi_pilled', 'regulation'] $0.021
+Christopher A. Coons: disagree=[] bad_citations=['ai_overall', 'agi_pilled', 'x_risk', 'china_race', 'regulation'] $0.038
+Traceback (most recent call last):
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 127, in __iter__
+    for part in self._httpcore_stream:
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 407, in __iter__
+    raise exc from None
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 403, in __iter__
+    for part in self._stream:
+                ^^^^^^^^^^^^
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 342, in __iter__
+    raise exc
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 334, in __iter__
+    for chunk in self._connection._receive_response_body(**kwargs):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 203, in _receive_response_body
+    event = self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpcore/_backends/sync.py", line 126, in read
+    with map_exceptions(exc_map):
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tanish/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/tanish/Desktop/washington_agi_update/scripts/phase4_crossmodel.py", line 213, in <module>
+    {"blind-submit": blind_submit, "blind-collect": blind_collect, "audit": audit, "report": report}[sys.argv[1]]()
+  File "/Users/tanish/Desktop/washington_agi_update/scripts/phase4_crossmodel.py", line 130, in audit
+    d = llm.chat([{"role": "user", "content": prompt}], tag="phase4_audit", model=REVIEWER, max_tokens=6000)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tanish/Desktop/washington_agi_update/llm.py", line 67, in chat
+    r = httpx.post(OPENROUTER_URL, json=body, headers=headers, timeout=600)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpx/_api.py", line 304, in post
+    return request(
+           ^^^^^^^^
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpx/_api.py", line 109, in request
+    return client.request(
+           ^^^^^^^^^^^^^^^
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpx/_client.py", line 928, in send
+    raise exc
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpx/_client.py", line 922, in send
+    response.read()
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpx/_models.py", line 881, in read
+    self._content = b"".join(self.iter_bytes())
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpx/_models.py", line 897, in iter_bytes
+    for raw_bytes in self.iter_raw():
+                     ^^^^^^^^^^^^^^^
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpx/_models.py", line 951, in iter_raw
+    for raw_stream_bytes in self.stream:
+                            ^^^^^^^^^^^
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpx/_client.py", line 153, in __iter__
+    for chunk in self._stream:
+                 ^^^^^^^^^^^^
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 126, in __iter__
+    with map_httpcore_exceptions():
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tanish/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/tanish/Desktop/washington_agi_update/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout: The read operation timed out

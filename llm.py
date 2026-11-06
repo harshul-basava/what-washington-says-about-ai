@@ -64,7 +64,13 @@ def chat(messages: list[dict], *, tag: str, tools: list | None = None, model: st
         body["response_format"] = response_format
     headers = {"Authorization": f"Bearer {os.environ['OPENROUTER_API_KEY']}"}
     for attempt in range(4):
-        r = httpx.post(OPENROUTER_URL, json=body, headers=headers, timeout=600)
+        try:
+            r = httpx.post(OPENROUTER_URL, json=body, headers=headers, timeout=600)
+        except (httpx.TimeoutException, httpx.TransportError):
+            if attempt < 3:
+                time.sleep(5 * 2**attempt)
+                continue
+            raise
         if r.status_code in (429, 500, 502, 503) and attempt < 3:
             time.sleep(5 * 2**attempt)
             continue
