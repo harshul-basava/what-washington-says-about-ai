@@ -209,8 +209,8 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
   <li><b>Official records:</b> AI-related quotes from the Congressional Record and hearings, from <a href="https://cesia.org/en/data/attention/">CeSIA's Politicians on AI</a> dataset (CC BY 4.0). Only the quote text, date and source are used. CeSIA's own labels are not.</li>
   <li><b>X:</b> each person's posts since January 2023 that match AI keywords (retweets excluded), from X's full-archive search. For the first 132 people we used X's web search instead, which found about 94% as many posts in a side-by-side check.</li>
   <li><b>Web:</b> a language model (Claude Sonnet 5.5) with web search looked for every substantive public statement about AI and was told explicitly that finding nothing is fine. We fetched every source page and kept a quote only if it appears there with a fuzzy match of at least 90%. When a site blocks automated access, we checked against the page text the search engine had retrieved.</li>
-  <li><b>Scoring:</b> the model saw only the verified statements for one person (no names of other sources, no party labels and no prior scores) and scored five questions on a written 0–4 rubric, or answered "insufficient evidence". Only the member's own views count: quoting someone else's warning (for example an AI company CEO's) doesn't count unless the member clearly adopts it. We ran it twice with the statements shuffled. If the two runs differed by 2 or more on any question, the person was flagged for review; otherwise the two scores were averaged.</li>
-  <li><b>Review:</b> a model from a different family re-scored everyone blind and audited the highest scores on AGI and existential risk, a random sample, and every case where the two models disagreed.</li>
+  <li><b>Scoring:</b> each question is a claim (for example, "advanced AI could cause a catastrophe for humanity, and this deserves serious policy attention"), scored 0–4 by how strongly the member backs it in their own words. Two models from different companies, Claude Sonnet 5.5 and GPT-6.1 Sol, each read every statement and label the level it shows, using written tests for each level (<a href="https://github.com/">rubric</a>). Quoting someone else's warning doesn't count unless the member adopts it. A fixed formula then turns the labels into a score. For "how strongly" questions (AGI, x-risk, China), the score is the highest level reached by at least two statements, and members who never discuss the topic get 0. For two-sided questions (AI overall, regulation), it's the median label. The published score is the average of the two models' scores.</li>
+  <li><b>Review:</b> scores where the two models are 2 or more apart, the highest scores on AGI and x-risk, and a random sample are checked by a person.</li>
   <li><b>Committees:</b> current full-committee rosters from the @unitedstates project.</li>
 </ol>
 <p><b>Caveats.</b> What people say in public is not the same as what they believe or how they vote. Scores are produced by language models and only spot-checked. Official records lag by months. X coverage depends on knowing the right accounts, and some members barely post. Members who rarely talk about AI will have little or no evidence. That doesn't mean they hold no views.</p>
@@ -229,11 +229,11 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
 <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.16/dist/plot.umd.min.js"></script>
 <script>
 const DIMS = [
-  ["ai_overall","AI overall","0 = very concerned · 4 = very optimistic","are mostly optimistic about AI"],
-  ["agi_pilled","AGI-pilled","0 = dismissive · 4 = AGI is central","see AGI as a real possibility"],
-  ["x_risk","AI x-risk","0 = dismissive · 4 = major priority","treat loss of control as a real risk"],
-  ["china_race","China race","0 = rejects race framing · 4 = race dominates","frame AI mainly as a race with China"],
-  ["regulation","Regulation","0 = strongly anti · 4 = strongly pro","back substantial AI rules"],
+  ["ai_overall","AI overall","0 = mainly a threat · 4 = enthusiastic","are mostly optimistic about AI"],
+  ["agi_pilled","AGI-pilled","0 = doesn't discuss or dismisses · 4 = AGI is near","see AGI as a real possibility"],
+  ["x_risk","AI x-risk","0 = doesn't discuss or dismisses · 4 = a top priority","want action on catastrophic AI risk"],
+  ["china_race","China race","0 = doesn't raise it or rejects the race · 4 = outweighs everything","make the China race a main reason for their AI positions"],
+  ["regulation","Regulation","0 = opposes rules · 4 = comprehensive regulation","back substantial rules on AI companies"],
 ];
 const TOPICS = ["jobs/economy","China/competition","national security","kids/online safety","deepfakes/elections","copyright","energy/data centers","regulation","AGI/transformative","x-risk/loss of control","misuse (bio/cyber)","other"];
 // six themes + other; slot order is the validated stacking order (frontier risk sits on the baseline)
@@ -247,11 +247,11 @@ const GROUPS = [
   ["Other",["other","untagged"],"--sOther"],
 ];
 const LEVELS = {
-  ai_overall:["Very concerned","Mostly concerned","Mixed","Mostly optimistic","Very optimistic"],
-  agi_pilled:["Dismissive","Just another technology","Very transformative","AGI is plausible","AGI is central"],
-  x_risk:["Dismissive","Only everyday harms","Serious misuse","Loss of control is real","A top priority"],
-  china_race:["Rejects the race framing","Rarely raises it","Mentions the race","A main lens","Overrides everything"],
-  regulation:["Strongly against","Mostly against","Targeted rules","Pro-regulation","Strongly for"],
+  ai_overall:["Mainly a threat","Harms dominate","Balanced","Mainly an opportunity","Enthusiastic"],
+  agi_pilled:["Doesn't discuss or dismisses","Ordinary technology","Very large change","AGI is possible","AGI is near"],
+  x_risk:["Doesn't discuss or dismisses","Raises it, plays it down","A real risk","Wants action on it","A top priority"],
+  china_race:["Doesn't raise it or rejects it","Mentions it","One reason among several","The main reason","Outweighs everything"],
+  regulation:["Opposes rules","Light-touch","Targeted rules","Substantial rules","Comprehensive rules"],
 };
 const T2G = Object.fromEntries(GROUPS.flatMap(([g,ts])=>ts.map(t=>[t,g])));
 const PNAME = {D:"Democrats",R:"Republicans",I:"Independents"};
@@ -285,6 +285,8 @@ function bindHover(nodes, data, html, click){
   [...nodes].forEach((n,i)=>{ const d=data[i]; if(d===undefined) return; n.classList.add("hit");
     n.onmousemove=e=>showTip(e,html(d)); n.onmouseleave=hideTip; n.onclick=()=>{hideTip(); click&&click(d);}; });
 }
+const SHORT = {ai_overall:"overall", agi_pilled:"AGI", x_risk:"x-risk", china_race:"China", regulation:"regulation"};
+function labChips(q){ return Object.entries(q.lab||{}).map(([k,v])=>`<span class="chip" title="Level this statement shows on ${esc(dimLabel(k))} (Claude / GPT)" style="border:1px solid var(--line)">${SHORT[k]} ${v.map(x=>x??"–").join("/")}</span>`).join(""); }
 function legendHTML(items){ return items.map(([lab,col,cls])=>`<span><i class="${cls||""}" style="background:${col}"></i>${esc(lab)}</span>`).join(""); }
 
 /* ---------- init ---------- */
@@ -358,8 +360,8 @@ function drawHemis(){
     svg.append("text").attr("x",cx).attr("y",ly).attr("text-anchor","middle").attr("fill",css("--fg")).attr("font-size",15).attr("font-weight",600).text(ch==="senate"?"Senate":"House");
     svg.append("text").attr("x",cx).attr("y",ly+17).attr("text-anchor","middle").attr("fill",css("--muted")).attr("font-size",12).text(`${order.length} seats`);
   }
-  const q = {ai_overall:"How optimistic is Congress about AI?", agi_pilled:"Does Congress expect AGI?", x_risk:"Does Congress take loss of control seriously?", china_race:"How much does Congress frame AI as a race with China?", regulation:"How much does Congress back AI rules?"}[k];
-  const ends = {ai_overall:["very concerned","very optimistic"], agi_pilled:["dismissive","AGI is central"], x_risk:["dismissive","a top priority"], china_race:["rejects race framing","the race dominates"], regulation:["strongly against","strongly for"]}[k];
+  const q = {ai_overall:"How optimistic is Congress about AI?", agi_pilled:"Does Congress expect AGI?", x_risk:"How seriously does Congress take catastrophic AI risk?", china_race:"How much does Congress frame AI as a race with China?", regulation:"How much does Congress back AI rules?"}[k];
+  const ends = [LEVELS[k][0].toLowerCase(), LEVELS[k][4].toLowerCase()];
   document.getElementById("chamber").textContent = q;
   document.getElementById("hemi-sub").innerHTML = `Every seat in ${S.cong==="119"?"today's Congress":"the Congress that takes office in January 2027"}, sorted from ${LEVELS[k][0].toLowerCase()} to ${LEVELS[k][4].toLowerCase()} on <b>${d[1]}</b>. The Senate is on top and the House below.`;
   const cnt = v => all.filter(m=>lvl(m)===v).length;
@@ -367,7 +369,7 @@ function drawHemis(){
     `<span><i class="ring"></i>Not enough evidence: <b>${cnt(-1)}</b></span>` +
     [0,1,2,3,4].map(v=>`<span><i class="dot" style="background:${css("--r"+v)}"></i>${LEVELS[k][v]}: <b>${cnt(v)}</b></span>`).join("");
   const pend = M.filter(m=>m.next==="pending").length;
-  document.getElementById("hemi-note").textContent = "Hover over a seat to see who it is and their party, or click it to read their quotes. Scores are the average of two scoring runs, rounded. House delegates are included." + (S.cong==="120" ? ` ${pend} seats whose 2026 race hasn't been called yet are left out.` : "");
+  document.getElementById("hemi-note").textContent = "Hover over a seat to see who it is and their party, or click it to read their quotes. Scores are the average of two models' scores, rounded. House delegates are included." + (S.cong==="120" ? ` ${pend} seats whose 2026 race hasn't been called yet are left out.` : "");
 }
 
 /* ---------- ideology scatter (the original chart format) ---------- */
@@ -628,8 +630,8 @@ async function openRow(id){
     ${m.handle?`<p class="note" style="margin:0">X: <a href="https://x.com/${esc(m.handle)}" target="_blank" rel="noopener">@${esc(m.handle)}</a></p>`:""}
     ${comms?`<p class="note" style="margin:0">Committees: ${esc(comms)}</p>`:""}
     <div class="dims">${DIMS.map(([k,l])=>`<div class="dim"><b>${l}: ${fmt(m.scores[k])}</b>${esc(clean(m.just[k])||"Insufficient evidence.")}</div>`).join("")}</div>
-    <p class="note">${qs.length} verified statement${qs.length===1?"":"s"}. The ones cited in the scores are marked in color and listed first.</p>
-    ${qs.slice(0,60).map(q=>`<div class="quote ${cited.has(q.sid)?"cited":""}">“${esc(q.text)}”<div class="src">${srcName[q.src]||q.src} · ${esc(q.date||"undated")} · <a href="${esc(q.url)}" target="_blank" rel="noopener">source</a> ${q.topics.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}</div></div>`).join("")}
+    <p class="note">${qs.length} verified statement${qs.length===1?"":"s"}. The ones cited in the scores are marked in color and listed first. Boxed tags show the level each judge gave a statement on a question (Claude / GPT; – means that judge didn't think it applied).</p>
+    ${qs.slice(0,60).map(q=>`<div class="quote ${cited.has(q.sid)?"cited":""}">“${esc(q.text)}”<div class="src">${srcName[q.src]||q.src} · ${esc(q.date||"undated")} · <a href="${esc(q.url)}" target="_blank" rel="noopener">source</a> ${q.topics.map(t=>`<span class="chip">${esc(t)}</span>`).join("")} ${labChips(q)}</div></div>`).join("")}
     ${qs.length>60?`<p class="note">…and ${qs.length-60} more in the CSV and the GitHub data.</p>`:""}</td>`;
 }
 document.getElementById("theme").onclick=()=>{const r=document.documentElement;const dark=matchMedia("(prefers-color-scheme: dark)").matches;const cur=r.dataset.theme||(dark?"dark":"light");r.dataset.theme=cur==="dark"?"light":"dark";drawAll();renderTable();};

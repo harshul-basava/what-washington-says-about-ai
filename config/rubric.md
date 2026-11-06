@@ -1,47 +1,90 @@
-<!-- rubric v2 -->
-# Scoring rubric (v2)
+<!-- rubric v3 -->
+# Scoring rubric (v3)
 
-Score each dimension **0–4** from the statements alone. If the statements don't speak to a dimension, answer `"insufficient_evidence"` instead of guessing. Never fill gaps from party, ideology, or what you know about the person. Weight what they say about AI itself over boilerplate (for example, a press release that just lists AI as a topic).
+Every question is a **claim**. A member's score is how strongly *they* back that claim in their own words, on one five-step scale with the same shape for every question:
 
-## General rules (apply to every dimension)
+| Level | Shape | Meaning |
+|---|---|---|
+| 0 | strongly disagree / absent | rejects the claim, or never engages with it |
+| 1 | disagree / weak | engages, but downplays or hedges |
+| 2 | neutral / moderate | backs the claim as a real consideration |
+| 3 | agree | backs it strongly enough to want action on it |
+| 4 | strongly agree | treats it as central or a top priority |
 
-- **Their own views only.** A statement counts toward a score only for what the member says *they* believe or want. Reporting someone else's view ("AI CEOs warn that superintelligence could be catastrophic", "experts predict half of entry-level jobs will vanish", "Anthropic's CEO says…") does **not** count unless the member clearly adopts it in their own words, for example by saying they share the concern or by calling for action because of it. Using another person's warning only to attack an opponent is not an endorsement.
-- **Cite only what supports the level.** The statement IDs you cite for a dimension must directly support the score you gave, at that level. Don't cite a statement that is on a different topic, or one that supports a lower or higher level than the one you chose.
-- **When to answer `insufficient_evidence`.** Score a dimension only if at least one statement, in the member's own voice, speaks to *that* dimension. Talking about AI in general is not enough for every dimension. Each dimension's "use 1 only if" note says when a low score is justified rather than `insufficient_evidence`.
+You are labeling **individual statements**. A fixed formula turns the labels into the member's score, so label each statement on its own merits.
 
-The example quotes below are **illustrative**: they show the kind of statement that fits each level, and are not real quotes from any member.
+## How to label a statement
 
-## 1. `ai_overall`: how they feel about AI overall
-- **0 (very concerned):** AI is mainly a threat or harm. *"AI is a menace to workers and kids, and it's being forced on us."*
-- **1 (mostly concerned):** they acknowledge some benefits, but harms dominate. *"There may be upsides, but right now AI is eliminating jobs and spreading lies."*
-- **2 (mixed / balanced):** real promise and real risk in roughly equal measure. *"AI has enormous potential, but we have to get the guardrails right."*
-- **3 (mostly optimistic):** mainly an opportunity; risks are manageable. *"AI will cure diseases and grow our economy; we just need sensible rules."*
-- **4 (very optimistic):** enthusiastic, and concerns are minimal or dismissed. *"AI is the greatest opportunity of our lifetime, so let's unleash it."*
+1. **Judge meaning, not wording.** A statement passes a test if what it asserts meets the test, however it is phrased. Specific words or references (movies, "doomsday", "existential", "game-changer", "arms race") neither qualify nor disqualify a statement by themselves. Ask what the member is actually claiming.
+2. **Own voice only.** Label a statement only for what the member says *they* believe or want. If they only report someone else's view (a CEO, experts, a study, a report), give it **no label**, unless they clearly adopt it: they say they share it, or they call for action because of it. Using someone else's warning only to attack an opponent is not adopting it.
+3. **One level per question per statement:** the highest level whose test the statement fully meets. If it partly meets a test, use the level below.
+4. **No label** when the statement does not address that question. Most statements address only one or two questions. Label a question only if this statement gives evidence about it.
+5. Bill announcements count as calls for action only if the statement says what the bill does and why.
 
-## 2. `agi_pilled`: do they expect AGI or transformative AI?
-- **0 (dismissive):** AGI or superintelligence talk is hype or sci-fi; AI is just another tool. *"This 'superintelligence' talk is Silicon Valley marketing."*
-- **1 (ordinary tech):** they talk about AI often, but only as a normal technology (apps, productivity, specific harms). There is no sign they expect radical change. Use 1 only if they say something about how big or lasting AI's impact will be and treat it as an ordinary technology. If they never address AI's scale or future at all (only specific bills, harms or uses), answer `insufficient_evidence`.
-- **2 (very transformative):** AI will reshape the economy and society on the scale of the internet or the industrial revolution, without mentioning AGI. *"AI will be the biggest economic transformation of our lifetime."*
-- **3 (AGI plausible):** they treat AGI, superintelligence, or human-level AI as a real near-to-medium-term possibility worth planning for. *"We may see AI smarter than humans within a decade."*
-- **4 (AGI central):** AGI or superintelligence is imminent or central to their thinking, with explicit short timelines or comparisons to a civilizational turning point. *"Artificial superintelligence could arrive before 2030, and nothing else matters as much."*
+## 1. `x_risk`
+**Claim:** *Advanced AI could cause a catastrophe for humanity, and this deserves serious policy attention.* Catastrophe means loss of human control over AI, human extinction or disempowerment, or mass-casualty misuse (AI-enabled biological, chemical or nuclear weapons, or cyberattacks on critical infrastructure).
+Not catastrophe: job losses, bias, privacy, deepfakes, scams, kids' safety, misinformation, energy use, ordinary cybercrime, or generic "national security" with no catastrophic scenario.
 
-## 3. `x_risk`: AI catastrophic or existential risk
-- **0 (dismissive):** they explicitly reject catastrophic or existential AI risk as doomerism or a distraction. *"The AI doomsday crowd is fearmongering to get regulatory capture."*
-- **1 (ordinary harms only):** their concerns are limited to everyday harms (bias, privacy, jobs, deepfakes, kids) with no catastrophic framing. Use 1 only if they discuss AI risks and none are catastrophic. Saying that *others* fear catastrophe, without saying they share the concern, stays at 1 (or `insufficient_evidence` if they discuss no risks of their own).
-- **2 (serious misuse):** they flag large-scale risks such as AI-enabled bioweapons, major cyberattacks, or national-security catastrophe, but not loss of control. *"AI could help terrorists build a bioweapon."*
-- **3 (loss of control is real):** they acknowledge that loss of human control or existential risk from advanced AI is a real concern. *"We have to make sure we never lose control of these systems."*
-- **4 (major priority):** they treat existential or extinction risk from AI as a top-tier priority, comparing it to nuclear war or pandemics. *"Mitigating the risk of extinction from AI should be a global priority."*
+| Level | Test |
+|---|---|
+| 0 | Rejects the idea that AI poses catastrophic risk (calls it hype, fiction, fearmongering, or a distraction from real issues). |
+| 1 | Raises catastrophic risk but plays it down: treats it as remote, speculative, or less important than other issues. |
+| 2 | Affirms that catastrophic risk is real or plausible, but does not ask for any specific response to it. |
+| 3 | Asks for a specific response *because of* catastrophic risk: legislation, oversight, safety testing or evaluations, hearings, emergency powers, an international agreement, or slowing or pausing development. |
+| 4 | Ranks catastrophic AI risk among the most important problems: their top concern, a threat comparable to nuclear war or pandemics, or something that should take priority over other AI goals. |
 
-## 4. `china_race`: China / AI race framing
-- **0 (rejects race):** they reject or criticize race framing, or call for cooperation with China on AI. *"An AI arms race with China makes everyone less safe; we need dialogue."*
-- **1 (minimal):** China is mentioned rarely, or only as one factor among many. Use 1 only if they mention China or global competition in an AI context at least once and it barely features. If China or an AI race never comes up, answer `insufficient_evidence`.
-- **2 (present):** competition with China is a recurring theme, balanced with other concerns. *"We must stay ahead of China while protecting Americans."*
-- **3 (strong):** beating China is a primary lens for AI policy. *"We are in an AI race with China and we cannot afford to lose it."*
-- **4 (dominant):** the race overrides other concerns and is used to argue against constraints. *"Every regulation is a gift to Beijing; winning the race is all that matters."*
+## 2. `agi_pilled`
+**Claim:** *AI is on track to transform society on a historic scale, possibly reaching human-level or greater intelligence (AGI).*
+Label only statements about AI's overall scale, capability or trajectory. Statements about a single use, harm, bill or industry get no label.
 
-## 5. `regulation`: stance on AI regulation
-- **0 (strongly anti):** against AI regulation; supports federal preemption of state laws and moratoria. *"Washington should keep its hands off AI and stop the 50-state patchwork."*
-- **1 (mostly anti / light-touch):** prefers voluntary standards and minimal, targeted rules; wary of most proposals. *"Let's not strangle innovation; targeted fixes only."*
-- **2 (targeted):** supports specific rules (deepfakes, kids' safety, transparency) but not broad frameworks. *"We need to ban nonconsensual AI deepfakes."*
-- **3 (pro-regulation):** supports substantial rules for AI companies, such as liability, audits, or safety testing for frontier models. *"AI companies must be held liable when their products cause harm."*
-- **4 (strongly pro):** supports comprehensive regulation, licensing of frontier AI, a new agency, or pauses. *"We need a federal licensing regime for the most powerful AI models."*
+| Level | Test |
+|---|---|
+| 0 | Rejects claims of transformative AI or AGI (calls them hype, marketing, or overblown). |
+| 1 | Describes AI as an ordinary or incremental technology, one tool among many, with no sign of expecting large change. |
+| 2 | Says AI will change the economy or society on a very large scale (comparable to the internet or the industrial revolution), without claiming it will match or exceed human intelligence. |
+| 3 | Treats AI matching or exceeding human intelligence in general (AGI, superintelligence) as a real possibility within years to decades. |
+| 4 | Says AGI or superintelligence is near (within a few years) or is a civilizational turning point that should drive policy now. |
+
+## 3. `china_race`
+**Claim:** *Winning the AI competition with China should drive U.S. AI policy.*
+Label only statements that mention China or an international AI race or competition.
+
+| Level | Test |
+|---|---|
+| 0 | Rejects or criticizes race framing, or calls for cooperation or agreements with China on AI. |
+| 1 | Mentions China or the competition without using it to justify a position. |
+| 2 | Uses the competition as one reason among several for a position. |
+| 3 | Uses the competition as the main reason for a position. |
+| 4 | Argues the competition outweighs other concerns, e.g. that safety rules or limits should be avoided or dropped because of China. |
+
+## 4. `ai_overall`
+**Claim:** *AI will be good for Americans overall.*
+Label only statements that express a view of **AI in general**: its overall effects on people, the economy or the country. A statement about one specific harm (e.g. deepfakes, scams, a lawsuit) or one specific benefit (e.g. a use in medicine) is **not** a view of AI overall, so it gets no label here, even if it is strongly worded. Neutral announcements, event notices and procedural statements also get no label.
+
+| Level | Test |
+|---|---|
+| 0 | Presents AI as mainly a threat or harm. |
+| 1 | Acknowledges some benefits, but treats harms as dominant. |
+| 2 | Gives real benefits and real risks roughly equal weight. |
+| 3 | Presents AI as mainly an opportunity, with risks treated as manageable. |
+| 4 | Enthusiastic: benefits are the point, and concerns are minimal or dismissed. |
+
+## 5. `regulation`
+**Claim:** *The federal government should place more rules on AI and AI companies.*
+Label only statements that take a position on rules for AI.
+
+| Level | Test |
+|---|---|
+| 0 | Opposes regulating AI, or supports blocking or pausing state AI laws. |
+| 1 | Prefers voluntary standards or light-touch rules, and warns against most new rules. |
+| 2 | Supports narrow rules aimed at specific harms (e.g. deepfakes, kids' safety, disclosure or labeling), with no broad framework. |
+| 3 | Supports substantial obligations on AI companies generally: liability, audits, licensing-style approval, or safety testing of advanced models. |
+| 4 | Supports comprehensive regulation: a new regulator, licensing of frontier AI, or a pause or moratorium on advanced AI. |
+
+## How labels become a score (fixed formula, not the model)
+
+- **Minimum evidence:** fewer than 3 statements in total gives "not enough evidence" on every question.
+- **Recency:** for each question, if at least 3 labeled statements fall in the last 24 months, only those are used.
+- **x_risk, agi_pilled, china_race:** no labeled statements gives **0** ("doesn't discuss it"). Otherwise the score is the highest level that is **consistent** for them: reached by at least two statements, or by at least a third of their labeled statements on that question. If the top level is a one-off (one statement, and less than a third of their statements on the question), the score is one step below it. This rewards consistency over isolated remarks, without penalizing members who rarely speak.
+- **ai_overall, regulation:** the **median** of the labels, with halves rounded toward the middle (2). No labeled statements gives "not enough evidence".
+- **Two judges:** Claude Sonnet 5.5 and GPT-6.1 Sol each label every statement independently. The published score is the average of their two scores.

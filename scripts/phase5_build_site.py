@@ -74,6 +74,8 @@ def main():
     nxt_f = ROOT / "data/next_congress.json"
     nxt = json.loads(nxt_f.read_text()) if nxt_f.exists() else {}
     roles = committee_roles()
+    lab_f = ROOT / "data/labels.json"
+    LABELS = json.loads(lab_f.read_text()) if lab_f.exists() else {}
     handles = json.loads((ROOT / "data/handles.json").read_text()) if (ROOT / "data/handles.json").exists() else {}
 
     members, timeline = [], defaultdict(Counter)
@@ -88,8 +90,11 @@ def main():
         mtopics = Counter()
         for s in ev["statements"]:
             t = list(dict.fromkeys(canon_topic(x) for x in (topics.get(s["sid"]) or [])))
+            lab = (LABELS.get(p["id"]) or {}).get(s["sid"]) or {}
             quotes.append({"sid": s["sid"], "text": s["text"], "date": s.get("date"), "src": s["source_type"],
-                           "url": s["url"], "topics": t})
+                           "url": s["url"], "topics": t,
+                           "lab": {k: [lab.get("sonnet", {}).get(k), lab.get("gpt", {}).get(k)] for k in DIMS
+                                   if lab.get("sonnet", {}).get(k) is not None or lab.get("gpt", {}).get(k) is not None}})
             q = quarter(s.get("date"))
             if q and q >= "2023-Q1":
                 for tp in (t or ["untagged"]):
@@ -108,6 +113,7 @@ def main():
             "n_by_src": dict(Counter(q["src"] for q in quotes)),
             "scores": {k: (dims.get(k, {}).get("score") if isinstance(dims.get(k, {}).get("score"), (int, float)) else None) for k in DIMS},
             "just": {k: dims.get(k, {}).get("justification") for k in DIMS},
+            "reason": {k: [dims.get(k, {}).get("reason_a"), dims.get(k, {}).get("reason_b")] for k in DIMS},
             "strength": sc.get("evidence_strength") or "none",
             "summary": sc.get("summary"),
             "flag": sc.get("flag", False),

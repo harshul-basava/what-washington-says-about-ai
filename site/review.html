@@ -67,13 +67,13 @@ kbd{font:11px ui-monospace,monospace;border:1px solid var(--line);border-bottom-
 <script>
 const DIM = {ai_overall:"AI overall", agi_pilled:"AGI-pilled", x_risk:"AI x-risk", china_race:"China race", regulation:"Regulation"};
 const LEVELS = {
-  ai_overall:["Very concerned","Mostly concerned","Mixed","Mostly optimistic","Very optimistic"],
-  agi_pilled:["Dismissive","Just another technology","Very transformative","AGI is plausible","AGI is central"],
-  x_risk:["Dismissive","Only everyday harms","Serious misuse","Loss of control is real","A top priority"],
-  china_race:["Rejects the race framing","Rarely raises it","Mentions the race","A main lens","Overrides everything"],
-  regulation:["Strongly against","Mostly against","Targeted rules","Pro-regulation","Strongly for"],
+  ai_overall:["Mainly a threat","Harms dominate","Balanced","Mainly an opportunity","Enthusiastic"],
+  agi_pilled:["Doesn't discuss or dismisses","Ordinary technology","Very large change","AGI is possible","AGI is near"],
+  x_risk:["Doesn't discuss or dismisses","Raises it, plays it down","A real risk","Wants action on it","A top priority"],
+  china_race:["Doesn't raise it or rejects it","Mentions it","One reason among several","The main reason","Outweighs everything"],
+  regulation:["Opposes rules","Light-touch","Targeted rules","Substantial rules","Comprehensive rules"],
 };
-const CAT = {no_support:"No cited quote supports the score", disagree:"Second model disagrees", runs_split:"Two runs disagreed", blind_gap:"Blind re-score differs by 2+", packet:"Top scorers & random sample"};
+const CAT = {no_support:"No cited quote supports the score", disagree:"Second model disagrees", runs_split:"The two models are 2+ apart", blind_gap:"Blind re-score differs by 2+", packet:"Top scorers & random sample"};
 const KEY = "wwsai-review-v1";
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const fmt = v => typeof v==="number" ? (Math.round(v*10)/10).toString() : v==null ? "—" : "not enough";
@@ -117,22 +117,23 @@ async function render(){
   const d = D[ik(it)] || {};
   const lvl = v => typeof v==="number" ? `${fmt(v)} · ${LEVELS[it.dim][Math.floor(v+0.5)]}` : v==="insufficient_evidence"||v==null ? "Not enough evidence" : v;
   const qHTML = q => `<div class="q ${bad.has(q.sid)?"bad":cited.has(q.sid)?"cited":""}">“${esc(q.text)}”<div class="src">${q.sid} · ${esc(q.src)} · ${esc(q.date||"undated")} · <a href="${esc(q.url)}" target="_blank" rel="noopener">source</a>
-    ${bad.has(q.sid)?' · <b style="color:var(--bad)">auditor: doesn\'t support the score</b>':cited.has(q.sid)?' · <b style="color:var(--ok)">cited</b>':""} ${q.topics.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}</div></div>`;
+    ${bad.has(q.sid)?' · <b style="color:var(--bad)">auditor: doesn\'t support the score</b>':cited.has(q.sid)?' · <b style="color:var(--ok)">cited</b>':""} ${q.lab&&q.lab[it.dim]?`<b>· labels for this question: Claude ${q.lab[it.dim][0]??"–"} / GPT ${q.lab[it.dim][1]??"–"}</b>`:""} ${q.topics.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}</div></div>`;
   const citedQ = it.cited.map(s=>Q.find(q=>q.sid===s)).filter(Boolean);
-  const others = Q.filter(q=>!cited.has(q.sid) && (!qsearch || q.text.toLowerCase().includes(qsearch.toLowerCase())));
+  const labeled = q => q.lab && q.lab[it.dim] ? 1 : 0;
+  const others = Q.filter(q=>!cited.has(q.sid) && (!qsearch || q.text.toLowerCase().includes(qsearch.toLowerCase()))).sort((a,b)=>labeled(b)-labeled(a));
   main.innerHTML = `
     <h2><span class="p${it.party}">${esc(it.name)}</span> <span class="note" style="font-size:14px">${it.party}-${it.state} · ${it.chamber}${it.status==="member_elect"?" · new member":""}</span></h2>
     <div class="tags"><span class="tag">${DIM[it.dim]}</span>${it.cats.map(c=>`<span class="tag ${c==="packet"?"":"hot"}">${esc(CAT[c])}${c==="packet"&&it.why?": "+esc(it.why):""}</span>`).join("")}<span class="note">Item ${cur+1} of ${view.length}</span></div>
     <div class="grid">
       <div class="box"><b>Score shown on site</b><div class="v">${esc(lvl(it.score))}</div></div>
-      <div class="box"><b>Run A / Run B</b><div class="v">${fmt(it.run_a)} / ${fmt(it.run_b)}</div></div>
+      <div class="box"><b>Claude / GPT</b><div class="v">${fmt(it.run_a)} / ${fmt(it.run_b)}</div></div>
       <div class="box"><b>Second model, blind</b><div class="v">${esc(lvl(it.blind))}</div></div>
       ${it.audit?`<div class="box"><b>Second model, audit</b><div class="v">${esc(it.audit.verdict||"—")}${it.audit.verdict==="disagree"?` → ${esc(fmt(it.audit.score))}`:""}</div></div>`:""}
     </div>
     ${it.audit?.note?`<div class="panel"><h3>Auditor's note</h3>${esc(it.audit.note)}</div>`:""}
     <div class="panel"><h3>Why the model gave this score</h3>${esc(it.justification||"—")}</div>
     <div class="panel"><h3>Cited quotes (${citedQ.length})</h3>${citedQ.map(qHTML).join("")||'<p class="note">None cited.</p>'}</div>
-    <div class="panel"><h3>All other statements (${Q.length-citedQ.length})</h3>
+    <div class="panel"><h3>All other statements (${Q.length-citedQ.length}), ones labeled for this question first</h3>
       <input id="qs" type="search" placeholder="Search these statements…" value="${esc(qsearch)}" style="width:100%">
       <div id="others">${others.slice(0,80).map(qHTML).join("")}${others.length>80?`<p class="note">…${others.length-80} more; search to narrow.</p>`:""}</div></div>
     <div class="panel"><h3>Summary of this person</h3>${esc(it.summary)}</div>
@@ -147,7 +148,7 @@ async function render(){
       <div class="kbd" style="margin-top:4px"><kbd>J</kbd>/<kbd>→</kbd> next · <kbd>K</kbd>/<kbd>←</kbd> previous · deciding moves you to the next item</div>
     </div>`;
   main.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>decide(b.dataset.v));
-  const qs = document.getElementById("qs"); qs.oninput=()=>{ qsearch=qs.value; const o=Q.filter(q=>!cited.has(q.sid)&&(!qsearch||q.text.toLowerCase().includes(qsearch.toLowerCase()))); document.getElementById("others").innerHTML=o.slice(0,80).map(qHTML).join(""); };
+  const qs = document.getElementById("qs"); qs.oninput=()=>{ qsearch=qs.value; const o=Q.filter(q=>!cited.has(q.sid)&&(!qsearch||q.text.toLowerCase().includes(qsearch.toLowerCase()))).sort((a,b)=>labeled(b)-labeled(a)); document.getElementById("others").innerHTML=o.slice(0,80).map(qHTML).join(""); };
   const note = document.getElementById("note"); note.oninput=()=>{ const k=ik(it); if(D[k]){ D[k].note=note.value; save(); } else if(note.value){ D[k]={verdict:"note", note:note.value, at:new Date().toISOString()}; save(); renderList(); } };
 }
 function decide(v){
