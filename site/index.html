@@ -127,6 +127,12 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
 </div>
 <p class="note" id="hemi-note"></p>
 
+<h3 id="ideo-title"></h3>
+<p class="sub">Each dot is a member: left to right by ideology, up and down by score. The most outspoken high scorers are named.</p>
+<div class="chart" id="ideo"></div>
+<div class="legend" id="ideo-legend"></div>
+<p class="note">Ideology is GovTrack's 0 (progressive) to 1 (conservative) score, based on bill cosponsorship in the 119th Congress. Newly elected members don't have one yet, so they aren't shown. Scores are nudged up or down slightly so dots don't sit on top of each other.</p>
+
 <div class="tiles" id="tiles"></div>
 
 <h3>How each party answers the question</h3>
@@ -297,7 +303,7 @@ function drawAll(){
   const d = DIMS.find(x=>x[0]===S.dim);
   document.querySelectorAll(".dimname").forEach(e=>e.textContent=d[1]);
   document.querySelectorAll(".dimphrase").forEach(e=>e.textContent=d[3]);
-  drawHemis(); drawTiles(); drawPartyDist(); drawTL(); drawFocus(); drawMomentum(); drawPartisan(); drawVoices(); drawList(); drawTurnover(); drawComm();
+  drawHemis(); drawIdeology(); drawTiles(); drawPartyDist(); drawTL(); drawFocus(); drawMomentum(); drawPartisan(); drawVoices(); drawList(); drawTurnover(); drawComm();
 }
 // three states used by the seat chart and the committee bars
 const STATES = [["yes","Scores 3 or more","--yes"],["no","Scores 0 to 2","--no"],["none","Hasn't said enough to score","--card"]];
@@ -356,6 +362,30 @@ function drawHemis(){
     [0,1,2,3,4].map(v=>`<span><i class="dot" style="background:${css("--r"+v)}"></i>${LEVELS[k][v]}: <b>${cnt(v)}</b></span>`).join("");
   const pend = M.filter(m=>m.next==="pending").length;
   document.getElementById("hemi-note").textContent = "Hover over a seat to see who it is and their party, or click it to read their quotes. Scores are the average of two scoring runs, rounded. House delegates are included." + (S.cong==="120" ? ` ${pend} seats whose 2026 race hasn't been called yet are left out.` : "");
+}
+
+/* ---------- ideology scatter (the original chart format) ---------- */
+function drawIdeology(){
+  const k=S.dim, d=DIMS.find(x=>x[0]===k), el=document.getElementById("ideo"); el.innerHTML="";
+  const data = M.filter(m=>inCong(m) && m.ideology!=null && m.scores[k]!=null).map(m=>({m, x:m.ideology, y:m.scores[k]+(hash(m.id)-.5)*0.4}));
+  const last = n => n.replace(/,? (Jr\.|Sr\.|II|III|IV)$/,"").replace(/"[^"]*"\s*/,"").trim().split(" ").pop();
+  // name the strongest, most outspoken members, skipping any label that would collide with one already placed
+  const W=widthOf(el), plotW = W-190, named=[];
+  for (const p of [...data].sort((a,b)=>b.m.scores[k]-a.m.scores[k] || b.m.n-a.m.n)){
+    if (named.length>=10 || p.m.scores[k] < 3) break;
+    const wPx = last(p.m.name).length*6.5+8;
+    if (named.every(q=> Math.abs(q.y-p.y)>0.3 || Math.abs(q.x-p.x)*plotW > (wPx+last(q.m.name).length*6.5+8)/2)) named.push(p);
+  }
+  document.getElementById("ideo-title").textContent = `Political ideology vs. ${d[1]} score`;
+  const svg = Plot.plot({width:W, height:420, marginLeft:170, marginBottom:46, marginTop:24, style:plotStyle(),
+    x:{label:"Ideology (0 = progressive, 1 = conservative) →", domain:[-0.02,1.02], labelAnchor:"center", labelOffset:38, grid:true},
+    y:{label:`↑ ${d[1]} score`, domain:[-0.4,4.4], ticks:[0,1,2,3,4], tickFormat:v=>`${v} · ${LEVELS[k][v]}`, grid:true},
+    marks:[Plot.dot(data,{x:"x", y:"y", r:5, fill:p=>PC(p.m.party), fillOpacity:.85, stroke:css("--card"), strokeWidth:1}),
+      Plot.text(named,{x:"x", y:"y", text:p=>last(p.m.name), dy:-11, fill:css("--muted"), fontSize:11})]});
+  svg.style.overflow="visible";
+  el.append(svg);
+  bindHover(svg.querySelectorAll("g[aria-label=dot] circle"), data, p=>memberTip(p.m), p=>goMember(p.m));
+  document.getElementById("ideo-legend").innerHTML = legendHTML([["Democrat",PC("D"),"dot"],["Republican",PC("R"),"dot"],["Independent",PC("I"),"dot"]]) + `<span>n = ${data.length}</span>`;
 }
 
 /* ---------- tiles ---------- */
