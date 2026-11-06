@@ -323,8 +323,8 @@ function drawHemis(){
   const Rh = W/2 - 4, Rs = Rh*0.6;
   const nS = M.filter(m=>inCong(m) && chamberOf(m)==="senate").length, nH = M.filter(m=>inCong(m) && chamberOf(m)==="house").length;
   const dS = hemiLayout(nS+30,6).dot*Rs, dH = hemiLayout(nH+55,11).dot*Rh;
-  const gap = 2*dS + 2*dH + 18;                       // small band between the two halves
-  const H = Rs + gap + Rh + 4, cx = W/2, ySen = Rs + 2, yHouse = Rs + gap;
+  // flat edges: Senate seats sit on ySen, House seats hang from yHouse, with a small band between
+  const cx = W/2, ySen = Rs + 2, yHouse = ySen + dS + dH + 16, H = yHouse + Rh + 4;
   const svg = d3.select(el).append("svg").attr("viewBox",`0 0 ${W} ${H}`).attr("width",W).attr("height",H).attr("role","img")
     .attr("aria-label",`Senate and House seats, ordered and colored by ${d[1]} score`);
   const all = [];
@@ -337,14 +337,15 @@ function drawHemis(){
     order.forEach((m,i)=>{ if (i && lvl(m)!==lvl(order[i-1])) for (let j=0;j<rows;j++) slots.push(null); slots.push(m); });
     const {seats, dot} = hemiLayout(slots.length, rows);
     const Rad = ch==="senate" ? Rs : Rh, R = dot*Rad;
-    const px = s => cx + s.x*Rad, py = s => ch==="senate" ? ySen - s.y*Rad + R : yHouse + s.y*Rad - R;
+    const Rp = Rad - R;   // keep whole dots inside the frame
+    const px = s => cx + s.x*Rp, py = s => ch==="senate" ? ySen - s.y*Rp : yHouse + s.y*Rp;
     svg.append("g").selectAll("circle").data(slots.map((m,i)=>({m, s:seats[i]})).filter(x=>x.m)).join("circle")
       .attr("cx",x=>px(x.s)).attr("cy",x=>py(x.s)).attr("r",x=>lvl(x.m)<0?R-0.75:R)
       .attr("fill",x=>lvl(x.m)<0?"none":css("--r"+lvl(x.m)))
       .attr("stroke",x=>lvl(x.m)<0?css("--muted"):"none").attr("stroke-width",1.2).classed("hit",true)
       .on("mousemove",(e,x)=>showTip(e, memberTip(x.m))).on("mouseleave",hideTip).on("click",(e,x)=>{hideTip(); goMember(x.m);});
     // chamber name sits in the empty center of its own half
-    const ly = ch==="senate" ? ySen - Rad*0.12 : yHouse + Rad*0.2;
+    const ly = ch==="senate" ? ySen - Rad*0.14 : yHouse + Rad*0.18;
     svg.append("text").attr("x",cx).attr("y",ly).attr("text-anchor","middle").attr("fill",css("--fg")).attr("font-size",15).attr("font-weight",600).text(ch==="senate"?"Senate":"House");
     svg.append("text").attr("x",cx).attr("y",ly+17).attr("text-anchor","middle").attr("fill",css("--muted")).attr("font-size",12).text(`${order.length} seats`);
   }
