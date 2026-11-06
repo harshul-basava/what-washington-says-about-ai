@@ -197,7 +197,7 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
   <li><b>Official records:</b> AI-related quotes from the Congressional Record and hearings, from <a href="https://cesia.org/en/data/attention/">CeSIA's Politicians on AI</a> dataset (CC BY 4.0). Only the quote text, date and source are used. CeSIA's own labels are not.</li>
   <li><b>X:</b> each person's posts since January 2023 that match AI keywords (retweets excluded), from X's full-archive search. For the first 132 people we used X's web search instead, which found about 94% as many posts in a side-by-side check.</li>
   <li><b>Web:</b> a language model (Claude Sonnet 5.5) with web search looked for every substantive public statement about AI and was told explicitly that finding nothing is fine. We fetched every source page and kept a quote only if it appears there with a fuzzy match of at least 90%. When a site blocks automated access, we checked against the page text the search engine had retrieved.</li>
-  <li><b>Scoring:</b> the model saw only the verified statements for one person (no names of other sources, no party labels and no prior scores) and scored five questions on a written 0–4 rubric, or answered "insufficient evidence". We ran it twice with the statements shuffled. If the two runs differed by 2 or more on any question, the person was flagged for review; otherwise the two scores were averaged.</li>
+  <li><b>Scoring:</b> the model saw only the verified statements for one person (no names of other sources, no party labels and no prior scores) and scored five questions on a written 0–4 rubric, or answered "insufficient evidence". Only the member's own views count: quoting someone else's warning (for example an AI company CEO's) doesn't count unless the member clearly adopts it. We ran it twice with the statements shuffled. If the two runs differed by 2 or more on any question, the person was flagged for review; otherwise the two scores were averaged.</li>
   <li><b>Review:</b> a model from a different family re-scored everyone blind and audited the highest scores on AGI and existential risk, a random sample, and every case where the two models disagreed.</li>
   <li><b>Committees:</b> current full-committee rosters from the @unitedstates project.</li>
 </ol>
@@ -236,9 +236,9 @@ const GROUPS = [
 ];
 const LEVELS = {
   ai_overall:["Very concerned","Mostly concerned","Mixed","Mostly optimistic","Very optimistic"],
-  agi_pilled:["Dismissive","Sees ordinary tech","Very transformative","AGI is plausible","AGI is central"],
-  x_risk:["Dismissive","Ordinary harms only","Serious misuse","Loss of control is real","A top priority"],
-  china_race:["Rejects the race","Barely mentions it","Present","Strong","Dominant"],
+  agi_pilled:["Dismissive","Just another technology","Very transformative","AGI is plausible","AGI is central"],
+  x_risk:["Dismissive","Only everyday harms","Serious misuse","Loss of control is real","A top priority"],
+  china_race:["Rejects the race framing","Rarely raises it","Mentions the race","A main lens","Overrides everything"],
   regulation:["Strongly against","Mostly against","Targeted rules","Pro-regulation","Strongly for"],
 };
 const T2G = Object.fromEntries(GROUPS.flatMap(([g,ts])=>ts.map(t=>[t,g])));

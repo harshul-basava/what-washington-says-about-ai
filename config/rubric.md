@@ -1,7 +1,13 @@
-<!-- rubric v1 -->
-# Scoring rubric (v1)
+<!-- rubric v2 -->
+# Scoring rubric (v2)
 
 Score each dimension **0–4** from the statements alone. If the statements don't speak to a dimension, answer `"insufficient_evidence"` instead of guessing. Never fill gaps from party, ideology, or what you know about the person. Weight what they say about AI itself over boilerplate (for example, a press release that just lists AI as a topic).
+
+## General rules (apply to every dimension)
+
+- **Their own views only.** A statement counts toward a score only for what the member says *they* believe or want. Reporting someone else's view ("AI CEOs warn that superintelligence could be catastrophic", "experts predict half of entry-level jobs will vanish", "Anthropic's CEO says…") does **not** count unless the member clearly adopts it in their own words, for example by saying they share the concern or by calling for action because of it. Using another person's warning only to attack an opponent is not an endorsement.
+- **Cite only what supports the level.** The statement IDs you cite for a dimension must directly support the score you gave, at that level. Don't cite a statement that is on a different topic, or one that supports a lower or higher level than the one you chose.
+- **When to answer `insufficient_evidence`.** Score a dimension only if at least one statement, in the member's own voice, speaks to *that* dimension. Talking about AI in general is not enough for every dimension. Each dimension's "use 1 only if" note says when a low score is justified rather than `insufficient_evidence`.
 
 The example quotes below are **illustrative**: they show the kind of statement that fits each level, and are not real quotes from any member.
 
@@ -14,21 +20,21 @@ The example quotes below are **illustrative**: they show the kind of statement t
 
 ## 2. `agi_pilled`: do they expect AGI or transformative AI?
 - **0 (dismissive):** AGI or superintelligence talk is hype or sci-fi; AI is just another tool. *"This 'superintelligence' talk is Silicon Valley marketing."*
-- **1 (ordinary tech):** they talk about AI often, but only as a normal technology (apps, productivity, specific harms). There is no sign they expect radical change. Use 1 only if there are several AI statements and none of them goes further.
+- **1 (ordinary tech):** they talk about AI often, but only as a normal technology (apps, productivity, specific harms). There is no sign they expect radical change. Use 1 only if they say something about how big or lasting AI's impact will be and treat it as an ordinary technology. If they never address AI's scale or future at all (only specific bills, harms or uses), answer `insufficient_evidence`.
 - **2 (very transformative):** AI will reshape the economy and society on the scale of the internet or the industrial revolution, without mentioning AGI. *"AI will be the biggest economic transformation of our lifetime."*
 - **3 (AGI plausible):** they treat AGI, superintelligence, or human-level AI as a real near-to-medium-term possibility worth planning for. *"We may see AI smarter than humans within a decade."*
 - **4 (AGI central):** AGI or superintelligence is imminent or central to their thinking, with explicit short timelines or comparisons to a civilizational turning point. *"Artificial superintelligence could arrive before 2030, and nothing else matters as much."*
 
 ## 3. `x_risk`: AI catastrophic or existential risk
 - **0 (dismissive):** they explicitly reject catastrophic or existential AI risk as doomerism or a distraction. *"The AI doomsday crowd is fearmongering to get regulatory capture."*
-- **1 (ordinary harms only):** their concerns are limited to everyday harms (bias, privacy, jobs, deepfakes, kids) with no catastrophic framing. Use 1 only if they discuss AI risks and none are catastrophic.
+- **1 (ordinary harms only):** their concerns are limited to everyday harms (bias, privacy, jobs, deepfakes, kids) with no catastrophic framing. Use 1 only if they discuss AI risks and none are catastrophic. Saying that *others* fear catastrophe, without saying they share the concern, stays at 1 (or `insufficient_evidence` if they discuss no risks of their own).
 - **2 (serious misuse):** they flag large-scale risks such as AI-enabled bioweapons, major cyberattacks, or national-security catastrophe, but not loss of control. *"AI could help terrorists build a bioweapon."*
 - **3 (loss of control is real):** they acknowledge that loss of human control or existential risk from advanced AI is a real concern. *"We have to make sure we never lose control of these systems."*
 - **4 (major priority):** they treat existential or extinction risk from AI as a top-tier priority, comparing it to nuclear war or pandemics. *"Mitigating the risk of extinction from AI should be a global priority."*
 
 ## 4. `china_race`: China / AI race framing
 - **0 (rejects race):** they reject or criticize race framing, or call for cooperation with China on AI. *"An AI arms race with China makes everyone less safe; we need dialogue."*
-- **1 (minimal):** China is mentioned rarely, or only as one factor among many. Use 1 only if they talk about AI substantively and the race barely features.
+- **1 (minimal):** China is mentioned rarely, or only as one factor among many. Use 1 only if they mention China or global competition in an AI context at least once and it barely features. If China or an AI race never comes up, answer `insufficient_evidence`.
 - **2 (present):** competition with China is a recurring theme, balanced with other concerns. *"We must stay ahead of China while protecting Americans."*
 - **3 (strong):** beating China is a primary lens for AI policy. *"We are in an AI race with China and we cannot afford to lose it."*
 - **4 (dominant):** the race overrides other concerns and is used to argue against constraints. *"Every regulation is a gift to Beijing; winning the race is all that matters."*

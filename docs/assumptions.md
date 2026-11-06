@@ -94,3 +94,11 @@ emusks was rate-limited to about 45 searches per 15 minutes, which put the full 
 - Mixed sources: the first 132 people came from emusks (about 94% recall vs. the paid API, from the Obernolte test). Everyone else came from the paid API.
 - Handle validation uses the post authors in each file (`phase1_handles_finalize.py`), not a separate lookup.
 - Other data-source substitutions: GovTrack ideology comes from the copy in Roe's repo, because govtrack.us sits behind a Cloudflare check. Quote verification falls back to Exa's page text when the source page blocks fetches (`ok_search_text`).
+
+## Review by a second model, and rubric v2 (2026-11-06)
+
+Harshul asked for the review stage to be done by a model instead of by hand. The reviewer is `openai/gpt-6.1-sol`, a different model family from the scorer (`scripts/phase4_crossmodel.py`).
+- **Blind re-scoring** of everyone with the same prompt and evidence, in a new shuffle. Agreement with the v1 scores was high on four of the five questions (Spearman ρ 0.86–0.90, within 1 point on 97–100% of members). AGI was the exception (ρ 0.63, and 192 cases where only one model gave a score at all).
+- **Audit** of the review packet plus every case where the two models differed by 2 or more. The reviewer sees the scores and cited quotes and checks them. In v1 it disagreed on 18% of the person-dimensions it audited and flagged a non-supporting citation on 33%. The usual cause was a member *reporting* someone else's view (for example "AI CEOs warn about superintelligence") and the score treating it as the member's own.
+- **Rubric v2** adds three general rules: only the member's own views count; cite only statements that support the level given; and a "not enough evidence" bar for each question (AGI needs a statement about AI's scale or future; China race needs China or a global race to come up). Everyone was re-scored with v2, and the blind review and audit were re-run. The v1 outputs are kept in `data/raw/v1/`.
+- The reviewer never edits scores. Its disagreements are listed in `review/crossmodel_report.md`.
