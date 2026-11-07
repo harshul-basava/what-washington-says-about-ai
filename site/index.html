@@ -185,7 +185,7 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
   <li><b>Official records:</b> AI-related quotes from the Congressional Record and hearings, from <a href="https://cesia.org/en/data/attention/">CeSIA's Politicians on AI</a> dataset (CC BY 4.0). Only the quote text, date and source are used. CeSIA's own labels are not.</li>
   <li><b>X:</b> each person's posts since January 2023 that match AI keywords (retweets excluded), from X's full-archive search. For the first 132 people we used X's web search instead, which found about 94% as many posts in a side-by-side check.</li>
   <li><b>Web:</b> a language model (Claude Sonnet 5.5) with web search looked for every substantive public statement about AI and was told explicitly that finding nothing is fine. We fetched every source page and kept a quote only if it appears there with a fuzzy match of at least 90%. When a site blocks automated access, we checked against the page text the search engine had retrieved.</li>
-  <li><b>Scoring:</b> each question is a claim (for example, "advanced AI could cause a catastrophe for humanity, and this deserves serious policy attention"), scored 0–4 by how strongly the member backs it in their own words. Two models from different companies, Claude Sonnet 5.5 and GPT-6.1 Sol, each read every statement and label the level it shows, using written tests for each level (<a href="https://github.com/">rubric</a>). Quoting someone else's warning doesn't count unless the member adopts it. A fixed formula then turns the labels into a score. For "how strongly" questions (AGI, x-risk, China), the score is the highest level reached by at least two statements, and members who never discuss the topic get 0. For regulation, the score is the strongest position that the member takes more than one time. For AI overall, the score is the median label. The published score is the average of the two models' scores.</li>
+  <li><b>Scoring:</b> each question is a claim (for example, "advanced AI could cause a catastrophe for humanity, and this deserves serious policy attention"), scored 0–4 by how strongly the member backs it in their own words. Two models from different companies, Claude Sonnet 5.5 and GPT-6.1 Sol, each read every statement and label the level it shows, using written tests for each level (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/master/config/rubric.md">rubric</a>). Quoting someone else's warning doesn't count unless the member adopts it. A fixed formula then turns the labels into a score. For "how strongly" questions (AGI, x-risk, China), the score is the highest level reached by at least two statements, and members who never discuss the topic get 0. For regulation, the score is the strongest position that the member takes more than one time. For AI overall, the score is the median label. The published score is the average of the two models' scores.</li>
   <li><b>Review:</b> scores where the two models are 2 or more apart, the highest scores on AGI and x-risk, and a random sample are checked by a person.</li>
   <li><b>Committees:</b> current full-committee rosters from the @unitedstates project.</li>
 </ol>
@@ -194,8 +194,8 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
 
 <footer>
   <a href="data/members.csv" download>Download CSV</a>
-  <a href="https://github.com/" id="gh">GitHub</a>
-  <a href="https://github.com/" id="contact">Contact / corrections (GitHub issues)</a>
+  <a href="https://github.com/harshul-basava/what-washington-says-about-ai" id="gh">GitHub</a>
+  <a href="https://github.com/harshul-basava/what-washington-says-about-ai/issues" id="contact">Contact / corrections (GitHub issues)</a>
   <button id="theme" style="margin-left:auto">Toggle theme</button>
 </footer>
 </main>
