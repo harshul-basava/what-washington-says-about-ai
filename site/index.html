@@ -10,9 +10,9 @@
 <style>
 :root{
   color-scheme:light;
-  --bg:#f1eee6;--fg:#1c1b19;--muted:#66625a;--line:#ddd8cc;--card:#f8f6f0;--accent:#9a3412;--chip:#e8e4d9;--hover:#eeeae0;
-  /* page (forest green) vs. cards (cream): page text uses --page-*, card content keeps --fg/--muted */
-  --page:#1f3a2b;--page-fg:#f1eee6;--page-muted:#c2cec3;--page-line:#36573f;--page-link:#f2d58a;--star:#244332;
+  --bg:#f6f1e4;--fg:#1c1b19;--muted:#66625a;--line:#ded6c4;--card:#f6f1e4;--accent:#9a3412;--chip:#ebe4d3;--hover:#efe9db;
+  /* charts sit directly on the cream page; --page-* kept as aliases so page text and chart text match */
+  --page:var(--bg);--page-fg:var(--fg);--page-muted:var(--muted);--page-line:var(--line);--page-link:var(--accent);--star:#eee7d6;
   --grid:#e1e0d9;
   /* parties (validated all-pairs; independents also labelled "I") */
   --pD:#2a78d6;--pR:#e34948;--pI:#eda100;
@@ -25,8 +25,8 @@
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --page:#0f1f17;--page-fg:#ecebe6;--page-muted:#a6b3a8;--page-line:#22382b;--page-link:#f0b46a;--star:#13261c;
-  --bg:#141413;--fg:#ecebe6;--muted:#a19d94;--line:#2c2b28;--card:#1a1a19;--accent:#f0894a;--chip:#252421;--hover:#20201d;--grid:#2c2c2a;
+  --star:#1b1b1a;
+  --bg:#141413;--fg:#ecebe6;--muted:#a19d94;--line:#2c2b28;--card:#141413;--accent:#f0894a;--chip:#252421;--hover:#20201d;--grid:#2c2c2a;
   --pD:#3987e5;--pR:#e66767;--pI:#eda100;
   --s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--s5:#d55181;--s6:#008300;--sOther:#5a5955;
   --r0:#c9384a;--r1:#f08a34;--r2:#f2d05a;--r3:#64b552;--r4:#2a9fbf;--nodata:#3a3936;
@@ -52,14 +52,14 @@ button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:va
 .seg{display:inline-flex}.seg button{border-radius:0;margin-left:-1px}.seg button:first-child{border-radius:6px 0 0 6px;margin-left:0}.seg button:last-child{border-radius:0 6px 6px 0}
 .bar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:8px 0;margin:24px 0 0}
 .bar .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-right:2px}
-.chart{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto}
+.chart{overflow-x:auto;margin:6px 0}
 .chart svg{max-width:100%;height:auto;color:var(--fg)}
 .note{font-size:13px;color:var(--muted)}
 .two{display:grid;grid-template-columns:1fr;gap:16px}
 @media (min-width:860px){.two{grid-template-columns:1fr 1fr}}
-.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 24px;margin:28px 0 8px}
 @media (min-width:760px){.tiles{grid-template-columns:repeat(3,1fr)}}
-.tile{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.tile{border-top:2px solid var(--line);padding:10px 2px 4px}
 .tile .v{font-size:30px;font-weight:600;line-height:1.1}
 .tile .d{font-size:13px;font-weight:500;margin-left:6px}
 .tile .t{font-size:13px;color:var(--muted)}
@@ -85,14 +85,14 @@ th{font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em;
 th.num,td.num{text-align:center}
 tbody tr.row{cursor:pointer}
 tbody tr.row:hover{background:var(--hover)}
-.tablewrap{overflow-x:auto;max-height:80vh;overflow-y:auto;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.tablewrap{overflow-x:auto;max-height:80vh;overflow-y:auto;border-top:2px solid var(--line)}
 .pD{color:var(--pD)}.pR{color:var(--pR)}.pI{color:#a86f00}
 :root[data-theme="dark"] .pI{color:var(--pI)}
 .sc{display:inline-block;min-width:30px;padding:1px 6px;border-radius:4px;font-variant-numeric:tabular-nums;font-weight:500}
 .badge{font-size:11px;padding:1px 6px;border-radius:999px;background:var(--chip);color:var(--muted);margin-left:6px;white-space:nowrap}
-.detail td{background:var(--bg);padding:16px}
+.detail td{background:var(--hover);padding:16px}
 .dims{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:12px 0}
-.dim{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px;font-size:13px}
+.dim{border-top:2px solid var(--line);padding:8px 2px;font-size:13px}
 .dim b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
 .quote{border-left:3px solid var(--line);padding:4px 0 4px 12px;margin:10px 0;font-size:14px}
 .quote.cited{border-left-color:var(--accent)}
@@ -124,7 +124,7 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--page-line);fo
 <div class="chart">
   <div id="hemi" style="max-width:760px;margin:0 auto"></div>
   <div class="legend" id="seat-legend" style="justify-content:center;margin-top:10px"></div>
-  <div class="controls" style="justify-content:center;margin-top:14px;border-top:1px solid var(--line);padding-top:12px">
+  <div class="controls" style="justify-content:center;margin-top:12px">
     <span class="seg dimbtns" role="group" aria-label="Question"></span>
     <span class="seg" role="group" aria-label="Congress"><button data-cong="119" aria-pressed="true">Today's Congress</button><button data-cong="120">January 2027</button></span>
   </div>
@@ -136,7 +136,7 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--page-line);fo
 <div class="chart">
   <div id="ideo"></div>
   <div class="legend" id="ideo-legend" style="justify-content:center"></div>
-  <div class="controls" style="justify-content:center;margin-top:14px;border-top:1px solid var(--line);padding-top:12px">
+  <div class="controls" style="justify-content:center;margin-top:12px">
     <span class="seg dimbtns" role="group" aria-label="Question"></span>
     <span class="seg" role="group" aria-label="Congress"><button data-cong="119" aria-pressed="true">Today's Congress</button><button data-cong="120">January 2027</button></span>
   </div>
