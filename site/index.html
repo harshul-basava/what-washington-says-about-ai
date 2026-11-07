@@ -111,7 +111,7 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
 <main>
 <header>
   <h1>What does Washington say about AI?</h1>
-  <p class="lede">For every member of Congress and every newly elected member, we collected what they have said publicly about AI: floor speeches, hearings, posts on X, interviews and press releases. We checked every quote against its source. A language model then rated each person on five questions, citing only those quotes.</p>
+  <p class="lede">We collected public statements about AI from each member of Congress and from each new member elected in 2026. The sources are floor speeches, hearings, posts on X, interviews and press releases. We checked each quote against its source. Two AI models then gave each person a score on five questions. The models used only these quotes.</p>
   <p class="meta">Last updated <span id="updated">…</span> · <span id="nmembers">…</span> people · <span id="nquotes">…</span> verified statements</p>
 </header>
 
@@ -128,7 +128,7 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
 <p class="note" id="hemi-note"></p>
 
 <h3 id="ideo-title"></h3>
-<p class="sub">Each dot is a member: left to right by ideology, up and down by score. Hover over a dot to see who it is, or click it to read their quotes.</p>
+<p class="sub">Each dot is one member. The horizontal axis shows ideology. The vertical axis shows the score. Put the pointer on a dot to see the member. Click a dot to read their quotes.</p>
 <div class="chart">
   <div id="ideo"></div>
   <div class="legend" id="ideo-legend" style="justify-content:center"></div>
@@ -137,56 +137,32 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
     <span class="seg" role="group" aria-label="Congress"><button data-cong="119" aria-pressed="true">Today's Congress</button><button data-cong="120">January 2027</button></span>
   </div>
 </div>
-<p class="note">Ideology is GovTrack's 0 (progressive) to 1 (conservative) score, based on bill cosponsorship in the 119th Congress. Newly elected members don't have one yet, so they aren't shown. Scores are nudged up or down slightly so dots don't sit on top of each other.</p>
+<p class="note">Ideology is the GovTrack score, from 0 (progressive) to 1 (conservative). GovTrack calculates it from the bills that each member cosponsored in the 119th Congress. New members do not have this score, so the chart does not show them. Each dot moves up or down by a small random amount, so that dots do not cover each other.</p>
 
 <div class="tiles" id="tiles"></div>
 
-<h3>How each party answers the question</h3>
-<p class="sub">Share of each party's members at each score. "Not enough evidence" means they haven't said enough in public to score.</p>
+<h3>Scores by party</h3>
+<p class="sub">Each bar shows the percent of members in one party at each score. "Not enough evidence" means that the member did not make enough public statements to get a score.</p>
 <div class="chart" id="partydist"></div>
 <div class="legend" id="pd-legend"></div>
 
-<h2 id="topics">What they talk about</h2>
-<div class="controls"><strong style="font-size:14px">AI statements per quarter, by topic</strong><span style="flex:1"></span>
-  <span class="seg"><button data-tlmode="count" aria-pressed="true">Count</button><button data-tlmode="share">Share of all AI talk</button></span></div>
-<div class="chart" id="tl"></div>
-<div class="legend" id="tl-legend"></div>
-<p class="note">Each statement is split evenly across its 1–3 topics, and the 12 topics are grouped into six themes. Frontier risk covers AGI, loss of control and bio/cyber misuse. Everyday harms covers kids' online safety, deepfakes and copyright. Energy and data centers stays separate because it's the fastest-growing topic. Use the topic picker below to see any single topic. The share view shows each theme's slice of all AI statements in that quarter, so you can compare quarters with very different volumes. Volume grows over time partly because of how the data was collected: X posts start in 2023, web search favors recent statements, and official records lag. The latest quarter is still partial.</p>
-
-<h3>One topic over time, by party</h3>
-<div class="controls"><select id="focustopic" aria-label="Topic"></select><span class="note">Share of each party's AI statements on this topic</span></div>
+<h2 id="topics">Topics</h2>
+<h3>Topic share by party</h3>
+<div class="controls"><select id="focustopic" aria-label="Topic"></select><span class="note">Percent of each party's AI statements that are about this topic, by quarter.</span></div>
 <div class="chart" id="focuschart"></div>
 
-<div class="two">
-  <div><h3>What's rising, what's fading</h3>
-    <p class="sub" id="mom-sub"></p>
-    <div class="chart" id="momentum"></div></div>
-  <div><h3>Which party owns which topic</h3>
-    <p class="sub">Share of each party's AI statements on each topic. The wider the gap, the more the topic is coded to one party.</p>
-    <div class="chart" id="partisan"></div></div>
-</div>
-
-<h3>Who drives the conversation</h3>
-<div class="controls"><select id="voicetopic" aria-label="Topic"></select><span class="note">Top 15 members by number of statements on this topic. Click a bar to see their quotes.</span></div>
+<h3>Members with the most statements</h3>
+<div class="controls"><select id="voicetopic" aria-label="Topic"></select><span class="note">The 15 members with the most statements on this topic. Click a bar to read their quotes.</span></div>
 <div class="chart" id="voices"></div>
 
-<h2 id="lists">Lists worth knowing</h2>
-<p class="sub">Groups of members that are useful to know about, based on their scores. Click a name to see their quotes.</p>
+<h2 id="lists">Member groups</h2>
+<p class="sub">Each button shows a group of members. We select the members by their scores. Click a name to read their quotes.</p>
 <div class="presets" id="presets"></div>
 <p class="note" id="list-cap"></p>
 <div class="namelist" id="list-names"></div>
 
-<h2 id="turnover">Who's leaving, who's arriving</h2>
-<p class="sub">Members leaving after this term (they lost, retired or ran for another office) compared with the members-elect who replace them. Bars count people scoring 3 or more on each question. This uses called races only, whatever Congress is selected above.</p>
-<div class="chart" id="turn"></div>
-<div class="legend"><span><i style="background:var(--leave)"></i>Leaving</span><span><i style="background:var(--r2)"></i>Arriving</span></div>
-<div class="two">
-  <div><h3 style="margin-top:20px">Leaving: strongest voices on <span class="dimname"></span></h3><div class="namelist" id="leaving"></div></div>
-  <div><h3 style="margin-top:20px">Arriving: strongest voices on <span class="dimname"></span></h3><div class="namelist" id="arriving"></div></div>
-</div>
-
-<h2 id="committees">Committee gatekeepers</h2>
-<p class="sub">How many members of each committee that writes AI law <b class="dimphrase"></b>. Click a bar to list them. These are today's committees; seats for January 2027 aren't assigned yet.</p>
+<h2 id="committees">Scores on AI committees</h2>
+<p class="sub">Each bar shows the members of one committee that writes AI law, by <b class="dimname"></b> score. Click a bar to see the members. The chart uses the committee seats of today. Congress does not assign the seats for January 2027 until January.</p>
 <div class="chart" id="comm"></div>
 <div class="legend" id="comm-legend"></div>
 <p class="note" id="comm-cap"></p>
@@ -201,7 +177,7 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
   <select id="fev"><option value="">Any evidence</option><option value="some">Has evidence</option></select>
 </div>
 <div class="tablewrap"><table id="tbl"><thead></thead><tbody></tbody></table></div>
-<p class="note">Scores run from 0 to 4; see the method below. A dash means there's not enough evidence. Click a row to see the summary and the verified quotes behind the scores.</p>
+<p class="note">Scores go from 0 to 4. The method section below gives the rules. A dash means that there is not enough evidence. Click a row to see a summary and the quotes for each score.</p>
 
 <h2 id="method">Method</h2>
 <ol>
@@ -209,7 +185,7 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
   <li><b>Official records:</b> AI-related quotes from the Congressional Record and hearings, from <a href="https://cesia.org/en/data/attention/">CeSIA's Politicians on AI</a> dataset (CC BY 4.0). Only the quote text, date and source are used. CeSIA's own labels are not.</li>
   <li><b>X:</b> each person's posts since January 2023 that match AI keywords (retweets excluded), from X's full-archive search. For the first 132 people we used X's web search instead, which found about 94% as many posts in a side-by-side check.</li>
   <li><b>Web:</b> a language model (Claude Sonnet 5.5) with web search looked for every substantive public statement about AI and was told explicitly that finding nothing is fine. We fetched every source page and kept a quote only if it appears there with a fuzzy match of at least 90%. When a site blocks automated access, we checked against the page text the search engine had retrieved.</li>
-  <li><b>Scoring:</b> each question is a claim (for example, "advanced AI could cause a catastrophe for humanity, and this deserves serious policy attention"), scored 0–4 by how strongly the member backs it in their own words. Two models from different companies, Claude Sonnet 5.5 and GPT-6.1 Sol, each read every statement and label the level it shows, using written tests for each level (<a href="https://github.com/">rubric</a>). Quoting someone else's warning doesn't count unless the member adopts it. A fixed formula then turns the labels into a score. For "how strongly" questions (AGI, x-risk, China), the score is the highest level reached by at least two statements, and members who never discuss the topic get 0. For two-sided questions (AI overall, regulation), it's the median label. The published score is the average of the two models' scores.</li>
+  <li><b>Scoring:</b> each question is a claim (for example, "advanced AI could cause a catastrophe for humanity, and this deserves serious policy attention"), scored 0–4 by how strongly the member backs it in their own words. Two models from different companies, Claude Sonnet 5.5 and GPT-6.1 Sol, each read every statement and label the level it shows, using written tests for each level (<a href="https://github.com/">rubric</a>). Quoting someone else's warning doesn't count unless the member adopts it. A fixed formula then turns the labels into a score. For "how strongly" questions (AGI, x-risk, China), the score is the highest level reached by at least two statements, and members who never discuss the topic get 0. For regulation, the score is the strongest position that the member takes more than one time. For AI overall, the score is the median label. The published score is the average of the two models' scores.</li>
   <li><b>Review:</b> scores where the two models are 2 or more apart, the highest scores on AGI and x-risk, and a random sample are checked by a person.</li>
   <li><b>Committees:</b> current full-committee rosters from the @unitedstates project.</li>
 </ol>
@@ -236,16 +212,6 @@ const DIMS = [
   ["regulation","Regulation","0 = opposes rules · 4 = comprehensive regulation","back substantial rules on AI companies"],
 ];
 const TOPICS = ["jobs/economy","China/competition","national security","kids/online safety","deepfakes/elections","copyright","energy/data centers","regulation","AGI/transformative","x-risk/loss of control","misuse (bio/cyber)","other"];
-// six themes + other; slot order is the validated stacking order (frontier risk sits on the baseline)
-const GROUPS = [
-  ["Frontier risk & AGI",["AGI/transformative","x-risk/loss of control","misuse (bio/cyber)"],"--s1"],
-  ["China & national security",["China/competition","national security"],"--s2"],
-  ["Regulation",["regulation"],"--s3"],
-  ["Jobs & economy",["jobs/economy"],"--s4"],
-  ["Everyday harms (kids, deepfakes, copyright)",["kids/online safety","deepfakes/elections","copyright"],"--s5"],
-  ["Energy & data centers",["energy/data centers"],"--s6"],
-  ["Other",["other","untagged"],"--sOther"],
-];
 const LEVELS = {
   ai_overall:["Mainly a threat","Harms dominate","Balanced","Mainly an opportunity","Enthusiastic"],
   agi_pilled:["Doesn't discuss or dismisses","Ordinary technology","Very large change","AGI is possible","AGI is near"],
@@ -253,13 +219,12 @@ const LEVELS = {
   china_race:["Doesn't raise it or rejects it","Mentions it","One reason among several","The main reason","Outweighs everything"],
   regulation:["Opposes rules","Light-touch","Targeted rules","Substantial rules","Comprehensive rules"],
 };
-const T2G = Object.fromEntries(GROUPS.flatMap(([g,ts])=>ts.map(t=>[t,g])));
 const PNAME = {D:"Democrats",R:"Republicans",I:"Independents"};
 const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const PC = p => css(p==="D"?"--pD":p==="R"?"--pR":"--pI");
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let M = [], TL = [], COMM = {}, UPDATED = "";
-const S = {cong:"119", party:"all", dim:"x_risk", tlmode:"count", preset:null};
+const S = {cong:"119", party:"all", dim:"x_risk", preset:null};
 let sortKey = "n", sortDir = -1, open = null;
 
 /* ---------- helpers ---------- */
@@ -302,7 +267,7 @@ async function init(){
   focustopic.innerHTML = topicOpts; focustopic.value="x-risk/loss of control"; focustopic.onchange=drawFocus;
   voicetopic.innerHTML = `<option value="__all">All AI statements</option>`+topicOpts; voicetopic.value="x-risk/loss of control"; voicetopic.onchange=drawVoices;
   const seg = (attr, key, after) => document.querySelectorAll(`[data-${attr}]`).forEach(b=>b.onclick=()=>{S[key]=b.dataset[attr]; document.querySelectorAll(`[data-${attr}]`).forEach(x=>x.setAttribute("aria-pressed",x.dataset[attr]===S[key])); after();});
-  seg("cong","cong",drawAll); seg("dim","dim",drawAll); seg("tlmode","tlmode",drawTL);
+  seg("cong","cong",drawAll); seg("dim","dim",drawAll);
   ["q","fch","fpa","fst","fev"].forEach(id=>document.getElementById(id).oninput=renderTable);
   drawPresets(); renderHead(); renderTable(); drawAll();
   let t; addEventListener("resize", ()=>{clearTimeout(t); t=setTimeout(drawAll,150);});
@@ -310,8 +275,7 @@ async function init(){
 function drawAll(){
   const d = DIMS.find(x=>x[0]===S.dim);
   document.querySelectorAll(".dimname").forEach(e=>e.textContent=d[1]);
-  document.querySelectorAll(".dimphrase").forEach(e=>e.textContent=d[3]);
-  drawHemis(); drawIdeology(); drawTiles(); drawPartyDist(); drawTL(); drawFocus(); drawMomentum(); drawPartisan(); drawVoices(); drawList(); drawTurnover(); drawComm();
+  drawHemis(); drawIdeology(); drawTiles(); drawPartyDist(); drawFocus(); drawVoices(); drawList(); drawComm();
 }
 // three states used by the seat chart and the committee bars
 const STATES = [["yes","Scores 3 or more","--yes"],["no","Scores 0 to 2","--no"],["none","Hasn't said enough to score","--card"]];
@@ -360,16 +324,14 @@ function drawHemis(){
     svg.append("text").attr("x",cx).attr("y",ly).attr("text-anchor","middle").attr("fill",css("--fg")).attr("font-size",15).attr("font-weight",600).text(ch==="senate"?"Senate":"House");
     svg.append("text").attr("x",cx).attr("y",ly+17).attr("text-anchor","middle").attr("fill",css("--muted")).attr("font-size",12).text(`${order.length} seats`);
   }
-  const q = {ai_overall:"How optimistic is Congress about AI?", agi_pilled:"Does Congress expect AGI?", x_risk:"How seriously does Congress take catastrophic AI risk?", china_race:"How much does Congress frame AI as a race with China?", regulation:"How much does Congress back AI rules?"}[k];
-  const ends = [LEVELS[k][0].toLowerCase(), LEVELS[k][4].toLowerCase()];
-  document.getElementById("chamber").textContent = q;
-  document.getElementById("hemi-sub").innerHTML = `Every seat in ${S.cong==="119"?"today's Congress":"the Congress that takes office in January 2027"}, sorted from ${LEVELS[k][0].toLowerCase()} to ${LEVELS[k][4].toLowerCase()} on <b>${d[1]}</b>. The Senate is on top and the House below.`;
+  document.getElementById("chamber").textContent = `Congress by ${d[1]} score`;
+  document.getElementById("hemi-sub").innerHTML = `Each dot is one seat in ${S.cong==="119"?"the Congress of today":"the Congress that starts in January 2027"}. The dots go from the lowest score on the left to the highest score on the right. The Senate is at the top. The House is at the bottom.`;
   const cnt = v => all.filter(m=>lvl(m)===v).length;
   document.getElementById("seat-legend").innerHTML =
     `<span><i class="ring"></i>Not enough evidence: <b>${cnt(-1)}</b></span>` +
     [0,1,2,3,4].map(v=>`<span><i class="dot" style="background:${css("--r"+v)}"></i>${LEVELS[k][v]}: <b>${cnt(v)}</b></span>`).join("");
   const pend = M.filter(m=>m.next==="pending").length;
-  document.getElementById("hemi-note").textContent = "Hover over a seat to see who it is and their party, or click it to read their quotes. Scores are the average of two models' scores, rounded. House delegates are included." + (S.cong==="120" ? ` ${pend} seats whose 2026 race hasn't been called yet are left out.` : "");
+  document.getElementById("hemi-note").textContent = "Put the pointer on a dot to see the member. Click a dot to read their quotes. Each score is the average of the scores from two models, rounded to the nearest whole number. The House includes the delegates." + (S.cong==="120" ? ` The chart does not show ${pend} seats, because the 2026 result for these seats is not known yet.` : "");
 }
 
 /* ---------- ideology scatter (the original chart format) ---------- */
@@ -377,7 +339,7 @@ function drawIdeology(){
   const k=S.dim, d=DIMS.find(x=>x[0]===k), el=document.getElementById("ideo"); el.innerHTML="";
   const data = M.filter(m=>inCong(m) && m.ideology!=null && m.scores[k]!=null).map(m=>({m, x:m.ideology, y:m.scores[k]+(hash(m.id)-.5)*0.4}));
   const W=widthOf(el);
-  document.getElementById("ideo-title").textContent = `Political ideology vs. ${d[1]} score`;
+  document.getElementById("ideo-title").textContent = `Ideology and ${d[1]} score`;
   const svg = Plot.plot({width:W, height:420, marginLeft:170, marginBottom:46, marginTop:24, style:plotStyle(),
     x:{label:"Ideology (0 = progressive, 1 = conservative) →", domain:[-0.02,1.02], labelAnchor:"center", labelOffset:38, grid:true},
     y:{label:`↑ ${d[1]} score`, domain:[-0.4,4.4], ticks:[0,1,2,3,4], tickFormat:v=>`${v} · ${LEVELS[k][v]}`, grid:true},
@@ -395,12 +357,12 @@ function drawTiles(){
   const cnt = (c,k) => pop(c).filter(m=>(m.scores[k]??-1)>=3).length;
   const now = pop(S.cong);
   const talk = now.filter(m=>m.n>0).length;
-  const tiles = [[`${talk}`, `of ${now.length} members have said something about AI on the record since 2023`, null]];
-  for (const [k,l,,phrase] of DIMS){
+  const tiles = [[`${talk}`, `of ${now.length} members made a public statement about AI since 2023`, null]];
+  for (const [k,l] of DIMS){
     const v = cnt(S.cong,k), base = cnt("119",k);
-    tiles.push([v, phrase + ` (${l}, score 3+)`, S.cong==="120" ? v-base : null]);
+    tiles.push([v, `members with a score of 3 or more on ${l}`, S.cong==="120" ? v-base : null]);
   }
-  document.getElementById("tiles").innerHTML = tiles.map(([v,t,d])=>`<div class="tile"><div class="v">${v}${d!=null?`<span class="d ${d>0?"up":d<0?"down":""}">${d>0?"▲ +":d<0?"▼ ":"±"}${d} vs today</span>`:""}</div><div class="t">${esc(t)}</div></div>`).join("");
+  document.getElementById("tiles").innerHTML = tiles.map(([v,t,d])=>`<div class="tile"><div class="v">${v}${d!=null?`<span class="d ${d>0?"up":d<0?"down":""}">${d>0?"▲ +":d<0?"▼ ":"±"}${d} from today</span>`:""}</div><div class="t">${esc(t)}</div></div>`).join("");
 }
 
 /* ---------- party distribution ---------- */
@@ -424,24 +386,7 @@ function drawPartyDist(){
 }
 
 /* ---------- topics ---------- */
-function tlRows(){
-  const gs = GROUPS_IN(S.cong);
-  return TL.filter(r=>gs.has(r.g) && (S.party==="all"||r.party===S.party));
-}
 function quarters(){ return [...new Set(TL.map(r=>r.q))].sort(); }
-function drawTL(){
-  const el=document.getElementById("tl"); el.innerHTML="";
-  const rows = d3.rollups(tlRows(), v=>d3.sum(v,d=>d.n), d=>d.q, d=>T2G[d.topic]||"Other").flatMap(([q,gs])=>{ const tot=d3.sum(gs,g=>g[1]); return gs.map(([g,n])=>({q,g,n,share:n/tot})); });
-  const share = S.tlmode==="share", W=widthOf(el);
-  el.append(Plot.plot({width:W, height:320, marginLeft:48, style:plotStyle(),
-    x:{label:null, tickRotate: W<640?-45:0, tickFormat:(d,i)=> W<640 && i%2 ? "" : d, padding:.15},
-    y:{label: share?"share of AI statements":"statements", grid:true, percent:share, tickFormat: share? d=>d+"%" : undefined},
-    color:{domain:GROUPS.map(g=>g[0]), range:GROUPS.map(g=>css(g[2]))},
-    marks:[Plot.barY(rows,{x:"q", y: share?"share":"n", fill:"g", order:GROUPS.map(g=>g[0]), insetTop:1, insetBottom:1,
-      tip:{fill:css("--card"), stroke:css("--line"), format:{x:true, y:false, fill:false}}, channels:{Theme:"g", Statements:d=>Math.round(d.n), Share:d=>`${(d.share*100).toFixed(1)}%`}}),
-      Plot.ruleY([0],{stroke:css("--line")})]}));
-  document.getElementById("tl-legend").innerHTML = legendHTML(GROUPS.map(([g,ts,v])=>[g, css(v)]));
-}
 function drawFocus(){
   const t=focustopic.value, el=document.getElementById("focuschart"); el.innerHTML="";
   const gs = GROUPS_IN(S.cong), Q=quarters();
@@ -462,43 +407,6 @@ function drawFocus(){
       Plot.text(data.filter(d=>d.q===data.filter(x=>x.p===d.p).at(-1)?.q),{x:"q", y:"share", text:"party", fill:"party", dx:6, textAnchor:"start", fontWeight:600}),
       Plot.tip(data, Plot.pointer({x:"q", y:"share", fill:css("--card"), stroke:css("--line"), channels:{Party:"party", Statements:d=>`${d.n} of ${d.tot}`}, format:{x:true, y:d=>`${(d*100).toFixed(1)}%`, fill:false, stroke:false}}))]}));
 }
-function shareBy(rows, filterQ){
-  const r = rows.filter(x=>filterQ(x.q)); const tot = d3.sum(r,d=>d.n);
-  const by = d3.rollup(r, v=>d3.sum(v,d=>d.n), d=>d.topic);
-  return t => tot ? (by.get(t)||0)/tot : 0;
-}
-function drawMomentum(){
-  const el=document.getElementById("momentum"); el.innerHTML="";
-  let Q = quarters(); const curQ = (()=>{const d=new Date(UPDATED); return `${d.getFullYear()}-Q${Math.floor(d.getMonth()/3)+1}`;})();
-  if (Q.at(-1)===curQ) Q = Q.slice(0,-1);
-  const recent = new Set(Q.slice(-4)), prior = new Set(Q.slice(-8,-4));
-  const rows = tlRows();
-  const a = shareBy(rows, q=>prior.has(q)), b = shareBy(rows, q=>recent.has(q));
-  const data = TOPICS.filter(t=>t!=="other").map(t=>({t, before:a(t), after:b(t), d:b(t)-a(t)})).sort((x,y)=>y.d-x.d);
-  document.getElementById("mom-sub").textContent = `Share of AI statements in the last four full quarters (${[...recent][0]} to ${[...recent].at(-1)}) compared with the four before. Hollow dot = before, solid = now.`;
-  const W=widthOf(el), up=css("--r3"), mut=css("--muted");
-  el.append(Plot.plot({width:W, height:360, marginLeft:150, marginRight:48, style:plotStyle(),
-    x:{label:"share of AI statements →", percent:true, grid:true, tickFormat:d=>d+"%"}, y:{label:null, domain:data.map(d=>d.t)},
-    marks:[Plot.link(data,{y1:"t", y2:"t", x1:"before", x2:"after", stroke:d=>d.d>=0?up:mut, strokeWidth:2, markerEnd:"arrow"}),
-      Plot.dot(data,{y:"t", x:"before", r:4, stroke:mut, fill:css("--card"), strokeWidth:1.5}),
-      Plot.text(data,{y:"t", x:d=>Math.max(d.before,d.after), text:d=>`${d.d>=0?"+":""}${(d.d*100).toFixed(1)} pt`, dx:8, textAnchor:"start", fill:css("--muted")}),
-      Plot.tip(data, Plot.pointerY({y:"t", x:"after", fill:css("--card"), stroke:css("--line"), channels:{Before:d=>`${(d.before*100).toFixed(1)}%`, Now:d=>`${(d.after*100).toFixed(1)}%`}, format:{x:false,y:true}}))]}));
-}
-function drawPartisan(){
-  const el=document.getElementById("partisan"); el.innerHTML="";
-  const gs = GROUPS_IN(S.cong), rows = TL.filter(r=>gs.has(r.g));
-  const fD = shareBy(rows.filter(r=>r.party==="D"), ()=>true), fR = shareBy(rows.filter(r=>r.party==="R"), ()=>true);
-  const data = TOPICS.filter(t=>t!=="other").map(t=>({t, D:fD(t), R:fR(t)})).sort((a,b)=>(b.R-b.D)-(a.R-a.D));
-  const long = data.flatMap(d=>[{t:d.t, party:"Democrats", v:d.D}, {t:d.t, party:"Republicans", v:d.R}]);
-  const W=widthOf(el);
-  el.append(Plot.plot({width:W, height:360, marginLeft:150, marginRight:16, style:plotStyle(),
-    x:{label:"share of the party's AI statements →", percent:true, grid:true, tickFormat:d=>d+"%"}, y:{label:null, domain:data.map(d=>d.t)},
-    color:{domain:["Democrats","Republicans"], range:[PC("D"),PC("R")], legend:true},
-    marks:[Plot.link(data,{y1:"t", y2:"t", x1:"D", x2:"R", stroke:css("--line"), strokeWidth:3}),
-      Plot.dot(long,{y:"t", x:"v", fill:"party", r:5, stroke:css("--card"), strokeWidth:1.5,
-        tip:{fill:css("--card"), stroke:css("--line")}, channels:{Party:"party"}, title:d=>`${d.party}: ${(d.v*100).toFixed(1)}% of AI statements are about ${d.t}`})]}));
-  el.querySelector("figure")?.style.setProperty("margin","0");
-}
 function drawVoices(){
   const t=voicetopic.value, el=document.getElementById("voices"); el.innerHTML="";
   const xs = M.filter(m=>inCong(m) && partyOk(m)).map(m=>({m, v: t==="__all" ? m.n : (m.topics?.[t]||0)})).filter(d=>d.v>0).sort((a,b)=>b.v-a.v).slice(0,15);
@@ -515,11 +423,11 @@ function drawVoices(){
 
 /* ---------- opportunity map ---------- */
 const PRESETS = [
-  {label:"Expect AGI, but not worried about losing control", f:m=>(m.scores.agi_pilled??-1)>=3 && (m.scores.x_risk==null || m.scores.x_risk<=1.5)},
-  {label:"Worried about losing control, but lukewarm on rules", f:m=>(m.scores.x_risk??-1)>=3 && (m.scores.regulation==null || m.scores.regulation<=2)},
-  {label:"China hawks who also take x-risk seriously", f:m=>(m.scores.china_race??-1)>=3 && (m.scores.x_risk??-1)>=3},
-  {label:"Pro-regulation, but haven't engaged with x-risk", f:m=>(m.scores.regulation??-1)>=3 && (m.scores.x_risk==null || m.scores.x_risk<=1)},
-  {label:"Optimists who still back strong rules", f:m=>(m.scores.ai_overall??-1)>=3 && (m.scores.regulation??-1)>=3},
+  {label:"Expect AGI, low x-risk", rule:"AGI score of 3 or more, and x-risk score of 1.5 or less (or no score)", f:m=>(m.scores.agi_pilled??-1)>=3 && (m.scores.x_risk==null || m.scores.x_risk<=1.5)},
+  {label:"High x-risk, low regulation", rule:"x-risk score of 3 or more, and regulation score of 2 or less (or no score)", f:m=>(m.scores.x_risk??-1)>=3 && (m.scores.regulation==null || m.scores.regulation<=2)},
+  {label:"High China race, high x-risk", rule:"China race score of 3 or more, and x-risk score of 3 or more", f:m=>(m.scores.china_race??-1)>=3 && (m.scores.x_risk??-1)>=3},
+  {label:"High regulation, low x-risk", rule:"regulation score of 3 or more, and x-risk score of 1 or less (or no score)", f:m=>(m.scores.regulation??-1)>=3 && (m.scores.x_risk==null || m.scores.x_risk<=1)},
+  {label:"High AI overall, high regulation", rule:"AI overall score of 3 or more, and regulation score of 3 or more", f:m=>(m.scores.ai_overall??-1)>=3 && (m.scores.regulation??-1)>=3},
 ];
 function drawPresets(){
   document.getElementById("presets").innerHTML = PRESETS.map((p,i)=>`<button data-preset="${i}" aria-pressed="${i===S.preset}">${esc(p.label)}</button>`).join("");
@@ -530,34 +438,12 @@ function drawList(){
   document.querySelectorAll("[data-preset]").forEach(b=>b.setAttribute("aria-pressed", S.preset===+b.dataset.preset));
   const list = M.filter(m=>inCong(m) && partyOk(m)).filter(PRESETS[S.preset].f).sort((a,b)=>b.n-a.n);
   const byP = d3.rollup(list, v=>v.length, m=>m.party);
-  document.getElementById("list-cap").innerHTML = `<b>${list.length}</b> members${list.length?` (${["D","R","I"].filter(p=>byP.get(p)).map(p=>`${PNAME[p]} ${byP.get(p)}`).join(", ")})`:""}. Most outspoken first.`;
+  document.getElementById("list-cap").innerHTML = `Rule: ${PRESETS[S.preset].rule}. <b>${list.length}</b> members${list.length?` (${["D","R","I"].filter(p=>byP.get(p)).map(p=>`${PNAME[p]} ${byP.get(p)}`).join(", ")})`:""}. Members with the most statements are first.`;
   nameChips(document.getElementById("list-names"), list);
 }
 function nameChips(box, list, extra){
   box.innerHTML = list.slice(0,80).map(m=>`<span class="nm" data-id="${m.id}"><span class="p${m.party}">●</span> ${esc(m.name)} <span class="note">${m.party}-${seat(m)}</span>${extra?`<b>${extra(m)}</b>`:""}</span>`).join("") + (list.length>80?`<span class="note">…and ${list.length-80} more</span>`:"");
   box.querySelectorAll(".nm").forEach(n=>{ const m=M.find(x=>x.id===n.dataset.id); n.onmousemove=e=>showTip(e,memberTip(m)); n.onmouseleave=hideTip; n.onclick=()=>{hideTip();goMember(m);}; });
-}
-
-/* ---------- turnover ---------- */
-function drawTurnover(){
-  const el=document.getElementById("turn"); el.innerHTML="";
-  const out = M.filter(m=>m.next==="departing" && partyOk(m)), inn = M.filter(m=>m.next==="arriving" && partyOk(m));
-  const data = DIMS.flatMap(([k,l])=>{ const a=out.filter(m=>(m.scores[k]??-1)>=3).length, b=inn.filter(m=>(m.scores[k]??-1)>=3).length;
-    return [{l, side:"Leaving", v:-a, c:a}, {l, side:"Arriving", v:b, c:b, net:b-a}]; });
-  const W=widthOf(el), mx=d3.max(data,d=>Math.abs(d.v))||1;
-  el.append(Plot.plot({width:W, height:230, marginLeft:110, marginRight:90, style:plotStyle(),
-    x:{label:`← leaving (${out.length} members) · arriving (${inn.length} members) →`, labelAnchor:"center", domain:[-mx*1.15, mx*1.15], tickFormat:d=>Math.abs(d), grid:true},
-    y:{label:null, domain:DIMS.map(d=>d[1])},
-    color:{domain:["Leaving","Arriving"], range:[css("--leave"), css("--r2")]},
-    marks:[Plot.barX(data,{y:"l", x:"v", fill:"side", insetTop:6, insetBottom:6, rx:3,
-        tip:{fill:css("--card"), stroke:css("--line"), format:{x:false, y:true, fill:false}}, channels:{Who:"side", "Score 3+":"c"}}),
-      Plot.ruleX([0],{stroke:css("--muted")}),
-      Plot.text(data,{y:"l", x:"v", text:d=>d.c||"", dx:d=>d.v<0?-6:6, textAnchor:d=>d.v<0?"end":"start", fill:css("--muted")}),
-      Plot.text(data.filter(d=>d.side==="Arriving"),{y:"l", x:mx*1.15, text:d=>`net ${d.net>0?"+":""}${d.net}`, dx:8, textAnchor:"start", fontWeight:600, fill:css("--fg")})]}));
-  const k=S.dim, strong = xs => xs.filter(m=>(m.scores[k]??-1)>=3).sort((a,b)=>b.scores[k]-a.scores[k] || b.n-a.n);
-  const L=strong(out), A=strong(inn);
-  L.length ? nameChips(document.getElementById("leaving"), L, m=>fmt(m.scores[k])) : (document.getElementById("leaving").innerHTML='<span class="note">Nobody leaving scores 3 or more.</span>');
-  A.length ? nameChips(document.getElementById("arriving"), A, m=>fmt(m.scores[k])) : (document.getElementById("arriving").innerHTML='<span class="note">No arriving member scores 3 or more yet.</span>');
 }
 
 /* ---------- committees ---------- */
@@ -583,7 +469,7 @@ function drawComm(){
 }
 function listComm(){
   const cap=document.getElementById("comm-cap"), box=document.getElementById("comm-names");
-  if (!commSel){ cap.textContent="Click a bar to list those members."; box.innerHTML=""; return; }
+  if (!commSel){ cap.textContent="Click a bar to see the members."; box.innerHTML=""; return; }
   const k=S.dim, list = M.filter(m=>m.status==="current" && partyOk(m) && m.committees.some(x=>x.c===commSel.c) && stateOf(m)===commSel.st).sort((a,b)=>(b.scores[k]??0)-(a.scores[k]??0) || b.n-a.n);
   cap.innerHTML = `<b>${esc(commSel.label)}</b>: ${esc(commSel.lab.toLowerCase())} on ${esc(dimLabel())} (${list.length})`;
   nameChips(box, list, m=>{ const r=m.committees.find(x=>x.c===commSel.c); return (r.title?esc(r.title)+" · ":"")+fmt(m.scores[k]); });
@@ -630,7 +516,7 @@ async function openRow(id){
     ${m.handle?`<p class="note" style="margin:0">X: <a href="https://x.com/${esc(m.handle)}" target="_blank" rel="noopener">@${esc(m.handle)}</a></p>`:""}
     ${comms?`<p class="note" style="margin:0">Committees: ${esc(comms)}</p>`:""}
     <div class="dims">${DIMS.map(([k,l])=>`<div class="dim"><b>${l}: ${fmt(m.scores[k])}</b>${esc(clean(m.just[k])||"Insufficient evidence.")}</div>`).join("")}</div>
-    <p class="note">${qs.length} verified statement${qs.length===1?"":"s"}. The ones cited in the scores are marked in color and listed first. Boxed tags show the level each judge gave a statement on a question (Claude / GPT; – means that judge didn't think it applied).</p>
+    <p class="note">${qs.length} verified statement${qs.length===1?"":"s"}. Statements that the scores use have a color mark and are first. Each box tag shows the level that each model gave the statement on one question (Claude / GPT). A dash means that the model did not give a level.</p>
     ${qs.slice(0,60).map(q=>`<div class="quote ${cited.has(q.sid)?"cited":""}">“${esc(q.text)}”<div class="src">${srcName[q.src]||q.src} · ${esc(q.date||"undated")} · <a href="${esc(q.url)}" target="_blank" rel="noopener">source</a> ${q.topics.map(t=>`<span class="chip">${esc(t)}</span>`).join("")} ${labChips(q)}</div></div>`).join("")}
     ${qs.length>60?`<p class="note">…and ${qs.length-60} more in the CSV and the GitHub data.</p>`:""}</td>`;
 }
