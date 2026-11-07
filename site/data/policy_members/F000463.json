@@ -1,0 +1,83 @@
+{
+ "id": "F000463",
+ "policies": {
+  "china_race_dynamics": [
+   {
+    "sid": "s12",
+    "text": "In hearings, this committee has talked about the United States' AI capabilities and that we are in a dead heat with China. [...] If confirmed, given the Commerce Department's breadth of influence on that issue, how will you address different threats that we see coming from the CCP within these information and technology markets?",
+    "date": "2025-01-29",
+    "context": "Senate Commerce Committee confirmation hearing for Howard Lutnick as Secretary of Commerce.",
+    "url": "https://www.govinfo.gov/content/pkg/CHRG-119shrg61929/html/CHRG-119shrg61929.htm",
+    "source_type": "hearing",
+    "verified_via": "cesia_verbatim",
+    "strategy": "confidence_cascade",
+    "stance": "neutral",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "The speaker notes a dead heat with China and asks how the nominee will address CCP threats without explicitly endorsing a competition priority.",
+      "facets": [],
+      "confidence": 0.78,
+      "confidence_reason": "The statement discusses China competition but is phrased as a hearing question rather than a clear position.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:05:24.530617+00:00",
+      "generation_id": "gen-1794092718-N6pgLRffqyPzRCuxB6Sy"
+     },
+     "astra": {
+      "stance": "neutral",
+      "reason": "The speaker describes a close AI contest with China and asks about threats without explicitly endorsing a competition-first policy.",
+      "facets": [],
+      "confidence": 0.87,
+      "confidence_reason": "The competitive description and question do not clearly establish the speaker's preferred policy priority.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:18:28.320712+00:00",
+      "generation_id": "gen-1794093496-YTa506pzs6BTaJF8kWri"
+     }
+    },
+    "confidence": 0.87,
+    "final_judge": "astra",
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.78 is below 0.8."
+   },
+   {
+    "sid": "s9",
+    "text": "America should leverage every possible resource to stay ahead of adversaries like China. Our bill will encourage public-private collaboration to keep the United States at the forefront of emerging technologies, including AI, cybersecurity, advanced computing, and more.",
+    "date": "2024-07-09",
+    "context": "",
+    "url": "https://www.coons.senate.gov/news/press-releases/senator-coons-colleagues-introduce-bipartisan-bicameral-bill-to-create-foundation-to-support-us-leadership-in-emerging-technology/",
+    "source_type": "web",
+    "verified_via": "ok_search_text",
+    "strategy": "confidence_cascade",
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker explicitly says America should leverage every resource to stay ahead of China and keep the US at the forefront of AI and other technologies.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.96,
+      "confidence_reason": "The statement directly endorses staying ahead of China as a policy priority.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:05:24.530460+00:00",
+      "generation_id": "gen-1794092718-N6pgLRffqyPzRCuxB6Sy"
+     }
+    },
+    "confidence": 0.96,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   }
+  ]
+ }
+}

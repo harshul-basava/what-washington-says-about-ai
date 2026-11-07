@@ -1,0 +1,104 @@
+{
+ "id": "M001237",
+ "policies": {
+  "china_race_dynamics": [
+   {
+    "sid": "s4",
+    "text": "President Trump is meeting with President Xi tomorrow to talk about AI. Here’s what needs to happen:\n\nAs the U.S. competes with China to lead the world on AI, we need protections for people’s jobs, safety, & opportunities.\n\nThat only works if it's on a global scale. This summit is the time to be tough on China & establish universal guardrails to protect Americans’ security & pocketbooks.",
+    "date": "2026-09-23",
+    "context": "",
+    "url": "https://x.com/RepKMR/status/2102908596547707121",
+    "source_type": "x",
+    "verified_via": "x_api",
+    "strategy": "confidence_cascade",
+    "stance": "review_required",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "The speaker treats US-China competition as context and urges global guardrails rather than prioritizing the race.",
+      "facets": [
+       "safety_over_speed",
+       "cooperation"
+      ],
+      "confidence": 0.78,
+      "confidence_reason": "The statement clearly calls for protections and global rules, but does not explicitly endorse making competition with China a priority.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:12:46.053698+00:00",
+      "generation_id": "gen-1794093136-dskUVMarPEiQvbwiokrm"
+     },
+     "astra": {
+      "stance": "neutral",
+      "reason": "The speaker acknowledges competition with China while advocating universal safeguards through bilateral talks, rather than explicitly prioritizing the competition.",
+      "facets": [
+       "safety_over_speed",
+       "cooperation"
+      ],
+      "confidence": 0.77,
+      "confidence_reason": "Safeguards and joint negotiations are explicit, but the call to be tough on China could also suggest endorsement of competitive prioritization.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:20:26.779336+00:00",
+      "generation_id": "gen-1794093605-WwPaKbnIaYuOkCEENbqd"
+     }
+    },
+    "confidence": 0.77,
+    "final_judge": null,
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": true,
+    "review_status": "human_review_required",
+    "review_reason": "DeepSeek confidence 0.78 is below 0.8. Astra also reports confidence below the threshold; human review is required."
+   },
+   {
+    "sid": "s5",
+    "text": "As the U.S. and China compete to lead the world on artificial intelligence, leaders must agree on common-sense regulations that protect people's jobs, safety, and opportunities. That only works if it happens at a global scale. President Trump needs to use this summit to be tough with President Xi, making sure we have a universal set of rules for the future of AI that protect Americans' security and pocketbooks.",
+    "date": "2026-09-23",
+    "context": "",
+    "url": "https://www.publicnow.com/view/2F922CB1E5F7FE0E7866304F6D674A93E5B10586",
+    "source_type": "web",
+    "verified_via": "ok_search_text",
+    "strategy": "confidence_cascade",
+    "stance": "unclear",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "The speaker treats US-China competition as context and urges universal AI rules rather than prioritizing the race.",
+      "facets": [
+       "safety_over_speed",
+       "cooperation"
+      ],
+      "confidence": 0.78,
+      "confidence_reason": "The statement clearly calls for global regulations and toughness, but does not explicitly endorse making competition with China a priority.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:12:46.053759+00:00",
+      "generation_id": "gen-1794093136-dskUVMarPEiQvbwiokrm"
+     },
+     "astra": {
+      "stance": "unclear",
+      "reason": "She urges shared safeguards amid US–China competition without clearly endorsing competition as a policy priority.",
+      "facets": [
+       "safety_over_speed",
+       "cooperation"
+      ],
+      "confidence": 0.83,
+      "confidence_reason": "The safeguards and international coordination are explicit, but her position on prioritizing competition is not.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:20:21.075993+00:00",
+      "generation_id": "gen-1794093609-4gMLbK5p1tLWeYkuvo6h"
+     }
+    },
+    "confidence": 0.83,
+    "final_judge": "astra",
+    "facets_final": [
+     "safety_over_speed",
+     "cooperation"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": true,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.78 is below 0.8."
+   }
+  ]
+ }
+}

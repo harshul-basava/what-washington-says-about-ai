@@ -1,0 +1,83 @@
+{
+ "id": "E000301",
+ "policies": {
+  "china_race_dynamics": [
+   {
+    "sid": "s3",
+    "text": "Unfettered sale of LNG to countries like China and Russia would power their data centers, AI systems, and cyber missions, all by using American energy.",
+    "date": "2025-11-20",
+    "context": "Floor speech in the U.S. House of Representatives opposing H.R. 1949, the Unlocking Our Domestic LNG Potential Act of 2025.",
+    "url": "https://www.govinfo.gov/content/pkg/CREC-2025-11-20/html/CREC-2025-11-20-pt1-PgH4841-2.htm",
+    "source_type": "floor",
+    "verified_via": "cesia_verbatim",
+    "strategy": "confidence_cascade",
+    "stance": "review_required",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker opposes unfettered LNG sales to China and Russia because it would power their AI and cyber capabilities.",
+      "facets": [
+       "export_restrictions"
+      ],
+      "confidence": 0.78,
+      "confidence_reason": "The export-restriction rationale is explicit, but the link to a general China competition priority is indirect.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:04:57.212457+00:00",
+      "generation_id": "gen-1794092683-PU51lCRhiNQ7aw7UcC9Z"
+     },
+     "astra": {
+      "stance": "neutral",
+      "reason": "Elfreth describes American LNG powering Chinese AI systems without explicitly making AI competition with China a policy priority.",
+      "facets": [],
+      "confidence": 0.78,
+      "confidence_reason": "The language suggests concern about energy exports, but neither a competitive AI priority nor an export restriction is explicitly endorsed in the statement.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:18:17.152897+00:00",
+      "generation_id": "gen-1794093484-SWUJ5XuJZVMvbWMci6Sa"
+     }
+    },
+    "confidence": 0.78,
+    "final_judge": null,
+    "facets_final": [],
+    "facet_disagreement": true,
+    "model_disagreement": true,
+    "review_required": true,
+    "review_status": "human_review_required",
+    "review_reason": "DeepSeek confidence 0.78 is below 0.8. Astra also reports confidence below the threshold; human review is required."
+   }
+  ],
+  "national_ai_framework_2026": [
+   {
+    "sid": "s10",
+    "text": "As AI continues to rapidly evolve, we need regulations at home and abroad. I’ve joined @RepYassAnsari and over 40 of my House Democratic colleagues in urging the Trump Administration to establish a coordinated global framework with our allies to regulate AI development. Especially as we grapple with the uncertainty of these advancements, it’s all the more important to work with our longstanding allies to ensure true global security.",
+    "date": "2026-09-25",
+    "context": "",
+    "url": "https://x.com/RepSarahElfreth/status/2103565946048635325",
+    "source_type": "x",
+    "verified_via": "x_api",
+    "strategy": "confidence_cascade",
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement urges a coordinated global framework with allies, not the White House's March 2026 national AI legislative framework.",
+      "facets": [],
+      "confidence": 0.9,
+      "confidence_reason": "The proposal described is a global regulatory framework, not the specific 2026 national framework.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:04:57.212513+00:00",
+      "generation_id": "gen-1794092683-PU51lCRhiNQ7aw7UcC9Z"
+     }
+    },
+    "confidence": 0.9,
+    "final_judge": "deepseek",
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   }
+  ]
+ }
+}

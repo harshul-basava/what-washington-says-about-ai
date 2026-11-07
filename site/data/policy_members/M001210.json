@@ -1,0 +1,126 @@
+{
+ "id": "M001210",
+ "policies": {
+  "china_race_dynamics": [
+   {
+    "sid": "s1",
+    "text": "We have to win this arms race. [...] We can't allow AI to just go insane. Congress has to have some type of overarching regulatory environment to try to keep humans in charge of what goes on with AI. [...] I think the important thing is to make sure that humans are always in the loop, always in charge of this.",
+    "date": null,
+    "context": "",
+    "url": "https://wcti12.com/news/local/greg-murphy-discusses-campaign-for-reelection-in-north-carolinas-3rd-district",
+    "source_type": "web",
+    "verified_via": "ok",
+    "strategy": "confidence_cascade",
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker explicitly calls for winning an AI arms race, endorsing competition priority.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.66,
+      "confidence_reason": "The race framing is clear, but the statement does not name China, so target specificity is somewhat uncertain.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:11:48.425773+00:00",
+      "generation_id": "gen-1794093090-p1IdDDYNAl89qll18dVh"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "The speaker endorses winning an AI arms race and maintaining safeguards without identifying China as the competitor.",
+      "facets": [],
+      "confidence": 0.87,
+      "confidence_reason": "Neither the excerpt nor its supplied context connects the arms race to China.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:20:13.458449+00:00",
+      "generation_id": "gen-1794093597-SSmouNoL391nfF2gQHrw"
+     }
+    },
+    "confidence": 0.87,
+    "final_judge": "astra",
+    "facets_final": [],
+    "facet_disagreement": true,
+    "model_disagreement": true,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.66 is below 0.8."
+   },
+   {
+    "sid": "s20",
+    "text": "We're a few months ahead of China, but they're spreading so much disinformation about these data centers, which [are] the building block for artificial intelligence, that they're turning so many communities, wrongfully, in my opinion, away from this, because of misinformation.",
+    "date": "2026-09",
+    "context": "",
+    "url": "https://joemessina.com/2026/09/gop-congressman-says-ai-risks-are-real-and-china-is-spreading-data-center-disinformation/",
+    "source_type": "web",
+    "verified_via": "ok",
+    "strategy": "confidence_cascade",
+    "stance": "review_required",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "The speaker describes China’s disinformation about AI data centers and says the US is ahead, but does not explicitly endorse prioritizing competition.",
+      "facets": [],
+      "confidence": 0.75,
+      "confidence_reason": "The statement clearly concerns China and AI infrastructure, but its stance is descriptive rather than an explicit policy position.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:11:48.425825+00:00",
+      "generation_id": "gen-1794093090-p1IdDDYNAl89qll18dVh"
+     },
+     "astra": {
+      "stance": "neutral",
+      "reason": "The speaker describes America's lead over China and criticizes Chinese disinformation without explicitly making competition a policy priority.",
+      "facets": [],
+      "confidence": 0.77,
+      "confidence_reason": "The competitive comparison is explicit, but prioritizing that competition is only implied by the criticism.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:20:13.458500+00:00",
+      "generation_id": "gen-1794093597-SSmouNoL391nfF2gQHrw"
+     }
+    },
+    "confidence": 0.77,
+    "final_judge": null,
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": true,
+    "review_status": "human_review_required",
+    "review_reason": "DeepSeek confidence 0.75 is below 0.8. Astra also reports confidence below the threshold; human review is required."
+   },
+   {
+    "sid": "s21",
+    "text": "Winning the Artificial Intelligence race against China is the critical issue of National Security. No wonder the Chinese, and Communist Sympathizers are funding misinformation about Data Centers. https://t.co/y9M4lYdofB",
+    "date": "2026-09-03",
+    "context": "",
+    "url": "https://x.com/RepGregMurphy/status/2095504966253269458",
+    "source_type": "x",
+    "verified_via": "x_api",
+    "strategy": "confidence_cascade",
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker calls winning the AI race against China the critical national security issue.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.96,
+      "confidence_reason": "The statement explicitly frames AI competition with China as a top national security priority.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:11:44.626520+00:00",
+      "generation_id": "gen-1794093098-fpIwTO7cwS6IJPsu1AHH"
+     }
+    },
+    "confidence": 0.96,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   }
+  ]
+ }
+}

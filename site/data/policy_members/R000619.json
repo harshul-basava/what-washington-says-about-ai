@@ -1,0 +1,91 @@
+{
+ "id": "R000619",
+ "policies": {
+  "china_race_dynamics": [
+   {
+    "sid": "s4",
+    "text": "They shouldn't put them on waste lands, brown fields, old, like textile plants, or old steel mills. Keep them out of the corn fields. Keep them out of the neighborhoods. We need to do better. China is going to win this war, Cheryl.",
+    "date": "2026-08-28",
+    "context": "",
+    "url": "https://www.mixedtimes.com/technology/gop-rep-rulli-the-ccp-has-infiltrated-ohio-with-propaganda-against-500b-data-center",
+    "source_type": "web",
+    "verified_via": "ok_search_text",
+    "strategy": "confidence_cascade",
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "The speaker predicts China will win this war but does not explicitly endorse prioritizing competition with China.",
+      "facets": [],
+      "confidence": 0.55,
+      "confidence_reason": "The China reference is a warning or prediction, but the policy direction is not explicit.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:14:10.273778+00:00",
+      "generation_id": "gen-1794093230-bbCHaOQRnJNX6rBW04Ky"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "The statement invokes competition with China over unidentified facilities without connecting it to AI policy.",
+      "facets": [],
+      "confidence": 0.88,
+      "confidence_reason": "Neither the statement nor its context identifies AI as the subject of the competition.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:20:54.558672+00:00",
+      "generation_id": "gen-1794093638-dPOLxTpvi8VFGkGegIar"
+     }
+    },
+    "confidence": 0.88,
+    "final_judge": "astra",
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": true,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.55 is below 0.8."
+   },
+   {
+    "sid": "s5",
+    "text": "We know that A.I. is going to help cure cancer. We know that we're going to beat everybody as far as — whether it's quantum theory or quantum easing, or whether it's to cybersecurity, or all the different things with drone technology. But we have to do better at it. The CCP has infiltrated Ohio with propaganda against this.",
+    "date": "2026-08-28",
+    "context": "",
+    "url": "https://www.mixedtimes.com/technology/gop-rep-rulli-the-ccp-has-infiltrated-ohio-with-propaganda-against-500b-data-center",
+    "source_type": "web",
+    "verified_via": "ok_search_text",
+    "strategy": "confidence_cascade",
+    "stance": "review_required",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker frames US technology as beating competitors and warns about CCP propaganda influence.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.62,
+      "confidence_reason": "The competitive framing and CCP warning suggest support, but the statement does not explicitly call for a China competition policy priority.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:14:10.273892+00:00",
+      "generation_id": "gen-1794093230-bbCHaOQRnJNX6rBW04Ky"
+     },
+     "astra": {
+      "stance": "unclear",
+      "reason": "The speaker urges better AI performance and criticizes CCP interference without clearly making competition with China a policy priority.",
+      "facets": [],
+      "confidence": 0.75,
+      "confidence_reason": "The competitive language suggests a race framing, but its specific connection to China policy is ambiguous.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:20:57.311712+00:00",
+      "generation_id": "gen-1794093640-LsrkTqioOkmlLMJSa0BX"
+     }
+    },
+    "confidence": 0.75,
+    "final_judge": null,
+    "facets_final": [],
+    "facet_disagreement": true,
+    "model_disagreement": true,
+    "review_required": true,
+    "review_status": "human_review_required",
+    "review_reason": "DeepSeek confidence 0.62 is below 0.8. Astra also reports confidence below the threshold; human review is required."
+   }
+  ]
+ }
+}

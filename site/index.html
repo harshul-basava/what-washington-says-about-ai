@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>What Washington Says About AI</title>
 <meta name="description" content="Evidence-backed scores of how every member of Congress talks about AI, AGI, AI risk, China and regulation, from verified quotes.">
+<link rel="stylesheet" href="policies.css">
+<link rel="stylesheet" href="policy-charts.css">
+<script src="policy-charts.js" defer></script>
+<script src="policies.js" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -113,6 +117,7 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
   <h1>What does Washington say about AI?</h1>
   <p class="lede">We collected public statements about AI from each member of Congress and from each new member elected in 2026. The sources are floor speeches, hearings, posts on X, interviews and press releases. We checked each quote against its source. Two AI models then gave each person a score on five questions. The models used only these quotes.</p>
   <p class="meta">Last updated <span id="updated">…</span> · <span id="nmembers">…</span> people · <span id="nquotes">…</span> verified statements</p>
+  <p><a href="#policy-section">Explore judgments on bills, frameworks, exports, auditors, and China</a></p>
 </header>
 
 <h2 id="chamber"></h2>
@@ -179,6 +184,13 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
 <div class="tablewrap"><table id="tbl"><thead></thead><tbody></tbody></table></div>
 <p class="note">Scores go from 0 to 4. The method section below gives the rules. A dash means that there is not enough evidence. Click a row to see a summary and the quotes for each score.</p>
 
+<section id="policy-section" aria-labelledby="policy-title">
+<h2 id="policy-title">Positions on specific AI policies</h2>
+<p class="sub">Read each member’s statements about named bills, new frameworks, export controls, embedded auditors, and competition with China.</p>
+<p class="note">Open a member to see dated quotes, source links, and the model assessments. These labels use a separate policy rubric.</p>
+<div id="policy-explorer"><p role="status">Loading policy judgments…</p></div>
+</section>
+
 <h2 id="method">Method</h2>
 <ol>
   <li><b>Who:</b> all 539 current members (senators, representatives and delegates) from the <a href="https://github.com/unitedstates/congress-legislators">unitedstates/congress-legislators</a> project, plus winners of the November 2026 elections who aren't already in Congress, taken from called races only. The January 2027 view combines continuing members with members-elect. A senator stays unless their seat was up in 2026 and someone else won it; a member who won a 2026 race stays, in the chamber they won.</li>
@@ -188,6 +200,7 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--line);font-si
   <li><b>Scoring:</b> each question is a claim (for example, "advanced AI could cause a catastrophe for humanity, and this deserves serious policy attention"), scored 0–4 by how strongly the member backs it in their own words. Two models from different companies, Claude Sonnet 5.5 and GPT-6.1 Sol, each read every statement and label the level it shows, using written tests for each level (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/master/config/rubric.md">rubric</a>). Quoting someone else's warning doesn't count unless the member adopts it. A fixed formula then turns the labels into a score. For "how strongly" questions (AGI, x-risk, China), the score is the highest level reached by at least two statements, and members who never discuss the topic get 0. For regulation, the score is the strongest position that the member takes more than one time. For AI overall, the score is the median label. The published score is the average of the two models' scores.</li>
   <li><b>Review:</b> scores where the two models are 2 or more apart, the highest scores on AGI and x-risk, and a random sample are checked by a person.</li>
   <li><b>Committees:</b> current full-committee rosters from the @unitedstates project.</li>
+  <li><b>Policy judgments:</b> keyword searches identify candidate statements in the existing corpus. DeepSeek V4.1 Flash 1017 assesses each candidate with a confidence score. Astra independently reviews confidence below the configured threshold. Cases that remain uncertain require human review. The policy view preserves both assessments and separates no matching evidence from incomplete assessment. Confidence scores are model estimates that require calibration. Each framework has its own dated registry entry. New entries require a manual refresh. These labels have not received a human validation study.</li>
 </ol>
 <p><b>Caveats.</b> What people say in public is not the same as what they believe or how they vote. Scores are produced by language models and only spot-checked. Official records lag by months. X coverage depends on knowing the right accounts, and some members barely post. Members who rarely talk about AI will have little or no evidence. That doesn't mean they hold no views.</p>
 <p class="note">Thanks to <a href="https://cesia.org/en/data/attention/">CeSIA</a>, the <a href="https://github.com/unitedstates/congress-legislators">@unitedstates project</a>, <a href="https://www.govtrack.us/">GovTrack</a>, and Roe's earlier <a href="https://www.lesswrong.com/">"What Washington Says About AGI"</a>, which this project builds on.</p>

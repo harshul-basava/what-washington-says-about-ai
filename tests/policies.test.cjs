@@ -1,0 +1,69 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const view = require('../site/policies.js');
+
+test('filters use explicit stances without converting absent evidence to opposition', () => {
+  const members = [
+    {name:'Alice', state:'CA', party:'Democrat', status:'current', policies:{p:{stance:'support', coverage:'complete', relevant:2}}},
+    {name:'Bob', state:'TX', party:'Republican', status:'current', policies:{p:{stance:null, coverage:'no_matching_evidence', relevant:0}}},
+    {name:'Cara', state:'CA', party:'Democrat', status:'member_elect', policies:{p:{stance:'oppose', coverage:'complete', relevant:1}}},
+  ];
+  assert.deepEqual(view.filterMembers(members, {policy:'p', stance:'oppose'}).map(m=>m.name), ['Cara']);
+  assert.deepEqual(view.filterMembers(members, {policy:'p', party:'R'}).map(m=>m.name), ['Bob']);
+  assert.deepEqual(view.filterMembers(members, {policy:'p', search:'CA', population:'current'}).map(m=>m.name), ['Alice']);
+  assert.deepEqual(view.filterMembers(members, {policy:'p', stance:'no_evidence'}).map(m=>m.name), ['Bob']);
+});
+
+test('source text and URLs cannot introduce executable markup', () => {
+  const html = view.renderRecord({text:'<img src=x onerror=alert(1)>', url:'javascript:alert(1)', date:null,
+    source_type:'web', stance:'disputed', judges:{sonnet:{stance:'support',reason:'<script>bad</script>',facets:[]},
+    gpt:{stance:'oppose',reason:'It rejects the proposal.',facets:[]}}});
+  assert.ok(html.includes('&lt;img'));
+  assert.ok(!html.includes('href="javascript:'));
+  assert.ok(!html.includes('<script>'));
+  assert.ok(html.includes('Support'));
+  assert.ok(html.includes('Oppose'));
+  assert.ok(html.includes('Models disagree'));
+});
+
+test('coverage labels separate unprocessed evidence from no evidence', () => {
+  assert.equal(view.summaryLabel({stance:null,coverage:'pending'}), 'Assessment pending');
+  assert.equal(view.summaryLabel({stance:null,coverage:'no_matching_evidence'}), 'No matching evidence');
+  assert.equal(view.summaryLabel({stance:null,coverage:'no_relevant_evidence'}), 'No relevant evidence');
+  assert.equal(view.summaryLabel({stance:'support',coverage:'partial'}), 'Support · partial assessment');
+});
+
+test('facet disagreements remain visible when stance agrees', () => {
+  const html = view.renderRecord({text:'We must compete.', url:'https://example.org', stance:'support', facet_disagreement:true, judges:{}});
+  assert.ok(html.includes('Models disagree on the details'));
+  assert.equal(view.summaryLabel({stance:'support',coverage:'complete',facet_disagreements:1}), 'Support · details disputed');
+});
+
+test('missing or stale detail data does not become absence of evidence', () => {
+  const member = {id:'P', policies:{p:{candidates:1}}};
+  assert.throws(()=>view.evidenceRecords({id:'P',policies:{}},member,'p'));
+  assert.throws(()=>view.evidenceRecords({id:'P',policies:{p:[]}},member,'p'));
+  assert.throws(()=>view.evidenceRecords({id:'Q',policies:{p:[{}]}},member,'p'));
+  assert.deepEqual(view.evidenceRecords({id:'P',policies:{p:[{text:'Quote'}]}},member,'p'),[{text:'Quote'}]);
+});
+
+test('cascade quote shows both confidence scores and the final reviewer without renaming DeepSeek', () => {
+  const html=view.renderRecord({text:'A quote',url:'https://example.org',stance:'oppose',strategy:'confidence_cascade',
+    final_judge:'astra',confidence:0.93,model_disagreement:true,review_status:'astra_reviewed',review_reason:'Below threshold.',
+    judges:{deepseek:{stance:'support',reason:'Initial view.',facets:[],confidence:0.7,confidence_reason:'Ambiguous.'},
+      astra:{stance:'oppose',reason:'Final view.',facets:[],confidence:0.93,confidence_reason:'Explicit rejection.'}}});
+  assert.ok(html.includes('DeepSeek'));
+  assert.ok(html.includes('Astra'));
+  assert.ok(html.includes('0.7'));
+  assert.ok(html.includes('0.93'));
+  assert.ok(html.includes('Final assessment: Astra'));
+  assert.ok(html.includes('Below threshold.'));
+  assert.ok(!html.includes('GPT:'));
+});
+
+test('human review status stays visible instead of becoming no evidence', () => {
+  assert.ok(view.summaryLabel({stance:null,coverage:'pending',human_review:1}).includes('human review'));
+  const html=view.renderRecord({text:'Uncertain quote',url:'https://example.org',stance:'review_required',
+    strategy:'confidence_cascade',review_status:'human_review_required',review_reason:'Both uncertain.',judges:{}});
+  assert.ok(html.includes('Human review required'));
+});

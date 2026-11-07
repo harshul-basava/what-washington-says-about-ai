@@ -1,0 +1,128 @@
+{
+ "id": "B001317",
+ "policies": {
+  "china_race_dynamics": [
+   {
+    "sid": "s7",
+    "text": "We must be vigilant in curbing China’s influence over emerging AI technologies. https://t.co/lrV0WGz2PP",
+    "date": "2026-01-08",
+    "context": "",
+    "url": "https://x.com/RepBrecheen/status/2009323781265957118",
+    "source_type": "x",
+    "verified_via": "x_api",
+    "strategy": "confidence_cascade",
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker says the US must curb China's influence over emerging AI technologies.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.82,
+      "confidence_reason": "Explicit call to curb China's AI influence supports a China-focused priority.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:02:40.627555+00:00",
+      "generation_id": "gen-1794092553-gRZqeGI9iA0tLz3hZ68U"
+     }
+    },
+    "confidence": 0.82,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   },
+   {
+    "sid": "s6",
+    "text": "Recently, @RepOgles and I co-chaired a @HomelandGOP hearing on the impacts of AI on cybersecurity. Congress must stand alert to the fact that Communist China is actively working to weaponize AI, and other emerging technologies, to harm America. We must work with the private sector stand up against the CCP and mitigate cyber threats to our homeland.",
+    "date": "2026-01-07",
+    "context": "",
+    "url": "https://x.com/RepBrecheen/status/2008908094839910759",
+    "source_type": "x",
+    "verified_via": "x_api",
+    "strategy": "confidence_cascade",
+    "stance": "review_required",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker calls for standing up against the CCP and mitigating AI-enabled cyber threats.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.78,
+      "confidence_reason": "The call to counter CCP AI/cyber threats implies a China competition priority, though framed as cybersecurity.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:02:40.627490+00:00",
+      "generation_id": "gen-1794092553-gRZqeGI9iA0tLz3hZ68U"
+     },
+     "astra": {
+      "stance": "support",
+      "reason": "The speaker calls for congressional vigilance and private-sector collaboration to counter China's weaponization of AI.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.78,
+      "confidence_reason": "The call to counter China is explicit, although its defensive cybersecurity focus makes the broader competition framing less certain.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:17:42.549189+00:00",
+      "generation_id": "gen-1794093448-EpJMJa62p4KmSkOfQynM"
+     }
+    },
+    "confidence": 0.78,
+    "final_judge": null,
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": true,
+    "review_status": "human_review_required",
+    "review_reason": "DeepSeek confidence 0.78 is below 0.8. Astra also reports confidence below the threshold; human review is required."
+   },
+   {
+    "sid": "s4",
+    "text": "China, our most significant cyber threat actor, continues to search for new tactics to infiltrate critical U.S. systems, and is prioritizing the development of advanced computing technology and AI that supports its economic and strategic goals.",
+    "date": "2025-12-17",
+    "context": "",
+    "url": "https://homeland.house.gov/2025/12/17/subcommittee-chairmen-ogles-brecheen-deliver-opening-statements-in-hearing-with-anthropic-google-quantum-xchange-on-future-of-cybersecurity/",
+    "source_type": "web",
+    "verified_via": "ok",
+    "strategy": "confidence_cascade",
+    "stance": "neutral",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "The speaker describes China's AI and cyber threat but does not endorse a US competition priority.",
+      "facets": [],
+      "confidence": 0.78,
+      "confidence_reason": "It is descriptive criticism of China without an explicit policy-priority call.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:02:40.627414+00:00",
+      "generation_id": "gen-1794092553-gRZqeGI9iA0tLz3hZ68U"
+     },
+     "astra": {
+      "stance": "neutral",
+      "reason": "The speaker describes China's cyber threats and AI development without prescribing a US competitive response.",
+      "facets": [],
+      "confidence": 0.96,
+      "confidence_reason": "The statement is descriptive and contains no endorsement of a US policy priority.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:17:42.549042+00:00",
+      "generation_id": "gen-1794093448-EpJMJa62p4KmSkOfQynM"
+     }
+    },
+    "confidence": 0.96,
+    "final_judge": "astra",
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.78 is below 0.8."
+   }
+  ]
+ }
+}

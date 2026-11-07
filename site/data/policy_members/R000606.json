@@ -1,0 +1,81 @@
+{
+ "id": "R000606",
+ "policies": {
+  "china_race_dynamics": [
+   {
+    "sid": "s9",
+    "text": "you've advocated for transparency requirements for developers of high-stakes AI systems, including transparency for training data, capability testing, safety testing, risk management, safety cases, and so on. What does transparency mean in this context? What is its purpose in these different areas?",
+    "date": "2025-05-07",
+    "context": "Congressional hearing titled \"Protecting Our Edge: Trade Secrets and the Global AI Arms Race\" where Rep. Raskin questions a witness about AI transparency.",
+    "url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg60318/html/CHRG-119hhrg60318.htm",
+    "source_type": "hearing",
+    "verified_via": "cesia_verbatim",
+    "strategy": "confidence_cascade",
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The speaker asks a witness about transparency requirements and does not address China race dynamics.",
+      "facets": [],
+      "confidence": 0.92,
+      "confidence_reason": "The statement is a hearing question about transparency, not an endorsement of China competition policy.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:13:41.544511+00:00",
+      "generation_id": "gen-1794093214-fEvjrCEIOtKNakGR4CQb"
+     }
+    },
+    "confidence": 0.92,
+    "final_judge": "deepseek",
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   },
+   {
+    "sid": "s10",
+    "text": "According to a recent study, the U.S. is home to over half of the more than 10,000 AI startups across the 10 countries leading in AI. [...] we must also take steps to protect American trade secrets from competing nations that seek to steal our technology. [...] Some have referred to the push to develop the most advanced AI model as the AI arms race. [...] when other countries threaten U.S. cybersecurity, steal our inventions, and conduct economic espionage against U.S. companies as the Government of China has done, that is cause for serious scrutiny.",
+    "date": "2025-05-07",
+    "context": "Opening statement by Rep. Jamie Raskin at a House committee hearing on trade secrets and AI competition.",
+    "url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg60318/html/CHRG-119hhrg60318.htm",
+    "source_type": "hearing",
+    "verified_via": "cesia_verbatim",
+    "strategy": "confidence_cascade",
+    "stance": "review_required",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "The speaker mentions an AI arms race and Chinese espionage but does not endorse making competition with China a policy priority.",
+      "facets": [],
+      "confidence": 0.72,
+      "confidence_reason": "The statement references China and AI competition but gives no clear position on prioritizing a race.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:13:43.049569+00:00",
+      "generation_id": "gen-1794093214-7bxjJZFjdnzRUJChpOaf"
+     },
+     "astra": {
+      "stance": "support",
+      "reason": "Raskin calls for protecting American AI trade secrets against competing nations and specifically identifies Chinese economic espionage.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.76,
+      "confidence_reason": "The call for action against competing nations supports a competitive priority, though its focus is trade-secret protection rather than winning an AI race.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:20:47.699900+00:00",
+      "generation_id": "gen-1794093630-cDxKMR6zm1pCzIxQXMZu"
+     }
+    },
+    "confidence": 0.76,
+    "final_judge": null,
+    "facets_final": [],
+    "facet_disagreement": true,
+    "model_disagreement": true,
+    "review_required": true,
+    "review_status": "human_review_required",
+    "review_reason": "DeepSeek confidence 0.72 is below 0.8. Astra also reports confidence below the threshold; human review is required."
+   }
+  ]
+ }
+}

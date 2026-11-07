@@ -1,0 +1,54 @@
+{
+ "id": "J000293",
+ "policies": {
+  "china_race_dynamics": [
+   {
+    "sid": "s11",
+    "text": "I would hate to see China win the war on AI. Again, I don't have the specifics on this. I have a sense that China is funding the opposition to AI centers,",
+    "date": "2026-09-01",
+    "context": "",
+    "url": "https://www.mixedtimes.com/politics/exclusive-sen-ron-johnson-says-chinese-propaganda-fueling-data-center-opposition-do-we-really-want-to-lose-the-race-to-ai",
+    "source_type": "web",
+    "verified_via": "ok_search_text",
+    "strategy": "confidence_cascade",
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker says he would hate to see China win the AI race, framing competition with China as a concern.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.7,
+      "confidence_reason": "The statement expresses a clear preference against China winning AI competition, though it is somewhat vague and lacks policy specifics.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:07:50.684957+00:00",
+      "generation_id": "gen-1794092859-iT6uevSD49vPwo6l4imZ"
+     },
+     "astra": {
+      "stance": "support",
+      "reason": "The speaker explicitly expresses opposition to China winning the AI competition.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.95,
+      "confidence_reason": "The desire to prevent China from winning clearly endorses competitive framing without an explicit safety tradeoff.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:18:58.886935+00:00",
+      "generation_id": "gen-1794093528-lX3LVtTMhPML4VIveNoL"
+     }
+    },
+    "confidence": 0.95,
+    "final_judge": "astra",
+    "facets_final": [
+     "competition_priority"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.7 is below 0.8."
+   }
+  ]
+ }
+}

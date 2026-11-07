@@ -1,0 +1,89 @@
+{
+ "id": "B001278",
+ "policies": {
+  "ai_action_plan_2025": [
+   {
+    "sid": "s23",
+    "text": "So the Administration's AI Action Plan frames leadership pretty much as a race focused on infrastructure, speed, and deployment.",
+    "date": "2026-01-14",
+    "context": "House Science Committee hearing on the Administration's AI Action Plan, with the OSTP Director testifying.",
+    "url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62455/html/CHRG-119hhrg62455.htm",
+    "source_type": "hearing",
+    "verified_via": "cesia_verbatim",
+    "strategy": "confidence_cascade",
+    "stance": "neutral",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "The speaker describes how the Administration's AI Action Plan frames leadership as a race without endorsing or rejecting the plan.",
+      "facets": [],
+      "confidence": 0.6,
+      "confidence_reason": "The statement is a descriptive characterization of the plan, with no clear position for or against it.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:01:53.182984+00:00",
+      "generation_id": "gen-1794092508-Qcdqw0fM9HcIEJ5twRPF"
+     },
+     "astra": {
+      "stance": "neutral",
+      "reason": "The speaker describes the Action Plan's emphasis on infrastructure, speed, and deployment without explicitly evaluating it.",
+      "facets": [],
+      "confidence": 0.92,
+      "confidence_reason": "The plan is explicitly identified, but the characterization alone does not establish endorsement or opposition.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:17:26.326064+00:00",
+      "generation_id": "gen-1794093437-xdZQCzc4UMIQkmjRJ6ra"
+     }
+    },
+    "confidence": 0.92,
+    "final_judge": "astra",
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.6 is below 0.8."
+   },
+   {
+    "sid": "s24",
+    "text": "we know that AI leadership requires more than fast deployment. It requires trust, preparation, and a workforce that's ready to use these tools responsibly. [...] I am developing a comprehensive, human-centered framework so AI can enhance opportunities and not widen gaps.",
+    "date": "2026-01-14",
+    "context": "Remarks during a hearing on the Advancing America's AI Action Plan, critiquing cuts to education as contrary to AI readiness goals.",
+    "url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62455/html/CHRG-119hhrg62455.htm",
+    "source_type": "hearing",
+    "verified_via": "cesia_verbatim",
+    "strategy": "confidence_cascade",
+    "stance": "review_required",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The speaker discusses AI leadership and a human-centered framework generally, not the AI Action Plan itself.",
+      "facets": [],
+      "confidence": 0.62,
+      "confidence_reason": "The remarks are about AI readiness broadly rather than a stance on the specific plan.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:01:53.183021+00:00",
+      "generation_id": "gen-1794092508-Qcdqw0fM9HcIEJ5twRPF"
+     },
+     "astra": {
+      "stance": "unclear",
+      "reason": "The speaker emphasizes trust, workforce preparation, and a human-centered alternative without clearly endorsing or rejecting the Action Plan.",
+      "facets": [],
+      "confidence": 0.79,
+      "confidence_reason": "The hearing context links the remarks to the plan, but the statement leaves the overall stance implicit.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:17:26.326121+00:00",
+      "generation_id": "gen-1794093437-xdZQCzc4UMIQkmjRJ6ra"
+     }
+    },
+    "confidence": 0.79,
+    "final_judge": null,
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": true,
+    "review_required": true,
+    "review_status": "human_review_required",
+    "review_reason": "DeepSeek confidence 0.62 is below 0.8. Astra also reports confidence below the threshold; human review is required."
+   }
+  ]
+ }
+}

@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "verified_on": "2026-11-07",
+  "policies": [
+    {
+      "id": "frontier_act_119", "title": "FRONTIER Act", "kind": "bill",
+      "version": "H.R. 9925, introduced text", "introduced": "2026-07-23",
+      "source_url": "https://www.govinfo.gov/app/details/BILLS-119hr9925ih",
+      "question": "Does the speaker support the named FRONTIER Act (H.R. 9925), including its national requirements for advanced AI developers? General support for frontier AI rules is not enough.",
+      "patterns": ["\\bFRONTIER Act\\b", "Frontier Risk Oversight", "\\bH\\.?\\s*R\\.?\\s*9925\\b"], "facets": []
+    },
+    {
+      "id": "kill_switch_act_119", "title": "AI Kill Switch Act", "kind": "bill",
+      "version": "H.R. 9917, introduced text", "introduced": "2026-07-23",
+      "source_url": "https://www.govinfo.gov/content/pkg/BILLS-119hr9917ih/html/BILLS-119hr9917ih.htm",
+      "question": "Does the speaker support the AI Kill Switch Act (H.R. 9917)? General shutdown safeguards, car kill switches, SB 1047, and a different Senate bill do not establish a position on this House bill.",
+      "patterns": ["\\bAI Kill[ -]?Switch Act\\b", "\\bH\\.?\\s*R\\.?\\s*9917\\b"], "facets": []
+    },
+    {
+      "id": "stop_stealing_chips_119", "title": "Stop Stealing Our Chips Act", "kind": "bill",
+      "version": "119th Congress: S. 1473 / H.R. 6322", "introduced": "2025-04-10",
+      "source_url": "https://www.govinfo.gov/app/details/BILLS-119s1473is",
+      "question": "Does the speaker support the named Stop Stealing Our Chips Act and its export-enforcement whistleblower incentives/protections? Do not substitute the CHIPS Act or Chip Security Act.",
+      "patterns": ["Stop Stealing (?:our )?Chips", "\\bS\\.?\\s*1473\\b", "\\bH\\.?\\s*R\\.?\\s*6322\\b"], "facets": []
+    },
+    {
+      "id": "export_controls", "title": "AI export controls", "kind": "issue",
+      "version": "Policy direction", "introduced": null,
+      "source_url": "https://www.govinfo.gov/app/details/BILLS-119s1473is",
+      "question": "Does the speaker support restrictions or enforcement on overseas access to advanced AI chips, manufacturing equipment, models, or compute? Opposition to one rule alongside support for narrower controls is mixed or qualified support, with the distinction in the reason. Chip investment alone is irrelevant.",
+      "patterns": ["export", "smuggl", "chip", "semiconductor", "Nvidia", "\\bBIS\\b", "\\bH[12]00\\b", "\\bH20\\b", "remote access", "model theft"],
+      "facets": ["tighten_controls", "ease_controls", "enforcement", "allied_coordination", "cloud_access", "chip_tracking"]
+    },
+    {
+      "id": "embedded_ivos", "title": "Embedded independent auditors (IVOs)", "kind": "issue",
+      "version": "Embedded oversight", "introduced": null,
+      "source_url": "https://www.gov.ca.gov/2026/09/23/governor-newsom-announces-world-leading-experts-to-deliver-on-his-ai-executive-order-including-advancing-creation-of-a-kill-switch/",
+      "question": "Does the speaker support independent verification organizations (IVOs) embedded in AI labs, with ongoing/on-site internal access? Ordinary third-party audits or pre-release tests alone are NOT embedded oversight. Require explicit embedded, on-site, resident, or continuous internal access. General IVO accreditation without embedded access is not relevant to this narrower question.",
+      "patterns": ["\\bIVOs?\\b", "verification organi[sz]ation", "embedded", "on[ -]?site", "auditor", "independent.{0,60}(?:audit|evaluat|verif|oversight)", "third[ -]party.{0,60}(?:audit|evaluat|verif)", "resident.{0,30}(?:inspect|monitor)"],
+      "facets": ["ongoing_access", "independence", "government_assignment", "mandatory", "voluntary"]
+    },
+    {
+      "id": "china_race_dynamics", "title": "China race dynamics", "kind": "issue",
+      "version": "Competition and tradeoffs", "introduced": null,
+      "source_url": "https://www.commerce.senate.gov/press/rep/release/sen-cruz-adopting-europes-approach-on-regulation-will-cause-china-to-win-the-ai-race/",
+      "question": "Does the speaker endorse making competition with China a priority for US AI policy? Oppose means rejecting this race framing, not hostility toward China. Label the explicit tradeoffs separately: speed over safety, safety despite competition, cooperation, race skepticism, restrictive exports, or export access to spread US technology. A China mention alone is neutral or irrelevant.",
+      "patterns": ["China", "Chinese", "\\bCCP\\b", "\\bPRC\\b", "arms race", "AI race", "race.{0,30}(?:AI|artificial intelligence)", "global.{0,20}competition"],
+      "facets": ["competition_priority", "speed_over_safety", "safety_over_speed", "cooperation", "race_skepticism", "export_restrictions", "export_access"]
+    },
+    {
+      "id": "ai_action_plan_2025", "title": "America's AI Action Plan (2025)", "kind": "framework",
+      "version": "July 2025 release", "introduced": "2025-07-23",
+      "source_url": "https://www.whitehouse.gov/ai/",
+      "question": "Does the speaker support the Trump administration's July 2025 AI Action Plan? Do not infer support for the whole plan from support for one component. Clear overall endorsement with conditions is support. Use mixed only when the speaker explicitly supports some parts and opposes others without a clear overall endorsement.",
+      "patterns": ["AI Action Plan"], "facets": []
+    },
+    {
+      "id": "national_ai_framework_2026", "title": "National AI Legislative Framework (2026)", "kind": "framework",
+      "version": "March 20, 2026 release", "introduced": "2026-03-20",
+      "source_url": "https://www.whitehouse.gov/releases/2026/03/president-donald-j-trump-unveils-national-ai-legislative-framework/",
+      "question": "Does the speaker support the White House's March 2026 national AI legislative framework? Generic calls for a national framework are not a position on this specific proposal.",
+      "patterns": ["national.{0,25}(?:legislative|policy).{0,25}framework", "(?:White House|Trump|President).{0,60}framework", "framework.{0,60}(?:White House|Trump|President)"], "facets": []
+    },
+    {
+      "id": "great_american_ai_2026", "title": "Great American AI Act framework", "kind": "framework",
+      "version": "June 4, 2026 discussion draft", "introduced": "2026-06-04",
+      "source_url": "https://obernolte.house.gov/media/press-releases/obernolte-trahan-release-discussion-draft-great-american-ai-act",
+      "question": "Does the speaker support the named Great American AI Act discussion draft/framework? Do not transfer a FRONTIER Act position to the broader framework unless the speaker adopts it too.",
+      "patterns": ["Great American AI", "Great American Artificial Intelligence"], "facets": []
+    },
+    {
+      "id": "white_house_ai_accord_2026", "title": "White House AI Accord (2026)", "kind": "framework",
+      "version": "September 2026 accord", "introduced": "2026-09-29",
+      "source_url": "https://trahan.house.gov/news/documentsingle.aspx?DocumentID=3853",
+      "question": "Does the speaker support the September 2026 White House AI Accord? A statement can support this voluntary accord while also wanting binding law. Do not transfer support to an unrelated bill.",
+      "patterns": ["White House (?:AI )?Accord", "AI Accord"], "facets": []
+    }
+  ]
+}

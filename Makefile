@@ -5,7 +5,7 @@
 
 PY = uv run python
 
-.PHONY: roster handles x x-free web assemble score site refresh clean-evidence serve
+.PHONY: roster handles x x-free web assemble score site refresh clean-evidence serve policies-plan policies-label policies-build test
 
 roster:            ## Phase 1: current members + called 2026 races
 	$(PY) scripts/phase1_roster.py
@@ -35,6 +35,7 @@ score:             ## Phase 3: two shuffled scoring runs via OpenRouter batch
 site:              ## Phase 5: build site/data (+ who sits in the next Congress, committees)
 	$(PY) scripts/phase1_next_congress.py
 	$(PY) scripts/phase5_build_site.py
+	$(PY) scripts/phase3_policies.py build
 
 refresh: roster x handles web assemble score site
 
@@ -43,3 +44,16 @@ clean-evidence:    ## force full re-research on next refresh (costs money)
 
 serve:
 	cd site && python3 -m http.server 8765
+
+policies-plan:     ## offline coverage and cost estimate for new policy judgments
+	$(PY) scripts/phase3_policies.py plan
+
+policies-label:    ## paid, resumable two-model judgments; default additional budget $5
+	$(PY) scripts/phase3_policies.py label $(POLICY_ARGS)
+
+policies-build:    ## offline rebuild from tracked evidence and judgments
+	$(PY) scripts/phase3_policies.py build
+
+test:
+	$(PY) -m unittest discover -s tests -v
+	node --test tests/*.test.cjs

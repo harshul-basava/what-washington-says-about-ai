@@ -1,0 +1,95 @@
+{
+ "id": "R000612",
+ "policies": {
+  "china_race_dynamics": [
+   {
+    "sid": "s12",
+    "text": "None of us want our data to be in the hands of the Chinese, and as a country, we don't. We certainly don't want to be dependent on China for powering things like artificial intelligence because we can easily see a country that's our sworn enemy how they would use that power and any dependence we might have on them against.",
+    "date": "2026",
+    "context": "",
+    "url": "https://www.local3news.com/local-news/data-centers-and-flock-cameras-what-do-the-republican-candidates-for-governor-think-about-these/article_bd1e215e-ccde-41ba-9fa2-5759bd9622fe.html",
+    "source_type": "web",
+    "verified_via": "ok",
+    "strategy": "confidence_cascade",
+    "stance": "review_required",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker frames China as an adversary and argues the US should not depend on it for AI.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.72,
+      "confidence_reason": "The statement clearly opposes AI dependence on China but does not use explicit 'competition priority' language.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:13:51.467924+00:00",
+      "generation_id": "gen-1794093217-uf9ZPhXdxUtmmZEa89EH"
+     },
+     "astra": {
+      "stance": "support",
+      "reason": "Rose prioritizes avoiding US dependence on China for AI because China could exploit that dependence.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.78,
+      "confidence_reason": "The statement explicitly advocates strategic AI independence from China, though it does not directly call for winning an AI race.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:20:48.506024+00:00",
+      "generation_id": "gen-1794093637-KJUsjzaeQkAmcjTnf54N"
+     }
+    },
+    "confidence": 0.78,
+    "final_judge": null,
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": true,
+    "review_status": "human_review_required",
+    "review_reason": "DeepSeek confidence 0.72 is below 0.8. Astra also reports confidence below the threshold; human review is required."
+   },
+   {
+    "sid": "s14",
+    "text": "You think about how powerful this tool is going to be… when you use it, do you want to be depending on an artificial intelligence data center that's in China to give you the answers to the important questions that you ask? We've seen enough to know from companies like Google that you can't always trust the results they give you, and I certainly don't think we'd want to be trusting China to give us the right answers to the important questions that we have to ask.",
+    "date": "2026-07-17",
+    "context": "",
+    "url": "https://www.local3news.com/local-news/tn-gov-candidate-john-rose-r-points-to-data-centers-as-the-future-of-technology/article_1b0f3878-452a-447b-8904-151646ce07f9.html",
+    "source_type": "web",
+    "verified_via": "ok",
+    "strategy": "confidence_cascade",
+    "stance": "neutral",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker argues against trusting China to provide AI answers, implying the US should avoid reliance on Chinese AI.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.65,
+      "confidence_reason": "The statement criticizes reliance on Chinese AI but frames it as trust rather than explicit race priority.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:13:51.468064+00:00",
+      "generation_id": "gen-1794093217-uf9ZPhXdxUtmmZEa89EH"
+     },
+     "astra": {
+      "stance": "neutral",
+      "reason": "Rose argues against relying on Chinese AI answers without endorsing competition with China as a policy priority.",
+      "facets": [],
+      "confidence": 0.86,
+      "confidence_reason": "The statement clearly concerns China and AI, but distrust does not establish a competitive policy stance.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:20:47.596129+00:00",
+      "generation_id": "gen-1794093637-zq1AfWXba4fVqSZJrLCn"
+     }
+    },
+    "confidence": 0.86,
+    "final_judge": "astra",
+    "facets_final": [],
+    "facet_disagreement": true,
+    "model_disagreement": true,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.65 is below 0.8."
+   }
+  ]
+ }
+}
