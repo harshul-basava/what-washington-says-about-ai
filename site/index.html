@@ -125,15 +125,13 @@ footer{margin-top:12px;padding-top:0;font-size:13px;color:var(--page-muted);disp
 .toc{display:none}
 @media (min-width:1200px){
   .toc{display:block;position:absolute;top:0;bottom:0;left:calc(-1 * min(200px, var(--gl) - 40px) - 32px);width:min(200px, calc(var(--gl) - 40px))}
-  .tocin{position:sticky;top:150px;font-size:13px;line-height:1.4}
-  .toch{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  .tocin{position:sticky;top:150px;font-size:14px;line-height:1.35}
   .toc ol{list-style:none;margin:0;padding:0}
-  .toc ol ol{padding-left:12px;margin:4px 0 2px}
-  .toc li{margin:0}
-  .toc a{display:block;padding:4px 0 4px 12px;border-left:2px solid var(--line);color:var(--muted);text-decoration:none}
-  .toc ol ol a{border-left-color:transparent;padding-top:3px;padding-bottom:3px;font-size:12px}
+  .toc li{margin:0 0 12px}
+  .toc a{position:relative;display:block;padding-left:16px;color:var(--muted);text-decoration:none}
   .toc a:hover{color:var(--fg)}
-  .toc a.active{color:var(--fg);font-weight:600;border-left-color:var(--accent)}
+  .toc a.active{color:var(--fg)}
+  .toc a.active::before{content:"";position:absolute;left:2px;top:.55em;width:5px;height:5px;border-radius:50%;background:currentColor}
 }
 .topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .topin{padding:0 var(--gr) 0 var(--gl);height:56px;display:flex;align-items:center;gap:20px}
@@ -161,7 +159,8 @@ dialog.cite pre{white-space:pre-wrap;font:13px/1.5 ui-monospace,SFMono-Regular,M
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:999px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:40}
 .toast.on{opacity:1}
 .controlbar{top:57px}
-h2,details.method{scroll-margin-top:140px}
+[id]{scroll-margin-top:150px}
+@media (max-width:640px){[id]{scroll-margin-top:200px}}
 details.method summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:56px;padding-top:16px}
 details.method summary::-webkit-details-marker{display:none}
 details.method summary h2{margin:0;padding:0;border:0}
@@ -197,20 +196,14 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
 </div>
 
 <div class="withtoc">
-<nav class="toc" aria-label="Contents"><div class="tocin">
-  <div class="toch">Contents</div>
-  <ol>
+<nav class="toc" aria-label="Contents"><div class="tocin"><ol>
     <li><a href="#chamber">Congress by score</a></li>
     <li><a href="#ideo-title">Ideology and score</a></li>
     <li><a href="#party">Scores by party</a></li>
-    <li><a href="#topics">Topics</a>
-      <ol><li><a href="#topicshare">Topic share by party</a></li><li><a href="#voices-title">Most statements</a></li></ol></li>
+    <li><a href="#topics">Topics</a></li>
     <li><a href="#lists">Member groups</a></li>
     <li><a href="#committees">AI committees</a></li>
-    <li><a href="#members">Members</a></li>
-    <li><a href="#method">Method</a></li>
-  </ol>
-</div></nav>
+  </ol></div></nav>
 <h2 id="chamber"></h2>
 <p class="sub" id="hemi-sub"></p>
 <div class="chart">
