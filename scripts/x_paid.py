@@ -21,19 +21,20 @@ START = "2023-01-01T00:00:00Z"
 MAX_POSTS = 500
 
 
-def collect(person):
-    handles = person["handles"]
-    query = "(" + " OR ".join(f"from:{h}" for h in handles) + f") {KEYWORDS} -is:retweet"
-    params = {"query": query, "start_time": START, "max_results": 100,
+def search(query, start_time, *, tag, max_posts=MAX_POSTS, end_time=None):
+    """Full-archive search, newest first. Returns (posts, users, quoted, pages, truncated)."""
+    params = {"query": query, "start_time": start_time, "max_results": 100,
               "tweet.fields": "created_at,lang,referenced_tweets,author_id,note_tweet",
               "expansions": "author_id,referenced_tweets.id",
               "user.fields": "name,username,public_metrics"}
+    if end_time:
+        params["end_time"] = end_time
     posts, users, quoted, pages, token = [], {}, {}, 0, None
-    while len(posts) < MAX_POSTS:
+    while len(posts) < max_posts:
         if token:
             params["next_token"] = token
-        params["max_results"] = max(10, min(100, MAX_POSTS - len(posts)))
-        d = llm.x_get("tweets/search/all", params, tag=f"x_paid:{person['id']}")
+        params["max_results"] = max(10, min(100, max_posts - len(posts)))
+        d = llm.x_get("tweets/search/all", params, tag=tag)
         pages += 1
         inc = d.get("includes") or {}
         for u in inc.get("users", []):
@@ -44,6 +45,25 @@ def collect(person):
         token = (d.get("meta") or {}).get("next_token")
         if not token:
             break
+    return posts, users, quoted, pages, bool(token)
+
+
+def slim_post(t, users, quoted):
+    """One post in the collector's output schema."""
+    u = users.get(t.get("author_id"), {})
+    refs = {r["type"]: r["id"] for r in t.get("referenced_tweets", [])}
+    text = (t.get("note_tweet") or {}).get("text") or t["text"]
+    author = u.get("username", "")
+    return {"id": t["id"], "text": text, "created_at": t.get("created_at"), "author": author,
+            "lang": t.get("lang"), "is_reply": "replied_to" in refs,
+            "quoted": quoted.get(refs.get("quoted")), "url": f"https://x.com/{author}/status/{t['id']}"}
+
+
+def collect(person):
+    handles = person["handles"]
+    query = "(" + " OR ".join(f"from:{h}" for h in handles) + f") {KEYWORDS} -is:retweet"
+    posts, users, quoted, pages, truncated = search(query, START, tag=f"x_paid:{person['id']}")
+    token = truncated
     raw, slim = [], []
     for t in posts:
         u = users.get(t.get("author_id"), {})

@@ -41,10 +41,30 @@ def spent(provider: str) -> float:
     return total
 
 
-def _check(provider: str) -> None:
+DAILY_PREFIX = "daily_"   # monthly caps apply only to the daily job's calls (tags starting with this)
+
+
+def spent_this_month(provider: str, prefix: str = DAILY_PREFIX) -> float:
+    """Daily-job spend for a provider since the first day of the current UTC month."""
+    if not LEDGER.exists():
+        return 0.0
+    t = time.gmtime()
+    start = time.mktime((t.tm_year, t.tm_mon, 1, 0, 0, 0, 0, 0, 0)) - time.timezone
+    total = 0.0
+    for line in LEDGER.read_text().splitlines():
+        rec = json.loads(line)
+        if rec["provider"] == provider and rec["ts"] >= start and str(rec.get("tag", "")).startswith(prefix):
+            total += rec["cost"]
+    return total
+
+
+def _check(provider: str, tag: str = "") -> None:
     s = spent(provider)
-    if s >= BUDGETS[provider]:
+    if s >= BUDGETS.get(provider, float("inf")):
         raise BudgetExceeded(f"{provider} spend ${s:.2f} >= budget ${BUDGETS[provider]}")
+    cap = (BUDGETS.get("monthly") or {}).get(provider)
+    if cap is not None and tag.startswith(DAILY_PREFIX) and (m := spent_this_month(provider)) >= cap:
+        raise BudgetExceeded(f"{provider} spend this month ${m:.2f} >= monthly budget ${cap}")
 
 
 def _log(provider: str, cost: float, tag: str, meta: dict) -> None:
@@ -56,7 +76,7 @@ def _log(provider: str, cost: float, tag: str, meta: dict) -> None:
 def chat(messages: list[dict], *, tag: str, tools: list | None = None, model: str = MODEL,
          response_format: dict | None = None, max_tokens: int = 8000, **extra) -> dict:
     """One OpenRouter chat completion. Returns the raw response JSON."""
-    _check("openrouter")
+    _check("openrouter", tag)
     body = {"model": model, "messages": messages, "max_tokens": max_tokens, **extra}
     if tools:
         body["tools"] = tools
@@ -86,7 +106,7 @@ def chat(messages: list[dict], *, tag: str, tools: list | None = None, model: st
 
 def x_get(path: str, params: dict, *, tag: str) -> dict:
     """GET an X API v2 endpoint; cost estimated from the published per-unit prices."""
-    _check("x")
+    _check("x", tag)
     headers = {"Authorization": f"Bearer {os.environ['X_BEARER_TOKEN']}"}
     for attempt in range(5):
         r = httpx.get(f"https://api.x.com/2/{path}", params=params, headers=headers, timeout=60)
@@ -104,4 +124,32 @@ def x_get(path: str, params: dict, *, tag: str) -> dict:
         cost = X_PRICE_PER_POST * len(data.get("data") or [])
     _log("x", cost, tag, {"path": path, "n": len(data.get("data") or [])})
     time.sleep(1.05)  # full-archive: 1 req/sec
+    return data
+
+
+EXA_URL = "https://api.exa.ai/search"
+EXA_EST_PER_SEARCH = 0.007  # used only if Exa's response has no costDollars
+
+
+def exa_search(body: dict, *, tag: str) -> dict:
+    """One Exa search (with page text). Logs Exa's reported cost; capped like the other providers."""
+    _check("exa", tag)
+    headers = {"x-api-key": os.environ["EXA_API_KEY"], "Content-Type": "application/json"}
+    for attempt in range(4):
+        try:
+            r = httpx.post(EXA_URL, json=body, headers=headers, timeout=120)
+        except (httpx.TimeoutException, httpx.TransportError):
+            if attempt < 3:
+                time.sleep(5 * 2**attempt)
+                continue
+            raise
+        if r.status_code in (429, 500, 502, 503) and attempt < 3:
+            time.sleep(5 * 2**attempt)
+            continue
+        break
+    if r.status_code != 200:
+        raise RuntimeError(f"Exa {r.status_code}: {r.text[:500]}")
+    data = r.json()
+    cost = float((data.get("costDollars") or {}).get("total") or EXA_EST_PER_SEARCH)
+    _log("exa", cost, tag, {"n": len(data.get("results") or [])})
     return data

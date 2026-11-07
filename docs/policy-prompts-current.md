@@ -261,3 +261,20 @@ Label only statements that take a position on rules for AI.
 - **regulation:** the strongest position they **consistently** take, using the same consistency rule as above. No labeled statements gives "not enough evidence".
 - **ai_overall:** the **median** of the labels, with halves rounded toward the middle (2). No labeled statements gives "not enough evidence".
 - **Two judges:** Claude Sonnet 5.5 and GPT-6.1 Sol each label every statement independently. The published score is the average of their two scores.
+
+
+## Daily updates to the original five scores
+
+The daily workflow uses the same original five-score rubric and statement prompt above. It applies a separate model strategy in `scripts/daily/label.py`: three DeepSeek V4.1 Flash passes, GPT-6.1 Sol on low confidence or other review triggers, and Astra on large disagreements. Its confidence scale is 1–5. The policy-specific 0–1 threshold does not change this daily workflow.
+
+Each DeepSeek pass appends this exact instruction, with `{topics}` expanded from the list below. Sol and Astra receive the base prompt without this instruction or another model's answer.
+
+```text
+## Output for this pass
+For each label, also give your confidence that the level is right, from 1 (a guess) to 5 (certain), as [level, confidence].
+Also tag every statement with 1-3 topics from this list: jobs/economy, China/competition, national security, kids/online safety, deepfakes/elections, copyright, energy/data centers, regulation, AGI/transformative, x-risk/loss of control, misuse (bio/cyber), other.
+Return only a JSON object:
+```json
+{"labels": {"s12": {"x_risk": [3, 4], "regulation": [3, 5]}}, "topics": {"s12": ["x-risk/loss of control", "regulation"]}}
+```
+```

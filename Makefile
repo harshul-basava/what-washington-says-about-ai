@@ -5,7 +5,7 @@
 
 PY = uv run python
 
-.PHONY: roster handles x x-free web assemble score site refresh clean-evidence serve policies-plan policies-label policies-build test
+.PHONY: roster handles x x-free web assemble score site refresh clean-evidence serve daily daily-dry history calibrate policies-plan policies-label policies-build test
 
 roster:            ## Phase 1: current members + called 2026 races
 	$(PY) scripts/phase1_roster.py
@@ -27,15 +27,27 @@ web:               ## Phase 2: web research + quote verification (~$0.12/person)
 assemble:          ## Phase 2: merge CeSIA + X + web into evidence/
 	$(PY) scripts/phase2_assemble.py
 
-score:             ## Phase 3: two shuffled scoring runs via OpenRouter batch
-	$(PY) scripts/phase3_score.py submit
-	$(PY) scripts/phase3_score.py collect
-	$(PY) scripts/phase3_score.py combine
+score:             ## Phase 3 (rubric v3): label every statement with two judges, then score with the fixed formula
+	$(PY) scripts/phase3_label.py submit
+	$(PY) scripts/phase3_label.py collect
+	$(PY) scripts/phase3_label.py combine
+
+daily:             ## Daily update: collect new statements, cascade-label, re-score, log changes, rebuild site data
+	$(PY) scripts/daily/run.py
+
+daily-dry:         ## Plan the daily update without paid calls or writes
+	$(PY) scripts/daily/run.py --dry-run
+
+history:           ## Rebuild the score history (monthly backfill from labels + daily snapshots)
+	$(PY) scripts/daily/history.py backfill
+	$(PY) scripts/daily/history.py build
+
+calibrate:         ## One-time: pick the cascade confidence threshold (~$3-5)
+	$(PY) scripts/daily/calibrate.py
 
 site:              ## Phase 5: build site/data (+ who sits in the next Congress, committees)
 	$(PY) scripts/phase1_next_congress.py
 	$(PY) scripts/phase5_build_site.py
-	$(PY) scripts/phase3_policies.py build
 
 refresh: roster x handles web assemble score site
 
@@ -48,7 +60,7 @@ serve:
 policies-plan:     ## offline coverage and cost estimate for new policy judgments
 	$(PY) scripts/phase3_policies.py plan
 
-policies-label:    ## paid, resumable two-model judgments; default additional budget $5
+policies-label:    ## paid, resumable confidence judgments; default additional budget $5
 	$(PY) scripts/phase3_policies.py label $(POLICY_ARGS)
 
 policies-build:    ## offline rebuild from tracked evidence and judgments

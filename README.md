@@ -99,7 +99,7 @@ The first command counts remaining work without network calls. Astra work become
 
 If output validation errors persist, resume with `--batch-size 1` in `POLICY_ARGS`. The parser accepts plain JSON or one fenced JSON result after provider prose. It still requires every requested statement and policy target. Incomplete responses never count as missing evidence. Shorter batches can resolve responses that exhaust their token allowance.
 
-The label step also rebuilds the exports. `make site` rebuilds policy exports without paid calls. The legacy `make refresh` pipeline collects evidence and rebuilds the site, but it does not pay for new policy judgments. Run `policies-label` after an evidence refresh. Changed evidence, policy definitions, rubric text, confidence instructions, or model IDs invalidate the affected saved judgments. A threshold change reuses compatible assessments and recalculates which cases need Astra. A saved Astra result remains valid only for its unchanged evidence, prompts, and model. The website shows pending assessment until new judgments replace them.
+The label step also rebuilds the exports. The shared website build (`scripts/phase5_build_site.py`) rebuilds policy exports without paid calls. Both `make site` and the daily update use this build. New or changed evidence appears as pending until a manual `policies-label` run assesses it. The legacy `make refresh` pipeline also collects evidence and rebuilds the site, without paying for new policy judgments. Changed evidence, policy definitions, rubric text, confidence instructions, or model IDs invalidate the affected saved judgments. A threshold change reuses compatible assessments and recalculates which cases need Astra. A saved Astra result remains valid only for its unchanged evidence, prompts, and model.
 
 ### Add a policy or framework
 
@@ -109,10 +109,36 @@ Run `policies-plan`, inspect the candidate coverage, run a small pilot, then run
 
 The tracked judgment file retains model IDs, assessment times, generation IDs, and per-pair input hashes. The exact current instructions appear in `docs/policy-prompts-current.md`. The website exports summaries in `site/data/policies.json` and `site/data/policies.csv`, plus quotes and reasons in `site/data/policy_members/`. Policy references identify the proposals. Each quote's own link supplies the evidence for a member's position.
 
+## Daily updates
+
+A GitHub Actions job (`.github/workflows/daily.yml`) runs each day at about 6–7am Eastern. It does these steps:
+
+1. **Collect.** It gets new statements since the last run:
+   - posts on X (paid X API);
+   - the Congressional Record (govinfo API), with each speaker found by their official ID;
+   - hearing transcripts (govinfo API), on Mondays;
+   - press releases and news, from a fixed list of sites (Exa search through OpenRouter).
+
+   It adds each new statement to `evidence/` with a new ID. It does not change old IDs.
+2. **Label.** DeepSeek labels each new statement three times. A label goes to GPT-6.1 Sol when:
+   - the three runs do not agree;
+   - DeepSeek's confidence is low;
+   - the label is 3 or more on x-risk or AGI;
+   - the label is far from the member's current score.
+
+   GPT-6 Astra breaks ties between DeepSeek and Sol.
+3. **Score.** The same fixed formula makes the new scores.
+4. **Record.** It writes each score change to `data/changes.jsonl` and saves a daily snapshot in `data/history/`. A big change opens a GitHub issue. A big change is a change of 1 point or more, or a move into or out of 3+.
+5. **Publish.** It rebuilds `site/data/` and pushes. Vercel then deploys the site again.
+
+Add these repository secrets: `OPENROUTER_API_KEY`, `X_BEARER_TOKEN` and `GOVINFO_API_KEY` (free from api.data.gov). `EXA_API_KEY` is optional. If `OPENROUTER_API_KEY` is not set, the job does not run.
+
+Monthly spend limits are in `budgets.yaml`. Before the first live run, run `make calibrate` one time (about $3–5) to set the confidence threshold.
+
 ## Limits
 
 What a person says in public is not the same as what they believe or how they vote. AI models make the scores, and a person checks only some of them. Some members do not post much about AI, so they have little evidence.
 
 ## Credits
 
-[CeSIA](https://cesia.org/en/data/attention/), the [@unitedstates project](https://github.com/unitedstates/congress-legislators), [GovTrack](https://www.govtrack.us/), and Roe's earlier "What Washington Says About AGI".
+[CeSIA](https://cesia.org/en/data/attention/), the [@unitedstates project](https://github.com/unitedstates/congress-legislators), [GovTrack](https://www.govtrack.us/), and Zephy's earlier "What Washington Says About AGI".

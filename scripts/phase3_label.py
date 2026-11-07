@@ -3,7 +3,7 @@
   python scripts/phase3_label.py sync --ids A,B [--judges sonnet,gpt]   # regular calls (pilot)
   python scripts/phase3_label.py submit [--judges sonnet,gpt]           # OpenRouter batch
   python scripts/phase3_label.py collect                                # poll batches, then fill gaps with regular calls
-  python scripts/phase3_label.py combine                                # data/scores.json + data/labels.json
+  python scripts/phase3_label.py combine [--asof YYYY-MM-DD]            # data/scores.json from data/labels*.json
   python scripts/phase3_label.py report                                 # review/judge_agreement.md
 
 Each judge labels statements (not people), in chunks of CHUNK statements. The score for a question comes
@@ -37,9 +37,19 @@ BATCHES = ROOT / "data/raw/label_batches.json"
 BATCH_URL = "https://openrouter.ai/api/v1/batches"
 CHUNK = 80
 MAX_CHARS = 900
-DATA_DATE = date(2026, 11, 5)
-RECENT = (DATA_DATE - timedelta(days=730)).isoformat()
-HEAD = {"Authorization": f"Bearer {llm.os.environ['OPENROUTER_API_KEY']}"}
+DATA_DATE = date(2026, 11, 5)   # as-of date of the original snapshot; daily runs pass their own date
+
+
+def recent_cutoff(asof=None):
+    """Start of the 24-month recency window for an as-of date (ISO string or date)."""
+    d = date.fromisoformat(asof) if isinstance(asof, str) else (asof or DATA_DATE)
+    return (d - timedelta(days=730)).isoformat()
+
+
+RECENT = recent_cutoff()
+HEAD = {"Authorization": f"Bearer {llm.os.environ.get('OPENROUTER_API_KEY', '')}"}
+LABELS_BASE = ROOT / "data/labels.json"          # two-judge labels (Sonnet / GPT), rubric v3, after the x-risk fix
+LABELS_DAILY = ROOT / "data/labels_daily.json"   # labels for statements added by the daily job (cascade)
 
 
 def people():
@@ -264,10 +274,11 @@ def xfix_collect():
                     (XFIX / j / f"{pid}.json").write_text(json.dumps({"_sids": sorted(s["sid"] for s in st), "labels": lab}))
 
 
-def score_one(levels_by_sid, dates, k):
+def score_one(levels_by_sid, dates, k, recent_from=None):
     """Fixed formula from config/rubric.md. Returns (score or None, reason, sids at the deciding level)."""
+    recent_from = recent_from or RECENT
     lv = [(sid, d[k]) for sid, d in levels_by_sid.items() if k in d]
-    recent = [(s, v) for s, v in lv if (dates.get(s) or "") >= RECENT]
+    recent = [(s, v) for s, v in lv if (dates.get(s) or "") >= recent_from]
     if len(recent) >= 3:
         lv = recent
     if not lv:
@@ -287,7 +298,7 @@ def score_one(levels_by_sid, dates, k):
         sc = int(med) if med == int(med) else (int(med) + 1 if med < 2 else int(med))  # halves round toward 2
         why = f"median_of_{len(vals)}"
         cite_levels = {sc}
-    cites = [s for s, v in sorted(lv, key=lambda x: dates.get(x[0]) or "", reverse=True) if v in cite_levels][:6]
+    cites = [s for s, v in sorted(lv, key=lambda x: (dates.get(x[0]) or "", int(x[0][1:])), reverse=True) if v in cite_levels][:6]
     return sc, why, cites
 
 
@@ -310,39 +321,79 @@ WHY_TEXT = {"silent": "No statement addresses this, so it scores 0 (doesn't disc
             "no_statements": "No statement addresses this."}
 
 
-def combine():
-    evs = people()
-    v2 = json.loads((ROOT / "data/raw/v2/scores.json").read_text())
-    out, all_labels = {}, {}
+def judge_labels(pid, base=None, daily=None):
+    """Labels for one member as {slot: {sid: {dim: level}}}. Slot "sonnet" is judge A, "gpt" is judge B.
+    Statements added by the daily job fill both slots from the cascade (see scripts/daily/label.py)."""
+    base = json.loads(LABELS_BASE.read_text()) if base is None else base
+    daily = (json.loads(LABELS_DAILY.read_text()) if LABELS_DAILY.exists() else {}) if daily is None else daily
+    L = {j: {} for j in JUDGES}
+    for sid, d in (base.get(pid) or {}).items():
+        for j in JUDGES:
+            if d.get(j):
+                L[j][sid] = dict(d[j])
+    for sid, rec in (daily.get(pid) or {}).items():
+        for j, slot in (("sonnet", "a"), ("gpt", "b")):
+            if rec.get(slot):
+                L[j][sid] = dict(rec[slot])
+            else:
+                L[j].pop(sid, None)
+    return L
+
+
+def score_member(L, dates, n_statements, recent_from=None):
+    """Per-question results for one member: {k: (score, res_a, res_b)}; score is the judge mean or None."""
+    out = {}
+    for k in DIMS:
+        if n_statements < 3:
+            out[k] = (None, None, None)
+            continue
+        a, b = (score_one(L[j], dates, k, recent_from) for j in JUDGES)
+        nums = [r[0] for r in (a, b) if r[0] is not None]
+        out[k] = (sum(nums) / len(nums) if nums else None, a, b)
+    return out
+
+
+def combine(asof=None):
+    asof = asof or date.today().isoformat()
+    recent_from = recent_cutoff(asof)
+    evs = {e["id"]: e for e in people()}
+    prev_f = ROOT / "data/scores.json"
+    prev = json.loads(prev_f.read_text()) if prev_f.exists() else {}
+    base = json.loads(LABELS_BASE.read_text())
+    daily = json.loads(LABELS_DAILY.read_text()) if LABELS_DAILY.exists() else {}
+    summ_f = ROOT / "data/summaries_daily.json"
+    summ = json.loads(summ_f.read_text()) if summ_f.exists() else {}
+    out = {}
     for p in json.loads((ROOT / "data/roster.json").read_text()):
         pid = p["id"]
-        ev = next((e for e in evs if e["id"] == pid), None)
-        base = v2.get(pid, {})
+        ev = evs.get(pid)
+        old = prev.get(pid, {})
+        topics = dict(old.get("topics") or {})
+        for sid, rec in (daily.get(pid) or {}).items():
+            if rec.get("topics"):
+                topics[sid] = rec["topics"]
+        keep = {"summary": (summ.get(pid) or {}).get("summary") or old.get("summary"),
+                "evidence_strength": old.get("evidence_strength") or "none", "topics": topics, "rubric_version": RUBRIC_VERSION}
         if ev is None or len(ev["statements"]) < 3:
             out[pid] = {"dimensions": {k: {"score": "insufficient_evidence", "reason": "too_few_statements"} for k in DIMS},
-                        "summary": base.get("summary"), "evidence_strength": base.get("evidence_strength") or "none",
-                        "topics": base.get("topics", {}), "flag": False, "rubric_version": RUBRIC_VERSION}
+                        "flag": False, **keep}
             continue
         dates = {s["sid"]: s.get("date") for s in ev["statements"]}
-        L = {j: load_labels(j, ev) for j in JUDGES}
-        all_labels[pid] = {sid: {j: L[j].get(sid, {}) for j in JUDGES} for sid in set(L["sonnet"]) | set(L["gpt"])}
+        L = judge_labels(pid, base, daily)
         dims, flag, why = {}, False, []
-        for k in DIMS:
-            res = {j: score_one(L[j], dates, k) for j in JUDGES}
-            nums = [r[0] for r in res.values() if r[0] is not None]
-            score = sum(nums) / len(nums) if nums else "insufficient_evidence"
+        for k, (score, a, b) in score_member(L, dates, len(ev["statements"]), recent_from).items():
+            nums = [r[0] for r in (a, b) if r[0] is not None]
             if len(nums) == 2 and abs(nums[0] - nums[1]) >= 2:
                 flag, _ = True, why.append(f"{k}: sonnet {nums[0]} vs gpt {nums[1]}")
-            a, b = res["sonnet"], res["gpt"]
             def say(r):
                 return "not enough evidence" if r[0] is None else f"{r[0]} ({LEVEL_TEXT[k][r[0]]}). {WHY_TEXT.get(r[1], 'Median of ' + r[1].split('_')[-1] + ' labeled statements.')}"
-            just = f"Claude: {say(a)} GPT: {say(b)}"
             cites = list(dict.fromkeys(a[2] + b[2]))[:6]
-            dims[k] = {"score": score, "run_a": a[0] if a[0] is not None else "insufficient_evidence",
+            dims[k] = {"score": score if score is not None else "insufficient_evidence",
+                       "run_a": a[0] if a[0] is not None else "insufficient_evidence",
                        "run_b": b[0] if b[0] is not None else "insufficient_evidence",
-                       "reason_a": a[1], "reason_b": b[1], "justification": just, "statement_ids": cites}
-        out[pid] = {"dimensions": dims, "summary": base.get("summary"), "evidence_strength": base.get("evidence_strength"),
-                    "topics": base.get("topics", {}), "flag": flag, "flag_reasons": why, "rubric_version": RUBRIC_VERSION}
+                       "reason_a": a[1], "reason_b": b[1], "justification": (f"Judge A: {say(a)} Judge B: {say(b)}" if pid in daily else f"Claude: {say(a)} GPT: {say(b)}"),
+                       "statement_ids": cites}
+        out[pid] = {"dimensions": dims, "flag": flag, "flag_reasons": why, **keep}
     # human review decisions (scripts/phase4_apply_review.py) override the score
     hr_f = ROOT / "data/human_review.json"
     for key, d in (json.loads(hr_f.read_text()) if hr_f.exists() else {}).items():
@@ -353,10 +404,10 @@ def combine():
             if d["verdict"] == "change":
                 dim["score"] = d["score"]
             out[pid]["human_reviewed"] = True
-    (ROOT / "data/scores.json").write_text(json.dumps(out, indent=1))
-    (ROOT / "data/labels.json").write_text(json.dumps(all_labels))
-    print("scored", sum(1 for v in out.values() if "run_a" in v["dimensions"]["x_risk"]), "flagged (judges 2+ apart)",
+    prev_f.write_text(json.dumps(out, indent=1))
+    print("scored as of", asof, sum(1 for v in out.values() if "run_a" in v["dimensions"]["x_risk"]), "people; flagged (judges 2+ apart)",
           sum(v["flag"] for v in out.values()))
+    return out
 
 
 def report():
@@ -393,4 +444,7 @@ if __name__ == "__main__":
     elif cmd == "submit":
         submit(judges)
     else:
-        {"collect": collect, "combine": combine, "report": report, "xfix-submit": xfix_submit, "xfix-collect": xfix_collect}[cmd]()
+        if cmd == "combine":
+            combine(sys.argv[sys.argv.index("--asof") + 1] if "--asof" in sys.argv else None)
+        else:
+            {"collect": collect, "report": report, "xfix-submit": xfix_submit, "xfix-collect": xfix_collect}[cmd]()

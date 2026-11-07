@@ -14,7 +14,7 @@ The user chose DeepSeek V4.1 Flash 1017 after approving a first judge with confi
 Verification: threshold boundary and invalid scores; pending review and uncertain exclusions; reviewer-only routing; independent review prompts; stale-cache rejection; cost limit shared across both stages; offline exports and chart counts; quote rendering and browser checks.
 
 
-## Validation and repository status
+## Validation before upstream integration
 
 On 2026-11-07, all 32 Python tests and 13 JavaScript tests passed. The live pilot completed 165 statement-policy pairs: DeepSeek accepted 116 directly, Astra accepted 44, and 5 required human review. Browser checks verified both confidence scores, accepted Astra decisions, and human-review cases. The 390-pixel mobile viewport had no horizontal overflow, and the page reported no console errors.
 
@@ -25,3 +25,14 @@ The full local run and targeted retries completed all 2,844 statement-policy pai
 All confidence-pipeline calls, including the pilot and failed responses, cost $8.1451. The combined local and fetched upstream OpenRouter ledger totals $163.8843, below the $200 project cap. The main run cost $7.062; single-statement retries resolved the 14 failed DeepSeek batches. Astra returned valid responses for every requested review.
 
 Final checks confirmed that summary, source-quote, and chart exports agree; every accepted judgment meets the threshold; every below-threshold DeepSeek judgment has an Astra assessment; and no unresolved case supplies accepted chart labels. All 45 tests passed again. A fresh browser reload verified the completed exports, final confidence details, chart coverage, and no console errors. The changes remain local and uncommitted. Upstream integration, publication, human review of the 83 cases, and empirical confidence calibration remain separate follow-up work.
+
+
+## Compatibility with upstream master
+
+The publication branch integrates upstream `master` at `94787b1d3877f2a98c4cd1c368ab20208abdd606`. The merge preserves the daily workflow, original five-score pipeline, cream theme, navigation, and citation controls. The shared website builder now rebuilds policy exports offline. New or changed evidence stays pending until the manual policy label command runs. A regression test checks both this invalidation and preservation of daily score provenance.
+
+The latest corpus adds 35 candidate statements and 43 statement-policy pairs. All new calls completed without failed batches. The combined corpus now has 2,460 candidate statements and 2,887 pairs: DeepSeek accepted 2,201 directly, Astra accepted 603, and 83 still require human review. The offline plan reports zero pending model requests. Summary and chart revisions match. Accepted results meet the threshold; unresolved results have no accepted final judge or facets.
+
+All 33 Python tests and 13 JavaScript tests pass after integration. The shared website build and the daily dry-run pass in the locked uv environment. The six original member, timeline, daily, history, and change exports match upstream byte for byte. Browser checks pass at 1280, 390, and 320 pixels, in light and dark themes, with no console errors or horizontal overflow. Navigation and chart anchors clear the fixed headers. The existing recent-changes table now scrolls horizontally within its own container on narrow screens.
+
+The original repository grants the authenticated user read-only access. Publication therefore uses a user-owned fork and a pull request. Human review of the 83 unresolved pairs and empirical confidence calibration remain follow-up work. The compatibility check does not run paid daily collectors or deploy the production site.
