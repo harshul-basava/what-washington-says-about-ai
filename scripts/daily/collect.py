@@ -19,6 +19,7 @@ import os
 import re
 import time
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date, datetime, timedelta, timezone
 from urllib.parse import unquote, urlparse
 
@@ -34,6 +35,10 @@ X_QUERY_MAX = 1024
 GOVINFO = "https://api.govinfo.gov"
 EXTRACT_MODEL = "deepseek/deepseek-v4.1-flash"
 MAX_EXCERPT = 900
+MAX_WEB_PAGES = 80        # pages sent to the extraction model per run (newest-looking and official sites first)
+WEB_MINUTES = 20          # time budget for page extraction
+MONTHS = "January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec"
+DATE_RX = re.compile(rf"\b(?:({MONTHS})\.?\s+(\d{{1,2}}),?\s+(20\d\d))\b|\b(20\d\d)-(\d\d)-(\d\d)\b")
 
 # the web pool: domains that produced verified quotes in the original collection (see README "Sources")
 POOL_OFFICIAL = ["house.gov", "senate.gov", "congress.gov"]
@@ -334,10 +339,38 @@ def site_owners():
     return out
 
 
+def page_date(page):
+    """Best guess at a page's date: Exa's publishedDate, else the latest date written near the top of the page."""
+    if page.get("publishedDate"):
+        return page["publishedDate"][:10]
+    best = None
+    for m in DATE_RX.finditer((page.get("text") or "")[:4000]):
+        try:
+            if m.group(1):
+                d = datetime.strptime(f"{m.group(1)[:3]} {m.group(2)} {m.group(3)}", "%b %d %Y").date().isoformat()
+            else:
+                d = date(int(m.group(4)), int(m.group(5)), int(m.group(6))).isoformat()
+        except ValueError:
+            continue
+        best = max(best or d, d)
+    return best
+
+
+def is_recent(page, start):
+    """Skip pages that are clearly older than the window (old year in the URL, or every date on the page is old)."""
+    floor = (date.fromisoformat(start[:10]) - timedelta(days=3)).isoformat()
+    y = re.search(r"/(20\d\d)/", page.get("url") or "")
+    if y and y.group(1) < floor[:4]:
+        return False
+    d = page_date(page)
+    return d is None or d >= floor
+
+
 def extract(page, names):
     prompt = EXTRACT_PROMPT.format(url=page["url"], title=page.get("title") or "", date=page.get("publishedDate") or "unknown",
                                    names="; ".join(names), text=(page.get("text") or "")[:24000])
-    d = llm.chat([{"role": "user", "content": prompt}], tag="daily_web_extract", model=EXTRACT_MODEL, max_tokens=3000, temperature=0)
+    d = llm.chat([{"role": "user", "content": prompt}], tag="daily_web_extract", model=EXTRACT_MODEL, max_tokens=12000, temperature=0,
+                 reasoning={"effort": "low"})
     m = re.search(r"\{[\s\S]*\}", d["choices"][0]["message"]["content"] or "")
     if not m:
         return []
@@ -390,28 +423,41 @@ def collect_web(st, since=None, dry=False):
             if r.get("url") and r["url"] not in seen:
                 pages[r["url"]] = r
     log(f"  {len(pages)} new pages")
+    cand = []
     for url, page in pages.items():
         seen.add(url)
         text = page.get("text") or ""
-        if not is_ai(" ".join(text.split())):
+        if not is_recent(page, start) or not is_ai(" ".join(text.split())):
             continue
         host = urlparse(url).netloc.lower().removeprefix("www.")
         cands = [owners[host]] if host in owners and owners[host] in name_of else []
         cands += [pid for pid, _, rx in pats if pid not in cands and rx.search(text)]
-        cands = cands[:5]
-        if not cands:
-            continue
-        by_name = {name_of[c]: c for c in cands}
+        if cands:
+            cand.append((0 if host.endswith(".gov") else 1, -(int((page_date(page) or "0").replace("-", "")) ), url, page, cands[:5]))
+    cand.sort(key=lambda c: c[:2])
+    log(f"  {len(cand)} recent AI pages that name a member; extracting up to {MAX_WEB_PAGES}")
+    deadline = time.time() + WEB_MINUTES * 60
+
+    def work(c):
+        _, _, url, page, cands = c
+        if time.time() > deadline:
+            return []
+        by_name = {name_of[x]: x for x in cands}
+        out = []
         for s in extract(page, list(by_name)):
             pid, q = by_name.get(s.get("name")), (s.get("quote") or "").strip()
             if not pid or len(q.split()) < 8:
                 continue
-            ok, score, via = verify.verify(q, url, fallback_text=text)
-            if not ok:
-                continue
-            found[pid].append({"text": q, "date": norm_date(page.get("publishedDate")) or today(), "url": url,
-                               "source_type": "floor" if "congress.gov/congressional-record" in url else "web",
-                               "verified": True, "verified_via": via, "match_score": score, "origin": "web"})
+            ok, score, via = verify.verify(q, url, fallback_text=page.get("text"))
+            if ok:
+                out.append((pid, {"text": q, "date": page_date(page) or today(), "url": url,
+                                  "source_type": "floor" if "congress.gov/congressional-record" in url else "web",
+                                  "verified": True, "verified_via": via, "match_score": score, "origin": "web"}))
+        return out
+    with ThreadPoolExecutor(8) as ex:
+        for res in ex.map(work, cand[:MAX_WEB_PAGES]):
+            for pid, stmt in res:
+                found[pid].append(stmt)
     st["web"]["seen"] = list(seen)
     st["web"]["since"] = now_iso()
     return found
@@ -456,6 +502,8 @@ def main(argv=None):
                     n += len(added)
         report["sources"][src] = f"ok: {n} new statements"
         log(f"{src}: {n} new statements")
+        if not a.dry_run:
+            save_state(st)
     if not a.dry_run:
         save_state(st)
     return report

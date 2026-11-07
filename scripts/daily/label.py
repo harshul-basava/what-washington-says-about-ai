@@ -17,6 +17,7 @@ import argparse
 import json
 import re
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor
 
 from common import ROOT, load_json, save_json, today
 import llm
@@ -27,6 +28,7 @@ SOL = "openai/gpt-6.1-sol"
 ASTRA = "openai/gpt-6-astra"
 NAMES = {DS: "DeepSeek V4.1 Flash", SOL: "GPT-6.1 Sol", ASTRA: "GPT-6 Astra"}
 RUNS = 3
+WORKERS = 6              # members labeled at the same time
 CONF_MIN = 3.0            # set from review/cascade_calibration.md (2026-11-07)
 HIGH_STAKES = {"x_risk": 3, "agi_pilled": 3}
 TOPICS = ["jobs/economy", "China/competition", "national security", "kids/online safety", "deepfakes/elections",
@@ -202,22 +204,29 @@ def main(argv=None):
     scores = load_json(ROOT / "data/scores.json", {})
     done = load_json(LABELS_DAILY, {})
     stats = Counter()
-    for pid, sids in todo.items():
-        try:
-            res = label_member(pid, set(sids), scores, a.dry_run)
-        except llm.BudgetExceeded as e:
-            print("labeling stopped:", e)
-            stats["budget_stop"] += 1
-            break
-        if a.dry_run:
-            stats["statements"] += len(sids)
-            continue
-        done.setdefault(pid, {}).update(res)
-        save_json(LABELS_DAILY, done)   # save after each member, so a crash loses little
-        stats["members"] += 1
-        stats["statements"] += len(res)
-        stats["escalated"] += sum(bool(r["esc"]) for r in res.values())
-        stats["astra"] += sum(r["astra"] is not None for r in res.values())
+    if a.dry_run:
+        stats["statements"] = sum(len(v) for v in todo.values())
+    else:
+        def work(item):
+            pid, sids = item
+            try:
+                return pid, label_member(pid, set(sids), scores), None
+            except llm.BudgetExceeded as e:
+                return pid, {}, f"budget: {e}"
+            except Exception as e:  # noqa: BLE001  one member failing must not stop the others; it stays pending
+                return pid, {}, f"error: {str(e)[:200]}"
+        with ThreadPoolExecutor(WORKERS) as ex:
+            for pid, res, err in ex.map(work, todo.items()):
+                if err:
+                    print(pid, err)
+                    stats["budget_stop" if err.startswith("budget") else "errors"] += 1
+                    continue
+                done.setdefault(pid, {}).update(res)
+                save_json(LABELS_DAILY, done)   # save after each member, so a crash loses little
+                stats["members"] += 1
+                stats["statements"] += len(res)
+                stats["escalated"] += sum(bool(r["esc"]) for r in res.values())
+                stats["astra"] += sum(r["astra"] is not None for r in res.values())
     print(json.dumps(dict(stats)))
     return {"labeled": {pid: sids for pid, sids in todo.items()}, "stats": dict(stats)}
 
