@@ -87,13 +87,13 @@ def chunks(xs, n=40):
     return [xs[i:i + n] for i in range(0, len(xs), n)]
 
 
-def deepseek_runs(name, stmts):
+def deepseek_runs(name, stmts, tag="daily_label_ds"):
     sids = {s["sid"] for s in stmts}
     runs = []
     for r in range(RUNS):
         res = None
         for attempt in range(2):
-            res = parse_cascade(call(DS, build(name, stmts, CASCADE_NOTE.format(topics=", ".join(TOPICS))), "daily_label_ds", 0.7), sids)
+            res = parse_cascade(call(DS, build(name, stmts, CASCADE_NOTE.format(topics=", ".join(TOPICS))), tag, 0.7), sids)
             if res is not None:
                 break
         runs.append(res or ({}, {}, {}))

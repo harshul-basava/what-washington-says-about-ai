@@ -42,7 +42,7 @@ def main():
 
     def one(job):
         pid, name, sample = job
-        runs = L.deepseek_runs(name, sample)
+        runs = L.deepseek_runs(name, sample, tag="calibrate_ds")
         sol = L.independent(L.SOL, name, sample, "calibrate_sol")
         print(pid, len(sample), flush=True)
         return [{"pid": pid, "sid": s["sid"], "runs": [(r[0].get(s["sid"], {}), r[1].get(s["sid"], {})) for r in runs],

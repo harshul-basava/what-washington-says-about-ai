@@ -38,7 +38,7 @@ MAX_EXCERPT = 900
 MAX_WEB_PAGES = 80        # pages sent to the extraction model per run (newest-looking and official sites first)
 WEB_MINUTES = 20          # time budget for page extraction
 MONTHS = "January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec"
-DATE_RX = re.compile(rf"\b(?:({MONTHS})\.?\s+(\d{{1,2}}),?\s+(20\d\d))\b|\b(20\d\d)-(\d\d)-(\d\d)\b")
+DATE_RX = re.compile(rf"\b(?:({MONTHS})\.?\s+(\d{{1,2}}),?\s+(20\d\d))\b|\b(20\d\d)-(\d\d)-(\d\d)\b", re.I)
 
 # the web pool: domains that produced verified quotes in the original collection (see README "Sources")
 POOL_OFFICIAL = ["house.gov", "senate.gov", "congress.gov"]
@@ -339,21 +339,23 @@ def site_owners():
     return out
 
 
-def page_date(page):
-    """Best guess at a page's date: Exa's publishedDate, else the latest date written near the top of the page."""
+def page_date(page, text=None):
+    """Best guess at a page's date: Exa's publishedDate, else the first date written near the top of the page
+    (press releases and news put the publish date first). Dates in the future are ignored."""
     if page.get("publishedDate"):
         return page["publishedDate"][:10]
-    best = None
-    for m in DATE_RX.finditer((page.get("text") or "")[:4000]):
+    now = today()
+    for m in DATE_RX.finditer((text if text is not None else page.get("text") or "")[:4000]):
         try:
             if m.group(1):
-                d = datetime.strptime(f"{m.group(1)[:3]} {m.group(2)} {m.group(3)}", "%b %d %Y").date().isoformat()
+                d = datetime.strptime(f"{m.group(1)[:3].title()} {m.group(2)} {m.group(3)}", "%b %d %Y").date().isoformat()
             else:
                 d = date(int(m.group(4)), int(m.group(5)), int(m.group(6))).isoformat()
         except ValueError:
             continue
-        best = max(best or d, d)
-    return best
+        if d <= now:
+            return d
+    return None
 
 
 def is_recent(page, start):
@@ -450,7 +452,7 @@ def collect_web(st, since=None, dry=False):
                 continue
             ok, score, via = verify.verify(q, url, fallback_text=page.get("text"))
             if ok:
-                out.append((pid, {"text": q, "date": page_date(page) or today(), "url": url,
+                out.append((pid, {"text": q, "date": page_date(page), "url": url,
                                   "source_type": "floor" if "congress.gov/congressional-record" in url else "web",
                                   "verified": True, "verified_via": via, "match_score": score, "origin": "web"}))
         return out

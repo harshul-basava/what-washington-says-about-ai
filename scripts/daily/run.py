@@ -58,7 +58,7 @@ def detect(old, new, labeled):
                     or (daily.get(pid, {}).get(s) or {}).get("b", {}).get(k) is not None]
             p = roster.get(pid, {})
             out.append({"date": today(), "id": pid, "name": p.get("name"), "party": (p.get("party") or "?")[:1], "state": p.get("state"),
-                        "dim": k, "old": a, "new": b, "kind": kind, "cause": "new statements" if sids else "older statements left the 24-month window",
+                        "dim": k, "old": a, "new": b, "kind": kind, "cause": "newly found statements" if sids else "older statements left the 24-month window",
                         "sids": sids, "human_reviewed": bool((sc.get("dimensions", {}).get(k) or {}).get("human"))})
     return out
 
