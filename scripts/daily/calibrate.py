@@ -10,6 +10,7 @@ Writes review/cascade_calibration.md. Usage: python scripts/daily/calibrate.py [
 import argparse
 import json
 import random
+from concurrent.futures import ThreadPoolExecutor
 
 from common import ROOT
 import label as L
@@ -28,22 +29,29 @@ def main():
     ap.add_argument("--members", type=int, default=40)
     ap.add_argument("--per", type=int, default=15)
     ap.add_argument("--seed", type=int, default=7)
+    ap.add_argument("--workers", type=int, default=8)
     a = ap.parse_args()
     rnd = random.Random(a.seed)
     base = json.loads((ROOT / "data/labels.json").read_text())
     pids = rnd.sample(sorted(p for p in base if len(base[p]) >= 5), a.members)
-    rows = []   # (sid-level records)
+    jobs = []
     for pid in pids:
         ev = json.loads((ROOT / "evidence" / f"{pid}.json").read_text())
         labeled = [s for s in ev["statements"] if s["sid"] in base[pid]]
-        sample = rnd.sample(labeled, min(a.per, len(labeled)))
-        runs = L.deepseek_runs(ev["name"], sample)
-        sol = L.independent(L.SOL, ev["name"], sample, "calibrate_sol")
-        for s in sample:
-            sid = s["sid"]
-            rows.append({"pid": pid, "sid": sid, "runs": [(r[0].get(sid, {}), r[1].get(sid, {})) for r in runs],
-                         "sol": sol.get(sid, {}), "sonnet": base[pid][sid].get("sonnet", {}), "gpt": base[pid][sid].get("gpt", {})})
+        jobs.append((pid, ev["name"], rnd.sample(labeled, min(a.per, len(labeled)))))
+
+    def one(job):
+        pid, name, sample = job
+        runs = L.deepseek_runs(name, sample)
+        sol = L.independent(L.SOL, name, sample, "calibrate_sol")
         print(pid, len(sample), flush=True)
+        return [{"pid": pid, "sid": s["sid"], "runs": [(r[0].get(s["sid"], {}), r[1].get(s["sid"], {})) for r in runs],
+                 "sol": sol.get(s["sid"], {}), "sonnet": base[pid][s["sid"]].get("sonnet", {}), "gpt": base[pid][s["sid"]].get("gpt", {})}
+                for s in sample]
+    rows = []   # (sid-level records)
+    with ThreadPoolExecutor(a.workers) as ex:
+        for r in ex.map(one, jobs):
+            rows += r
     (ROOT / "review/cascade_calibration_raw.json").write_text(json.dumps(rows))
 
     def judges_match():

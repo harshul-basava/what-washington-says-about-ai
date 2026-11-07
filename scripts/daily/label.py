@@ -27,7 +27,7 @@ SOL = "openai/gpt-6.1-sol"
 ASTRA = "openai/gpt-6-astra"
 NAMES = {DS: "DeepSeek V4.1 Flash", SOL: "GPT-6.1 Sol", ASTRA: "GPT-6 Astra"}
 RUNS = 3
-CONF_MIN = 4.0            # set from review/cascade_calibration.md
+CONF_MIN = 3.0            # set from review/cascade_calibration.md (2026-11-07)
 HIGH_STAKES = {"x_risk": 3, "agi_pilled": 3}
 TOPICS = ["jobs/economy", "China/competition", "national security", "kids/online safety", "deepfakes/elections",
           "copyright", "energy/data centers", "regulation", "AGI/transformative", "x-risk/loss of control",
@@ -70,9 +70,14 @@ def parse_cascade(text, sids):
     return labels, conf, topics
 
 
+REASONING = {DS: {"effort": "low"}}   # DeepSeek V4.1 Flash otherwise spends its whole output budget on reasoning
+
+
 def call(model, prompt, tag, temperature=None):
     extra = {"temperature": temperature} if temperature is not None else {}
-    d = llm.chat([{"role": "user", "content": prompt}], tag=tag, model=model, max_tokens=8000, **extra)
+    if model in REASONING:
+        extra["reasoning"] = REASONING[model]
+    d = llm.chat([{"role": "user", "content": prompt}], tag=tag, model=model, max_tokens=24000 if model in REASONING else 8000, **extra)
     return d["choices"][0]["message"]["content"]
 
 
