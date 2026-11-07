@@ -118,10 +118,38 @@ a{color:var(--page-link)}
 footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--page-line);font-size:13px;color:var(--page-muted);display:flex;flex-wrap:wrap;gap:16px}
 .tip{position:fixed;pointer-events:none;background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;max-width:320px;font-size:13px;box-shadow:0 4px 18px rgba(0,0,0,.14);display:none;z-index:20}
 .hit{cursor:pointer}
+.topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topin{max-width:1080px;margin:0 auto;padding:0 16px;height:56px;display:flex;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--fg);text-decoration:none;white-space:nowrap}
+.brand svg{color:var(--accent)}
+.topbar nav{display:flex;gap:18px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.topbar nav a{color:var(--muted);text-decoration:none;font-size:14px;white-space:nowrap}
+.topbar nav a:hover{color:var(--fg)}
+.themebtn{display:grid;place-items:center;width:34px;height:34px;padding:0;border-radius:8px;background:transparent;border:1px solid var(--line);color:var(--fg)}
+.themebtn:hover{background:var(--hover)}
+.themebtn .i-sun{display:none}
+:root[data-theme="dark"] .themebtn .i-sun{display:block}:root[data-theme="dark"] .themebtn .i-moon{display:none}
+@media (max-width:720px){.brand span{display:none}.topbar nav{gap:14px}}
+.controlbar{top:57px}
+h2,details.method{scroll-margin-top:140px}
+details.method summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-top:1px solid var(--page-line);margin-top:56px;padding-top:16px}
+details.method summary::-webkit-details-marker{display:none}
+details.method summary h2{margin:0;padding:0;border:0}
+details.method summary h2::before{content:"▸";display:inline-block;width:1em;color:var(--muted);transition:transform .15s}
+details.method[open] summary h2::before{transform:rotate(90deg)}
 </style>
 </head>
 <body>
-<main>
+<header class="topbar">
+  <div class="topin">
+    <a class="brand" href="#top"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M12 2.8l2.6 6 6.5.6-4.9 4.3 1.5 6.4L12 16.7l-5.7 3.4 1.5-6.4-4.9-4.3 6.5-.6z"/></svg><span>What Washington Says About AI</span></a>
+    <nav aria-label="Sections">
+      <a href="#chamber">Congress</a><a href="#topics">Topics</a><a href="#lists">Groups</a><a href="#committees">Committees</a><a href="#members">Members</a><a href="#method">Method</a><a href="https://github.com/harshul-basava/what-washington-says-about-ai">GitHub</a>
+    </nav>
+    <button id="theme" class="themebtn" type="button" aria-label="Switch to dark mode" title="Switch theme"><svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+  </div>
+</header>
+<main id="top">
 <header>
   <h1>What does Washington say about AI?</h1>
   <p class="lede">We collected public statements about AI from each member of Congress and from each new member elected in 2026. The sources are floor speeches, hearings, posts on X, interviews and press releases. We checked each quote against its source. Two AI models then gave each person a score on five questions. The models used only these quotes.</p>
@@ -194,7 +222,8 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--page-line);fo
 <div class="tablewrap"><table id="tbl"><thead></thead><tbody></tbody></table></div>
 <p class="note">Scores go from 0 to 4. The method section below gives the rules. A dash means that there is not enough evidence. Click a row to see a summary and the quotes for each score.</p>
 
-<h2 id="method">Method</h2>
+<details id="method" class="method">
+<summary><h2>Method</h2><span class="note">How we collected, scored and checked the data</span></summary>
 <ol>
   <li><b>Who:</b> all 539 current members (senators, representatives and delegates) from the <a href="https://github.com/unitedstates/congress-legislators">unitedstates/congress-legislators</a> project, plus winners of the November 2026 elections who aren't already in Congress, taken from called races only. The 120th Congress view combines continuing members with members-elect. A senator stays unless their seat was up in 2026 and someone else won it; a member who won a 2026 race stays, in the chamber they won.</li>
   <li><b>Official records:</b> AI-related quotes from the Congressional Record and hearings, from <a href="https://cesia.org/en/data/attention/">CeSIA's Politicians on AI</a> dataset (CC BY 4.0). Only the quote text, date and source are used. CeSIA's own labels are not.</li>
@@ -205,13 +234,13 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--page-line);fo
   <li><b>Committees:</b> current full-committee rosters from the @unitedstates project.</li>
 </ol>
 <p><b>Caveats.</b> What people say in public is not the same as what they believe or how they vote. Scores are produced by language models and only spot-checked. Official records lag by months. X coverage depends on knowing the right accounts, and some members barely post. Members who rarely talk about AI will have little or no evidence. That doesn't mean they hold no views.</p>
-<p class="note">Thanks to <a href="https://cesia.org/en/data/attention/">CeSIA</a>, the <a href="https://github.com/unitedstates/congress-legislators">@unitedstates project</a>, <a href="https://www.govtrack.us/">GovTrack</a>, and Roe's earlier <a href="https://www.lesswrong.com/">"What Washington Says About AGI"</a>, which this project builds on.</p>
+<p class="note">Thanks to <a href="https://cesia.org/en/data/attention/">CeSIA</a>, the <a href="https://github.com/unitedstates/congress-legislators">@unitedstates project</a>, <a href="https://www.govtrack.us/">GovTrack</a>, and Zephy's earlier <a href="https://www.lesswrong.com/">"What Washington Says About AGI"</a>, which this project builds on.</p>
+</details>
 
 <footer>
   <a href="data/members.csv" download>Download CSV</a>
   <a href="https://github.com/harshul-basava/what-washington-says-about-ai" id="gh">GitHub</a>
   <a href="https://github.com/harshul-basava/what-washington-says-about-ai/issues" id="contact">Contact / corrections (GitHub issues)</a>
-  <button id="theme" style="margin-left:auto">Toggle theme</button>
 </footer>
 </main>
 <div class="tip" id="tip" role="tooltip"></div>
@@ -550,7 +579,11 @@ async function openRow(id){
     ${qs.slice(0,60).map(q=>`<div class="quote ${cited.has(q.sid)?"cited":""}">“${esc(q.text)}”<div class="src">${srcName[q.src]||q.src} · ${esc(q.date||"undated")} · <a href="${esc(q.url)}" target="_blank" rel="noopener">source</a> ${q.topics.map(t=>`<span class="chip">${esc(t)}</span>`).join("")} ${labChips(q)}</div></div>`).join("")}
     ${qs.length>60?`<p class="note">…and ${qs.length-60} more in the CSV and the GitHub data.</p>`:""}</td>`;
 }
-document.getElementById("theme").onclick=()=>{const r=document.documentElement;const cur=r.dataset.theme||"light";r.dataset.theme=cur==="dark"?"light":"dark";drawAll();renderTable();};
+document.getElementById("theme").onclick=()=>{const r=document.documentElement;const cur=r.dataset.theme||"light";r.dataset.theme=cur==="dark"?"light":"dark";
+  document.getElementById("theme").setAttribute("aria-label", r.dataset.theme==="dark"?"Switch to light mode":"Switch to dark mode");drawAll();renderTable();};
+// a link to #method opens the collapsed Method section
+function openHash(){ if (location.hash==="#method") document.getElementById("method").open = true; }
+addEventListener("hashchange", openHash); openHash();
 init();
 </script>
 </body>
