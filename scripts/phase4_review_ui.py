@@ -42,7 +42,9 @@ def main():
                 cats.append("runs_split")
             if sc is not None and b is not None and abs(sc - b) >= 2:
                 cats.append("blind_gap")
-            if (pid, k) in packet:
+            why = packet.get((pid, k), "")
+            # packet: top scorers on the question they top, plus every question for the random sample
+            if (why == "top x-risk" and k == "x_risk") or (why == "top AGI-pilled" and k == "agi_pilled") or why == "random":
                 cats.append("packet")
             if not cats:
                 continue

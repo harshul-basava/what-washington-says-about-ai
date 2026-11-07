@@ -26,6 +26,7 @@ import llm  # noqa: E402
 
 DIMS = ["ai_overall", "agi_pilled", "x_risk", "china_race", "regulation"]
 INTENSITY = {"x_risk", "agi_pilled", "china_race"}
+CONSISTENT = INTENSITY | {"regulation"}   # scored by the "highest consistent level" rule
 JUDGES = {"sonnet": "anthropic/claude-sonnet-5.5", "gpt": "openai/gpt-6.1-sol"}
 RUBRIC_TXT = (ROOT / "config/rubric.md").read_text()
 RUBRIC_VERSION = re.search(r"rubric (v\d+)", RUBRIC_TXT).group(1)
@@ -134,7 +135,12 @@ def collect():
         for b in batches:
             if b.get("final"):
                 continue
-            d = httpx.get(f"{BATCH_URL}/{b['id']}", headers=HEAD, timeout=120).json()
+            try:
+                d = httpx.get(f"{BATCH_URL}/{b['id']}", headers=HEAD, timeout=120).json()
+            except (httpx.TransportError, ValueError) as e:  # network blip: try again next round
+                print("poll error", b["id"], type(e).__name__, flush=True)
+                pending += 1
+                continue
             st = d.get("status")
             if st not in ("completed", "failed", "expired", "cancelled"):
                 pending += 1
@@ -162,13 +168,100 @@ def collect():
     sync({ev["id"] for ev, *_ in missing}, list(JUDGES))
 
 
+XFIX = ROOT / "data/raw/labels_xfix"
+XFIX_BATCHES = ROOT / "data/raw/label_xfix_batches.json"
+XFIX_NOTE = ("\n\n## This pass\nLabel **only `x_risk`** for these statements, under the rubric above. "
+             "Return {\"labels\": {\"sNN\": {\"x_risk\": level}}} for statements that qualify; leave out any that don't.")
+
+
 def load_labels(judge, ev):
     lab = {}
     for i in range(len(chunks(ev))):
         f = path(judge, ev["id"], i)
         if f.exists():
             lab.update(json.loads(f.read_text()))
+    fx = XFIX / judge / f"{ev['id']}.json"
+    if fx.exists():   # x_risk re-labeled under the tightened definition: replaces earlier x_risk labels
+        fixed = json.loads(fx.read_text())
+        for sid in fixed["_sids"]:
+            if sid in lab:
+                lab[sid].pop("x_risk", None)
+                if fixed["labels"].get(sid, {}).get("x_risk") is not None:
+                    lab[sid]["x_risk"] = fixed["labels"][sid]["x_risk"]
+                if not lab[sid]:
+                    del lab[sid]
     return lab
+
+
+def xfix_targets():
+    for ev in people():
+        sids = set()
+        for j in JUDGES:
+            for i in range(len(chunks(ev))):
+                f = path(j, ev["id"], i)
+                if f.exists():
+                    sids |= {s for s, d in json.loads(f.read_text()).items() if "x_risk" in d}
+        if sids:
+            yield ev, [s for s in ev["statements"] if s["sid"] in sids]
+
+
+def xfix_submit():
+    batches = []
+    for j in JUDGES:
+        reqs = [{"custom_id": f"{ev['id']}__{j}", "body": {"messages": [{"role": "user", "content": build(ev, st) + XFIX_NOTE}], "max_tokens": 4000}}
+                for ev, st in xfix_targets() if not (XFIX / j / f"{ev['id']}.json").exists()]
+        for k in range(0, len(reqs), 150):
+            r = httpx.post(BATCH_URL, json={"endpoint": "/v1/chat/completions", "model": JUDGES[j], "completion_window": "24h",
+                                            "requests": reqs[k:k + 150]}, headers=HEAD, timeout=300)
+            if r.status_code not in (200, 201, 202):
+                raise SystemExit(f"batch submit failed {r.status_code}: {r.text[:500]}")
+            batches.append({"id": r.json()["id"], "judge": j, "logged": False})
+            print("submitted", j, batches[-1]["id"], len(reqs[k:k + 150]), flush=True)
+    XFIX_BATCHES.write_text(json.dumps(batches, indent=1))
+
+
+def xfix_collect():
+    targets = {ev["id"]: st for ev, st in xfix_targets()}
+    batches = json.loads(XFIX_BATCHES.read_text())
+    while True:
+        pending = 0
+        for b in batches:
+            if b.get("final"):
+                continue
+            try:
+                d = httpx.get(f"{BATCH_URL}/{b['id']}", headers=HEAD, timeout=120).json()
+            except (httpx.TransportError, ValueError):
+                pending += 1
+                continue
+            if d.get("status") not in ("completed", "failed", "expired", "cancelled"):
+                pending += 1
+                continue
+            b["final"] = d["status"]
+            for res in d.get("results") or []:
+                pid, j = res["custom_id"].rsplit("__", 1)
+                if res.get("response") and res["response"].get("status_code") == 200:
+                    sids = {s["sid"] for s in targets[pid]}
+                    lab = parse(res["response"]["body"]["choices"][0]["message"]["content"], sids)
+                    if lab is not None:
+                        (XFIX / j).mkdir(parents=True, exist_ok=True)
+                        (XFIX / j / f"{pid}.json").write_text(json.dumps({"_sids": sorted(sids), "labels": lab}))
+            if not b["logged"]:
+                llm._log("openrouter", float((d.get("usage") or {}).get("cost") or 0), f"phase3v3_xfix_{b['judge']}", {"batch_id": b["id"]})
+                b["logged"] = True
+            print(b["id"], b["judge"], b["final"], d.get("request_counts"), flush=True)
+        XFIX_BATCHES.write_text(json.dumps(batches, indent=1))
+        if not pending:
+            break
+        time.sleep(60)
+    for pid, st in targets.items():   # anything the batch missed: regular calls
+        ev = next(e for e in people() if e["id"] == pid)
+        for j in JUDGES:
+            if not (XFIX / j / f"{pid}.json").exists():
+                d = llm.chat([{"role": "user", "content": build(ev, st) + XFIX_NOTE}], tag=f"phase3v3_xfix_sync_{j}", model=JUDGES[j], max_tokens=4000)
+                lab = parse(d["choices"][0]["message"]["content"], {s["sid"] for s in st})
+                if lab is not None:
+                    (XFIX / j).mkdir(parents=True, exist_ok=True)
+                    (XFIX / j / f"{pid}.json").write_text(json.dumps({"_sids": sorted(s["sid"] for s in st), "labels": lab}))
 
 
 def score_one(levels_by_sid, dates, k):
@@ -180,7 +273,7 @@ def score_one(levels_by_sid, dates, k):
     if not lv:
         return (0, "silent", []) if k in INTENSITY else (None, "no_statements", [])
     vals = sorted((v for _, v in lv), reverse=True)
-    if k in INTENSITY:
+    if k in CONSISTENT:
         top = vals[0]
         if vals.count(top) >= 2 or vals.count(top) * 3 >= len(vals):
             sc, why = top, "consistent"
@@ -300,4 +393,4 @@ if __name__ == "__main__":
     elif cmd == "submit":
         submit(judges)
     else:
-        {"collect": collect, "combine": combine, "report": report}[cmd]()
+        {"collect": collect, "combine": combine, "report": report, "xfix-submit": xfix_submit, "xfix-collect": xfix_collect}[cmd]()

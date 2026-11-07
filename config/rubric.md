@@ -22,8 +22,8 @@ You are labeling **individual statements**. A fixed formula turns the labels int
 5. Bill announcements count as calls for action only if the statement says what the bill does and why.
 
 ## 1. `x_risk`
-**Claim:** *Advanced AI could cause a catastrophe for humanity, and this deserves serious policy attention.* Catastrophe means loss of human control over AI, human extinction or disempowerment, or mass-casualty misuse (AI-enabled biological, chemical or nuclear weapons, or cyberattacks on critical infrastructure).
-Not catastrophe: job losses, bias, privacy, deepfakes, scams, kids' safety, misinformation, energy use, ordinary cybercrime, or generic "national security" with no catastrophic scenario.
+**Claim:** *Advanced AI could cause a catastrophe for humanity, and this deserves serious policy attention.* Catastrophe means loss of human control over AI, human extinction or disempowerment, or misuse that could kill large numbers of people (AI-enabled biological, chemical or nuclear weapons, or AI-enabled attacks the statement says could cause mass casualties or society-wide collapse).
+Not catastrophe: job losses, bias, privacy, deepfakes, scams, kids' safety, misinformation, energy use, ordinary cybersecurity (software vulnerabilities, hacking, protecting networks or infrastructure in general), or generic "national security" or military competition with no mass-casualty or civilization-scale scenario described.
 
 | Level | Test |
 |---|---|
@@ -86,5 +86,6 @@ Label only statements that take a position on rules for AI.
 - **Minimum evidence:** fewer than 3 statements in total gives "not enough evidence" on every question.
 - **Recency:** for each question, if at least 3 labeled statements fall in the last 24 months, only those are used.
 - **x_risk, agi_pilled, china_race:** no labeled statements gives **0** ("doesn't discuss it"). Otherwise the score is the highest level that is **consistent** for them: reached by at least two statements, or by at least a third of their labeled statements on that question. If the top level is a one-off (one statement, and less than a third of their statements on the question), the score is one step below it. This rewards consistency over isolated remarks, without penalizing members who rarely speak.
-- **ai_overall, regulation:** the **median** of the labels, with halves rounded toward the middle (2). No labeled statements gives "not enough evidence".
+- **regulation:** the strongest position they **consistently** take, using the same consistency rule as above. No labeled statements gives "not enough evidence".
+- **ai_overall:** the **median** of the labels, with halves rounded toward the middle (2). No labeled statements gives "not enough evidence".
 - **Two judges:** Claude Sonnet 5.5 and GPT-6.1 Sol each label every statement independently. The published score is the average of their two scores.

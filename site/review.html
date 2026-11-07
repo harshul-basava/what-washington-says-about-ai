@@ -127,7 +127,7 @@ async function render(){
     <div class="grid">
       <div class="box"><b>Score shown on site</b><div class="v">${esc(lvl(it.score))}</div></div>
       <div class="box"><b>Claude / GPT</b><div class="v">${fmt(it.run_a)} / ${fmt(it.run_b)}</div></div>
-      <div class="box"><b>Second model, blind</b><div class="v">${esc(lvl(it.blind))}</div></div>
+      ${it.blind!=null?`<div class="box"><b>Second model, blind</b><div class="v">${esc(lvl(it.blind))}</div></div>`:""}
       ${it.audit?`<div class="box"><b>Second model, audit</b><div class="v">${esc(it.audit.verdict||"—")}${it.audit.verdict==="disagree"?` → ${esc(fmt(it.audit.score))}`:""}</div></div>`:""}
     </div>
     ${it.audit?.note?`<div class="panel"><h3>Auditor's note</h3>${esc(it.audit.note)}</div>`:""}
