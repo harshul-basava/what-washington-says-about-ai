@@ -54,6 +54,11 @@ button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:va
 .bar .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-right:2px}
 .chart{overflow-x:auto;margin:6px 0}
 .chart svg{max-width:100%;height:auto;color:var(--fg)}
+.hemirow{display:flex;gap:20px;align-items:center;justify-content:center}
+#hemi{flex:1 1 560px;max-width:760px;min-width:0}
+#pies{flex:0 0 180px;display:flex;flex-direction:column;gap:22px;align-items:center}
+.pie{text-align:center}.pie h4{margin:0 0 4px;font-size:14px;font-weight:600}.pie .cap{font-size:12px;color:var(--muted);margin-top:2px}
+@media (max-width:720px){.hemirow{flex-direction:column}#pies{flex-direction:row;flex-wrap:wrap;justify-content:center}}
 .note{font-size:13px;color:var(--muted)}
 .two{display:grid;grid-template-columns:1fr;gap:16px}
 @media (min-width:860px){.two{grid-template-columns:1fr 1fr}}
@@ -122,7 +127,10 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--page-line);fo
 <h2 id="chamber"></h2>
 <p class="sub" id="hemi-sub"></p>
 <div class="chart">
-  <div id="hemi" style="max-width:760px;margin:0 auto"></div>
+  <div class="hemirow">
+    <div id="hemi"></div>
+    <div id="pies" aria-label="Share of seats at each score, by chamber"></div>
+  </div>
   <div class="legend" id="seat-legend" style="justify-content:center;margin-top:10px"></div>
   <div class="controls" style="justify-content:center;margin-top:12px">
     <span class="seg dimbtns" role="group" aria-label="Question"></span>
@@ -301,7 +309,7 @@ function drawHemis(){
   const k=S.dim, d=DIMS.find(x=>x[0]===k);
   const lvl = m => m.scores[k]==null ? -1 : Math.floor(m.scores[k]+0.5);   // averaged scores like 2.5 round up
   const el = document.getElementById("hemi"); el.innerHTML="";
-  const W = Math.min(760, widthOf(el.parentElement));
+  const W = Math.min(760, widthOf(el));
   const Rh = W/2 - 4, Rs = Rh*0.6;
   const nS = M.filter(m=>inCong(m) && chamberOf(m)==="senate").length, nH = M.filter(m=>inCong(m) && chamberOf(m)==="house").length;
   const dS = hemiLayout(nS,5).dot*Rs, dH = hemiLayout(nH,11).dot*Rh;
@@ -331,11 +339,39 @@ function drawHemis(){
   document.getElementById("chamber").textContent = `Congress by ${d[1]} score`;
   document.getElementById("hemi-sub").innerHTML = `Each dot is one seat in ${S.cong==="119"?"the Congress of today":"the Congress that starts in January 2027"}. The dots go from the lowest score on the left to the highest score on the right. The Senate is at the top. The House is at the bottom.`;
   const cnt = v => all.filter(m=>lvl(m)===v).length;
+  drawPies(all, lvl);
   document.getElementById("seat-legend").innerHTML =
     `<span><i class="ring"></i>Not enough evidence: <b>${cnt(-1)}</b></span>` +
     [0,1,2,3,4].map(v=>`<span><i class="dot" style="background:${css("--r"+v)}"></i>${LEVELS[k][v]}: <b>${cnt(v)}</b></span>`).join("");
   const pend = M.filter(m=>m.next==="pending").length;
   document.getElementById("hemi-note").textContent = "Put the pointer on a dot to see the member. Click a dot to read their quotes. Each score is the average of the scores from two models, rounded to the nearest whole number. The House includes the delegates." + (S.cong==="120" ? ` The chart does not show ${pend} seats, because the 2026 result for these seats is not known yet.` : "");
+}
+
+/* ---------- pies: same counts as the seat chart, one per chamber ---------- */
+function drawPies(all, lvl){
+  const box = document.getElementById("pies"); box.innerHTML = "";
+  const k = S.dim, levels = [-1,0,1,2,3,4];
+  const color = v => v<0 ? css("--nodata") : css("--r"+v);
+  const name = v => v<0 ? "Not enough evidence" : LEVELS[k][v];
+  const R = 74;
+  for (const ch of ["senate","house"]){
+    const xs = all.filter(m=>chamberOf(m)===ch), n = xs.length;
+    const data = levels.map(v=>({v, c: xs.filter(m=>lvl(m)===v).length})).filter(d=>d.c>0);
+    const hi = xs.filter(m=>lvl(m)>=3).length;
+    const wrap = document.createElement("div"); wrap.className = "pie";
+    wrap.innerHTML = `<h4>${ch==="senate"?"Senate":"House"}</h4>`;
+    box.append(wrap);
+    const svg = d3.select(wrap).append("svg").attr("viewBox",`${-R-2} ${-R-2} ${2*R+4} ${2*R+4}`).attr("width",2*R+4).attr("height",2*R+4)
+      .attr("role","img").attr("aria-label",`${ch}: ${data.map(d=>`${name(d.v)} ${d.c}`).join(", ")}`);
+    const arcs = d3.pie().sort(null).value(d=>d.c)(data);
+    svg.selectAll("path").data(arcs).join("path").attr("d", d3.arc().innerRadius(0).outerRadius(R))
+      .attr("fill", a=>color(a.data.v)).attr("stroke", css("--bg")).attr("stroke-width", 1.5).classed("hit", true)
+      .on("mousemove",(e,a)=>showTip(e, `<b>${ch==="senate"?"Senate":"House"}</b><br>${esc(name(a.data.v))}: <b>${a.data.c}</b> of ${n} seats (${Math.round(a.data.c/n*100)}%)`))
+      .on("mouseleave", hideTip);
+    const cap = document.createElement("div"); cap.className = "cap";
+    cap.textContent = `${Math.round(hi/n*100)}% score 3 or more`;
+    wrap.append(cap);
+  }
 }
 
 /* ---------- ideology scatter (the original chart format) ---------- */
