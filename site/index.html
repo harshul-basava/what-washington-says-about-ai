@@ -12,7 +12,7 @@
   color-scheme:light;
   --bg:#f6f1e4;--fg:#1c1b19;--muted:#66625a;--line:#ded6c4;--card:#f6f1e4;--accent:#9a3412;--chip:#ebe4d3;--hover:#efe9db;
   /* charts sit directly on the cream page; --page-* kept as aliases so page text and chart text match */
-  --page:var(--bg);--page-fg:var(--fg);--page-muted:var(--muted);--page-line:var(--line);--page-link:var(--accent);--star:#f2ecdf;
+  --surface-raised:#fffdf8;--page:var(--bg);--page-fg:var(--fg);--page-muted:var(--muted);--page-line:var(--line);--page-link:var(--accent);--star:#f2ecdf;
   --grid:#e1e0d9;
   /* parties (validated all-pairs; independents also labelled "I") */
   --pD:#2a78d6;--pR:#e34948;--pI:#eda100;
@@ -25,7 +25,7 @@
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --star:#171716;
+  --star:#171716;--surface-raised:#2a2a28;
   --bg:#141413;--fg:#ecebe6;--muted:#a19d94;--line:#2c2b28;--card:#141413;--accent:#f0894a;--chip:#252421;--hover:#20201d;--grid:#2c2c2a;
   --pD:#3987e5;--pR:#e66767;--pI:#eda100;
   --s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--s5:#d55181;--s6:#008300;--sOther:#5a5955;
@@ -50,8 +50,18 @@ select,input,button{font:inherit;font-size:14px;color:var(--fg);background:var(-
 button{cursor:pointer}
 button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
 .seg{display:inline-flex}.seg button{border-radius:0;margin-left:-1px}.seg button:first-child{border-radius:6px 0 0 6px;margin-left:0}.seg button:last-child{border-radius:0 6px 6px 0}
-.bar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:8px 0;margin:24px 0 0}
-.bar .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-right:2px}
+body{overflow-x:clip}
+.controlbar{position:sticky;top:0;z-index:10;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;
+  margin:28px calc(50% - 50vw) 0;padding:10px calc(50vw - 50%);background:color-mix(in srgb,var(--chip) 88%,transparent);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.controlbar .ctl{display:flex;align-items:center;gap:8px}
+.controlbar .lbl{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.controlbar select{min-width:190px;padding:7px 10px;border-radius:8px}
+.segmented{display:inline-flex;gap:2px;padding:3px;border-radius:10px;background:color-mix(in srgb,var(--fg) 7%,transparent)}
+.segmented button{border:0;background:transparent;border-radius:7px;padding:5px 12px;color:var(--muted);font-weight:500;line-height:1.2;text-align:left}
+.segmented button small{display:block;font-size:11px;font-weight:400;color:var(--muted)}
+.segmented button[aria-checked="true"]{background:var(--surface-raised);color:var(--fg);box-shadow:0 1px 2px rgba(0,0,0,.12),0 0 0 1px rgba(0,0,0,.04)}
+.segmented button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .chart{overflow-x:auto;margin:6px 0}
 .chart svg{max-width:100%;height:auto;color:var(--fg)}
 .hemirow{display:flex;gap:20px;align-items:center;justify-content:center}
@@ -62,12 +72,6 @@ button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:va
 .note{font-size:13px;color:var(--muted)}
 .two{display:grid;grid-template-columns:1fr;gap:16px}
 @media (min-width:860px){.two{grid-template-columns:1fr 1fr}}
-.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 24px;margin:28px 0 8px}
-@media (min-width:760px){.tiles{grid-template-columns:repeat(3,1fr)}}
-.tile{border-top:2px solid var(--line);padding:10px 2px 4px}
-.tile .v{font-size:30px;font-weight:600;line-height:1.1}
-.tile .d{font-size:13px;font-weight:500;margin-left:6px}
-.tile .t{font-size:13px;color:var(--muted)}
 .up{color:#006300}.down{color:#b42318}
 :root[data-theme="dark"] .up{color:#0ca30c}:root[data-theme="dark"] .down{color:#f97066}
 .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted);margin-top:8px;align-items:center}
@@ -107,8 +111,8 @@ ol li{margin-bottom:8px}
 /* text that sits on the green page vs. inside cream cards */
 .sub,.lede,.meta,.note,.legend{color:var(--page-muted)}
 a{color:var(--page-link)}
-.chart,.tile,.tablewrap,.tip,.nm{color:var(--fg)}
-.chart .note,.chart .legend,.tablewrap .note,.tip .note,.nm .note,.tile .t{color:var(--muted)}
+.chart,.tablewrap,.tip,.nm{color:var(--fg)}
+.chart .note,.chart .legend,.tablewrap .note,.tip .note,.nm .note{color:var(--muted)}
 .chart a,.tablewrap a,.tip a{color:var(--accent)}
 .legend i.ring{border-color:currentColor}
 footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--page-line);font-size:13px;color:var(--page-muted);display:flex;flex-wrap:wrap;gap:16px}
@@ -124,6 +128,14 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--page-line);fo
   <p class="meta">Last updated <span id="updated">…</span> · <span id="nmembers">…</span> people · <span id="nquotes">…</span> verified statements</p>
 </header>
 
+<div class="controlbar" role="toolbar" aria-label="Chart settings">
+  <label class="ctl"><span class="lbl">Question</span><select id="dimsel" aria-label="Question"></select></label>
+  <div class="segmented" role="radiogroup" aria-label="Congress">
+    <button type="button" role="radio" data-cong="119" aria-checked="true">119th Congress<small>today</small></button>
+    <button type="button" role="radio" data-cong="120" aria-checked="false">120th Congress<small>from Jan 2027</small></button>
+  </div>
+</div>
+
 <h2 id="chamber"></h2>
 <p class="sub" id="hemi-sub"></p>
 <div class="chart">
@@ -132,10 +144,6 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--page-line);fo
     <div id="pies" aria-label="Share of seats at each score, by chamber"></div>
   </div>
   <div class="legend" id="seat-legend" style="justify-content:center;margin-top:10px"></div>
-  <div class="controls" style="justify-content:center;margin-top:12px">
-    <span class="seg dimbtns" role="group" aria-label="Question"></span>
-    <span class="seg" role="group" aria-label="Congress"><button data-cong="119" aria-pressed="true">Today's Congress</button><button data-cong="120">January 2027</button></span>
-  </div>
 </div>
 <p class="note" id="hemi-note"></p>
 
@@ -144,14 +152,9 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--page-line);fo
 <div class="chart">
   <div id="ideo"></div>
   <div class="legend" id="ideo-legend" style="justify-content:center"></div>
-  <div class="controls" style="justify-content:center;margin-top:12px">
-    <span class="seg dimbtns" role="group" aria-label="Question"></span>
-    <span class="seg" role="group" aria-label="Congress"><button data-cong="119" aria-pressed="true">Today's Congress</button><button data-cong="120">January 2027</button></span>
-  </div>
 </div>
 <p class="note">Ideology is the GovTrack score, from 0 (progressive) to 1 (conservative). GovTrack calculates it from the bills that each member cosponsored in the 119th Congress. New members do not have this score, so the chart does not show them. Each dot moves up or down by a small random amount, so that dots do not cover each other.</p>
 
-<div class="tiles" id="tiles"></div>
 
 <h3>Scores by party</h3>
 <p class="sub">Each bar shows the percent of members in one party at each score. "Not enough evidence" means that the member did not make enough public statements to get a score.</p>
@@ -174,7 +177,7 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--page-line);fo
 <div class="namelist" id="list-names"></div>
 
 <h2 id="committees">Scores on AI committees</h2>
-<p class="sub">Each bar shows the members of one committee that writes AI law, by <b class="dimname"></b> score. Click a bar to see the members. The chart uses the committee seats of today. Congress does not assign the seats for January 2027 until January.</p>
+<p class="sub">Each bar shows the members of one committee that writes AI law, by <b class="dimname"></b> score. Click a bar to see the members. The chart uses the committee seats of today. Congress does not assign the seats for the 120th Congress until January.</p>
 <div class="chart" id="comm"></div>
 <div class="legend" id="comm-legend"></div>
 <p class="note" id="comm-cap"></p>
@@ -185,7 +188,7 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--page-line);fo
   <input id="q" type="search" placeholder="Search name or state…" style="flex:1;min-width:180px">
   <select id="fch"><option value="">Both chambers</option><option value="senate">Senate</option><option value="house">House</option></select>
   <select id="fpa"><option value="">All parties</option><option value="D">Democrats</option><option value="R">Republicans</option><option value="I">Independents</option></select>
-  <select id="fst"><option value="">Everyone</option><option value="c119">Today's Congress</option><option value="c120">January 2027 Congress</option><option value="arriving">New members</option><option value="departing">Leaving in January</option></select>
+  <select id="fst"><option value="">Everyone</option><option value="c119">119th Congress (today)</option><option value="c120">120th Congress (from Jan 2027)</option><option value="arriving">New members</option><option value="departing">Leaving in January</option></select>
   <select id="fev"><option value="">Any evidence</option><option value="some">Has evidence</option></select>
 </div>
 <div class="tablewrap"><table id="tbl"><thead></thead><tbody></tbody></table></div>
@@ -193,7 +196,7 @@ footer{margin-top:64px;padding-top:16px;border-top:1px solid var(--page-line);fo
 
 <h2 id="method">Method</h2>
 <ol>
-  <li><b>Who:</b> all 539 current members (senators, representatives and delegates) from the <a href="https://github.com/unitedstates/congress-legislators">unitedstates/congress-legislators</a> project, plus winners of the November 2026 elections who aren't already in Congress, taken from called races only. The January 2027 view combines continuing members with members-elect. A senator stays unless their seat was up in 2026 and someone else won it; a member who won a 2026 race stays, in the chamber they won.</li>
+  <li><b>Who:</b> all 539 current members (senators, representatives and delegates) from the <a href="https://github.com/unitedstates/congress-legislators">unitedstates/congress-legislators</a> project, plus winners of the November 2026 elections who aren't already in Congress, taken from called races only. The 120th Congress view combines continuing members with members-elect. A senator stays unless their seat was up in 2026 and someone else won it; a member who won a 2026 race stays, in the chamber they won.</li>
   <li><b>Official records:</b> AI-related quotes from the Congressional Record and hearings, from <a href="https://cesia.org/en/data/attention/">CeSIA's Politicians on AI</a> dataset (CC BY 4.0). Only the quote text, date and source are used. CeSIA's own labels are not.</li>
   <li><b>X:</b> each person's posts since January 2023 that match AI keywords (retweets excluded), from X's full-archive search. For the first 132 people we used X's web search instead, which found about 94% as many posts in a side-by-side check.</li>
   <li><b>Web:</b> a language model (Claude Sonnet 5.5) with web search looked for every substantive public statement about AI and was told explicitly that finding nothing is fine. We fetched every source page and kept a quote only if it appears there with a fuzzy match of at least 90%. When a site blocks automated access, we checked against the page text the search engine had retrieved.</li>
@@ -274,12 +277,13 @@ async function init(){
   document.getElementById("nmembers").textContent = M.length.toLocaleString();
   document.getElementById("nquotes").textContent = M.reduce((a,m)=>a+m.n,0).toLocaleString();
   const opts = DIMS.map(([k,l])=>`<option value="${k}">${l}</option>`).join("");
-  document.querySelectorAll(".dimbtns").forEach(e=>e.innerHTML = DIMS.map(([k,l])=>`<button data-dim="${k}" aria-pressed="${k===S.dim}">${l}</button>`).join(""));
+  dimsel.innerHTML = DIMS.map(([k,l])=>`<option value="${k}">${l}</option>`).join(""); dimsel.value = S.dim;
+  dimsel.onchange = ()=>{ S.dim = dimsel.value; drawAll(); };
+  document.querySelectorAll("[data-cong]").forEach(b=>b.onclick=()=>{ S.cong=b.dataset.cong;
+    document.querySelectorAll("[data-cong]").forEach(x=>x.setAttribute("aria-checked", x.dataset.cong===S.cong)); drawAll(); });
   const topicOpts = TOPICS.map(t=>`<option>${t}</option>`).join("");
   focustopic.innerHTML = topicOpts; focustopic.value="x-risk/loss of control"; focustopic.onchange=drawFocus;
   voicetopic.innerHTML = `<option value="__all">All AI statements</option>`+topicOpts; voicetopic.value="x-risk/loss of control"; voicetopic.onchange=drawVoices;
-  const seg = (attr, key, after) => document.querySelectorAll(`[data-${attr}]`).forEach(b=>b.onclick=()=>{S[key]=b.dataset[attr]; document.querySelectorAll(`[data-${attr}]`).forEach(x=>x.setAttribute("aria-pressed",x.dataset[attr]===S[key])); after();});
-  seg("cong","cong",drawAll); seg("dim","dim",drawAll);
   ["q","fch","fpa","fst","fev"].forEach(id=>document.getElementById(id).oninput=renderTable);
   drawPresets(); renderHead(); renderTable(); drawAll();
   let t; addEventListener("resize", ()=>{clearTimeout(t); t=setTimeout(drawAll,150);});
@@ -287,7 +291,7 @@ async function init(){
 function drawAll(){
   const d = DIMS.find(x=>x[0]===S.dim);
   document.querySelectorAll(".dimname").forEach(e=>e.textContent=d[1]);
-  drawHemis(); drawIdeology(); drawTiles(); drawPartyDist(); drawFocus(); drawVoices(); drawList(); drawComm();
+  drawHemis(); drawIdeology(); drawPartyDist(); drawFocus(); drawVoices(); drawList(); drawComm();
 }
 // three states used by the seat chart and the committee bars
 const STATES = [["yes","Scores 3 or more","--yes"],["no","Scores 0 to 2","--no"],["none","Hasn't said enough to score","--card"]];
@@ -337,7 +341,7 @@ function drawHemis(){
     svg.append("text").attr("x",cx).attr("y",ly+17).attr("text-anchor","middle").attr("fill",css("--muted")).attr("font-size",12).text(`${order.length} seats`);
   }
   document.getElementById("chamber").textContent = `Congress by ${d[1]} score`;
-  document.getElementById("hemi-sub").innerHTML = `Each dot is one seat in ${S.cong==="119"?"the Congress of today":"the Congress that starts in January 2027"}. The dots go from the lowest score on the left to the highest score on the right. The Senate is at the top. The House is at the bottom.`;
+  document.getElementById("hemi-sub").innerHTML = `Each dot is one seat in ${S.cong==="119"?"the 119th Congress (today)":"the 120th Congress, which starts in January 2027"}. The dots go from the lowest score on the left to the highest score on the right. The Senate is at the top. The House is at the bottom.`;
   const cnt = v => all.filter(m=>lvl(m)===v).length;
   drawPies(all, lvl);
   document.getElementById("seat-legend").innerHTML =
@@ -389,20 +393,6 @@ function drawIdeology(){
   el.append(svg);
   bindHover(svg.querySelectorAll("g[aria-label=dot] circle"), data, p=>memberTip(p.m), p=>goMember(p.m));
   document.getElementById("ideo-legend").innerHTML = legendHTML([["Democrat",PC("D"),"dot"],["Republican",PC("R"),"dot"],["Independent",PC("I"),"dot"]]) + `<span>n = ${data.length}</span>`;
-}
-
-/* ---------- tiles ---------- */
-function drawTiles(){
-  const pop = c => M.filter(m=>inCong(m,c) && partyOk(m));
-  const cnt = (c,k) => pop(c).filter(m=>(m.scores[k]??-1)>=3).length;
-  const now = pop(S.cong);
-  const talk = now.filter(m=>m.n>0).length;
-  const tiles = [[`${talk}`, `of ${now.length} members made a public statement about AI since 2023`, null]];
-  for (const [k,l] of DIMS){
-    const v = cnt(S.cong,k), base = cnt("119",k);
-    tiles.push([v, `members with a score of 3 or more on ${l}`, S.cong==="120" ? v-base : null]);
-  }
-  document.getElementById("tiles").innerHTML = tiles.map(([v,t,d])=>`<div class="tile"><div class="v">${v}${d!=null?`<span class="d ${d>0?"up":d<0?"down":""}">${d>0?"▲ +":d<0?"▼ ":"±"}${d} from today</span>`:""}</div><div class="t">${esc(t)}</div></div>`).join("");
 }
 
 /* ---------- party distribution ---------- */
