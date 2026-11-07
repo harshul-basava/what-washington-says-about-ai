@@ -3,7 +3,7 @@ import csv
 import json
 import re
 from collections import Counter, defaultdict
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -16,7 +16,7 @@ DIMS = ["ai_overall", "agi_pilled", "x_risk", "china_race", "regulation"]
 def govtrack_ideology():
     """GovTrack 119th-Congress ideology (0=left, 1=right), keyed by GovTrack ID (copy in Roe's repo)."""
     out = {}
-    base = ROOT / "data/raw/roe/politicians_views_ai"
+    base = ROOT / "data/ref"
     for f in ("sponsorshipanalysis_h.txt", "sponsorshipanalysis_s.txt"):
         with open(base / f) as fh:
             for r in csv.DictReader(fh, skipinitialspace=True):
@@ -58,7 +58,7 @@ COMMITTEES = {
 
 
 def committee_roles():
-    mem = json.loads((ROOT / "data/raw/committee-membership-current.json").read_text())
+    mem = json.loads((ROOT / "data/ref/committee-membership-current.json").read_text())
     out = defaultdict(list)
     for cid in COMMITTEES:
         for r in mem.get(cid, []):
@@ -69,16 +69,18 @@ def committee_roles():
 def main():
     roster = json.loads((ROOT / "data/roster.json").read_text())
     scores = json.loads((ROOT / "data/scores.json").read_text())
-    legis = {m["id"]["bioguide"]: m for m in json.loads((ROOT / "data/raw/legislators-current.json").read_text())}
+    legis = {m["id"]["bioguide"]: m for m in json.loads((ROOT / "data/ref/legislators-current.json").read_text())}
     gt = govtrack_ideology()
     nxt_f = ROOT / "data/next_congress.json"
     nxt = json.loads(nxt_f.read_text()) if nxt_f.exists() else {}
     roles = committee_roles()
     lab_f = ROOT / "data/labels.json"
     LABELS = json.loads(lab_f.read_text()) if lab_f.exists() else {}
+    daily_f = ROOT / "data/labels_daily.json"
+    DAILY = json.loads(daily_f.read_text()) if daily_f.exists() else {}   # statements added by the daily job (cascade)
     handles = json.loads((ROOT / "data/handles.json").read_text()) if (ROOT / "data/handles.json").exists() else {}
 
-    members, timeline = [], defaultdict(Counter)
+    members, timeline, byday = [], defaultdict(Counter), defaultdict(Counter)
     for p in roster:
         ev = json.loads((ROOT / "evidence" / f"{p['id']}.json").read_text())
         sc = scores.get(p["id"], {})
@@ -91,10 +93,18 @@ def main():
         for s in ev["statements"]:
             t = list(dict.fromkeys(canon_topic(x) for x in (topics.get(s["sid"]) or [])))
             lab = (LABELS.get(p["id"]) or {}).get(s["sid"]) or {}
+            by = ["Claude", "GPT"]
+            dl = (DAILY.get(p["id"]) or {}).get(s["sid"])
+            if dl:
+                lab, by = {"sonnet": dl.get("a") or {}, "gpt": dl.get("b") or {}}, [dl["models"]["a"], dl["models"]["b"]]
             quotes.append({"sid": s["sid"], "text": s["text"], "date": s.get("date"), "src": s["source_type"],
-                           "url": s["url"], "topics": t,
+                           "url": s["url"], "topics": t, "by": by, "added": s.get("added"),
                            "lab": {k: [lab.get("sonnet", {}).get(k), lab.get("gpt", {}).get(k)] for k in DIMS
                                    if lab.get("sonnet", {}).get(k) is not None or lab.get("gpt", {}).get(k) is not None}})
+            d = (s.get("date") or "")[:10]
+            if len(d) == 10 and d >= "2023-01-01":
+                for tp in (t or ["untagged"]):
+                    byday[(d, pl, group)][tp] += 1 / max(1, len(t))
             q = quarter(s.get("date"))
             if q and q >= "2023-Q1":
                 for tp in (t or ["untagged"]):
@@ -134,7 +144,16 @@ def main():
         for m in members:
             w.writerow([m["id"], m["name"], m["chamber"], m["state"], m["district"], m["party"], m["status"], m["next"], m["handle"],
                         m["ideology"], m["n"], m["strength"], *[m["scores"][k] for k in DIMS], m["summary"]])
-    print("members", len(members), "timeline rows", len(tl))
+    # daily topic counts (the site computes rolling shares from these)
+    tidx = {t: i for i, t in enumerate(TOPICS + ["untagged"])}
+    rows = [[d, pa, g, tidx.get(tp, tidx["other"]), round(n, 2)] for (d, pa, g), c in sorted(byday.items()) for tp, n in c.items()]
+    (DATA / "daily.json").write_text(json.dumps({"topics": TOPICS + ["untagged"], "rows": rows}))
+    # recent big score changes from the daily job
+    ch_f = ROOT / "data/changes.jsonl"
+    changes = [json.loads(x) for x in ch_f.read_text().splitlines()] if ch_f.exists() else []
+    cutoff = (date.today() - timedelta(days=60)).isoformat()
+    (DATA / "changes.json").write_text(json.dumps([c for c in changes if c["kind"] == "big" and c["date"] >= cutoff][::-1][:100]))
+    print("members", len(members), "timeline rows", len(tl), "daily rows", len(rows))
 
 
 if __name__ == "__main__":

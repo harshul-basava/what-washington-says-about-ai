@@ -1,0 +1,86 @@
+# Daily update: collect new AI statements, label them (DeepSeek -> GPT-6.1 Sol -> GPT-6 Astra cascade),
+# re-score, record changes, rebuild the site data and push. Vercel redeploys on the push.
+# Needs repo secrets: OPENROUTER_API_KEY, X_BEARER_TOKEN, GOVINFO_API_KEY. Optional: EXA_API_KEY.
+name: Daily update
+
+on:
+  schedule:
+    - cron: "0 11 * * *"   # about 6-7am US Eastern
+  workflow_dispatch:
+    inputs:
+      sources:
+        description: "Sources (comma list of x,crec,chrg,web; empty = default)"
+        required: false
+      since:
+        description: "Override start date YYYY-MM-DD (empty = since last run)"
+        required: false
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: daily-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check secrets
+        id: keys
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          if [ -z "$OPENROUTER_API_KEY" ]; then
+            echo "::warning::OPENROUTER_API_KEY is not set; skipping the daily update."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: astral-sh/setup-uv@v6
+        if: steps.keys.outputs.skip != 'true'
+
+      - name: Install
+        if: steps.keys.outputs.skip != 'true'
+        run: uv sync --no-dev
+
+      - name: Refresh reference files (legislators, committees)
+        if: steps.keys.outputs.skip != 'true'
+        run: |
+          for f in legislators-current.json committee-membership-current.json; do
+            curl -fsSL "https://unitedstates.github.io/congress-legislators/$f" -o "data/ref/$f.new" && mv "data/ref/$f.new" "data/ref/$f" || echo "kept old $f"
+          done
+
+      - name: Run daily update
+        if: steps.keys.outputs.skip != 'true'
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          GOVINFO_API_KEY: ${{ secrets.GOVINFO_API_KEY }}
+          EXA_API_KEY: ${{ secrets.EXA_API_KEY }}
+          IN_SOURCES: ${{ inputs.sources }}
+          IN_SINCE: ${{ inputs.since }}
+        run: |
+          args=()
+          [[ "$IN_SOURCES" =~ ^[a-z,]+$ ]] && args+=(--sources "$IN_SOURCES")
+          [[ "$IN_SINCE" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]] && args+=(--since "$IN_SINCE")
+          uv run python scripts/daily/run.py "${args[@]}"
+
+      - name: Commit and push
+        if: steps.keys.outputs.skip != 'true'
+        run: |
+          git config user.name "dc-on-ai-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data evidence site/data
+          if git diff --cached --quiet; then echo "no changes"; exit 0; fi
+          git commit -m "Daily update $(date -u +%F)"
+          git push
+
+      - name: Open an issue for big score changes
+        if: steps.keys.outputs.skip != 'true' && hashFiles('data/issue.md') != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue create --title "Score changes $(date -u +%F)" --body-file data/issue.md

@@ -44,6 +44,32 @@ make serve             # open the site at http://127.0.0.1:8765
 
 All paid calls go through `llm.py`. It stops at the budget limits in `budgets.yaml`.
 
+## Daily updates
+
+A GitHub Actions job (`.github/workflows/daily.yml`) runs each day at about 6–7am Eastern. It does these steps:
+
+1. **Collect.** It gets new statements since the last run:
+   - posts on X (paid X API);
+   - the Congressional Record (govinfo API), with each speaker found by their official ID;
+   - hearing transcripts (govinfo API), on Mondays;
+   - press releases and news, from a fixed list of sites (Exa search through OpenRouter).
+
+   It adds each new statement to `evidence/` with a new ID. It does not change old IDs.
+2. **Label.** DeepSeek labels each new statement three times. A label goes to GPT-6.1 Sol when:
+   - the three runs do not agree;
+   - DeepSeek's confidence is low;
+   - the label is 3 or more on x-risk or AGI;
+   - the label is far from the member's current score.
+
+   GPT-6 Astra breaks ties between DeepSeek and Sol.
+3. **Score.** The same fixed formula makes the new scores.
+4. **Record.** It writes each score change to `data/changes.jsonl` and saves a daily snapshot in `data/history/`. A big change opens a GitHub issue. A big change is a change of 1 point or more, or a move into or out of 3+.
+5. **Publish.** It rebuilds `site/data/` and pushes. Vercel then deploys the site again.
+
+Add these repository secrets: `OPENROUTER_API_KEY`, `X_BEARER_TOKEN` and `GOVINFO_API_KEY` (free from api.data.gov). `EXA_API_KEY` is optional. If `OPENROUTER_API_KEY` is not set, the job does not run.
+
+Monthly spend limits are in `budgets.yaml`. Before the first live run, run `make calibrate` one time (about $3–5) to set the confidence threshold.
+
 ## Limits
 
 What a person says in public is not the same as what they believe or how they vote. AI models make the scores, and a person checks only some of them. Some members do not post much about AI, so they have little evidence.

@@ -200,6 +200,8 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
     <li><a href="#chamber">Congress by score</a></li>
     <li><a href="#ideo-title">Ideology and score</a></li>
     <li><a href="#party">Scores by party</a></li>
+    <li><a href="#trend-title">Scores over time</a></li>
+    <li><a href="#changes">Recent changes</a></li>
     <li><a href="#topics">Topics</a></li>
     <li><a href="#lists">Member groups</a></li>
     <li><a href="#committees">AI committees</a></li>
@@ -229,9 +231,20 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
 <div class="chart" id="partydist"></div>
 <div class="legend" id="pd-legend"></div>
 
+<h3 id="trend-title">Members scoring 3 or more, over time</h3>
+<p class="sub">Percent of members in each party with a score of 3 or more on the selected question. Before the daily updates started, each point is the score at the end of a month, made with the same formula from the statements of that time.</p>
+<div class="chart" id="trend"></div>
+<p class="note">The early months show fewer high scores partly because the original collection found more recent statements than old ones.</p>
+
+<h2 id="changes">Recent changes</h2>
+<p class="sub">Big score changes that the daily update found in the last 60 days: a change of 1 point or more, or a move into or out of a score of 3 or more. Click a row to see the member.</p>
+<div id="changelist"></div>
+
 <h2 id="topics">Topics</h2>
-<h3 id="topicshare">Topic share by party</h3>
-<div class="controls"><select id="focustopic" aria-label="Topic"></select><span class="note">Percent of each party's AI statements that are about this topic, by quarter.</span></div>
+<h3 id="topicshare">Topic share by party, day by day</h3>
+<div class="controls"><select id="focustopic" aria-label="Topic"></select>
+  <span class="segmented" role="radiogroup" aria-label="Time range"><button type="button" role="radio" data-range="90" aria-checked="false">3 months</button><button type="button" role="radio" data-range="365" aria-checked="true">12 months</button><button type="button" role="radio" data-range="all" aria-checked="false">All</button></span></div>
+<p class="note" style="margin-top:0">Percent of each party's AI statements in the 30 days before each day that are about this topic. The line moves each day when new statements come in.</p>
 <div class="chart" id="focuschart"></div>
 
 <h3 id="voices-title">Members with the most statements</h3>
@@ -318,8 +331,8 @@ const PNAME = {D:"Democrats",R:"Republicans",I:"Independents"};
 const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const PC = p => css(p==="D"?"--pD":p==="R"?"--pR":"--pI");
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-let M = [], TL = [], COMM = {}, UPDATED = "";
-const S = {cong:"119", party:"all", dim:"x_risk", preset:null};
+let M = [], TL = [], COMM = {}, UPDATED = "", DAILY = null, HISTORY = null, CHANGES = null;
+const S = {cong:"119", party:"all", dim:"x_risk", preset:null, range:"365"};
 let sortKey = "n", sortDir = -1, open = null;
 
 /* ---------- helpers ---------- */
@@ -347,13 +360,17 @@ function bindHover(nodes, data, html, click){
     n.onmousemove=e=>showTip(e,html(d)); n.onmouseleave=hideTip; n.onclick=()=>{hideTip(); click&&click(d);}; });
 }
 const SHORT = {ai_overall:"overall", agi_pilled:"AGI", x_risk:"x-risk", china_race:"China", regulation:"regulation"};
-function labChips(q){ return Object.entries(q.lab||{}).map(([k,v])=>`<span class="chip" title="Level this statement shows on ${esc(dimLabel(k))} (Claude / GPT)" style="border:1px solid var(--line)">${SHORT[k]} ${v.map(x=>x??"–").join("/")}</span>`).join(""); }
+function labChips(q){ const by=(q.by||["Claude","GPT"]).join(" / "); return Object.entries(q.lab||{}).map(([k,v])=>`<span class="chip" title="Level this statement shows on ${esc(dimLabel(k))} (${esc(by)})" style="border:1px solid var(--line)">${SHORT[k]} ${v.map(x=>x??"–").join("/")}</span>`).join(""); }
 function legendHTML(items){ return items.map(([lab,col,cls])=>`<span><i class="${cls||""}" style="background:${col}"></i>${esc(lab)}</span>`).join(""); }
 
 /* ---------- init ---------- */
 async function init(){
   const [mj, tl, cm] = await Promise.all(["members","timeline","committees"].map(f=>fetch(`data/${f}.json`).then(r=>r.json())));
   M = mj.members; TL = tl; COMM = cm; UPDATED = mj.updated;
+  const opt = f => fetch(`data/${f}.json`).then(r=>r.ok?r.json():null).catch(()=>null);
+  [DAILY, HISTORY, CHANGES] = await Promise.all([opt("daily"), opt("history"), opt("changes")]);
+  document.querySelectorAll("[data-range]").forEach(b=>b.onclick=()=>{ S.range=b.dataset.range;
+    document.querySelectorAll("[data-range]").forEach(x=>x.setAttribute("aria-checked", x.dataset.range===S.range)); drawFocus(); });
   document.getElementById("updated").textContent = mj.updated;
   document.getElementById("nmembers").textContent = M.length.toLocaleString();
   document.getElementById("nquotes").textContent = M.reduce((a,m)=>a+m.n,0).toLocaleString();
@@ -372,7 +389,7 @@ async function init(){
 function drawAll(){
   const d = DIMS.find(x=>x[0]===S.dim);
   document.querySelectorAll(".dimname").forEach(e=>e.textContent=d[1]);
-  drawHemis(); drawIdeology(); drawPartyDist(); drawFocus(); drawVoices(); drawList(); drawComm();
+  drawHemis(); drawIdeology(); drawPartyDist(); drawTrend(); drawChanges(); drawFocus(); drawVoices(); drawList(); drawComm();
 }
 // three states used by the seat chart and the committee bars
 const STATES = [["yes","Scores 3 or more","--yes"],["no","Scores 0 to 2","--no"],["none","Hasn't said enough to score","--card"]];
@@ -500,23 +517,56 @@ function drawPartyDist(){
 function quarters(){ return [...new Set(TL.map(r=>r.q))].sort(); }
 function drawFocus(){
   const t=focustopic.value, el=document.getElementById("focuschart"); el.innerHTML="";
-  const gs = GROUPS_IN(S.cong), Q=quarters();
+  if (!DAILY){ el.innerHTML='<p class="note">No daily data yet.</p>'; return; }
+  const ti = DAILY.topics.indexOf(t), gs = GROUPS_IN(S.cong), WIN = 30;
+  const end = new Date(UPDATED+"T00:00:00Z"), day = 864e5;
+  const start = S.range==="all" ? new Date("2023-02-01T00:00:00Z") : new Date(end - (+S.range)*day);
+  const key = d => d.toISOString().slice(0,10);
   const data = [];
   for (const p of ["D","R"]){
-    const rows = TL.filter(r=>gs.has(r.g) && r.party===p);
-    const tot = d3.rollup(rows, v=>d3.sum(v,d=>d.n), d=>d.q), on = d3.rollup(rows.filter(r=>r.topic===t), v=>d3.sum(v,d=>d.n), d=>d.q);
-    for (const q of Q) if ((tot.get(q)||0) >= 15) data.push({q, p, party:PNAME[p], share:(on.get(q)||0)/tot.get(q), n:Math.round(on.get(q)||0), tot:Math.round(tot.get(q))});
+    const tot = new Map(), on = new Map();
+    for (const [d,pa,g,k,n] of DAILY.rows){ if (pa!==p || !gs.has(g)) continue; tot.set(d,(tot.get(d)||0)+n); if (k===ti) on.set(d,(on.get(d)||0)+n); }
+    let a=0, b=0; const q=[];
+    for (let d=new Date(start - WIN*day); d<=end; d=new Date(+d+day)){
+      const k=key(d); a+=tot.get(k)||0; b+=on.get(k)||0; q.push([tot.get(k)||0, on.get(k)||0]);
+      if (q.length>WIN){ const [x,y]=q.shift(); a-=x; b-=y; }
+      if (d>=start && a>=10) data.push({d:new Date(+d), p, party:PNAME[p], share:b/a, n:Math.round(b), tot:Math.round(a)});
+    }
   }
   const W=widthOf(el);
-  el.append(Plot.plot({width:W, height:240, marginLeft:48, marginRight:96, style:plotStyle(),
-    x:{type:"point", label:null, domain:Q, tickRotate:W<640?-45:0, tickFormat:(d,i)=> W<640 && i%2 ? "" : d},
-    y:{label:"share of party's AI statements", percent:true, grid:true, tickFormat:d=>d+"%"},
+  el.append(Plot.plot({width:W, height:260, marginLeft:48, marginRight:96, style:plotStyle(),
+    x:{type:"utc", label:null}, y:{label:"share of party's AI statements", percent:true, grid:true, tickFormat:d=>d+"%"},
     color:{domain:["Democrats","Republicans"], range:[PC("D"),PC("R")]},
     marks:[Plot.ruleY([0],{stroke:css("--line")}),
-      Plot.line(data,{x:"q", y:"share", stroke:"party", strokeWidth:2, curve:"monotone-x"}),
-      Plot.dot(data,{x:"q", y:"share", fill:"party", r:3.5, stroke:css("--card"), strokeWidth:1}),
-      Plot.text(data.filter(d=>d.q===data.filter(x=>x.p===d.p).at(-1)?.q),{x:"q", y:"share", text:"party", fill:"party", dx:6, textAnchor:"start", fontWeight:600}),
-      Plot.tip(data, Plot.pointer({x:"q", y:"share", fill:css("--card"), stroke:css("--line"), channels:{Party:"party", Statements:d=>`${d.n} of ${d.tot}`}, format:{x:true, y:d=>`${(d*100).toFixed(1)}%`, fill:false, stroke:false}}))]}));
+      Plot.line(data,{x:"d", y:"share", z:"party", stroke:"party", strokeWidth:2}),
+      Plot.text(data.filter((d,i,a)=>!a[i+1] || a[i+1].p!==d.p),{x:"d", y:"share", text:"party", fill:"party", dx:6, textAnchor:"start", fontWeight:600}),
+      Plot.tip(data, Plot.pointerX({x:"d", y:"share", z:"party", fill:css("--card"), stroke:css("--line"), channels:{Party:"party", Statements:d=>`${d.n} of ${d.tot} in 30 days`}, format:{x:d=>d.toISOString().slice(0,10), y:d=>`${(d*100).toFixed(1)}%`, fill:false, stroke:false, z:false}}))]}));
+}
+/* ---------- members at 3+ over time ---------- */
+function drawTrend(){
+  const el=document.getElementById("trend"); el.innerHTML=""; const k=S.dim, d=DIMS.find(x=>x[0]===k);
+  setTitle("trend-title", `Members scoring 3 or more on ${d[1]}, over time`);
+  if (!HISTORY){ el.innerHTML='<p class="note">No history yet.</p>'; return; }
+  const name = {all:"All members", D:"Democrats", R:"Republicans"};
+  const data = HISTORY.filter(r=>r.c===S.cong && r.k===k).map(r=>({d:new Date(r.d+"T00:00:00Z"), p:r.p, who:name[r.p], v:r.hi/r.n, hi:r.hi, n:r.n})).sort((a,b)=>a.p.localeCompare(b.p) || a.d-b.d);
+  const W=widthOf(el);
+  el.append(Plot.plot({width:W, height:260, marginLeft:48, marginRight:110, style:plotStyle(),
+    x:{type:"utc", label:null}, y:{label:"members with 3 or more", percent:true, grid:true, tickFormat:d=>d+"%"},
+    color:{domain:["All members","Democrats","Republicans"], range:[css("--muted"), PC("D"), PC("R")]},
+    marks:[Plot.ruleY([0],{stroke:css("--line")}),
+      Plot.line(data,{x:"d", y:"v", z:"who", stroke:"who", strokeWidth:d=>d.p==="all"?1.5:2, strokeDasharray:d=>d.p==="all"?"4 3":null}),
+      Plot.text(data.filter((x,i,a)=>!a[i+1] || a[i+1].p!==x.p),{x:"d", y:"v", text:"who", fill:"who", dx:6, textAnchor:"start", fontWeight:600}),
+      Plot.tip(data, Plot.pointerX({x:"d", y:"v", z:"who", fill:css("--card"), stroke:css("--line"), channels:{Group:"who", Members:x=>`${x.hi} of ${x.n}`}, format:{x:x=>x.toISOString().slice(0,10), y:x=>`${(x*100).toFixed(0)}%`, stroke:false, z:false}}))]}));
+}
+/* ---------- recent big changes ---------- */
+function drawChanges(){
+  const box=document.getElementById("changelist");
+  const xs = (CHANGES||[]).filter(c=>S.party==="all"||c.party===S.party);
+  if (!xs.length){ box.innerHTML = `<p class="note">No big score changes yet. The daily update compares each day's scores with the day before.</p>`; return; }
+  const f = v => v==null ? "n/a" : fmt(v);
+  box.innerHTML = `<table class="changes"><thead><tr><th>Date</th><th>Member</th><th>Question</th><th class="num">Old</th><th class="num">New</th><th>Cause</th></tr></thead><tbody>${
+    xs.slice(0,25).map(c=>`<tr class="row" data-id="${esc(c.id)}"><td>${esc(c.date)}</td><td><span class="p${esc(c.party)}">●</span> ${esc(c.name)} <span class="note">${esc(c.party)}-${esc(c.state)}</span></td><td>${esc(dimLabel(c.dim))}</td><td class="num"><span class="sc" style="${shade(c.old)}">${f(c.old)}</span></td><td class="num"><span class="sc" style="${shade(c.new)}">${f(c.new)}</span></td><td class="note">${esc(c.cause)}</td></tr>`).join("")}</tbody></table>`;
+  box.querySelectorAll("tr.row").forEach(tr=>tr.onclick=()=>{ const m=M.find(x=>x.id===tr.dataset.id); if(m) goMember(m); });
 }
 function drawVoices(){
   const t=voicetopic.value, el=document.getElementById("voices"); el.innerHTML="";
@@ -676,7 +726,7 @@ document.addEventListener("click", e=>{
   const k = e.target.closest("[data-copy]"); if (k) { copy(document.getElementById(k.dataset.copy).textContent); return; }
 }, true);
 function addCiteButtons(){
-  for (const id of ["chamber","ideo-title","party","topics","topicshare","voices-title","lists","committees","members"]) {
+  for (const id of ["chamber","ideo-title","party","trend-title","changes","topics","topicshare","voices-title","lists","committees","members"]) {
     const h = document.getElementById(id); if (!h || h.querySelector(".citebtn")) continue;
     const b = document.createElement("button"); b.type="button"; b.className="citebtn"; b.dataset.cite=id; b.innerHTML = QICON + "Cite";
     b.setAttribute("aria-label", "Cite this section"); h.append(b);

@@ -22,7 +22,7 @@ def main(path):
     f.write_text(json.dumps(hr, indent=1))
     changed = sum(1 for d in hr.values() if d["verdict"] == "change")
     print(f"{len(hr)} decisions stored ({changed} score changes)")
-    for cmd in (["scripts/phase3_score.py", "combine"], ["scripts/phase5_build_site.py"], ["scripts/phase4_review_ui.py"]):
+    for cmd in (["scripts/phase3_label.py", "combine"], ["scripts/phase5_build_site.py"], ["scripts/phase4_review_ui.py"]):
         subprocess.run(["uv", "run", "python", *cmd], cwd=ROOT, check=True)
 
 

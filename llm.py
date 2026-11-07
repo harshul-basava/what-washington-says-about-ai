@@ -41,10 +41,27 @@ def spent(provider: str) -> float:
     return total
 
 
+def spent_this_month(provider: str) -> float:
+    """Spend for a provider since the first day of the current UTC month."""
+    if not LEDGER.exists():
+        return 0.0
+    t = time.gmtime()
+    start = time.mktime((t.tm_year, t.tm_mon, 1, 0, 0, 0, 0, 0, 0)) - time.timezone
+    total = 0.0
+    for line in LEDGER.read_text().splitlines():
+        rec = json.loads(line)
+        if rec["provider"] == provider and rec["ts"] >= start:
+            total += rec["cost"]
+    return total
+
+
 def _check(provider: str) -> None:
     s = spent(provider)
-    if s >= BUDGETS[provider]:
+    if s >= BUDGETS.get(provider, float("inf")):
         raise BudgetExceeded(f"{provider} spend ${s:.2f} >= budget ${BUDGETS[provider]}")
+    cap = (BUDGETS.get("monthly") or {}).get(provider)
+    if cap is not None and (m := spent_this_month(provider)) >= cap:
+        raise BudgetExceeded(f"{provider} spend this month ${m:.2f} >= monthly budget ${cap}")
 
 
 def _log(provider: str, cost: float, tag: str, meta: dict) -> None:
@@ -104,4 +121,32 @@ def x_get(path: str, params: dict, *, tag: str) -> dict:
         cost = X_PRICE_PER_POST * len(data.get("data") or [])
     _log("x", cost, tag, {"path": path, "n": len(data.get("data") or [])})
     time.sleep(1.05)  # full-archive: 1 req/sec
+    return data
+
+
+EXA_URL = "https://api.exa.ai/search"
+EXA_EST_PER_SEARCH = 0.007  # used only if Exa's response has no costDollars
+
+
+def exa_search(body: dict, *, tag: str) -> dict:
+    """One Exa search (with page text). Logs Exa's reported cost; capped like the other providers."""
+    _check("exa")
+    headers = {"x-api-key": os.environ["EXA_API_KEY"], "Content-Type": "application/json"}
+    for attempt in range(4):
+        try:
+            r = httpx.post(EXA_URL, json=body, headers=headers, timeout=120)
+        except (httpx.TimeoutException, httpx.TransportError):
+            if attempt < 3:
+                time.sleep(5 * 2**attempt)
+                continue
+            raise
+        if r.status_code in (429, 500, 502, 503) and attempt < 3:
+            time.sleep(5 * 2**attempt)
+            continue
+        break
+    if r.status_code != 200:
+        raise RuntimeError(f"Exa {r.status_code}: {r.text[:500]}")
+    data = r.json()
+    cost = float((data.get("costDollars") or {}).get("total") or EXA_EST_PER_SEARCH)
+    _log("exa", cost, tag, {"n": len(data.get("results") or [])})
     return data
