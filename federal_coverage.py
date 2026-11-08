@@ -1,8 +1,8 @@
 """Offline evidence and research-effort metrics for federal profiles."""
 import json
 import statistics
-from datetime import date
-from federal_x_config import fingerprint
+from datetime import date, datetime, timedelta, timezone
+from federal_x_config import fingerprint, current_job
 
 
 def read(path, default):
@@ -38,8 +38,8 @@ def coverage(root, subjects, audit):
         }
         accounts=[a for a in x_accounts if a['subject_id']==subject['id']]
         account_fingerprints={a['id']:fingerprint(a) for a in accounts}
-        jobs=[j for j in x_state['jobs'].values() if j['account_id'] in account_fingerprints and
-              j.get('fingerprint')==account_fingerprints[j['account_id']]]
+        until=(datetime.now(timezone.utc).date()+timedelta(days=1)).isoformat()
+        jobs=[j for j in x_state['jobs'].values() if current_job(j,account_fingerprints,x_config,until)]
         profiles[subject['id']].update(
             x_accounts=len(accounts),x_statements=sum(s.get('origin')=='federal_x' for s in statements),
             x_windows_searched=sum(j['status']=='searched' for j in jobs),

@@ -19,7 +19,7 @@ sys.path[:0]=[str(ROOT),str(ROOT/'scripts/daily')]
 import policy_subjects
 from dotenv import dotenv_values
 from federal_sources import digest
-from federal_x_config import KEYWORDS, fingerprint
+from federal_x_config import KEYWORDS, fingerprint, current_job
 
 AI=re.compile(r'\b(?:AI|AGI|artificial intelligence|superintelligence|super intelligence|OpenAI|Anthropic|export controls?|frontier act|kill switch act|stop stealing our chips|independent verification)\b',re.I)
 ERRORS={'missing_auth_token','authentication_failed','rate_limited','timeout','request_failed','malformed_response'}
@@ -42,6 +42,9 @@ def windows(start, end):
 
 def registry(root):
     config=read(root/'config/federal_x.json',{'version':1,'enabled':False,'accounts':[]})
+    if config.get('historical_window','month') not in ('month','account'):
+        raise ValueError('Invalid historical window')
+    if config.get('historical_until'):date.fromisoformat(config['historical_until'])
     subjects={p['id']:p for p in policy_subjects.load_subjects(root) if p['branch']=='executive'}
     seen={};ids=set()
     for a in config['accounts']:
@@ -129,7 +132,10 @@ def collect(root, mode='daily', since=None, dry=False, client=None, now=None, id
     root=Path(root);now=now or datetime.now(timezone.utc).date().isoformat();date.fromisoformat(now)
     config,subjects=registry(root)
     if mode not in ('daily','historical'):raise ValueError('Unknown X collection mode')
-    if since:date.fromisoformat(since)
+    if since:
+        date.fromisoformat(since)
+        # Use the requested start for historical checkpoint selection too.
+        if mode=='historical':config={**config,'since':since}
     accounts=[a for a in config['accounts'] if not ids or a['subject_id'] in ids]
     if ids and set(ids)-set(subjects):raise ValueError('Unknown federal profile')
     mapped={a['subject_id'] for a in config['accounts']}
@@ -140,12 +146,15 @@ def collect(root, mode='daily', since=None, dry=False, client=None, now=None, id
     state_path=root/'data/federal_x_state.json';status_path=root/'data/federal_x_status.json'
     state=read(state_path,{'version':1,'accounts':{},'jobs':{},'last_request_at':0})
     end=(date.fromisoformat(now)+timedelta(days=1)).isoformat()
-    # Monthly historical jobs and daily jobs have independent checkpoints.
+    # Historical and daily jobs have independent checkpoints.
+    history_window=config.get('historical_window','month')
+    if mode=='historical' and history_window=='account' and (not config.get('historical_until') or config['historical_until']>end):
+        raise ValueError('Account history requires a fixed historical_until no later than tomorrow (exclusive)')
     jobs=[]
     active_fingerprints={a['id']:fingerprint(a) for a in accounts}
     for a in accounts:
         account_fingerprint=active_fingerprints[a['id']]
-        previous=[j for j in state['jobs'].values() if j['account_id']==a['id'] and j['mode']==mode and j.get('fingerprint')==account_fingerprint]
+        previous=[j for j in state['jobs'].values() if j['account_id']==a['id'] and j['mode']==mode and current_job(j,active_fingerprints,config,end)]
         pending=sorted([j for j in previous if j['status']!='searched'],key=lambda j:j['start'])
         jobs.extend(pending)
         if mode=='daily':
@@ -155,14 +164,17 @@ def collect(root, mode='daily', since=None, dry=False, client=None, now=None, id
                             (date.fromisoformat(now)-timedelta(days=14)).isoformat())
             intervals=[(max(start,a['valid_from']),min(end,a.get('valid_until') or end))]
         else:
-            intervals=windows(max(since or config['since'],a['valid_from']),min(end,a.get('valid_until') or end))
+            start=max(since or config['since'],a['valid_from'])
+            stop=min(end,a.get('valid_until') or end,config.get('historical_until') or end)
+            intervals=[(start,stop)] if history_window=='account' else windows(start,stop)
         for start,stop in intervals:
             if start>=stop:continue
-            key=digest(f'{account_fingerprint}:{mode}:{start}:{stop}')
+            key=digest(f'{account_fingerprint}:{mode}:{start}:{stop}'+(':account' if mode=='historical' and history_window=='account' else ''))
             existing=state['jobs'].get(key)
             if existing and existing['status']=='searched':continue
             jobs.append(existing or {'key':key,'account_id':a['id'],'fingerprint':account_fingerprint,'mode':mode,
-                'start':start,'end':stop,'cursor':None,'status':'pending','pages':0,'last_attempt':0})
+                'start':start,'end':stop,'cursor':None,'status':'pending','pages':0,'last_attempt':0,
+                'window':history_window if mode=='historical' else 'daily'})
     jobs=list({j['key']:j for j in jobs}.values())
     report['pending_windows']=len(jobs)
     if dry:return report
@@ -221,7 +233,7 @@ def collect(root, mode='daily', since=None, dry=False, client=None, now=None, id
             jobs=[j for j in jobs if j['account_id']!=a['id']]
         write(state_path,state)
     report['pending_windows']=sum(j['status']!='searched' for j in state['jobs'].values()
-        if j['mode']==mode and j.get('fingerprint')==active_fingerprints.get(j['account_id']))
+        if j['mode']==mode and current_job(j,active_fingerprints,config,end))
     if report['pending_windows'] or report['errors']:report['status']='partial'
     write(status_path,report);return report
 

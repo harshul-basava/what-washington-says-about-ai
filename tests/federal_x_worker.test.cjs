@@ -57,3 +57,16 @@ test('structured rate and authentication errors retain safe classifications', as
     assert.ok(!error.message.includes('private payload'));
   }
 });
+
+test('explicit bottom termination overrides the library cursor, while empty pages alone do not', async () => {
+  const {normalizePage}=await worker();
+  const account={id:'7',username:'Agency'};
+  for (const direction of [null,'Top','Bottom']) {
+    const instructions=[{type:'TimelineReplaceEntry'},{type:'TimelineReplaceEntry'}];
+    if (direction) instructions.push({type:'TimelineTerminateTimeline',direction});
+    const page={tweets:[],nextCursor:'library-cursor',
+      raw:{data:{search_by_raw_query:{search_timeline:{timeline:{instructions}}}}}};
+    const result=normalizePage(account,page);
+    assert.equal(result.cursor,direction==='Bottom' ? null : 'library-cursor');
+  }
+});

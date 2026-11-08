@@ -28,7 +28,10 @@ export function normalizePage(account, result) {
   if (!Array.isArray(instructions) || !Array.isArray(result?.tweets) || !result.tweets.every(validTweet) ||
       (result.nextCursor != null && typeof result.nextCursor !== 'string'))
     throw Object.assign(new Error('Invalid search page'),{code:'malformed_response'});
-  return {account:{id:account.id,username:account.username},cursor:result.nextCursor || null,
+  // X can retain bottom cursor entries alongside an explicit end marker.
+  // emusks 2.3.20 exposes that cursor but does not interpret the end marker.
+  const ended=instructions.some(i=>i.type==='TimelineTerminateTimeline' && i.direction==='Bottom');
+  return {account:{id:account.id,username:account.username},cursor:ended ? null : result.nextCursor || null,
     posts:result.tweets.map(t=>({id:t.id,text:t.text,created_at:t.created_at,
       author_id:t.user?.id,author:t.user?.username,is_repost:!!t.retweeting,
       is_promoted:!!(t.promotedMetadata || t.promoted_metadata || t.ad),

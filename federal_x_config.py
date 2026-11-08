@@ -8,3 +8,23 @@ KEYWORDS = '(AI OR "artificial intelligence" OR AGI OR superintelligence OR "sup
 def fingerprint(account):
     # A changed query or sourced account definition requires a fresh search.
     return hashlib.sha256((json.dumps(account, sort_keys=True) + KEYWORDS).encode()).hexdigest()
+
+
+def current_job(job, fingerprints, config, until=None):
+    if (job.get('account_id') not in fingerprints or
+            job.get('fingerprint') != fingerprints[job['account_id']]):
+        return False
+    if job.get('mode') != 'historical':
+        return True
+    window = config.get('historical_window', 'month')
+    if job.get('window', 'month') != window:
+        return False
+    account = next(a for a in config['accounts'] if a['id'] == job['account_id'])
+    start = max(config['since'], account['valid_from'])
+    ends = [v for v in (config.get('historical_until'), account.get('valid_until'), until) if v]
+    end = min(ends) if ends else None
+    # Fixed account intervals must match exactly. Monthly jobs remain bounded
+    # subintervals; daily jobs keep their independent overlapping checkpoints.
+    if window == 'account':
+        return job['start'] == start and (end is None or job['end'] == end)
+    return job['start'] >= start and (end is None or job['end'] <= end)

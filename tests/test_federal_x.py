@@ -190,4 +190,79 @@ class XTests(unittest.TestCase):
             self.assertEqual(len(statements),1)
             self.assertEqual(statements[0]['text'],TEXT)
 
+    def test_account_history_resumes_empty_first_page_with_frozen_dates(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            conf=copy.deepcopy(CONFIG);conf.update(historical_window='account',historical_until='2026-11-09',page_limit=1)
+            write_json(root/'config/federal_x.json',conf)
+            calls=[]
+            def first(req):calls.append(req);return PAGE|{'posts':[],'cursor':'next'}
+            report=self.x.collect(root,mode='historical',client=first,now='2026-11-08')
+            self.assertEqual(report['pending_windows'],1)
+            def second(req):calls.append(req);return PAGE
+            report=self.x.collect(root,mode='historical',client=second,now='2026-11-10')
+            self.assertEqual(calls[0]['query'],calls[1]['query'])
+            self.assertIn('since:2023-01-01 until:2026-11-09',calls[0]['query'])
+            self.assertEqual(calls[1]['cursor'],'next')
+            self.assertEqual(report['status'],'ok')
+            self.assertEqual(report['pending_windows'],0)
+
+    def test_replaced_monthly_jobs_do_not_make_account_history_incomplete(self):
+        import federal_coverage
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            self.x.collect(root,mode='historical',client=lambda req:{'error':'timeout'},now='2026-11-08')
+            conf=copy.deepcopy(CONFIG);conf.update(historical_window='account',historical_until='2026-11-09')
+            write_json(root/'config/federal_x.json',conf)
+            report=self.x.collect(root,mode='historical',client=lambda req:PAGE,now='2026-11-08')
+            self.assertEqual(report['status'],'ok')
+            self.assertEqual(report['pages'],1)
+            coverage=federal_coverage.coverage(root,policy_subjects.load_subjects(root),{})
+            self.assertEqual(coverage['profiles'][PERSON['id']]['x_windows_searched'],1)
+            self.assertEqual(coverage['profiles'][PERSON['id']]['x_status'],'searched')
+
+    def test_changed_history_cutoff_discards_old_cursor_and_coverage(self):
+        import federal_coverage
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            conf=copy.deepcopy(CONFIG);conf.update(historical_window='account',historical_until='2026-11-09',page_limit=1)
+            write_json(root/'config/federal_x.json',conf)
+            self.x.collect(root,mode='historical',client=lambda req:PAGE|{'cursor':'old'},now='2026-11-08')
+            conf['historical_until']='2025-01-01';write_json(root/'config/federal_x.json',conf)
+            calls=[]
+            def transport(req):calls.append(req);return PAGE|{'posts':[]}
+            report=self.x.collect(root,mode='historical',client=transport,now='2026-11-08')
+            self.assertEqual(report['status'],'ok')
+            self.assertEqual(len(calls),1)
+            self.assertIn('until:2025-01-01',calls[0]['query'])
+            self.assertIsNone(calls[0]['cursor'])
+            conf['historical_until']='2026-01-01';write_json(root/'config/federal_x.json',conf)
+            coverage=federal_coverage.coverage(root,policy_subjects.load_subjects(root),{})
+            self.assertEqual(coverage['profiles'][PERSON['id']]['x_windows_searched'],0)
+            self.assertEqual(coverage['profiles'][PERSON['id']]['x_status'],'not_started')
+
+    def test_history_since_override_reports_only_requested_interval(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            conf=copy.deepcopy(CONFIG);conf.update(historical_window='account',historical_until='2026-11-09',page_limit=1)
+            write_json(root/'config/federal_x.json',conf)
+            self.x.collect(root,mode='historical',client=lambda req:PAGE|{'cursor':'old'},now='2026-11-08')
+            calls=[]
+            def transport(req):calls.append(req);return PAGE
+            report=self.x.collect(root,mode='historical',since='2026-01-01',client=transport,now='2026-11-08')
+            self.assertEqual(report['status'],'ok')
+            self.assertEqual(len(calls),1)
+            self.assertIn('since:2026-01-01',calls[0]['query'])
+            self.assertIsNone(calls[0]['cursor'])
+
+    def test_account_history_requires_fixed_cutoff_no_later_than_tomorrow(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            for cutoff in [None,'2027-01-01']:
+                conf=copy.deepcopy(CONFIG);conf.update(historical_window='account',historical_until=cutoff,page_limit=1)
+                write_json(root/'config/federal_x.json',conf)
+                with self.assertRaisesRegex(ValueError,'fixed historical_until'):
+                    self.x.collect(root,mode='historical',client=lambda req:PAGE,now='2026-11-08')
+                self.assertFalse((root/'data/federal_x_state.json').exists())
+
 if __name__=='__main__':unittest.main()

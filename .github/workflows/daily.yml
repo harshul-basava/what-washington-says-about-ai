@@ -1,7 +1,8 @@
 # Daily update: collect federal statements and assess policy positions (DeepSeek -> Astra),
 # then collect Congress statements, update its five scores, rebuild the site data and push.
 # Vercel redeploys on the push when the project permits deployment.
-# Needs repo secrets: OPENROUTER_API_KEY, X_BEARER_TOKEN, GOVINFO_API_KEY. Optional: EXA_API_KEY, X_AUTH_TOKEN (federal emusks).
+# Forks default to federal-only updates. Explicit sources override this default.
+# Federal secrets: OPENROUTER_API_KEY, X_AUTH_TOKEN. Congress also needs X_BEARER_TOKEN and GOVINFO_API_KEY.
 name: Daily update
 
 on:
@@ -10,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       sources:
-        description: "Sources (comma list of x,crec,chrg,web,federal; empty = all daily sources)"
+        description: "Sources (x,crec,chrg,web,federal; empty = federal on forks, all on upstream)"
         required: false
       since:
         description: "Override start date YYYY-MM-DD (empty = since last run)"
@@ -28,6 +29,8 @@ jobs:
   update:
     runs-on: ubuntu-latest
     timeout-minutes: 90
+    env:
+      IN_SOURCES: ${{ inputs.sources || (github.event.repository.fork && 'federal') || '' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -59,7 +62,7 @@ jobs:
         run: npm ci --ignore-scripts --no-audit --no-fund
 
       - name: Refresh reference files (legislators, committees)
-        if: steps.keys.outputs.skip != 'true'
+        if: steps.keys.outputs.skip != 'true' && env.IN_SOURCES != 'federal'
         run: |
           for f in legislators-current.json committee-membership-current.json; do
             curl -fsSL "https://unitedstates.github.io/congress-legislators/$f" -o "data/ref/$f.new" && mv "data/ref/$f.new" "data/ref/$f" || echo "kept old $f"
@@ -73,7 +76,6 @@ jobs:
           X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
           GOVINFO_API_KEY: ${{ secrets.GOVINFO_API_KEY }}
           EXA_API_KEY: ${{ secrets.EXA_API_KEY }}
-          IN_SOURCES: ${{ inputs.sources }}
           IN_SINCE: ${{ inputs.since }}
         run: |
           args=()
@@ -102,7 +104,7 @@ jobs:
           git push
 
       - name: Open an issue for big score changes
-        if: steps.keys.outputs.skip != 'true' && hashFiles('data/issue.md') != ''
+        if: steps.keys.outputs.skip != 'true' && env.IN_SOURCES != 'federal' && hashFiles('data/issue.md') != ''
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

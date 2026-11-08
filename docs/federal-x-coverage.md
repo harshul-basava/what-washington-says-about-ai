@@ -1,6 +1,6 @@
 # Federal X account coverage — 2026-11-08
 
-The initial registry contains 23 sourced accounts for 21 of 186 federal profiles. No live X search ran during this integration. No direct X excerpts have entered the corpus.
+The registry contains 23 sourced accounts for 21 of 186 federal profiles. The first authenticated historical collection started on November 8, 2026. The tracked X state and the site coverage export record completed intervals, imported excerpts, and pending work.
 
 The other 165 profiles need sourced account mappings. Their existing web research and daily named searches continue. An institution account supplies institutional evidence; it does not supply personal views for its leaders.
 
@@ -210,6 +210,6 @@ This list represents a mapping gap. It does not establish that these people or i
 
 ## Collection limits
 
-The collector uses Latest search through emusks, with monthly historical windows and separate daily checkpoints. Search can miss posts. Missing authentication, invalid responses, rate limits, and unfinished pages remain visible as incomplete work. No search result establishes a complete archive.
+The collector uses Latest search through emusks, with paginated account-wide historical intervals and separate daily checkpoints. The historical cutoff is November 9, 2026, exclusive. Monthly intervals remain an optional configuration. Search can miss posts. Missing authentication, invalid responses, rate limits, and unfinished pages remain visible as incomplete work. No search result establishes a complete archive.
 
 The site exports account counts, X excerpt counts, completed search windows, and status for every profile. Add only accounts with public identity sources and explicit ownership dates to `config/federal_x.json`. Check role intervals for shared office accounts. Changing an account definition invalidates its old search checkpoints.
