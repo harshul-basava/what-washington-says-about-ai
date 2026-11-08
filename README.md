@@ -143,7 +143,28 @@ make policies-build
 
 A retry reuses its saved search result. `--refresh` makes a new paid search for the selected IDs and pass numbers. `--reverify` checks only cached search passes, although it can retrieve a missing source or format an incomplete saved result. Run the research and source passes sequentially. These one-time calls use the existing lifetime budget; daily calls also use the existing monthly cap.
 
-The site shows each profile's verified excerpt count, distinct source count, completed search passes, pending source checks, and notes from individual searches. Later passes can resolve a gap recorded in an earlier note. The coverage download compares federal people with congressional people. The current congressional median is 12 excerpts across 649 profiles. Search completion does not establish exhaustive coverage or equal evidence depth. Federal historical collection lacks the API-backed X archive and bulk govinfo channels used for Congress. It can still find indexed posts and public government transcripts. No public record means no inferred stance.
+The site shows each profile's verified excerpt count, distinct source count, completed search passes, pending source checks, and notes from individual searches. Later passes can resolve a gap recorded in an earlier note. The coverage download compares federal people with congressional people. The current congressional median is 12 excerpts across 649 profiles. Search completion does not establish exhaustive coverage or equal evidence depth. Federal collection now supports emusks X search, but no authenticated federal X search has run. It still lacks the bulk govinfo channel used for Congress. No public record means no inferred stance.
+
+### Federal X search through emusks
+
+The federal collector uses [emusks](https://emusks.tiago.zip/) for read-only account lookup and Latest search. It requires an X session token. Add `X_AUTH_TOKEN` to the ignored local `.env` file. For the scheduled workflow, add it as a GitHub repository secret. Never commit the token or place it in command arguments. The congressional collector retains its existing X API configuration.
+
+`config/federal_x.json` currently links 23 sourced accounts to 21 federal profiles. The remaining 165 profiles need sourced account mappings. The [X coverage report](docs/federal-x-coverage.md) lists the accounts, sources, dates, and gaps. The site reports mapped accounts, imported excerpts, and search status. No live X search or import occurred during this integration; the initial direct X excerpt count is zero.
+
+```bash
+npm ci --ignore-scripts --no-audit --no-fund
+make federal-x-plan X_ARGS="--mode historical"  # offline; no authentication or writes
+make federal-x X_ARGS="--mode historical --max-pages 30"
+# Repeat the collection command until its pending window count reaches zero.
+make policies-label POLICY_ARGS="--scope executive --max-cost 5"
+make policies-build
+```
+
+Use `--ids nsa,commerce` to select profiles, or `--since YYYY-MM-DD` to set a start date. Historical searches use monthly windows from 2023, bounded by account dates. Daily searches start with 14 days and then overlap previous windows by three days. Unfinished pages retain their cursors. Each invocation permits at most 30 pages and 12 minutes by default. The collector waits at least 20 seconds between requests and records a 15-minute cooldown after a rate limit. An incomplete invocation returns a failure status after it saves progress.
+
+Search results can omit or truncate posts; a completed window does not establish a complete archive. The collector pins each account's numeric identity, verifies post authors and dates, and excludes reposts, advertisements, and protected content. It uses only the author's own text from quote posts. Official-role accounts have explicit date intervals. Each accepted post contributes at most 25 exact words, and duplicate post IDs retain their existing evidence. Full responses remain in ignored local storage. The existing DeepSeek/Astra cascade assesses new policy candidates; X collection itself uses no model calls.
+
+Daily federal updates now run web collection, X collection, then policy judgments. Missing X authentication produces an explicit partial status. Web collection, policy judgments, and Congress still run. Historical collection uses a separate command and separate checkpoints; the daily workflow does not backfill every historical month automatically.
 
 ## Daily updates
 
@@ -189,9 +210,9 @@ make federal FEDERAL_ARGS="--skip-collect" # resume judgments only
 uv run python scripts/phase3_policies.py plan --scope executive
 ```
 
-The default daily source list includes `federal`. Use `--sources federal` for a federal-only run, or omit it for a congressional-only run. The workflow still runs at 11:00 UTC. GitHub runs a scheduled workflow from the repository's default branch, so the new federal step starts after this change merges there. It uses the existing `OPENROUTER_API_KEY` secret and does not need a new service or key.
+The default daily source list includes `federal`. Use `--sources federal` for a federal-only run, or omit it for a congressional-only run. The workflow still runs at 11:00 UTC. GitHub runs a scheduled workflow from the repository's default branch, so the new federal step starts after this change merges there. Federal web collection and judgments use the existing `OPENROUTER_API_KEY` secret. Federal X search additionally requires the `X_AUTH_TOKEN` session secret.
 
-Add these repository secrets: `OPENROUTER_API_KEY`, `X_BEARER_TOKEN` and `GOVINFO_API_KEY` (free from api.data.gov). `EXA_API_KEY` is optional. If `OPENROUTER_API_KEY` is not set, the job does not run.
+Add these repository secrets: `OPENROUTER_API_KEY`, `X_BEARER_TOKEN` and `GOVINFO_API_KEY` (free from api.data.gov). `EXA_API_KEY` is optional. Add `X_AUTH_TOKEN` to enable federal emusks search. If `OPENROUTER_API_KEY` is not set, the job does not run.
 
 Monthly spend limits are in `budgets.yaml`. Before the first live run, run `make calibrate` one time (about $3–5) to set the confidence threshold.
 

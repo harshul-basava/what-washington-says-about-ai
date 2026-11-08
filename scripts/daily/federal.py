@@ -387,19 +387,21 @@ def build(root):
 
 
 def run(root, config, since=None, dry=False, skip_collect=False):
+    import federal_x
     report = {'date': today(), 'status': 'dry_run' if dry else 'ok', 'schedule_utc': '11:00'}
     if not dry:
         write(root / 'data/federal_status.json', {**report, 'status': 'in_progress'})
     for stage, action in [('collection', lambda: collect(root, config, since, dry)),
+                          ('x', lambda: federal_x.collect(root, since=since, dry=dry)),
                           ('judgments', lambda: judge(root, config['judgment_max_cost'], dry))]:
-        if stage == 'collection' and skip_collect:
+        if stage in ('collection', 'x') and skip_collect:
             report[stage] = {'status': 'skipped'}
             continue
         try:
             report[stage] = action()
         except Exception as exc:
             report[stage] = {'status': 'partial', 'error': type(exc).__name__}
-        if report[stage]['status'] == 'partial':
+        if report[stage]['status'] in ('partial', 'unavailable'):
             report['status'] = 'partial'
         if not dry:
             write(root / 'data/federal_status.json', {**report, 'status': 'in_progress', 'last_completed_stage': stage})

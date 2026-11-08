@@ -118,6 +118,20 @@ class FederalTests(unittest.TestCase):
             self.assertEqual(report['status'], 'dry_run')
             self.assertEqual(before, {str(p): p.read_bytes() for p in root.rglob('*') if p.is_file()})
 
+    def test_unavailable_x_does_not_skip_web_or_policy_judgments(self):
+        import federal_x
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            with patch.object(federal,'collect',return_value={'status':'ok'}) as web, \
+                 patch.object(federal_x,'collect',return_value={'status':'unavailable','error':'missing_auth_token'}) as x, \
+                 patch.object(federal,'judge',return_value={'status':'ok'}) as judge, \
+                 patch.object(federal,'build'),patch('llm.spent_this_month',return_value=0):
+                report=federal.run(root,CONFIG)
+            self.assertEqual(report['x']['error'],'missing_auth_token')
+            self.assertEqual(report['judgments']['status'],'ok')
+            self.assertEqual(report['status'],'partial')
+            self.assertTrue(web.called and x.called and judge.called)
+
     def test_parallel_searches_save_each_result_on_the_coordinator_thread(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp); self.fixture(root)

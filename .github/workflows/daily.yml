@@ -1,7 +1,7 @@
 # Daily update: collect federal statements and assess policy positions (DeepSeek -> Astra),
 # then collect Congress statements, update its five scores, rebuild the site data and push.
 # Vercel redeploys on the push when the project permits deployment.
-# Needs repo secrets: OPENROUTER_API_KEY, X_BEARER_TOKEN, GOVINFO_API_KEY. Optional: EXA_API_KEY.
+# Needs repo secrets: OPENROUTER_API_KEY, X_BEARER_TOKEN, GOVINFO_API_KEY. Optional: EXA_API_KEY, X_AUTH_TOKEN (federal emusks).
 name: Daily update
 
 on:
@@ -48,6 +48,16 @@ jobs:
         if: steps.keys.outputs.skip != 'true'
         run: uv sync --no-dev --frozen
 
+      - uses: actions/setup-node@v4
+        if: steps.keys.outputs.skip != 'true'
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install emusks for federal X search
+        if: steps.keys.outputs.skip != 'true'
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
       - name: Refresh reference files (legislators, committees)
         if: steps.keys.outputs.skip != 'true'
         run: |
@@ -60,6 +70,7 @@ jobs:
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          X_AUTH_TOKEN: ${{ secrets.X_AUTH_TOKEN }}
           GOVINFO_API_KEY: ${{ secrets.GOVINFO_API_KEY }}
           EXA_API_KEY: ${{ secrets.EXA_API_KEY }}
           IN_SOURCES: ${{ inputs.sources }}

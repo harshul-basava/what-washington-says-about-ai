@@ -61,6 +61,7 @@
     const linked = member.entity_type === 'institution' ? members.filter(m=>m.entity_type==='person' && (m.roles || []).some(r=>r.organization_id===member.id)) : [];
     const research = member.research;
     const researchNote = research ? `<div class="policy-research"><h4>Historical evidence</h4><p>${esc(research.statements)} verified excerpts from ${esc(research.sources)} source pages. ${esc(research.completed_passes)} completed search passes. ${esc(research.official_leads_checked || 0)} government source pages checked.${research.official_leads_pending ? ' ' + esc(research.official_leads_pending) + ' source pages await retry.' : ''} ${research.research_status === 'not_started' ? 'Historical research has not started.' : research.research_status === 'needs_retry' ? 'Historical research needs a retry.' : 'Search effort does not establish complete coverage.'}</p>
+      ${research.x_status ? `<p>${esc(research.x_accounts || 0)} sourced X accounts · ${esc(research.x_statements || 0)} X excerpts · ${esc(research.x_windows_searched || 0)} search windows checked. ${esc({unmapped:'This profile needs a sourced X account.',unavailable:'X collection requires authentication.',not_started:'X collection has not started.',partial:'Some X searches need another run.',searched:'X searches can miss posts.'}[research.x_status] || '')}</p>` : ''}
       ${research.gaps?.length ? `<details><summary>Notes from individual searches</summary><p>These notes record gaps at the time of each search. Later searches can resolve them.</p><ul>${research.gaps.map(g=>`<li>${esc(g)}</li>`).join('')}</ul></details>` : ''}</div>` : '';
     return `<div class="policy-profile"><p>${esc(member.description || (member.entity_type === 'institution' ? 'Institutional statements do not establish the personal views of its officials.' : 'Each quote identifies the role in which this official spoke.'))}</p>
       ${researchNote}
@@ -88,7 +89,8 @@
   function researchCoverageNote(research) {
     if (!research?.summary) return '';
     const s = research.summary;
-    return `${s.people_searched} of ${s.people} officials have historical searches. The median is ${s.people_median_statements} excerpts per official, compared with ${s.congress_median_statements} for Congress. ${s.people_without_evidence} officials have no verified excerpts. Federal research covers public web sources; it does not include an API-backed X archive or a bulk govinfo collection.`;
+    const x = s.x_accounts ? `Emusks search has ${s.x_accounts} sourced X accounts for ${s.x_mapped_profiles} federal profiles and ${s.x_statements || 0} X excerpts. ${research.x?.status === 'unavailable' ? 'X search requires authentication and has not run in this update.' : research.x?.status === 'partial' ? 'X search has unfinished work.' : research.x?.status === 'not_started' ? 'X search has not started.' : 'X search results can be incomplete.'} Profiles without sourced accounts remain outside X collection.` : 'Federal research has no configured X collection.';
+    return `${s.people_searched} of ${s.people} officials have historical searches. The median is ${s.people_median_statements} excerpts per official, compared with ${s.congress_median_statements} for Congress. ${s.people_without_evidence} officials have no verified excerpts. ${x} Federal research does not include a bulk govinfo collection.`;
   }
   async function mount(root) {
     if (!root) return;
@@ -252,7 +254,7 @@
       if (width !== chartWidth) { chartWidth = width; renderCharts(); }
     }).observe(get('policy-chart-detail'));
   }
-  const api = {filterMembers, renderRecord, renderProfile, summaryLabel, evidenceRecords, federalUpdateNote, mount};
+  const api = {filterMembers, renderRecord, renderProfile, summaryLabel, evidenceRecords, federalUpdateNote, researchCoverageNote, mount};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else { global.PolicyView = api; mount(document.getElementById('policy-explorer')); }
 })(typeof window !== 'undefined' ? window : globalThis);

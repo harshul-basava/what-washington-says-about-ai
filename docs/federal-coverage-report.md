@@ -54,7 +54,7 @@ The following profiles have no verified excerpts after the historical searches:
 
 The government source pass retains 18 distinct pages for retry. These pages include unavailable sources and incomplete model output. Per-profile counts and source errors remain in `data/federal_seed_research.json`.
 
-Federal research lacks the API-backed X archive and bulk govinfo collection used for Congress. It includes indexed public posts and publicly available testimony. Some new or operational officials have few public AI statements. Dates remain unknown when the source does not establish them. Roles and memberships require manual review.
+Federal research now supports historical and daily X search through emusks. The initial registry has 23 sourced accounts for 21 profiles; 165 profiles need sourced accounts. No authenticated federal X search has run, and no direct X excerpts have entered the corpus. Search completion cannot guarantee a complete archive. The [X coverage report](federal-x-coverage.md) lists the mappings and account sources. Bulk govinfo collection remains absent. Some new or operational officials have few public AI statements. Dates remain unknown when the source does not establish them. Roles and memberships require manual review.
 
 ## Daily inclusion
 

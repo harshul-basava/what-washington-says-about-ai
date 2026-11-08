@@ -2,6 +2,7 @@
 import json
 import statistics
 from datetime import date
+from federal_x_config import fingerprint
 
 
 def read(path, default):
@@ -11,6 +12,10 @@ def read(path, default):
 def coverage(root, subjects, audit):
     profiles = {}
     source_urls = set()
+    x_config=read(root / 'config/federal_x.json', {'accounts':[]})
+    x_state=read(root / 'data/federal_x_state.json', {'jobs':{}})
+    x_status=read(root / 'data/federal_x_status.json', {'status':'not_started'})
+    x_accounts=x_config['accounts']
     seed_audit = read(root / 'data/federal_seed_research.json', {}).get('profiles', {})
     for subject in subjects:
         statements = read(root / 'evidence' / f"{subject['id']}.json", {'statements': []})['statements']
@@ -31,11 +36,20 @@ def coverage(root, subjects, audit):
             'official_leads_checked': seed_audit.get(subject['id'], {}).get('sources_checked', 0),
             'official_leads_pending': seed_audit.get(subject['id'], {}).get('sources_pending', 0),
         }
+        accounts=[a for a in x_accounts if a['subject_id']==subject['id']]
+        account_fingerprints={a['id']:fingerprint(a) for a in accounts}
+        jobs=[j for j in x_state['jobs'].values() if j['account_id'] in account_fingerprints and
+              j.get('fingerprint')==account_fingerprints[j['account_id']]]
+        profiles[subject['id']].update(
+            x_accounts=len(accounts),x_statements=sum(s.get('origin')=='federal_x' for s in statements),
+            x_windows_searched=sum(j['status']=='searched' for j in jobs),
+            x_status=('unmapped' if not accounts else 'unavailable' if x_status['status']=='unavailable' else
+                      'partial' if any(j['status']!='searched' for j in jobs) else 'searched' if jobs else 'not_started'))
     people = [p for p in profiles.values() if p['entity_type'] == 'person']
     counts = [p['statements'] for p in people]
     congress = read(root / 'data/roster.json', [])
     cc = [len(read(root / 'evidence' / f"{p['id']}.json", {'statements': []})['statements']) for p in congress]
-    return {'updated_on': date.today().isoformat(), 'profiles': profiles, 'summary': {
+    return {'updated_on': date.today().isoformat(), 'profiles': profiles, 'x':x_status, 'summary': {
         'people': len(people), 'institutions': len(profiles) - len(people),
         'statements': sum(p['statements'] for p in profiles.values()),
         'unique_source_pages': len(source_urls),
@@ -46,4 +60,6 @@ def coverage(root, subjects, audit):
         'people_completed': sum(p['completed_passes'] >= 8 for p in people),
         'congress_people': len(cc), 'congress_median_statements': statistics.median(cc) if cc else 0,
         'congress_statements': sum(cc),
+        'x_accounts':len(x_accounts), 'x_mapped_profiles':len({a['subject_id'] for a in x_accounts}),
+        'x_statements':sum(p['x_statements'] for p in profiles.values()),
     }}

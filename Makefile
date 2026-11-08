@@ -5,7 +5,7 @@
 
 PY = uv run python
 
-.PHONY: roster handles x x-free web assemble score site refresh clean-evidence serve daily daily-dry federal federal-dry history calibrate policies-plan policies-label policies-build test
+.PHONY: roster handles x x-free web assemble score site refresh clean-evidence serve daily daily-dry federal federal-dry federal-x federal-x-plan history calibrate policies-plan policies-label policies-build test
 
 roster:            ## Phase 1: current members + called 2026 races
 	$(PY) scripts/phase1_roster.py
@@ -44,6 +44,12 @@ federal:           ## Collect, assess and build federal policy updates only
 
 federal-dry:       ## Plan federal collection and judgments without network calls or writes
 	$(PY) scripts/daily/run.py --sources federal --dry-run
+
+federal-x-plan:    ## Plan emusks X search without authentication or network calls
+	$(PY) scripts/federal_x.py plan $(X_ARGS)
+
+federal-x:         ## Collect federal X posts with resumable emusks searches
+	$(PY) scripts/federal_x.py collect $(X_ARGS)
 
 history:           ## Rebuild the score history (monthly backfill from labels + daily snapshots)
 	$(PY) scripts/daily/history.py backfill

@@ -127,3 +127,14 @@ test('historical coverage reports search effort and gaps separately from model c
   assert.ok(html.includes('No &lt;script&gt; source.'));
   assert.ok(!html.includes('8%'));
 });
+
+test('federal coverage distinguishes configured X search from completed collection', () => {
+  const research={summary:{people:150,people_searched:150,people_median_statements:5,
+    congress_median_statements:12,people_without_evidence:11,x_accounts:23,x_mapped_profiles:20,x_statements:0},
+    x:{status:'unavailable',error:'missing_auth_token'}};
+  const note=view.researchCoverageNote(research);
+  assert.ok(note.includes('23 sourced X accounts'));
+  assert.ok(note.includes('0 X excerpts'));
+  assert.ok(note.includes('requires authentication'));
+  assert.ok(!note.includes('complete X archive'));
+});

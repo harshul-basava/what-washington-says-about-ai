@@ -296,6 +296,8 @@ Role histories appear in profiles. The model receives the role for that specific
 
 # Daily federal source extraction
 
+Federal X search uses deterministic extraction through emusks, without an extraction model or prompt. The query in `federal_x_config.py` combines the sourced account handle, AI and policy terms, date limits, and a repost exclusion. The collector checks author identity and dates, then selects a contiguous excerpt of at most 25 words near the first matching term. It excludes quoted posts by other authors. New evidence uses the same policy prompts and independent DeepSeek/Astra confidence cascade described above. X search does not change the judgment threshold or prompts.
+
 The federal daily collector uses the primary model from `config/policy_judging.json`. Source queries and domain lists live in `config/federal_sources.json`. Search asks for public AI policy statements since the per-group checkpoint. Extraction receives the source URL, title, registered subjects and roles, and one source-text chunk.
 
 ```text

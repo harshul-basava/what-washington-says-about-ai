@@ -237,7 +237,7 @@ def build(root):
     write_json(root / 'data/federal_coverage.json', research)
     write_json(root / 'site/data/federal_coverage.json', research)
     with (root / 'site/data/federal_coverage.csv').open('w', newline='') as f:
-        columns = ['id', 'name', 'entity_type', 'organization_id', 'statements', 'sources', 'earliest_date', 'latest_date', 'research_status', 'completed_passes', 'search_requests', 'rejected_excerpts', 'official_leads_checked', 'official_leads_pending']
+        columns = ['id', 'name', 'entity_type', 'organization_id', 'statements', 'sources', 'earliest_date', 'latest_date', 'research_status', 'completed_passes', 'search_requests', 'rejected_excerpts', 'official_leads_checked', 'official_leads_pending', 'x_accounts', 'x_statements', 'x_windows_searched', 'x_status']
         writer = csv.DictWriter(f, fieldnames=columns, extrasaction='ignore', lineterminator='\n')
         writer.writeheader()
         for pid, profile in research['profiles'].items():
