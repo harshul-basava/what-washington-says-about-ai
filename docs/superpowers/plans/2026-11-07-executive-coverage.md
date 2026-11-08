@@ -54,7 +54,7 @@
 - [x] Verify real public sources and role references; seed officials and institutions, including task-force leadership.
 - [x] Validate exact source excerpts and record retrieval dates and hashes. Classify new candidates through the existing runner with a bounded budget.
 - [x] Build exports, run all tests, inspect the dev site on desktop and mobile, and review the final diff.
-- [ ] Commit and push to the existing fork branch under the user's prior push authorization. Check the PR for conflicts and report deployment limitations accurately.
+- [x] Commit and push to the existing fork branch under the user's prior push authorization. Check the PR for conflicts and report deployment limitations accurately.
 
 ## Execution record
 
@@ -67,3 +67,4 @@
 - Browser verification: scope filters, Commerce and NSA subagencies, task-force role links, source expansion, both themes, and 320/390-pixel layouts pass without horizontal overflow or console errors.
 - Source verification: exact normalized excerpts checked against retrieved pages; model classifications retain both assessments and uncertainty. Federal discovery and role updates remain manual.
 - Upstream compatibility: merged `13d73ca` without conflicts. The shared website build and all 58 tests pass after the merge. The only legacy export change is its build date; all 649 member records remain identical.
+- Delivery: pushed the implementation and upstream merge to the existing fork branch and updated PR #2. The dev preview remains open on the task-force profile.
