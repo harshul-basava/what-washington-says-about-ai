@@ -5,7 +5,7 @@
 
 PY = uv run python
 
-.PHONY: roster handles x x-free web assemble score site refresh clean-evidence serve daily daily-dry history calibrate
+.PHONY: roster handles x x-free web assemble score site refresh clean-evidence serve daily daily-dry history calibrate regfocus
 
 roster:            ## Phase 1: current members + called 2026 races
 	$(PY) scripts/phase1_roster.py
@@ -56,3 +56,7 @@ clean-evidence:    ## force full re-research on next refresh (costs money)
 
 serve:
 	cd site && python3 -m http.server 8765
+
+regfocus:          ## Which kinds of AI rules each member supports or opposes (config/reg_focus.md)
+	$(PY) scripts/phase6_reg_focus.py
+	$(PY) scripts/phase5_build_site.py
