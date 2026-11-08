@@ -161,7 +161,9 @@ def main():
     if rf_f.exists():
         rubric = (ROOT / "config/reg_focus.md").read_text()
         rows_rf = re.findall(r"^\| `([a-z_]+)` \| ([^|]+?) \| ([^|]+?) \| ([^|]+?) \|", rubric, re.M)
-        areas = [[a, n.strip(), "harms" if i < 10 else "frontier", sup.strip(), opp.strip()] for i, (a, n, sup, opp) in enumerate(rows_rf)]
+        fr = rubric.index("### Catastrophic")
+        areas = [[a, n.strip(), "frontier" if rubric.index(f"| `{a}` |") > fr else "harms", sup.strip(), opp.strip()]
+                 for a, n, sup, opp in rows_rf]
         rf = json.loads(rf_f.read_text())
         (DATA / "regfocus.json").write_text(json.dumps({"areas": areas, "labeled": len(rf),
                                                         "m": {pid: r["final"] for pid, r in rf.items() if r.get("final")}}))

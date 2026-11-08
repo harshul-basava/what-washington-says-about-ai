@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>What Washington Says About AI</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="description" content="Evidence-backed scores of how every member of Congress talks about AI, AGI, AI risk, China and regulation, from verified quotes.">
 <link rel="stylesheet" href="policies.css?v=3">
 <link rel="stylesheet" href="policy-charts.css?v=3">
@@ -62,6 +65,13 @@ body{overflow-x:clip}
   margin:28px calc(-1 * var(--gr)) 0 calc(-1 * var(--gl));padding:10px var(--gr) 10px var(--gl);background:color-mix(in srgb,var(--chip) 88%,transparent);
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .controlbar .ctl{display:flex;align-items:center;gap:8px}
+.evtoggle{margin-left:auto;margin-right:20px;display:inline-flex;align-items:center;gap:8px;background:none;border:0;padding:6px 4px;cursor:pointer;color:var(--muted)}
+.evtoggle .sw{position:relative;width:30px;height:18px;border-radius:9px;background:color-mix(in srgb,var(--fg) 18%,transparent);transition:background .15s}
+.evtoggle .sw::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:var(--surface-raised);box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
+.evtoggle[aria-checked="true"] .sw{background:var(--accent)}
+.evtoggle[aria-checked="true"] .sw::after{transform:translateX(12px)}
+.evtoggle:hover .lbl{color:var(--fg)}
+.evtoggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
 .controlbar .lbl{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
 .controlbar select{min-width:190px;padding:7px 10px;border-radius:8px}
 .segmented{display:inline-flex;gap:2px;padding:3px;border-radius:10px;background:color-mix(in srgb,var(--fg) 7%,transparent)}
@@ -162,6 +172,12 @@ dialog.cite{max-width:560px;width:calc(100% - 32px);border:1px solid var(--line)
 dialog.cite::backdrop{background:rgba(20,18,12,.35)}
 dialog.cite h3{margin:0 0 12px}
 dialog.cite .fmt{margin:12px 0}
+dialog.cite{position:fixed}
+dialog.cite .xclose,dialog.cite .copyic{display:inline-flex;align-items:center;justify-content:center;background:none;border:0;padding:5px;margin:0;border-radius:6px;color:var(--muted);cursor:pointer}
+dialog.cite .xclose{position:absolute;top:12px;right:12px}
+dialog.cite .xclose:hover,dialog.cite .copyic:hover,dialog.cite .xclose:focus-visible,dialog.cite .copyic:focus-visible{background:var(--hover);color:var(--fg)}
+dialog.cite .fmthead{display:flex;align-items:center;gap:4px}
+dialog.cite h3{padding-right:32px}
 dialog.cite .fmt b{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 dialog.cite pre{white-space:pre-wrap;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;margin:6px 0}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:999px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:40}
@@ -202,6 +218,7 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
     <button type="button" role="radio" data-cong="119" aria-checked="true">119th Congress<small>today</small></button>
     <button type="button" role="radio" data-cong="120" aria-checked="false">120th Congress<small>from Jan 2027</small></button>
   </div>
+  <button type="button" class="evtoggle" id="evtoggle" role="switch" aria-checked="false" title="Show key AI events on the time charts"><span class="lbl">Key events</span><span class="sw" aria-hidden="true"></span></button>
 </div>
 
 <div class="withtoc">
@@ -211,7 +228,7 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
     <li><a href="#party">Scores by party</a></li>
     <li><a href="#trend-title">Scores over time</a></li>
     <li><a href="#changes">Recent changes</a></li>
-    <li><a href="#regfocus">Rules they support</a></li>
+    <li><a href="#regfocus">Policies they support</a></li>
     <li><a href="#topics">Topics</a></li>
     <li><a href="#lists">Member groups</a></li>
     <li><a href="#committees">AI committees</a></li>
@@ -251,13 +268,13 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
 <p class="sub">Big score changes that the daily update found in the last 60 days: a change of 1 point or more, or a move into or out of a score of 3 or more. Click a row to see the member.</p>
 <div id="changelist"></div>
 
-<h2 id="regfocus">Which AI rules members support</h2>
-<p class="sub">Each row is one kind of AI rule. The bar to the right shows the percent of members who support the rule. The bar to the left shows the percent who oppose it. Most members have not said anything about most rules, so the two bars do not add up to 100%. Click a bar to see the members.</p>
+<h2 id="regfocus">Which AI policies members support</h2>
+<p class="sub">Each row is one AI policy. The bar to the right shows the percent of members who support the policy. The bar to the left shows the percent who oppose it. Most members have not said anything about most policies, so the two bars do not add up to 100%. Click a bar to see the members.</p>
 <div class="chart" id="rfchart"></div>
 <div class="legend" id="rf-legend"></div>
 <p class="note" id="rf-cap"></p>
 <div class="namelist" id="rf-names"></div>
-<p class="note">Two models (DeepSeek V4.1 Flash and GPT-6.1 Sol) read all the statements of each member and use a <a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/main/config/reg_focus.md">fixed rubric</a>. "Explicit" means that the member names the rule or a bill that makes it. "Implied" means that the member asks for action on that harm or risk but does not name a rule. When the two models do not agree on support or opposition, GPT-6 Astra reads the quotes and decides. The percent uses all members of the selected Congress, also members with no statements.</p>
+<p class="note">Two models (DeepSeek V4.1 Flash and GPT-6.1 Sol) read all the statements of each member and use a <a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/main/config/reg_focus.md">fixed rubric</a>. "Explicit" means that the member names the policy or a bill that makes it. "Implied" means that the member clearly asks for the policy but does not name it or a bill. When the two models do not agree on support or opposition, GPT-6 Astra reads the quotes and decides. The percent uses all members of the selected Congress, also members with no statements.</p>
 
 <h2 id="topics">Topics</h2>
 <h3 id="topicshare">Topic share by party, day by day</h3>
@@ -313,7 +330,7 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
   <li><b>Scoring:</b> each question is a claim (for example, "advanced AI could cause a catastrophe for humanity, and this deserves serious policy attention"), scored 0–4 by how strongly the member backs it in their own words. Two models from different companies, Claude Sonnet 5.5 and GPT-6.1 Sol, each read every statement and label the level it shows, using written tests for each level (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/master/config/rubric.md">rubric</a>). Quoting someone else's warning doesn't count unless the member adopts it. A fixed formula then turns the labels into a score. For "how strongly" questions (AGI, x-risk, China), the score is the highest level reached by at least two statements, and members who never discuss the topic get 0. For regulation, the score is the strongest position that the member takes more than one time. For AI overall, the score is the median label. The published score is the average of the two models' scores.</li>
   <li><b>Review:</b> a person will check the scores where the two models are 2 or more apart, the highest scores on AGI and x-risk, and a random sample. This review is not complete yet. A "human-reviewed" tag shows each member that a person checked.</li>
   <li><b>Daily updates:</b> each day the site gets new posts on X, the Congressional Record, hearings and news since the day before. DeepSeek V4.1 Flash labels each new statement three times. When the three labels do not agree, when the label is 3 or more on x-risk or AGI, or when the label is far from the member's current score, GPT-6.1 Sol labels the statement too. GPT-6 Astra decides when the two are 2 or more levels apart. The same formula then makes the new scores. A check on 455 statements found that this agrees with the original two models as often as they agree with each other (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/master/review/cascade_calibration.md">details</a>).</li>
-  <li><b>Rules they support:</b> a second rubric (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/main/config/reg_focus.md">config/reg_focus.md</a>) lists 22 kinds of AI rules, from child safety to a ban on superintelligence. DeepSeek V4.1 Flash and GPT-6.1 Sol each read all of a member's statements and mark each rule as explicit or implied support, explicit or implied opposition, or no stance, with the quotes that show it. A harm alone is not support: the member must ask for a rule, a ban, a duty or a penalty, or back a bill that makes one. When the two models point in different directions, GPT-6 Astra reads the cited quotes and decides. When they agree, the weaker of the two strengths is kept. The daily job checks a member again when their new statements talk about AI rules.</li>
+  <li><b>Policies they support:</b> a second rubric (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/main/config/reg_focus.md">config/reg_focus.md</a>) lists 23 concrete AI policies, from limits on AI chatbots for minors and data center moratoriums to a ban on superintelligence. DeepSeek V4.1 Flash and GPT-6.1 Sol each read all of a member's statements and mark each policy as explicit or implied support, explicit or implied opposition, or no stance, with the quotes that show it. A harm alone is not support: the member must ask for that specific policy, or back a bill that makes it. A general call to "protect workers" or "protect kids" does not count. When the two models point in different directions, GPT-6 Astra reads the cited quotes and decides. When they agree, the weaker of the two strengths is kept. The daily job checks a member again when their new statements talk about AI rules.</li>
   <li><b>Committees:</b> current full-committee rosters from the @unitedstates project.</li>
   <li><b>Executive and institutional coverage:</b> the policy explorer adds a curated set of federal officials and institutions. Profiles show sourced roles and memberships. Each quote distinguishes a personal statement, a statement in an official role, or an institutional statement. Membership does not establish endorsement. Agency filters include subagencies and linked roles. Each official counts once; charts use the primary organization. Some roles and statement dates remain unknown. The daily job searches configured federal sources, verifies excerpts, and updates policy judgments. The site shows partial updates and work that awaits retry. Roles and memberships still need manual review.</li>
   <li><b>Policy judgments:</b> keyword searches identify candidate statements in the existing corpus. DeepSeek V4.1 Flash 1017 assesses each candidate with a confidence score. Astra independently reviews confidence below the configured threshold. Cases that remain uncertain require human review. The policy view preserves both assessments and separates no matching evidence from incomplete assessment. Confidence scores are model estimates that require calibration. Each framework has its own dated registry entry. New entries require a manual refresh. These labels have not received a human validation study.</li>
@@ -330,12 +347,12 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
 </main>
 <div class="tip" id="tip" role="tooltip"></div>
 <dialog class="cite" id="citedlg" aria-labelledby="citehead">
+  <form method="dialog"><button class="xclose" aria-label="Close" title="Close"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></form>
   <h3 id="citehead">Cite this page</h3>
   <p class="note" id="citewhat" style="margin:0"></p>
-  <div class="fmt"><b>Text</b><pre id="cite-text"></pre><button type="button" data-copy="cite-text">Copy</button></div>
-  <div class="fmt"><b>BibTeX</b><pre id="cite-bib"></pre><button type="button" data-copy="cite-bib">Copy</button></div>
-  <div class="fmt"><b>Link</b><pre id="cite-url"></pre><button type="button" data-copy="cite-url">Copy</button></div>
-  <form method="dialog" style="text-align:right;margin-top:8px"><button>Close</button></form>
+  <div class="fmt"><div class="fmthead"><b>Text</b><button type="button" class="copyic" data-copy="cite-text" aria-label="Copy text" title="Copy"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 15V6a2 2 0 0 1 2-2h9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div><pre id="cite-text"></pre></div>
+  <div class="fmt"><div class="fmthead"><b>BibTeX</b><button type="button" class="copyic" data-copy="cite-bib" aria-label="Copy bibtex" title="Copy"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 15V6a2 2 0 0 1 2-2h9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div><pre id="cite-bib"></pre></div>
+  <div class="fmt"><div class="fmthead"><b>Link</b><button type="button" class="copyic" data-copy="cite-url" aria-label="Copy link" title="Copy"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 15V6a2 2 0 0 1 2-2h9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div><pre id="cite-url"></pre></div>
 </dialog>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -362,7 +379,7 @@ const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).
 const PC = p => css(p==="D"?"--pD":p==="R"?"--pR":"--pI");
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let M = [], TL = [], COMM = {}, UPDATED = "", DAILY = null, HISTORY = null, CHANGES = null, RF = null, rfSel = null;
-const S = {cong:"119", party:"all", dim:"x_risk", preset:null, range:"365"};
+const S = {cong:"119", party:"all", dim:"x_risk", preset:null, range:"365", events:false};
 let sortKey = "n", sortDir = -1, open = null;
 
 /* ---------- helpers ---------- */
@@ -407,6 +424,8 @@ async function init(){
   const opts = DIMS.map(([k,l])=>`<option value="${k}">${l}</option>`).join("");
   dimsel.innerHTML = DIMS.map(([k,l])=>`<option value="${k}">${l}</option>`).join(""); dimsel.value = S.dim;
   dimsel.onchange = ()=>{ S.dim = dimsel.value; drawAll(); };
+  const evt = document.getElementById("evtoggle");
+  evt.onclick = ()=>{ S.events = !S.events; evt.setAttribute("aria-checked", S.events); drawTrend(); drawFocus(); };
   document.querySelectorAll("[data-cong]").forEach(b=>b.onclick=()=>{ S.cong=b.dataset.cong;
     document.querySelectorAll("[data-cong]").forEach(x=>x.setAttribute("aria-checked", x.dataset.cong===S.cong)); drawAll(); });
   const topicOpts = TOPICS.map(t=>`<option>${t}</option>`).join("");
@@ -416,10 +435,19 @@ async function init(){
   drawPresets(); renderHead(); renderTable(); drawAll();
   let t; addEventListener("resize", ()=>{clearTimeout(t); t=setTimeout(drawAll,150);});
 }
+// line up the Key events switch with the right edge of the content under the bar: the charts' common right edge
+// (they are drawn 24px inside the content box, see widthOf) or the pies, whichever is further left
+function alignEvToggle(){
+  const t = document.getElementById("evtoggle"), pie = document.querySelector("#pies svg"), bar = t.parentElement;
+  const edge = bar.getBoundingClientRect().right - parseFloat(getComputedStyle(bar).paddingRight);
+  let target = edge - 24;
+  if (pie && innerWidth > 720) target = Math.min(target, pie.getBoundingClientRect().right);   // narrow screens: pies wrap into a centered row
+  t.style.marginRight = Math.max(0, Math.round(edge - target - 4)) + "px";   // 4px = button padding
+}
 function drawAll(){
   const d = DIMS.find(x=>x[0]===S.dim);
   document.querySelectorAll(".dimname").forEach(e=>e.textContent=d[1]);
-  drawHemis(); drawIdeology(); drawPartyDist(); drawTrend(); drawChanges(); drawRegFocus(); drawFocus(); drawVoices(); drawList(); drawComm();
+  drawHemis(); alignEvToggle(); drawIdeology(); drawPartyDist(); drawTrend(); drawChanges(); drawRegFocus(); drawFocus(); drawVoices(); drawList(); drawComm();
 }
 // three states used by the seat chart and the committee bars
 const STATES = [["yes","Scores 3 or more","--yes"],["no","Scores 0 to 2","--no"],["none","Hasn't said enough to score","--card"]];
@@ -557,14 +585,14 @@ function drawRegFocus(){
     for (const m of ms){ const v=rfStance(m,a); if (v) c[v]++; }
     return {a, name, g, sup, opp, c, s:(c[2]+c[1])/N, o:(c[-1]+c[-2])/N}; });
   const groups = ["harms","frontier"].map(g=>({g, rows: rows.filter(r=>r.g===g).sort((x,y)=>y.s-x.s || x.o-y.o)}));
-  const W = widthOf(el), narrow = W < 560, LW = narrow ? 128 : 230, RH = 26, GH = 30, PADR = 44, PADL = 40;
+  const W = widthOf(el), narrow = W < 560, LW = narrow ? 128 : 262, RH = 26, GH = 30, PADR = 44, PADL = 40;
   const maxS = d3.max(rows, r=>r.s) || .01, maxO = d3.max(rows, r=>r.o) || .01;
   const plotW = W - LW - PADL - PADR;
   const x0 = LW + PADL + plotW * maxO / (maxS + maxO);
   const xs = d3.scaleLinear().domain([0, maxS + maxO]).range([0, plotW]);
   const H = groups.reduce((h,g)=>h + GH + g.rows.length*RH, 0) + 26;
   const svg = d3.select(el).append("svg").attr("viewBox",`0 0 ${W} ${H}`).attr("width",W).attr("height",H).attr("role","img")
-    .attr("aria-label","Percent of members who support or oppose each kind of AI rule");
+    .attr("aria-label","Percent of members who support or oppose each AI policy");
   const fg = css("--fg"), mu = css("--muted");
   let y = 0; const segs = [];
   for (const G of groups){
@@ -573,7 +601,7 @@ function drawRegFocus(){
     for (const r of G.rows){
       const cy = y + RH/2;
       svg.append("text").attr("x",LW).attr("y",cy).attr("dy","0.35em").attr("text-anchor","end").attr("fill",fg).attr("font-size",narrow?11:12.5)
-        .text(narrow && r.name.length>20 ? r.name.slice(0,19)+"…" : r.name).append("title").text(r.name);
+        .text(narrow && r.name.length>21 ? r.name.slice(0,20)+"…" : r.name).append("title").text(r.name);
       // explicit next to the center line, implied outside it
       let xr = x0, xl = x0;
       for (const v of [2,1]){ const w = xs(r.c[v]/N); if (w>0){ segs.push({r, v, x:xr, w, y:y+5}); xr += w; } }
@@ -607,6 +635,36 @@ function listRF(){
   nameChips(box, list, m=>Math.abs(rfStance(m,rfSel.a))===2?"explicit":"implied");
 }
 
+/* ---------- key events, drawn as dashed lines on the time charts ---------- */
+const EVENTS = [
+  ["2025-12-11","State AI law order","Trump signs an executive order that seeks to preempt state AI laws."],
+  ["2026-04-07","Project Glasswing","Anthropic announces Project Glasswing: its unreleased Claude Mythos model finds software vulnerabilities at scale."],
+  ["2026-08-26","Hugging Face reports","OpenAI and METR/Redwood publish reports on the July incident in which AI agents escaped a test sandbox and hacked Hugging Face."],
+  ["2026-09-25","US–China summit","Trump–Xi summit in Washington ends with an AI incident channel and a U.S.–China dialogue on superintelligence."],
+  ["2026-11-05","METR AI R&D report","METR reports that AI has roughly doubled the pace of AI research at Anthropic."],
+].map(([d,label,what])=>({d:new Date(d+"T00:00:00Z"), label, what}));
+// rules plus labels in the top margin. Each label goes on the lowest row where it does not overlap another label;
+// labels near the right edge face left. Returns the marks and the top margin they need.
+function eventMarks(lo, hi, W, ml, mr, numbered=true){   // numbers with a key; names next to the lines were too cluttered
+  if (!S.events) return {top: 20, key: "", marks: []};
+  const ev = EVENTS.map((e,i)=>({...e, label: numbered ? String(i+1) : e.label, i})).filter(e=>e.d>=lo && e.d<=hi), rows = [];
+  for (const e of ev){
+    const px = ml + (e.d-lo)/(hi-lo||1)*(W-ml-mr), w = e.label.length*5.8+10;
+    e.end = !numbered && px + w > W - 4;
+    const a = numbered ? px-7 : e.end ? px-w : px, b = numbered ? px+7 : e.end ? px : px+w;
+    e.row = rows.findIndex(r=>r.every(([x,y])=>b<=x || a>=y)); if (e.row<0){ e.row=rows.length; rows.push([]); }
+    rows[e.row].push([a,b]);
+  }
+  // too crowded for names: use numbers and a key under the chart
+  if (!numbered && rows.length > 3) return eventMarks(lo, hi, W, ml, mr, true);
+  const mu = css("--muted"), n = Math.max(1, rows.length);
+  const key = numbered ? `<p class="note evkey">${ev.map(e=>`<b>${e.i+1}</b> ${esc(EVENTS[e.i].label)} (${e.d.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric",timeZone:"UTC"})})`).join(" · ")}</p>` : "";
+  return {top: 16 + n*13, key, marks: [Plot.ruleX(ev,{x:"d", stroke:mu, strokeOpacity:.6, strokeDasharray:"3 3"}),
+    // Plot needs constant dx/dy, so one text mark per row and side
+    ...d3.range(n).flatMap(r=>[false,true].map(end=>Plot.text(ev.filter(e=>e.row===r && e.end===end),{x:"d", frameAnchor:"top", text:"label",
+      fill:mu, fontSize:10.5, dy:-6-(n-1-r)*13, dx:numbered?0:end?-4:4, textAnchor:numbered?"middle":end?"end":"start", fontWeight:numbered?600:400, title:e=>`${e.d.toISOString().slice(0,10)}: ${e.what}`})))]};
+}
+
 /* ---------- topics ---------- */
 function quarters(){ return [...new Set(TL.map(r=>r.q))].sort(); }
 function drawFocus(){
@@ -631,13 +689,16 @@ function drawFocus(){
   // end labels: push apart when the two lines end close together
   const ends = data.filter((d,i,a)=>!a[i+1] || a[i+1].p!==d.p).map(d=>({...d}));
   if (ends.length===2){ const [hi,lo] = ends[0].share>=ends[1].share ? ends : [ends[1],ends[0]]; hi.dy=-7; lo.dy=7; }
-  el.append(Plot.plot({width:W, height:260, marginLeft:48, marginRight:96, style:plotStyle(),
-    x:{type:"utc", label:null}, y:{label:"share of party's AI statements", percent:true, grid:true, tickFormat:d=>d+"%"},
+  const lo = d3.min(data,d=>d.d), hi = d3.max(data,d=>d.d), EV = eventMarks(lo, hi, W, 48, 96);
+  el.append(Plot.plot({width:W, height:290, marginLeft:48, marginRight:96, marginTop:EV.top, style:plotStyle(),
+    x:{type:"utc", label:null, domain:[lo,hi]}, y:{label:null, percent:true, grid:true, tickFormat:d=>d+"%"},
     color:{domain:["Democrats","Republicans"], range:[PC("D"),PC("R")]},
     marks:[Plot.ruleY([0],{stroke:css("--line")}),
+      ...EV.marks,
       Plot.line(data,{x:"d", y:"share", z:"party", stroke:"party", strokeWidth:2}),
-      Plot.text(ends,{x:"d", y:"share", text:"party", fill:"party", dx:6, dy:d=>d.dy, textAnchor:"start", fontWeight:600}),
+      ...[-7,7,0].map(dy=>Plot.text(ends.filter(d=>(d.dy||0)===dy),{x:"d", y:"share", text:"party", fill:"party", dx:6, dy, textAnchor:"start", fontWeight:600})),
       Plot.tip(data, Plot.pointerX({x:"d", y:"share", z:"party", fill:css("--card"), stroke:css("--line"), channels:{Date:d=>d.d.toISOString().slice(0,10), Party:"party", Share:d=>`${(d.share*100).toFixed(1)}%`, Statements:d=>`${d.n} of ${d.tot} in 30 days`}, format:{x:false, y:false, fill:false, stroke:false, z:false}}))]}));
+  el.insertAdjacentHTML("beforeend", EV.key);
 }
 /* ---------- members at 3+ over time ---------- */
 function drawTrend(){
@@ -647,13 +708,16 @@ function drawTrend(){
   const name = {all:"All members", D:"Democrats", R:"Republicans"};
   const data = HISTORY.filter(r=>r.c===S.cong && r.k===k).map(r=>({d:new Date(r.d+"T00:00:00Z"), p:r.p, who:name[r.p], v:r.hi/r.n, hi:r.hi, n:r.n})).sort((a,b)=>a.p.localeCompare(b.p) || a.d-b.d);
   const W=widthOf(el);
-  el.append(Plot.plot({width:W, height:260, marginLeft:48, marginRight:110, style:plotStyle(),
-    x:{type:"utc", label:null}, y:{label:"members with 3 or more", percent:true, grid:true, tickFormat:d=>d+"%"},
+  const lo = d3.min(data,d=>d.d), hi = d3.max(data,d=>d.d), EV = eventMarks(lo, hi, W, 48, 110);
+  el.append(Plot.plot({width:W, height:290, marginLeft:48, marginRight:110, marginTop:EV.top, style:plotStyle(),
+    x:{type:"utc", label:null, domain:[lo,hi]}, y:{label:null, percent:true, grid:true, tickFormat:d=>d+"%"},
     color:{domain:["All members","Democrats","Republicans"], range:[css("--muted"), PC("D"), PC("R")]},
     marks:[Plot.ruleY([0],{stroke:css("--line")}),
+      ...EV.marks,
       Plot.line(data,{x:"d", y:"v", z:"who", stroke:"who", strokeWidth:d=>d.p==="all"?1.5:2, strokeDasharray:d=>d.p==="all"?"4 3":null}),
       Plot.text(data.filter((x,i,a)=>!a[i+1] || a[i+1].p!==x.p),{x:"d", y:"v", text:"who", fill:"who", dx:6, textAnchor:"start", fontWeight:600}),
       Plot.tip(data, Plot.pointerX({x:"d", y:"v", z:"who", fill:css("--card"), stroke:css("--line"), channels:{Date:x=>x.d.toISOString().slice(0,10), Group:"who", Share:x=>`${(x.v*100).toFixed(0)}%`, Members:x=>`${x.hi} of ${x.n}`}, format:{x:false, y:false, stroke:false, z:false}}))]}));
+  el.insertAdjacentHTML("beforeend", EV.key);
 }
 /* ---------- recent big changes ---------- */
 function drawChanges(){
@@ -790,7 +854,7 @@ function rfLine(id){
     .map(([a,v])=>`<span class="chip" title="${esc((Math.abs(v[0])===2?"Explicit. ":"Implied. ")+v[2]+" ("+v[1].join(", ")+")")}">${esc(nm(a))}</span>`).join("");
   const s = part(1), o = part(-1);
   if (!s && !o) return "";
-  return `<p class="note" style="margin:4px 0 0">${s?`Rules they support: ${s}`:""}${s&&o?"<br>":""}${o?`Rules they oppose: ${o}`:""}</p>`;
+  return `<p class="note" style="margin:4px 0 0">${s?`Policies they support: ${s}`:""}${s&&o?"<br>":""}${o?`Policies they oppose: ${o}`:""}</p>`;
 }
 /* ---------- cite / quote ---------- */
 const QICON = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M7.2 6C4.9 7.2 3.5 9.3 3.5 12v6h6.5v-6.3H6.6c.1-1.7 1-3 2.6-3.8zm10 0c-2.3 1.2-3.7 3.3-3.7 6v6H20v-6.3h-3.4c.1-1.7 1-3 2.6-3.8z"/></svg>';
@@ -823,6 +887,9 @@ function openCite(anchor){
   document.getElementById("cite-url").textContent = c.url;
   document.getElementById("citedlg").showModal();
 }
+// click on the dimmed area outside the box closes it
+document.getElementById("citedlg").addEventListener("click", e=>{ const d=e.currentTarget, r=d.getBoundingClientRect();
+  if (e.target===d && (e.clientX<r.left || e.clientX>r.right || e.clientY<r.top || e.clientY>r.bottom)) d.close(); });
 function quoteText(pid, sid){
   const m = M.find(x=>x.id===pid), q = (QUOTES[pid]||[]).find(x=>x.sid===sid); if (!m || !q) return null;
   return `"${q.text.replace(/\s+/g," ").trim()}" (${m.name}, ${m.party}-${seat(m)}, ${q.date||"undated"}). Source: ${q.url}. Via ${SITE}, ${pageURL("member-"+pid)}`;
