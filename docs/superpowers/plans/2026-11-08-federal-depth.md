@@ -58,7 +58,7 @@
 - [x] Assess every new policy candidate through the confidence cascade, retry incomplete model output, and retain human-review cases.
 - [x] Inspect live sample evidence and source diversity; compare per-person depth with Congress. Report missing channels and unresolved low-evidence profiles.
 - [x] Request one independent final code review, fix material findings with regression tests, run the full suite and inspect the browser.
-- [ ] Commit and push the existing PR, update its description, and check compatibility and deployment status.
+- [x] Commit and push the existing PR, update its description, and check compatibility and deployment status.
 
 ## Execution Record
 
@@ -81,3 +81,4 @@
 - All 396 federal policy pairs have model assessments across 306 candidate statements. DeepSeek supplied 309 accepted final judgments. Astra supplied 78 accepted final judgments; nine cases still need human review. No federal model calls remain pending. All 2,486 pre-existing judgment records remain identical. Invalid output passed after smaller retries; budget reservations deferred three concurrent Astra requests, which completed with two workers.
 - A fresh upstream fetch found the November 8 congressional update at f4c83e6. Integration preserves that update and every cost-ledger record before the final push.
 - Resolved the shared ledger and generated member-export conflicts. The merged ledger retains all 7,617 records. All congressional evidence and core data match upstream exactly; Congress now has 15,728 excerpts. The merged tree passes all 102 tests, the full site build, lockfile validation, and whitespace checks against upstream. The browser shows 150 researched officials, zero pending federal judgments, and the remaining source queue without console errors.
+- Pushed feature commit 0aeaa9b and integration commit abd68b1 to the existing PR #2 and rewrote its description for the final scope. GitHub reports MERGEABLE against upstream f4c83e6. The Vercel check still requires repository authorization. The dev site remains available at http://127.0.0.1:8765/#policy-section. The expanded daily schedule activates after merge; no production merge or deployment was performed.
