@@ -33,6 +33,9 @@ jobs:
       IN_SOURCES: ${{ inputs.sources || (github.event.repository.fork && 'federal') || '' }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Include data and costs saved by a manual X batch while this run was queued.
+          ref: ${{ github.event.repository.default_branch }}
 
       - name: Check secrets
         id: keys

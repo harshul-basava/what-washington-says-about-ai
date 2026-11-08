@@ -1,0 +1,91 @@
+name: Federal X collection
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Historical archive or current daily window (X only)"
+        type: choice
+        options: [historical, daily]
+        default: historical
+        required: true
+
+permissions:
+  contents: write
+
+# Serialize with the daily pipeline: both append evidence and share spending caps.
+concurrency:
+  group: daily-update
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      X_MODE: ${{ inputs.mode }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # A queued dispatch must include any data committed by the previous daily run.
+          ref: ${{ github.event.repository.default_branch }}
+
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Install
+        run: uv sync --no-dev --frozen
+
+      - name: Collect one bounded X batch
+        id: collect
+        continue-on-error: true
+        env:
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+        run: |
+          case "$X_MODE" in historical|daily) ;; *) exit 2 ;; esac
+          set +e
+          uv run --no-dev python scripts/federal_x.py collect --mode "$X_MODE" | tee "$RUNNER_TEMP/federal-x-report.json"
+          result=${PIPESTATUS[0]}
+          set -e
+          if jq -e '.provider == "x_api" and .mode == env.X_MODE' "$RUNNER_TEMP/federal-x-report.json" >/dev/null; then
+            cp "$RUNNER_TEMP/federal-x-report.json" "data/federal_x_api_${X_MODE}_status.json"
+          fi
+          exit "$result"
+
+      - name: Assess federal policy evidence
+        id: judgments
+        if: always() && steps.collect.outcome != 'skipped'
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          args=()
+          [ "$X_MODE" = daily ] && args+=(--daily)
+          uv run --no-dev python scripts/phase3_policies.py label --scope executive --max-cost 2 "${args[@]}"
+
+      - name: Build site data
+        if: always() && steps.collect.outcome != 'skipped'
+        run: uv run --no-dev python scripts/phase5_build_site.py
+
+      - name: Save progress and costs
+        if: always() && steps.collect.outcome != 'skipped'
+        run: |
+          git config user.name "dc-on-ai-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data evidence site/data
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Federal X $X_MODE batch $(date -u +%F)"
+          git push
+
+      - name: Report batch outcome
+        if: always() && steps.collect.outcome != 'skipped'
+        run: |
+          echo '### Federal X batch (pending windows require another run)' >> "$GITHUB_STEP_SUMMARY"
+          echo '```json' >> "$GITHUB_STEP_SUMMARY"
+          cat "$RUNNER_TEMP/federal-x-report.json" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          # A bounded batch can finish with resumable work. Other errors fail the run.
+          jq -e '.status == "ok" or (.status == "partial" and
+            (.error == null or .error == "budget_exceeded") and
+            ((.errors | length) == 0 or
+             (.error == "budget_exceeded" and all(.errors[]; .error == "budget_exceeded"))))' \
+            "$RUNNER_TEMP/federal-x-report.json" >/dev/null
