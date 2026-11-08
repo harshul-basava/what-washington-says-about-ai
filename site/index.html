@@ -211,6 +211,7 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
     <li><a href="#party">Scores by party</a></li>
     <li><a href="#trend-title">Scores over time</a></li>
     <li><a href="#changes">Recent changes</a></li>
+    <li><a href="#regfocus">Rules they support</a></li>
     <li><a href="#topics">Topics</a></li>
     <li><a href="#lists">Member groups</a></li>
     <li><a href="#committees">AI committees</a></li>
@@ -249,6 +250,14 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
 <h2 id="changes">Recent changes</h2>
 <p class="sub">Big score changes that the daily update found in the last 60 days: a change of 1 point or more, or a move into or out of a score of 3 or more. Click a row to see the member.</p>
 <div id="changelist"></div>
+
+<h2 id="regfocus">Which AI rules members support</h2>
+<p class="sub">Each row is one kind of AI rule. The bar to the right shows the percent of members who support the rule. The bar to the left shows the percent who oppose it. Most members have not said anything about most rules, so the two bars do not add up to 100%. Click a bar to see the members.</p>
+<div class="chart" id="rfchart"></div>
+<div class="legend" id="rf-legend"></div>
+<p class="note" id="rf-cap"></p>
+<div class="namelist" id="rf-names"></div>
+<p class="note">Two models (DeepSeek V4.1 Flash and GPT-6.1 Sol) read all the statements of each member and use a <a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/main/config/reg_focus.md">fixed rubric</a>. "Explicit" means that the member names the rule or a bill that makes it. "Implied" means that the member asks for action on that harm or risk but does not name a rule. When the two models do not agree on support or opposition, GPT-6 Astra reads the quotes and decides. The percent uses all members of the selected Congress, also members with no statements.</p>
 
 <h2 id="topics">Topics</h2>
 <h3 id="topicshare">Topic share by party, day by day</h3>
@@ -304,6 +313,7 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
   <li><b>Scoring:</b> each question is a claim (for example, "advanced AI could cause a catastrophe for humanity, and this deserves serious policy attention"), scored 0–4 by how strongly the member backs it in their own words. Two models from different companies, Claude Sonnet 5.5 and GPT-6.1 Sol, each read every statement and label the level it shows, using written tests for each level (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/master/config/rubric.md">rubric</a>). Quoting someone else's warning doesn't count unless the member adopts it. A fixed formula then turns the labels into a score. For "how strongly" questions (AGI, x-risk, China), the score is the highest level reached by at least two statements, and members who never discuss the topic get 0. For regulation, the score is the strongest position that the member takes more than one time. For AI overall, the score is the median label. The published score is the average of the two models' scores.</li>
   <li><b>Review:</b> a person will check the scores where the two models are 2 or more apart, the highest scores on AGI and x-risk, and a random sample. This review is not complete yet. A "human-reviewed" tag shows each member that a person checked.</li>
   <li><b>Daily updates:</b> each day the site gets new posts on X, the Congressional Record, hearings and news since the day before. DeepSeek V4.1 Flash labels each new statement three times. When the three labels do not agree, when the label is 3 or more on x-risk or AGI, or when the label is far from the member's current score, GPT-6.1 Sol labels the statement too. GPT-6 Astra decides when the two are 2 or more levels apart. The same formula then makes the new scores. A check on 455 statements found that this agrees with the original two models as often as they agree with each other (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/master/review/cascade_calibration.md">details</a>).</li>
+  <li><b>Rules they support:</b> a second rubric (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/main/config/reg_focus.md">config/reg_focus.md</a>) lists 22 kinds of AI rules, from child safety to a ban on superintelligence. DeepSeek V4.1 Flash and GPT-6.1 Sol each read all of a member's statements and mark each rule as explicit or implied support, explicit or implied opposition, or no stance, with the quotes that show it. A harm alone is not support: the member must ask for a rule, a ban, a duty or a penalty, or back a bill that makes one. When the two models point in different directions, GPT-6 Astra reads the cited quotes and decides. When they agree, the weaker of the two strengths is kept. The daily job checks a member again when their new statements talk about AI rules.</li>
   <li><b>Committees:</b> current full-committee rosters from the @unitedstates project.</li>
   <li><b>Executive and institutional coverage:</b> the policy explorer adds a curated set of federal officials and institutions. Profiles show sourced roles and memberships. Each quote distinguishes a personal statement, a statement in an official role, or an institutional statement. Membership does not establish endorsement. Agency filters include subagencies and linked roles. Each official counts once; charts use the primary organization. Some roles and statement dates remain unknown. The daily job searches configured federal sources, verifies excerpts, and updates policy judgments. The site shows partial updates and work that awaits retry. Roles and memberships still need manual review.</li>
   <li><b>Policy judgments:</b> keyword searches identify candidate statements in the existing corpus. DeepSeek V4.1 Flash 1017 assesses each candidate with a confidence score. Astra independently reviews confidence below the configured threshold. Cases that remain uncertain require human review. The policy view preserves both assessments and separates no matching evidence from incomplete assessment. Confidence scores are model estimates that require calibration. Each framework has its own dated registry entry. New entries require a manual refresh. These labels have not received a human validation study.</li>
@@ -351,7 +361,7 @@ const PNAME = {D:"Democrats",R:"Republicans",I:"Independents"};
 const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const PC = p => css(p==="D"?"--pD":p==="R"?"--pR":"--pI");
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-let M = [], TL = [], COMM = {}, UPDATED = "", DAILY = null, HISTORY = null, CHANGES = null;
+let M = [], TL = [], COMM = {}, UPDATED = "", DAILY = null, HISTORY = null, CHANGES = null, RF = null, rfSel = null;
 const S = {cong:"119", party:"all", dim:"x_risk", preset:null, range:"365"};
 let sortKey = "n", sortDir = -1, open = null;
 
@@ -388,7 +398,7 @@ async function init(){
   const [mj, tl, cm] = await Promise.all(["members","timeline","committees"].map(f=>fetch(`data/${f}.json`).then(r=>r.json())));
   M = mj.members; TL = tl; COMM = cm; UPDATED = mj.updated;
   const opt = f => fetch(`data/${f}.json`).then(r=>r.ok?r.json():null).catch(()=>null);
-  [DAILY, HISTORY, CHANGES] = await Promise.all([opt("daily"), opt("history"), opt("changes")]);
+  [DAILY, HISTORY, CHANGES, RF] = await Promise.all([opt("daily"), opt("history"), opt("changes"), opt("regfocus")]);
   document.querySelectorAll("[data-range]").forEach(b=>b.onclick=()=>{ S.range=b.dataset.range;
     document.querySelectorAll("[data-range]").forEach(x=>x.setAttribute("aria-checked", x.dataset.range===S.range)); drawFocus(); });
   document.getElementById("updated").textContent = mj.updated;
@@ -409,7 +419,7 @@ async function init(){
 function drawAll(){
   const d = DIMS.find(x=>x[0]===S.dim);
   document.querySelectorAll(".dimname").forEach(e=>e.textContent=d[1]);
-  drawHemis(); drawIdeology(); drawPartyDist(); drawTrend(); drawChanges(); drawFocus(); drawVoices(); drawList(); drawComm();
+  drawHemis(); drawIdeology(); drawPartyDist(); drawTrend(); drawChanges(); drawRegFocus(); drawFocus(); drawVoices(); drawList(); drawComm();
 }
 // three states used by the seat chart and the committee bars
 const STATES = [["yes","Scores 3 or more","--yes"],["no","Scores 0 to 2","--no"],["none","Hasn't said enough to score","--card"]];
@@ -533,6 +543,70 @@ function drawPartyDist(){
   document.getElementById("pd-legend").innerHTML = legendHTML(levels.map((l,i)=>[l==="not enough evidence"?"Not enough evidence":LEVELS[k][+l], col[i]]));
 }
 
+/* ---------- which rules they support (diverging bars) ---------- */
+const pct = v => v>0 && v<0.005 ? "<1%" : Math.round(v*100)+"%";
+const RFGROUP = {harms:"Everyday harms", frontier:"Catastrophic and frontier risk"};
+const RFKIND = [[2,"Explicit support"],[1,"Implied support"],[-1,"Implied opposition"],[-2,"Explicit opposition"]];
+function rfColor(v){ const c=d3.color(css(v>0?"--r4":"--r0")); if (Math.abs(v)===1) c.opacity=0.45; return c.formatRgb(); }
+function rfStance(m, a){ const r = RF && RF.m[m.id] && RF.m[m.id][a]; return r ? r[0] : 0; }
+function drawRegFocus(){
+  const el = document.getElementById("rfchart"); el.innerHTML = "";
+  if (!RF){ el.innerHTML = '<p class="note">No data yet.</p>'; return; }
+  const ms = M.filter(m=>inCong(m) && partyOk(m)), N = ms.length;
+  const rows = RF.areas.map(([a,name,g,sup,opp])=>{ const c={2:0,1:0,"-1":0,"-2":0};
+    for (const m of ms){ const v=rfStance(m,a); if (v) c[v]++; }
+    return {a, name, g, sup, opp, c, s:(c[2]+c[1])/N, o:(c[-1]+c[-2])/N}; });
+  const groups = ["harms","frontier"].map(g=>({g, rows: rows.filter(r=>r.g===g).sort((x,y)=>y.s-x.s || x.o-y.o)}));
+  const W = widthOf(el), narrow = W < 560, LW = narrow ? 128 : 230, RH = 26, GH = 30, PADR = 44, PADL = 40;
+  const maxS = d3.max(rows, r=>r.s) || .01, maxO = d3.max(rows, r=>r.o) || .01;
+  const plotW = W - LW - PADL - PADR;
+  const x0 = LW + PADL + plotW * maxO / (maxS + maxO);
+  const xs = d3.scaleLinear().domain([0, maxS + maxO]).range([0, plotW]);
+  const H = groups.reduce((h,g)=>h + GH + g.rows.length*RH, 0) + 26;
+  const svg = d3.select(el).append("svg").attr("viewBox",`0 0 ${W} ${H}`).attr("width",W).attr("height",H).attr("role","img")
+    .attr("aria-label","Percent of members who support or oppose each kind of AI rule");
+  const fg = css("--fg"), mu = css("--muted");
+  let y = 0; const segs = [];
+  for (const G of groups){
+    svg.append("text").attr("x",0).attr("y",y+GH-9).attr("fill",fg).attr("font-size",13).attr("font-weight",600).text(RFGROUP[G.g]);
+    y += GH;
+    for (const r of G.rows){
+      const cy = y + RH/2;
+      svg.append("text").attr("x",LW).attr("y",cy).attr("dy","0.35em").attr("text-anchor","end").attr("fill",fg).attr("font-size",narrow?11:12.5)
+        .text(narrow && r.name.length>20 ? r.name.slice(0,19)+"…" : r.name).append("title").text(r.name);
+      // explicit next to the center line, implied outside it
+      let xr = x0, xl = x0;
+      for (const v of [2,1]){ const w = xs(r.c[v]/N); if (w>0){ segs.push({r, v, x:xr, w, y:y+5}); xr += w; } }
+      for (const v of [-2,-1]){ const w = xs(r.c[v]/N); if (w>0){ xl -= w; segs.push({r, v, x:xl, w, y:y+5}); } }
+      if (r.s>0) svg.append("text").attr("x",xr+5).attr("y",cy).attr("dy","0.35em").attr("fill",mu).attr("font-size",11).text(pct(r.s));
+      if (r.o>0) svg.append("text").attr("x",xl-5).attr("y",cy).attr("dy","0.35em").attr("text-anchor","end").attr("fill",mu).attr("font-size",11).text(pct(r.o));
+      y += RH;
+    }
+  }
+  svg.append("line").attr("x1",x0).attr("x2",x0).attr("y1",GH-6).attr("y2",y).attr("stroke",css("--muted")).attr("stroke-width",1);
+  svg.append("text").attr("x",x0-6).attr("y",y+16).attr("text-anchor","end").attr("fill",mu).attr("font-size",11).text("← oppose");
+  svg.append("text").attr("x",x0+6).attr("y",y+16).attr("fill",mu).attr("font-size",11).text("support →");
+  const pc = (n)=>`${n} (${Math.round(n/N*100)}%)`;
+  const party = (r, sgn)=>["D","R","I"].map(p=>{ const n=ms.filter(m=>m.party===p && Math.sign(rfStance(m,r.a))===sgn).length; return n?`${p} ${n}`:""; }).filter(Boolean).join(" · ");
+  svg.append("g").selectAll("rect").data(segs).join("rect")
+    .attr("x",d=>d.x+(d.v>0?1:0)).attr("y",d=>d.y).attr("width",d=>Math.max(1,d.w-1)).attr("height",RH-10).attr("rx",2)
+    .attr("fill",d=>rfColor(d.v)).classed("hit",true)
+    .on("mousemove",(e,d)=>{ const r=d.r; showTip(e, `<b>${esc(r.name)}</b><br><span class="note">Support means: ${esc(r.sup)}</span><br>`+
+      `Support: <b>${pc(r.c[2]+r.c[1])}</b>: ${r.c[2]} explicit, ${r.c[1]} implied${party(r,1)?` · ${party(r,1)}`:""}<br>`+
+      `Oppose: <b>${pc(r.c[-1]+r.c[-2])}</b>: ${r.c[-2]} explicit, ${r.c[-1]} implied${party(r,-1)?` · ${party(r,-1)}`:""}<br><span class="note">Out of ${N} members. Click to see them.</span>`); })
+    .on("mouseleave",hideTip).on("click",(e,d)=>{ hideTip(); rfSel={a:d.r.a, name:d.r.name, sgn:Math.sign(d.v)}; listRF(); });
+  document.getElementById("rf-legend").innerHTML = RFKIND.map(([v,l])=>`<span><i style="background:${rfColor(v)}"></i>${l}</span>`).join("");
+  listRF();
+}
+function listRF(){
+  const cap=document.getElementById("rf-cap"), box=document.getElementById("rf-names");
+  if (!rfSel){ cap.textContent=""; box.innerHTML=""; return; }
+  const list = M.filter(m=>inCong(m) && partyOk(m) && Math.sign(rfStance(m,rfSel.a))===rfSel.sgn)
+    .sort((a,b)=>Math.abs(rfStance(b,rfSel.a))-Math.abs(rfStance(a,rfSel.a)) || b.n-a.n);
+  cap.innerHTML = `<b>${esc(rfSel.name)}</b>: members who ${rfSel.sgn>0?"support":"oppose"} it (${list.length})`;
+  nameChips(box, list, m=>Math.abs(rfStance(m,rfSel.a))===2?"explicit":"implied");
+}
+
 /* ---------- topics ---------- */
 function quarters(){ return [...new Set(TL.map(r=>r.q))].sort(); }
 function drawFocus(){
@@ -554,13 +628,16 @@ function drawFocus(){
     }
   }
   const W=widthOf(el);
+  // end labels: push apart when the two lines end close together
+  const ends = data.filter((d,i,a)=>!a[i+1] || a[i+1].p!==d.p).map(d=>({...d}));
+  if (ends.length===2){ const [hi,lo] = ends[0].share>=ends[1].share ? ends : [ends[1],ends[0]]; hi.dy=-7; lo.dy=7; }
   el.append(Plot.plot({width:W, height:260, marginLeft:48, marginRight:96, style:plotStyle(),
     x:{type:"utc", label:null}, y:{label:"share of party's AI statements", percent:true, grid:true, tickFormat:d=>d+"%"},
     color:{domain:["Democrats","Republicans"], range:[PC("D"),PC("R")]},
     marks:[Plot.ruleY([0],{stroke:css("--line")}),
       Plot.line(data,{x:"d", y:"share", z:"party", stroke:"party", strokeWidth:2}),
-      Plot.text(data.filter((d,i,a)=>!a[i+1] || a[i+1].p!==d.p),{x:"d", y:"share", text:"party", fill:"party", dx:6, textAnchor:"start", fontWeight:600}),
-      Plot.tip(data, Plot.pointerX({x:"d", y:"share", z:"party", fill:css("--card"), stroke:css("--line"), channels:{Party:"party", Statements:d=>`${d.n} of ${d.tot} in 30 days`}, format:{x:d=>d.toISOString().slice(0,10), y:d=>`${(d*100).toFixed(1)}%`, fill:false, stroke:false, z:false}}))]}));
+      Plot.text(ends,{x:"d", y:"share", text:"party", fill:"party", dx:6, dy:d=>d.dy, textAnchor:"start", fontWeight:600}),
+      Plot.tip(data, Plot.pointerX({x:"d", y:"share", z:"party", fill:css("--card"), stroke:css("--line"), channels:{Date:d=>d.d.toISOString().slice(0,10), Party:"party", Share:d=>`${(d.share*100).toFixed(1)}%`, Statements:d=>`${d.n} of ${d.tot} in 30 days`}, format:{x:false, y:false, fill:false, stroke:false, z:false}}))]}));
 }
 /* ---------- members at 3+ over time ---------- */
 function drawTrend(){
@@ -576,7 +653,7 @@ function drawTrend(){
     marks:[Plot.ruleY([0],{stroke:css("--line")}),
       Plot.line(data,{x:"d", y:"v", z:"who", stroke:"who", strokeWidth:d=>d.p==="all"?1.5:2, strokeDasharray:d=>d.p==="all"?"4 3":null}),
       Plot.text(data.filter((x,i,a)=>!a[i+1] || a[i+1].p!==x.p),{x:"d", y:"v", text:"who", fill:"who", dx:6, textAnchor:"start", fontWeight:600}),
-      Plot.tip(data, Plot.pointerX({x:"d", y:"v", z:"who", fill:css("--card"), stroke:css("--line"), channels:{Group:"who", Members:x=>`${x.hi} of ${x.n}`}, format:{x:x=>x.toISOString().slice(0,10), y:x=>`${(x*100).toFixed(0)}%`, stroke:false, z:false}}))]}));
+      Plot.tip(data, Plot.pointerX({x:"d", y:"v", z:"who", fill:css("--card"), stroke:css("--line"), channels:{Date:x=>x.d.toISOString().slice(0,10), Group:"who", Share:x=>`${(x.v*100).toFixed(0)}%`, Members:x=>`${x.hi} of ${x.n}`}, format:{x:false, y:false, stroke:false, z:false}}))]}));
 }
 /* ---------- recent big changes ---------- */
 function drawChanges(){
@@ -698,6 +775,7 @@ async function openRow(id){
     <p style="margin:0 0 6px">${esc(m.summary || "Not enough public statements about AI to summarize.")}</p>
     ${m.handle?`<p class="note" style="margin:0">X: <a href="https://x.com/${esc(m.handle)}" target="_blank" rel="noopener">@${esc(m.handle)}</a></p>`:""}
     ${comms?`<p class="note" style="margin:0">Committees: ${esc(comms)}</p>`:""}
+    ${rfLine(id)}
     <div class="dims">${DIMS.map(([k,l])=>`<div class="dim"><b>${l}: ${fmt(m.scores[k])}</b>${esc(clean(m.just[k])||"Insufficient evidence.")}</div>`).join("")}</div>
     <p class="note">${qs.length} verified statement${qs.length===1?"":"s"}. Statements that the scores use have a color mark and are first. Each box tag shows the level that each model gave the statement on one question (Claude / GPT). A dash means that the model did not give a level.</p>
     ${qs.slice(0,60).map(q=>`<div class="quote ${cited.has(q.sid)?"cited":""}">“${esc(q.text)}”<div class="src">${srcName[q.src]||q.src} · ${esc(q.date||"undated")} · <a href="${esc(q.url)}" target="_blank" rel="noopener">source</a> <button type="button" class="citebtn" data-quote="${esc(id)}|${esc(q.sid)}">Copy quote</button> ${q.topics.map(t=>`<span class="chip">${esc(t)}</span>`).join("")} ${labChips(q)}</div></div>`).join("")}
@@ -705,6 +783,15 @@ async function openRow(id){
 }
 document.getElementById("theme").onclick=()=>{const r=document.documentElement;const cur=r.dataset.theme||"light";r.dataset.theme=cur==="dark"?"light":"dark";
   document.getElementById("theme").setAttribute("aria-label", r.dataset.theme==="dark"?"Switch to light mode":"Switch to dark mode");drawAll();renderTable();};
+function rfLine(id){
+  const r = RF && RF.m[id]; if (!r) return "";
+  const nm = a => (RF.areas.find(x=>x[0]===a)||[a,a])[1];
+  const part = sgn => Object.entries(r).filter(([a,v])=>Math.sign(v[0])===sgn)
+    .map(([a,v])=>`<span class="chip" title="${esc((Math.abs(v[0])===2?"Explicit. ":"Implied. ")+v[2]+" ("+v[1].join(", ")+")")}">${esc(nm(a))}</span>`).join("");
+  const s = part(1), o = part(-1);
+  if (!s && !o) return "";
+  return `<p class="note" style="margin:4px 0 0">${s?`Rules they support: ${s}`:""}${s&&o?"<br>":""}${o?`Rules they oppose: ${o}`:""}</p>`;
+}
 /* ---------- cite / quote ---------- */
 const QICON = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M7.2 6C4.9 7.2 3.5 9.3 3.5 12v6h6.5v-6.3H6.6c.1-1.7 1-3 2.6-3.8zm10 0c-2.3 1.2-3.7 3.3-3.7 6v6H20v-6.3h-3.4c.1-1.7 1-3 2.6-3.8z"/></svg>';
 const QUOTES = {};
@@ -746,7 +833,7 @@ document.addEventListener("click", e=>{
   const k = e.target.closest("[data-copy]"); if (k) { copy(document.getElementById(k.dataset.copy).textContent); return; }
 }, true);
 function addCiteButtons(){
-  for (const id of ["chamber","ideo-title","party","trend-title","changes","topics","topicshare","voices-title","lists","committees","members"]) {
+  for (const id of ["chamber","ideo-title","party","trend-title","changes","regfocus","topics","topicshare","voices-title","lists","committees","members"]) {
     const h = document.getElementById(id); if (!h || h.querySelector(".citebtn")) continue;
     const b = document.createElement("button"); b.type="button"; b.className="citebtn"; b.dataset.cite=id; b.innerHTML = QICON + "Cite";
     b.setAttribute("aria-label", "Cite this section"); h.append(b);

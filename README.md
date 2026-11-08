@@ -20,6 +20,7 @@ The congressional view gives each person a score from 0 to 4 on five questions. 
 3. **Label.** Two AI models (Claude Sonnet 5.5 and GPT-6.1 Sol) each read every statement. Each model gives a level for each question that the statement addresses. The rules for each level are in [`config/rubric.md`](config/rubric.md).
 4. **Score.** A fixed formula changes the labels into a score for each person. The published score is the average of the scores from the two models.
 5. **Review.** A person checks the scores where the two models do not agree.
+6. **Rules they support.** A second rubric ([`config/reg_focus.md`](config/reg_focus.md)) lists 22 kinds of AI rules. Two models (DeepSeek V4.1 Flash and GPT-6.1 Sol) mark each member's support or opposition for each kind, with quotes. GPT-6 Astra decides when they disagree. Output: `data/reg_focus.json` (`scripts/phase6_reg_focus.py`).
 
 ## Files
 

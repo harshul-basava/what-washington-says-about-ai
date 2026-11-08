@@ -19,6 +19,7 @@ import history
 import label
 import federal
 import llm
+import phase6_reg_focus
 from phase3_label import DIMS, combine
 
 CHANGES = ROOT / "data/changes.jsonl"
@@ -79,7 +80,8 @@ def refresh_summaries(pids):
         prompt = SUMM_PROMPT.format(name=ev["name"], summary=cur,
                                     stmts="\n".join(f"- ({s.get('date')}) {' '.join(s['text'].split())[:600]}" for s in stmts))
         try:
-            d = llm.chat([{"role": "user", "content": prompt}], tag="daily_summary", model=SUMM_MODEL, max_tokens=600, temperature=0)
+            d = llm.chat([{"role": "user", "content": prompt}], tag="daily_summary", model=SUMM_MODEL, max_tokens=4000, temperature=0,
+                         reasoning={"effort": "low"})   # without this, reasoning used the whole budget and the text came back empty
         except llm.BudgetExceeded:
             break
         text = (d["choices"][0]["message"]["content"] or "").strip()
@@ -118,6 +120,11 @@ def run_congress(argv=None):
     if a.dry_run:
         print(json.dumps(report, indent=1))
         return report
+    # refresh "which rules they support" for members whose new statements talk about AI rules
+    daily = load_json(ROOT / "data/labels_daily.json", {})
+    rf_ids = sorted(p for p, sids in lab["labeled"].items()
+                    if any("regulation" in (daily.get(p, {}).get(s) or {}).get(j, {}) for s in sids for j in ("a", "b")))
+    report["reg_focus"] = phase6_reg_focus.run(rf_ids, workers=6, tag_prefix="daily_") if rf_ids else 0
     old = load_json(ROOT / "data/scores.json", {})
     new = combine(today())
     changes = detect(old, new, lab["labeled"])

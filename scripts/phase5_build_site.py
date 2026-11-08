@@ -156,6 +156,15 @@ def main():
     changes = [json.loads(x) for x in ch_f.read_text().splitlines()] if ch_f.exists() else []
     cutoff = (date.today() - timedelta(days=60)).isoformat()
     (DATA / "changes.json").write_text(json.dumps([c for c in changes if c["kind"] == "big" and c["date"] >= cutoff][::-1][:100]))
+    # which kinds of AI rules each member supports or opposes (phase6_reg_focus.py)
+    rf_f = ROOT / "data/reg_focus.json"
+    if rf_f.exists():
+        rubric = (ROOT / "config/reg_focus.md").read_text()
+        rows_rf = re.findall(r"^\| `([a-z_]+)` \| ([^|]+?) \| ([^|]+?) \| ([^|]+?) \|", rubric, re.M)
+        areas = [[a, n.strip(), "harms" if i < 10 else "frontier", sup.strip(), opp.strip()] for i, (a, n, sup, opp) in enumerate(rows_rf)]
+        rf = json.loads(rf_f.read_text())
+        (DATA / "regfocus.json").write_text(json.dumps({"areas": areas, "labeled": len(rf),
+                                                        "m": {pid: r["final"] for pid, r in rf.items() if r.get("final")}}))
     print("members", len(members), "timeline rows", len(tl), "daily rows", len(rows))
     # The daily job invokes this entry point directly, bypassing Makefile targets.
     # Rebuild from saved judgments only; new or changed evidence stays pending.
