@@ -61,6 +61,13 @@ body{overflow-x:clip}
   margin:28px calc(-1 * var(--gr)) 0 calc(-1 * var(--gl));padding:10px var(--gr) 10px var(--gl);background:color-mix(in srgb,var(--chip) 88%,transparent);
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .controlbar .ctl{display:flex;align-items:center;gap:8px}
+.evtoggle{margin-left:auto;display:inline-flex;align-items:center;gap:8px;background:none;border:0;padding:6px 4px;cursor:pointer;color:var(--muted)}
+.evtoggle .sw{position:relative;width:30px;height:18px;border-radius:9px;background:color-mix(in srgb,var(--fg) 18%,transparent);transition:background .15s}
+.evtoggle .sw::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:var(--surface-raised);box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
+.evtoggle[aria-checked="true"] .sw{background:var(--accent)}
+.evtoggle[aria-checked="true"] .sw::after{transform:translateX(12px)}
+.evtoggle:hover .lbl{color:var(--fg)}
+.evtoggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
 .controlbar .lbl{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
 .controlbar select{min-width:190px;padding:7px 10px;border-radius:8px}
 .segmented{display:inline-flex;gap:2px;padding:3px;border-radius:10px;background:color-mix(in srgb,var(--fg) 7%,transparent)}
@@ -203,6 +210,7 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
     <button type="button" role="radio" data-cong="119" aria-checked="true">119th Congress<small>today</small></button>
     <button type="button" role="radio" data-cong="120" aria-checked="false">120th Congress<small>from Jan 2027</small></button>
   </div>
+  <button type="button" class="evtoggle" id="evtoggle" role="switch" aria-checked="true" title="Show key AI events on the time charts"><span class="lbl">Key events</span><span class="sw" aria-hidden="true"></span></button>
 </div>
 
 <div class="withtoc">
@@ -353,7 +361,7 @@ const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).
 const PC = p => css(p==="D"?"--pD":p==="R"?"--pR":"--pI");
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let M = [], TL = [], COMM = {}, UPDATED = "", DAILY = null, HISTORY = null, CHANGES = null, RF = null, rfSel = null;
-const S = {cong:"119", party:"all", dim:"x_risk", preset:null, range:"365"};
+const S = {cong:"119", party:"all", dim:"x_risk", preset:null, range:"365", events:true};
 let sortKey = "n", sortDir = -1, open = null;
 
 /* ---------- helpers ---------- */
@@ -398,6 +406,8 @@ async function init(){
   const opts = DIMS.map(([k,l])=>`<option value="${k}">${l}</option>`).join("");
   dimsel.innerHTML = DIMS.map(([k,l])=>`<option value="${k}">${l}</option>`).join(""); dimsel.value = S.dim;
   dimsel.onchange = ()=>{ S.dim = dimsel.value; drawAll(); };
+  const evt = document.getElementById("evtoggle");
+  evt.onclick = ()=>{ S.events = !S.events; evt.setAttribute("aria-checked", S.events); drawTrend(); drawFocus(); };
   document.querySelectorAll("[data-cong]").forEach(b=>b.onclick=()=>{ S.cong=b.dataset.cong;
     document.querySelectorAll("[data-cong]").forEach(x=>x.setAttribute("aria-checked", x.dataset.cong===S.cong)); drawAll(); });
   const topicOpts = TOPICS.map(t=>`<option>${t}</option>`).join("");
@@ -609,6 +619,7 @@ const EVENTS = [
 // rules plus labels in the top margin. Each label goes on the lowest row where it does not overlap another label;
 // labels near the right edge face left. Returns the marks and the top margin they need.
 function eventMarks(lo, hi, W, ml, mr, numbered=false){
+  if (!S.events) return {top: 20, key: "", marks: []};
   const ev = EVENTS.map((e,i)=>({...e, label: numbered ? String(i+1) : e.label, i})).filter(e=>e.d>=lo && e.d<=hi), rows = [];
   for (const e of ev){
     const px = ml + (e.d-lo)/(hi-lo||1)*(W-ml-mr), w = e.label.length*5.8+10;
@@ -618,7 +629,7 @@ function eventMarks(lo, hi, W, ml, mr, numbered=false){
     rows[e.row].push([a,b]);
   }
   // too crowded for names: use numbers and a key under the chart
-  if (!numbered && rows.length > 2) return eventMarks(lo, hi, W, ml, mr, true);
+  if (!numbered && rows.length > 3) return eventMarks(lo, hi, W, ml, mr, true);
   const mu = css("--muted"), n = Math.max(1, rows.length);
   const key = numbered ? `<p class="note evkey">${ev.map(e=>`<b>${e.i+1}</b> ${esc(EVENTS[e.i].label)} (${e.d.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric",timeZone:"UTC"})})`).join(" · ")}</p>` : "";
   return {top: 16 + n*13, key, marks: [Plot.ruleX(ev,{x:"d", stroke:mu, strokeOpacity:.6, strokeDasharray:"3 3"}),
