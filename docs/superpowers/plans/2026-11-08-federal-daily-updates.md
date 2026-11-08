@@ -53,7 +53,7 @@
 - [x] Document source scope, limits, retry behavior, command usage, schedule activation conditions, and the measured initial coverage.
 - [x] Run a bounded live federal collection and judgment smoke test, inspect attribution, and rebuild the site. Preserve operational failures in the status report.
 - [x] Run the full suite and shared build, then request one fresh independent review. Resolve material findings with regression tests.
-- [ ] Commit and push to the existing feature branch; check PR compatibility and GitHub deployment status.
+- [x] Commit and push to the existing feature branch; check PR compatibility and GitHub deployment status.
 
 ## Execution Record
 
@@ -74,3 +74,5 @@
 - Manual source review found an exact dated quote repeated on an NSA index and its release page. The unpublished duplicate was removed, and a failing regression test now verifies deduplication across URLs. All original published evidence IDs remain unchanged.
 - All 2,484 pre-existing judgment records are identical. The congressional roster, scores, daily labels, daily statement log, and member export are byte-identical. Upstream master remains 13d73ca; no new upstream commits need integration.
 - No review findings remain deferred. Roles and membership changes remain manual, and the source search remains bounded. The federal schedule activates when this branch merges into the default branch.
+
+- Delivery: implementation commit d236b66 pushed to fork/codex/policy-judgments and PR #2 updated. GitHub reports MERGEABLE, with no conflicts. Vercel still reports “Authorization required to deploy.” The default-branch workflow is active; the federal additions await merge.
