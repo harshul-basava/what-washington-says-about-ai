@@ -271,7 +271,8 @@ def build(root):
             "coverage_note": "Keyword retrieval over the existing verified corpus; no matching evidence is not proof of silence.",
             "policies": registry["policies"], "members": members,
             "organizations": organization_registry['organizations'],
-            "subjects_verified_on": organization_registry.get('verified_on')}
+            "subjects_verified_on": organization_registry.get('verified_on'),
+            "federal_update": read_json(root / 'data/federal_status.json') if (root / 'data/federal_status.json').exists() else None}
     write_json(root / "site/data/policies.json", meta)
     with (root / "site/data/policies.csv").open("w", newline="") as f:
         writer = csv.writer(f, lineterminator="\n")

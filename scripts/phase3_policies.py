@@ -18,6 +18,14 @@ import policy_cascade as cascade
 MAX_TOKENS = 10000
 
 
+def select_scope(items, subjects, scope):
+    if scope == 'all':
+        return items
+    branch = 'executive' if scope == 'executive' else 'legislative'
+    ids = {s['id'] for s in subjects if s['branch'] == branch}
+    return [s for s in items if s['person_id'] in ids]
+
+
 def select_people(items, limit):
     if not limit:
         return items
@@ -76,7 +84,10 @@ def label(work, saved, registry, rubric, args, strategy=None, confidence_prompt=
         reserve = (sum(len(m["content"].encode()) for m in messages) + 200) * in_rate + MAX_TOKENS * out_rate
         with lock:
             spent = llm.spent("openrouter")
-            if spent - baseline + reserved + reserve > args.max_cost or spent + reserved + reserve > llm.BUDGETS["openrouter"]:
+            month_remaining = ((llm.BUDGETS.get('monthly', {}).get('openrouter', float('inf')) - llm.spent_this_month('openrouter'))
+                               if getattr(args, 'daily', False) else float('inf'))
+            if (spent - baseline + reserved + reserve > args.max_cost or spent + reserved + reserve > llm.BUDGETS["openrouter"]
+                    or reserved + reserve > month_remaining):
                 return judge, items, None, "budget limit; rerun to resume", None
             reserved += reserve
         try:
@@ -84,7 +95,8 @@ def label(work, saved, registry, rubric, args, strategy=None, confidence_prompt=
             options = {"reasoning": {"effort": "medium"}} if strategy and "reasoning" in supported else {}
             if not strategy or "temperature" in supported:
                 options["temperature"] = 0
-            result = llm.chat(messages, tag=f"policy_{'cascade' if strategy else 'v1'}_{judge}", model=model,
+            tag = ('daily_' if getattr(args, 'daily', False) else '') + f"policy_{'cascade' if strategy else 'v1'}_{judge}"
+            result = llm.chat(messages, tag=tag, model=model,
                               response_format={"type": "json_object"}, max_tokens=MAX_TOKENS, **options)
             try:
                 labels = (cascade.validate_response if strategy else p.validate_response)(result["choices"][0]["message"]["content"], items, registry)
@@ -141,6 +153,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=("plan", "label", "build"))
     parser.add_argument("--limit-people", type=int)
+    parser.add_argument('--scope', choices=('all', 'congress', 'executive'), default='all')
+    parser.add_argument('--daily', action='store_true', help='Use daily spend tags and reserve against the monthly cap')
     parser.add_argument("--targets", help="Comma-separated registry IDs; filters candidate statements, not output labels")
     parser.add_argument("--batch-size", type=int, default=4)
     parser.add_argument("--workers", type=int, default=4)
@@ -155,6 +169,7 @@ def main():
     registry = p.load_registry(ROOT)
     rubric = (ROOT / "config/policy_rubric.md").read_text()
     items = p.candidates(ROOT, registry)
+    items = select_scope(items, p.subjects.load_subjects(ROOT), args.scope)
     if args.targets:
         wanted = set(args.targets.split(","))
         known = {t["id"] for t in registry["policies"]}

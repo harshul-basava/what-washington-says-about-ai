@@ -76,6 +76,11 @@
       <a href="${safeURL(record.url)}" target="_blank" rel="noopener noreferrer">Read source</a> · ${record.library_only ? 'No policy assessment' : esc(LABELS[record.stance])}</p>
       ${attribution}<blockquote>${esc(record.text)}</blockquote>${route}${record.facet_disagreement ? '<p class="note">Models disagree on the details. Read each judgment below.</p>' : ''}${judges || (record.library_only ? '<p class="note">No assessment for the selected policy.</p>' : '<p>Assessment pending.</p>')}</article>`;
   }
+  function federalUpdateNote(update) {
+    if (!update) return 'No automated federal update has completed yet.';
+    if (update.status === 'ok') return `The federal update completed on ${update.date}. Searches cover the configured sources.`;
+    return `The federal update on ${update.date} was partial. ${update.collection?.pending_pages || 0} source pages and ${update.judgments?.pending_pairs || 0} judgments await retry. Some searches or other steps may also need retry.`;
+  }
   async function mount(root) {
     if (!root) return;
     let data;
@@ -166,7 +171,7 @@
       get('policy-organization-control').hidden = congress;
       root.querySelectorAll('[data-scope]').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.scope===state.scope)));
       get('policy-scope-note').textContent = congress ? 'Congressional policy statements. The five-score charts above cover Congress only.' :
-        `Curated federal coverage, checked ${data.subjects_verified_on || data.built_on}. ${state.scope === 'institutions' ? 'Each profile represents an institution. Statements do not establish its officials’ personal views.' : 'Each official counts once. Agency filters include linked roles; bars use each official’s primary organization.'} New federal sources require a manual refresh.`;
+        `Curated federal coverage. ${state.scope === 'institutions' ? 'Each profile represents an institution. Statements do not establish its officials’ personal views.' : 'Each official counts once. Agency filters include linked roles; bars use each official’s primary organization.'} ${federalUpdateNote(data.federal_update)} Role and membership records need manual review; the registry check date is ${data.subjects_verified_on || data.built_on}.`;
       get('policy-detail-title').textContent = target.title;
       renderCharts();
       get('policy-description').textContent = target.kind === 'issue' ?
@@ -237,7 +242,7 @@
       if (width !== chartWidth) { chartWidth = width; renderCharts(); }
     }).observe(get('policy-chart-detail'));
   }
-  const api = {filterMembers, renderRecord, renderProfile, summaryLabel, evidenceRecords, mount};
+  const api = {filterMembers, renderRecord, renderProfile, summaryLabel, evidenceRecords, federalUpdateNote, mount};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else { global.PolicyView = api; mount(document.getElementById('policy-explorer')); }
 })(typeof window !== 'undefined' ? window : globalThis);

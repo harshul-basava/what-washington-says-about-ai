@@ -1,5 +1,6 @@
-# Daily update: collect new AI statements, label them (DeepSeek -> GPT-6.1 Sol -> GPT-6 Astra cascade),
-# re-score, record changes, rebuild the site data and push. Vercel redeploys on the push.
+# Daily update: collect federal statements and assess policy positions (DeepSeek -> Astra),
+# then collect Congress statements, update its five scores, rebuild the site data and push.
+# Vercel redeploys on the push when the project permits deployment.
 # Needs repo secrets: OPENROUTER_API_KEY, X_BEARER_TOKEN, GOVINFO_API_KEY. Optional: EXA_API_KEY.
 name: Daily update
 
@@ -9,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       sources:
-        description: "Sources (comma list of x,crec,chrg,web; empty = default)"
+        description: "Sources (comma list of x,crec,chrg,web,federal; empty = all daily sources)"
         required: false
       since:
         description: "Override start date YYYY-MM-DD (empty = since last run)"
@@ -68,6 +69,16 @@ jobs:
           [[ "$IN_SOURCES" =~ ^[a-z,]+$ ]] && args+=(--sources "$IN_SOURCES")
           [[ "$IN_SINCE" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]] && args+=(--since "$IN_SINCE")
           uv run --no-dev python scripts/daily/run.py "${args[@]}"
+
+      - name: Report federal update status
+        if: always() && steps.keys.outputs.skip != 'true'
+        run: |
+          if [ -f data/federal_status.json ]; then
+            echo '### Federal update status (check the report date)' >> "$GITHUB_STEP_SUMMARY"
+            echo '```json' >> "$GITHUB_STEP_SUMMARY"
+            cat data/federal_status.json >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          fi
 
       - name: Commit and push (also after a failed step, so collected statements and spend are kept)
         if: always() && steps.keys.outputs.skip != 'true'

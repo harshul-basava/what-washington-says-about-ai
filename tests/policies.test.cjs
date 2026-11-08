@@ -2,6 +2,15 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const view = require('../site/policies.js');
 
+test('federal update notes distinguish missing, complete, and partial attempts', () => {
+  assert.match(view.federalUpdateNote(null), /No automated federal update/);
+  assert.match(view.federalUpdateNote({date:'2026-11-08',status:'ok'}), /completed/);
+  const partial = view.federalUpdateNote({date:'2026-11-08',status:'partial',collection:{pending_pages:3},judgments:{pending_pairs:2}});
+  assert.match(partial, /partial/);
+  assert.match(partial, /3 source pages/);
+  assert.match(partial, /2 judgments/);
+});
+
 test('filters use explicit stances without converting absent evidence to opposition', () => {
   const members = [
     {name:'Alice', state:'CA', party:'Democrat', status:'current', policies:{p:{stance:'support', coverage:'complete', relevant:2}}},

@@ -5,7 +5,7 @@
 
 PY = uv run python
 
-.PHONY: roster handles x x-free web assemble score site refresh clean-evidence serve daily daily-dry history calibrate policies-plan policies-label policies-build test
+.PHONY: roster handles x x-free web assemble score site refresh clean-evidence serve daily daily-dry federal federal-dry history calibrate policies-plan policies-label policies-build test
 
 roster:            ## Phase 1: current members + called 2026 races
 	$(PY) scripts/phase1_roster.py
@@ -37,6 +37,12 @@ daily:             ## Daily update: collect new statements, cascade-label, re-sc
 
 daily-dry:         ## Plan the daily update without paid calls or writes
 	$(PY) scripts/daily/run.py --dry-run
+
+federal:           ## Collect, assess and build federal policy updates only
+	$(PY) scripts/daily/run.py --sources federal $(FEDERAL_ARGS)
+
+federal-dry:       ## Plan federal collection and judgments without network calls or writes
+	$(PY) scripts/daily/run.py --sources federal --dry-run
 
 history:           ## Rebuild the score history (monthly backfill from labels + daily snapshots)
 	$(PY) scripts/daily/history.py backfill

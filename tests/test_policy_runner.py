@@ -18,6 +18,52 @@ spec.loader.exec_module(runner)
 
 
 class RunnerTests(unittest.TestCase):
+    def test_default_federal_budget_can_reserve_an_astra_review(self):
+        import json
+        import policy_cascade as cascade
+        from test_policy_cascade import STRATEGY, label
+        costs, calls = [], []
+        def chat(messages, **kwargs):
+            role = 'deepseek' if kwargs['model'] == 'deepseek/test' else 'astra'
+            calls.append(role); costs.append(0.01)
+            value = label('support', 0.7 if role == 'deepseek' else 0.95)
+            return {'choices': [{'message': {'content': json.dumps({'judgments': [{'key': ITEM['key'], 'targets': {ITEM['targets'][0]: value}}]})}}]}
+        metadata = {'data': [{'id': model, 'pricing': {'prompt': '0.00001', 'completion': '0.00005',
+            'overrides': [{'prompt': '0.00002', 'completion': '0.000075'}]}} for model in cascade.models(STRATEGY).values()]}
+        fake = SimpleNamespace(os=SimpleNamespace(environ={'OPENROUTER_API_KEY': 'test-only'}),
+            httpx=SimpleNamespace(get=lambda *a, **k: SimpleNamespace(raise_for_status=lambda: None, json=lambda: metadata)),
+            spent=lambda provider: sum(costs), spent_this_month=lambda provider: sum(costs),
+            BUDGETS={'openrouter': 10, 'monthly': {'openrouter': 5}}, chat=chat)
+        config = json.loads((Path(__file__).resolve().parents[1] / 'config/federal_sources.json').read_text())
+        args = SimpleNamespace(max_cost=config['judgment_max_cost'], workers=1, batch_size=1, daily=True)
+        with tempfile.TemporaryDirectory() as tmp, patch.dict(sys.modules, {'llm': fake}), patch.object(runner, 'ROOT', Path(tmp)), contextlib.redirect_stdout(io.StringIO()):
+            runner.label_cascade([ITEM], {}, REGISTRY, 'rubric', 'confidence', STRATEGY, args)
+        self.assertEqual(calls, ['deepseek', 'astra'])
+
+    def test_scope_selects_registered_executive_ids_only(self):
+        items = [ITEM, {**ITEM, 'person_id': 'official_a'}, {**ITEM, 'person_id': 'agency_a'}]
+        subjects = [{'id': ITEM['person_id'], 'branch': 'legislative'},
+                    {'id': 'official_a', 'branch': 'executive'}, {'id': 'agency_a', 'branch': 'executive'}]
+        self.assertEqual([s['person_id'] for s in runner.select_scope(items, subjects, 'executive')], ['official_a', 'agency_a'])
+        self.assertEqual(runner.select_scope(items, subjects, 'all'), items)
+
+    def test_daily_judgments_reserve_monthly_budget_and_use_daily_tags(self):
+        import json
+        metadata = {'data': [{'id': model, 'pricing': {'prompt': '0', 'completion': '0.00001'}} for model in p.JUDGES.values()]}
+        for month_spent, expected in [(0.95, 0), (0.80, 1)]:
+            calls = []
+            def chat(*args, **kwargs):
+                calls.append(kwargs['tag'])
+                return {'choices': [{'message': {'content': json.dumps(response())}}]}
+            fake = SimpleNamespace(os=SimpleNamespace(environ={'OPENROUTER_API_KEY': 'test-only'}),
+                httpx=SimpleNamespace(get=lambda *a, **k: SimpleNamespace(raise_for_status=lambda: None, json=lambda: metadata)),
+                spent=lambda provider: 0, spent_this_month=lambda provider: month_spent,
+                BUDGETS={'openrouter': 10, 'monthly': {'openrouter': 1}}, chat=chat)
+            with tempfile.TemporaryDirectory() as tmp, patch.dict(sys.modules, {'llm': fake}), patch.object(runner, 'ROOT', Path(tmp)), contextlib.redirect_stdout(io.StringIO()):
+                runner.label([(next(iter(p.JUDGES)), [ITEM])], {}, REGISTRY, 'rubric', SimpleNamespace(max_cost=1, workers=1, daily=True))
+            self.assertEqual(len(calls), expected)
+            self.assertTrue(all(tag.startswith('daily_') for tag in calls))
+
     def test_invalid_spending_limits_fail_before_network_access(self):
         for limit in [float("nan"), float("inf"), -1, 0]:
             with self.subTest(limit=limit), patch.dict(sys.modules, {"llm": SimpleNamespace()}):
