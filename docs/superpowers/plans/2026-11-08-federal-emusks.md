@@ -54,7 +54,7 @@
 - [x] Add offline plans and historical commands; show mapped accounts, imported post counts, and actual X collection status on the site.
 - [x] Run the missing-token path, offline plan, full tests and site build. Do not claim a live search passed.
 - [x] Request independent review and fix material findings.
-- [ ] Push the existing PR and check conflicts.
+- [x] Push the existing PR and check conflicts.
 
 ## Execution Record
 
@@ -68,3 +68,4 @@
 - The browser rendered the new federal coverage text: 23 sourced accounts, 21 mapped profiles, zero X excerpts, and authentication required. The local preview runs at http://127.0.0.1:8765/.
 - All existing evidence, judgment caches, scores, congressional member exports, and policy member exports remain byte-identical to the baseline. Account mappings and coverage documentation identify 165 unmapped federal profiles.
 - Fetched origin/master at f4c83e6; it is an ancestor of this branch. No merge with the default branch is required.
+- Delivered implementation commit 1beeece to fork/codex/policy-judgments and updated upstream PR #2. GitHub reports MERGEABLE. Vercel reports FAILURE with a repository-authorization link; no deployment or merge occurred.
