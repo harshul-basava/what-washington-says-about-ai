@@ -1,0 +1,83 @@
+{
+ "id": "D000600",
+ "policies": {
+  "china_race_dynamics": [
+   {
+    "sid": "s4",
+    "text": "I know the president is interested in having conversations about artificial intelligence, which I think is key. AI is here to stay. We could stop AI entirely in the United States, and that would not stop China from continuing to do what it is doing with AI. The question is whether there can be an enforceable agreement with China that we can verify, with controls to make sure AI does not get out of control.",
+    "date": "2026-09",
+    "context": "",
+    "url": "https://fanzei.net/en/d_s4thxa",
+    "source_type": "web",
+    "verified_via": "ok",
+    "strategy": "confidence_cascade",
+    "stance": "unclear",
+    "judges": {
+     "deepseek": {
+      "stance": "unclear",
+      "reason": "The speaker notes China will continue AI development and raises a verifiable agreement, but does not clearly endorse or reject making competition a priority.",
+      "facets": [],
+      "confidence": 0.6,
+      "confidence_reason": "The statement addresses China AI policy but its direction on competition priority is ambiguous.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:04:43.096204+00:00",
+      "generation_id": "gen-1794092667-hgRtBflFiOAJyUByIMCe"
+     },
+     "astra": {
+      "stance": "unclear",
+      "reason": "The speaker considers China's continued AI development and possible verifiable controls without clearly endorsing or rejecting competition as a priority.",
+      "facets": [],
+      "confidence": 0.82,
+      "confidence_reason": "China is explicitly relevant, but the discussion of a possible agreement leaves the policy direction unresolved.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:18:16.630280+00:00",
+      "generation_id": "gen-1794093479-Ghb64LqMXA0SHq0DI284"
+     }
+    },
+    "confidence": 0.82,
+    "final_judge": "astra",
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.6 is below 0.8."
+   },
+   {
+    "sid": "s5",
+    "text": "But I have to remind everybody: AI is here to stay. Either we will be on the cutting edge of AI, or China will not stop. [...] Any agreement on AI would have to be verifiable. President Reagan used to say about the Soviet Union, “Trust but verify.” When I think of China, it is “distrust and verify.”",
+    "date": "2026-09",
+    "context": "",
+    "url": "https://fanzei.net/en/d_s4thxa",
+    "source_type": "web",
+    "verified_via": "ok",
+    "strategy": "confidence_cascade",
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker says the US must be on the cutting edge of AI because China will not stop.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.9,
+      "confidence_reason": "The statement explicitly frames US AI leadership as necessary in light of China.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:04:43.096282+00:00",
+      "generation_id": "gen-1794092667-hgRtBflFiOAJyUByIMCe"
+     }
+    },
+    "confidence": 0.9,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   }
+  ]
+ }
+}

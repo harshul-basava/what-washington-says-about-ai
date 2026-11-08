@@ -1,0 +1,125 @@
+{
+ "id": "R000614",
+ "policies": {
+  "export_controls": [
+   {
+    "sid": "s22",
+    "text": ".@CNBC: Rep. Chip Roy doesn't want to regulate AI, but says Congress should have an oversight role https://t.co/Bn22whZLD9",
+    "date": "2026-09-22",
+    "context": "",
+    "url": "https://x.com/RepChipRoy/status/2102464058876436549",
+    "source_type": "x",
+    "verified_via": "x_api",
+    "strategy": "confidence_cascade",
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement discusses domestic AI regulation and congressional oversight, not export controls.",
+      "facets": [],
+      "confidence": 0.92,
+      "confidence_reason": "The text does not mention export controls or overseas AI access restrictions.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:13:55.961398+00:00",
+      "generation_id": "gen-1794093218-mhYNhhcbEsGi6NflsHZZ"
+     }
+    },
+    "confidence": 0.92,
+    "final_judge": "deepseek",
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   }
+  ],
+  "china_race_dynamics": [
+   {
+    "sid": "s7",
+    "text": "So far the Big Tech bros' answer has been: \"but China.\" And \"but China\" is not a policy prescription. It's a fear mechanism.",
+    "date": "2026-09-13",
+    "context": "",
+    "url": "https://bluelightnews.com/category/politics/chip-roy-is-leaving-congress-but-not-before-warning-his-colleagues-to-take-the-threat-of-ai-seriously/",
+    "source_type": "web",
+    "verified_via": "ok_search_text",
+    "strategy": "confidence_cascade",
+    "stance": "oppose",
+    "judges": {
+     "deepseek": {
+      "stance": "oppose",
+      "reason": "The speaker dismisses 'but China' as a fear mechanism rather than a policy prescription.",
+      "facets": [
+       "race_skepticism"
+      ],
+      "confidence": 0.92,
+      "confidence_reason": "The statement explicitly rejects China-based fear framing.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:13:51.468234+00:00",
+      "generation_id": "gen-1794093217-uf9ZPhXdxUtmmZEa89EH"
+     }
+    },
+    "confidence": 0.92,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "race_skepticism"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   },
+   {
+    "sid": "s4",
+    "text": "Rep. Roy: \"I think we need to have a serious conversation in Washington among national leaders, about what the guardrails are going to be when we talk about Artificial Intelligence. \n\nWe can do what we need to do to beat China. We can do what we need to do to have tech. But we also need to remember that freedom matters, family matters, community matters.\"",
+    "date": "2026-08-25",
+    "context": "",
+    "url": "https://x.com/RepChipRoy/status/2092274351236133043",
+    "source_type": "x",
+    "verified_via": "x_api",
+    "strategy": "confidence_cascade",
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker says the US can do what is needed to beat China while also discussing AI guardrails.",
+      "facets": [
+       "competition_priority",
+       "safety_over_speed"
+      ],
+      "confidence": 0.7,
+      "confidence_reason": "The statement endorses beating China and mentions guardrails, but the priority and safety tradeoff are implicit.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:13:51.468141+00:00",
+      "generation_id": "gen-1794093217-uf9ZPhXdxUtmmZEa89EH"
+     },
+     "astra": {
+      "stance": "support",
+      "reason": "Roy endorses beating China while insisting that AI guardrails and protection of freedom, family, and community still matter.",
+      "facets": [
+       "competition_priority",
+       "safety_over_speed"
+      ],
+      "confidence": 0.91,
+      "confidence_reason": "The statement explicitly combines beating China with a continuing need for guardrails.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:20:47.596220+00:00",
+      "generation_id": "gen-1794093637-zq1AfWXba4fVqSZJrLCn"
+     }
+    },
+    "confidence": 0.91,
+    "final_judge": "astra",
+    "facets_final": [
+     "competition_priority",
+     "safety_over_speed"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.7 is below 0.8."
+   }
+  ]
+ }
+}

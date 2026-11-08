@@ -1,0 +1,85 @@
+{
+ "id": "W000816",
+ "policies": {
+  "export_controls": [
+   {
+    "sid": "s1",
+    "text": "The rate of Chinese advancement in the field of semiconductors is another threat to U.S. national security, and we are now in a global race to dominate the chip industry and must explore all options to curb Chinese dominance in semiconductor development.",
+    "date": "2024-01-30",
+    "context": "House hearing on CCP sanctions and semiconductor export controls, where the member questions a witness about China's chip acquisition and AI military applications.",
+    "url": "https://www.govinfo.gov/content/pkg/CHRG-118hhrg56257/html/CHRG-118hhrg56257.htm",
+    "source_type": "hearing",
+    "verified_via": "cesia_verbatim",
+    "strategy": "confidence_cascade",
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement calls broadly for curbing Chinese semiconductor dominance but does not explicitly endorse export restrictions on overseas access.",
+      "facets": [],
+      "confidence": 0.7,
+      "confidence_reason": "The text addresses Chinese semiconductor competition but not export controls specifically.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:16:52.701639+00:00",
+      "generation_id": "gen-1794093377-YAPtaEwBNiDvC8PcihNG"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "The speaker calls for curbing Chinese semiconductor dominance without specifying restrictions on overseas access or their enforcement.",
+      "facets": [],
+      "confidence": 0.85,
+      "confidence_reason": "The hearing context concerns export controls, but the speaker's statement does not identify that policy mechanism.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:21:32.395491+00:00",
+      "generation_id": "gen-1794093677-RGk1HsbiOLtt0wB6fd4E"
+     }
+    },
+    "confidence": 0.85,
+    "final_judge": "astra",
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.7 is below 0.8."
+   }
+  ],
+  "china_race_dynamics": [
+   {
+    "sid": "s1",
+    "text": "The rate of Chinese advancement in the field of semiconductors is another threat to U.S. national security, and we are now in a global race to dominate the chip industry and must explore all options to curb Chinese dominance in semiconductor development.",
+    "date": "2024-01-30",
+    "context": "House hearing on CCP sanctions and semiconductor export controls, where the member questions a witness about China's chip acquisition and AI military applications.",
+    "url": "https://www.govinfo.gov/content/pkg/CHRG-118hhrg56257/html/CHRG-118hhrg56257.htm",
+    "source_type": "hearing",
+    "verified_via": "cesia_verbatim",
+    "strategy": "confidence_cascade",
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker calls the Chinese semiconductor advance a threat and says the US is in a global race to dominate the chip industry.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.95,
+      "confidence_reason": "The statement explicitly uses race framing and identifies China as the competitor.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:16:52.701733+00:00",
+      "generation_id": "gen-1794093377-YAPtaEwBNiDvC8PcihNG"
+     }
+    },
+    "confidence": 0.95,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   }
+  ]
+ }
+}

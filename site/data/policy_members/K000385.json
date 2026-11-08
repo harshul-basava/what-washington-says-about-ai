@@ -1,0 +1,95 @@
+{
+ "id": "K000385",
+ "policies": {
+  "china_race_dynamics": [
+   {
+    "sid": "s26",
+    "text": "In your testimony, you state that AI's power and usefulness will be fundamentally limited if all Americans are not able to access that use AI. Recognizing this, how does the President's unilateral decision to stop funding programs providing digital skills, including AI training, to such groups as seniors, veterans, and the disabled jeopardize America's ability to innovate in AI ahead of places like China or the Middle East?",
+    "date": "2025-06-04",
+    "context": "Question posed during a congressional hearing on AI applications in communications and technology.",
+    "url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg60730/html/CHRG-119hhrg60730.htm",
+    "source_type": "hearing",
+    "verified_via": "cesia_verbatim",
+    "strategy": "confidence_cascade",
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "The speaker asks a witness how defunding digital-skills programs affects innovation relative to China, without explicitly endorsing competition as a policy priority.",
+      "facets": [],
+      "confidence": 0.78,
+      "confidence_reason": "It is a witness question invoking China as a benchmark, not an explicit position on prioritizing competition.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:22:26.744717+00:00",
+      "generation_id": "gen-1794093742-dLsDZ28nX5KlvD68DXnC"
+     },
+     "astra": {
+      "stance": "support",
+      "reason": "Kelly frames cuts to digital-skills funding as jeopardizing America's ability to innovate in AI ahead of China.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.8,
+      "confidence_reason": "The question treats staying ahead of China as a desirable policy goal, though the endorsement is expressed through its premise.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:23:03.171045+00:00",
+      "generation_id": "gen-1794093774-8rbEiXymE79SqoITH9yz"
+     }
+    },
+    "confidence": 0.8,
+    "final_judge": "astra",
+    "facets_final": [
+     "competition_priority"
+    ],
+    "facet_disagreement": true,
+    "model_disagreement": true,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.78 is below 0.8."
+   },
+   {
+    "sid": "s6",
+    "text": "Regulation alone will not cure all of AI's potential harms. Both of us must commit to building a diverse tech workforce. Neither the U.S. nor the EU can compete against China based on the raw number of computer science graduates and the amount of data they collect on their citizens.",
+    "date": "2021-03-01",
+    "context": "",
+    "url": "http://robinkelly.house.gov/media-center/press-releases/congresswoman-robin-kelly-testifies-european-parliament-special",
+    "source_type": "web",
+    "verified_via": "ok",
+    "strategy": "confidence_cascade",
+    "stance": "review_required",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "She mentions competing with China but does not explicitly endorse making competition a policy priority.",
+      "facets": [],
+      "confidence": 0.78,
+      "confidence_reason": "The statement references China competition but gives no clear priority endorsement.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:08:21.885020+00:00",
+      "generation_id": "gen-1794092887-nv0oGjejofX8UoN61I18"
+     },
+     "astra": {
+      "stance": "support",
+      "reason": "Kelly frames building a diverse tech workforce as necessary because the U.S. and EU cannot compete with China on graduate numbers or data volume.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.78,
+      "confidence_reason": "The workforce commitment is linked to competition with China, though prioritization is implicit rather than directly declared.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:19:10.099464+00:00",
+      "generation_id": "gen-1794093539-D0faKGOQeExT4ZeVn3EU"
+     }
+    },
+    "confidence": 0.78,
+    "final_judge": null,
+    "facets_final": [],
+    "facet_disagreement": true,
+    "model_disagreement": true,
+    "review_required": true,
+    "review_status": "human_review_required",
+    "review_reason": "DeepSeek confidence 0.78 is below 0.8. Astra also reports confidence below the threshold; human review is required."
+   }
+  ]
+ }
+}

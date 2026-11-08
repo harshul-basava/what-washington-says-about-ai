@@ -8,6 +8,10 @@
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="description" content="Evidence-backed scores of how every member of Congress talks about AI, AGI, AI risk, China and regulation, from verified quotes.">
+<link rel="stylesheet" href="policies.css?v=3">
+<link rel="stylesheet" href="policy-charts.css?v=3">
+<script src="policy-charts.js?v=3" defer></script>
+<script src="policies.js?v=6" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -132,6 +136,7 @@ footer{margin-top:12px;padding-top:0;font-size:13px;color:var(--page-muted);disp
 .tip{position:fixed;pointer-events:none;background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;max-width:320px;font-size:13px;box-shadow:0 4px 18px rgba(0,0,0,.14);display:none;z-index:20}
 .hit{cursor:pointer}
 table.changes td:first-child{white-space:nowrap}
+#changelist{overflow-x:auto}
 .withtoc{position:relative}
 .toc{display:none}
 @media (min-width:1200px){
@@ -156,8 +161,10 @@ table.changes td:first-child{white-space:nowrap}
 .themebtn .i-sun{display:none}
 :root[data-theme="dark"] .themebtn .i-sun{display:block}:root[data-theme="dark"] .themebtn .i-moon{display:none}
 @media (max-width:720px){.brand span{display:none}.topbar nav{gap:12px}}
+@media (max-width:480px){.topin{gap:10px}.topbar nav{gap:10px}.topbar nav a[href^="https://github.com/"]{display:none}.themebtn{flex-shrink:0}}
 .navcite,.citebtn{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;font-size:12px;padding:3px 10px;line-height:1.3}
 .navcite{font-size:14px;border:0;padding:0;border-radius:0}
+@media (max-width:360px){.topin{gap:8px}.topbar nav{gap:8px}.topbar nav a,.navcite{font-size:12px}}
 .navcite:hover,.citebtn:hover{color:var(--fg);border-color:var(--muted)}
 .citebtn{margin-left:10px;vertical-align:middle;font-family:Inter,system-ui,sans-serif;font-weight:500;letter-spacing:0}
 .quote .citebtn{margin-left:6px;padding:1px 8px;font-size:11px}
@@ -190,7 +197,7 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
   <div class="topin">
     <a class="brand" href="#" id="brand"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><g fill="currentColor"><rect x="11.4" y="1.5" width="1.2" height="3" rx=".4"/><path d="M7.2 9.6a4.8 4.8 0 0 1 9.6 0z"/><rect x="6.4" y="9.6" width="11.2" height="1.6" rx=".3"/><rect x="2.8" y="11.6" width="18.4" height="1.6" rx=".3"/><rect x="4.2" y="13.6" width="1.6" height="5.2"/><rect x="8.1" y="13.6" width="1.6" height="5.2"/><rect x="11.2" y="13.6" width="1.6" height="5.2"/><rect x="14.3" y="13.6" width="1.6" height="5.2"/><rect x="18.2" y="13.6" width="1.6" height="5.2"/><rect x="2" y="19.2" width="20" height="2" rx=".4"/></g></svg><span>DC on AI</span></a>
     <nav aria-label="Sections">
-      <a href="#members">Members</a><a href="#method">Method</a>
+      <a href="#members">Members</a><a href="#policy-section">Policies</a><a href="#method">Method</a>
       <button type="button" class="navcite" data-cite="page"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M7.2 6C4.9 7.2 3.5 9.3 3.5 12v6h6.5v-6.3H6.6c.1-1.7 1-3 2.6-3.8zm10 0c-2.3 1.2-3.7 3.3-3.7 6v6H20v-6.3h-3.4c.1-1.7 1-3 2.6-3.8z"/></svg>Cite</button>
       <a href="https://github.com/harshul-basava/what-washington-says-about-ai">GitHub</a>
     </nav>
@@ -200,8 +207,9 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
 <main>
 <header>
   <h1>What does Washington say about AI?</h1>
-  <p class="lede">We collected public statements about AI from each member of Congress and from each new member elected in 2026. The sources are floor speeches, hearings, posts on X, interviews and press releases. We checked each quote against its source. Two AI models then gave each person a score on five questions. The models used only these quotes.</p>
-  <p class="meta">Last updated <span id="updated">…</span> · <span id="nmembers">…</span> people · <span id="nquotes">…</span> verified statements</p>
+  <p class="lede">Explore public statements about AI from Congress, executive officials, and federal institutions. The policy explorer includes Commerce, the National Security Agency, and the Superintelligence Task Force. The five-score charts cover Congress and members elected in 2026. Each view links to its sources.</p>
+  <p class="meta">Congress last updated <span id="updated">…</span> · <span id="nmembers">…</span> congressional profiles · <span id="nquotes">…</span> verified congressional statements</p>
+  <p><a href="#policy-section">Explore Congress, executive officials, and institutions by policy</a></p>
 </header>
 
 <div class="controlbar" role="toolbar" aria-label="Chart settings">
@@ -224,6 +232,7 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
     <li><a href="#topics">Topics</a></li>
     <li><a href="#lists">Member groups</a></li>
     <li><a href="#committees">AI committees</a></li>
+    <li><a href="#policy-section">AI policies</a></li>
   </ol></div></nav>
 <h2 id="chamber"></h2>
 <p class="sub" id="hemi-sub"></p>
@@ -302,6 +311,13 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
 <div class="tablewrap"><table id="tbl"><thead></thead><tbody></tbody></table></div>
 <p class="note">Scores go from 0 to 4. The method section below gives the rules. A dash means that there is not enough evidence. Click a row to see a summary and the quotes for each score.</p>
 
+<section id="policy-section" aria-labelledby="policy-title">
+<h2 id="policy-title">Positions on specific AI policies</h2>
+<p class="sub">Explore Congress, executive officials, and institutions. Compare statements about bills, frameworks, export controls, embedded auditors, and competition with China.</p>
+<p class="note">Coverage includes the White House, Commerce, the National Security Agency, and the Superintelligence Task Force. Open a profile for roles, quotes, sources, and model assessments.</p>
+<div id="policy-explorer"><p role="status">Loading policy judgments…</p></div>
+</section>
+
 </div>
 
 <details id="method" class="method">
@@ -316,6 +332,8 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
   <li><b>Daily updates:</b> each day the site gets new posts on X, the Congressional Record, hearings and news since the day before. DeepSeek V4.1 Flash labels each new statement three times. When the three labels do not agree, when the label is 3 or more on x-risk or AGI, or when the label is far from the member's current score, GPT-6.1 Sol labels the statement too. GPT-6 Astra decides when the two are 2 or more levels apart. The same formula then makes the new scores. A check on 455 statements found that this agrees with the original two models as often as they agree with each other (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/master/review/cascade_calibration.md">details</a>).</li>
   <li><b>Policies they support:</b> a second rubric (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/main/config/reg_focus.md">config/reg_focus.md</a>) lists 23 concrete AI policies, from limits on AI chatbots for minors and data center moratoriums to a ban on superintelligence. DeepSeek V4.1 Flash and GPT-6.1 Sol each read all of a member's statements and mark each policy as explicit or implied support, explicit or implied opposition, or no stance, with the quotes that show it. A harm alone is not support: the member must ask for that specific policy, or back a bill that makes it. A general call to "protect workers" or "protect kids" does not count. When the two models point in different directions, GPT-6 Astra reads the cited quotes and decides. When they agree, the weaker of the two strengths is kept. The daily job checks a member again when their new statements talk about AI rules.</li>
   <li><b>Committees:</b> current full-committee rosters from the @unitedstates project.</li>
+  <li><b>Executive and institutional coverage:</b> the policy explorer adds a curated set of federal officials and institutions. Profiles show sourced roles and memberships. Each quote distinguishes a personal statement, a statement in an official role, or an institutional statement. Membership does not establish endorsement. Agency filters include subagencies and linked roles. Each official counts once; charts use the primary organization. Some roles and statement dates remain unknown. The daily job searches configured federal sources, verifies excerpts, and updates policy judgments. The site shows partial updates and work that awaits retry. Roles and memberships still need manual review.</li>
+  <li><b>Policy judgments:</b> keyword searches identify candidate statements in the existing corpus. DeepSeek V4.1 Flash 1017 assesses each candidate with a confidence score. Astra independently reviews confidence below the configured threshold. Cases that remain uncertain require human review. The policy view preserves both assessments and separates no matching evidence from incomplete assessment. Confidence scores are model estimates that require calibration. Each framework has its own dated registry entry. New entries require a manual refresh. These labels have not received a human validation study.</li>
 </ol>
 <p><b>Caveats.</b> What people say in public is not the same as what they believe or how they vote. Scores are produced by language models and only spot-checked. Official records lag by months. X coverage depends on knowing the right accounts, and some members barely post. Members who rarely talk about AI will have little or no evidence. That doesn't mean they hold no views.</p>
 <p class="note">Thanks to <a href="https://cesia.org/en/data/attention/">CeSIA</a>, the <a href="https://github.com/unitedstates/congress-legislators">@unitedstates project</a>, <a href="https://www.govtrack.us/">GovTrack</a>, and Zephy's earlier <a href="https://www.lesswrong.com/">"What Washington Says About AGI"</a>, which this project builds on.</p>

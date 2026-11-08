@@ -1,0 +1,85 @@
+{
+ "id": "R000305",
+ "policies": {
+  "china_race_dynamics": [
+   {
+    "sid": "s10",
+    "text": "Thank you, Dr. Brennan and Dr. Jensen, building on your testimony, as Congress considers proposals for AI regulation, including new agencies dedicated to AI licenses, transparency requirements, and compensation for IP holders, and much more, what do you believe is the best way to balance responsible regulation with maintaining our competitive edge?",
+    "date": "2023-10-19",
+    "context": "Remarks during a US congressional hearing on intellectual property and strategic competition with China, focusing on IP theft, cybersecurity, and AI.",
+    "url": "https://www.govinfo.gov/content/pkg/CHRG-118hhrg53827/html/CHRG-118hhrg53827.htm",
+    "source_type": "hearing",
+    "verified_via": "cesia_verbatim",
+    "strategy": "confidence_cascade",
+    "stance": "neutral",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "Poses a question about balancing AI regulation with competitiveness without taking a position.",
+      "facets": [],
+      "confidence": 0.85,
+      "confidence_reason": "It is a witness question, not an endorsement, and the China context is only in the hearing setting.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:13:42.949450+00:00",
+      "generation_id": "gen-1794093203-bK087GhVPhshZ1YVd3Cv"
+     }
+    },
+    "confidence": 0.85,
+    "final_judge": "deepseek",
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   },
+   {
+    "sid": "s11",
+    "text": "That said, we should not sacrifice individual privacy and intellectual property protections purely for the sake of outcompeting China.",
+    "date": "2023-10-19",
+    "context": "Opening statement by Rep. Deborah Ross at a House Judiciary subcommittee hearing on IP, cybersecurity, and AI competition with China.",
+    "url": "https://www.govinfo.gov/content/pkg/CHRG-118hhrg53827/html/CHRG-118hhrg53827.htm",
+    "source_type": "hearing",
+    "verified_via": "cesia_verbatim",
+    "strategy": "confidence_cascade",
+    "stance": "unclear",
+    "judges": {
+     "deepseek": {
+      "stance": "mixed",
+      "reason": "Insists privacy and IP protections not be sacrificed purely for outcompeting China, qualifying competition priority.",
+      "facets": [
+       "safety_over_speed"
+      ],
+      "confidence": 0.65,
+      "confidence_reason": "The tradeoff is clear, but whether this is opposition or qualified support for competition is ambiguous.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:13:42.949499+00:00",
+      "generation_id": "gen-1794093203-bK087GhVPhshZ1YVd3Cv"
+     },
+     "astra": {
+      "stance": "unclear",
+      "reason": "She rejects sacrificing privacy and intellectual property protections to outcompete China without stating whether competition should be a priority.",
+      "facets": [
+       "safety_over_speed"
+      ],
+      "confidence": 0.89,
+      "confidence_reason": "The tradeoff is explicit, while her overall position on prioritizing competition remains unstated.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:20:47.929586+00:00",
+      "generation_id": "gen-1794093627-I25ao1rZP0XP7xk7DTAx"
+     }
+    },
+    "confidence": 0.89,
+    "final_judge": "astra",
+    "facets_final": [
+     "safety_over_speed"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": true,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.65 is below 0.8."
+   }
+  ]
+ }
+}

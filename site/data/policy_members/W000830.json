@@ -1,0 +1,161 @@
+{
+ "id": "W000830",
+ "policies": {
+  "embedded_ivos": [
+   {
+    "sid": "s45",
+    "text": "Congress should use the same month to draft the thresholds and verification structure – independent auditors, government observers inside the labs – that turn voluntary red lines into law.",
+    "date": null,
+    "context": "",
+    "url": "https://whitesides.house.gov/2026/09/15/icymi-rep-whitesides-calls-for-industry-wide-safety-stand-down-on-frontier-ai-development-in-washington-post-op-ed/",
+    "source_type": "web",
+    "verified_via": "ok",
+    "strategy": "confidence_cascade",
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker calls for independent auditors and government observers inside labs, codified into law.",
+      "facets": [
+       "ongoing_access",
+       "independence",
+       "government_assignment",
+       "mandatory"
+      ],
+      "confidence": 0.88,
+      "confidence_reason": "Embedded oversight is clearly described, though not using the specific IVO label.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:32:20.504764+00:00",
+      "generation_id": "gen-1794094313-8u9vcOvqTIyyDpIjyWS2"
+     }
+    },
+    "confidence": 0.88,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "ongoing_access",
+     "independence",
+     "government_assignment",
+     "mandatory"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   }
+  ],
+  "china_race_dynamics": [
+   {
+    "sid": "s35",
+    "text": "I joined @MorganLBrennan on @CNBC to discuss why we can’t leave AI safety entirely up to the companies building these technologies.\n\nAI could transform everything from health care to cybersecurity. That’s exactly why the government and industry need to work together to set responsible guardrails – without ceding any progress to China.",
+    "date": "2026-09-26",
+    "context": "",
+    "url": "https://x.com/Rep_Whitesides/status/2103668885383745677",
+    "source_type": "x",
+    "verified_via": "x_api",
+    "strategy": "confidence_cascade",
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker backs responsible AI guardrails while insisting the US not cede AI progress to China.",
+      "facets": [
+       "competition_priority",
+       "safety_over_speed"
+      ],
+      "confidence": 0.82,
+      "confidence_reason": "The China-competition condition is explicit, though it is framed as a constraint on safety guardrails rather than a standalone priority.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:16:57.390405+00:00",
+      "generation_id": "gen-1794093407-r9aBnZXm2H1FLOein3go"
+     }
+    },
+    "confidence": 0.82,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority",
+     "safety_over_speed"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   }
+  ],
+  "ai_action_plan_2025": [
+   {
+    "sid": "s2",
+    "text": "There are growing concerns about the possibility of essentially superintelligent systems. And, you know, clearly the Administration's basic posture is sort of like all systems go; full speed ahead. So how should responsible policymakers— and how are you thinking about that specifically, because these systems are moving very, very quickly, and I think it's probably irresponsible not to have a plan for those conditions?",
+    "date": "2026-01-14",
+    "context": "Question posed during a hearing on the Advancing America's AI Action Plan.",
+    "url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62455/html/CHRG-119hhrg62455.htm",
+    "source_type": "hearing",
+    "verified_via": "cesia_verbatim",
+    "strategy": "confidence_cascade",
+    "stance": "review_required",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "The speaker describes the administration's rapid-pace posture and asks about planning but does not explicitly endorse or reject the AI Action Plan.",
+      "facets": [],
+      "confidence": 0.65,
+      "confidence_reason": "The statement is a question about administration posture, making its stance on the specific plan uncertain.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:17:02.134996+00:00",
+      "generation_id": "gen-1794093406-r0RNTd8CuN84b934c8pt"
+     },
+     "astra": {
+      "stance": "unclear",
+      "reason": "The speaker criticizes the administration's full-speed posture and calls for safety planning without clearly accepting or rejecting the Action Plan.",
+      "facets": [],
+      "confidence": 0.78,
+      "confidence_reason": "The hearing context links the remarks to the plan, but the speaker's overall position on it remains unstated.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:21:39.128863+00:00",
+      "generation_id": "gen-1794093683-jfeF9ymBqz7VNIYee628"
+     }
+    },
+    "confidence": 0.78,
+    "final_judge": null,
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": true,
+    "review_required": true,
+    "review_status": "human_review_required",
+    "review_reason": "DeepSeek confidence 0.65 is below 0.8. Astra also reports confidence below the threshold; human review is required."
+   },
+   {
+    "sid": "s3",
+    "text": "So AI systems are increasingly integrated into platforms and tools that children use every day. What responsibility should developers and deployers have to ensure child safety as these systems scale?",
+    "date": "2026-01-14",
+    "context": "Opening remarks by Rep. Whitesides at a congressional hearing on America's AI Action Plan, posing a question about child safety on AI platforms.",
+    "url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62455/html/CHRG-119hhrg62455.htm",
+    "source_type": "hearing",
+    "verified_via": "cesia_verbatim",
+    "strategy": "confidence_cascade",
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The speaker asks about child-safety responsibilities, not the AI Action Plan.",
+      "facets": [],
+      "confidence": 0.92,
+      "confidence_reason": "The statement is a hearing question about child safety and does not mention or evaluate the plan.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:16:57.390285+00:00",
+      "generation_id": "gen-1794093407-r9aBnZXm2H1FLOein3go"
+     }
+    },
+    "confidence": 0.92,
+    "final_judge": "deepseek",
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   }
+  ]
+ }
+}

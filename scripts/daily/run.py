@@ -17,6 +17,7 @@ from common import ROOT, load_json, save_json, today
 import collect
 import history
 import label
+import federal
 import llm
 import phase6_reg_focus
 from phase3_label import DIMS, combine
@@ -102,7 +103,7 @@ def issue_body(changes, report):
     return "\n".join(lines) + "\n"
 
 
-def main(argv=None):
+def run_congress(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--sources")
     ap.add_argument("--since")
@@ -146,6 +147,41 @@ def main(argv=None):
     elif issue.exists():
         issue.unlink()
     print(json.dumps(report, indent=1))
+    return report
+
+
+def main(argv=None):
+    """Run independent federal and congressional pipelines, retaining both failure signals."""
+    from datetime import date
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--sources', default='x,crec,web,federal' + (',chrg' if date.today().weekday() == 0 else ''))
+    ap.add_argument('--since')
+    ap.add_argument('--skip-collect', action='store_true')
+    ap.add_argument('--dry-run', action='store_true')
+    args = ap.parse_args(argv)
+    sources = args.sources.split(',')
+    if not set(sources) <= {'x', 'crec', 'web', 'chrg', 'federal'}:
+        ap.error('Unknown source; use x,crec,chrg,web,federal')
+    common_args = (['--since', args.since] if args.since else [])
+    common_args += ['--skip-collect'] if args.skip_collect else []
+    common_args += ['--dry-run'] if args.dry_run else []
+    report, failure = {}, None
+    # Federal work runs first so a long congressional collection cannot consume the whole job window.
+    if 'federal' in sources:
+        try:
+            report['federal'] = federal.main(common_args)
+        except Exception as exc:
+            failure = exc
+    congressional = [s for s in sources if s != 'federal']
+    if congressional:
+        try:
+            report.update(run_congress(['--sources', ','.join(congressional), *common_args]))
+        except Exception as exc:
+            failure = failure or exc
+    if failure:
+        raise failure
+    if report.get('federal', {}).get('status') == 'partial' and not args.dry_run:
+        raise RuntimeError('Federal update is partial; see data/federal_status.json')
     return report
 
 

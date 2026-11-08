@@ -1,0 +1,89 @@
+{
+ "id": "C001091",
+ "policies": {
+  "export_controls": [
+   {
+    "sid": "s8",
+    "text": "Chinese military and entities affiliated with the Chinese military should not have access to these chips to train their own AI models,",
+    "date": "2026-07",
+    "context": "",
+    "url": "https://texaspolitics.com/2026/07/21/ai-chip-exports-to-china-face-bipartisan-pushback-on-capitol-hill/",
+    "source_type": "web",
+    "verified_via": "ok",
+    "strategy": "confidence_cascade",
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker says Chinese military and affiliated entities should not have access to these chips for AI training.",
+      "facets": [
+       "tighten_controls"
+      ],
+      "confidence": 0.9,
+      "confidence_reason": "The statement explicitly endorses denying chip access to Chinese military-linked entities.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:03:42.940655+00:00",
+      "generation_id": "gen-1794092608-Cg7ghO1ZXAogAyKnZrsq"
+     }
+    },
+    "confidence": 0.9,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "tighten_controls"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   }
+  ],
+  "china_race_dynamics": [
+   {
+    "sid": "s8",
+    "text": "Chinese military and entities affiliated with the Chinese military should not have access to these chips to train their own AI models,",
+    "date": "2026-07",
+    "context": "",
+    "url": "https://texaspolitics.com/2026/07/21/ai-chip-exports-to-china-face-bipartisan-pushback-on-capitol-hill/",
+    "source_type": "web",
+    "verified_via": "ok",
+    "strategy": "confidence_cascade",
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement addresses chip access for Chinese military entities, not whether competition with China should be an AI policy priority.",
+      "facets": [],
+      "confidence": 0.72,
+      "confidence_reason": "It is an export-control statement without an explicit race-priority claim.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:03:42.940709+00:00",
+      "generation_id": "gen-1794092608-Cg7ghO1ZXAogAyKnZrsq"
+     },
+     "astra": {
+      "stance": "support",
+      "reason": "The speaker endorses denying Chinese military-linked entities chips for training AI models.",
+      "facets": [
+       "export_restrictions"
+      ],
+      "confidence": 0.86,
+      "confidence_reason": "The restrictive China-facing AI policy is explicit, but a broader competition agenda is not stated.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:17:55.627406+00:00",
+      "generation_id": "gen-1794093460-kFtNKfG9i5aVvY6e3MTt"
+     }
+    },
+    "confidence": 0.86,
+    "final_judge": "astra",
+    "facets_final": [
+     "export_restrictions"
+    ],
+    "facet_disagreement": true,
+    "model_disagreement": true,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.72 is below 0.8."
+   }
+  ]
+ }
+}

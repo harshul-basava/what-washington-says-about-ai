@@ -1,0 +1,91 @@
+{
+ "id": "R000622",
+ "policies": {
+  "export_controls": [
+   {
+    "sid": "s1",
+    "text": "Right now, China is getting access to the specialized equipment used to make advanced computer chips. This bill stops that by tightening the rules and making sure everyone plays by the same rules, so American workers aren’t getting screwed.",
+    "date": "2026-04-22",
+    "context": "",
+    "url": "https://riley.house.gov/2026/04/22/riley-backs-bipartisan-bill-to-crack-down-on-china-protect-u-s-supply-chains-and-national-security/",
+    "source_type": "web",
+    "verified_via": "ok",
+    "strategy": "confidence_cascade",
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker backs his bill to stop China's access to chipmaking equipment by tightening the rules.",
+      "facets": [
+       "tighten_controls"
+      ],
+      "confidence": 0.85,
+      "confidence_reason": "Explicit endorsement of tightening export rules on chip equipment.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T22:56:04.799810+00:00",
+      "generation_id": "gen-1794092152-tRBiAZ9ObRNNyjNY44g7"
+     }
+    },
+    "confidence": 0.85,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "tighten_controls"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   }
+  ],
+  "china_race_dynamics": [
+   {
+    "sid": "s1",
+    "text": "Right now, China is getting access to the specialized equipment used to make advanced computer chips. This bill stops that by tightening the rules and making sure everyone plays by the same rules, so American workers aren’t getting screwed.",
+    "date": "2026-04-22",
+    "context": "",
+    "url": "https://riley.house.gov/2026/04/22/riley-backs-bipartisan-bill-to-crack-down-on-china-protect-u-s-supply-chains-and-national-security/",
+    "source_type": "web",
+    "verified_via": "ok",
+    "strategy": "confidence_cascade",
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker frames denying China access to advanced chip equipment as protecting American workers from being undercut.",
+      "facets": [
+       "export_restrictions"
+      ],
+      "confidence": 0.55,
+      "confidence_reason": "The statement is aimed at export restriction against China rather than an explicit race-priority framing.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T22:56:04.799867+00:00",
+      "generation_id": "gen-1794092152-tRBiAZ9ObRNNyjNY44g7"
+     },
+     "astra": {
+      "stance": "support",
+      "reason": "Riley endorses tighter restrictions on China's access to advanced chipmaking equipment to protect American workers.",
+      "facets": [
+       "export_restrictions"
+      ],
+      "confidence": 0.91,
+      "confidence_reason": "He clearly favors restricting Chinese access, although he does not articulate a broader AI race strategy.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T22:57:10.407874+00:00",
+      "generation_id": "gen-1794092208-TcK6t6Q7rvgTVbAYkNod"
+     }
+    },
+    "confidence": 0.91,
+    "final_judge": "astra",
+    "facets_final": [
+     "export_restrictions"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.55 is below 0.8."
+   }
+  ]
+ }
+}

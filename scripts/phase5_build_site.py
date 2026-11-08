@@ -2,11 +2,14 @@
 import csv
 import json
 import re
+import sys
 from collections import Counter, defaultdict
 from datetime import date, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from policy_judgments import build as build_policies
 SITE = ROOT / "site"
 DATA = SITE / "data"
 (DATA / "quotes").mkdir(parents=True, exist_ok=True)
@@ -165,6 +168,10 @@ def main():
         (DATA / "regfocus.json").write_text(json.dumps({"areas": areas, "labeled": len(rf),
                                                         "m": {pid: r["final"] for pid, r in rf.items() if r.get("final")}}))
     print("members", len(members), "timeline rows", len(tl), "daily rows", len(rows))
+    # The daily job invokes this entry point directly, bypassing Makefile targets.
+    # Rebuild from saved judgments only; new or changed evidence stays pending.
+    policies = build_policies(ROOT)
+    print("policies", len(policies["policies"]))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,138 @@
+{
+ "id": "R000579",
+ "policies": {
+  "export_controls": [
+   {
+    "sid": "s16",
+    "text": "Trump: \"We can't let China win the AI race!\"\n\nAlso, Trump: Gives China the exact chips they need to build the most advanced AI https://t.co/y8cdAYU0tR",
+    "date": "2026-09-15",
+    "context": "",
+    "url": "https://x.com/PatRyanUC/status/2099977407981576605",
+    "source_type": "x",
+    "verified_via": "x_api",
+    "strategy": "confidence_cascade",
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker criticizes giving China the exact chips needed for advanced AI, implying support for restricting those exports.",
+      "facets": [
+       "tighten_controls"
+      ],
+      "confidence": 0.62,
+      "confidence_reason": "The criticism implies support for tighter chip export restrictions, but it is sarcastic and does not explicitly name export controls.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:13:34.280333+00:00",
+      "generation_id": "gen-1794093205-CE8eszeB81qizz5TTS9h"
+     },
+     "astra": {
+      "stance": "support",
+      "reason": "He criticizes giving China the advanced chips it needs to develop advanced AI.",
+      "facets": [
+       "tighten_controls"
+      ],
+      "confidence": 0.91,
+      "confidence_reason": "The sarcastic contrast clearly criticizes chip access, although it does not specify a particular restriction.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:20:47.929642+00:00",
+      "generation_id": "gen-1794093627-I25ao1rZP0XP7xk7DTAx"
+     }
+    },
+    "confidence": 0.91,
+    "final_judge": "astra",
+    "facets_final": [
+     "tighten_controls"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.62 is below 0.8."
+   }
+  ],
+  "embedded_ivos": [
+   {
+    "sid": "s18",
+    "text": "Want to know why I don't trust labs to police themselves?\n\nBecause this keeps happening, and it's always a third-party figuring it out!\n\nYet when Congress asks OpenAI/Anthropic about security incidents, we get stonewalled.\n\nWe need embedded independent auditors. And subpoenas. https://t.co/tC6TmveAqt",
+    "date": "2026-09-25",
+    "context": "",
+    "url": "https://x.com/PatRyanUC/status/2103545978934698052",
+    "source_type": "x",
+    "verified_via": "x_api",
+    "strategy": "confidence_cascade",
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker explicitly says we need embedded independent auditors.",
+      "facets": [
+       "independence"
+      ],
+      "confidence": 0.95,
+      "confidence_reason": "The statement directly calls for embedded independent auditors.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:13:34.280389+00:00",
+      "generation_id": "gen-1794093205-CE8eszeB81qizz5TTS9h"
+     }
+    },
+    "confidence": 0.95,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "independence"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   }
+  ],
+  "china_race_dynamics": [
+   {
+    "sid": "s16",
+    "text": "Trump: \"We can't let China win the AI race!\"\n\nAlso, Trump: Gives China the exact chips they need to build the most advanced AI https://t.co/y8cdAYU0tR",
+    "date": "2026-09-15",
+    "context": "",
+    "url": "https://x.com/PatRyanUC/status/2099977407981576605",
+    "source_type": "x",
+    "verified_via": "x_api",
+    "strategy": "confidence_cascade",
+    "stance": "unclear",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The China race line is a quoted Trump statement, and the speaker's own criticism is about chip exports rather than endorsing race dynamics.",
+      "facets": [],
+      "confidence": 0.7,
+      "confidence_reason": "The only race-framing language is quoted from Trump, not adopted by the speaker.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:13:34.280362+00:00",
+      "generation_id": "gen-1794093205-CE8eszeB81qizz5TTS9h"
+     },
+     "astra": {
+      "stance": "unclear",
+      "reason": "He criticizes chip transfers to China but expresses the race priority only through a quotation attributed to Trump.",
+      "facets": [
+       "export_restrictions"
+      ],
+      "confidence": 0.81,
+      "confidence_reason": "His opposition to chip transfers is clear, but the quoted race framing does not establish his own endorsement of that priority.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:20:47.929691+00:00",
+      "generation_id": "gen-1794093627-I25ao1rZP0XP7xk7DTAx"
+     }
+    },
+    "confidence": 0.81,
+    "final_judge": "astra",
+    "facets_final": [
+     "export_restrictions"
+    ],
+    "facet_disagreement": true,
+    "model_disagreement": true,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.7 is below 0.8."
+   }
+  ]
+ }
+}

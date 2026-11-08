@@ -1,0 +1,133 @@
+{
+ "id": "M001204",
+ "policies": {
+  "china_race_dynamics": [
+   {
+    "sid": "s1",
+    "text": "We are in a global competition with China. We are seeking what effects they will have. There is a lot of misinformation out there from our adversaries. We have to gather all the information, but if we have an extended pause on data centers, those adversaries will gain an advantage.",
+    "date": null,
+    "context": "",
+    "url": "https://www.timesleader.com/news/1740500/data-centers-legalizing-marijuana-top-issues-at-back-mountain-chamber-event",
+    "source_type": "web",
+    "verified_via": "ok",
+    "strategy": "confidence_cascade",
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker says the US is in a global competition with China and warns that a data-center pause would let adversaries gain an advantage.",
+      "facets": [
+       "competition_priority",
+       "speed_over_safety"
+      ],
+      "confidence": 0.78,
+      "confidence_reason": "Competition priority is explicit; speed-over-safety is inferred from the warning against a data-center pause, which may be less clearly a safeguard.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:11:37.984088+00:00",
+      "generation_id": "gen-1794093090-3NZh9ILN0CltK5L8jwG9"
+     },
+     "astra": {
+      "stance": "support",
+      "reason": "The speaker argues against an extended data-center pause because it would advantage China and other adversaries.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.89,
+      "confidence_reason": "Competition explicitly motivates the objection, but the pause is not identified as a safety safeguard.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:20:13.458311+00:00",
+      "generation_id": "gen-1794093597-SSmouNoL391nfF2gQHrw"
+     }
+    },
+    "confidence": 0.89,
+    "final_judge": "astra",
+    "facets_final": [
+     "competition_priority"
+    ],
+    "facet_disagreement": true,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.78 is below 0.8."
+   },
+   {
+    "sid": "s3",
+    "text": "Data centers have the capacity to increase value for communities in the form of good jobs and strengthen national security, which is important in our competition with China,",
+    "date": null,
+    "context": "",
+    "url": "https://www.timesleader.com/news/1764119/incumbent-republican-meuser-challenged-by-democrat-wallace-in-9th-district",
+    "source_type": "web",
+    "verified_via": "ok",
+    "strategy": "confidence_cascade",
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker says data centers strengthen national security, which is important in the competition with China.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.9,
+      "confidence_reason": "The statement explicitly frames national security and data centers as important to competition with China.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:11:37.984140+00:00",
+      "generation_id": "gen-1794093090-3NZh9ILN0CltK5L8jwG9"
+     }
+    },
+    "confidence": 0.9,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   },
+   {
+    "sid": "s14",
+    "text": "At today’s @FinancialCmte hearing, I spoke about our work to unleash AI’s full potential. With the investment and energy dominance needed to support this growing infrastructure, my home state of Pennsylvania is doing everything we can to make sure America wins the race.\nBut this rapid growth brings serious risks. We’re already seeing scams, fraud, profiling, and other threats becoming more sophisticated. AI is an incredibly strong tool for detecting and shutting down these schemes, but it can also create them, which is why our oversight matters.\n\nI highlighted @Google's work uncovering the Chinese-linked Lighthouse operation that targeted Americans with fake EZ-Pass and postal service messages—scams my own constituents encounter far too often. We also heard from @Nasdaq  about how AI is helping investors get better trade execution through their Dynamic M-ELO system.\n\nAI offers enormous opportunity, but we must stay focused on stopping the bad actors while putting these tools to work for consumers, markets, and America’s economic future.",
+    "date": "2025-12-10",
+    "context": "",
+    "url": "https://x.com/RepMeuser/status/1998871939553571126",
+    "source_type": "x",
+    "verified_via": "x_api",
+    "strategy": "confidence_cascade",
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker says Pennsylvania is doing everything to ensure America wins the AI race, endorsing competitive race framing.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.72,
+      "confidence_reason": "The race line is explicit, but China is referenced only via a scam operation, leaving target specificity somewhat uncertain.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-07T23:11:48.425629+00:00",
+      "generation_id": "gen-1794093090-p1IdDDYNAl89qll18dVh"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "The speaker promotes American AI leadership but mentions China only in connection with a scam operation.",
+      "facets": [],
+      "confidence": 0.84,
+      "confidence_reason": "The statement does not identify China as the competitor in the race America should win.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-07T23:20:13.458393+00:00",
+      "generation_id": "gen-1794093597-SSmouNoL391nfF2gQHrw"
+     }
+    },
+    "confidence": 0.84,
+    "final_judge": "astra",
+    "facets_final": [],
+    "facet_disagreement": true,
+    "model_disagreement": true,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.72 is below 0.8."
+   }
+  ]
+ }
+}
