@@ -417,10 +417,17 @@ async function init(){
   drawPresets(); renderHead(); renderTable(); drawAll();
   let t; addEventListener("resize", ()=>{clearTimeout(t); t=setTimeout(drawAll,150);});
 }
+// line up the Key events switch with the right edge of the pies, the right-most content under the bar
+function alignEvToggle(){
+  const t = document.getElementById("evtoggle"), pie = document.querySelector("#pies svg"), bar = t.parentElement;
+  if (!pie || innerWidth <= 720){ t.style.marginRight = "0px"; return; }   // phones: pies wrap into a centered row
+  const edge = bar.getBoundingClientRect().right - parseFloat(getComputedStyle(bar).paddingRight);
+  t.style.marginRight = Math.max(0, Math.round(edge - pie.getBoundingClientRect().right - 4)) + "px";   // 4px = button padding
+}
 function drawAll(){
   const d = DIMS.find(x=>x[0]===S.dim);
   document.querySelectorAll(".dimname").forEach(e=>e.textContent=d[1]);
-  drawHemis(); drawIdeology(); drawPartyDist(); drawTrend(); drawChanges(); drawRegFocus(); drawFocus(); drawVoices(); drawList(); drawComm();
+  drawHemis(); alignEvToggle(); drawIdeology(); drawPartyDist(); drawTrend(); drawChanges(); drawRegFocus(); drawFocus(); drawVoices(); drawList(); drawComm();
 }
 // three states used by the seat chart and the committee bars
 const STATES = [["yes","Scores 3 or more","--yes"],["no","Scores 0 to 2","--no"],["none","Hasn't said enough to score","--card"]];
