@@ -266,7 +266,7 @@
     "run_b": 2,
     "reason_a": "median_of_6",
     "reason_b": "median_of_6",
-    "justification": "Claude: 2 (weighs benefits and risks equally). Median of 6 labeled statements. GPT: 2 (weighs benefits and risks equally). Median of 6 labeled statements.",
+    "justification": "Judge A: 2 (weighs benefits and risks equally). Median of 6 labeled statements. Judge B: 2 (weighs benefits and risks equally). Median of 6 labeled statements.",
     "statement_ids": [
      "s212",
      "s204",
@@ -282,7 +282,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (expects very large change from AI). At least two statements reach this level. GPT: 2 (expects very large change from AI). At least two statements reach this level.",
+    "justification": "Judge A: 2 (expects very large change from AI). At least two statements reach this level. Judge B: 2 (expects very large change from AI). At least two statements reach this level.",
     "statement_ids": [
      "s135"
     ]
@@ -293,7 +293,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "china_race": {
@@ -302,7 +302,7 @@
     "run_b": 1,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 1 (mentions the competition without using it). At least two statements reach this level. GPT: 1 (mentions the competition without using it). At least two statements reach this level.",
+    "justification": "Judge A: 1 (mentions the competition without using it). At least two statements reach this level. Judge B: 1 (mentions the competition without using it). At least two statements reach this level.",
     "statement_ids": [
      "s154"
     ]
@@ -313,7 +313,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (supports substantial obligations on AI companies). At least two statements reach this level. GPT: 3 (supports substantial obligations on AI companies). At least two statements reach this level.",
+    "justification": "Judge A: 3 (supports substantial obligations on AI companies). At least two statements reach this level. Judge B: 3 (supports substantial obligations on AI companies). At least two statements reach this level.",
     "statement_ids": [
      "s243",
      "s219",
@@ -870,6 +870,26 @@
    ],
    "s87": [
     "deepfakes/elections"
+   ],
+   "s244": [
+    "deepfakes/elections"
+   ],
+   "s245": [
+    "deepfakes/elections"
+   ],
+   "s246": [
+    "deepfakes/elections"
+   ],
+   "s247": [
+    "deepfakes/elections"
+   ],
+   "s248": [
+    "deepfakes/elections",
+    "regulation"
+   ],
+   "s249": [
+    "regulation",
+    "other"
    ]
   },
   "rubric_version": "v3"
@@ -1563,6 +1583,19 @@
    "s282": [
     "jobs/economy",
     "regulation"
+   ],
+   "s283": [
+    "x-risk/loss of control",
+    "AGI/transformative",
+    "regulation"
+   ],
+   "s284": [
+    "x-risk/loss of control",
+    "national security",
+    "other"
+   ],
+   "s285": [
+    "regulation"
    ]
   },
   "rubric_version": "v3"
@@ -1575,7 +1608,7 @@
     "run_b": "insufficient_evidence",
     "reason_a": "no_statements",
     "reason_b": "no_statements",
-    "justification": "Claude: not enough evidence GPT: not enough evidence",
+    "justification": "Judge A: not enough evidence Judge B: not enough evidence",
     "statement_ids": []
    },
    "agi_pilled": {
@@ -1584,7 +1617,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "x_risk": {
@@ -1593,7 +1626,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "china_race": {
@@ -1602,7 +1635,7 @@
     "run_b": 0,
     "reason_a": "consistent",
     "reason_b": "silent",
-    "justification": "Claude: 1 (mentions the competition without using it). At least two statements reach this level. GPT: 0 (rejects race framing). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 1 (mentions the competition without using it). At least two statements reach this level. Judge B: 0 (rejects race framing). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": [
      "s8"
     ]
@@ -1613,7 +1646,7 @@
     "run_b": 2,
     "reason_a": "no_statements",
     "reason_b": "consistent",
-    "justification": "Claude: not enough evidence GPT: 2 (supports narrow, targeted rules). At least two statements reach this level.",
+    "justification": "Judge A: not enough evidence Judge B: 2 (supports narrow, targeted rules). At least two statements reach this level.",
     "statement_ids": [
      "s4"
     ]
@@ -1719,6 +1752,9 @@
    ],
    "s27": [
     "energy/data centers",
+    "other"
+   ],
+   "s28": [
     "other"
    ]
   },
@@ -3047,7 +3083,7 @@
     "run_b": 2,
     "reason_a": "median_of_1",
     "reason_b": "median_of_1",
-    "justification": "Claude: 2 (weighs benefits and risks equally). Median of 1 labeled statements. GPT: 2 (weighs benefits and risks equally). Median of 1 labeled statements.",
+    "justification": "Judge A: 2 (weighs benefits and risks equally). Median of 1 labeled statements. Judge B: 2 (weighs benefits and risks equally). Median of 1 labeled statements.",
     "statement_ids": [
      "s11"
     ]
@@ -3058,7 +3094,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "x_risk": {
@@ -3067,7 +3103,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (calls for action because of catastrophic risk). At least two statements reach this level. GPT: 3 (calls for action because of catastrophic risk). At least two statements reach this level.",
+    "justification": "Judge A: 3 (calls for action because of catastrophic risk). At least two statements reach this level. Judge B: 3 (calls for action because of catastrophic risk). At least two statements reach this level.",
     "statement_ids": [
      "s1"
     ]
@@ -3078,7 +3114,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects race framing). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects race framing). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects race framing). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects race framing). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "regulation": {
@@ -3087,7 +3123,7 @@
     "run_b": 4,
     "reason_a": "one_off_capped",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (supports substantial obligations on AI companies). Only one statement reaches the highest level, so the score is one step lower. GPT: 4 (supports comprehensive regulation). At least two statements reach this level.",
+    "justification": "Judge A: 3 (supports substantial obligations on AI companies). Only one statement reaches the highest level, so the score is one step lower. Judge B: 4 (supports comprehensive regulation). At least two statements reach this level.",
     "statement_ids": [
      "s18"
     ]
@@ -3164,6 +3200,14 @@
    "s18": [
     "regulation",
     "AGI/transformative"
+   ],
+   "s19": [
+    "deepfakes/elections",
+    "regulation"
+   ],
+   "s20": [
+    "deepfakes/elections",
+    "regulation"
    ]
   },
   "rubric_version": "v3"
@@ -4359,6 +4403,23 @@
    ],
    "s239": [
     "jobs/economy"
+   ],
+   "s240": [
+    "national security",
+    "misuse (bio/cyber)"
+   ],
+   "s241": [
+    "energy/data centers",
+    "jobs/economy"
+   ],
+   "s242": [
+    "regulation",
+    "other"
+   ],
+   "s243": [
+    "China/competition",
+    "regulation",
+    "other"
    ]
   },
   "rubric_version": "v3"
@@ -5166,6 +5227,21 @@
     "other",
     "China/competition",
     "national security"
+   ],
+   "s123": [
+    "deepfakes/elections"
+   ],
+   "s124": [
+    "deepfakes/elections"
+   ],
+   "s125": [
+    "deepfakes/elections",
+    "regulation"
+   ],
+   "s126": [
+    "deepfakes/elections",
+    "regulation",
+    "other"
    ]
   },
   "rubric_version": "v3"
@@ -6085,7 +6161,7 @@
     "run_b": 2,
     "reason_a": "median_of_5",
     "reason_b": "median_of_4",
-    "justification": "Claude: 2 (weighs benefits and risks equally). Median of 5 labeled statements. GPT: 2 (weighs benefits and risks equally). Median of 4 labeled statements.",
+    "justification": "Judge A: 2 (weighs benefits and risks equally). Median of 5 labeled statements. Judge B: 2 (weighs benefits and risks equally). Median of 4 labeled statements.",
     "statement_ids": [
      "s108",
      "s106",
@@ -6099,7 +6175,7 @@
     "run_b": 4,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 4 (says AGI is near or a turning point). At least two statements reach this level. GPT: 4 (says AGI is near or a turning point). At least two statements reach this level.",
+    "justification": "Judge A: 4 (says AGI is near or a turning point). At least two statements reach this level. Judge B: 4 (says AGI is near or a turning point). At least two statements reach this level.",
     "statement_ids": [
      "s20"
     ]
@@ -6110,7 +6186,7 @@
     "run_b": 1,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 1 (raises catastrophic risk but plays it down). At least two statements reach this level. GPT: 1 (raises catastrophic risk but plays it down). At least two statements reach this level.",
+    "justification": "Judge A: 1 (raises catastrophic risk but plays it down). At least two statements reach this level. Judge B: 1 (raises catastrophic risk but plays it down). At least two statements reach this level.",
     "statement_ids": [
      "s27"
     ]
@@ -6121,7 +6197,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (uses the competition as the main reason). At least two statements reach this level. GPT: 3 (uses the competition as the main reason). At least two statements reach this level.",
+    "justification": "Judge A: 3 (uses the competition as the main reason). At least two statements reach this level. Judge B: 3 (uses the competition as the main reason). At least two statements reach this level.",
     "statement_ids": [
      "s124",
      "s121",
@@ -6135,7 +6211,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (supports substantial obligations on AI companies). At least two statements reach this level. GPT: 2 (supports narrow, targeted rules). At least two statements reach this level.",
+    "justification": "Judge A: 3 (supports substantial obligations on AI companies). At least two statements reach this level. Judge B: 2 (supports narrow, targeted rules). At least two statements reach this level.",
     "statement_ids": [
      "s130",
      "s121",
@@ -6619,6 +6695,10 @@
    ],
    "s132": [
     "deepfakes/elections"
+   ],
+   "s133": [
+    "copyright",
+    "regulation"
    ]
   },
   "rubric_version": "v3"
@@ -6631,7 +6711,7 @@
     "run_b": 0,
     "reason_a": "median_of_5",
     "reason_b": "median_of_5",
-    "justification": "Claude: 2 (weighs benefits and risks equally). Median of 5 labeled statements. GPT: 0 (presents AI as mainly a threat). Median of 5 labeled statements.",
+    "justification": "Judge A: 2 (weighs benefits and risks equally). Median of 5 labeled statements. Judge B: 0 (presents AI as mainly a threat). Median of 5 labeled statements.",
     "statement_ids": [
      "s63",
      "s61",
@@ -6647,7 +6727,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (expects very large change from AI). At least two statements reach this level. GPT: 2 (expects very large change from AI). At least two statements reach this level.",
+    "justification": "Judge A: 2 (expects very large change from AI). At least two statements reach this level. Judge B: 2 (expects very large change from AI). At least two statements reach this level.",
     "statement_ids": [
      "s44",
      "s7",
@@ -6660,7 +6740,7 @@
     "run_b": 0,
     "reason_a": "consistent",
     "reason_b": "silent",
-    "justification": "Claude: 3 (calls for action because of catastrophic risk). At least two statements reach this level. GPT: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 3 (calls for action because of catastrophic risk). At least two statements reach this level. Judge B: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": [
      "s108"
     ]
@@ -6671,7 +6751,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (uses the competition as one reason among several). At least two statements reach this level. GPT: 3 (uses the competition as the main reason). At least two statements reach this level.",
+    "justification": "Judge A: 2 (uses the competition as one reason among several). At least two statements reach this level. Judge B: 3 (uses the competition as the main reason). At least two statements reach this level.",
     "statement_ids": [
      "s71",
      "s70",
@@ -6684,7 +6764,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "one_off_capped",
-    "justification": "Claude: 4 (supports comprehensive regulation). At least two statements reach this level. GPT: 3 (supports substantial obligations on AI companies). Only one statement reaches the highest level, so the score is one step lower.",
+    "justification": "Judge A: 4 (supports comprehensive regulation). At least two statements reach this level. Judge B: 3 (supports substantial obligations on AI companies). Only one statement reaches the highest level, so the score is one step lower.",
     "statement_ids": [
      "s106",
      "s103"
@@ -7101,6 +7181,9 @@
     "kids/online safety"
    ],
    "s18": [
+    "regulation"
+   ],
+   "s112": [
     "regulation"
    ]
   },
@@ -8000,7 +8083,7 @@
     "run_b": "insufficient_evidence",
     "reason_a": "median_of_1",
     "reason_b": "no_statements",
-    "justification": "Claude: 1 (treats harms as dominant). Median of 1 labeled statements. GPT: not enough evidence",
+    "justification": "Judge A: 1 (treats harms as dominant). Median of 1 labeled statements. Judge B: not enough evidence",
     "statement_ids": [
      "s1"
     ]
@@ -8011,7 +8094,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "x_risk": {
@@ -8020,7 +8103,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "china_race": {
@@ -8029,7 +8112,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (uses the competition as one reason among several). At least two statements reach this level. GPT: 3 (uses the competition as the main reason). At least two statements reach this level.",
+    "justification": "Judge A: 2 (uses the competition as one reason among several). At least two statements reach this level. Judge B: 3 (uses the competition as the main reason). At least two statements reach this level.",
     "statement_ids": [
      "s16",
      "s5"
@@ -8041,7 +8124,7 @@
     "run_b": 2,
     "reason_a": "one_off_capped",
     "reason_b": "one_off_capped",
-    "justification": "Claude: 2 (supports narrow, targeted rules). Only one statement reaches the highest level, so the score is one step lower. GPT: 2 (supports narrow, targeted rules). Only one statement reaches the highest level, so the score is one step lower.",
+    "justification": "Judge A: 2 (supports narrow, targeted rules). Only one statement reaches the highest level, so the score is one step lower. Judge B: 2 (supports narrow, targeted rules). Only one statement reaches the highest level, so the score is one step lower.",
     "statement_ids": [
      "s7",
      "s23"
@@ -8140,6 +8223,9 @@
    ],
    "s24": [
     "regulation"
+   ],
+   "s25": [
+    "kids/online safety"
    ]
   },
   "rubric_version": "v3"
@@ -9974,7 +10060,7 @@
     "run_b": "insufficient_evidence",
     "reason_a": "no_statements",
     "reason_b": "no_statements",
-    "justification": "Claude: not enough evidence GPT: not enough evidence",
+    "justification": "Judge A: not enough evidence Judge B: not enough evidence",
     "statement_ids": []
    },
    "agi_pilled": {
@@ -9983,7 +10069,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "x_risk": {
@@ -9992,7 +10078,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "china_race": {
@@ -10001,7 +10087,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (uses the competition as one reason among several). At least two statements reach this level. GPT: 3 (uses the competition as the main reason). At least two statements reach this level.",
+    "justification": "Judge A: 2 (uses the competition as one reason among several). At least two statements reach this level. Judge B: 3 (uses the competition as the main reason). At least two statements reach this level.",
     "statement_ids": [
      "s6",
      "s5",
@@ -10014,7 +10100,7 @@
     "run_b": "insufficient_evidence",
     "reason_a": "consistent",
     "reason_b": "no_statements",
-    "justification": "Claude: 2 (supports narrow, targeted rules). At least two statements reach this level. GPT: not enough evidence",
+    "justification": "Judge A: 2 (supports narrow, targeted rules). At least two statements reach this level. Judge B: not enough evidence",
     "statement_ids": [
      "s2"
     ]
@@ -10059,6 +10145,9 @@
     "other"
    ],
    "s9": [
+    "other"
+   ],
+   "s10": [
     "other"
    ]
   },
@@ -11934,6 +12023,22 @@
    ],
    "s64": [
     "jobs/economy",
+    "energy/data centers",
+    "regulation"
+   ],
+   "s65": [
+    "energy/data centers",
+    "regulation"
+   ],
+   "s66": [
+    "energy/data centers",
+    "regulation"
+   ],
+   "s67": [
+    "deepfakes/elections",
+    "regulation"
+   ],
+   "s68": [
     "energy/data centers",
     "regulation"
    ]
@@ -14708,9 +14813,9 @@
     "score": 1.0,
     "run_a": 2,
     "run_b": 0,
-    "reason_a": "median_of_6",
-    "reason_b": "median_of_3",
-    "justification": "Claude: 2 (weighs benefits and risks equally). Median of 6 labeled statements. GPT: 0 (presents AI as mainly a threat). Median of 3 labeled statements.",
+    "reason_a": "median_of_7",
+    "reason_b": "median_of_4",
+    "justification": "Judge A: 2 (weighs benefits and risks equally). Median of 7 labeled statements. Judge B: 0 (presents AI as mainly a threat). Median of 4 labeled statements.",
     "statement_ids": [
      "s24",
      "s20",
@@ -14726,7 +14831,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (treats AGI as a real possibility). At least two statements reach this level. GPT: 3 (treats AGI as a real possibility). At least two statements reach this level.",
+    "justification": "Judge A: 3 (treats AGI as a real possibility). At least two statements reach this level. Judge B: 3 (treats AGI as a real possibility). At least two statements reach this level.",
     "statement_ids": [
      "s40",
      "s37"
@@ -14738,7 +14843,7 @@
     "run_b": 2,
     "reason_a": "one_off_capped",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (affirms catastrophic risk is real). Only one statement reaches the highest level, so the score is one step lower. GPT: 2 (affirms catastrophic risk is real). At least two statements reach this level.",
+    "justification": "Judge A: 2 (affirms catastrophic risk is real). Only one statement reaches the highest level, so the score is one step lower. Judge B: 2 (affirms catastrophic risk is real). At least two statements reach this level.",
     "statement_ids": [
      "s41",
      "s40",
@@ -14753,7 +14858,7 @@
     "run_b": 2,
     "reason_a": "one_off_capped",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (uses the competition as one reason among several). Only one statement reaches the highest level, so the score is one step lower. GPT: 2 (uses the competition as one reason among several). At least two statements reach this level.",
+    "justification": "Judge A: 2 (uses the competition as one reason among several). Only one statement reaches the highest level, so the score is one step lower. Judge B: 2 (uses the competition as one reason among several). At least two statements reach this level.",
     "statement_ids": [
      "s1",
      "s3"
@@ -14765,7 +14870,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (supports substantial obligations on AI companies). At least two statements reach this level. GPT: 2 (supports narrow, targeted rules). At least two statements reach this level.",
+    "justification": "Judge A: 3 (supports substantial obligations on AI companies). At least two statements reach this level. Judge B: 2 (supports narrow, targeted rules). At least two statements reach this level.",
     "statement_ids": [
      "s35",
      "s34",
@@ -14930,6 +15035,12 @@
    ],
    "s41": [
     "x-risk/loss of control"
+   ],
+   "s42": [
+    "other"
+   ],
+   "s43": [
+    "other"
    ]
   },
   "rubric_version": "v3"
@@ -15699,6 +15810,9 @@
    "s40": [
     "regulation",
     "AGI/transformative"
+   ],
+   "s41": [
+    "kids/online safety"
    ]
   },
   "rubric_version": "v3"
@@ -18481,7 +18595,7 @@
     "run_b": 2,
     "reason_a": "median_of_3",
     "reason_b": "median_of_3",
-    "justification": "Claude: 3 (presents AI as mainly an opportunity). Median of 3 labeled statements. GPT: 2 (weighs benefits and risks equally). Median of 3 labeled statements.",
+    "justification": "Judge A: 3 (presents AI as mainly an opportunity). Median of 3 labeled statements. Judge B: 2 (weighs benefits and risks equally). Median of 3 labeled statements.",
     "statement_ids": [
      "s59",
      "s55",
@@ -18494,7 +18608,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (expects very large change from AI). At least two statements reach this level. GPT: 2 (expects very large change from AI). At least two statements reach this level.",
+    "justification": "Judge A: 2 (expects very large change from AI). At least two statements reach this level. Judge B: 2 (expects very large change from AI). At least two statements reach this level.",
     "statement_ids": [
      "s69",
      "s67",
@@ -18510,7 +18624,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (affirms catastrophic risk is real). At least two statements reach this level. GPT: 2 (affirms catastrophic risk is real). At least two statements reach this level.",
+    "justification": "Judge A: 2 (affirms catastrophic risk is real). At least two statements reach this level. Judge B: 2 (affirms catastrophic risk is real). At least two statements reach this level.",
     "statement_ids": [
      "s30"
     ]
@@ -18521,7 +18635,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (uses the competition as the main reason). At least two statements reach this level. GPT: 3 (uses the competition as the main reason). At least two statements reach this level.",
+    "justification": "Judge A: 3 (uses the competition as the main reason). At least two statements reach this level. Judge B: 3 (uses the competition as the main reason). At least two statements reach this level.",
     "statement_ids": [
      "s4",
      "s40"
@@ -18533,7 +18647,7 @@
     "run_b": 2,
     "reason_a": "one_off_capped",
     "reason_b": "one_off_capped",
-    "justification": "Claude: 3 (supports substantial obligations on AI companies). Only one statement reaches the highest level, so the score is one step lower. GPT: 2 (supports narrow, targeted rules). Only one statement reaches the highest level, so the score is one step lower.",
+    "justification": "Judge A: 3 (supports substantial obligations on AI companies). Only one statement reaches the highest level, so the score is one step lower. Judge B: 2 (supports narrow, targeted rules). Only one statement reaches the highest level, so the score is one step lower.",
     "statement_ids": [
      "s69"
     ]
@@ -18789,6 +18903,9 @@
    "s18": [
     "China/competition",
     "regulation"
+   ],
+   "s70": [
+    "deepfakes/elections"
    ]
   },
   "rubric_version": "v3"
@@ -19096,7 +19213,7 @@
     "run_b": 3,
     "reason_a": "median_of_1",
     "reason_b": "median_of_1",
-    "justification": "Claude: 3 (presents AI as mainly an opportunity). Median of 1 labeled statements. GPT: 3 (presents AI as mainly an opportunity). Median of 1 labeled statements.",
+    "justification": "Judge A: 3 (presents AI as mainly an opportunity). Median of 1 labeled statements. Judge B: 3 (presents AI as mainly an opportunity). Median of 1 labeled statements.",
     "statement_ids": [
      "s1"
     ]
@@ -19107,7 +19224,7 @@
     "run_b": 1,
     "reason_a": "silent",
     "reason_b": "consistent",
-    "justification": "Claude: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 1 (treats AI as an ordinary technology). At least two statements reach this level.",
+    "justification": "Judge A: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 1 (treats AI as an ordinary technology). At least two statements reach this level.",
     "statement_ids": [
      "s1"
     ]
@@ -19118,7 +19235,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "china_race": {
@@ -19127,25 +19244,27 @@
     "run_b": 1,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (uses the competition as one reason among several). At least two statements reach this level. GPT: 1 (mentions the competition without using it). At least two statements reach this level.",
+    "justification": "Judge A: 2 (uses the competition as one reason among several). At least two statements reach this level. Judge B: 1 (mentions the competition without using it). At least two statements reach this level.",
     "statement_ids": [
      "s2",
      "s6"
     ]
    },
    "regulation": {
-    "score": "insufficient_evidence",
-    "run_a": "insufficient_evidence",
-    "run_b": "insufficient_evidence",
-    "reason_a": "no_statements",
-    "reason_b": "no_statements",
-    "justification": "Claude: not enough evidence GPT: not enough evidence",
-    "statement_ids": []
+    "score": 2.0,
+    "run_a": 2,
+    "run_b": 2,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "justification": "Judge A: 2 (supports narrow, targeted rules). At least two statements reach this level. Judge B: 2 (supports narrow, targeted rules). At least two statements reach this level.",
+    "statement_ids": [
+     "s8"
+    ]
    }
   },
   "flag": false,
   "flag_reasons": [],
-  "summary": "Mike Rogers talks about AI mainly through national security, workforce development and competition with adversaries. He is positive about AI, calling it exciting and pervasive, and backs R&D and training service members in cyber and AI. He also points to the strain AI puts on power and the grid. He does not discuss AGI, catastrophic risk or regulation in these statements.",
+  "summary": "Mike Rogers talks about AI mainly through national security, workforce development, and competition with adversaries. He is positive about AI, calling it exciting and pervasive, and backs R&D and training service members in cyber and AI. He points to the strain AI puts on power and the grid. He also says the government and its partners should be allowed to catch up and put stricter protocols and guardrails in place.",
   "evidence_strength": "low",
   "topics": {
    "s1": [
@@ -19174,6 +19293,9 @@
    ],
    "s7": [
     "other"
+   ],
+   "s8": [
+    "regulation"
    ]
   },
   "rubric_version": "v3"
@@ -19468,7 +19590,7 @@
     "run_b": 2,
     "reason_a": "median_of_2",
     "reason_b": "median_of_3",
-    "justification": "Claude: 2 (weighs benefits and risks equally). Median of 2 labeled statements. GPT: 2 (weighs benefits and risks equally). Median of 3 labeled statements.",
+    "justification": "Judge A: 2 (weighs benefits and risks equally). Median of 2 labeled statements. Judge B: 2 (weighs benefits and risks equally). Median of 3 labeled statements.",
     "statement_ids": [
      "s30"
     ]
@@ -19479,7 +19601,7 @@
     "run_b": 2,
     "reason_a": "one_off_capped",
     "reason_b": "one_off_capped",
-    "justification": "Claude: 3 (treats AGI as a real possibility). Only one statement reaches the highest level, so the score is one step lower. GPT: 2 (expects very large change from AI). Only one statement reaches the highest level, so the score is one step lower.",
+    "justification": "Judge A: 3 (treats AGI as a real possibility). Only one statement reaches the highest level, so the score is one step lower. Judge B: 2 (expects very large change from AI). Only one statement reaches the highest level, so the score is one step lower.",
     "statement_ids": [
      "s51"
     ]
@@ -19490,7 +19612,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (calls for action because of catastrophic risk). At least two statements reach this level. GPT: 3 (calls for action because of catastrophic risk). At least two statements reach this level.",
+    "justification": "Judge A: 3 (calls for action because of catastrophic risk). At least two statements reach this level. Judge B: 3 (calls for action because of catastrophic risk). At least two statements reach this level.",
     "statement_ids": [
      "s53",
      "s52",
@@ -19503,7 +19625,7 @@
     "run_b": 3,
     "reason_a": "one_off_capped",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (uses the competition as one reason among several). Only one statement reaches the highest level, so the score is one step lower. GPT: 3 (uses the competition as the main reason). At least two statements reach this level.",
+    "justification": "Judge A: 2 (uses the competition as one reason among several). Only one statement reaches the highest level, so the score is one step lower. Judge B: 3 (uses the competition as the main reason). At least two statements reach this level.",
     "statement_ids": [
      "s44"
     ]
@@ -19514,7 +19636,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "one_off_capped",
-    "justification": "Claude: 3 (supports substantial obligations on AI companies). At least two statements reach this level. GPT: 2 (supports narrow, targeted rules). Only one statement reaches the highest level, so the score is one step lower.",
+    "justification": "Judge A: 3 (supports substantial obligations on AI companies). At least two statements reach this level. Judge B: 2 (supports narrow, targeted rules). Only one statement reaches the highest level, so the score is one step lower.",
     "statement_ids": [
      "s59",
      "s52",
@@ -19741,6 +19863,9 @@
    ],
    "s9": [
     "jobs/economy"
+   ],
+   "s60": [
+    "regulation"
    ]
   },
   "rubric_version": "v3"
@@ -20392,6 +20517,32 @@
    "s196": [
     "China/competition",
     "regulation"
+   ],
+   "s197": [
+    "China/competition",
+    "national security"
+   ],
+   "s198": [
+    "deepfakes/elections"
+   ],
+   "s199": [
+    "regulation",
+    "deepfakes/elections"
+   ],
+   "s200": [
+    "deepfakes/elections",
+    "regulation"
+   ],
+   "s201": [
+    "deepfakes/elections"
+   ],
+   "s202": [
+    "regulation",
+    "energy/data centers"
+   ],
+   "s203": [
+    "regulation",
+    "energy/data centers"
    ]
   },
   "rubric_version": "v3"
@@ -22082,7 +22233,7 @@
     "run_b": 2,
     "reason_a": "median_of_2",
     "reason_b": "median_of_3",
-    "justification": "Claude: 3 (presents AI as mainly an opportunity). Median of 2 labeled statements. GPT: 2 (weighs benefits and risks equally). Median of 3 labeled statements.",
+    "justification": "Judge A: 3 (presents AI as mainly an opportunity). Median of 2 labeled statements. Judge B: 2 (weighs benefits and risks equally). Median of 3 labeled statements.",
     "statement_ids": [
      "s7",
      "s2"
@@ -22094,7 +22245,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (expects very large change from AI). At least two statements reach this level. GPT: 2 (expects very large change from AI). At least two statements reach this level.",
+    "justification": "Judge A: 2 (expects very large change from AI). At least two statements reach this level. Judge B: 2 (expects very large change from AI). At least two statements reach this level.",
     "statement_ids": [
      "s2"
     ]
@@ -22105,7 +22256,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "china_race": {
@@ -22114,7 +22265,7 @@
     "run_b": 0,
     "reason_a": "consistent",
     "reason_b": "silent",
-    "justification": "Claude: 2 (uses the competition as one reason among several). At least two statements reach this level. GPT: 0 (rejects race framing). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 2 (uses the competition as one reason among several). At least two statements reach this level. Judge B: 0 (rejects race framing). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": [
      "s5"
     ]
@@ -22125,7 +22276,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (supports substantial obligations on AI companies). At least two statements reach this level. GPT: 2 (supports narrow, targeted rules). At least two statements reach this level.",
+    "justification": "Judge A: 3 (supports substantial obligations on AI companies). At least two statements reach this level. Judge B: 2 (supports narrow, targeted rules). At least two statements reach this level.",
     "statement_ids": [
      "s17",
      "s16",
@@ -22207,6 +22358,10 @@
    ],
    "s18": [
     "energy/data centers"
+   ],
+   "s19": [
+    "energy/data centers",
+    "regulation"
    ]
   },
   "rubric_version": "v3"
@@ -22871,7 +23026,7 @@
     "run_b": 0,
     "reason_a": "median_of_3",
     "reason_b": "median_of_3",
-    "justification": "Claude: 0 (presents AI as mainly a threat). Median of 3 labeled statements. GPT: 0 (presents AI as mainly a threat). Median of 3 labeled statements.",
+    "justification": "Judge A: 0 (presents AI as mainly a threat). Median of 3 labeled statements. Judge B: 0 (presents AI as mainly a threat). Median of 3 labeled statements.",
     "statement_ids": [
      "s14",
      "s11",
@@ -22884,7 +23039,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "x_risk": {
@@ -22893,7 +23048,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "china_race": {
@@ -22902,7 +23057,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (uses the competition as one reason among several). At least two statements reach this level. GPT: 3 (uses the competition as the main reason). At least two statements reach this level.",
+    "justification": "Judge A: 2 (uses the competition as one reason among several). At least two statements reach this level. Judge B: 3 (uses the competition as the main reason). At least two statements reach this level.",
     "statement_ids": [
      "s3"
     ]
@@ -22913,7 +23068,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "one_off_capped",
-    "justification": "Claude: 3 (supports substantial obligations on AI companies). At least two statements reach this level. GPT: 2 (supports narrow, targeted rules). Only one statement reaches the highest level, so the score is one step lower.",
+    "justification": "Judge A: 3 (supports substantial obligations on AI companies). At least two statements reach this level. Judge B: 2 (supports narrow, targeted rules). Only one statement reaches the highest level, so the score is one step lower.",
     "statement_ids": [
      "s11",
      "s8"
@@ -22979,6 +23134,14 @@
    "s14": [
     "national security",
     "jobs/economy",
+    "other"
+   ],
+   "s15": [
+    "x-risk/loss of control",
+    "regulation"
+   ],
+   "s16": [
+    "x-risk/loss of control",
     "other"
    ]
   },
@@ -23549,7 +23712,7 @@
     "run_b": 2,
     "reason_a": "median_of_2",
     "reason_b": "median_of_1",
-    "justification": "Claude: 2 (weighs benefits and risks equally). Median of 2 labeled statements. GPT: 2 (weighs benefits and risks equally). Median of 1 labeled statements.",
+    "justification": "Judge A: 2 (weighs benefits and risks equally). Median of 2 labeled statements. Judge B: 2 (weighs benefits and risks equally). Median of 1 labeled statements.",
     "statement_ids": [
      "s32",
      "s11"
@@ -23561,7 +23724,7 @@
     "run_b": 0,
     "reason_a": "consistent",
     "reason_b": "silent",
-    "justification": "Claude: 2 (expects very large change from AI). At least two statements reach this level. GPT: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 2 (expects very large change from AI). At least two statements reach this level. Judge B: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": [
      "s1"
     ]
@@ -23572,7 +23735,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "china_race": {
@@ -23581,7 +23744,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects race framing). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects race framing). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects race framing). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects race framing). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "regulation": {
@@ -23590,7 +23753,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "one_off_capped",
-    "justification": "Claude: 3 (supports substantial obligations on AI companies). At least two statements reach this level. GPT: 2 (supports narrow, targeted rules). Only one statement reaches the highest level, so the score is one step lower.",
+    "justification": "Judge A: 3 (supports substantial obligations on AI companies). At least two statements reach this level. Judge B: 2 (supports narrow, targeted rules). Only one statement reaches the highest level, so the score is one step lower.",
     "statement_ids": [
      "s24",
      "s19"
@@ -23745,6 +23908,10 @@
    "s9": [
     "regulation",
     "other"
+   ],
+   "s38": [
+    "jobs/economy",
+    "energy/data centers"
    ]
   },
   "rubric_version": "v3"
@@ -23757,7 +23924,7 @@
     "run_b": 3,
     "reason_a": "median_of_4",
     "reason_b": "median_of_6",
-    "justification": "Claude: 3 (presents AI as mainly an opportunity). Median of 4 labeled statements. GPT: 3 (presents AI as mainly an opportunity). Median of 6 labeled statements.",
+    "justification": "Judge A: 3 (presents AI as mainly an opportunity). Median of 4 labeled statements. Judge B: 3 (presents AI as mainly an opportunity). Median of 6 labeled statements.",
     "statement_ids": [
      "s103",
      "s88",
@@ -23773,7 +23940,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (expects very large change from AI). At least two statements reach this level. GPT: 2 (expects very large change from AI). At least two statements reach this level.",
+    "justification": "Judge A: 2 (expects very large change from AI). At least two statements reach this level. Judge B: 2 (expects very large change from AI). At least two statements reach this level.",
     "statement_ids": [
      "s59",
      "s44",
@@ -23788,7 +23955,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "china_race": {
@@ -23797,7 +23964,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (uses the competition as the main reason). At least two statements reach this level. GPT: 3 (uses the competition as the main reason). At least two statements reach this level.",
+    "justification": "Judge A: 3 (uses the competition as the main reason). At least two statements reach this level. Judge B: 3 (uses the competition as the main reason). At least two statements reach this level.",
     "statement_ids": [
      "s102",
      "s98",
@@ -23813,7 +23980,7 @@
     "run_b": 1,
     "reason_a": "consistent",
     "reason_b": "one_off_capped",
-    "justification": "Claude: 1 (prefers light-touch rules). At least two statements reach this level. GPT: 1 (prefers light-touch rules). Only one statement reaches the highest level, so the score is one step lower.",
+    "justification": "Judge A: 1 (prefers light-touch rules). At least two statements reach this level. Judge B: 1 (prefers light-touch rules). Only one statement reaches the highest level, so the score is one step lower.",
     "statement_ids": [
      "s92",
      "s85",
@@ -24208,6 +24375,11 @@
    ],
    "s108": [
     "China/competition",
+    "national security"
+   ],
+   "s109": [
+    "China/competition",
+    "regulation",
     "national security"
    ]
   },
@@ -25242,6 +25414,12 @@
    "s51": [
     "deepfakes/elections",
     "regulation"
+   ],
+   "s52": [
+    "deepfakes/elections"
+   ],
+   "s53": [
+    "other"
    ]
   },
   "rubric_version": "v3"
@@ -30003,7 +30181,7 @@
     "run_b": 4,
     "reason_a": "median_of_5",
     "reason_b": "median_of_7",
-    "justification": "Claude: 3 (presents AI as mainly an opportunity). Median of 5 labeled statements. GPT: 4 (is enthusiastic about AI). Median of 7 labeled statements.",
+    "justification": "Judge A: 3 (presents AI as mainly an opportunity). Median of 5 labeled statements. Judge B: 4 (is enthusiastic about AI). Median of 7 labeled statements.",
     "statement_ids": [
      "s33",
      "s31",
@@ -30019,7 +30197,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (expects very large change from AI). At least two statements reach this level. GPT: 2 (expects very large change from AI). At least two statements reach this level.",
+    "justification": "Judge A: 2 (expects very large change from AI). At least two statements reach this level. Judge B: 2 (expects very large change from AI). At least two statements reach this level.",
     "statement_ids": [
      "s5",
      "s4",
@@ -30033,7 +30211,7 @@
     "run_b": 4,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (affirms catastrophic risk is real). At least two statements reach this level. GPT: 4 (ranks catastrophic AI risk among the top problems). At least two statements reach this level.",
+    "justification": "Judge A: 2 (affirms catastrophic risk is real). At least two statements reach this level. Judge B: 4 (ranks catastrophic AI risk among the top problems). At least two statements reach this level.",
     "statement_ids": [
      "s3"
     ]
@@ -30044,7 +30222,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (uses the competition as one reason among several). At least two statements reach this level. GPT: 3 (uses the competition as the main reason). At least two statements reach this level.",
+    "justification": "Judge A: 2 (uses the competition as one reason among several). At least two statements reach this level. Judge B: 3 (uses the competition as the main reason). At least two statements reach this level.",
     "statement_ids": [
      "s33",
      "s1"
@@ -30056,7 +30234,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (supports narrow, targeted rules). At least two statements reach this level. GPT: 2 (supports narrow, targeted rules). At least two statements reach this level.",
+    "justification": "Judge A: 2 (supports narrow, targeted rules). At least two statements reach this level. Judge B: 2 (supports narrow, targeted rules). At least two statements reach this level.",
     "statement_ids": [
      "s11",
      "s10",
@@ -30185,6 +30363,30 @@
    "s33": [
     "China/competition",
     "jobs/economy"
+   ],
+   "s34": [
+    "jobs/economy",
+    "other"
+   ],
+   "s35": [
+    "jobs/economy",
+    "other"
+   ],
+   "s36": [
+    "jobs/economy",
+    "other"
+   ],
+   "s37": [
+    "regulation",
+    "jobs/economy"
+   ],
+   "s38": [
+    "jobs/economy",
+    "other"
+   ],
+   "s39": [
+    "jobs/economy",
+    "regulation"
    ]
   },
   "rubric_version": "v3"
@@ -31942,15 +32144,16 @@
  "D000623": {
   "dimensions": {
    "ai_overall": {
-    "score": 2.0,
+    "score": 1.5,
     "run_a": 2,
-    "run_b": 2,
+    "run_b": 1,
     "reason_a": "median_of_4",
-    "reason_b": "median_of_2",
-    "justification": "Claude: 2 (weighs benefits and risks equally). Median of 4 labeled statements. GPT: 2 (weighs benefits and risks equally). Median of 2 labeled statements.",
+    "reason_b": "median_of_3",
+    "justification": "Judge A: 2 (weighs benefits and risks equally). Median of 4 labeled statements. Judge B: 1 (treats harms as dominant). Median of 3 labeled statements.",
     "statement_ids": [
      "s6",
-     "s5"
+     "s5",
+     "s23"
     ]
    },
    "agi_pilled": {
@@ -31959,7 +32162,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "x_risk": {
@@ -31968,7 +32171,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "china_race": {
@@ -31977,7 +32180,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects race framing). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects race framing). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects race framing). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects race framing). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "regulation": {
@@ -31986,7 +32189,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (supports substantial obligations on AI companies). At least two statements reach this level. GPT: 2 (supports narrow, targeted rules). At least two statements reach this level.",
+    "justification": "Judge A: 3 (supports substantial obligations on AI companies). At least two statements reach this level. Judge B: 2 (supports narrow, targeted rules). At least two statements reach this level.",
     "statement_ids": [
      "s18",
      "s17",
@@ -32079,6 +32282,23 @@
    ],
    "s20": [
     "kids/online safety"
+   ],
+   "s21": [
+    "jobs/economy",
+    "other"
+   ],
+   "s22": [
+    "jobs/economy",
+    "regulation",
+    "other"
+   ],
+   "s23": [
+    "jobs/economy",
+    "other"
+   ],
+   "s24": [
+    "jobs/economy",
+    "regulation"
    ]
   },
   "rubric_version": "v3"
@@ -32766,6 +32986,15 @@
    "s405": [
     "regulation",
     "other"
+   ],
+   "s406": [
+    "x-risk/loss of control",
+    "national security",
+    "regulation"
+   ],
+   "s407": [
+    "x-risk/loss of control",
+    "regulation"
    ]
   },
   "rubric_version": "v3"
@@ -33698,7 +33927,7 @@
     "run_b": "insufficient_evidence",
     "reason_a": "no_statements",
     "reason_b": "no_statements",
-    "justification": "Claude: not enough evidence GPT: not enough evidence",
+    "justification": "Judge A: not enough evidence Judge B: not enough evidence",
     "statement_ids": []
    },
    "agi_pilled": {
@@ -33707,7 +33936,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (expects very large change from AI). At least two statements reach this level. GPT: 2 (expects very large change from AI). At least two statements reach this level.",
+    "justification": "Judge A: 2 (expects very large change from AI). At least two statements reach this level. Judge B: 2 (expects very large change from AI). At least two statements reach this level.",
     "statement_ids": [
      "s7",
      "s6"
@@ -33719,7 +33948,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "china_race": {
@@ -33728,7 +33957,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (uses the competition as the main reason). At least two statements reach this level. GPT: 3 (uses the competition as the main reason). At least two statements reach this level.",
+    "justification": "Judge A: 3 (uses the competition as the main reason). At least two statements reach this level. Judge B: 3 (uses the competition as the main reason). At least two statements reach this level.",
     "statement_ids": [
      "s9",
      "s8",
@@ -33744,7 +33973,7 @@
     "run_b": 2,
     "reason_a": "no_statements",
     "reason_b": "consistent",
-    "justification": "Claude: not enough evidence GPT: 2 (supports narrow, targeted rules). At least two statements reach this level.",
+    "justification": "Judge A: not enough evidence Judge B: 2 (supports narrow, targeted rules). At least two statements reach this level.",
     "statement_ids": [
      "s8",
      "s7",
@@ -33798,6 +34027,10 @@
    "s9": [
     "China/competition",
     "regulation"
+   ],
+   "s10": [
+    "China/competition",
+    "national security"
    ]
   },
   "rubric_version": "v3"
@@ -33810,7 +34043,7 @@
     "run_b": 2,
     "reason_a": "median_of_3",
     "reason_b": "median_of_3",
-    "justification": "Claude: 2 (weighs benefits and risks equally). Median of 3 labeled statements. GPT: 2 (weighs benefits and risks equally). Median of 3 labeled statements.",
+    "justification": "Judge A: 2 (weighs benefits and risks equally). Median of 3 labeled statements. Judge B: 2 (weighs benefits and risks equally). Median of 3 labeled statements.",
     "statement_ids": [
      "s16",
      "s9",
@@ -33823,7 +34056,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (expects very large change from AI). At least two statements reach this level. GPT: 2 (expects very large change from AI). At least two statements reach this level.",
+    "justification": "Judge A: 2 (expects very large change from AI). At least two statements reach this level. Judge B: 2 (expects very large change from AI). At least two statements reach this level.",
     "statement_ids": [
      "s16"
     ]
@@ -33834,7 +34067,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (calls for action because of catastrophic risk). At least two statements reach this level. GPT: 3 (calls for action because of catastrophic risk). At least two statements reach this level.",
+    "justification": "Judge A: 3 (calls for action because of catastrophic risk). At least two statements reach this level. Judge B: 3 (calls for action because of catastrophic risk). At least two statements reach this level.",
     "statement_ids": [
      "s16"
     ]
@@ -33845,7 +34078,7 @@
     "run_b": 0,
     "reason_a": "consistent",
     "reason_b": "silent",
-    "justification": "Claude: 1 (mentions the competition without using it). At least two statements reach this level. GPT: 0 (rejects race framing). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 1 (mentions the competition without using it). At least two statements reach this level. Judge B: 0 (rejects race framing). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": [
      "s5"
     ]
@@ -33856,7 +34089,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (supports substantial obligations on AI companies). At least two statements reach this level. GPT: 3 (supports substantial obligations on AI companies). At least two statements reach this level.",
+    "justification": "Judge A: 3 (supports substantial obligations on AI companies). At least two statements reach this level. Judge B: 3 (supports substantial obligations on AI companies). At least two statements reach this level.",
     "statement_ids": [
      "s18",
      "s17",
@@ -33945,6 +34178,9 @@
    "s19": [
     "energy/data centers",
     "regulation"
+   ],
+   "s20": [
+    "kids/online safety"
    ]
   },
   "rubric_version": "v3"
@@ -34696,7 +34932,7 @@
     "run_b": 2,
     "reason_a": "median_of_5",
     "reason_b": "median_of_7",
-    "justification": "Claude: 2 (weighs benefits and risks equally). Median of 5 labeled statements. GPT: 2 (weighs benefits and risks equally). Median of 7 labeled statements.",
+    "justification": "Judge A: 2 (weighs benefits and risks equally). Median of 5 labeled statements. Judge B: 2 (weighs benefits and risks equally). Median of 7 labeled statements.",
     "statement_ids": [
      "s76",
      "s60",
@@ -34712,7 +34948,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (expects very large change from AI). At least two statements reach this level. GPT: 3 (treats AGI as a real possibility). At least two statements reach this level.",
+    "justification": "Judge A: 2 (expects very large change from AI). At least two statements reach this level. Judge B: 3 (treats AGI as a real possibility). At least two statements reach this level.",
     "statement_ids": [
      "s118",
      "s62",
@@ -34728,7 +34964,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (calls for action because of catastrophic risk). At least two statements reach this level. GPT: 3 (calls for action because of catastrophic risk). At least two statements reach this level.",
+    "justification": "Judge A: 3 (calls for action because of catastrophic risk). At least two statements reach this level. Judge B: 3 (calls for action because of catastrophic risk). At least two statements reach this level.",
     "statement_ids": [
      "s115",
      "s111",
@@ -34742,7 +34978,7 @@
     "run_b": 1,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 1 (mentions the competition without using it). At least two statements reach this level. GPT: 1 (mentions the competition without using it). At least two statements reach this level.",
+    "justification": "Judge A: 1 (mentions the competition without using it). At least two statements reach this level. Judge B: 1 (mentions the competition without using it). At least two statements reach this level.",
     "statement_ids": [
      "s74",
      "s99",
@@ -34755,7 +34991,7 @@
     "run_b": 3,
     "reason_a": "one_off_capped",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (supports substantial obligations on AI companies). Only one statement reaches the highest level, so the score is one step lower. GPT: 3 (supports substantial obligations on AI companies). At least two statements reach this level.",
+    "justification": "Judge A: 3 (supports substantial obligations on AI companies). Only one statement reaches the highest level, so the score is one step lower. Judge B: 3 (supports substantial obligations on AI companies). At least two statements reach this level.",
     "statement_ids": [
      "s107",
      "s119",
@@ -35198,6 +35434,11 @@
     "regulation"
    ],
    "s18": [
+    "regulation"
+   ],
+   "s123": [
+    "x-risk/loss of control",
+    "national security",
     "regulation"
    ]
   },
@@ -37206,7 +37447,7 @@
     "run_b": 1,
     "reason_a": "median_of_3",
     "reason_b": "median_of_2",
-    "justification": "Claude: 2 (weighs benefits and risks equally). Median of 3 labeled statements. GPT: 1 (treats harms as dominant). Median of 2 labeled statements.",
+    "justification": "Judge A: 2 (weighs benefits and risks equally). Median of 3 labeled statements. Judge B: 1 (treats harms as dominant). Median of 2 labeled statements.",
     "statement_ids": [
      "s25",
      "s24",
@@ -37219,7 +37460,7 @@
     "run_b": 0,
     "reason_a": "consistent",
     "reason_b": "silent",
-    "justification": "Claude: 3 (treats AGI as a real possibility). At least two statements reach this level. GPT: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 3 (treats AGI as a real possibility). At least two statements reach this level. Judge B: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": [
      "s26"
     ]
@@ -37230,7 +37471,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (calls for action because of catastrophic risk). At least two statements reach this level. GPT: 3 (calls for action because of catastrophic risk). At least two statements reach this level.",
+    "justification": "Judge A: 3 (calls for action because of catastrophic risk). At least two statements reach this level. Judge B: 3 (calls for action because of catastrophic risk). At least two statements reach this level.",
     "statement_ids": [
      "s31",
      "s30",
@@ -37245,7 +37486,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 1 (mentions the competition without using it). At least two statements reach this level. GPT: 3 (uses the competition as the main reason). At least two statements reach this level.",
+    "justification": "Judge A: 1 (mentions the competition without using it). At least two statements reach this level. Judge B: 3 (uses the competition as the main reason). At least two statements reach this level.",
     "statement_ids": [
      "s19",
      "s17"
@@ -37257,7 +37498,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (supports substantial obligations on AI companies). At least two statements reach this level. GPT: 3 (supports substantial obligations on AI companies). At least two statements reach this level.",
+    "justification": "Judge A: 3 (supports substantial obligations on AI companies). At least two statements reach this level. Judge B: 3 (supports substantial obligations on AI companies). At least two statements reach this level.",
     "statement_ids": [
      "s31",
      "s30",
@@ -37384,6 +37625,9 @@
    ],
    "s31": [
     "x-risk/loss of control",
+    "regulation"
+   ],
+   "s32": [
     "regulation"
    ]
   },
@@ -40757,6 +41001,9 @@
     "China/competition",
     "kids/online safety",
     "regulation"
+   ],
+   "s30": [
+    "regulation"
    ]
   },
   "rubric_version": "v3"
@@ -42396,13 +42643,15 @@
     "statement_ids": []
    },
    "x_risk": {
-    "score": 0.0,
-    "run_a": 0,
+    "score": 1.5,
+    "run_a": 3,
     "run_b": 0,
-    "reason_a": "silent",
+    "reason_a": "consistent",
     "reason_b": "silent",
-    "justification": "Judge A: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
-    "statement_ids": []
+    "justification": "Judge A: 3 (calls for action because of catastrophic risk). At least two statements reach this level. Judge B: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "statement_ids": [
+     "s32"
+    ]
    },
    "china_race": {
     "score": 3.0,
@@ -42429,8 +42678,10 @@
     ]
    }
   },
-  "flag": false,
-  "flag_reasons": [],
+  "flag": true,
+  "flag_reasons": [
+   "x_risk: sonnet 3 vs gpt 0"
+  ],
   "summary": "Fitzpatrick presents AI as both a major opportunity and a serious security and workforce challenge. He supports local AI data center investment and U.S. leadership. He also champions bipartisan bills on deepfakes, election integrity, AI security, transparency and oversight, and worker-centered AI policy. His risk language focuses on national security, cyber threats and China, not on loss of control.",
   "evidence_strength": "high",
   "topics": {
@@ -42549,6 +42800,11 @@
    ],
    "s31": [
     "deepfakes/elections",
+    "regulation"
+   ],
+   "s32": [
+    "x-risk/loss of control",
+    "national security",
     "regulation"
    ]
   },
@@ -46966,6 +47222,23 @@
    "s84": [
     "regulation",
     "AGI/transformative"
+   ],
+   "s85": [
+    "x-risk/loss of control",
+    "national security",
+    "regulation"
+   ],
+   "s86": [
+    "kids/online safety",
+    "other"
+   ],
+   "s87": [
+    "national security",
+    "regulation",
+    "jobs/economy"
+   ],
+   "s88": [
+    "regulation"
    ]
   },
   "rubric_version": "v3"
@@ -47928,7 +48201,7 @@
     "run_b": 2,
     "reason_a": "median_of_2",
     "reason_b": "median_of_2",
-    "justification": "Claude: 2 (weighs benefits and risks equally). Median of 2 labeled statements. GPT: 2 (weighs benefits and risks equally). Median of 2 labeled statements.",
+    "justification": "Judge A: 2 (weighs benefits and risks equally). Median of 2 labeled statements. Judge B: 2 (weighs benefits and risks equally). Median of 2 labeled statements.",
     "statement_ids": [
      "s8",
      "s2"
@@ -47940,7 +48213,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (expects very large change from AI). At least two statements reach this level. GPT: 2 (expects very large change from AI). At least two statements reach this level.",
+    "justification": "Judge A: 2 (expects very large change from AI). At least two statements reach this level. Judge B: 2 (expects very large change from AI). At least two statements reach this level.",
     "statement_ids": [
      "s5"
     ]
@@ -47951,7 +48224,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "china_race": {
@@ -47960,7 +48233,7 @@
     "run_b": 0,
     "reason_a": "dismissive",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects race framing). Their statements on this reject the claim. GPT: 0 (rejects race framing). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects race framing). Their statements on this reject the claim. Judge B: 0 (rejects race framing). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": [
      "s3"
     ]
@@ -47971,7 +48244,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "one_off_capped",
-    "justification": "Claude: 3 (supports substantial obligations on AI companies). At least two statements reach this level. GPT: 2 (supports narrow, targeted rules). Only one statement reaches the highest level, so the score is one step lower.",
+    "justification": "Judge A: 3 (supports substantial obligations on AI companies). At least two statements reach this level. Judge B: 2 (supports narrow, targeted rules). Only one statement reaches the highest level, so the score is one step lower.",
     "statement_ids": [
      "s12",
      "s8",
@@ -48035,6 +48308,18 @@
    ],
    "s13": [
     "other",
+    "regulation"
+   ],
+   "s14": [
+    "jobs/economy",
+    "regulation"
+   ],
+   "s15": [
+    "jobs/economy",
+    "regulation"
+   ],
+   "s16": [
+    "jobs/economy",
     "regulation"
    ]
   },
@@ -50673,7 +50958,7 @@
     "run_b": "insufficient_evidence",
     "reason_a": "no_statements",
     "reason_b": "no_statements",
-    "justification": "Claude: not enough evidence GPT: not enough evidence",
+    "justification": "Judge A: not enough evidence Judge B: not enough evidence",
     "statement_ids": []
    },
    "agi_pilled": {
@@ -50682,17 +50967,19 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "x_risk": {
-    "score": 0.0,
-    "run_a": 0,
+    "score": 1.5,
+    "run_a": 3,
     "run_b": 0,
-    "reason_a": "silent",
+    "reason_a": "consistent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
-    "statement_ids": []
+    "justification": "Judge A: 3 (calls for action because of catastrophic risk). At least two statements reach this level. Judge B: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "statement_ids": [
+     "s14"
+    ]
    },
    "china_race": {
     "score": 2.5,
@@ -50700,7 +50987,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (uses the competition as one reason among several). At least two statements reach this level. GPT: 3 (uses the competition as the main reason). At least two statements reach this level.",
+    "justification": "Judge A: 2 (uses the competition as one reason among several). At least two statements reach this level. Judge B: 3 (uses the competition as the main reason). At least two statements reach this level.",
     "statement_ids": [
      "s4",
      "s8"
@@ -50712,15 +50999,17 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "one_off_capped",
-    "justification": "Claude: 3 (supports substantial obligations on AI companies). At least two statements reach this level. GPT: 2 (supports narrow, targeted rules). Only one statement reaches the highest level, so the score is one step lower.",
+    "justification": "Judge A: 3 (supports substantial obligations on AI companies). At least two statements reach this level. Judge B: 2 (supports narrow, targeted rules). Only one statement reaches the highest level, so the score is one step lower.",
     "statement_ids": [
      "s10"
     ]
    }
   },
-  "flag": false,
-  "flag_reasons": [],
-  "summary": "Escobar talks about AI mainly through harms and accountability: lax rules, tech-industry tax breaks, and data centers that her El Paso-area constituents oppose over heat, energy use and gas turbines. She calls for strong, enforceable rules, independent oversight of AI companies, and international treaty talks, including with China, to slow the race. She also sees AI and related technologies reshaping warfare and wants the U.S. to keep its edge.",
+  "flag": true,
+  "flag_reasons": [
+   "x_risk: sonnet 3 vs gpt 0"
+  ],
+  "summary": "Veronica Escobar discusses AI through harms and accountability, pointing to lax rules, tech-industry tax breaks, and El Paso-area data centers that constituents oppose over heat, energy use, and gas turbines. She calls for strong, enforceable rules, independent oversight of AI companies, and international treaty talks, including with China, to slow the race. She also frames AI and related technologies as reshaping warfare and says the U.S. should keep its edge. In a new statement, she calls for joint leadership on an urgent congressional response to recent incidents involving advanced AI models,",
   "evidence_strength": "medium",
   "topics": {
    "s1": [
@@ -50775,6 +51064,11 @@
     "energy/data centers",
     "regulation",
     "jobs/economy"
+   ],
+   "s14": [
+    "x-risk/loss of control",
+    "national security",
+    "regulation"
    ]
   },
   "rubric_version": "v3"
@@ -51264,7 +51558,7 @@
     "run_b": 2,
     "reason_a": "median_of_4",
     "reason_b": "median_of_4",
-    "justification": "Claude: 2 (weighs benefits and risks equally). Median of 4 labeled statements. GPT: 2 (weighs benefits and risks equally). Median of 4 labeled statements.",
+    "justification": "Judge A: 2 (weighs benefits and risks equally). Median of 4 labeled statements. Judge B: 2 (weighs benefits and risks equally). Median of 4 labeled statements.",
     "statement_ids": [
      "s19",
      "s14",
@@ -51277,7 +51571,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "x_risk": {
@@ -51286,7 +51580,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (calls for action because of catastrophic risk). At least two statements reach this level. GPT: 3 (calls for action because of catastrophic risk). At least two statements reach this level.",
+    "justification": "Judge A: 3 (calls for action because of catastrophic risk). At least two statements reach this level. Judge B: 3 (calls for action because of catastrophic risk). At least two statements reach this level.",
     "statement_ids": [
      "s25"
     ]
@@ -51297,7 +51591,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 1 (mentions the competition without using it). At least two statements reach this level. GPT: 3 (uses the competition as the main reason). At least two statements reach this level.",
+    "justification": "Judge A: 1 (mentions the competition without using it). At least two statements reach this level. Judge B: 3 (uses the competition as the main reason). At least two statements reach this level.",
     "statement_ids": [
      "s3",
      "s2"
@@ -51309,7 +51603,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (supports substantial obligations on AI companies). At least two statements reach this level. GPT: 2 (supports narrow, targeted rules). At least two statements reach this level.",
+    "justification": "Judge A: 3 (supports substantial obligations on AI companies). At least two statements reach this level. Judge B: 2 (supports narrow, targeted rules). At least two statements reach this level.",
     "statement_ids": [
      "s26",
      "s25",
@@ -51423,6 +51717,9 @@
    ],
    "s26": [
     "regulation"
+   ],
+   "s27": [
+    "kids/online safety"
    ]
   },
   "rubric_version": "v3"
@@ -51892,6 +52189,19 @@
    ],
    "s40": [
     "jobs/economy"
+   ],
+   "s41": [
+    "regulation"
+   ],
+   "s42": [
+    "regulation"
+   ],
+   "s43": [
+    "regulation",
+    "x-risk/loss of control"
+   ],
+   "s44": [
+    "China/competition"
    ]
   },
   "rubric_version": "v3"
@@ -51904,7 +52214,7 @@
     "run_b": 0,
     "reason_a": "median_of_21",
     "reason_b": "median_of_23",
-    "justification": "Claude: 1 (treats harms as dominant). Median of 21 labeled statements. GPT: 0 (presents AI as mainly a threat). Median of 23 labeled statements.",
+    "justification": "Judge A: 1 (treats harms as dominant). Median of 21 labeled statements. Judge B: 0 (presents AI as mainly a threat). Median of 23 labeled statements.",
     "statement_ids": [
      "s244",
      "s243",
@@ -51920,7 +52230,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (expects very large change from AI). At least two statements reach this level. GPT: 2 (expects very large change from AI). At least two statements reach this level.",
+    "justification": "Judge A: 2 (expects very large change from AI). At least two statements reach this level. Judge B: 2 (expects very large change from AI). At least two statements reach this level.",
     "statement_ids": [
      "s217",
      "s121",
@@ -51936,7 +52246,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (calls for action because of catastrophic risk). At least two statements reach this level. GPT: 3 (calls for action because of catastrophic risk). At least two statements reach this level.",
+    "justification": "Judge A: 3 (calls for action because of catastrophic risk). At least two statements reach this level. Judge B: 3 (calls for action because of catastrophic risk). At least two statements reach this level.",
     "statement_ids": [
      "s289",
      "s246",
@@ -51950,7 +52260,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (uses the competition as the main reason). At least two statements reach this level. GPT: 3 (uses the competition as the main reason). At least two statements reach this level.",
+    "justification": "Judge A: 3 (uses the competition as the main reason). At least two statements reach this level. Judge B: 3 (uses the competition as the main reason). At least two statements reach this level.",
     "statement_ids": [
      "s111",
      "s109",
@@ -51964,7 +52274,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (supports substantial obligations on AI companies). At least two statements reach this level. GPT: 3 (supports substantial obligations on AI companies). At least two statements reach this level.",
+    "justification": "Judge A: 3 (supports substantial obligations on AI companies). At least two statements reach this level. Judge B: 3 (supports substantial obligations on AI companies). At least two statements reach this level.",
     "statement_ids": [
      "s292",
      "s291",
@@ -52513,6 +52823,11 @@
    ],
    "s107": [
     "jobs/economy"
+   ],
+   "s294": [
+    "regulation",
+    "other",
+    "deepfakes/elections"
    ]
   },
   "rubric_version": "v3"
@@ -55595,6 +55910,9 @@
    "s163": [
     "regulation",
     "jobs/economy"
+   ],
+   "s164": [
+    "regulation"
    ]
   },
   "rubric_version": "v3"
@@ -58791,7 +59109,7 @@
     "run_b": 2,
     "reason_a": "median_of_4",
     "reason_b": "median_of_3",
-    "justification": "Claude: 3 (presents AI as mainly an opportunity). Median of 4 labeled statements. GPT: 2 (weighs benefits and risks equally). Median of 3 labeled statements.",
+    "justification": "Judge A: 3 (presents AI as mainly an opportunity). Median of 4 labeled statements. Judge B: 2 (weighs benefits and risks equally). Median of 3 labeled statements.",
     "statement_ids": [
      "s27",
      "s25",
@@ -58806,7 +59124,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (expects very large change from AI). At least two statements reach this level. GPT: 2 (expects very large change from AI). At least two statements reach this level.",
+    "justification": "Judge A: 2 (expects very large change from AI). At least two statements reach this level. Judge B: 2 (expects very large change from AI). At least two statements reach this level.",
     "statement_ids": [
      "s27"
     ]
@@ -58817,7 +59135,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "china_race": {
@@ -58826,7 +59144,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "one_off_capped",
-    "justification": "Claude: 2 (uses the competition as one reason among several). At least two statements reach this level. GPT: 2 (uses the competition as one reason among several). Only one statement reaches the highest level, so the score is one step lower.",
+    "justification": "Judge A: 2 (uses the competition as one reason among several). At least two statements reach this level. Judge B: 2 (uses the competition as one reason among several). Only one statement reaches the highest level, so the score is one step lower.",
     "statement_ids": [
      "s26",
      "s19"
@@ -58838,7 +59156,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (supports narrow, targeted rules). At least two statements reach this level. GPT: 2 (supports narrow, targeted rules). At least two statements reach this level.",
+    "justification": "Judge A: 2 (supports narrow, targeted rules). At least two statements reach this level. Judge B: 2 (supports narrow, targeted rules). At least two statements reach this level.",
     "statement_ids": [
      "s29",
      "s15"
@@ -58978,6 +59296,13 @@
     "national security"
    ],
    "s33": [
+    "national security"
+   ],
+   "s34": [
+    "national security",
+    "misuse (bio/cyber)"
+   ],
+   "s35": [
     "national security"
    ]
   },
@@ -60553,7 +60878,7 @@
     "run_b": 2,
     "reason_a": "median_of_3",
     "reason_b": "median_of_4",
-    "justification": "Claude: 3 (presents AI as mainly an opportunity). Median of 3 labeled statements. GPT: 2 (weighs benefits and risks equally). Median of 4 labeled statements.",
+    "justification": "Judge A: 3 (presents AI as mainly an opportunity). Median of 3 labeled statements. Judge B: 2 (weighs benefits and risks equally). Median of 4 labeled statements.",
     "statement_ids": [
      "s14",
      "s11",
@@ -60566,7 +60891,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (expects very large change from AI). At least two statements reach this level. GPT: 2 (expects very large change from AI). At least two statements reach this level.",
+    "justification": "Judge A: 2 (expects very large change from AI). At least two statements reach this level. Judge B: 2 (expects very large change from AI). At least two statements reach this level.",
     "statement_ids": [
      "s14",
      "s11",
@@ -60579,7 +60904,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "china_race": {
@@ -60588,7 +60913,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (uses the competition as the main reason). At least two statements reach this level. GPT: 3 (uses the competition as the main reason). At least two statements reach this level.",
+    "justification": "Judge A: 3 (uses the competition as the main reason). At least two statements reach this level. Judge B: 3 (uses the competition as the main reason). At least two statements reach this level.",
     "statement_ids": [
      "s10"
     ]
@@ -60599,11 +60924,12 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (supports narrow, targeted rules). At least two statements reach this level. GPT: 2 (supports narrow, targeted rules). At least two statements reach this level.",
+    "justification": "Judge A: 2 (supports narrow, targeted rules). At least two statements reach this level. Judge B: 2 (supports narrow, targeted rules). At least two statements reach this level.",
     "statement_ids": [
      "s22",
      "s20",
-     "s7"
+     "s7",
+     "s25"
     ]
    }
   },
@@ -60711,6 +61037,14 @@
    "s24": [
     "national security",
     "other"
+   ],
+   "s25": [
+    "deepfakes/elections",
+    "regulation"
+   ],
+   "s26": [
+    "deepfakes/elections",
+    "regulation"
    ]
   },
   "rubric_version": "v3"
@@ -65759,7 +66093,7 @@
     "run_b": 3,
     "reason_a": "median_of_3",
     "reason_b": "median_of_3",
-    "justification": "Claude: 3 (presents AI as mainly an opportunity). Median of 3 labeled statements. GPT: 3 (presents AI as mainly an opportunity). Median of 3 labeled statements.",
+    "justification": "Judge A: 3 (presents AI as mainly an opportunity). Median of 3 labeled statements. Judge B: 3 (presents AI as mainly an opportunity). Median of 3 labeled statements.",
     "statement_ids": [
      "s30",
      "s23",
@@ -65772,7 +66106,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (expects very large change from AI). At least two statements reach this level. GPT: 2 (expects very large change from AI). At least two statements reach this level.",
+    "justification": "Judge A: 2 (expects very large change from AI). At least two statements reach this level. Judge B: 2 (expects very large change from AI). At least two statements reach this level.",
     "statement_ids": [
      "s23",
      "s20",
@@ -65786,7 +66120,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects catastrophic AI risk). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "china_race": {
@@ -65795,7 +66129,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (uses the competition as one reason among several). At least two statements reach this level. GPT: 3 (uses the competition as the main reason). At least two statements reach this level.",
+    "justification": "Judge A: 2 (uses the competition as one reason among several). At least two statements reach this level. Judge B: 3 (uses the competition as the main reason). At least two statements reach this level.",
     "statement_ids": [
      "s29",
      "s27",
@@ -65811,7 +66145,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (supports narrow, targeted rules). At least two statements reach this level. GPT: 2 (supports narrow, targeted rules). At least two statements reach this level.",
+    "justification": "Judge A: 2 (supports narrow, targeted rules). At least two statements reach this level. Judge B: 2 (supports narrow, targeted rules). At least two statements reach this level.",
     "statement_ids": [
      "s31",
      "s29",
@@ -65954,6 +66288,9 @@
    "s33": [
     "jobs/economy",
     "other"
+   ],
+   "s34": [
+    "regulation"
    ]
   },
   "rubric_version": "v3"
@@ -67802,7 +68139,7 @@
     "run_b": 2,
     "reason_a": "median_of_2",
     "reason_b": "median_of_1",
-    "justification": "Claude: 2 (weighs benefits and risks equally). Median of 2 labeled statements. GPT: 2 (weighs benefits and risks equally). Median of 1 labeled statements.",
+    "justification": "Judge A: 2 (weighs benefits and risks equally). Median of 2 labeled statements. Judge B: 2 (weighs benefits and risks equally). Median of 1 labeled statements.",
     "statement_ids": [
      "s6",
      "s1"
@@ -67814,7 +68151,7 @@
     "run_b": 0,
     "reason_a": "silent",
     "reason_b": "silent",
-    "justification": "Claude: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it). GPT: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
+    "justification": "Judge A: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it). Judge B: 0 (rejects transformative AI or AGI claims). No statement addresses this, so it scores 0 (doesn't discuss it).",
     "statement_ids": []
    },
    "x_risk": {
@@ -67823,7 +68160,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (affirms catastrophic risk is real). At least two statements reach this level. GPT: 3 (calls for action because of catastrophic risk). At least two statements reach this level.",
+    "justification": "Judge A: 2 (affirms catastrophic risk is real). At least two statements reach this level. Judge B: 3 (calls for action because of catastrophic risk). At least two statements reach this level.",
     "statement_ids": [
      "s16"
     ]
@@ -67834,7 +68171,7 @@
     "run_b": 4,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 4 (argues the competition outweighs other concerns). At least two statements reach this level. GPT: 4 (argues the competition outweighs other concerns). At least two statements reach this level.",
+    "justification": "Judge A: 4 (argues the competition outweighs other concerns). At least two statements reach this level. Judge B: 4 (argues the competition outweighs other concerns). At least two statements reach this level.",
     "statement_ids": [
      "s14"
     ]
@@ -67845,7 +68182,7 @@
     "run_b": 2,
     "reason_a": "one_off_capped",
     "reason_b": "one_off_capped",
-    "justification": "Claude: 2 (supports narrow, targeted rules). Only one statement reaches the highest level, so the score is one step lower. GPT: 2 (supports narrow, targeted rules). Only one statement reaches the highest level, so the score is one step lower.",
+    "justification": "Judge A: 2 (supports narrow, targeted rules). Only one statement reaches the highest level, so the score is one step lower. Judge B: 2 (supports narrow, targeted rules). Only one statement reaches the highest level, so the score is one step lower.",
     "statement_ids": [
      "s16"
     ]
@@ -67917,6 +68254,18 @@
     "regulation",
     "x-risk/loss of control",
     "China/competition"
+   ],
+   "s17": [
+    "regulation",
+    "other"
+   ],
+   "s18": [
+    "kids/online safety",
+    "other"
+   ],
+   "s19": [
+    "kids/online safety",
+    "regulation"
    ]
   },
   "rubric_version": "v3"
@@ -79190,6 +79539,10 @@
    ],
    "s45": [
     "regulation"
+   ],
+   "s46": [
+    "regulation",
+    "other"
    ]
   },
   "rubric_version": "v3"
@@ -84638,7 +84991,7 @@
     "run_b": 2,
     "reason_a": "median_of_3",
     "reason_b": "median_of_4",
-    "justification": "Claude: 2 (weighs benefits and risks equally). Median of 3 labeled statements. GPT: 2 (weighs benefits and risks equally). Median of 4 labeled statements.",
+    "justification": "Judge A: 2 (weighs benefits and risks equally). Median of 3 labeled statements. Judge B: 2 (weighs benefits and risks equally). Median of 4 labeled statements.",
     "statement_ids": [
      "s13",
      "s12"
@@ -84650,7 +85003,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (expects very large change from AI). At least two statements reach this level. GPT: 2 (expects very large change from AI). At least two statements reach this level.",
+    "justification": "Judge A: 2 (expects very large change from AI). At least two statements reach this level. Judge B: 2 (expects very large change from AI). At least two statements reach this level.",
     "statement_ids": [
      "s3"
     ]
@@ -84661,7 +85014,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (affirms catastrophic risk is real). At least two statements reach this level. GPT: 2 (affirms catastrophic risk is real). At least two statements reach this level.",
+    "justification": "Judge A: 2 (affirms catastrophic risk is real). At least two statements reach this level. Judge B: 2 (affirms catastrophic risk is real). At least two statements reach this level.",
     "statement_ids": [
      "s7",
      "s12"
@@ -84673,7 +85026,7 @@
     "run_b": 3,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 3 (uses the competition as the main reason). At least two statements reach this level. GPT: 3 (uses the competition as the main reason). At least two statements reach this level.",
+    "justification": "Judge A: 3 (uses the competition as the main reason). At least two statements reach this level. Judge B: 3 (uses the competition as the main reason). At least two statements reach this level.",
     "statement_ids": [
      "s17",
      "s11",
@@ -84688,7 +85041,7 @@
     "run_b": 2,
     "reason_a": "consistent",
     "reason_b": "consistent",
-    "justification": "Claude: 2 (supports narrow, targeted rules). At least two statements reach this level. GPT: 2 (supports narrow, targeted rules). At least two statements reach this level.",
+    "justification": "Judge A: 2 (supports narrow, targeted rules). At least two statements reach this level. Judge B: 2 (supports narrow, targeted rules). At least two statements reach this level.",
     "statement_ids": [
      "s20",
      "s14",
@@ -84780,6 +85133,11 @@
    ],
    "s22": [
     "China/competition"
+   ],
+   "s23": [
+    "jobs/economy",
+    "regulation",
+    "other"
    ]
   },
   "rubric_version": "v3"

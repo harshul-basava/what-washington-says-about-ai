@@ -11,10 +11,10 @@ Institution excerpts do not enter this comparison. Quote counts measure availabl
 | Metric | Federal people | Congress |
 |---|---:|---:|
 | Profiles | 150 | 649 |
-| Stored excerpts | 1033 | 15637 |
+| Stored excerpts | 1033 | 15728 |
 | Median excerpts per person | 5 | 12 |
 | Median source pages per person | 4 | 10 |
-| Median quoted words per person | 125.5 | 574 |
+| Median quoted words per person | 125.5 | 584 |
 
 ## Coverage by daily group
 
