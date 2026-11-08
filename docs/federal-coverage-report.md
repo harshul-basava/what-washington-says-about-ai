@@ -1,8 +1,8 @@
 # Federal coverage audit — 2026-11-08
 
-The registry contains 150 people and 36 institutions across 41 organizations. Each profile completed eight separate historical search passes. The source pass also checked government pages and testimony. The collection contains 1,522 excerpts from 687 distinct source pages.
+The registry contains 150 people and 36 institutions across 41 organizations. Each profile completed eight separate historical web search passes. A separate source pass checked government pages and testimony. The combined corpus contains 2,636 excerpts from 1,801 distinct source URLs, including 1,114 direct X excerpts.
 
-This completes the planned web research effort. Evidence depth remains below Congress. Missing evidence does not establish a neutral or opposing stance.
+Evidence depth remains below Congress. Missing evidence does not establish a neutral or opposing stance.
 
 ## Comparison of people
 
@@ -11,10 +11,10 @@ Institution excerpts do not enter this comparison. Quote counts measure availabl
 | Metric | Federal people | Congress |
 |---|---:|---:|
 | Profiles | 150 | 649 |
-| Stored excerpts | 1033 | 15728 |
+| Stored excerpts | 1116 | 15728 |
 | Median excerpts per person | 5 | 12 |
-| Median source pages per person | 4 | 10 |
-| Median quoted words per person | 125.5 | 584 |
+| Median source URLs per person | 4 | 10 |
+| Median quoted words per person | 130.5 | 584 |
 
 ## Coverage by daily group
 
@@ -36,30 +36,42 @@ Institution excerpts do not enter this comparison. Quote counts measure availabl
 | Environmental Protection Agency | 1 | 0 | 7 | 0 |
 | White House Super Intelligence Force | 1 | 1 | 6 | 0 |
 
+## Historical X search
+
+The November 8 backfill imported 1,114 excerpts from 23 sourced accounts for 21 profiles. The collector processed 152 successful pages. X supplied completion signals for 18 account intervals; 5 intervals remain pending.
+
+The pending accounts returned three consecutive pages without new post IDs or an end marker. Their cursors remain available for a later retry. This limit does not establish a complete archive. The following accounts need another attempt:
+
+- @BISgov (Bureau of Industry and Security (BIS)).
+- @cia (Central Intelligence Agency).
+- @USTreasury (Department of the Treasury).
+- @FTC (Federal Trade Commission).
+- @VP46archive (Kamala Harris).
+
+Another 165 profiles need sourced X account mappings. The [X coverage report](federal-x-coverage.md) lists mappings, ownership dates, and gaps. Bulk govinfo collection remains absent.
+
 ## Remaining evidence gaps
 
-The following profiles have no verified excerpts after the historical searches:
+The following people have no verified excerpts after these searches:
 
-- Richard Walters.
-- Thomas Flagg.
-- Thomas Lind.
+- Allison Curran.
 - Jake Easter.
-- Noah Jaffe.
+- Jennifer Hill.
+- Jessica Curyto.
 - John Sonderman.
 - Katherine Reid.
-- Jessica Curyto.
+- Noah Jaffe.
+- Richard Walters.
 - Ted Suzman.
-- Allison Curran.
-- Jennifer Hill.
+- Thomas Flagg.
+- Thomas Lind.
 
-The government source pass retains 18 distinct pages for retry. These pages include unavailable sources and incomplete model output. Per-profile counts and source errors remain in `data/federal_seed_research.json`.
-
-Federal research now supports historical and daily X search through emusks. The initial registry has 23 sourced accounts for 21 profiles; 165 profiles need sourced accounts. No authenticated federal X search has run, and no direct X excerpts have entered the corpus. Search completion cannot guarantee a complete archive. The [X coverage report](federal-x-coverage.md) lists the mappings and account sources. Bulk govinfo collection remains absent. Some new or operational officials have few public AI statements. Dates remain unknown when the source does not establish them. Roles and memberships require manual review.
+The government source pass retains 18 distinct pages for retry. These include unavailable sources and incomplete model output. Per-profile counts and errors remain in `data/federal_seed_research.json`. Roles and memberships require manual review.
 
 ## Daily inclusion
 
-All 186 profiles have named queries in 15 source groups. The configuration produces 111 queries and checks up to six queued pages per group per invocation. Searches run with up to four workers. The daily schedule remains 11:00 UTC and activates this code after merge into the default branch.
+All 186 profiles have named queries in 15 source groups. The configuration produces 111 queries and checks up to six queued pages per group per invocation. Searches run with up to four workers. The daily schedule is 11:00 UTC. Fork workflows default to federal-only updates and accept explicit source overrides.
 
-The live collection on 2026-11-08 has status `partial` with 377 queued pages. Policy assessment has 0 pending model pairs. Human-review cases remain separate from pending model work.
+The latest federal web report retains 377 queued pages. The current policy corpus has 478 candidate excerpts and 576 statement-policy pairs. Model assessment has 0 pending pairs; 10 pairs require human review and remain outside accepted stance charts.
 
-The existing monthly and lifetime caps remain unchanged. Budget limits and source failures preserve checkpoints for later runs. The site reports these limits and offers `site/data/federal_coverage.csv` for every profile.
+The existing monthly and lifetime caps remain unchanged. Budget limits and source failures preserve checkpoints. The site reports coverage and provides `site/data/federal_coverage.csv` for every profile.

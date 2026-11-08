@@ -213,3 +213,7 @@ This list represents a mapping gap. It does not establish that these people or i
 The collector uses Latest search through emusks, with paginated account-wide historical intervals and separate daily checkpoints. The historical cutoff is November 9, 2026, exclusive. Monthly intervals remain an optional configuration. Search can miss posts. Missing authentication, invalid responses, rate limits, and unfinished pages remain visible as incomplete work. No search result establishes a complete archive.
 
 The site exports account counts, X excerpt counts, completed search windows, and status for every profile. Add only accounts with public identity sources and explicit ownership dates to `config/federal_x.json`. Check role intervals for shared office accounts. Changing an account definition invalidates its old search checkpoints.
+
+## First authenticated backfill results
+
+The November 8 historical search added 1,114 verified excerpts across 152 successful pages. Eighteen account intervals reached a provider completion signal. Five remain pending after three consecutive pages produced no new post IDs and no end marker. These are @BISgov, @cia, @USTreasury, @FTC, and @VP46archive. Saved cursors permit retries. The report is `data/federal_x_historical_status.json`.

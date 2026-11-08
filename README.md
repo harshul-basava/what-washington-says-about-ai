@@ -149,7 +149,7 @@ The site shows each profile's verified excerpt count, distinct source count, com
 
 The federal collector uses [emusks](https://emusks.tiago.zip/) for read-only account lookup and Latest search. It requires an X session token. Add `X_AUTH_TOKEN` to the ignored local `.env` file. For the scheduled workflow, add it as a GitHub repository secret. Never commit the token or place it in command arguments. The congressional collector retains its existing X API configuration.
 
-`config/federal_x.json` currently links 23 sourced accounts to 21 federal profiles. The remaining 165 profiles need sourced account mappings. The [X coverage report](docs/federal-x-coverage.md) lists the accounts, sources, dates, and gaps. The site reports mapped accounts, imported excerpts, and search status. The first authenticated historical collection started on November 8, 2026. Tracked checkpoints and the exported coverage report record its actual progress.
+`config/federal_x.json` currently links 23 sourced accounts to 21 federal profiles. The remaining 165 profiles need sourced account mappings. The [X coverage report](docs/federal-x-coverage.md) lists the accounts, sources, dates, and gaps. The site reports mapped accounts, imported excerpts, and search status. The November 8, 2026 backfill added 1,114 verified X excerpts. Eighteen account intervals reached a provider completion signal. Five retain pending cursors after repeated pages produced no new post IDs or end marker. The historical report is `data/federal_x_historical_status.json`; this search does not establish a complete archive.
 
 ```bash
 npm ci --ignore-scripts --no-audit --no-fund
