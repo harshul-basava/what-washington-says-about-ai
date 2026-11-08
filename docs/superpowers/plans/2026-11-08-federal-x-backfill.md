@@ -11,7 +11,7 @@ The implementation decision is to paginate each account's full permitted histori
 - [x] Run historical collection to completion or document specific source failures. Resume bounded invocations and preserve cooldowns.
 - [x] Assess new policy evidence, rebuild the site, and verify evidence integrity and visible coverage.
 - [x] Configure the fork's schedule for federal-only updates, retaining explicit source overrides. Review and test changes.
-- [ ] Push the PR branch and fast-forward the fork's default branch to activate the authorized daily workflow. Verify a workflow run. Leave upstream unmerged.
+- [x] Push the PR branch and fast-forward the fork's default branch to activate the authorized daily workflow. Verify a workflow run. Leave upstream unmerged.
 
 ## Execution record
 
@@ -28,3 +28,9 @@ The implementation decision is to paginate each account's full permitted histori
 - Historical result: 152 successful pages; 1,114 verified X excerpts; 18 of 23 account intervals completed. BIS, CIA, Treasury, FTC, and the Harris archive retain pending cursors after the no-progress limit. `data/federal_x_historical_status.json` preserves this snapshot when daily status changes. All new excerpts match saved source text and author IDs; earlier evidence and Congress data remain unchanged.
 
 - The historical import produced 172 new candidate excerpts and 180 statement-policy pairs. DeepSeek assessed all 180 pairs; Astra reviewed 40. The new cases resolve to 140 primary acceptances, 39 Astra acceptances, and one human-review case. No model work remains. Model spend increased by $0.5075. The full offline build passed; all 835 profiles validate; all 2,766 earlier judgment records remain identical; chart revisions match; the publishable files contain neither secret. The browser shows all 1,114 X excerpts and unfinished search coverage.
+
+- Commit `3589fc5` reached both the PR branch and the fork's default branch through an atomic, fast-forward push. The fork's daily workflow is active at 11:00 UTC. The upstream PR remains unmerged and has no conflicts. Vercel still requires upstream-owner repository authorization.
+
+- The first live fork run, [42525797611](https://github.com/kaustubhkislay/what-washington-says-about-ai/actions/runs/42525797611), completed on November 8. It added 50 web excerpts, assessed 16 new statement-policy pairs, and used Astra for two pairs. It completed all model work. Collection remains partial: 321 web pages remain queued, including 33 page attempts with retrieval, extraction, or validation errors. X authentication succeeded; the collector completed 30 pages without authentication or source errors, found no additional posts beyond the historical import, and retained 15 daily windows after the page limit. This partial status intentionally caused the workflow's failure result. Its report and commit/push steps succeeded.
+
+- Bot commit `57265fb` saved the daily progress and site exports. The local PR branch fast-forwarded to that commit. Daily model and search spend increased by $0.4509, within existing caps. The final corpus contains 2,686 federal excerpts from 1,809 source URLs and 592 statement-policy pairs. Ten pairs need human review; no model work remains. The final audit validates all 835 profiles, preserves all 4,056 prior model assessments across 2,766 candidate excerpts, confirms unchanged congressional data, and finds no credentials in tracked files. The full offline site build passed.

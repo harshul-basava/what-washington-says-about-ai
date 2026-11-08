@@ -1,6 +1,6 @@
 # Federal coverage audit — 2026-11-08
 
-The registry contains 150 people and 36 institutions across 41 organizations. Each profile completed eight separate historical web search passes. A separate source pass checked government pages and testimony. The combined corpus contains 2,636 excerpts from 1,801 distinct source URLs, including 1,114 direct X excerpts.
+The registry contains 150 people and 36 institutions across 41 organizations. Each profile completed eight separate historical web search passes. A separate source pass checked government pages and testimony. The combined corpus contains 2,686 excerpts from 1,809 distinct source URLs, including 1,114 direct X excerpts.
 
 Evidence depth remains below Congress. Missing evidence does not establish a neutral or opposing stance.
 
@@ -11,7 +11,7 @@ Institution excerpts do not enter this comparison. Quote counts measure availabl
 | Metric | Federal people | Congress |
 |---|---:|---:|
 | Profiles | 150 | 649 |
-| Stored excerpts | 1116 | 15728 |
+| Stored excerpts | 1133 | 15728 |
 | Median excerpts per person | 5 | 12 |
 | Median source URLs per person | 4 | 10 |
 | Median quoted words per person | 130.5 | 584 |
@@ -25,7 +25,7 @@ Institution excerpts do not enter this comparison. Quote counts measure availabl
 | NSA and its security center | 6 | 2 | 8 | 0 |
 | Intelligence community | 8 | 2 | 5 | 1 |
 | Defense and military AI | 10 | 2 | 8.5 | 0 |
-| Treasury | 6 | 1 | 5.5 | 0 |
+| Treasury | 6 | 1 | 6.5 | 0 |
 | State and trade policy | 10 | 3 | 5 | 0 |
 | Justice and its task forces | 7 | 3 | 3 | 0 |
 | Homeland security and CISA | 7 | 2 | 4 | 0 |
@@ -72,6 +72,8 @@ The government source pass retains 18 distinct pages for retry. These include un
 
 All 186 profiles have named queries in 15 source groups. The configuration produces 111 queries and checks up to six queued pages per group per invocation. Searches run with up to four workers. The daily schedule is 11:00 UTC. Fork workflows default to federal-only updates and accept explicit source overrides.
 
-The latest federal web report retains 377 queued pages. The current policy corpus has 478 candidate excerpts and 576 statement-policy pairs. Model assessment has 0 pending pairs; 10 pairs require human review and remain outside accepted stance charts.
+The latest federal web report retains 321 queued pages. The current policy corpus has 490 candidate excerpts and 592 statement-policy pairs. Model assessment has 0 pending pairs; 10 pairs require human review and remain outside accepted stance charts.
 
 The existing monthly and lifetime caps remain unchanged. Budget limits and source failures preserve checkpoints. The site reports coverage and provides `site/data/federal_coverage.csv` for every profile.
+
+The first [live fork workflow](https://github.com/kaustubhkislay/what-washington-says-about-ai/actions/runs/42525797611) added 50 web excerpts and completed 16 new policy assessments, including two Astra reviews. It processed 30 X search pages without authentication or source errors. These pages added no posts beyond the historical import. Fifteen daily X windows retain pending cursors after the page limit. The workflow reports failure because collection remains partial, but its report and commit/push steps succeeded. Bot commit `57265fb` saved the results. The run cost $0.4509.
