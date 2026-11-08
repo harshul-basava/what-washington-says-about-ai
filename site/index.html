@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>What Washington Says About AI</title>
 <meta name="description" content="Evidence-backed scores of how every member of Congress talks about AI, AGI, AI risk, China and regulation, from verified quotes.">
-<link rel="stylesheet" href="policies.css?v=2">
-<link rel="stylesheet" href="policy-charts.css?v=2">
-<script src="policy-charts.js" defer></script>
-<script src="policies.js" defer></script>
+<link rel="stylesheet" href="policies.css?v=3">
+<link rel="stylesheet" href="policy-charts.css?v=3">
+<script src="policy-charts.js?v=3" defer></script>
+<script src="policies.js?v=3" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -191,9 +191,9 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
 <main>
 <header>
   <h1>What does Washington say about AI?</h1>
-  <p class="lede">We collected public statements about AI from each member of Congress and from each new member elected in 2026. The sources are floor speeches, hearings, posts on X, interviews and press releases. We checked each quote against its source. Two AI models then gave each person a score on five questions. The models used only these quotes.</p>
+  <p class="lede">Explore public statements about AI from Congress, executive officials, and federal institutions. The policy explorer includes Commerce, the National Security Agency, and the Superintelligence Task Force. The five-score charts cover Congress and members elected in 2026. Each view links to its sources.</p>
   <p class="meta">Last updated <span id="updated">…</span> · <span id="nmembers">…</span> people · <span id="nquotes">…</span> verified statements</p>
-  <p><a href="#policy-section">Explore judgments on bills, frameworks, exports, auditors, and China</a></p>
+  <p><a href="#policy-section">Explore Congress, executive officials, and institutions by policy</a></p>
 </header>
 
 <div class="controlbar" role="toolbar" aria-label="Chart settings">
@@ -287,8 +287,8 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
 
 <section id="policy-section" aria-labelledby="policy-title">
 <h2 id="policy-title">Positions on specific AI policies</h2>
-<p class="sub">Read each member’s statements about named bills, new frameworks, export controls, embedded auditors, and competition with China.</p>
-<p class="note">Open a member to see dated quotes, source links, and the model assessments. These labels use a separate policy rubric.</p>
+<p class="sub">Explore Congress, executive officials, and institutions. Compare statements about bills, frameworks, export controls, embedded auditors, and competition with China.</p>
+<p class="note">Coverage includes the White House, Commerce, the National Security Agency, and the Superintelligence Task Force. Open a profile for roles, quotes, sources, and model assessments.</p>
 <div id="policy-explorer"><p role="status">Loading policy judgments…</p></div>
 </section>
 
@@ -305,6 +305,7 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
   <li><b>Review:</b> a person will check the scores where the two models are 2 or more apart, the highest scores on AGI and x-risk, and a random sample. This review is not complete yet. A "human-reviewed" tag shows each member that a person checked.</li>
   <li><b>Daily updates:</b> each day the site gets new posts on X, the Congressional Record, hearings and news since the day before. DeepSeek V4.1 Flash labels each new statement three times. When the three labels do not agree, when the label is 3 or more on x-risk or AGI, or when the label is far from the member's current score, GPT-6.1 Sol labels the statement too. GPT-6 Astra decides when the two are 2 or more levels apart. The same formula then makes the new scores. A check on 455 statements found that this agrees with the original two models as often as they agree with each other (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/master/review/cascade_calibration.md">details</a>).</li>
   <li><b>Committees:</b> current full-committee rosters from the @unitedstates project.</li>
+  <li><b>Executive and institutional coverage:</b> the policy explorer adds a curated set of federal officials and institutions. Profiles show sourced roles and memberships. Each quote distinguishes a personal statement, a statement in an official role, or an institutional statement. Membership does not establish endorsement. Agency filters include subagencies and linked roles. Each official counts once; charts use the primary organization. Some roles and statement dates remain unknown. Federal sources require a manual refresh; the daily collection still covers Congress.</li>
   <li><b>Policy judgments:</b> keyword searches identify candidate statements in the existing corpus. DeepSeek V4.1 Flash 1017 assesses each candidate with a confidence score. Astra independently reviews confidence below the configured threshold. Cases that remain uncertain require human review. The policy view preserves both assessments and separates no matching evidence from incomplete assessment. Confidence scores are model estimates that require calibration. Each framework has its own dated registry entry. New entries require a manual refresh. These labels have not received a human validation study.</li>
 </ol>
 <p><b>Caveats.</b> What people say in public is not the same as what they believe or how they vote. Scores are produced by language models and only spot-checked. Official records lag by months. X coverage depends on knowing the right accounts, and some members barely post. Members who rarely talk about AI will have little or no evidence. That doesn't mean they hold no views.</p>

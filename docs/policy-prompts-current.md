@@ -278,3 +278,18 @@ Return only a JSON object:
 {"labels": {"s12": {"x_risk": [3, 4], "regulation": [3, 5]}}, "topics": {"s12": ["x-risk/loss of control", "regulation"]}}
 ```
 ```
+# Executive and institutional attribution
+
+The policy system now adds the following instructions only when a batch contains explicit attribution metadata. The additional evidence fields are `entity_type` and `attribution` (`kind`, `speaker`, `role` when applicable, `organization_id`, and `note`). Both DeepSeek and Astra receive these fields. The attribution instructions and metadata enter the per-statement cache hash. Congressional statements without this metadata retain their existing prompts and hashes.
+
+```text
+For evidence with attribution metadata, classify only the named subject's
+position in the stated capacity. An institutional statement represents that institution,
+not the private views of its leaders or every member. An official-role statement belongs
+to the named speaker in that role; do not transfer it to other appointments or institutions.
+Joint institutional statements do not prove personal endorsement by individual members.
+Role membership and source-page context alone do not establish a policy stance.
+Do not infer support for embedded auditors from ordinary security testing or external audits.
+```
+
+Role histories appear in profiles. The model receives the role for that specific statement, rather than the person's whole membership history. Institutional pages with no explicit policy match remain in the source library. The system does not create a judgment for them merely because an institution has a relevant mandate.

@@ -1,8 +1,8 @@
 # What Washington Says About AI
 
-This project tracks what each member of Congress says in public about AI. It also covers the new members elected in 2026.
+This project tracks public statements about AI from Congress, executive officials, and federal institutions. The congressional roster also covers new members elected in 2026.
 
-Each person gets a score from 0 to 4 on five questions:
+The congressional view gives each person a score from 0 to 4 on five questions. Executive and institutional profiles use the policy judgments below:
 
 - **AI overall:** Will AI be good for Americans?
 - **AGI:** Will AI reach human-level intelligence?
@@ -65,6 +65,18 @@ Dates keep their original precision. A year-only quote can make the latest date 
 Coverage has separate states: no matching evidence, no relevant evidence after assessment, pending assessment, partial assessment, and complete assessment. None means opposition. Keyword retrieval can miss relevant statements. The judgments use the repository's existing verified corpus and inherit its source and attribution limits. They have not received a human validation study.
 
 ### Policy charts
+
+The explorer has separate Congress, Executive officials, and Institutions views. The initial federal collection contains 13 officials, eight institutions, and 27 verified excerpts. It covers the White House, Commerce, BIS, NIST, CAISSI, NSA, its security center, and the White House Superintelligence Task Force. This is curated coverage, not a complete federal census. Andrew Ferguson has sourced roles but no personal policy quote in this initial collection.
+
+An agency filter includes its subagencies and linked roles. Each person counts once, even with several appointments. Executive and institution charts group profiles by their primary organization. Congressional charts retain party grouping. The views never combine people and institutions in one denominator. Profile links connect officials and institutions. Source statements remain available even when none matches the selected policy.
+
+The additional registry lives in `config/policy_subjects.json`. It records institution relationships, dated roles, aliases, and membership sources. Unknown start and end dates remain unknown. A role source can describe a historical appointment; its check date does not establish current service. Task-force membership includes clearly marked reporting sources. The White House Super Intelligence Force is separate from the Justice Department's task force. Historical sources may use CAISI/AISI or AISC; the current institutional pages use CAISSI and SISC.
+
+Every new statement records attribution as `personal`, `official_role`, or `institutional`. Named officials' statements belong to their profiles. Institutional and joint statements do not propagate to members. The model receives attribution and role context. Changes to attribution invalidate that statement's judgment. The unchanged congressional candidates retain their existing cache hashes.
+
+To extend federal coverage, edit the registry and add verified, stable `s1`, `s2`, etc. statements to `evidence/<subject-id>.json`. Match each excerpt against the source text, record its retrieval method, date, and text hash, and update `config/policy_source_manifest.json`. This collection uses exact matching after whitespace normalization. Where direct retrieval failed, verification used the search service's retrieved page text. This checks quote presence, not the source's factual claims or transcript accuracy. Do not reassign existing statement IDs or copy one collective statement into each member's file. Run `make policies-plan`, `make policies-label POLICY_ARGS="--max-cost 2"`, then `make policies-build`. A registry-only profile needs an explicit empty evidence file.
+
+Federal source discovery and membership checks remain manual. The existing daily job still collects congressional statements. Its shared offline build includes the additional profiles and shows new, unassessed evidence as pending. It does not make extra paid calls. The five-score congressional charts remain unchanged.
 
 The policy explorer includes four views: positions across policies, positions by party, statements over time, and counts of additional labels. Select a policy name in the overview to open its detail charts and source quotes.
 

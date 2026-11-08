@@ -67,3 +67,45 @@ test('human review status stays visible instead of becoming no evidence', () => 
     strategy:'confidence_cascade',review_status:'human_review_required',review_reason:'Both uncertain.',judges:{}});
   assert.ok(html.includes('Human review required'));
 });
+
+test('scope and membership filters keep officials unique and separate from institutions', () => {
+  const base={policies:{p:{stance:null,coverage:'no_matching_evidence'}},roles:[]};
+  const rows=[{...base,id:'C',name:'Congress member',branch:'legislative',entity_type:'person',party:'Independent'},
+    {...base,id:'E',name:'Official',branch:'executive',entity_type:'person',party:null,organization_name:'Commerce',
+      organization_ids:['commerce','task_force'],roles:[{organization_id:'commerce'},{organization_id:'task_force'}]},
+    {...base,id:'O',name:'Commerce',branch:'executive',entity_type:'institution',organization_ids:['commerce']}];
+  assert.deepEqual(view.filterMembers(rows,{policy:'p',scope:'executive',organization:'task_force'}).map(r=>r.id),['E']);
+  assert.deepEqual(view.filterMembers(rows,{policy:'p',scope:'institutions'}).map(r=>r.id),['O']);
+  assert.deepEqual(view.filterMembers(rows,{policy:'p',scope:'congress'}).map(r=>r.id),['C']);
+  assert.deepEqual(view.filterMembers(rows,{policy:'p',party:'I'}).map(r=>r.id),['C']);
+  assert.deepEqual(view.filterMembers(rows,{policy:'p',scope:'executive',search:'commerce'}).map(r=>r.id),['E']);
+});
+
+test('official and institutional attribution appears beside source quotes', () => {
+  const html=view.renderRecord({text:'An official quote',url:'https://example.gov',stance:'support',judges:{},
+    attribution:{kind:'official_role',speaker:'Speaker',role:'Secretary',note:'A named quote.'}});
+  assert.ok(html.includes('Official role'));
+  assert.ok(html.includes('Secretary'));
+  const institutional=view.renderRecord({text:'Agency statement',stance:'neutral',judges:{},
+    attribution:{kind:'institutional',speaker:'Agency',note:'Joint statement; not a personal position.'}});
+  assert.ok(institutional.includes('Institutional statement'));
+  assert.ok(institutional.includes('Joint statement'));
+});
+
+test('profiles show sourced roles and explicit unknown dates without implying independent party affiliation', () => {
+  const html=view.renderProfile({id:'E',name:'Official',entity_type:'person',branch:'executive',roles:[
+    {title:'Chair',organization_id:'task',start_date:null,end_date:null,verified_on:'2026-11-07',source_url:'https://example.gov/role'}]},
+    [{id:'task',name:'Task force'}],[]);
+  assert.ok(html.includes('Chair'));
+  assert.ok(html.includes('Start date unknown'));
+  assert.ok(html.includes('2026-11-07'));
+  assert.ok(html.includes('https://example.gov/role'));
+  assert.ok(!html.includes('Independent'));
+  assert.deepEqual(view.evidenceRecords({id:'E',policies:{}},{id:'E',policies:{p:{candidates:0}}},'p'),[]);
+});
+
+test('unmatched source library never presents an unmade relevance judgment', () => {
+  const html=view.renderRecord({text:'A source',url:'https://example.gov',library_only:true,stance:'not_relevant',judges:{}});
+  assert.ok(html.includes('No policy assessment'));
+  assert.ok(!html.includes('Not relevant'));
+});

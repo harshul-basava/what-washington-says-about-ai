@@ -80,3 +80,16 @@ test('cascade detail bars count final labels by primary acceptance or Astra revi
   assert.deepEqual(result,[{id:'cooperation',agreed:1,disputed:1}]);
   assert.equal(charts.timeline([{stance:'review_required'}]).pending,1);
 });
+
+test('executive charts group by one primary agency despite multiple memberships', () => {
+  const rows=[{...member('A','support'),organization_id:'commerce',organization_name:'Commerce',
+      roles:[{organization_id:'commerce'},{organization_id:'task_force'}]},
+    {...member('B','oppose'),organization_id:'nsa',organization_name:'NSA'}];
+  const groups=charts.groupBreakdowns(rows,'p','executive');
+  assert.deepEqual(groups.map(g=>g.title),['Commerce','NSA']);
+  assert.equal(groups.reduce((n,g)=>n+g.total,0),2);
+  const root={innerHTML:'',clientWidth:900};
+  charts.renderSelected(root,rows,{id:'p',facets:[]},{policies:{p:[]}}, {},false,'executive');
+  assert.ok(root.innerHTML.includes('Positions by organization'));
+  assert.ok(!root.innerHTML.includes('Democrats'));
+});

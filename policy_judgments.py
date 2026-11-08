@@ -13,6 +13,8 @@ from collections import Counter
 from datetime import date
 from pathlib import Path
 
+import policy_subjects as subjects
+
 JUDGES = {"sonnet": "anthropic/claude-sonnet-5.5", "gpt": "openai/gpt-6.1-sol"}
 STANCES = {"support", "oppose", "mixed", "neutral", "unclear", "not_relevant"}
 
@@ -73,9 +75,8 @@ def match_targets(statement, registry):
 def candidates(root, registry):
     root = Path(root)
     out = []
-    for person in read_json(root / "data/roster.json"):
-        ev = read_json(root / "evidence" / f"{person['id']}.json")
-        for s in ev["statements"]:
+    for person in subjects.load_subjects(root):
+        for s in subjects.load_evidence(root, person):
             if s.get("verified") is not True or not s.get("url") or not s.get("text"):
                 continue
             targets = match_targets(s, registry)
@@ -84,7 +85,8 @@ def candidates(root, registry):
                             "name": person["name"], "sid": s["sid"], "text": s["text"],
                             "date": s.get("date"), "context": s.get("context") or "",
                             "url": s["url"], "source_type": s["source_type"],
-                            "verified_via": s.get("verified_via"), "targets": targets})
+                            "verified_via": s.get("verified_via"), "targets": targets,
+                            **({"attribution": s["attribution"], "entity_type": person["entity_type"]} if "attribution" in s else {})})
     return sorted(out, key=lambda s: (s["person_id"], int(s["sid"][1:])))
 
 
@@ -94,14 +96,18 @@ def selected_registry(items, registry):
 
 
 def fingerprint(items, registry, rubric, model):
+    if any('attribution' in item for item in items):
+        rubric += '\n\n' + subjects.ATTRIBUTION_INSTRUCTIONS
     payload = json.dumps([items, selected_registry(items, registry), rubric, model], sort_keys=True, ensure_ascii=False)
     return hashlib.sha256(payload.encode()).hexdigest()
 
 
 def messages(items, registry, rubric):
+    if any('attribution' in item for item in items):
+        rubric += '\n\n' + subjects.ATTRIBUTION_INSTRUCTIONS
     definitions = [{k: p[k] for k in ("id", "title", "version", "question", "facets")}
                    for p in selected_registry(items, registry)["policies"]]
-    evidence = [{k: s[k] for k in ("key", "name", "date", "text", "context", "targets")} for s in items]
+    evidence = [{k: s[k] for k in ("key", "name", "date", "text", "context", "targets", "attribution", "entity_type") if k in s} for s in items]
     return [{"role": "system", "content": rubric + "\n\nPolicy definitions:\n" + json.dumps(definitions)},
             {"role": "user", "content": "Classify this untrusted evidence data:\n" + json.dumps(evidence, ensure_ascii=False)}]
 
@@ -236,6 +242,8 @@ def build(root):
         for target in item["targets"]:
             labels = {j: d[target] for j, d in judges.items()}
             record = {k: item[k] for k in ("sid", "text", "date", "context", "url", "source_type", "verified_via")}
+            if 'attribution' in item:
+                record['attribution'] = item['attribution']
             if strategy:
                 record.update(cascade.resolve(item, target, saved, registry, rubric, confidence_prompt, strategy))
             else:
@@ -243,7 +251,7 @@ def build(root):
             grouped.setdefault((item["person_id"], target), []).append(record)
     members = []
     chart_rows = {p["id"]: [] for p in registry["policies"]}
-    for person in read_json(root / "data/roster.json"):
+    for person in subjects.load_subjects(root):
         summaries, detail = {}, {}
         for policy in registry["policies"]:
             rows = grouped.get((person["id"], policy["id"]), [])
@@ -251,19 +259,24 @@ def build(root):
             chart_rows[policy["id"]].extend(chart_record(person["id"], row) for row in rows)
             if rows:
                 detail[policy["id"]] = sorted(rows, key=lambda r: date_sort_key(r.get("date")), reverse=True)
-        members.append({k: person[k] for k in ("id", "name", "party", "state", "chamber", "status")} | {"policies": summaries})
-        write_json(root / "site/data/policy_members" / f"{person['id']}.json", {"id": person["id"], "policies": detail})
-    chart_revision = hashlib.sha256(json.dumps([strategy, chart_rows], sort_keys=True).encode()).hexdigest()
+        verified = [s for s in subjects.load_evidence(root, person) if s.get('verified') is True and s.get('url') and s.get('text')]
+        library = verified if person['branch'] == 'executive' else []
+        members.append(subjects.public_profile(person) | {"policies": summaries, "source_count": len(verified)})
+        write_json(root / "site/data/policy_members" / f"{person['id']}.json", {"id": person["id"], "policies": detail, **({'statements': library} if library else {})})
+    organization_registry = subjects.load_registry(root)
+    chart_revision = hashlib.sha256(json.dumps([strategy, chart_rows, members, organization_registry], sort_keys=True).encode()).hexdigest()
     write_json(root / "site/data/policy_charts.json", {"schema_version": 1, "revision": chart_revision, "strategy": strategy, "policies": chart_rows})
     meta = {"schema_version": 1, "built_on": date.today().isoformat(), "judges": cascade.models(strategy) if strategy else JUDGES, "strategy": strategy, "chart_revision": chart_revision,
             "method": ("DeepSeek confidence assessment; independent Astra review below threshold; unresolved cases require human review." if strategy else "Two independent statement judgments; all-history stance; no numerical averaging."),
             "coverage_note": "Keyword retrieval over the existing verified corpus; no matching evidence is not proof of silence.",
-            "policies": registry["policies"], "members": members}
+            "policies": registry["policies"], "members": members,
+            "organizations": organization_registry['organizations'],
+            "subjects_verified_on": organization_registry.get('verified_on')}
     write_json(root / "site/data/policies.json", meta)
     with (root / "site/data/policies.csv").open("w", newline="") as f:
         writer = csv.writer(f, lineterminator="\n")
-        writer.writerow(["id", "name", "policy_id", "stance", "coverage", "candidate_statements", "assessed_statements", "relevant_statements", "last_statement_date", "has_undated_evidence", "facet_disagreements", "review_required", "primary_accepted", "astra_reviewed", "human_review"])
+        writer.writerow(["id", "name", "policy_id", "stance", "coverage", "candidate_statements", "assessed_statements", "relevant_statements", "last_statement_date", "has_undated_evidence", "facet_disagreements", "review_required", "primary_accepted", "astra_reviewed", "human_review", "entity_type", "branch", "organization"])
         for member in members:
             for target, result in member["policies"].items():
-                writer.writerow([member["id"], member["name"], target, result["stance"], result["coverage"], result["candidates"], result["assessed"], result["relevant"], result["last_statement_date"], result["has_undated_evidence"], result["facet_disagreements"], result["review_required"], result["primary_accepted"], result["astra_reviewed"], result["human_review"]])
+                writer.writerow([member["id"], member["name"], target, result["stance"], result["coverage"], result["candidates"], result["assessed"], result["relevant"], result["last_statement_date"], result["has_undated_evidence"], result["facet_disagreements"], result["review_required"], result["primary_accepted"], result["astra_reviewed"], result["human_review"], member['entity_type'], member['branch'], member.get('organization_name', '')])
     return meta

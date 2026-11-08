@@ -66,8 +66,8 @@
 
   function stanceBar(row) {
     if (!row.observed) return '<div class="pc-empty-bar">No completed assessment with relevant evidence</div>';
-    return `<div class="pc-stack" role="img" aria-label="${esc(countText(row.counts))}; ${row.observed} members total">${STANCES.filter(s=>row.counts[s]).map(s=>
-      `<span class="pc-fill pc-${s}" style="width:${percent(row.counts[s],row.observed)}%" title="${esc(LABELS[s])}: ${row.counts[s]} members (${percent(row.counts[s],row.observed).toFixed(1)}%)" aria-hidden="true">${percent(row.counts[s],row.observed)>=9 ? row.counts[s] : ''}</span>`).join('')}</div>`;
+    return `<div class="pc-stack" role="img" aria-label="${esc(countText(row.counts))}; ${row.observed} profiles total">${STANCES.filter(s=>row.counts[s]).map(s=>
+      `<span class="pc-fill pc-${s}" style="width:${percent(row.counts[s],row.observed)}%" title="${esc(LABELS[s])}: ${row.counts[s]} profiles (${percent(row.counts[s],row.observed).toFixed(1)}%)" aria-hidden="true">${percent(row.counts[s],row.observed)>=9 ? row.counts[s] : ''}</span>`).join('')}</div>`;
   }
 
   function legend() {
@@ -85,10 +85,10 @@
   function renderOverview(root, members, policies, selected, onSelect) {
     const rows=policies.map(p=>({...breakdown(members,p.id),id:p.id,title:p.title}));
     root.innerHTML = `<h3>Policy positions at a glance</h3>
-      <p class="note">Each stance bar covers members with relevant evidence and a complete assessment. Numbers count members. The coverage column compares this group with the filtered roster.</p>
-      ${legend()}<div class="pc-overview-head" aria-hidden="true"><span>Policy or question</span><span>Positions among members with evidence</span><span>Evidence / roster</span></div>
+      <p class="note">Each stance bar covers profiles with relevant evidence and a complete assessment. Numbers count profiles. The coverage column compares this group with the filtered roster.</p>
+      ${legend()}<div class="pc-overview-head" aria-hidden="true"><span>Policy or question</span><span>Positions among profiles with evidence</span><span>Evidence / roster</span></div>
       ${rows.map(row=>`<div class="pc-overview-row"><button type="button" class="pc-policy-link" data-policy="${esc(row.id)}" aria-current="${row.id===selected ? 'true' : 'false'}">${esc(row.title)}</button>${stanceBar(row)}${coverage(row)}</div>`).join('')}
-      <p class="note">Party, member, and name filters apply to all charts. The stance filter applies only to the member list. Choose a policy name for its detailed charts.</p>
+      <p class="note">Scope, organization, party, and name filters apply to all charts. The stance filter applies only to the profile list. Choose a policy name for its detailed charts.</p>
       ${exactTable(rows,'Exact counts for every policy')}`;
     root.querySelectorAll('[data-policy]').forEach(button=>button.addEventListener('click',()=>onSelect(button.dataset.policy)));
   }
@@ -106,23 +106,28 @@
     tickIndexes.push(periods.length-1);
     return `<div class="pc-timeline" role="img" aria-label="Recorded statements per ${result.granularity}. Maximum ${rawMax} statements in one period. Exact counts follow the chart.">
       <div class="pc-y-axis" aria-hidden="true"><span>${max}</span><span>${Number.isInteger(max/2) ? max/2 : ''}</span><span>0</span></div>
-      <div class="pc-time-bars" style="--periods:${periods.length}">${periods.map((p,i)=>`<div class="pc-time-column" title="${esc(p.key)}: ${p.total} statements from ${p.people} members; ${esc(countText(p.counts) || 'no recorded statements')}">
+      <div class="pc-time-bars" style="--periods:${periods.length}">${periods.map((p,i)=>`<div class="pc-time-column" title="${esc(p.key)}: ${p.total} statements from ${p.people} profiles; ${esc(countText(p.counts) || 'no recorded statements')}">
         <div class="pc-time-stack" style="height:${percent(p.total,max)}%">${STANCES.filter(s=>p.counts[s]).map(s=>`<span class="pc-fill pc-${s}" style="height:${percent(p.counts[s],p.total)}%"></span>`).join('')}</div>
         ${tickIndexes.includes(i) ? `<span class="pc-time-label ${periods.length===1?'':i===0?'pc-first':i===periods.length-1?'pc-last':''}">${esc(p.label)}</span>` : ''}</div>`).join('')}</div></div>
-      <details class="pc-exact"><summary>Exact counts by ${result.granularity}</summary><div class="pc-table-wrap"><table><thead><tr><th>Period</th><th>Statements</th><th>Members</th>${STANCES.map(s=>`<th>${LABELS[s]}</th>`).join('')}</tr></thead><tbody>${periods.map(p=>`<tr><th scope="row">${p.key}</th><td>${p.total}</td><td>${p.people}</td>${STANCES.map(s=>`<td>${p.counts[s]}</td>`).join('')}</tr>`).join('')}</tbody></table></div></details>`;
+      <details class="pc-exact"><summary>Exact counts by ${result.granularity}</summary><div class="pc-table-wrap"><table><thead><tr><th>Period</th><th>Statements</th><th>Profiles</th>${STANCES.map(s=>`<th>${LABELS[s]}</th>`).join('')}</tr></thead><tbody>${periods.map(p=>`<tr><th scope="row">${p.key}</th><td>${p.total}</td><td>${p.people}</td>${STANCES.map(s=>`<td>${p.counts[s]}</td>`).join('')}</tr>`).join('')}</tbody></table></div></details>`;
   }
 
-  function renderSelected(root, members, target, chartData, facetNames, error) {
-    const parties=Object.entries(PARTIES).map(([id,title])=>({...breakdown(members.filter(m=>party(m.party)===id),target.id),title})).filter(r=>r.total);
-    const partyHTML = `<section class="pc-party"><h4>Positions by party</h4><p class="note">Each bar covers completed assessments with relevant evidence. Coverage appears at the right.</p>${parties.length ? parties.map(row=>`<div class="pc-party-row"><span>${row.title}</span>${stanceBar(row)}${coverage(row)}</div>`).join('') : '<p>No members match these filters.</p>'}${exactTable(parties,'Exact counts by party')}</section>`;
+  function groupBreakdowns(members, target, scope='congress') {
+    const groups = scope === 'congress' ? Object.entries(PARTIES) : [...new Map(members.map(m=>[m.organization_id,m.organization_name || 'Organization unknown'])).entries()].sort((a,b)=>a[1].localeCompare(b[1]));
+    return groups.map(([id,title])=>({...breakdown(members.filter(m=>(scope==='congress' ? party(m.party) : m.organization_id)===id),target),title})).filter(r=>r.total);
+  }
+
+  function renderSelected(root, members, target, chartData, facetNames, error, scope='congress') {
+    const parties=groupBreakdowns(members,target.id,scope);
+    const partyHTML = `<section class="pc-party"><h4>Positions by ${scope === 'congress' ? 'party' : 'organization'}</h4><p class="note">Each bar covers completed assessments with relevant evidence. Coverage appears at the right.</p>${parties.length ? parties.map(row=>`<div class="pc-party-row"><span>${esc(row.title)}</span>${stanceBar(row)}${coverage(row)}</div>`).join('') : '<p>No profiles match these filters.</p>'}${exactTable(parties,scope === 'congress' ? 'Exact counts by party' : 'Exact counts by organization')}</section>`;
     if (!chartData) {
-      root.innerHTML=legend()+partyHTML+`<p role="status">${error ? 'Statement charts are unavailable. Reload the page to retry. The member summaries remain available.' : 'Loading statement charts…'}</p>`;
+      root.innerHTML=legend()+partyHTML+`<p role="status">${error ? 'Statement charts are unavailable. Reload the page to retry. The profile summaries remain available.' : 'Loading statement charts…'}</p>`;
       return;
     }
     const ids=new Set(members.map(m=>m.id));
     const rows=chartData.policies[target.id].filter(r=>ids.has(r.person_id));
     const history=timeline(rows);
-    let html=`${legend()}<div class="pc-detail-grid">${partyHTML}<section><h4>Statements over time</h4><p class="note">Recorded statements by ${history.granularity}. One member can contribute several statements. These counts do not establish changes in individual views.</p>
+    let html=`${legend()}<div class="pc-detail-grid">${partyHTML}<section><h4>Statements over time</h4><p class="note">Recorded statements by ${history.granularity}. One profile can contribute several statements. These counts do not establish changes in individual views.</p>
       ${timelineHTML(history,root.clientWidth>760 ? (root.clientWidth-28)/2 : root.clientWidth)}
       <p class="note">${history.excludedDates} relevant statements lack a usable month or day.${history.pending ? ` ${history.pending} candidate statements await a final assessment.` : ''} Empty periods contain no dated relevant statements in this dataset.</p></section></div>`;
     if (target.facets.length) {
@@ -136,7 +141,7 @@
     root.innerHTML=html;
   }
 
-  const api={breakdown,timeline,facetCounts,percent,stanceBar,renderOverview,renderSelected};
+  const api={groupBreakdowns,breakdown,timeline,facetCounts,percent,stanceBar,renderOverview,renderSelected};
   if (typeof module !== 'undefined' && module.exports) module.exports=api;
   else global.PolicyCharts=api;
 })(typeof window !== 'undefined' ? window : globalThis);

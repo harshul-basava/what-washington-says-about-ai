@@ -18,7 +18,7 @@ class SiteBuildTests(unittest.TestCase):
         repo = Path(__file__).resolve().parents[1]
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            for name in ('scripts/phase5_build_site.py', 'policy_judgments.py', 'policy_cascade.py'):
+            for name in ('scripts/phase5_build_site.py', 'policy_judgments.py', 'policy_cascade.py', 'policy_subjects.py'):
                 dest = root / name
                 dest.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(repo / name, dest)
