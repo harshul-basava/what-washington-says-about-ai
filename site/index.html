@@ -618,7 +618,7 @@ const EVENTS = [
 ].map(([d,label,what])=>({d:new Date(d+"T00:00:00Z"), label, what}));
 // rules plus labels in the top margin. Each label goes on the lowest row where it does not overlap another label;
 // labels near the right edge face left. Returns the marks and the top margin they need.
-function eventMarks(lo, hi, W, ml, mr, numbered=false){
+function eventMarks(lo, hi, W, ml, mr, numbered=true){   // numbers with a key; names next to the lines were too cluttered
   if (!S.events) return {top: 20, key: "", marks: []};
   const ev = EVENTS.map((e,i)=>({...e, label: numbered ? String(i+1) : e.label, i})).filter(e=>e.d>=lo && e.d<=hi), rows = [];
   for (const e of ev){
