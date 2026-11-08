@@ -83,4 +83,7 @@ jobs:
         if: steps.keys.outputs.skip != 'true' && hashFiles('data/issue.md') != ''
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh issue create --title "Score changes $(date -u +%F)" --body-file data/issue.md
+        run: |
+          # opened for the record and the notification, then closed right away: nothing needs manual action
+          url=$(gh issue create --title "Score changes $(date -u +%F)" --body-file data/issue.md)
+          gh issue close "$url" --reason completed --comment "Closed automatically. Reopen if a change needs a human check."
