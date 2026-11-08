@@ -77,9 +77,9 @@ body{overflow-x:clip}
 .segmented button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .chart{overflow-x:auto;margin:6px 0}
 .chart svg{max-width:100%;height:auto;color:var(--fg)}
-.hemirow{display:flex;gap:20px;align-items:center;justify-content:space-between}
+.hemirow{display:flex;gap:20px;align-items:center;justify-content:center}
 #hemi{flex:1 1 560px;max-width:760px;min-width:0}
-#pies{flex:0 0 156px;display:flex;flex-direction:column;gap:22px;align-items:flex-end}
+#pies{flex:0 0 180px;display:flex;flex-direction:column;gap:22px;align-items:center}
 .pie{text-align:center}.pie h4{margin:0 0 4px;font-size:14px;font-weight:600}.pie .cap{font-size:12px;color:var(--muted);margin-top:2px}
 @media (max-width:720px){.hemirow{flex-direction:column}#pies{flex-direction:row;flex-wrap:wrap;justify-content:center}}
 .note{font-size:13px;color:var(--muted)}
@@ -377,7 +377,7 @@ function ramp(){ return [0,1,2,3,4].map(i=>css("--r"+i)); }
 function scoreColor(v){ if(v==null) return css("--nodata"); const r=ramp(); const lo=Math.floor(v), hi=Math.min(4,lo+1); return lo===hi?r[lo]:d3.interpolateLab(r[lo],r[hi])(v-lo); }
 function dimLabel(k=S.dim){ return DIMS.find(d=>d[0]===k)[1]; }
 function plotStyle(){ return {background:"transparent",fontSize:"11px",color:css("--fg")}; }
-function widthOf(el){ return Math.max(300, el.clientWidth); }   // charts fill the content width, so their right edge lines up with the control bar
+function widthOf(el){ return Math.max(300, el.clientWidth-24); }
 const tip = document.getElementById("tip");
 function showTip(e, html){ tip.style.display="block"; tip.innerHTML=html; const w=tip.offsetWidth; tip.style.left=Math.min(e.clientX+14, innerWidth-w-8)+"px"; tip.style.top=Math.min(e.clientY+14, innerHeight-tip.offsetHeight-8)+"px"; }
 function hideTip(){ tip.style.display="none"; }
