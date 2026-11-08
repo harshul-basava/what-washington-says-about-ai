@@ -51,10 +51,12 @@ def checked_date(value, date_quote, text, now):
     anchor = sources.normalize(date_quote)
     if re.search(r'(?<!\d)' + re.escape(value) + r'(?![\d-])', anchor):
         return value
+    # A source label is part of the exact anchor, but not of the calendar date.
+    anchor = re.sub(r'^(?:(?:Publication Date|Date Published|Release Date|Press Release|FOR IMMEDIATE RELEASE)\s*[:|]\s*|Released\s+)', '', anchor, flags=re.I)
     anchor = re.sub(r'^(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),?\s+', '', anchor, flags=re.I)
     anchor = re.sub(r'\b(Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\.(?=\s)', r'\1', anchor, flags=re.I)
     anchor = re.sub(r'\bSept\.?(?=\s)', 'Sep', anchor, flags=re.I)
-    for fmt in ('%B %d, %Y', '%b %d, %Y', '%B %d %Y', '%b %d %Y', '%d %B %Y', '%d %b %Y', '%B %Y', '%b %Y'):
+    for fmt in ('%B %d, %Y', '%b %d, %Y', '%B %d %Y', '%b %d %Y', '%d %B %Y', '%d %b %Y', '%B %Y', '%b %Y', '%Y %B', '%Y %b'):
         if '%d' not in fmt and len(value) > 7:
             continue
         try:
@@ -98,6 +100,9 @@ def explicit_document_author(context, subject):
     if re.search(r'\b' + markers + r'\s+' + author, context, re.I):
         return True
     header = re.sub(r'^(?:[A-Z][a-z]+ \d{1,2}, \d{4}|\d{4}-\d{2}-\d{2})\s+', '', context)
+    # Government releases also use "TITLE NAME Statement on TOPIC" headings.
+    if re.search(r'^' + author + r'\s*[,.:–-]?\s+(?:statement|remarks|testimony)\s+(?:on|regarding|before|to|at|for)\b', header, re.I):
+        return True
     # After a leading name, permit only a known title before the speech/testimony marker.
     return bool(re.search(r'^' + honorific + who + r'\s*[,.:–-]?\s*(?:' + title +
                           r'\s*[,.:–-]?\s*)?(?:delivers remarks|testimony before|statement before)\b', header, re.I))

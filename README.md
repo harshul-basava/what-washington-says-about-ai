@@ -144,13 +144,15 @@ make policies-build
 
 A retry reuses its saved search result. `--refresh` makes a new paid search for the selected IDs and pass numbers. `--reverify` checks only cached search passes, although it can retrieve a missing source or format an incomplete saved result. Run the research and source passes sequentially. These one-time calls use the existing lifetime budget; daily calls also use the existing monthly cap.
 
+The November 8 follow-up checked all 339 pending source URLs. Its [source audit](data/federal_web_completion.json) records resolved URLs, text hashes, and rejected model proposals. Source completion means the bounded review finished; it does not establish exhaustive coverage.
+
 The site shows each profile's verified excerpt count, distinct source count, completed search passes, pending source checks, and notes from individual searches. Later passes can resolve a gap recorded in an earlier note. The coverage download compares federal people with congressional people. The current congressional median is 12 excerpts across 649 profiles. Search completion does not establish exhaustive coverage or equal evidence depth. Federal collection includes authenticated emusks X search. It still lacks the bulk govinfo channel used for Congress. No public record means no inferred stance.
 
 ### Federal X search through emusks
 
 The federal collector uses [emusks](https://emusks.tiago.zip/) for read-only account lookup and Latest search. It requires an X session token. Add `X_AUTH_TOKEN` to the ignored local `.env` file. For the scheduled workflow, add it as a GitHub repository secret. Never commit the token or place it in command arguments. The congressional collector retains its existing X API configuration.
 
-`config/federal_x.json` currently links 23 sourced accounts to 21 federal profiles. The remaining 165 profiles need sourced account mappings. The [X coverage report](docs/federal-x-coverage.md) lists the accounts, sources, dates, and gaps. The site reports mapped accounts, imported excerpts, and search status. The November 8, 2026 backfill added 1,114 verified X excerpts. Eighteen account intervals reached a provider completion signal. Five retain pending cursors after repeated pages produced no new post IDs or end marker. The historical report is `data/federal_x_historical_status.json`; this search does not establish a complete archive.
+`config/federal_x.json` currently links 23 sourced accounts to 21 federal profiles. The remaining 165 profiles need sourced account mappings. The [X coverage report](docs/federal-x-coverage.md) lists the accounts, sources, dates, and gaps. The site reports mapped accounts, imported excerpts, and search status. The November 8, 2026 backfill added 1,114 verified X excerpts. All 23 historical account intervals reached a provider completion signal after 159 successful search pages. The follow-up also completed all daily X windows and found no additional posts. The historical report is `data/federal_x_historical_status.json`; this search does not establish a complete archive.
 
 ```bash
 npm ci --ignore-scripts --no-audit --no-fund

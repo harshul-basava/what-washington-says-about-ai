@@ -101,6 +101,104 @@
     "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
+    "sid": "s11",
+    "text": "People took our chips and redirected them to China for money",
+    "date": null,
+    "context": "Verified direct statement by Howard Lutnick. Local verification records retain the source attribution.",
+    "url": "https://www.reuters.com/technology/commerce-chief-seeks-industry-help-prevent-china-getting-us-chips-2025-03-18/",
+    "source_type": "reported_statement",
+    "verified_via": "exact_normalized_exa_retrieval",
+    "attribution": {
+     "kind": "personal",
+     "speaker": "Howard Lutnick",
+     "organization_id": "commerce",
+     "basis": "local_span",
+     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+    },
+    "attribution_span_sha256": "a8e9a138cd799e48bddd909c42ee0f36d6a9b9cadfb42b65164ba1e4ac46b61a",
+    "strategy": "confidence_cascade",
+    "stance": "neutral",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "The speaker describes chips being diverted to China but does not explicitly endorse or oppose export controls.",
+      "facets": [],
+      "confidence": 0.55,
+      "confidence_reason": "The statement concerns chip diversion but gives no explicit policy position, so relevance and stance are uncertain.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-08T22:57:52.904304+00:00",
+      "generation_id": "gen-1794178669-m3jz1J4roMscOcRahkxT"
+     },
+     "astra": {
+      "stance": "neutral",
+      "reason": "The speaker describes chips being redirected to China without explicitly endorsing restrictions or enforcement.",
+      "facets": [],
+      "confidence": 0.88,
+      "confidence_reason": "The statement concerns overseas chip access but contains no explicit policy position.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-08T22:59:36.837651+00:00",
+      "generation_id": "gen-1794178772-HBOqlsoCxwqPbJy9v3dB"
+     }
+    },
+    "confidence": 0.88,
+    "final_judge": "astra",
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.55 is below 0.8."
+   },
+   {
+    "sid": "s12",
+    "text": "We have not sold them chips as of yet",
+    "date": null,
+    "context": "Verified direct statement by Howard Lutnick. Local verification records retain the source attribution.",
+    "url": "https://www.reuters.com/world/asia-pacific/nvidia-has-not-yet-sold-its-h200-ai-chips-china-lutnick-says-2026-04-22/",
+    "source_type": "reported_statement",
+    "verified_via": "exact_normalized_search_retrieval",
+    "attribution": {
+     "kind": "personal",
+     "speaker": "Howard Lutnick",
+     "organization_id": "commerce",
+     "basis": "local_span",
+     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+    },
+    "attribution_span_sha256": "5d15218700bd47fc1ba8f989bec191c5549782386d678dedd327d94f49ae174a",
+    "strategy": "confidence_cascade",
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement only reports that chips have not been sold to an unspecified recipient and does not address export-control policy.",
+      "facets": [],
+      "confidence": 0.72,
+      "confidence_reason": "The recipient and policy context are unspecified, making it unclear that this is about AI export controls rather than a bare sales status.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-08T22:57:54.922805+00:00",
+      "generation_id": "gen-1794178669-koXtV9C6J9kixt7kU3ta"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "The statement reports that chips have not been sold but does not identify AI export restrictions or enforcement.",
+      "facets": [],
+      "confidence": 0.83,
+      "confidence_reason": "Neither the recipient nor any connection to advanced AI export controls is established by the supplied evidence.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-08T22:59:45.129582+00:00",
+      "generation_id": "gen-1794178777-4Rb0slPF9q6H3ZYJQtS2"
+     }
+    },
+    "confidence": 0.83,
+    "final_judge": "astra",
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.72 is below 0.8."
+   },
+   {
     "sid": "s1",
     "text": "The American AI Exports Program delivers on President Trump’s directive to ensure that American AI systems – built on trusted hardware, secure data, and world-leading innovation – are deployed at scale around the world,",
     "date": "2026-04-01",
@@ -234,6 +332,45 @@
     "review_required": true,
     "review_status": "human_review_required",
     "review_reason": "DeepSeek confidence 0.62 is below 0.8. Astra also reports confidence below the threshold; human review is required."
+   },
+   {
+    "sid": "s11",
+    "text": "People took our chips and redirected them to China for money",
+    "date": null,
+    "context": "Verified direct statement by Howard Lutnick. Local verification records retain the source attribution.",
+    "url": "https://www.reuters.com/technology/commerce-chief-seeks-industry-help-prevent-china-getting-us-chips-2025-03-18/",
+    "source_type": "reported_statement",
+    "verified_via": "exact_normalized_exa_retrieval",
+    "attribution": {
+     "kind": "personal",
+     "speaker": "Howard Lutnick",
+     "organization_id": "commerce",
+     "basis": "local_span",
+     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+    },
+    "attribution_span_sha256": "a8e9a138cd799e48bddd909c42ee0f36d6a9b9cadfb42b65164ba1e4ac46b61a",
+    "strategy": "confidence_cascade",
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement mentions China only as a destination for diverted chips, not competition as a policy priority.",
+      "facets": [],
+      "confidence": 0.9,
+      "confidence_reason": "It contains no endorsement of China race dynamics or related tradeoff facets.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-08T22:57:52.904384+00:00",
+      "generation_id": "gen-1794178669-m3jz1J4roMscOcRahkxT"
+     }
+    },
+    "confidence": 0.9,
+    "final_judge": "deepseek",
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
     "sid": "s2",
@@ -500,6 +637,52 @@
    "origin": "federal_historical_seed",
    "date_quote": "April 1, 2026",
    "sid": "s10",
+   "added": "2026-11-08"
+  },
+  {
+   "text": "People took our chips and redirected them to China for money",
+   "date": null,
+   "context": "Verified direct statement by Howard Lutnick. Local verification records retain the source attribution.",
+   "url": "https://www.reuters.com/technology/commerce-chief-seeks-industry-help-prevent-china-getting-us-chips-2025-03-18/",
+   "source_type": "reported_statement",
+   "verified": true,
+   "verified_via": "exact_normalized_exa_retrieval",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Howard Lutnick",
+    "organization_id": "commerce",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "retrieved_on": "2026-11-08",
+   "source_text_sha256": "28bb243ca034a2cdd38cb1c224d290391f38b15d4676551accf8bbf38c13dd67",
+   "origin": "federal",
+   "date_quote": null,
+   "attribution_span_sha256": "a8e9a138cd799e48bddd909c42ee0f36d6a9b9cadfb42b65164ba1e4ac46b61a",
+   "sid": "s11",
+   "added": "2026-11-08"
+  },
+  {
+   "text": "We have not sold them chips as of yet",
+   "date": null,
+   "context": "Verified direct statement by Howard Lutnick. Local verification records retain the source attribution.",
+   "url": "https://www.reuters.com/world/asia-pacific/nvidia-has-not-yet-sold-its-h200-ai-chips-china-lutnick-says-2026-04-22/",
+   "source_type": "reported_statement",
+   "verified": true,
+   "verified_via": "exact_normalized_search_retrieval",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Howard Lutnick",
+    "organization_id": "commerce",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "retrieved_on": "2026-11-08",
+   "source_text_sha256": "dd6f8e49c8a46265b46f1944e41c83348d6736f14c7f76419a2189ed80017143",
+   "origin": "federal",
+   "date_quote": null,
+   "attribution_span_sha256": "5d15218700bd47fc1ba8f989bec191c5549782386d678dedd327d94f49ae174a",
+   "sid": "s12",
    "added": "2026-11-08"
   }
  ]

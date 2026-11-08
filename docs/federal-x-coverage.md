@@ -216,4 +216,4 @@ The site exports account counts, X excerpt counts, completed search windows, and
 
 ## First authenticated backfill results
 
-The November 8 historical search added 1,114 verified excerpts across 152 successful pages. Eighteen account intervals reached a provider completion signal. Five remain pending after three consecutive pages produced no new post IDs and no end marker. These are @BISgov, @cia, @USTreasury, @FTC, and @VP46archive. Saved cursors permit retries. The report is `data/federal_x_historical_status.json`.
+The November 8 historical search added 1,114 verified excerpts across 159 successful pages. All 23 account intervals reached a provider completion signal. No historical or daily windows remain pending. The follow-up found no additional posts. Provider completion signals do not establish a complete archive. The report is `data/federal_x_historical_status.json`.

@@ -54,8 +54,35 @@ class FederalTests(unittest.TestCase):
 
     def test_date_anchor_cannot_invent_precision(self):
         self.assertEqual(federal.checked_date('2026-06', 'June 2026', 'Published June 2026', '2026-11-08'), '2026-06')
+        self.assertEqual(federal.checked_date('2021-11', '2021 November', '2021 November', '2026-11-08'), '2021-11')
         with self.assertRaises(ValueError):
             federal.checked_date('2026-06-01', 'June 2026', 'Published June 2026', '2026-11-08')
+        with self.assertRaises(ValueError):
+            federal.checked_date('2021-11-01', '2021 November', '2021 November', '2026-11-08')
+
+    def test_labeled_source_dates_preserve_exact_date_checks(self):
+        for anchor in ('Publication Date: September 23, 2024', 'Date Published: September 23, 2024',
+                       'Press Release | September 23, 2024', 'Release Date: September 23, 2024',
+                       'FOR IMMEDIATE RELEASE | September 23, 2024', 'Released September 23, 2024'):
+            with self.subTest(anchor=anchor):
+                self.assertEqual(federal.checked_date('2024-09-23', anchor, anchor, '2026-11-08'), '2024-09-23')
+                with self.assertRaises(ValueError):
+                    federal.checked_date('2024-09-24', anchor, anchor, '2026-11-08')
+        for anchor in ('Publication Date: September 2024', 'April 11 blog post',
+                       'Updated September 23, 2024',
+                       'Press Release | September 23, 2024 and October 1, 2024'):
+            with self.subTest(anchor=anchor), self.assertRaises(ValueError):
+                federal.checked_date('2024-09-23', anchor, anchor, '2026-11-08')
+
+    def test_named_official_statement_heading_establishes_authorship(self):
+        subject = {**PERSON, 'name': 'Lloyd Austin', 'aliases': ['Lloyd J. Austin III'],
+                   'roles': [{**PERSON['roles'][0], 'title': 'Secretary of Defense'}]}
+        heading = 'Secretary of Defense Lloyd J. Austin III Statement on the New Chief Digital and Artificial Intelligence Officer'
+        self.assertTrue(federal.explicit_document_author(heading, subject))
+        for unrelated in ('Statement on Secretary of Defense Lloyd J. Austin III',
+                          'Letter to Secretary of Defense Lloyd J. Austin III',
+                          'Secretary of Defense Lloyd J. Austin III mentioned in remarks by another official'):
+            self.assertFalse(federal.explicit_document_author(unrelated, subject))
 
     def test_canonical_institution_names_and_distinct_task_force(self):
         registry = json.loads((ROOT / 'config/policy_subjects.json').read_text())['subjects']

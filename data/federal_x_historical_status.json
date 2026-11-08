@@ -2,11 +2,11 @@
   "date": "2026-11-08",
   "provider": "emusks",
   "mode": "historical",
-  "status": "partial",
+  "status": "ok",
   "accounts": 23,
   "mapped_profiles": 21,
   "unmapped_profiles": 165,
-  "pages": 152,
+  "pages": 159,
   "added": {
     "cisa": [
       "s21",
@@ -1165,30 +1165,10 @@
       "s158"
     ]
   },
-  "pending_windows": 5,
-  "completed_windows": 18,
-  "errors": [
-    {
-      "account_id": "bis_bisgov",
-      "error": "pagination_no_progress"
-    },
-    {
-      "account_id": "cia_cia",
-      "error": "pagination_no_progress"
-    },
-    {
-      "account_id": "treasury_ustreasury",
-      "error": "pagination_no_progress"
-    },
-    {
-      "account_id": "ftc_ftc",
-      "error": "pagination_no_progress"
-    },
-    {
-      "account_id": "exec_harris_vp46archive",
-      "error": "pagination_no_progress"
-    }
-  ],
+  "pending_windows": 0,
+  "completed_windows": 23,
+  "errors": [],
   "note": "Search results are not a complete X archive. Unmapped profiles need sourced account mappings.",
-  "collection_limit": "This backfill stopped individual accounts after three consecutive pages with no new post IDs and no provider end marker. Their cursors remain pending for a later retry."
+  "resumed_pages": 7,
+  "completion_note": "A follow-up resumed the five pending intervals and received provider completion signals for all 23 account intervals. Completion does not establish an exhaustive X archive."
 }
