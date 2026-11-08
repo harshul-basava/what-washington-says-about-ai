@@ -138,3 +138,13 @@ test('federal coverage distinguishes configured X search from completed collecti
   assert.ok(note.includes('requires authentication'));
   assert.ok(!note.includes('complete X archive'));
 });
+
+test('federal coverage names the official provider without relabeling old evidence', () => {
+  const note=view.researchCoverageNote({summary:{people:150,people_searched:150,people_median_statements:6,
+    congress_median_statements:12,people_without_evidence:11,x_accounts:23,x_mapped_profiles:21,x_statements:1114},
+    x:{provider:'x_api',status:'not_started'}});
+  assert.ok(note.includes('Official X API'));
+  assert.ok(note.includes('1114 X excerpts'));
+  assert.ok(note.includes('has not started'));
+  assert.ok(!note.includes('Emusks search has'));
+});

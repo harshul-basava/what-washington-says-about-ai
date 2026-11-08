@@ -45,10 +45,10 @@ federal:           ## Collect, assess and build federal policy updates only
 federal-dry:       ## Plan federal collection and judgments without network calls or writes
 	$(PY) scripts/daily/run.py --sources federal --dry-run
 
-federal-x-plan:    ## Plan emusks X search without authentication or network calls
+federal-x-plan:    ## Plan federal X search without authentication or network calls
 	$(PY) scripts/federal_x.py plan $(X_ARGS)
 
-federal-x:         ## Collect federal X posts with resumable emusks searches
+federal-x:         ## Collect federal X posts with resumable official API searches
 	$(PY) scripts/federal_x.py collect $(X_ARGS)
 
 history:           ## Rebuild the score history (monthly backfill from labels + daily snapshots)

@@ -5,6 +5,7 @@ import os
 import sys
 import tempfile
 import unittest
+from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
 
@@ -103,6 +104,105 @@ class XTests(unittest.TestCase):
             self.assertEqual(r['status'],'unavailable')
             self.assertEqual(r['error'],'missing_auth_token')
             self.assertFalse((root/'data/federal_x_state.json').exists())
+
+    def test_official_provider_requires_bearer_without_falling_back_to_session(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            write_json(root/'config/federal_x.json',CONFIG|{'provider':'x_api'})
+            with patch.dict(os.environ,{'X_AUTH_TOKEN':'test-session'},clear=True), \
+                 patch.object(self.x,'request_page',side_effect=AssertionError('No session fallback')):
+                result=self.x.collect(root,now='2026-11-08')
+            self.assertEqual(result['status'],'unavailable')
+            self.assertEqual(result['error'],'missing_bearer_token')
+            self.assertEqual(result['provider'],'x_api')
+            self.assertFalse((root/'data/federal_x_api_state.json').exists())
+
+    def test_official_provider_has_separate_cursors_and_preserves_old_evidence(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            write_json(root/'config/federal_x.json',CONFIG|{'page_limit':1})
+            self.x.collect(root,client=lambda req:PAGE|{'cursor':'emusks-cursor'},now='2026-11-08')
+            old=(root/'data/federal_x_state.json').read_bytes()
+            write_json(root/'config/federal_x.json',CONFIG|{'provider':'x_api'})
+            calls=[]
+            def api(req):calls.append(req);return PAGE
+            result=self.x.collect(root,client=api,now='2026-11-08')
+            self.assertEqual(result['provider'],'x_api')
+            self.assertIsNone(calls[0]['cursor'])
+            self.assertNotIn('-filter:retweets',calls[0]['query'])
+            self.assertIn('-is:retweet',calls[0]['query'])
+            self.assertEqual((root/'data/federal_x_state.json').read_bytes(),old)
+            self.assertTrue((root/'data/federal_x_api_state.json').exists())
+            rows=json.loads((root/f"evidence/{PERSON['id']}.json").read_text())['statements']
+            self.assertEqual(len(rows),1)
+            self.assertEqual(rows[0]['verified_via'],'emusks_post_text_and_author_id')
+
+    def test_switch_does_not_report_legacy_searches_as_official_completion(self):
+        import federal_coverage
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            self.x.collect(root,client=lambda req:PAGE,now='2026-11-08')
+            write_json(root/'config/federal_x.json',CONFIG|{'provider':'x_api'})
+            report=federal_coverage.coverage(root,policy_subjects.load_subjects(root),{})
+            self.assertEqual(report['x']['status'],'not_started')
+            self.assertEqual(report['x']['provider'],'x_api')
+            self.assertEqual(report['profiles'][PERSON['id']]['x_windows_searched'],0)
+            self.assertEqual(report['profiles'][PERSON['id']]['x_statements'],1)
+
+    def test_unknown_provider_is_rejected_before_writing_checkpoints(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            write_json(root/'config/federal_x.json',CONFIG|{'provider':'typo'})
+            with self.assertRaises(ValueError):self.x.collect(root,dry=True,now='2026-11-08')
+
+    def test_invalid_official_cost_limit_is_rejected_even_in_plan(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            for limit in [-1,True,'2',float('inf')]:
+                write_json(root/'config/federal_x.json',CONFIG|{'provider':'x_api','api_max_cost':limit})
+                with self.assertRaises(ValueError):self.x.collect(root,dry=True,now='2026-11-08')
+
+    def test_official_daily_resume_freezes_end_and_marks_new_evidence(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            write_json(root/'config/federal_x.json',CONFIG|{'provider':'x_api','page_limit':1})
+            moment=datetime(2026,11,8,12,tzinfo=timezone.utc).timestamp();calls=[]
+            def page(req):calls.append(req);return PAGE|{'cursor':'next' if len(calls)==1 else None}
+            with patch.object(self.x.time,'time',return_value=moment):
+                self.x.collect(root,client=page,now='2026-11-08')
+            with patch.object(self.x.time,'time',return_value=moment+3600):
+                report=self.x.collect(root,client=page,now='2026-11-08')
+            self.assertEqual(calls[0]['end_time'],'2026-11-08T11:59:00Z')
+            self.assertEqual(calls[1]['end_time'],calls[0]['end_time'])
+            self.assertEqual(calls[1]['cursor'],'next')
+            self.assertEqual(report['status'],'ok')
+            rows=json.loads((root/f"evidence/{PERSON['id']}.json").read_text())['statements']
+            self.assertEqual(len(rows),1)
+            self.assertEqual(rows[0]['verified_via'],'x_api_post_text_and_author_id')
+
+    def test_official_history_cannot_complete_before_fixed_cutoff(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            write_json(root/'config/federal_x.json',CONFIG|{'provider':'x_api','historical_window':'account','historical_until':'2026-11-09'})
+            moment=datetime(2026,11,8,12,tzinfo=timezone.utc).timestamp();calls=[]
+            with patch.object(self.x.time,'time',return_value=moment):
+                result=self.x.collect(root,mode='historical',client=lambda req:calls.append(req),now='2026-11-08')
+            self.assertEqual(calls,[])
+            self.assertEqual(result['pending_windows'],1)
+            self.assertEqual(result['errors'][0]['error'],'window_not_ready')
+
+    def test_official_spend_failures_preserve_cursor_for_retry(self):
+        for error in ['budget_exceeded','credits_exhausted','account_unavailable']:
+            with self.subTest(error=error),tempfile.TemporaryDirectory() as tmp:
+                root=Path(tmp);self.fixture(root)
+                write_json(root/'config/federal_x.json',CONFIG|{'provider':'x_api','page_limit':1})
+                self.x.collect(root,client=lambda req:PAGE|{'cursor':'continue'},now='2026-11-08')
+                result=self.x.collect(root,client=lambda req:{'error':error},now='2026-11-08')
+                state=json.loads((root/'data/federal_x_api_state.json').read_text())
+                job=next(iter(state['jobs'].values()))
+                self.assertEqual(job['cursor'],'continue')
+                self.assertEqual(job['status'],'pending')
+                self.assertEqual(result['errors'][0]['error'],error)
 
     def test_repeated_cursor_and_changed_account_id_remain_pending(self):
         with tempfile.TemporaryDirectory() as tmp:

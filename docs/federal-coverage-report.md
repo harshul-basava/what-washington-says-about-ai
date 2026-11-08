@@ -38,9 +38,11 @@ Institution excerpts do not enter this comparison. Quote counts measure availabl
 
 ## Historical X search
 
-The November 8 backfill imported 1,114 excerpts from 23 sourced accounts for 21 profiles. The collector processed 159 successful pages. X supplied completion signals for 23 account intervals; 0 intervals remain pending.
+The November 8 emusks backfill imported 1,114 excerpts from 23 sourced accounts for 21 profiles. The collector processed 159 successful pages. Emusks supplied completion signals for 23 account intervals; 0 emusks intervals remain pending.
 
 The follow-up completed the five remaining historical intervals and all daily windows. It found no additional posts. Provider completion signals do not establish a complete archive.
+
+The configuration now selects the official X API. Its federal searches have not started. It uses separate checkpoints and retains existing evidence with its emusks provenance. The original repository's existing bearer secret passed a congressional API run; the original owner must merge the switch before daily federal collection can use it.
 
 Another 165 profiles need sourced X account mappings. The [X coverage report](federal-x-coverage.md) lists mappings, ownership dates, and gaps. Bulk govinfo collection remains absent.
 

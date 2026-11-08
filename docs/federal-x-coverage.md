@@ -1,6 +1,6 @@
 # Federal X account coverage — 2026-11-08
 
-The registry contains 23 sourced accounts for 21 of 186 federal profiles. The first authenticated historical collection started on November 8, 2026. The tracked X state and the site coverage export record completed intervals, imported excerpts, and pending work.
+The registry contains 23 sourced accounts for 21 of 186 federal profiles. The first authenticated historical collection used emusks on November 8, 2026. The configuration now selects the official X API, whose federal collection has not started. The site reports completion for the selected provider and excerpt counts across collection runs.
 
 The other 165 profiles need sourced account mappings. Their existing web research and daily named searches continue. An institution account supplies institutional evidence; it does not supply personal views for its leaders.
 
@@ -210,10 +210,10 @@ This list represents a mapping gap. It does not establish that these people or i
 
 ## Collection limits
 
-The collector uses Latest search through emusks, with paginated account-wide historical intervals and separate daily checkpoints. The historical cutoff is November 9, 2026, exclusive. Monthly intervals remain an optional configuration. Search can miss posts. Missing authentication, invalid responses, rate limits, and unfinished pages remain visible as incomplete work. No search result establishes a complete archive.
+The collector now selects official full-archive search with `X_BEARER_TOKEN`. It uses paginated account intervals and separate daily checkpoints. The historical cutoff is November 9, 2026, exclusive; an official historical query waits until its complete interval has elapsed. Monthly intervals remain optional. Official checkpoints live in `data/federal_x_api_state.json`; legacy emusks checkpoints remain in `data/federal_x_state.json`. Only pinned numeric identities carry forward. Search can miss posts. Missing authentication, budget limits, invalid responses, rate limits, and unfinished pages remain visible as incomplete work. No search result establishes a complete archive.
 
 The site exports account counts, X excerpt counts, completed search windows, and status for every profile. Add only accounts with public identity sources and explicit ownership dates to `config/federal_x.json`. Check role intervals for shared office accounts. Changing an account definition invalidates its old search checkpoints.
 
 ## First authenticated backfill results
 
-The November 8 historical search added 1,114 verified excerpts across 159 successful pages. All 23 account intervals reached a provider completion signal. No historical or daily windows remain pending. The follow-up found no additional posts. Provider completion signals do not establish a complete archive. The report is `data/federal_x_historical_status.json`.
+The November 8 emusks historical search added 1,114 verified excerpts across 159 successful pages. All 23 account intervals reached an emusks completion signal. No emusks historical or daily windows remain pending. The follow-up found no additional posts. These results do not establish official API completion or a complete archive. The report is `data/federal_x_historical_status.json`.

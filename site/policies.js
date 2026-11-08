@@ -89,7 +89,8 @@
   function researchCoverageNote(research) {
     if (!research?.summary) return '';
     const s = research.summary;
-    const x = s.x_accounts ? `Emusks search has ${s.x_accounts} sourced X accounts for ${s.x_mapped_profiles} federal profiles and ${s.x_statements || 0} X excerpts. ${research.x?.status === 'unavailable' ? 'X search requires authentication and has not run in this update.' : research.x?.status === 'partial' ? 'X search has unfinished work.' : research.x?.status === 'not_started' ? 'X search has not started.' : 'X search results can be incomplete.'} Profiles without sourced accounts remain outside X collection.` : 'Federal research has no configured X collection.';
+    const provider = research.x?.provider === 'x_api' ? 'Official X API' : 'Emusks';
+    const x = s.x_accounts ? `${provider} search has ${s.x_accounts} sourced X accounts for ${s.x_mapped_profiles} federal profiles. The corpus contains ${s.x_statements || 0} X excerpts across collection runs. ${research.x?.status === 'unavailable' ? 'X search requires authentication and has not run in this update.' : research.x?.status === 'partial' ? 'X search has unfinished work.' : research.x?.status === 'not_started' ? 'X search with this provider has not started.' : 'X search results can be incomplete.'} Profiles without sourced accounts remain outside X collection.` : 'Federal research has no configured X collection.';
     return `${s.people_searched} of ${s.people} officials have historical searches. The median is ${s.people_median_statements} excerpts per official, compared with ${s.congress_median_statements} for Congress. ${s.people_without_evidence} officials have no verified excerpts. ${x} Federal research does not include a bulk govinfo collection.`;
   }
   async function mount(root) {

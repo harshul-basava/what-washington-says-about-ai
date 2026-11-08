@@ -5,6 +5,17 @@ import json
 KEYWORDS = '(AI OR "artificial intelligence" OR AGI OR superintelligence OR "super intelligence" OR OpenAI OR Anthropic OR "AI chips" OR "export controls" OR "FRONTIER Act" OR "Kill Switch Act" OR "Stop Stealing Our Chips" OR "independent verification")'
 
 
+def provider(config):
+    value = config.get('provider', 'emusks')
+    if value not in ('emusks', 'x_api'):
+        raise ValueError('Unknown federal X provider')
+    return value
+
+
+def state_file(config):
+    return 'federal_x_api_state.json' if provider(config) == 'x_api' else 'federal_x_state.json'
+
+
 def fingerprint(account):
     # A changed query or sourced account definition requires a fresh search.
     return hashlib.sha256((json.dumps(account, sort_keys=True) + KEYWORDS).encode()).hexdigest()

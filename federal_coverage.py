@@ -2,7 +2,7 @@
 import json
 import statistics
 from datetime import date, datetime, timedelta, timezone
-from federal_x_config import fingerprint, current_job
+from federal_x_config import fingerprint, current_job, provider, state_file
 
 
 def read(path, default):
@@ -13,8 +13,13 @@ def coverage(root, subjects, audit):
     profiles = {}
     source_urls = set()
     x_config=read(root / 'config/federal_x.json', {'accounts':[]})
-    x_state=read(root / 'data/federal_x_state.json', {'jobs':{}})
+    x_provider=provider(x_config)
+    x_state=read(root / 'data' / state_file(x_config), {'jobs':{}})
     x_status=read(root / 'data/federal_x_status.json', {'status':'not_started'})
+    if x_status.get('provider','emusks') != x_provider:
+        x_status={'status':'not_started','provider':x_provider}
+    else:
+        x_status={**x_status,'provider':x_provider}
     x_accounts=x_config['accounts']
     seed_audit = read(root / 'data/federal_seed_research.json', {}).get('profiles', {})
     for subject in subjects:
