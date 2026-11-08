@@ -1,6 +1,6 @@
 # Federal X account coverage — 2026-11-08
 
-The registry contains 23 sourced accounts for 21 of 186 federal profiles. The first authenticated historical collection used emusks on November 8, 2026. The configuration now selects the official X API, whose federal collection has not started. The site reports completion for the selected provider and excerpt counts across collection runs.
+The registry contains 23 sourced accounts for 21 of 186 federal profiles. The first authenticated historical collection used emusks on November 8, 2026. The official X API then completed all 23 configured historical intervals in four bounded batches. The site reports completion for the selected provider and excerpt counts across collection runs.
 
 The other 165 profiles need sourced account mappings. Their existing web research and daily named searches continue. An institution account supplies institutional evidence; it does not supply personal views for its leaders.
 
@@ -217,3 +217,11 @@ The site exports account counts, X excerpt counts, completed search windows, and
 ## First authenticated backfill results
 
 The November 8 emusks historical search added 1,114 verified excerpts across 159 successful pages. All 23 account intervals reached an emusks completion signal. No emusks historical or daily windows remain pending. The follow-up found no additional posts. These results do not establish official API completion or a complete archive. The report is `data/federal_x_historical_status.json`.
+
+## Official API historical results
+
+The official API completed all 23 configured historical intervals on November 8, 2026. It processed 47 successful search pages and added seven excerpts for Commerce, Homeland Security, Energy, Scott Bessent, and the White House. Most returned posts already had evidence entries and retained their original IDs and emusks provenance. Estimated historical X cost was $6.465. The new policy candidate received a DeepSeek judgment above the confidence threshold; no new Astra review was needed for the historical additions.
+
+The [final historical batch](https://github.com/harshul-basava/what-washington-says-about-ai/actions/runs/42536622744) reports zero pending windows. Its report, `data/federal_x_api_historical_status.json`, describes the last batch. The state file records completion across all batches. This bounded search does not establish a complete archive or coverage of the 165 profiles without mapped accounts.
+
+The [current-period pass](https://github.com/harshul-basava/what-washington-says-about-ai/actions/runs/42536854905) completed all 18 active account windows across 22 successful pages. It found no additional posts and cost an estimated $0.21. Five archived accounts have no current ownership interval. Both modes now have zero pending windows. Combined estimated X cost was $6.675. The [aggregate audit](../data/federal_x_official_completion.json) records the seven new evidence IDs, all five runs, preservation checks, and each daily query's cutoff timestamp.

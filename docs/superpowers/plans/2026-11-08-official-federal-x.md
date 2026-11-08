@@ -30,3 +30,11 @@ The full suite passes: 129 Python tests and 28 JavaScript tests. The offline sit
 Independent review identified a cost durability gap after worker termination. The collector now records the maximum request reservation before HTTP and appends a correlated reconciliation after a response. Interrupted or unknown outcomes retain the reservation. The regression test reproduces the interruption and confirms that a new client respects the shared cap. Independent follow-up review reproduced the fixed behavior and found no remaining actionable issues.
 
 All evidence, judgments, existing X checkpoints, congressional data, and cost-ledger records remain byte-identical to `4de4196`. The export revision matches its charts. Credential checks found no local secrets in publishable files. No paid calls ran during this switch. Live federal API acceptance and billing still require the first authorized run in the original repository after merge.
+
+## Authorized merge and live collection
+
+The user subsequently requested the merge and historical search. Their GitHub account then had write access upstream. PR #2 merged as `8557823` on November 8. A reviewed manual workflow now uses the original repository's secrets, shares the daily queue, and checks out the latest default branch after a queue wait. It preserves costs and evidence on failure. Its batch outcome accepts bounded page or cost limits while rejecting authentication, cooldown, source, and judgment errors.
+
+The official historical cutoff moved to November 8, exclusive, because the previous November 9 cutoff was still in the future. A separate daily pass covers the current period. Four historical batches completed all 23 intervals across 47 successful pages, adding seven excerpts. The daily pass completed 18 active account windows across 22 pages and added no excerpts. All windows and model requests finished. Existing ten human-review pairs remain excluded from accepted charts.
+
+Estimated added cost was $6.675 in X reads and less than one cent for one DeepSeek judgment. All earlier 18,794 excerpts, 4,384 assessments, emusks checkpoints, and congressional data remain unchanged. The original daily workflow is active. The fork's duplicate daily workflow is paused to avoid duplicate collection and charges. `data/federal_x_official_completion.json` records the five runs and aggregate checks.

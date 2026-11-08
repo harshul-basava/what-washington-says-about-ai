@@ -1,6 +1,6 @@
 # Federal coverage audit — 2026-11-08
 
-The registry contains 150 people and 36 institutions across 41 organizations. Each profile completed eight separate historical web search passes. A separate source pass checked government pages and testimony. The combined corpus contains 3,066 excerpts from 1,948 distinct source URLs, including 1,114 direct X excerpts.
+The registry contains 150 people and 36 institutions across 41 organizations. Each profile completed eight separate historical web search passes. A separate source pass checked government pages and testimony. The combined corpus contains 3,073 excerpts from 1,955 distinct source URLs, including 1,121 direct X excerpts.
 
 Evidence depth remains below Congress. Missing evidence does not establish a neutral or opposing stance.
 
@@ -11,7 +11,7 @@ Institution excerpts do not enter this comparison. Quote counts measure availabl
 | Metric | Federal people | Congress |
 |---|---:|---:|
 | Profiles | 150 | 649 |
-| Stored excerpts | 1343 | 15728 |
+| Stored excerpts | 1344 | 15728 |
 | Median excerpts per person | 6 | 12 |
 | Median source URLs per person | 4 | 10 |
 | Median quoted words per person | 164.5 | 584 |
@@ -42,7 +42,7 @@ The November 8 emusks backfill imported 1,114 excerpts from 23 sourced accounts 
 
 The follow-up completed the five remaining historical intervals and all daily windows. It found no additional posts. Provider completion signals do not establish a complete archive.
 
-The configuration now selects the official X API. Its federal searches have not started. It uses separate checkpoints and retains existing evidence with its emusks provenance. The original repository's existing bearer secret passed a congressional API run; the original owner must merge the switch before daily federal collection can use it.
+The official X API then completed all 23 configured historical intervals across 47 successful pages. Four bounded batches added seven excerpts for five profiles, at an estimated X cost of $6.465. Historical intervals end on November 8, 2026, exclusive, or an earlier account ownership boundary. A separate daily pass completed all 18 active account windows across 22 pages, added no excerpts, and cost an estimated $0.21. No official historical or daily windows remain pending. The [aggregate audit](../data/federal_x_official_completion.json) links every run. The official collector uses separate checkpoints and retains existing evidence with its emusks provenance. The merged original repository now runs daily federal collection with its existing bearer secret; the fork's duplicate daily workflow is paused.
 
 Another 165 profiles need sourced X account mappings. The [X coverage report](federal-x-coverage.md) lists mappings, ownership dates, and gaps. Bulk govinfo collection remains absent.
 
@@ -68,6 +68,6 @@ The follow-up checked 339 source URLs, including all 321 queued daily pages and 
 
 All 186 profiles have named queries in 15 source groups. The configuration produces 111 queries and checks up to six queued pages per group per invocation. Searches run with up to four workers. The daily schedule is 11:00 UTC. Fork workflows default to federal-only updates and accept explicit source overrides.
 
-The latest federal web report retains 0 queued pages. The current policy corpus has 547 candidate excerpts and 663 statement-policy pairs. Model assessment has 0 pending pairs; 10 pairs require human review and remain outside accepted stance charts.
+The latest federal web report retains 0 queued pages. The current policy corpus has 548 candidate excerpts and 664 statement-policy pairs. Model assessment has 0 pending pairs; 10 pairs require human review and remain outside accepted stance charts. The historical X additions required one new DeepSeek judgment, which met the confidence threshold.
 
 The existing monthly and lifetime caps remain unchanged. Budget limits and source failures preserve checkpoints. The site reports coverage and provides `site/data/federal_coverage.csv` for every profile.
