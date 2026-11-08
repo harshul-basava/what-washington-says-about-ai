@@ -66,3 +66,4 @@
 - Final review: independent Astra reviewer found no critical, important, or minor issues. The reviewer confirmed that all 2,460 congressional candidate inputs and fingerprints remain unchanged.
 - Browser verification: scope filters, Commerce and NSA subagencies, task-force role links, source expansion, both themes, and 320/390-pixel layouts pass without horizontal overflow or console errors.
 - Source verification: exact normalized excerpts checked against retrieved pages; model classifications retain both assessments and uncertainty. Federal discovery and role updates remain manual.
+- Upstream compatibility: merged `13d73ca` without conflicts. The shared website build and all 58 tests pass after the merge. The only legacy export change is its build date; all 649 member records remain identical.
