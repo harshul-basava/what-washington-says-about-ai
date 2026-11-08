@@ -210,7 +210,7 @@ details.method[open] summary h2::before{transform:rotate(90deg)}
     <button type="button" role="radio" data-cong="119" aria-checked="true">119th Congress<small>today</small></button>
     <button type="button" role="radio" data-cong="120" aria-checked="false">120th Congress<small>from Jan 2027</small></button>
   </div>
-  <button type="button" class="evtoggle" id="evtoggle" role="switch" aria-checked="true" title="Show key AI events on the time charts"><span class="lbl">Key events</span><span class="sw" aria-hidden="true"></span></button>
+  <button type="button" class="evtoggle" id="evtoggle" role="switch" aria-checked="false" title="Show key AI events on the time charts"><span class="lbl">Key events</span><span class="sw" aria-hidden="true"></span></button>
 </div>
 
 <div class="withtoc">
@@ -361,7 +361,7 @@ const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).
 const PC = p => css(p==="D"?"--pD":p==="R"?"--pR":"--pI");
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let M = [], TL = [], COMM = {}, UPDATED = "", DAILY = null, HISTORY = null, CHANGES = null, RF = null, rfSel = null;
-const S = {cong:"119", party:"all", dim:"x_risk", preset:null, range:"365", events:true};
+const S = {cong:"119", party:"all", dim:"x_risk", preset:null, range:"365", events:false};
 let sortKey = "n", sortDir = -1, open = null;
 
 /* ---------- helpers ---------- */
@@ -417,12 +417,14 @@ async function init(){
   drawPresets(); renderHead(); renderTable(); drawAll();
   let t; addEventListener("resize", ()=>{clearTimeout(t); t=setTimeout(drawAll,150);});
 }
-// line up the Key events switch with the right edge of the pies, the right-most content under the bar
+// line up the Key events switch with the right edge of the content under the bar: the charts' common right edge
+// (they are drawn 24px inside the content box, see widthOf) or the pies, whichever is further left
 function alignEvToggle(){
   const t = document.getElementById("evtoggle"), pie = document.querySelector("#pies svg"), bar = t.parentElement;
-  if (!pie || innerWidth <= 720){ t.style.marginRight = "0px"; return; }   // phones: pies wrap into a centered row
   const edge = bar.getBoundingClientRect().right - parseFloat(getComputedStyle(bar).paddingRight);
-  t.style.marginRight = Math.max(0, Math.round(edge - pie.getBoundingClientRect().right - 4)) + "px";   // 4px = button padding
+  let target = edge - 24;
+  if (pie && innerWidth > 720) target = Math.min(target, pie.getBoundingClientRect().right);   // narrow screens: pies wrap into a centered row
+  t.style.marginRight = Math.max(0, Math.round(edge - target - 4)) + "px";   // 4px = button padding
 }
 function drawAll(){
   const d = DIMS.find(x=>x[0]===S.dim);
