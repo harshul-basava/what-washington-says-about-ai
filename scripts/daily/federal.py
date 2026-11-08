@@ -4,6 +4,7 @@ import json
 import re
 import sys
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from types import SimpleNamespace
@@ -11,6 +12,8 @@ from types import SimpleNamespace
 from common import ROOT, today
 import federal_sources as sources
 import policy_subjects
+
+public_statement = policy_subjects.public_evidence
 
 
 def read(path, default):
@@ -26,7 +29,15 @@ def write(path, value):
 
 def contains_name(text, subject):
     names = [subject['name'], *subject.get('aliases', [])]
-    return any(re.search(r'(?<!\w)' + re.escape(sources.normalize(name)) + r'(?!\w)', text, re.I) for name in names)
+    return any(re.search(name_pattern(name), text, re.I) for name in names)
+
+
+def name_pattern(name):
+    parts = sources.normalize(name).split()
+    pattern = re.escape(' '.join(parts))
+    if len(parts) == 2:
+        pattern = re.escape(parts[0]) + r'(?: [A-Z]\.)? ' + re.escape(parts[1])
+    return r'(?<!\w)' + pattern + r'(?!\w)'
 
 
 def checked_date(value, date_quote, text, now):
@@ -40,7 +51,10 @@ def checked_date(value, date_quote, text, now):
     anchor = sources.normalize(date_quote)
     if re.search(r'(?<!\d)' + re.escape(value) + r'(?![\d-])', anchor):
         return value
-    for fmt in ('%B %d, %Y', '%b %d, %Y', '%B %d %Y', '%b %d %Y', '%B %Y', '%b %Y'):
+    anchor = re.sub(r'^(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),?\s+', '', anchor, flags=re.I)
+    anchor = re.sub(r'\b(Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\.(?=\s)', r'\1', anchor, flags=re.I)
+    anchor = re.sub(r'\bSept\.?(?=\s)', 'Sep', anchor, flags=re.I)
+    for fmt in ('%B %d, %Y', '%b %d, %Y', '%B %d %Y', '%b %d %Y', '%d %B %Y', '%d %b %Y', '%B %Y', '%b %Y'):
         if '%d' not in fmt and len(value) > 7:
             continue
         try:
@@ -50,6 +64,43 @@ def checked_date(value, date_quote, text, now):
         except ValueError:
             pass
     raise ValueError('Date anchor does not support the stated date')
+
+
+def exact_date_anchor(anchor, text):
+    """Recover a zero-padded source day without changing date precision or meaning."""
+    if not isinstance(anchor, str) or sources.normalize(anchor) in text:
+        return anchor
+    pattern = re.escape(sources.normalize(anchor))
+    pattern = re.sub(r'(?<!\d)([1-9])(?!\d)', r'0?\1', pattern)
+    match = re.search(pattern, text)
+    return match.group(0) if match else anchor
+
+
+def explicit_document_author(context, subject):
+    """Bind a short authorship header to this person, without crossing recipient fields."""
+    if len(context) > 800:
+        return False
+    who = '(?:' + '|'.join(name_pattern(n) for n in [subject['name'], *subject.get('aliases', [])]) + ')'
+    titles = {'President', 'Vice President', 'Secretary', 'Deputy Secretary', 'Under Secretary',
+              'Assistant Secretary', 'Principal Deputy Assistant Secretary', 'Secretary of War',
+              'Secretary of Defense', 'Director', 'Deputy Director', 'Administrator', 'Chair',
+              'Chairman', 'Chairwoman', 'Commissioner', 'Chief Data & AI Officer (CDAO)'}
+    for role in subject.get('roles', []):
+        titles.update((role['title'], role['title'].split(',')[0]))
+    role_pattern = '(?:' + '|'.join(re.escape(sources.normalize(t)) for t in sorted(titles, key=len, reverse=True)) + ')'
+    agencies = {subject.get('organization_id', '').replace('_', ' '),
+                subject.get('organization_name', '').split('(')[0].strip(), 'U.S.', 'US', 'DoD'} - {''}
+    agency_pattern = '(?:' + '|'.join(re.escape(a) for a in sorted(agencies, key=len, reverse=True)) + ')'
+    honorific = r'(?:(?:Dr|Mr|Ms|Mrs)\.?\s+|The Honorable\s+|(?:Lieutenant |Major |Brigadier )?General\s+|(?:Vice |Rear )?Admiral\s+){0,2}'
+    title = r'(?:(?:U\.S\.|US)\s+)?(?:' + agency_pattern + r'\s+)?' + role_pattern
+    author = honorific + '(?:' + title + r'\s+)?' + honorific + who
+    markers = r'(?:remarks (?:as prepared for delivery )?(?:by|of)|statement (?:of|by)|testimony (?:of|by)|speech by|prepared (?:remarks|testimony) (?:of|by)|statement for the record|as delivered by|prepared by:|from:)'
+    if re.search(r'\b' + markers + r'\s+' + author, context, re.I):
+        return True
+    header = re.sub(r'^(?:[A-Z][a-z]+ \d{1,2}, \d{4}|\d{4}-\d{2}-\d{2})\s+', '', context)
+    # After a leading name, permit only a known title before the speech/testimony marker.
+    return bool(re.search(r'^' + honorific + who + r'\s*[,.:–-]?\s*(?:' + title +
+                          r'\s*[,.:–-]?\s*)?(?:delivers remarks|testimony before|statement before)\b', header, re.I))
 
 
 def validate_rows(page, rows, subjects, now):
@@ -64,7 +115,17 @@ def validate_rows(page, rows, subjects, now):
             context = sources.normalize(row['attribution_quote'])
             if not 8 <= len(quote.split()) <= 150 or len(context) > 3500:
                 raise ValueError('Invalid excerpt length')
-            if quote not in context or context not in text or not contains_name(context, subject):
+            basis = row.get('attribution_basis', 'local_span')
+            author = (basis == 'document_author' and subject['entity_type'] == 'person'
+                      and (sources.urlsplit(page['url']).hostname or '').endswith(('.gov', '.mil'))
+                      and context in text[:6000]
+                      and (explicit_document_author(context, subject)
+                           or (context in text[:1200] and '-Wstate-' in page['url'])
+                           or (context in text[:1200] and '/DCPD-' in page['url'] and 'Administration of ' in context and 'The President.' in text[:1200])))
+            if (quote not in text or context not in text or not contains_name(context, subject)
+                    or (basis == 'document_author' and not author)
+                    or (basis == 'local_span' and quote not in context)
+                    or basis not in ('local_span', 'document_author')):
                 raise ValueError('Unverified quote or attribution')
             if subject['id'] == 'si_task_force' and re.search(r'\b(?:Justice Department|Department of Justice|DOJ)\b', context, re.I):
                 raise ValueError('Do not assign the Justice Department task force to the White House task force')
@@ -73,9 +134,10 @@ def validate_rows(page, rows, subjects, now):
                 raise ValueError('Unknown attribution')
             if (kind == 'institutional') != (subject['entity_type'] == 'institution'):
                 raise ValueError('Incorrect subject type')
-            day = checked_date(row.get('date'), row.get('date_quote'), text, now)
+            date_anchor = exact_date_anchor(row.get('date_quote'), text)
+            day = checked_date(row.get('date'), date_anchor, text, now)
             attr = {'kind': kind, 'speaker': subject['name'], 'organization_id': subject['organization_id'],
-                    'note': 'Automated extraction; exact quote and local attribution span matched the retrieved source.'}
+                    'basis': basis, 'note': 'Automated extraction; exact quote and attribution span matched the retrieved source.'}
             if kind == 'institutional':
                 attr['organization_id'] = subject['id']
             if kind == 'official_role':
@@ -89,13 +151,13 @@ def validate_rows(page, rows, subjects, now):
                                               (role.get('end_date') and day > role['end_date'])):
                     raise ValueError('Statement is outside the sourced role dates')
                 attr.update(organization_id=role['organization_id'], role=role['title'])
-            accepted.append((subject['id'], {
+            accepted.append((subject['id'], public_statement({
                 'text': quote, 'date': day, 'context': context, 'url': page['url'],
-                'source_type': 'official_statement' if (sources.urlsplit(page['url']).hostname or '').endswith('.gov') else 'reported_statement',
+                'source_type': 'official_statement' if (sources.urlsplit(page['url']).hostname or '').endswith(('.gov', '.mil')) else 'reported_statement',
                 'verified': True, 'verified_via': page['verified_via'], 'attribution': attr,
                 'retrieved_on': now, 'source_text_sha256': sources.digest(text), 'origin': 'federal',
-                'date_quote': row.get('date_quote'),
-            }))
+                'date_quote': date_anchor,
+            })))
         except (ValueError, KeyError, TypeError, AttributeError):
             rejected += 1
     return accepted, rejected
@@ -110,19 +172,62 @@ def append_evidence(root, subject_id, statements):
     # A release repeated on an index/mirror is one dated quote, even with a different URL.
     # Different dates remain distinct; preserve the first source and all published IDs.
     known = {(sources.normalize(s['text']), s.get('date')) for s in existing}
+    reported_urls = {sources.canonical_url(s['url']) for s in statements if not (sources.urlsplit(s['url']).hostname or '').endswith(('.gov', '.mil'))}
+    used_words = Counter()
+    if reported_urls:
+        ids = {p['id'] for p in policy_subjects.load_registry(root)['subjects']} | {subject_id}
+        for pid in ids:
+            for s in read(root / 'evidence' / f'{pid}.json', {'statements': []})['statements']:
+                url = sources.canonical_url(s['url'])
+                if url in reported_urls:
+                    used_words[url] += len(s['text'].split())
     next_id = max((int(s['sid'][1:]) for s in existing), default=0) + 1
     added = []
     for statement in statements:
         key = (sources.normalize(statement['text']), statement.get('date'))
         if key in known:
             continue
+        url = sources.canonical_url(statement['url'])
+        if url in reported_urls:
+            words = len(statement['text'].split())
+            if used_words[url] + words > 25:
+                continue
+            used_words[url] += words
         known.add(key)
         sid = f's{next_id}'; next_id += 1
-        existing.append({**statement, 'sid': sid, 'added': today()})
+        existing.append({**public_statement(statement), 'sid': sid, 'added': today()})
         added.append(sid)
     if added:
         write(path, evidence)
     return added
+
+
+def search_groups(config, subjects):
+    """Expand explicit agency assignments into named searches, including former officials."""
+    groups = [{**g, 'queries': list(g['queries']), 'subject_ids': []} for g in config['groups']]
+    if not config.get('named_searches'):
+        return groups
+    by_org = {}
+    for group in groups:
+        for oid in group['organization_ids']:
+            if oid in by_org:
+                raise ValueError('Organization assigned to multiple daily groups: ' + oid)
+            by_org[oid] = group
+    for subject in subjects:
+        group = by_org.get(subject['organization_id'])
+        if not group:
+            raise ValueError('Federal profile has no daily group: ' + subject['id'])
+        group['subject_ids'].append(subject['id'])
+    by_id = {s['id']: s for s in subjects}
+    for group in groups:
+        for offset in range(0, len(group['subject_ids']), 2):
+            names = [by_id[sid]['name'] for sid in group['subject_ids'][offset:offset + 2]]
+            group['queries'].append('(' + ' OR '.join('"' + n + '"' for n in names) + ') AI artificial intelligence superintelligence policy statements')
+    return groups
+
+
+def fair_groups(groups, state):
+    return sorted(groups, key=lambda g: state.get('groups', {}).get(g['id'], {}).get('since', '0001-01-01'))
 
 
 def collect(root, config, since=None, dry=False):
@@ -130,16 +235,18 @@ def collect(root, config, since=None, dry=False):
     subjects = [s for s in policy_subjects.load_subjects(root) if s['branch'] == 'executive']
     state_path = root / 'data/federal_state.json'
     state = read(state_path, {'groups': {}, 'pending': {}, 'processed': {}})
+    state.setdefault('queries', {})
+    groups = fair_groups(search_groups(config, subjects), state)
     now = today()
     report = {'date': now, 'status': 'dry_run' if dry else 'ok', 'groups': {}, 'added': {}, 'errors': [],
               'pending_pages': len(state['pending']), 'pages_per_group': config['pages_per_group']}
     if since:
         date.fromisoformat(since)
-    for group in config['groups']:
+    for group in groups:
         previous = state['groups'].get(group['id'], {}).get('since')
         start = since or ((date.fromisoformat(previous) - timedelta(days=config['overlap_days'])).isoformat() if previous
                           else (date.fromisoformat(now) - timedelta(days=config['bootstrap_days'])).isoformat())
-        report['groups'][group['id']] = {'since': start, 'searches': len(group['queries']), 'pages_checked': 0, 'rejected': 0}
+        report['groups'][group['id']] = {'since': start, 'searches': len(group['queries']), 'subject_ids': group['subject_ids'], 'pages_checked': 0, 'rejected': 0}
     if dry:
         return report
     try:
@@ -149,18 +256,8 @@ def collect(root, config, since=None, dry=False):
         return report
     in_memory = {}
     extraction_revision = sources.digest(sources.EXTRACTION_PROMPT + json.dumps(subjects, sort_keys=True))
-    all_domains = sorted({d for g in config['groups'] for d in g['domains']})
-    for group in config['groups']:
-        gid = group['id']; info = report['groups'][gid]
-        ok = True
-        pages = [{'url': u, 'title': '', 'publishedDate': None} for u in group['watch_urls']]
-        for number, query in enumerate(group['queries'], 1):
-            print(f"federal {gid}: search {number}/{len(group['queries'])}", flush=True)
-            try:
-                pages.extend(client.search(query, group['domains'], info['since']))
-            except Exception as exc:
-                ok = False
-                report['errors'].append({'group': gid, 'stage': 'search', 'error': type(exc).__name__})
+    all_domains = sorted({d for g in groups for d in g['domains']})
+    def enqueue(pages, group):
         for page in pages:
             if not sources.allowed_url(page.get('url'), group['domains']):
                 continue
@@ -175,9 +272,39 @@ def collect(root, config, since=None, dry=False):
             if len(page.get('text') or '') > len(in_memory.get(url, {}).get('text') or '') or url not in in_memory:
                 in_memory[url] = page
             state['pending'].setdefault(url, {k: page.get(k) for k in ('url', 'title', 'publishedDate')})
-            state['pending'][url].setdefault('group', gid)
+            state['pending'][url].setdefault('group', group['id'])
             state['pending'][url]['discovery_hash'] = discovery_hash
-        if ok:
+    for group in groups:
+        gid = group['id']; info = report['groups'][gid]
+        ok = True
+        enqueue([{'url': u, 'title': '', 'publishedDate': None} for u in group['watch_urls']], group)
+        def query_key(query):
+            return sources.digest(json.dumps([gid, query, group['domains']], sort_keys=True))
+        queries = sorted(group['queries'], key=lambda q: state['queries'].get(query_key(q), {}).get('since', '0001-01-01'))
+        requests = []
+        for number, query in enumerate(queries, 1):
+            key = query_key(query)
+            previous_query = state['queries'].get(key, {}).get('since')
+            if previous_query == now and not since:
+                continue
+            query_since = since or ((date.fromisoformat(previous_query) - timedelta(days=config['overlap_days'])).isoformat()
+                                   if previous_query else info['since'])
+            print(f"federal {gid}: search {number}/{len(group['queries'])}", flush=True)
+            requests.append((key, query, query_since))
+        # Only retrieval runs concurrently. The coordinator owns queues and checkpoints;
+        # Client reserves the cost of all in-flight requests under its shared lock.
+        with ThreadPoolExecutor(max_workers=max(1, min(config.get('search_workers', 1), 8))) as executor:
+            futures = {executor.submit(client.search, query, group['domains'], start): key
+                       for key, query, start in requests}
+            for future in as_completed(futures):
+                try:
+                    enqueue(future.result(), group)
+                    state['queries'][futures[future]] = {'group': gid, 'since': now}
+                    write(state_path, state)
+                except Exception as exc:
+                    ok = False
+                    report['errors'].append({'group': gid, 'stage': 'search', 'error': type(exc).__name__})
+        if ok or all(state['queries'].get(query_key(q), {}).get('since') == now for q in group['queries']):
             state['groups'][gid] = {'since': now}
         # Persist discovery before extracting; never save full source pages in the public repository.
         write(state_path, state)
@@ -200,9 +327,10 @@ def collect(root, config, since=None, dry=False):
                 for index, start in enumerate(range(0, len(text), 22000)):
                     if index < cursor:
                         continue
-                    chunk = {**page, 'text': text[start:start + 26000]}
-                    rows = client.extract(chunk, subjects)
-                    valid, invalid = validate_rows(chunk, rows, subjects, now)
+                    chunk = {**page, 'text': text[start:start + 26000], 'document_header': text[:6000]}
+                    named = [s for s in subjects if contains_name(chunk['text'], s) or contains_name(text[:6000], s)]
+                    rows = client.extract(chunk, named) if named else []
+                    valid, invalid = validate_rows(page, rows, named, now)
                     for pid in sorted({pid for pid, _ in valid}):
                         added = append_evidence(root, pid, [{**s, 'source_text_sha256': content_hash} for who, s in valid if who == pid])
                         if added:

@@ -1,5 +1,6 @@
 """Additional policy subjects; the congressional scoring roster stays unchanged."""
 import json
+import hashlib
 import re
 from datetime import date
 from pathlib import Path
@@ -98,3 +99,13 @@ def public_profile(subject):
     fields = ('id', 'name', 'party', 'state', 'chamber', 'status', 'entity_type', 'branch',
               'organization_id', 'organization_ids', 'organization_name', 'roles', 'source_url', 'description', 'aliases', 'verified_on')
     return {k: subject[k] for k in fields if k in subject}
+
+
+def public_evidence(statement):
+    """Keep copied non-government attribution context in local verification storage only."""
+    if not statement.get('attribution') or (urlparse(statement.get('url', '')).hostname or '').endswith(('.gov', '.mil')):
+        return statement
+    span_hash = statement.get('attribution_span_sha256') or hashlib.sha256(statement.get('context', '').encode()).hexdigest()
+    speaker = statement['attribution'].get('speaker', 'the named subject')
+    return {**statement, 'attribution_span_sha256': span_hash,
+            'context': f'Verified direct statement by {speaker}. Local verification records retain the source attribution.'}

@@ -3,36 +3,398 @@
   "bootstrap_days": 14,
   "overlap_days": 3,
   "pages_per_group": 6,
-  "collection_max_cost": 0.5,
+  "search_workers": 4,
+  "collection_max_cost": 1.5,
   "judgment_max_cost": 2.0,
   "groups": [
     {
       "id": "executive",
-      "name": "Executive branch",
-      "domains": ["whitehouse.gov", "si.gov", "ai.gov", "odni.gov", "state.gov", "opm.gov", "ftc.gov", "defense.gov", "war.gov", "govinfo.gov", "reuters.com", "apnews.com", "axios.com"],
-      "queries": ["White House Trump Vance Kratsios Sacks artificial intelligence superintelligence policy statements", "White House AI China export controls frontier safety auditors legislative framework"],
-      "watch_urls": ["https://www.si.gov/"]
+      "name": "White House and executive policy offices",
+      "organization_ids": [
+        "white_house",
+        "ostp",
+        "omb",
+        "oncd",
+        "nsc",
+        "nec",
+        "pcast",
+        "naiio",
+        "white_house_ai_council"
+      ],
+      "domains": [
+        "ai.gov",
+        "apnews.com",
+        "axios.com",
+        "bidenwhitehouse.archives.gov",
+        "congress.gov",
+        "federalnewsnetwork.com",
+        "fedscoop.com",
+        "govciomedia.com",
+        "govinfo.gov",
+        "reuters.com",
+        "si.gov",
+        "whitehouse.gov"
+      ],
+      "queries": [
+        "White House executive AI superintelligence policy framework China safety"
+      ],
+      "watch_urls": [
+        "https://www.si.gov/"
+      ]
     },
     {
       "id": "commerce",
       "name": "Commerce and its agencies",
-      "domains": ["commerce.gov", "bis.gov", "nist.gov", "trade.gov", "reuters.com", "apnews.com", "axios.com"],
-      "queries": ["Commerce BIS Lutnick Kessler Kimmitt artificial intelligence chips China export controls", "NIST CAISSI CAISI AI superintelligence evaluation frontier standards auditors framework"],
-      "watch_urls": ["https://www.bis.gov/news-updates", "https://www.nist.gov/caissi"]
+      "organization_ids": [
+        "commerce",
+        "bis",
+        "nist",
+        "caissi",
+        "ita",
+        "nist_itl",
+        "nist_si_accelerator"
+      ],
+      "domains": [
+        "apnews.com",
+        "axios.com",
+        "bis.gov",
+        "commerce.gov",
+        "congress.gov",
+        "federalnewsnetwork.com",
+        "fedscoop.com",
+        "govciomedia.com",
+        "govinfo.gov",
+        "nist.gov",
+        "reuters.com",
+        "trade.gov"
+      ],
+      "queries": [
+        "Commerce BIS NIST CAISSI artificial intelligence export controls evaluation standards"
+      ],
+      "watch_urls": [
+        "https://www.bis.gov/news-updates",
+        "https://www.nist.gov/caissi"
+      ]
     },
     {
       "id": "nsa",
       "name": "NSA and its security center",
-      "domains": ["nsa.gov", "defense.gov", "war.gov", "dni.gov", "odni.gov", "reuters.com", "apnews.com"],
-      "queries": ["NSA SISC AISC Joshua Rudd artificial intelligence superintelligence statements", "NSA artificial intelligence China frontier models security evaluation export controls"],
-      "watch_urls": ["https://www.nsa.gov/SISC/"]
+      "organization_ids": [
+        "nsa",
+        "sisc"
+      ],
+      "domains": [
+        "apnews.com",
+        "axios.com",
+        "congress.gov",
+        "defense.gov",
+        "federalnewsnetwork.com",
+        "fedscoop.com",
+        "govciomedia.com",
+        "govinfo.gov",
+        "nsa.gov",
+        "reuters.com",
+        "war.gov"
+      ],
+      "queries": [
+        "NSA SISC AISC artificial intelligence China security evaluation"
+      ],
+      "watch_urls": [
+        "https://www.nsa.gov/SISC/"
+      ]
+    },
+    {
+      "id": "intelligence",
+      "name": "Intelligence community",
+      "organization_ids": [
+        "odni",
+        "cia"
+      ],
+      "domains": [
+        "apnews.com",
+        "axios.com",
+        "cia.gov",
+        "congress.gov",
+        "dni.gov",
+        "federalnewsnetwork.com",
+        "fedscoop.com",
+        "govciomedia.com",
+        "govinfo.gov",
+        "odni.gov",
+        "reuters.com"
+      ],
+      "queries": [
+        "ODNI CIA artificial intelligence superintelligence national security China"
+      ],
+      "watch_urls": []
+    },
+    {
+      "id": "defense",
+      "name": "Defense and military AI",
+      "organization_ids": [
+        "war",
+        "cdao"
+      ],
+      "domains": [
+        "ai.mil",
+        "apnews.com",
+        "axios.com",
+        "congress.gov",
+        "defense.gov",
+        "federalnewsnetwork.com",
+        "fedscoop.com",
+        "govciomedia.com",
+        "govinfo.gov",
+        "reuters.com",
+        "war.gov"
+      ],
+      "queries": [
+        "Defense CDAO military artificial intelligence autonomous systems safety"
+      ],
+      "watch_urls": []
+    },
+    {
+      "id": "treasury",
+      "name": "Treasury",
+      "organization_ids": [
+        "treasury"
+      ],
+      "domains": [
+        "apnews.com",
+        "axios.com",
+        "congress.gov",
+        "federalnewsnetwork.com",
+        "fedscoop.com",
+        "govciomedia.com",
+        "govinfo.gov",
+        "home.treasury.gov",
+        "irs.gov",
+        "reuters.com",
+        "treasury.gov"
+      ],
+      "queries": [
+        "Treasury artificial intelligence superintelligence financial stability investment China"
+      ],
+      "watch_urls": []
+    },
+    {
+      "id": "state",
+      "name": "State and trade policy",
+      "organization_ids": [
+        "state",
+        "state_cdp",
+        "ustr"
+      ],
+      "domains": [
+        "apnews.com",
+        "axios.com",
+        "congress.gov",
+        "federalnewsnetwork.com",
+        "fedscoop.com",
+        "govciomedia.com",
+        "govinfo.gov",
+        "reuters.com",
+        "state.gov",
+        "ustr.gov"
+      ],
+      "queries": [
+        "State Department USTR artificial intelligence diplomacy China international standards"
+      ],
+      "watch_urls": []
+    },
+    {
+      "id": "justice",
+      "name": "Justice and its task forces",
+      "organization_ids": [
+        "justice",
+        "doj_si_task_force",
+        "doj_ai_litigation_task_force"
+      ],
+      "domains": [
+        "apnews.com",
+        "axios.com",
+        "congress.gov",
+        "federalnewsnetwork.com",
+        "fedscoop.com",
+        "govciomedia.com",
+        "govinfo.gov",
+        "justice.gov",
+        "reuters.com"
+      ],
+      "queries": [
+        "Justice DOJ artificial intelligence super intelligence task force litigation antitrust"
+      ],
+      "watch_urls": []
+    },
+    {
+      "id": "homeland",
+      "name": "Homeland security and CISA",
+      "organization_ids": [
+        "dhs",
+        "cisa"
+      ],
+      "domains": [
+        "apnews.com",
+        "axios.com",
+        "cisa.gov",
+        "congress.gov",
+        "dhs.gov",
+        "federalnewsnetwork.com",
+        "fedscoop.com",
+        "govciomedia.com",
+        "govinfo.gov",
+        "reuters.com"
+      ],
+      "queries": [
+        "DHS CISA artificial intelligence cybersecurity safety security policy"
+      ],
+      "watch_urls": []
+    },
+    {
+      "id": "energy",
+      "name": "Energy",
+      "organization_ids": [
+        "energy"
+      ],
+      "domains": [
+        "apnews.com",
+        "axios.com",
+        "congress.gov",
+        "energy.gov",
+        "federalnewsnetwork.com",
+        "fedscoop.com",
+        "govciomedia.com",
+        "govinfo.gov",
+        "reuters.com"
+      ],
+      "queries": [
+        "Energy Department artificial intelligence superintelligence Genesis national laboratories power"
+      ],
+      "watch_urls": []
+    },
+    {
+      "id": "procurement",
+      "name": "Procurement and personnel",
+      "organization_ids": [
+        "gsa",
+        "gsa_fas",
+        "opm"
+      ],
+      "domains": [
+        "apnews.com",
+        "axios.com",
+        "congress.gov",
+        "federalnewsnetwork.com",
+        "fedscoop.com",
+        "govciomedia.com",
+        "govinfo.gov",
+        "gsa.gov",
+        "opm.gov",
+        "reuters.com"
+      ],
+      "queries": [
+        "GSA OPM artificial intelligence procurement government workforce AI contracts"
+      ],
+      "watch_urls": []
+    },
+    {
+      "id": "regulators",
+      "name": "Federal Trade Commission",
+      "organization_ids": [
+        "ftc"
+      ],
+      "domains": [
+        "apnews.com",
+        "axios.com",
+        "congress.gov",
+        "federalnewsnetwork.com",
+        "fedscoop.com",
+        "ftc.gov",
+        "govciomedia.com",
+        "govinfo.gov",
+        "reuters.com"
+      ],
+      "queries": [
+        "FTC artificial intelligence superintelligence competition consumer protection"
+      ],
+      "watch_urls": []
+    },
+    {
+      "id": "health",
+      "name": "Health and social security",
+      "organization_ids": [
+        "hhs",
+        "cms",
+        "ssa"
+      ],
+      "domains": [
+        "apnews.com",
+        "axios.com",
+        "cms.gov",
+        "congress.gov",
+        "federalnewsnetwork.com",
+        "fedscoop.com",
+        "govciomedia.com",
+        "govinfo.gov",
+        "hhs.gov",
+        "reuters.com",
+        "ssa.gov"
+      ],
+      "queries": [
+        "HHS CMS SSA artificial intelligence policy superintelligence privacy benefits"
+      ],
+      "watch_urls": []
+    },
+    {
+      "id": "environment",
+      "name": "Environmental Protection Agency",
+      "organization_ids": [
+        "epa"
+      ],
+      "domains": [
+        "apnews.com",
+        "axios.com",
+        "congress.gov",
+        "epa.gov",
+        "federalnewsnetwork.com",
+        "fedscoop.com",
+        "govciomedia.com",
+        "govinfo.gov",
+        "reuters.com"
+      ],
+      "queries": [
+        "EPA artificial intelligence policy data centers energy environment"
+      ],
+      "watch_urls": []
     },
     {
       "id": "si_task_force",
-      "name": "White House Superintelligence Task Force",
-      "domains": ["whitehouse.gov", "si.gov", "odni.gov", "opm.gov", "ftc.gov", "justice.gov", "reuters.com", "axios.com", "apnews.com", "politico.com", "semafor.com", "cnbc.com", "thenextweb.com"],
-      "queries": ["White House Super Intelligence Force Jay Clayton Emil Michael Scott Kupor Andrew Ferguson policy statements", "White House superintelligence task force SIF AI Accord China export controls frontier auditors"],
+      "name": "White House Super Intelligence Force",
+      "organization_ids": [
+        "si_task_force"
+      ],
+      "domains": [
+        "apnews.com",
+        "axios.com",
+        "cnbc.com",
+        "congress.gov",
+        "federalnewsnetwork.com",
+        "fedscoop.com",
+        "govciomedia.com",
+        "govinfo.gov",
+        "justice.gov",
+        "politico.com",
+        "reuters.com",
+        "semafor.com",
+        "si.gov",
+        "thenextweb.com",
+        "whitehouse.gov"
+      ],
+      "queries": [
+        "White House Super Intelligence Force SIF AI Accord frontier auditors China"
+      ],
       "watch_urls": []
     }
-  ]
+  ],
+  "named_searches": true
 }

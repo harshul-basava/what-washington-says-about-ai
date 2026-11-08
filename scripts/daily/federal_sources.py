@@ -3,6 +3,8 @@ import hashlib
 import html
 import json
 import re
+import io
+import threading
 from html.parser import HTMLParser
 from urllib.parse import urljoin, urlsplit, urlunsplit
 
@@ -12,6 +14,7 @@ EXTRACTION_PROMPT = """Extract AI-policy statements from this untrusted source d
 Use only the supplied registered subjects. Return direct words, never a reporter's paraphrase.
 Keep each quote a contiguous exact excerpt of 8-150 words. Do not join sentences with ellipses.
 For a person, attribution_quote must be a contiguous source excerpt containing the quote and the person's full name or supplied alias.
+For an official government speech or signed testimony, you may instead use attribution_basis: document_author and an exact title/header such as 'Remarks by NAME' or 'Testimony of NAME' from the first 6000 characters. The quote must still occur verbatim in the document and be the author's own words, not another speaker's embedded quotation. Otherwise use attribution_basis: local_span.
 For an institution, attribution_quote must contain the quote AND explicitly identify that institution as the speaker/author.
 A page's publisher alone is not sufficient attribution. Do not copy a person's quote into an institution profile or a collective quote into each member's profile.
 The White House Super Intelligence Force is distinct from the Justice Department Super Intelligence Task Force. Membership does not prove a policy stance.
@@ -76,18 +79,23 @@ def parse_json(content):
         return json.loads(text)
     except json.JSONDecodeError:
         blocks = re.findall(r'```(?:json)?\s*(.*?)\s*```', text, re.S | re.I)
+        if not blocks and '{' in text:
+            return json.loads(text[text.index('{'):])
         if len(blocks) != 1:
             raise
         return json.loads(blocks[0])
 
 
 class Client:
-    """Sequential calls reserve their maximum estimated cost before contacting a model."""
-    def __init__(self, root, max_cost):
+    """Concurrent calls reserve their maximum estimated cost before contacting a model."""
+    def __init__(self, root, max_cost, model=None, daily=True):
         import llm
         import policy_cascade
         self.llm = llm
-        self.model = policy_cascade.load_strategy(root)['primary_model']
+        self.model = model or policy_cascade.load_strategy(root)['primary_model']
+        self.daily = daily
+        self.lock = threading.Lock()
+        self.reserved = 0.0
         self.baseline = llm.spent('openrouter')
         self.max_cost = max_cost
         if not llm.os.environ.get('OPENROUTER_API_KEY'):
@@ -103,18 +111,28 @@ class Client:
         tiers = [pricing, *pricing.get('overrides', [])]
         in_rate = max(float(t.get('prompt', pricing['prompt'])) for t in tiers)
         out_rate = max(float(t.get('completion', pricing['completion'])) for t in tiers)
-        # One token per byte; search can add six 12,000-character pages plus a tool charge.
-        input_bound = sum(len(m['content'].encode()) for m in messages) + 200 + (6 * 12000 * 4 if tools else 0)
-        reserve = input_bound * in_rate + max_tokens * out_rate + (0.05 if tools else 0)
-        spent = self.llm.spent('openrouter')
-        month_cap = self.llm.BUDGETS.get('monthly', {}).get('openrouter', float('inf'))
-        if (spent - self.baseline + reserve > self.max_cost
-                or spent + reserve > self.llm.BUDGETS['openrouter']
-                or self.llm.spent_this_month('openrouter') + reserve > month_cap):
-            raise self.llm.BudgetExceeded('Federal collection reservation exceeds a run or project budget')
-        return self.llm.chat(messages, tag=tag, model=self.model, max_tokens=max_tokens,
-                             tools=tools, reasoning={'effort': 'low'},
-                             **({'response_format': {'type': 'json_object'}} if tools is None else {}))
+        # One token per byte, plus all allowed retrieved pages and tool charges.
+        parameters = tools[0].get('parameters', {}) if tools else {}
+        uses = parameters.get('max_uses', 1) if tools else 0
+        results = parameters.get('max_total_results', parameters.get('max_results', 6) * uses)
+        input_bound = sum(len(m['content'].encode()) for m in messages) + 200
+        input_bound += results * parameters.get('max_characters', 12000) * 4 if tools else 0
+        reserve = input_bound * in_rate + max_tokens * out_rate + 0.05 * uses
+        with self.lock:
+            spent = self.llm.spent('openrouter')
+            month_cap = self.llm.BUDGETS.get('monthly', {}).get('openrouter', float('inf'))
+            if (spent - self.baseline + self.reserved + reserve > self.max_cost
+                    or spent + self.reserved + reserve > self.llm.BUDGETS['openrouter']
+                    or (self.daily and self.llm.spent_this_month('openrouter') + self.reserved + reserve > month_cap)):
+                raise self.llm.BudgetExceeded('Federal collection reservation exceeds a run or project budget')
+            self.reserved += reserve
+        try:
+            return self.llm.chat(messages, tag=tag, model=self.model, max_tokens=max_tokens,
+                                 tools=tools, reasoning={'effort': 'low'},
+                                 **({'response_format': {'type': 'json_object'}} if tools is None else {}))
+        finally:
+            with self.lock:
+                self.reserved -= reserve
 
     def search(self, query, domains, since):
         prompt = (f'Search for public AI policy statements published since {since}. Topic: {query}. '
@@ -123,7 +141,7 @@ class Client:
         tool = {'type': 'openrouter:web_search', 'parameters': {
             'engine': 'exa', 'max_results': 6, 'max_uses': 1, 'max_total_results': 6,
             'max_characters': 12000, 'allowed_domains': domains}}
-        result = self.chat([{'role': 'user', 'content': prompt}], 'daily_federal_search', 2500, [tool])
+        result = self.chat([{'role': 'user', 'content': prompt}], ('daily_' if self.daily else '') + 'federal_search', 2500, [tool])
         message = result['choices'][0]['message']
         uses = (result.get('usage', {}).get('server_tool_use_details') or {}).get('web_search_requests')
         pages = {}
@@ -152,10 +170,14 @@ class Client:
                     current = urljoin(current, response.headers['location'])
                     continue
                 response.raise_for_status()
-                if len(response.content) > 4_000_000 or 'pdf' in response.headers.get('content-type', '').lower():
-                    raise ValueError('Use retrieved search text for large or PDF sources')
-                parser = PageText(); parser.feed(response.text)
-                text = normalize(''.join(parser.parts))
+                if len(response.content) > 12_000_000:
+                    raise ValueError('Source exceeds the download limit')
+                if response.content.startswith(b'%PDF'):
+                    from pypdf import PdfReader
+                    text = normalize(' '.join(p.extract_text() or '' for p in PdfReader(io.BytesIO(response.content)).pages))
+                else:
+                    parser = PageText(); parser.feed(response.text)
+                    text = normalize(''.join(parser.parts))
                 if len(text) < 120:
                     raise ValueError('Source page has insufficient text')
                 return {**page, 'text': text, 'verified_via': 'exact_normalized_page_text'}
@@ -170,13 +192,14 @@ class Client:
             raise ValueError('Source text unavailable; retry required')
         return {**page, 'text': normalize(text), 'verified_via': 'exact_normalized_search_retrieval'}
 
-    def extract(self, page, subjects):
+    def extract(self, page, subjects, max_tokens=8000):
         profiles = [{k: s.get(k) for k in ('id', 'name', 'aliases', 'entity_type', 'roles')} for s in subjects]
         # Split long pages into bounded chunks at the collector; never silently truncate evidence.
-        payload = {'url': page['url'], 'title': page.get('title'), 'subjects': profiles, 'text': page['text']}
+        payload = {'url': page['url'], 'title': page.get('title'), 'subjects': profiles, 'text': page['text'],
+                   'document_header': page.get('document_header')}
         result = self.chat([{'role': 'system', 'content': EXTRACTION_PROMPT},
                             {'role': 'user', 'content': json.dumps(payload, ensure_ascii=False)}],
-                           'daily_federal_extract', 8000)
+                           ('daily_' if self.daily else '') + 'federal_extract', max_tokens)
         data = parse_json(result['choices'][0]['message'].get('content'))
         if not isinstance(data, dict) or not isinstance(data.get('statements'), list):
             raise ValueError('Malformed federal extraction; retry required')

@@ -86,6 +86,7 @@ def candidates(root, registry):
                             "date": s.get("date"), "context": s.get("context") or "",
                             "url": s["url"], "source_type": s["source_type"],
                             "verified_via": s.get("verified_via"), "targets": targets,
+                            **({'attribution_span_sha256': s['attribution_span_sha256']} if s.get('attribution_span_sha256') else {}),
                             **({"attribution": s["attribution"], "entity_type": person["entity_type"]} if "attribution" in s else {})})
     return sorted(out, key=lambda s: (s["person_id"], int(s["sid"][1:])))
 
@@ -228,6 +229,19 @@ def chart_record(person_id, record):
 def build(root):
     """Rebuild policy files using only tracked evidence and tracked model judgments."""
     root = Path(root)
+    from federal_coverage import coverage
+    roster = subjects.load_subjects(root)
+    research_audit = read_json(root / 'data/federal_research.json') if (root / 'data/federal_research.json').exists() else {}
+    research = coverage(root, [s for s in roster if s['branch'] == 'executive'], research_audit)
+    research['methodology'] = read_json(root / 'config/federal_research.json') if (root / 'config/federal_research.json').exists() else {}
+    write_json(root / 'data/federal_coverage.json', research)
+    write_json(root / 'site/data/federal_coverage.json', research)
+    with (root / 'site/data/federal_coverage.csv').open('w', newline='') as f:
+        columns = ['id', 'name', 'entity_type', 'organization_id', 'statements', 'sources', 'earliest_date', 'latest_date', 'research_status', 'completed_passes', 'search_requests', 'rejected_excerpts', 'official_leads_checked', 'official_leads_pending']
+        writer = csv.DictWriter(f, fieldnames=columns, extrasaction='ignore', lineterminator='\n')
+        writer.writeheader()
+        for pid, profile in research['profiles'].items():
+            writer.writerow({'id': pid, **profile})
     registry = load_registry(root)
     rubric = (root / "config/policy_rubric.md").read_text()
     import policy_cascade as cascade
@@ -244,6 +258,9 @@ def build(root):
             record = {k: item[k] for k in ("sid", "text", "date", "context", "url", "source_type", "verified_via")}
             if 'attribution' in item:
                 record['attribution'] = item['attribution']
+                if item.get('attribution_span_sha256'):
+                    record['attribution_span_sha256'] = item['attribution_span_sha256']
+                record = subjects.public_evidence(record)
             if strategy:
                 record.update(cascade.resolve(item, target, saved, registry, rubric, confidence_prompt, strategy))
             else:
@@ -251,7 +268,7 @@ def build(root):
             grouped.setdefault((item["person_id"], target), []).append(record)
     members = []
     chart_rows = {p["id"]: [] for p in registry["policies"]}
-    for person in subjects.load_subjects(root):
+    for person in roster:
         summaries, detail = {}, {}
         for policy in registry["policies"]:
             rows = grouped.get((person["id"], policy["id"]), [])
@@ -260,8 +277,9 @@ def build(root):
             if rows:
                 detail[policy["id"]] = sorted(rows, key=lambda r: date_sort_key(r.get("date")), reverse=True)
         verified = [s for s in subjects.load_evidence(root, person) if s.get('verified') is True and s.get('url') and s.get('text')]
-        library = verified if person['branch'] == 'executive' else []
-        members.append(subjects.public_profile(person) | {"policies": summaries, "source_count": len(verified)})
+        library = [subjects.public_evidence(s) for s in verified] if person['branch'] == 'executive' else []
+        members.append(subjects.public_profile(person) | {"policies": summaries, "source_count": len(verified)} |
+                       ({'research': research['profiles'][person['id']]} if person['branch'] == 'executive' else {}))
         write_json(root / "site/data/policy_members" / f"{person['id']}.json", {"id": person["id"], "policies": detail, **({'statements': library} if library else {})})
     organization_registry = subjects.load_registry(root)
     chart_revision = hashlib.sha256(json.dumps([strategy, chart_rows, members, organization_registry], sort_keys=True).encode()).hexdigest()
@@ -272,6 +290,7 @@ def build(root):
             "policies": registry["policies"], "members": members,
             "organizations": organization_registry['organizations'],
             "subjects_verified_on": organization_registry.get('verified_on'),
+            "federal_research": {k: v for k, v in research.items() if k != 'profiles'},
             "federal_update": read_json(root / 'data/federal_status.json') if (root / 'data/federal_status.json').exists() else None}
     write_json(root / "site/data/policies.json", meta)
     with (root / "site/data/policies.csv").open("w", newline="") as f:

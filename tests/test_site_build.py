@@ -18,7 +18,7 @@ class SiteBuildTests(unittest.TestCase):
         repo = Path(__file__).resolve().parents[1]
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            for name in ('scripts/phase5_build_site.py', 'policy_judgments.py', 'policy_cascade.py', 'policy_subjects.py'):
+            for name in ('Makefile', 'scripts/phase5_build_site.py', 'policy_judgments.py', 'policy_cascade.py', 'policy_subjects.py', 'federal_coverage.py'):
                 dest = root / name
                 dest.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(repo / name, dest)
@@ -66,6 +66,9 @@ class SiteBuildTests(unittest.TestCase):
             rows = policy.read_json(root / 'site/data/policy_members/P.json')['policies'][ITEM['targets'][0]]
             self.assertEqual(rows[0]['text'], evidence['statements'][0]['text'])
             self.assertEqual(rows[0]['review_status'], 'awaiting_deepseek')
+            result = subprocess.run(['make', 'site', f'PY={sys.executable}'],
+                                    cwd=root, capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
 
 
 if __name__ == '__main__':

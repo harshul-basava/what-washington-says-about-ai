@@ -3,6 +3,7 @@ import importlib.util
 import json
 import sys
 import tempfile
+import threading
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -117,6 +118,32 @@ class FederalTests(unittest.TestCase):
             self.assertEqual(report['status'], 'dry_run')
             self.assertEqual(before, {str(p): p.read_bytes() for p in root.rglob('*') if p.is_file()})
 
+    def test_parallel_searches_save_each_result_on_the_coordinator_thread(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); self.fixture(root)
+            config = copy.deepcopy(CONFIG)
+            config['search_workers'] = 2
+            config['groups'][0]['queries'] = ['first query', 'second query']
+            barrier = threading.Barrier(2, timeout=2)
+            def search(query, domains, since):
+                barrier.wait()
+                return [{**PAGE, 'url': PAGE['url'] + ('1' if query == 'first query' else '2')}]
+            client = unittest.mock.Mock()
+            client.search.side_effect = search
+            client.page.side_effect = lambda page, domains: PAGE | {'url': page['url']}
+            client.extract.return_value = []
+            original_write = federal.write
+            main_thread = threading.get_ident()
+            def write(path, value):
+                self.assertEqual(threading.get_ident(), main_thread)
+                original_write(path, value)
+            with patch.object(sources, 'Client', return_value=client), patch.object(federal, 'write', side_effect=write):
+                report = federal.collect(root, config)
+            self.assertEqual(report['errors'], [])
+            state = federal.read(root / 'data/federal_state.json', {})
+            self.assertEqual(len(state['queries']), 2)
+            self.assertEqual(len(state['processed']), 2)
+
     def test_failed_page_stays_queued_and_successful_retry_does_not_duplicate(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp); self.fixture(root)
@@ -173,13 +200,13 @@ class FederalTests(unittest.TestCase):
                 federal.collect(root, CONFIG)
                 client.search.return_value = [{**PAGE, 'text': PAGE['text'] + ' Updated statement.'}]
                 client.extract.return_value = [ROW]
-                result = federal.collect(root, CONFIG)
+                result = federal.collect(root, CONFIG, since='2026-11-08')
             self.assertEqual(result['added'], {'executive_a': ['s1']})
 
     def test_long_page_resumes_after_budget_failure(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp); self.fixture(root)
-            page = {**PAGE, 'text': PAGE['text'] + (' filler' * 5000)}
+            page = {**PAGE, 'text': PAGE['text'] + (' filler' * 5000) + ' Official A discusses more AI policy.'}
             client = unittest.mock.Mock()
             client.search.return_value = [page]
             client.page.return_value = page
@@ -195,6 +222,36 @@ class FederalTests(unittest.TestCase):
                 second = federal.collect(root, CONFIG)
             self.assertEqual(second['pending_pages'], 0)
             self.assertEqual(len(json.loads((root / 'evidence/executive_a.json').read_text())['statements']), 1)
+
+    def test_query_checkpoints_prevent_budget_starvation(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); self.fixture(root)
+            config = copy.deepcopy(CONFIG)
+            config['groups'] = [{**CONFIG['groups'][0], 'id': 'a', 'queries': ['a1', 'a2']},
+                                {**CONFIG['groups'][0], 'id': 'b', 'queries': ['b1']}]
+            successful = []
+            for _ in range(3):
+                client = unittest.mock.Mock(); calls = []
+                def search(query, domains, since):
+                    if calls:
+                        raise RuntimeError('budget exhausted')
+                    calls.append(query); successful.append(query); return []
+                client.search.side_effect = search
+                with patch.object(sources, 'Client', return_value=client), patch.object(federal, 'today', return_value='2026-11-08'):
+                    federal.collect(root, config)
+            self.assertEqual(successful, ['a1', 'a2', 'b1'])
+
+    def test_query_checkpoint_saves_its_discovered_pages_before_next_search(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); self.fixture(root)
+            config = copy.deepcopy(CONFIG); config['groups'][0]['queries'] = ['first', 'second']
+            client = unittest.mock.Mock(); client.search.side_effect = [[PAGE], SystemExit('interrupted')]
+            with patch.object(sources, 'Client', return_value=client):
+                with self.assertRaises(SystemExit):
+                    federal.collect(root, config)
+            state = federal.read(root / 'data/federal_state.json', {})
+            self.assertIn(PAGE['url'], state['pending'])
+            self.assertEqual(len(state['queries']), 1)
 
     def test_federal_run_still_judges_and_builds_after_collection_failure(self):
         with tempfile.TemporaryDirectory() as tmp:

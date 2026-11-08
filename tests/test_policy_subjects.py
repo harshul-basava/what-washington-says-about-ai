@@ -35,6 +35,18 @@ class SubjectTests(unittest.TestCase):
         p.write_json(root / 'evidence/executive_a.json', {'statements': [stmt]})
         p.write_json(root / 'evidence/commerce.json', {'statements': []})
 
+    def test_public_exports_exclude_copied_reporting_context(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); self.fixture(root)
+            copied = 'A copied reporting paragraph that must remain in local verification storage.'
+            statement = {**ITEM, 'verified': True, 'attribution': ATTRIBUTION, 'context': copied,
+                         'url': 'https://news.example/article'}
+            p.write_json(root / 'evidence/executive_a.json', {'statements': [statement]})
+            p.build(root)
+            exported = (root / 'site/data/policy_members/executive_a.json').read_text()
+            self.assertNotIn(copied, exported)
+            self.assertIn('attribution_span_sha256', exported)
+
     def test_offline_build_adds_unique_profiles_without_copying_official_quotes_to_institution(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp); self.fixture(root)
@@ -43,6 +55,8 @@ class SubjectTests(unittest.TestCase):
             self.assertEqual(set(subjects), {'P', 'executive_a', 'commerce'})
             self.assertEqual(subjects['executive_a']['entity_type'], 'person')
             self.assertIsNone(subjects['executive_a']['party'])
+            self.assertEqual(subjects['executive_a']['research']['statements'], 1)
+            self.assertEqual(result['federal_research']['summary']['people'], 1)
             self.assertEqual(len(subjects['executive_a']['roles']), 2)
             self.assertEqual(subjects['commerce']['policies'][ITEM['targets'][0]]['candidates'], 0)
             self.assertEqual(subjects['P']['branch'], 'legislative')

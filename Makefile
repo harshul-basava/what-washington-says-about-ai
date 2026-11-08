@@ -11,6 +11,7 @@ roster:            ## Phase 1: current members + called 2026 races
 	$(PY) scripts/phase1_roster.py
 	$(PY) scripts/phase1_handles_elect.py
 	$(PY) scripts/phase1_roster.py
+	$(PY) scripts/phase1_next_congress.py
 
 handles:           ## pick primary handles from post authors, write handle_review.csv (run after x)
 	$(PY) scripts/phase1_handles_finalize.py
@@ -51,8 +52,7 @@ history:           ## Rebuild the score history (monthly backfill from labels + 
 calibrate:         ## One-time: pick the cascade confidence threshold (~$3-5)
 	$(PY) scripts/daily/calibrate.py
 
-site:              ## Phase 5: build site/data (+ who sits in the next Congress, committees)
-	$(PY) scripts/phase1_next_congress.py
+site:              ## Phase 5: offline build of site/data from tracked research and reference inputs
 	$(PY) scripts/phase5_build_site.py
 
 refresh: roster x handles web assemble score site

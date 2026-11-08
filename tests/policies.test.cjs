@@ -118,3 +118,12 @@ test('unmatched source library never presents an unmade relevance judgment', () 
   assert.ok(html.includes('No policy assessment'));
   assert.ok(!html.includes('Not relevant'));
 });
+
+test('historical coverage reports search effort and gaps separately from model confidence', () => {
+  const html=view.renderProfile({id:'E',name:'Official',entity_type:'person',branch:'executive',roles:[],
+    research:{statements:3,sources:2,completed_passes:8,research_status:'searched',gaps:['No <script> source.']}},[],[]);
+  assert.ok(html.includes('3 verified excerpts'));
+  assert.ok(html.includes('8 completed search passes'));
+  assert.ok(html.includes('No &lt;script&gt; source.'));
+  assert.ok(!html.includes('8%'));
+});

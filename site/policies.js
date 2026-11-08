@@ -56,10 +56,14 @@
     if (member.branch !== 'executive') return '';
     const orgName = id => organizations.find(o=>o.id===id)?.name || id;
     const link = (id, title) => members.some(m=>m.id===id) ? `<button type="button" class="policy-profile-link" data-open-subject="${esc(id)}">${esc(title)}</button>` : esc(title);
-    const roles = (member.roles || []).map(r=>`<li>${esc(r.title)} · ${link(r.organization_id, orgName(r.organization_id))}<br>
-      <span class="note">${r.start_date ? esc(r.start_date) : 'Start date unknown'}${r.end_date ? ' to ' + esc(r.end_date) : '; no end date recorded'} · Source checked ${esc(r.verified_on)} · <a href="${safeURL(r.source_url)}" target="_blank" rel="noopener noreferrer">Role source</a>${r.source_type === 'reporting' ? ' (reported membership)' : ''}</span></li>`).join('');
+    const roles = (member.roles || []).map(r=>`<li>${esc(r.title)}${r.status === 'historical' ? ' (former role)' : ''} · ${link(r.organization_id, orgName(r.organization_id))}<br>
+      <span class="note">${r.start_date ? esc(r.start_date) : 'Start date unknown'}${r.end_date ? ' to ' + esc(r.end_date) : '; no end date recorded'} · Source checked ${esc(r.verified_on)} · <a href="${safeURL(r.source_url)}" target="_blank" rel="noopener noreferrer">Role source</a>${r.source_type === 'reporting' ? ' (reported role)' : ''}</span></li>`).join('');
     const linked = member.entity_type === 'institution' ? members.filter(m=>m.entity_type==='person' && (m.roles || []).some(r=>r.organization_id===member.id)) : [];
+    const research = member.research;
+    const researchNote = research ? `<div class="policy-research"><h4>Historical evidence</h4><p>${esc(research.statements)} verified excerpts from ${esc(research.sources)} source pages. ${esc(research.completed_passes)} completed search passes. ${esc(research.official_leads_checked || 0)} government source pages checked.${research.official_leads_pending ? ' ' + esc(research.official_leads_pending) + ' source pages await retry.' : ''} ${research.research_status === 'not_started' ? 'Historical research has not started.' : research.research_status === 'needs_retry' ? 'Historical research needs a retry.' : 'Search effort does not establish complete coverage.'}</p>
+      ${research.gaps?.length ? `<details><summary>Notes from individual searches</summary><p>These notes record gaps at the time of each search. Later searches can resolve them.</p><ul>${research.gaps.map(g=>`<li>${esc(g)}</li>`).join('')}</ul></details>` : ''}</div>` : '';
     return `<div class="policy-profile"><p>${esc(member.description || (member.entity_type === 'institution' ? 'Institutional statements do not establish the personal views of its officials.' : 'Each quote identifies the role in which this official spoke.'))}</p>
+      ${researchNote}
       ${member.source_url ? `<p class="note"><a href="${safeURL(member.source_url)}" target="_blank" rel="noopener noreferrer">Profile source</a>${member.verified_on ? ' · Profile checked ' + esc(member.verified_on) : ''}</p>` : ''}
       ${roles ? `<h4>Roles and memberships</h4><ul>${roles}</ul>` : ''}
       ${linked.length ? `<p>Officials in this dataset: ${linked.map(m=>link(m.id,m.name)).join(', ')}.</p>` : ''}</div>`;
@@ -80,6 +84,11 @@
     if (!update) return 'No automated federal update has completed yet.';
     if (update.status === 'ok') return `The federal update completed on ${update.date}. Searches cover the configured sources.`;
     return `The federal update on ${update.date} was partial. ${update.collection?.pending_pages || 0} source pages and ${update.judgments?.pending_pairs || 0} judgments await retry. Some searches or other steps may also need retry.`;
+  }
+  function researchCoverageNote(research) {
+    if (!research?.summary) return '';
+    const s = research.summary;
+    return `${s.people_searched} of ${s.people} officials have historical searches. The median is ${s.people_median_statements} excerpts per official, compared with ${s.congress_median_statements} for Congress. ${s.people_without_evidence} officials have no verified excerpts. Federal research covers public web sources; it does not include an API-backed X archive or a bulk govinfo collection.`;
   }
   async function mount(root) {
     if (!root) return;
@@ -102,7 +111,7 @@
       <button type="button" data-scope="congress" aria-pressed="true">Congress</button>
       <button type="button" data-scope="executive" aria-pressed="false">Executive officials</button>
       <button type="button" data-scope="institutions" aria-pressed="false">Institutions</button>
-    </div><p class="note" id="policy-scope-note"></p><div class="policy-controls">
+    </div><p class="note" id="policy-scope-note"></p><p id="policy-coverage-download" hidden><a href="data/federal_coverage.csv" download>Download federal research coverage</a></p><div class="policy-controls">
       <label>Policy or question<select id="policy-choice">${options}</select></label>
       <label>Observed stance<select id="policy-stance"><option value="all">All stances</option>${['support','oppose','mixed','neutral','unclear','disputed','pending'].map(s=>`<option value="${s}">${LABELS[s]}</option>`).join('')}<option value="no_evidence">No evidence found</option></select></label>
       <label id="policy-party-control">Party<select id="policy-party"><option value="all">All parties</option><option value="D">Democrats</option><option value="R">Republicans</option><option value="I">Independents</option></select></label>
@@ -169,9 +178,10 @@
       get('policy-party-control').hidden = !congress;
       get('policy-population-control').hidden = !congress;
       get('policy-organization-control').hidden = congress;
+      get('policy-coverage-download').hidden = congress;
       root.querySelectorAll('[data-scope]').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.scope===state.scope)));
       get('policy-scope-note').textContent = congress ? 'Congressional policy statements. The five-score charts above cover Congress only.' :
-        `Curated federal coverage. ${state.scope === 'institutions' ? 'Each profile represents an institution. Statements do not establish its officials’ personal views.' : 'Each official counts once. Agency filters include linked roles; bars use each official’s primary organization.'} ${federalUpdateNote(data.federal_update)} Role and membership records need manual review; the registry check date is ${data.subjects_verified_on || data.built_on}.`;
+        `Curated federal coverage. ${state.scope === 'institutions' ? 'Each profile represents an institution. Statements do not establish its officials’ personal views.' : 'Each official counts once. Agency filters include linked roles; bars use each official’s primary organization.'} ${researchCoverageNote(data.federal_research)} ${federalUpdateNote(data.federal_update)} Role and membership records need manual review; the registry check date is ${data.subjects_verified_on || data.built_on}.`;
       get('policy-detail-title').textContent = target.title;
       renderCharts();
       get('policy-description').textContent = target.kind === 'issue' ?
