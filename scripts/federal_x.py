@@ -24,6 +24,9 @@ from federal_x_config import KEYWORDS, fingerprint, current_job, provider as con
 
 AI=re.compile(r'\b(?:AI|AGI|artificial intelligence|superintelligence|super intelligence|OpenAI|Anthropic|export controls?|frontier act|kill switch act|stop stealing our chips|independent verification)\b',re.I)
 ERRORS={'missing_auth_token','missing_bearer_token','authentication_failed','rate_limited','timeout','request_failed','malformed_response','budget_exceeded','credits_exhausted','account_identity_changed','account_unavailable','window_not_ready'}
+DIAGNOSTICS={'lookup_response_errors','search_response_errors','response_count_invalid','lookup_identity_invalid',
+    'search_metadata_invalid','search_cursor_invalid','post_identity_invalid','post_text_invalid','post_date_invalid',
+    'post_references_invalid','lookup_fields_invalid','search_fields_invalid','post_fields_invalid'}
 
 def read(path, default):
     return json.loads(path.read_text()) if path.exists() else default
@@ -213,6 +216,7 @@ def collect(root, mode='daily', since=None, dry=False, client=None, now=None, id
         if wait:time.sleep(wait)
         job['last_attempt']=time.time();state['last_request_at']=time.time();write(state_path,state)
         request={'handle':a['handle'],'query':f"from:{a['handle']} {KEYWORDS} since:{job['start']} until:{job['end']} -filter:retweets",'cursor':job['cursor']}
+        result=None
         try:
             if provider=='x_api':
                 end_stamp=datetime.fromisoformat(job['end']).replace(tzinfo=timezone.utc).timestamp()
@@ -250,7 +254,9 @@ def collect(root, mode='daily', since=None, dry=False, client=None, now=None, id
             if cursor:jobs.append(job)
         except Exception as exc:
             code=str(exc) if isinstance(exc,ValueError) and str(exc) in ERRORS|{'repeated_cursor','account_identity_changed','malformed_response'} else 'request_failed'
-            job.update(status='pending',error=code);report['errors'].append({'account_id':a['id'],'error':code})
+            diagnostic=result.get('diagnostic') if isinstance(result,dict) else None
+            detail={'diagnostic':diagnostic} if isinstance(diagnostic,str) and diagnostic in DIAGNOSTICS else {}
+            job.update(status='pending',error=code);report['errors'].append({'account_id':a['id'],'error':code,**detail})
             if code in ('rate_limited','authentication_failed','missing_auth_token','missing_bearer_token','budget_exceeded','credits_exhausted'):
                 report['error']=code;write(state_path,state);break
             # A failed account waits until the next invocation instead of starving other accounts.

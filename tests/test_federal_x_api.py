@@ -99,8 +99,23 @@ class OfficialAPITests(unittest.TestCase):
             return httpx.Response(200,json={'data':USER} if '/users/' in req.url.path else
                                   {'data':[POST],'meta':{'result_count':1},'errors':[{'detail':'secret-provider-body'}]})
         result=self.client(send)(REQUEST)
-        self.assertEqual(result,{'error':'malformed_response'})
+        self.assertEqual(result,{'error':'malformed_response','diagnostic':'search_response_errors'})
         self.assertAlmostEqual(sum(r['cost'] for r in self.records()),0.015)
+
+    def test_author_failure_has_a_safe_diagnostic_and_keeps_response_private(self):
+        def send(req):
+            return httpx.Response(200,json={'data':USER} if '/users/' in req.url.path else
+                                  {'data':[POST|{'author_id':'8','text':'private response text'}],
+                                   'meta':{'result_count':1}})
+        result=self.client(send)(REQUEST)
+        self.assertEqual(result,{'error':'malformed_response','diagnostic':'post_identity_invalid'})
+
+    def test_missing_account_errors_have_a_safe_lookup_diagnostic(self):
+        result=self.client(lambda req:httpx.Response(200,json={
+            'errors':[{'detail':'private lookup details','value':'private value'}]}))(REQUEST)
+        self.assertEqual(result,{'error':'malformed_response','diagnostic':'lookup_response_errors'})
+        self.assertEqual(len(self.calls),1)
+        self.assertAlmostEqual(sum(r['cost'] for r in self.records()),0)
 
     def test_changed_numeric_identity_is_rejected_before_search(self):
         self.state['accounts']['official_a']={'handle':'OfficialA','user_id':'8'}

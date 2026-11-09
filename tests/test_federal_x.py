@@ -104,6 +104,16 @@ class XTests(unittest.TestCase):
             self.assertNotIn('secret',state+json.dumps(r))
             self.assertNotIn('last_success',state)
 
+    def test_error_report_keeps_only_allowlisted_diagnostic_codes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            result=self.x.collect(root,client=lambda req:{'error':'malformed_response',
+                'diagnostic':'post_identity_invalid'},now='2026-11-08')
+            self.assertEqual(result['errors'][0]['diagnostic'],'post_identity_invalid')
+            result=self.x.collect(root,client=lambda req:{'error':'malformed_response',
+                'diagnostic':'credential=private-provider-text'},now='2026-11-08')
+            self.assertNotIn('private-provider-text',json.dumps(result))
+
     def test_rate_limit_defers_later_searches_and_records_cooldown(self):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);self.fixture(root)

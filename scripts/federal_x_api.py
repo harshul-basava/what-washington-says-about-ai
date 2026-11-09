@@ -17,7 +17,9 @@ GAP=3.1  # Below 300 requests per 15 minutes, including account lookups.
 
 
 class APIError(Exception):
-    pass
+    def __init__(self,code,diagnostic=None):
+        super().__init__(code)
+        self.diagnostic=diagnostic
 
 
 class Client:
@@ -87,7 +89,9 @@ class Client:
         except (ValueError,TypeError):
             raise APIError('malformed_response') from None
         reconcile(count)
-        if data.get('errors') or count>maximum:raise APIError('malformed_response')
+        stage='search' if path=='tweets/search/all' else 'lookup'
+        if data.get('errors'):raise APIError('malformed_response',stage+'_response_errors')
+        if count>maximum:raise APIError('malformed_response','response_count_invalid')
         return data
 
     def owner(self,handle):
@@ -96,7 +100,7 @@ class Client:
         owner=self.request('users/by/username/'+handle,{'user.fields':'protected,withheld'},1,USER_COST).get('data')
         if (not isinstance(owner,dict) or not isinstance(owner.get('id'),str) or not re.fullmatch(r'\d+',owner['id'])
                 or not isinstance(owner.get('username'),str) or owner['username'].lower()!=handle.lower()):
-            raise APIError('malformed_response')
+            raise APIError('malformed_response','lookup_identity_invalid')
         if owner.get('protected') is not False or owner.get('withheld'):raise APIError('account_unavailable')
         pinned=[a['user_id'] for a in self.state.get('accounts',{}).values()
                 if a.get('handle','').lower()==handle.lower() and a.get('user_id')]
@@ -105,11 +109,13 @@ class Client:
         return self.accounts[handle.lower()]
 
     def __call__(self,request):
+        stage='lookup'
         try:
             handle=request['handle']
             if not isinstance(handle,str) or not re.fullmatch(r'[A-Za-z0-9_]{1,15}',handle):raise APIError('malformed_response')
             if self.state.get('retry_after',0)>time.time():raise APIError('rate_limited')
             owner=self.owner(handle)
+            stage='search'
             maximum=min(500,math.floor((self.available()+1e-9)/POST_COST))
             if maximum<10:raise APIError('budget_exceeded')
             params={'query':request['query'],'start_time':request['start_time'],'end_time':request['end_time'],
@@ -119,25 +125,26 @@ class Client:
             data=self.request('tweets/search/all',params,maximum,POST_COST)
             posts=data.get('data',[]);meta=data.get('meta',{})
             if not isinstance(meta,dict) or type(meta.get('result_count')) is not int or meta['result_count']!=len(posts):
-                raise APIError('malformed_response')
+                raise APIError('malformed_response','search_metadata_invalid')
             cursor=meta.get('next_token')
-            if cursor is not None and (not isinstance(cursor,str) or not 0<len(cursor)<=10000):raise APIError('malformed_response')
+            if cursor is not None and (not isinstance(cursor,str) or not 0<len(cursor)<=10000):raise APIError('malformed_response','search_cursor_invalid')
             normalized=[]
+            stage='post'
             for post in posts:
                 if (not isinstance(post,dict) or not isinstance(post.get('id'),str) or not re.fullmatch(r'\d+',post['id'])
-                        or post.get('author_id')!=owner['id']):raise APIError('malformed_response')
+                        or post.get('author_id')!=owner['id']):raise APIError('malformed_response','post_identity_invalid')
                 text=(post.get('note_post') or post.get('note_tweet') or {}).get('text') or post['text']
-                if not isinstance(text,str) or not text:raise APIError('malformed_response')
+                if not isinstance(text,str) or not text:raise APIError('malformed_response','post_text_invalid')
                 moment=datetime.fromisoformat(post['created_at'].replace('Z','+00:00'))
-                if moment.tzinfo is None:raise APIError('malformed_response')
+                if moment.tzinfo is None:raise APIError('malformed_response','post_date_invalid')
                 refs=post.get('referenced_posts',post.get('referenced_tweets',[]))
-                if not isinstance(refs,list) or not all(isinstance(r,dict) for r in refs):raise APIError('malformed_response')
+                if not isinstance(refs,list) or not all(isinstance(r,dict) for r in refs):raise APIError('malformed_response','post_references_invalid')
                 normalized.append({'id':post['id'],'text':text,'created_at':post['created_at'],'author_id':owner['id'],
                                    'author':owner['username'],'is_repost':any(r.get('type')=='retweeted' for r in refs),
                                    'is_reply':any(r.get('type')=='replied_to' for r in refs),'is_promoted':False,
                                    'restricted':bool(post.get('withheld'))})
             return {'account':owner,'posts':normalized,'cursor':cursor}
         except APIError as exc:
-            return {'error':str(exc)}
+            return {'error':str(exc),**({'diagnostic':exc.diagnostic} if exc.diagnostic else {})}
         except (KeyError,ValueError,TypeError,AttributeError):
-            return {'error':'malformed_response'}
+            return {'error':'malformed_response','diagnostic':stage+'_fields_invalid'}
