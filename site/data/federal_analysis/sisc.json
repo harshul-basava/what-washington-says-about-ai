@@ -1,14 +1,14 @@
 {
  "schema_version": 1,
  "id": "sisc",
- "revision": "7069276e182be8df03c493e52d91a33c961205fb2aedf4cb4dbdeae161ff417d",
+ "revision": "84c1234c57670bf35c31fba948056b9840b34b0e4f0f695b152573ba5df7985c",
  "profile": {
   "id": "sisc",
   "name": "Super Intelligence Security Center (SISC)",
   "party": null,
   "state": "",
   "chamber": "",
-  "status": "complete",
+  "status": "partial",
   "entity_type": "institution",
   "branch": "executive",
   "organization_id": "sisc",
@@ -32,8 +32,8 @@
    "source_url": "https://www.nsa.gov/SISC/",
    "reason": "current_government_institution"
   },
-  "n_statements": 18,
-  "n_labeled": 18,
+  "n_statements": 19,
+  "n_labeled": 19,
   "scores": {
    "ai_overall": 2.0,
    "agi_pilled": 3.0,
@@ -92,50 +92,13 @@
    }
   },
   "summary": {
-   "status": "complete",
-   "text": "The supplied statements say super intelligence brings opportunity but also a large, volatile attack surface that must be carefully addressed. They state that adversaries are using and testing tools against this attack surface to seek military and economic advantage over the United States. They describe NSA’s AISC releasing joint AI data-security guidance in May 2025 for organizations using or integrating AI systems. The center says it plans further AI security guidance and aims to reduce risk while supporting safe innovation.",
-   "sids": [
-    "s1",
-    "s9",
-    "s2",
-    "s3",
-    "s15",
-    "s5",
-    "s6"
-   ],
-   "sentences": [
-    {
-     "text": "The supplied statements say super intelligence brings opportunity but also a large, volatile attack surface that must be carefully addressed.",
-     "sids": [
-      "s1"
-     ]
-    },
-    {
-     "text": "They state that adversaries are using and testing tools against this attack surface to seek military and economic advantage over the United States.",
-     "sids": [
-      "s9"
-     ]
-    },
-    {
-     "text": "They describe NSA’s AISC releasing joint AI data-security guidance in May 2025 for organizations using or integrating AI systems.",
-     "sids": [
-      "s2",
-      "s3",
-      "s15"
-     ]
-    },
-    {
-     "text": "The center says it plans further AI security guidance and aims to reduce risk while supporting safe innovation.",
-     "sids": [
-      "s5",
-      "s6"
-     ]
-    }
-   ]
+   "status": "pending",
+   "text": "",
+   "sids": []
   },
   "topics": {
    "AGI/transformative": 2.667,
-   "national security": 8.667,
+   "national security": 9.667,
    "regulation": 6.167,
    "China/competition": 0.5
   },
@@ -200,12 +163,12 @@
     "testing_mandate": {
      "stance": 0,
      "sids": [],
-     "why": "The supplied statements describe voluntary security guidance and planned guidance topics, not a mandatory testing requirement."
+     "why": "No stance in the supplied evidence."
     },
     "transparency": {
      "stance": 0,
      "sids": [],
-     "why": "The supplied statements discuss incident response and reporting considerations in guidance, not a mandatory reporting duty."
+     "why": "No stance in the supplied evidence."
     },
     "whistleblowers": {
      "stance": 0,
@@ -240,7 +203,7 @@
     "intl_agreement": {
      "stance": 0,
      "sids": [],
-     "why": "The supplied statements mention working with global partners on guidance, but do not show support for a treaty or formal AI safety agreement."
+     "why": "No stance in the supplied evidence."
     },
     "pause": {
      "stance": 0,
@@ -255,7 +218,7 @@
     "superintelligence": {
      "stance": 0,
      "sids": [],
-     "why": "The supplied statements discuss securing superintelligence and promoting its secure development, not banning it."
+     "why": "No stance in the supplied evidence."
     }
    },
    "disputed": []
@@ -1726,6 +1689,66 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-09T02:37:43.335668+00:00",
       "generation_id": "gen-1794191856-v6er8yyowCRknKMQgSAS"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s19",
+   "date": null,
+   "url": "https://www.nsa.gov/AISC/",
+   "text": "The SISC will be a key part of NSA's cybersecurity mission, with the goal to defend the Nation's SI through Intel-Driven collaboration with industry, academia, the IC, and other government partners.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "institutional",
+    "speaker": "Super Intelligence Security Center (SISC)",
+    "organization_id": "sisc",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "national security"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T21:50:46.103662+00:00",
+      "generation_id": "gen-1794261042-HGDc4SvPmmzoWDX8o8ZP"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T21:52:10.808434+00:00",
+      "generation_id": "gen-1794261129-oX8ZsnULJYSjXYh7A0zq"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T21:54:17.188214+00:00",
+      "generation_id": "gen-1794261255-fB45sAlBKwrLQGbadvvP"
      }
     }
    }
