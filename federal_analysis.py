@@ -15,7 +15,7 @@ from scripts.phase3_label import DIMS, score_member, recent_cutoff
 
 ROOT = Path(__file__).resolve().parent
 DIMENSIONS = [{'id': k, 'title': v} for k,v in zip(DIMS,
-    ['AI overall', 'Transformative AI / AGI', 'Catastrophic AI risk', 'China competition', 'AI regulation'])]
+    ['AI overall', 'AGI-pilled', 'AI x-risk', 'China race', 'Regulation'])]
 TOPICS = ['jobs/economy','China/competition','national security','kids/online safety','deepfakes/elections',
           'copyright','energy/data centers','regulation','AGI/transformative','x-risk/loss of control','misuse (bio/cyber)','other']
 REG_TEXT = (ROOT/'config/reg_focus.md').read_text()

@@ -56,3 +56,29 @@ test('an empty dot chart does not present a zero-percent policy result',()=>{
   assert.match(html,/No profiles/);
   assert.doesNotMatch(html,/% score/);
 });
+
+test('gray profile counts separate a missing stance from sparse evidence and pending reviews',()=>{
+  const rows=[person('scored'),
+    person('silent',{scores:{regulation:null},score_details:{regulation:{reason_a:'no_statements',reason_b:'no_statements'}}}),
+    person('sparse',{n_statements:2,n_labeled:2,scores:{regulation:null}}),
+    person('none',{n_statements:0,n_labeled:0,status:'no_evidence',scores:{regulation:null}}),
+    person('pending',{n_labeled:1,status:'partial',scores:{regulation:null}})];
+  const result=charts.scoreAvailability(rows,'regulation');
+  assert.equal(result.total,5);assert.equal(result.scored,1);
+  assert.deepEqual(Object.fromEntries(result.groups.map(g=>[g.id,g.members.map(m=>m.id)])),{
+    no_stance:['silent'],insufficient_evidence:['sparse'],no_evidence:['none'],pending:['pending']
+  });
+  const html=charts.renderAvailability(rows,{id:'regulation',title:'Regulation'});
+  assert.match(html,/1 of 5 profiles have a score/);
+  assert.match(html,/No qualifying stance/);
+  assert.match(html,/Fewer than three verified excerpts/);
+  assert.match(html,/No verified excerpts/);
+  assert.match(html,/Assessment pending/);
+  assert.match(html,/data-profile="silent"/);
+});
+
+test('a silence zero remains scored under the congressional intensity rules',()=>{
+  const m=person('silent',{scores:{x_risk:0},score_details:{x_risk:{reason_a:'silent',reason_b:'silent'}}});
+  const result=charts.scoreAvailability([m],'x_risk');
+  assert.equal(result.scored,1);assert.deepEqual(result.groups,[]);
+});

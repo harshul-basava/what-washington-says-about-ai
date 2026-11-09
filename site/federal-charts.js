@@ -13,10 +13,10 @@
   const topicColor = i => `var(--topic-${i % 12})`;
   const profileLink = (m,content,extra='') => `<a href="?scope=${m.entity_type==='institution'?'institutions':'officials'}&amp;profile=${encodeURIComponent(m.id)}#fa-profiles" data-profile="${esc(m.id)}" data-chart-profile ${extra}>${content}</a>`;
   const PRESETS = [
-    {id:'agi_low_risk',title:'Expect AGI, low risk',high:'agi_pilled',low:'x_risk'},
-    {id:'risk_low_rules',title:'High risk, low regulation',high:'x_risk',low:'regulation'},
-    {id:'china_risk',title:'High China competition, high risk',high:'china_race',also:'x_risk'},
-    {id:'rules_low_risk',title:'High regulation, low risk',high:'regulation',low:'x_risk'},
+    {id:'agi_low_risk',title:'Expect AGI, low x-risk',high:'agi_pilled',low:'x_risk'},
+    {id:'risk_low_rules',title:'High x-risk, low regulation',high:'x_risk',low:'regulation'},
+    {id:'china_risk',title:'High China race, high x-risk',high:'china_race',also:'x_risk'},
+    {id:'rules_low_risk',title:'High regulation, low x-risk',high:'regulation',low:'x_risk'},
     {id:'benefits_rules',title:'High AI overall, high regulation',high:'ai_overall',also:'regulation'}
   ];
   function validateCharts(payload,data) {
@@ -87,6 +87,33 @@
   }
   function scoreLegend() {
     return `<div class="fc-legend">${[0,1,2,3,4].map(n=>`<span><i style="background:${color(n)}"></i>Score ${n}</span>`).join('')}<span><i style="background:var(--nodata)"></i>Unscored</span></div>`;
+  }
+  function scoreAvailability(members,dimension) {
+    const groups=[
+      {id:'no_stance',title:'No qualifying stance',description:'The verified excerpts do not establish a stance on this question.'},
+      {id:'insufficient_evidence',title:'Fewer than three verified excerpts',description:'The Congress rubric requires at least three verified excerpts before a profile can receive a score.'},
+      {id:'no_evidence',title:'No verified excerpts',description:'The current corpus has no verified excerpts for these profiles.'},
+      {id:'pending',title:'Assessment pending',description:'Some model assessments still need to finish.'},
+      {id:'unavailable',title:'Score unavailable',description:'The export does not provide a score or a specific reason.'}
+    ].map(g=>({...g,members:[]}));
+    let scored=0;
+    for (const m of members) {
+      const state=view().scoreState(m,dimension),detail=m.score_details?.[dimension] || {};
+      if (state.kind==='scored') {scored++;continue;}
+      const reason=state.kind==='no_evidence' || state.kind==='pending' ? state.kind :
+        m.n_statements<3 || [detail.reason_a,detail.reason_b].includes('insufficient_evidence') ? 'insufficient_evidence' :
+        [detail.reason_a,detail.reason_b].every(r=>r==='no_statements') ? 'no_stance' : 'unavailable';
+      groups.find(g=>g.id===reason).members.push(m);
+    }
+    return {total:members.length,scored,groups:groups.filter(g=>g.members.length)};
+  }
+  function renderAvailability(members,dimension) {
+    if (!members.length) return '';
+    const result=scoreAvailability(members,dimension.id);
+    return `<div class="fc-availability"><p><strong>${result.scored} of ${result.total} profiles have a score for ${esc(dimension.title)}.</strong></p>
+      ${result.groups.length ? `<p class="fa-note">Gray marks mean no score for this question. They do not indicate an unverified identity. Expand a reason to see the profiles.</p>
+      ${result.groups.map(g=>`<details><summary>${g.members.length} · ${g.title}</summary><p class="fa-note">${g.description}</p><div class="fc-profile-chips">${g.members.map(m=>profileLink(m,esc(m.name))).join('')}</div></details>`).join('')}` : ''}
+      <p class="fa-note">AI overall and Regulation need a qualifying stance. For AGI-pilled, AI x-risk, and China race, the Congress rubric scores silence as 0 once a profile has three excerpts.</p></div>`;
   }
   function renderDots(members,dimension) {
     if (!members.length) return '<p class="fa-empty">No profiles match these filters.</p>';
@@ -174,6 +201,6 @@
     return rows.length?`<div class="fa-table-scroll"><table><thead><tr><th>Date</th><th>Profile</th><th>Score change</th><th>Cause</th></tr></thead><tbody>${rows.slice(0,30).map(c=>`<tr><td>${esc(c.date)}</td><td>${profileLink(c.member,esc(c.member.name))}</td><td>${fmt(c.old)} → ${fmt(c.new)}</td><td>${esc(c.cause)}</td></tr>`).join('')}</tbody></table></div>`:'<p class="fa-empty">No observed score changes in the past 60 days. Daily snapshots will populate this view.</p>';
   }
   const api={validateCharts,agencyDistribution,policyDistribution,cohortHistory,topicTimeline,comparisonPoints,presetMembers,
-    scoreLegend,renderDots,renderAgencies,renderTimeline,renderPolicies,renderPolicySelection,renderScatter,renderTopicShare,renderVoices,renderMembers,renderRecent,PRESETS};
+    scoreLegend,scoreAvailability,renderAvailability,renderDots,renderAgencies,renderTimeline,renderPolicies,renderPolicySelection,renderScatter,renderTopicShare,renderVoices,renderMembers,renderRecent,PRESETS};
   if(typeof module!=='undefined' && module.exports) module.exports=api;else global.FederalCharts=api;
 })(typeof window!=='undefined'?window:globalThis);

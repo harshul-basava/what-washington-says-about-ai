@@ -17,6 +17,24 @@ Institution excerpts do not enter this comparison. Counts measure available evid
 
 Federal evidence depth remains below Congress. Federal research has no bulk govinfo collection channel. Missing evidence does not establish a neutral or opposing stance.
 
+## Why some profiles have no score
+
+The November 9 export has no pending statement assessments. All 3,499 stored excerpts have verified evidence and completed labels. Gray chart marks mean no score for the selected question; they do not indicate an unverified identity.
+
+The same congressional formula applies to all 97 federal profiles. It requires three excerpts before any score. AI overall and Regulation also require a qualifying stance on that question. Silence scores zero for AGI-pilled, AI x-risk, and China race once a profile meets the three-excerpt minimum.
+
+| Question | Scored | No qualifying stance | One or two excerpts | No excerpts | Pending |
+|---|---:|---:|---:|---:|---:|
+| AI overall | 45 | 33 | 9 | 10 | 0 |
+| AGI-pilled | 78 | 0 | 9 | 10 | 0 |
+| AI x-risk | 78 | 0 | 9 | 10 | 0 |
+| China race | 78 | 0 | 9 | 10 | 0 |
+| Regulation | 50 | 28 | 9 | 10 | 0 |
+
+For example, BIS has 54 verified, assessed excerpts and scores for China race and Regulation. Its excerpts do not establish an AI overall stance under the general-benefits rubric. A chip export position alone does not establish that broader stance.
+
+Among officials, eight have no excerpts and six have only one or two. Among institutions, two have no excerpts and three have only one or two. Additional relevant evidence can fill these gaps; another assessment of the same corpus does not guarantee a score. The website now lists the reason and affected profiles below each score chart.
+
 ## Coverage by daily group
 
 | Group | People | Institutions | Median excerpts per person | People without excerpts |
