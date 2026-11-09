@@ -112,7 +112,9 @@ def run(root,max_cost=5,workers=4,ids=None,daily=False,dry=False,stages=None):
         last_error=None
         for attempt in range(2):
             try:
-                result=budget.call(model,prompt,max_tokens,('daily_' if daily else '')+'federal_analysis_'+stage,**options)
+                # A valid provider response can exhaust its reasoning allowance before emitting JSON.
+                # Retry with a separately reserved larger output allowance; never treat it as silence.
+                result=budget.call(model,prompt,max_tokens*(attempt+1),('daily_' if daily else '')+'federal_analysis_'+stage,**options)
                 content=result['choices'][0]['message']['content'];sids={s['sid'] for s in ss}
                 if stage.startswith('ds_') or stage in ('sol','astra'):value=a.parse_labels(content,sids)
                 elif stage.startswith('reg_'):value=a.parse_regulation(content,sids,areas or a.AREA_IDS)

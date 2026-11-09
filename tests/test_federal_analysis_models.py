@@ -76,9 +76,13 @@ class ModelTests(unittest.TestCase):
             models=a.configuration(root)['settings']['models']
             metadata={'data':[{'id':m,'pricing':{'prompt':'0','completion':'0'},'supported_parameters':[]} for m in models.values()]}
             response=SimpleNamespace(raise_for_status=lambda:None,json=lambda:metadata)
+            attempt_tokens=[]
             def call(_budget,model,messages,max_tokens,tag,**options):
                 import json
                 stage=tag.removeprefix('federal_analysis_')
+                if stage=='ds_0':
+                    attempt_tokens.append(max_tokens)
+                    if len(attempt_tokens)==1:return {'choices':[{'message':{'content':None}}]}
                 if stage.startswith('ds_') or stage in ('sol','astra'):
                     value={'statements':{s['sid']:fixture.assessment({'regulation':2}) for s in ss}}
                 elif stage.startswith('reg_'):value={'stances':{k:{'stance':0,'sids':[],'why':'No stance.'} for k in a.AREA_IDS}}
@@ -87,6 +91,7 @@ class ModelTests(unittest.TestCase):
             with patch.object(llm.httpx,'get',return_value=response),patch.object(self.m.Budget,'call',call):
                 result=self.m.run(root,max_cost=1,workers=1)
             self.assertEqual(result['status'],'ok');self.assertEqual(result['pending_labels'],0)
+            self.assertEqual(attempt_tokens,[12000,24000])
             exported=a.read(root/'site/data/federal_analysis.json')
             member=next(m for m in exported['members'] if m['id']=='executive_a')
             self.assertEqual(member['scores']['regulation'],2);self.assertEqual(member['summary']['sids'],['s1'])
