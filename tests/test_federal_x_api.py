@@ -61,7 +61,7 @@ class OfficialAPITests(unittest.TestCase):
         req=self.calls[-1]
         self.assertEqual(req.url.host,'api.x.com')
         self.assertEqual(req.url.path,'/2/tweets/search/all')
-        self.assertEqual(req.url.params['max_results'],'500')
+        self.assertEqual(req.url.params['max_results'],'100')
         self.assertEqual(req.url.params['start_time'],'2023-01-01T00:00:00Z')
         self.assertEqual(req.url.params['end_time'],'2026-11-02T00:00:00Z')
         self.assertNotIn('expansions',req.url.params)

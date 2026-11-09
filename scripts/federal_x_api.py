@@ -124,7 +124,8 @@ class Client:
             if self.state.get('retry_after',0)>time.time():raise APIError('rate_limited')
             owner=self.owner(handle)
             stage='search'
-            maximum=min(500,math.floor((self.available()+1e-9)/POST_COST))
+            # Keep archive payloads small when X cannot hydrate fields on large pages.
+            maximum=min(100,math.floor((self.available()+1e-9)/POST_COST))
             if maximum<10:raise APIError('budget_exceeded')
             params={'query':request['query'],'start_time':request['start_time'],'end_time':request['end_time'],
                     'max_results':maximum,'sort_order':'recency',
