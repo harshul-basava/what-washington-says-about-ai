@@ -19,16 +19,27 @@
     },
     "attribution_span_sha256": "d2f1c192ce596a4b2e4235bc822dec6d5b3458943557cc707791560a5aa32038",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement mentions chip production and meetings but says nothing about export controls.",
+      "facets": [],
+      "confidence": 0.95,
+      "confidence_reason": "No export-control position is expressed.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-09T00:55:47.884754+00:00",
+      "generation_id": "gen-1794185740-aBTrOYfQftWVN3soitAQ"
+     }
+    },
+    "confidence": 0.95,
+    "final_judge": "deepseek",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    }
   ],
   "china_race_dynamics": [
@@ -49,16 +60,37 @@
     },
     "attribution_span_sha256": "d2f1c192ce596a4b2e4235bc822dec6d5b3458943557cc707791560a5aa32038",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
+    "stance": "review_required",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement discusses Chinese cyberwar and adversaries but does not endorse making competition with China a US AI policy priority.",
+      "facets": [],
+      "confidence": 0.78,
+      "confidence_reason": "China is mentioned, but the race-priority stance is not explicit.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-09T00:55:47.884790+00:00",
+      "generation_id": "gen-1794185740-aBTrOYfQftWVN3soitAQ"
+     },
+     "astra": {
+      "stance": "neutral",
+      "reason": "The fragment discusses Chinese AI-enabled cyber threats without endorsing competition with China as a US AI policy priority.",
+      "facets": [],
+      "confidence": 0.76,
+      "confidence_reason": "China-related AI threats are explicit, but the truncated statement contains no clear policy-priority endorsement.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-09T00:58:21.867756+00:00",
+      "generation_id": "gen-1794185887-eWm8K1wFQdYEm3N99WYw"
+     }
+    },
+    "confidence": 0.76,
     "final_judge": null,
     "facets_final": [],
     "facet_disagreement": false,
-    "model_disagreement": false,
-    "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "model_disagreement": true,
+    "review_required": true,
+    "review_status": "human_review_required",
+    "review_reason": "DeepSeek confidence 0.78 is below 0.8. Astra also reports confidence below the threshold; human review is required."
    },
    {
     "sid": "s11",
