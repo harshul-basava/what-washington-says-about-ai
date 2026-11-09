@@ -146,6 +146,30 @@ class FederalAnalysisTests(unittest.TestCase):
             detail=a.read(root/'site/data/federal_analysis/commerce.json')
             self.assertEqual([h['date'] for h in detail['history'] if h['kind']=='observed'],['2026-11-09'])
 
+    def test_chart_export_matches_eligible_profiles_and_revision(self):
+        a=self.a
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            data=a.build(root,asof='2026-11-09')
+            charts=a.read(root/'site/data/federal_charts.json')
+            self.assertIsNotNone(charts)
+            self.assertEqual(charts['revision'],data['revision'])
+            self.assertEqual(set(charts['profiles']),{m['id'] for m in data['members']})
+            detail=a.read(root/'site/data/federal_analysis/commerce.json')
+            self.assertEqual(charts['profiles']['commerce']['history'],detail['history'])
+
+    def test_chart_topics_use_completed_labels_and_end_of_partial_dates(self):
+        a=self.a
+        statements=[{'sid':'day','date':'2024-02-01'}, {'sid':'month','date':'2024-02'},
+                    {'sid':'year','date':'2024'}, {'sid':'unknown','date':None},
+                    {'sid':'pending','date':'2024-02-01'}]
+        resolved={s['sid']:{'status':'complete','topics':['regulation','copyright']} for s in statements}
+        resolved['pending']={'status':'pending','topics':['regulation']}
+        rows=a.chart_topics(statements,resolved)
+        self.assertEqual([(r['date'],r['precision']) for r in rows],
+                         [('2024-02-01','day'),('2024-02-29','month'),('2024-12-31','year')])
+        self.assertEqual(rows[0]['topics'],['regulation','copyright'])
+
     def test_operational_settings_do_not_invalidate_paid_assessments(self):
         a=self.a
         config=a.configuration(ROOT);changed=copy.deepcopy(config)

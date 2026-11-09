@@ -47,6 +47,12 @@ test('silence zeros are explicit and incomplete evidence cannot become silence',
   assert.equal(view.scoreState(member({scores:{x_risk:0},score_details:{}}), 'x_risk').label,'0');
 });
 
+test('score colors use the same nearest-whole bands as Congress',()=>{
+  const result=view.scoreDistribution([member({scores:{ai_overall:2.2}}),member({scores:{ai_overall:2.5}})],'ai_overall');
+  assert.equal(result.bins[2].count,1);
+  assert.equal(result.bins[3].count,1);
+});
+
 test('detail data must match the eligible profile, revision, and exact source count', () => {
   const m=member({n_statements:1});
   const data={schema_version:1,revision:'r1',members:[m]};

@@ -219,6 +219,17 @@ def month_ends(start,asof):
         current=date(year,month,calendar.monthrange(year,month)[1])
     return result
 
+def chart_topics(statements,resolved):
+    """Only completed, dated assessments enter the rolling topic charts."""
+    rows=[]
+    for statement in statements:
+        assessment=resolved.get(statement['sid'],{})
+        end=date_end(statement.get('date'))
+        if end and assessment.get('status')=='complete':
+            precision={4:'year',7:'month',10:'day'}[len(statement['date'])]
+            rows.append({'date':end,'precision':precision,'topics':assessment['topics']})
+    return rows
+
 def build(root,asof=None,record=False):
     root=Path(root);asof=asof or today();config=configuration(root);subjects,evidence=inputs(root);labels,profiles=state(root)
     revision=digest([config,[(subject_context(s),evidence[s['id']],labels.get('profiles',{}).get(s['id']),profiles.get('profiles',{}).get(s['id'])) for s in subjects],asof])
@@ -227,7 +238,7 @@ def build(root,asof=None,record=False):
         if path.stem not in ids:path.unlink()
     previous=read(root/'data/federal_analysis_scores.json',{})
     changes=read(root/'data/federal_analysis_changes.json',[])
-    members=[];snapshots={pid:row for pid,row in previous.items() if pid in ids}
+    members=[];chart_profiles={};snapshots={pid:row for pid,row in previous.items() if pid in ids}
     observation_path=root/f'data/federal_analysis_snapshots/{asof}.json'
     observations=read(observation_path,{})
     for subject in subjects:
@@ -280,13 +291,17 @@ def build(root,asof=None,record=False):
                 'analysis':{**resolved[e['sid']],'models':used_models,
                     'assessments':{stage:{**r['value'],**{k:r.get(k) for k in ('model','assessed_at','generation_id')}}
                                    for stage,r in assessments.items()}}})
+        history=sorted(history,key=lambda h:(h['date'],h['kind']))
+        profile_changes=[c for c in changes if c['id']==pid]
+        chart_profiles[pid]={'history':history,'topics':chart_topics(ss,resolved),'changes':profile_changes}
         write(output/f'{pid}.json',{'schema_version':1,'id':pid,'revision':revision,'profile':member,'statements':statement_records,
-            'history':sorted(history,key=lambda h:(h['date'],h['kind'])),'changes':[c for c in changes if c['id']==pid]})
+            'history':history,'changes':profile_changes})
     coverage=plan(root)
     result={'schema_version':1,'built_on':asof,'revision':revision,'dimensions':DIMENSIONS,'regulation_areas':REGULATION_AREAS,'topics':TOPICS,
         'methodology':{'models':config['settings']['models'],'text':"Five scores use the congressional rubric and fixed formula. Three DeepSeek passes trigger independent Sol/Astra review. Regulation uses DeepSeek and Sol with Astra for direction disagreements. Histories reconstruct dated evidence for today's eligible roster; they do not track historical office membership. A silence zero means no discussion in this corpus, not rejection."},
         'coverage':coverage,'organizations':policy_subjects.load_registry(root)['organizations'],'members':members}
     write(root/'site/data/federal_analysis.json',result)
+    write(root/'site/data/federal_charts.json',{'schema_version':1,'revision':revision,'profiles':chart_profiles})
     if record:
         write(root/'data/federal_analysis_scores.json',snapshots);write(root/'data/federal_analysis_changes.json',changes)
         # Each profile's first complete daily observation is immutable. Other profiles can finish later.

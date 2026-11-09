@@ -1,0 +1,58 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const charts = require('../site/federal-charts.js');
+const person = (id, overrides={}) => ({id,name:id,entity_type:'person',organization_id:'child',
+  organization_ids:['child','task'],organization_name:'Child',n_statements:4,n_labeled:4,status:'complete',
+  scores:{x_risk:3,regulation:2},regulation:{status:'complete',areas:{}},...overrides});
+const organizations=[{id:'parent',name:'Department'},{id:'child',name:'Child',parent_id:'parent'},{id:'task',name:'Task force'}];
+
+test('agency comparison counts each primary affiliation once and uses all profiles',()=>{
+  const rows=charts.agencyDistribution([person('a'),person('b',{scores:{x_risk:2.2}}),
+    person('c',{n_labeled:0,scores:{x_risk:4}})],'x_risk',organizations);
+  assert.equal(rows.length,1);
+  assert.equal(rows[0].id,'parent');
+  assert.equal(rows[0].total,3);
+  assert.deepEqual(rows[0].bins,[0,0,1,1,0]);
+  assert.equal(rows[0].missing,1);
+});
+test('policy bars preserve explicit and implied stances with unknowns outside stance totals',()=>{
+  const m=(id,stance,status='complete')=>person(id,{regulation:{status,areas:{test:{stance}}}});
+  const row=charts.policyDistribution([m('a',2),m('b',-1),m('c',0),m('d',2,'pending')],[{id:'test',title:'Tests'}])[0];
+  assert.deepEqual(row.counts,{'-2':0,'-1':1,'0':1,'1':0,'2':1});
+  assert.equal(row.total,4);assert.equal(row.unknown,1);
+});
+test('timeline keeps current cohort denominator and separates observed dates from reconstructed dates',()=>{
+  const data={a:{history:[{date:'2025-01-31',kind:'reconstructed',status:'complete',scores:{x_risk:3}},
+    {date:'2025-02-01',kind:'observed',status:'complete',scores:{x_risk:4}}]},
+    b:{history:[{date:'2025-01-31',kind:'reconstructed',status:'pending',scores:{x_risk:4}}]}};
+  const result=charts.cohortHistory([person('a'),person('b')],data,'x_risk','reconstructed');
+  assert.deepEqual(result,[{date:'2025-01-31',high:1,scored:1,total:2,percent:50}]);
+  assert.equal(charts.cohortHistory([person('b')],data,'x_risk','reconstructed')[0].percent,0);
+  assert.equal(charts.cohortHistory([person('a')],data,'x_risk','observed').length,1);
+});
+test('rolling topic shares split each statement and count the exact 30-day window',()=>{
+  const profiles={a:{topics:[{date:'2025-01-01',topics:['safety']},{date:'2025-01-02',topics:['safety','jobs']},
+    {date:'2025-01-31',topics:['jobs']}]},outside:{topics:[{date:'2025-01-31',topics:['safety']}]}};
+  const result=charts.topicTimeline([person('a')],profiles,['safety','jobs'],'2025-01-31','2025-01-31');
+  assert.equal(result.length,1);assert.equal(result[0].total,2);
+  assert.deepEqual(result[0].shares,{safety:25,jobs:75});
+  assert.equal(charts.topicTimeline([],profiles,['safety'],'2025-01-31','2025-01-31')[0].shares.safety,null);
+});
+test('comparison scatter and presets do not convert missing scores to zero',()=>{
+  const rows=[person('a',{scores:{x_risk:3,regulation:1}}),person('b',{scores:{x_risk:3,regulation:null}})];
+  assert.deepEqual(charts.comparisonPoints(rows,'x_risk','regulation').map(m=>m.id),['a']);
+  assert.deepEqual(charts.presetMembers(rows,'risk_low_rules').map(m=>m.id),['a']);
+});
+test('chart payload must match the index revision and eligible IDs',()=>{
+  const data={revision:'new',members:[person('a')]};
+  const payload={schema_version:1,revision:'new',profiles:{a:{history:[],topics:[],changes:[]}}};
+  assert.equal(charts.validateCharts(payload,data),payload);
+  assert.throws(()=>charts.validateCharts({...payload,revision:'old'},data),/stale/i);
+  assert.throws(()=>charts.validateCharts({...payload,profiles:{...payload.profiles,excluded:{}}},data),/stale/i);
+});
+
+test('an empty dot chart does not present a zero-percent policy result',()=>{
+  const html=charts.renderDots([],'x_risk');
+  assert.match(html,/No profiles/);
+  assert.doesNotMatch(html,/% score/);
+});
