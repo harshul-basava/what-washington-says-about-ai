@@ -46,7 +46,8 @@ def coverage(root, subjects, audit):
         until=(datetime.now(timezone.utc).date()+timedelta(days=1)).isoformat()
         jobs=[j for j in x_state['jobs'].values() if current_job(j,account_fingerprints,x_config,until)]
         profiles[subject['id']].update(
-            x_accounts=len(accounts),x_statements=sum(s.get('origin')=='federal_x' for s in statements),
+            x_accounts=len({a['handle'].lower() for a in accounts}),x_account_intervals=len(accounts),
+            x_statements=sum(s.get('origin')=='federal_x' for s in statements),
             x_windows_searched=sum(j['status']=='searched' for j in jobs),
             x_status=('unmapped' if not accounts else 'unavailable' if x_status['status']=='unavailable' else
                       'partial' if any(j['status']!='searched' for j in jobs) else 'searched' if jobs else 'not_started'))
@@ -65,6 +66,7 @@ def coverage(root, subjects, audit):
         'people_completed': sum(p['completed_passes'] >= 8 for p in people),
         'congress_people': len(cc), 'congress_median_statements': statistics.median(cc) if cc else 0,
         'congress_statements': sum(cc),
-        'x_accounts':len(x_accounts), 'x_mapped_profiles':len({a['subject_id'] for a in x_accounts}),
+        'x_accounts':len({a['handle'].lower() for a in x_accounts}), 'x_account_intervals':len(x_accounts),
+        'x_mapped_profiles':len({a['subject_id'] for a in x_accounts}),
         'x_statements':sum(p['x_statements'] for p in profiles.values()),
     }}

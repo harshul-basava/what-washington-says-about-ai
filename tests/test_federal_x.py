@@ -41,6 +41,26 @@ class XTests(unittest.TestCase):
         self.assertEqual(self.x.windows('2024-01-20','2024-03-02'),[
             ('2024-01-20','2024-02-01'),('2024-02-01','2024-03-01'),('2024-03-01','2024-03-02')])
 
+    def test_two_ownership_intervals_count_as_one_account_but_keep_both_searches(self):
+        import federal_coverage
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            conf=copy.deepcopy(CONFIG)
+            conf.update(historical_window='account',historical_until='2026-11-08',accounts=[
+                ACCOUNT|{'valid_until':'2025-01-20'},
+                ACCOUNT|{'id':'official_a_later','handle':'officiala','valid_from':'2025-01-20'},
+            ])
+            write_json(root/'config/federal_x.json',conf)
+            result=self.x.collect(root,mode='historical',dry=True,now='2026-11-08')
+            self.assertEqual(result['accounts'],1)
+            self.assertEqual(result['account_intervals'],2)
+            self.assertEqual(result['pending_windows'],2)
+            report=federal_coverage.coverage(root,policy_subjects.load_subjects(root),{})
+            self.assertEqual(report['summary']['x_accounts'],1)
+            self.assertEqual(report['summary']['x_account_intervals'],2)
+            self.assertEqual(report['profiles'][PERSON['id']]['x_accounts'],1)
+            self.assertEqual(report['profiles'][PERSON['id']]['x_account_intervals'],2)
+
     def test_author_date_and_repost_checks_precede_attribution(self):
         s=self.x.statement(POST,ACCOUNT,PERSON,'7','2026-01-01','2026-11-09','2026-11-08')
         self.assertEqual(s['attribution']['kind'],'personal')

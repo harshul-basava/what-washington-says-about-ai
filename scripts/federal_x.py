@@ -145,7 +145,8 @@ def collect(root, mode='daily', since=None, dry=False, client=None, now=None, id
     accounts=[a for a in config['accounts'] if not ids or a['subject_id'] in ids]
     if ids and set(ids)-set(subjects):raise ValueError('Unknown federal profile')
     mapped={a['subject_id'] for a in config['accounts']}
-    report={'date':now,'provider':provider,'mode':mode,'status':'dry_run' if dry else 'ok','accounts':len(accounts),
+    report={'date':now,'provider':provider,'mode':mode,'status':'dry_run' if dry else 'ok',
+        'accounts':len({a['handle'].lower() for a in accounts}),'account_intervals':len(accounts),
         'mapped_profiles':len(mapped),'unmapped_profiles':len(subjects)-len(mapped),'pages':0,'added':{},'errors':[],
         'note':'Search results are not a complete X archive. Unmapped profiles need sourced account mappings.'}
     if not config.get('enabled'):return report|{'status':'disabled'}

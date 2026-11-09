@@ -44,7 +44,7 @@ The follow-up completed the five remaining historical intervals and all daily wi
 
 The official X API then completed all 23 configured historical intervals across 47 successful pages. Four bounded batches added seven excerpts for five profiles, at an estimated X cost of $6.465. Historical intervals end on November 8, 2026, exclusive, or an earlier account ownership boundary. A separate daily pass completed all 18 active account windows across 22 pages, added no excerpts, and cost an estimated $0.21. No official historical or daily windows remain pending. The [aggregate audit](../data/federal_x_official_completion.json) links every run. The official collector uses separate checkpoints and retains existing evidence with its emusks provenance. The merged original repository now runs daily federal collection with its existing bearer secret; the fork's duplicate daily workflow is paused.
 
-Another 165 profiles need sourced X account mappings. The [X coverage report](federal-x-coverage.md) lists mappings, ownership dates, and gaps. Bulk govinfo collection remains absent.
+A follow-up checked all 165 previously unmapped profiles and verified accounts for 71 of them. The registry now has 105 sourced handles across 106 ownership intervals for 92 profiles. Another 94 profiles remain unresolved. The [account research audit](../data/federal_x_account_research.json) records every outcome. Expanded collection progress follows the provider reports; the 23-interval completion above describes the initial pass. The [X coverage report](federal-x-coverage.md) lists mappings, ownership dates, and gaps. Bulk govinfo collection remains absent.
 
 ## Remaining evidence gaps
 
@@ -70,4 +70,4 @@ All 186 profiles have named queries in 15 source groups. The configuration produ
 
 The latest federal web report retains 0 queued pages. The current policy corpus has 548 candidate excerpts and 664 statement-policy pairs. Model assessment has 0 pending pairs; 10 pairs require human review and remain outside accepted stance charts. The historical X additions required one new DeepSeek judgment, which met the confidence threshold.
 
-The existing monthly and lifetime caps remain unchanged. Budget limits and source failures preserve checkpoints. The site reports coverage and provides `site/data/federal_coverage.csv` for every profile.
+The user approved a $40 monthly cap for daily X updates. The $150 X lifetime cap and other provider caps remain unchanged. Budget limits and source failures preserve checkpoints. The site reports coverage and provides `site/data/federal_coverage.csv` for every profile.
