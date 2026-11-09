@@ -131,3 +131,5 @@ The start date is inclusive. The end date is exclusive. A 2023 start can reflect
 - Thomas Flagg.
 - William Kimmitt.
 - Zach Whitman.
+
+The [current-only daily verification](https://github.com/harshul-basava/what-washington-says-about-ai/actions/runs/42548947075) completed all 51 eligible daily windows on November 9 UTC. The [scope verification](../data/federal_scope_verification.json) records preserved evidence, eligible account checks, costs, and production checks.

@@ -61,3 +61,5 @@ The current policy corpus contains 625 candidate excerpts and 722 statement-poli
 The November 8 web follow-up checked all 339 pending URLs in the earlier broad roster. Its [source audit](../data/federal_web_completion.json) remains an archival effort record. These broad totals must not become current-roster counts.
 
 The [current scope audit](current-federal-scope.md) records inclusion and exclusion sources. The [scope archive](../data/federal_scope_archive.json) preserves the removed profiles and mappings. Raw evidence and model caches remain intact. The website and daily collectors use only eligible profiles.
+
+The [current-only daily verification](https://github.com/harshul-basava/what-washington-says-about-ai/actions/runs/42548947075) completed all 51 eligible daily windows on November 9 UTC. The [scope verification](../data/federal_scope_verification.json) records preserved evidence, eligible account checks, costs, and production checks.
