@@ -64,7 +64,7 @@
       ${research.x_status ? `<p>${esc(research.x_accounts || 0)} sourced X accounts · ${esc(research.x_statements || 0)} X excerpts · ${esc(research.x_windows_searched || 0)} search windows checked. ${esc({unmapped:'This profile needs a sourced X account.',unavailable:'X collection requires authentication.',not_started:'X collection has not started.',partial:'Some X searches need another run.',searched:'X searches can miss posts.'}[research.x_status] || '')}</p>` : ''}
       ${research.gaps?.length ? `<details><summary>Notes from individual searches</summary><p>These notes record gaps at the time of each search. Later searches can resolve them.</p><ul>${research.gaps.map(g=>`<li>${esc(g)}</li>`).join('')}</ul></details>` : ''}</div>` : '';
     return `<div class="policy-profile"><p>${esc(member.description || (member.entity_type === 'institution' ? 'Institutional statements do not establish the personal views of its officials.' : 'Each quote identifies the role in which this official spoke.'))}</p>
-      ${researchNote}
+      <p><a href="federal.html?profile=${encodeURIComponent(member.id)}">Explore five AI scores, rule categories, and history</a></p>${researchNote}
       ${member.source_url ? `<p class="note"><a href="${safeURL(member.source_url)}" target="_blank" rel="noopener noreferrer">Profile source</a>${member.verified_on ? ' · Profile checked ' + esc(member.verified_on) : ''}</p>` : ''}
       ${roles ? `<h4>Roles and memberships</h4><ul>${roles}</ul>` : ''}
       ${linked.length ? `<p>Officials in this dataset: ${linked.map(m=>link(m.id,m.name)).join(', ')}.</p>` : ''}</div>`;

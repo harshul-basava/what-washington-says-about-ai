@@ -4,7 +4,6 @@ import json
 import math
 import random
 import sys
-import threading
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
@@ -68,36 +67,21 @@ def label(work, saved, registry, rubric, args, strategy=None, confidence_prompt=
         if model not in prices:
             raise ValueError(f"Configured model is unavailable: {model}")
     baseline = llm.spent("openrouter") if baseline is None else baseline
-    lock = threading.Lock()
-    reserved = 0.0
+    from model_budget import Budget
+    budget = Budget(args.max_cost, getattr(args, 'daily', False), metadata, llm)
+    budget.baseline = baseline
 
     def run(job):
-        nonlocal reserved
         judge, items = job
         model = model_ids[judge]
         messages = cascade.messages(items, registry, rubric, confidence_prompt, judge) if strategy else p.messages(items, registry, rubric)
-        pricing = prices[model]
-        tiers = [pricing, *pricing.get("overrides", [])]
-        in_rate = max(float(t.get("prompt", pricing["prompt"])) for t in tiers)
-        out_rate = max(float(t.get("completion", pricing["completion"])) for t in tiers)
-        # Conservative reservation: one input token per UTF-8 byte, plus framing overhead.
-        reserve = (sum(len(m["content"].encode()) for m in messages) + 200) * in_rate + MAX_TOKENS * out_rate
-        with lock:
-            spent = llm.spent("openrouter")
-            month_remaining = ((llm.BUDGETS.get('monthly', {}).get('openrouter', float('inf')) - llm.spent_this_month('openrouter'))
-                               if getattr(args, 'daily', False) else float('inf'))
-            if (spent - baseline + reserved + reserve > args.max_cost or spent + reserved + reserve > llm.BUDGETS["openrouter"]
-                    or reserved + reserve > month_remaining):
-                return judge, items, None, "budget limit; rerun to resume", None
-            reserved += reserve
         try:
             supported = metadata[model].get("supported_parameters", [])
             options = {"reasoning": {"effort": "medium"}} if strategy and "reasoning" in supported else {}
             if not strategy or "temperature" in supported:
                 options["temperature"] = 0
             tag = ('daily_' if getattr(args, 'daily', False) else '') + f"policy_{'cascade' if strategy else 'v1'}_{judge}"
-            result = llm.chat(messages, tag=tag, model=model,
-                              response_format={"type": "json_object"}, max_tokens=MAX_TOKENS, **options)
+            result = budget.call(model, messages, MAX_TOKENS, tag, **options)
             try:
                 labels = (cascade.validate_response if strategy else p.validate_response)(result["choices"][0]["message"]["content"], items, registry)
             except ValueError as exc:
@@ -108,9 +92,6 @@ def label(work, saved, registry, rubric, args, strategy=None, confidence_prompt=
         except Exception as exc:
             # Do not echo provider bodies, keys, or untrusted response text into logs.
             return judge, items, None, f"{type(exc).__name__}: batch incomplete; rerun to resume", None
-        finally:
-            with lock:
-                reserved -= reserve
 
     errors = 0
     with ThreadPoolExecutor(max_workers=args.workers) as pool:

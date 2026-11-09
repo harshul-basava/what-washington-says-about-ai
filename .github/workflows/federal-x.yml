@@ -58,10 +58,20 @@ jobs:
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
+          echo "MODEL_SPEND_BASELINE=$(uv run --no-dev python -c 'import llm; print(llm.spent("openrouter"))')" >> "$GITHUB_ENV"
           args=()
           [ "$X_MODE" = daily ] && args+=(--daily)
           # One request at a time lets each conservative reservation settle under the $2 cap.
           uv run --no-dev python scripts/phase3_policies.py label --scope executive --max-cost 2 --workers 1 "${args[@]}"
+
+      - name: Update federal scores, regulation, summaries and histories
+        if: always() && steps.collect.outcome != 'skipped' && env.MODEL_SPEND_BASELINE != ''
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          args=()
+          [ "$X_MODE" = daily ] && args+=(--daily)
+          uv run --no-dev python scripts/federal_analysis.py label --max-cost 2 --budget-baseline "$MODEL_SPEND_BASELINE" --workers 1 "${args[@]}"
 
       - name: Build site data
         if: always() && steps.collect.outcome != 'skipped'

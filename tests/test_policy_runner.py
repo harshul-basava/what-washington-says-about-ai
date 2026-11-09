@@ -17,6 +17,27 @@ runner = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(runner)
 
 
+def persistent_gateway(fake, costs=None):
+    """Test gateway with the same reservation ledger and usage-cost contract as llm."""
+    from llm import BudgetExceeded
+    charges = costs if costs is not None else []
+    original_spent = fake.spent
+    original_month = getattr(fake, 'spent_this_month', lambda provider: 0)
+    if costs is None:
+        fake.spent = lambda provider: original_spent(provider) + sum(charges)
+        fake.spent_this_month = lambda provider: original_month(provider) + sum(charges)
+    fake._log = lambda provider, cost, tag, meta: charges.append(cost)
+    fake.BudgetExceeded = BudgetExceeded
+    original_chat = fake.chat
+    def chat(*args, **kwargs):
+        before = fake.spent('openrouter')
+        result = original_chat(*args, **kwargs)
+        result['usage'] = {'cost': max(0, fake.spent('openrouter') - before)}
+        return result
+    fake.chat = chat
+    return fake
+
+
 class RunnerTests(unittest.TestCase):
     def test_default_federal_budget_can_reserve_an_astra_review(self):
         import json
@@ -34,6 +55,7 @@ class RunnerTests(unittest.TestCase):
             httpx=SimpleNamespace(get=lambda *a, **k: SimpleNamespace(raise_for_status=lambda: None, json=lambda: metadata)),
             spent=lambda provider: sum(costs), spent_this_month=lambda provider: sum(costs),
             BUDGETS={'openrouter': 10, 'monthly': {'openrouter': 5}}, chat=chat)
+        persistent_gateway(fake, costs)
         config = json.loads((Path(__file__).resolve().parents[1] / 'config/federal_sources.json').read_text())
         args = SimpleNamespace(max_cost=config['judgment_max_cost'], workers=1, batch_size=1, daily=True)
         with tempfile.TemporaryDirectory() as tmp, patch.dict(sys.modules, {'llm': fake}), patch.object(runner, 'ROOT', Path(tmp)), contextlib.redirect_stdout(io.StringIO()):
@@ -59,6 +81,7 @@ class RunnerTests(unittest.TestCase):
                 httpx=SimpleNamespace(get=lambda *a, **k: SimpleNamespace(raise_for_status=lambda: None, json=lambda: metadata)),
                 spent=lambda provider: 0, spent_this_month=lambda provider: month_spent,
                 BUDGETS={'openrouter': 10, 'monthly': {'openrouter': 1}}, chat=chat)
+            persistent_gateway(fake)
             with tempfile.TemporaryDirectory() as tmp, patch.dict(sys.modules, {'llm': fake}), patch.object(runner, 'ROOT', Path(tmp)), contextlib.redirect_stdout(io.StringIO()):
                 runner.label([(next(iter(p.JUDGES)), [ITEM])], {}, REGISTRY, 'rubric', SimpleNamespace(max_cost=1, workers=1, daily=True))
             self.assertEqual(len(calls), expected)
@@ -87,6 +110,7 @@ class RunnerTests(unittest.TestCase):
             os=SimpleNamespace(environ={"OPENROUTER_API_KEY": "test-only"}),
             httpx=SimpleNamespace(get=lambda *a, **k: SimpleNamespace(raise_for_status=lambda: None, json=lambda: metadata)),
             spent=lambda provider: sum(costs), BUDGETS={"openrouter": 2}, chat=chat)
+        persistent_gateway(fake, costs)
         with tempfile.TemporaryDirectory() as tmp, patch.dict(sys.modules, {"llm": fake}), patch.object(runner, "ROOT", Path(tmp)), contextlib.redirect_stdout(io.StringIO()):
             saved = {"results": {}}
             errors = runner.label([(j, [ITEM]) for j in p.JUDGES], saved, REGISTRY, "rubric", SimpleNamespace(max_cost=0.15, workers=2))
@@ -114,6 +138,7 @@ class RunnerTests(unittest.TestCase):
             fake=SimpleNamespace(os=SimpleNamespace(environ={'OPENROUTER_API_KEY':'test-only'}),
                 httpx=SimpleNamespace(get=lambda *a,**k:SimpleNamespace(raise_for_status=lambda:None,json=lambda:metadata)),
                 spent=lambda provider:sum(costs),BUDGETS={'openrouter':2},chat=chat)
+            persistent_gateway(fake, costs)
             args=SimpleNamespace(max_cost=budget,workers=1,batch_size=20)
             with self.subTest(budget=budget),tempfile.TemporaryDirectory() as tmp,patch.dict(sys.modules,{'llm':fake}),patch.object(runner,'ROOT',Path(tmp)),contextlib.redirect_stdout(io.StringIO()):
                 saved={}
@@ -123,3 +148,20 @@ class RunnerTests(unittest.TestCase):
                 self.assertEqual(cascade.resolve(ITEM,ITEM['targets'][0],saved,REGISTRY,'rubric','confidence',STRATEGY)['stance'],expected_stance)
                 self.assertTrue((Path(tmp)/'data/policy_cascade.json').exists())
                 self.assertFalse((Path(tmp)/'data/policy_judgments.json').exists())
+
+    def test_uncertain_policy_request_keeps_a_persistent_charge(self):
+        import json
+        import httpx
+        import llm
+        metadata={'data':[{'id':model,'pricing':{'prompt':'0.000001','completion':'0.00001'}} for model in p.JUDGES.values()]}
+        response_meta=SimpleNamespace(raise_for_status=lambda:None,json=lambda:metadata)
+        with tempfile.TemporaryDirectory() as tmp, patch.object(llm,'LEDGER',Path(tmp)/'costs.jsonl'), \
+             patch.object(llm,'BUDGETS',{'openrouter':10}),patch.dict(llm.os.environ,{'OPENROUTER_API_KEY':'test'}), \
+             patch.object(llm.httpx,'get',return_value=response_meta), \
+             patch.object(llm.httpx,'post',side_effect=httpx.ReadTimeout('timeout')) as post, \
+             patch.object(runner,'ROOT',Path(tmp)),contextlib.redirect_stdout(io.StringIO()):
+            errors=runner.label([('sonnet',[ITEM])],{},REGISTRY,'rubric',SimpleNamespace(max_cost=1,workers=1))
+            self.assertEqual(errors,1);self.assertEqual(post.call_count,1)
+            records=[json.loads(line) for line in llm.LEDGER.read_text().splitlines()]
+            self.assertEqual(len(records),1);self.assertEqual(records[0]['phase'],'reservation')
+            self.assertTrue(records[0]['cost_uncertain']);self.assertGreater(llm.spent('openrouter'),0)

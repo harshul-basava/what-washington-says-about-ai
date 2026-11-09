@@ -2,7 +2,7 @@
 
 This project tracks public statements about AI from Congress, executive officials, and federal institutions. The congressional roster also covers new members elected in 2026.
 
-The congressional view gives each person a score from 0 to 4 on five questions. Executive and institutional profiles use the policy judgments below:
+The congressional and federal views score public statements from 0 to 4 on five questions. Federal officials and institutions have separate views:
 
 - **AI overall:** Will AI be good for Americans?
 - **AGI:** Will AI reach human-level intelligence?
@@ -77,7 +77,7 @@ Every new statement records attribution as `personal`, `official_role`, or `inst
 
 To extend federal coverage, edit the registry and add verified, stable `s1`, `s2`, etc. statements to `evidence/<subject-id>.json`. Match each excerpt against the source text, record its retrieval method, date, and text hash, and update `config/policy_source_manifest.json`. This collection uses exact matching after whitespace normalization. Where direct retrieval failed, verification used the search service's retrieved page text. This checks quote presence, not the source's factual claims or transcript accuracy. Do not reassign existing statement IDs or copy one collective statement into each member's file. Run `make policies-plan`, `make policies-label POLICY_ARGS="--max-cost 2"`, then `make policies-build`. A registry-only profile needs an explicit empty evidence file.
 
-The daily job now searches federal sources and assesses new federal policy evidence. It covers the 97 eligible profiles in 15 source groups, through 67 agency and named search queries. Each eligible profile receives a named search assignment. The five-score charts still cover Congress only. Role and membership changes need manual review.
+The daily job now searches federal sources and assesses new federal policy evidence. It covers the 97 eligible profiles in 15 source groups, through 67 agency and named search queries. Each eligible profile receives a named search assignment. The federal analysis page also provides five scores, 23 regulation categories, cited summaries, topics, and histories. Role and membership changes need manual review.
 
 The initial federal search was a focused manual seed. Its 27 excerpts came from 16 distinct URLs. The source manifest lists 21 pages, including sources for roles. Sixteen excerpts used direct page retrieval, and eleven used the search service's retrieved page text. Fifteen excerpts date from 2026, nine from 2025, one from 2024, and two have no date. This pass did not systematically search every official, archive, transcript, or policy. It does not support claims of complete or balanced coverage.
 
@@ -123,6 +123,32 @@ Edit [`config/policies.json`](config/policies.json). Add a unique ID, title, kin
 Run `policies-plan`, inspect the candidate coverage, run a small pilot, then run the remaining assessments. Review the source quotes and both model reasons. A new policy registry entry does not expand the search queries. Update `config/federal_sources.json` when a new policy needs a dedicated search. The daily federal step applies the policy registry to collected evidence. Congressional policy assessments still need a manual run.
 
 The tracked judgment file retains model IDs, assessment times, generation IDs, and per-pair input hashes. The exact current instructions appear in `docs/policy-prompts-current.md`. The website exports summaries in `site/data/policies.json` and `site/data/policies.csv`, plus quotes and reasons in `site/data/policy_members/`. Policy references identify the proposals. Each quote's own link supplies the evidence for a member's position.
+
+## Federal scores, regulation categories, and histories
+
+[The federal analysis page](https://what-washington-says-about-ai-site.vercel.app/federal.html) covers the same current-government roster as the policy explorer. Officials and institutions remain separate. Each profile has five scores, 23 regulation categories, a cited summary, topic counts, source quotes, and monthly score history. Empty profiles remain visible with no evidence; they do not require model calls.
+
+The five scores reuse `config/rubric.md` and the congressional fixed formula. Three DeepSeek V4.1 Flash 1017 passes assign each statement dimension labels, confidence from 1 to 5, and topics. Independent GPT-6.1 Sol review handles disagreement, confidence below 3, high catastrophic-risk or AGI labels, and large differences from the previous score. Independent Astra review handles differences of two or more levels between DeepSeek and Sol. This is the congressional daily strategy with a pinned DeepSeek model. The separate named-policy cascade still uses its 0.80 threshold.
+
+DeepSeek and Sol each assess all 23 categories in `config/reg_focus.md`. Agreement keeps the weaker strength; direction disagreements receive independent Astra review. Summaries contain one to four sentences, each with source IDs. All judges receive the profile's evidence and attribution context. An institution's statements do not become its officials' private positions. Historical personal statements do not become an institution's position.
+
+Every requested statement and category must receive an explicit valid response. Invalid citations and incomplete responses stay pending. Pending statement labels suppress scores; they cannot become silence zeros. As in Congress, fewer than three statements yields insufficient evidence. A completed zero for catastrophic risk, AGI, or China can mean no discussion; the interface distinguishes that from rejection. Topic totals divide each statement equally among its assigned topics.
+
+Historical curves replay current labels over evidence dated on or before each month-end, starting in 2023. Month-only and year-only dates enter at the end of their possible interval. Undated evidence stays outside reconstructed history. These curves describe today's eligible roster, not changing government membership. Separate observed snapshots preserve the scores recorded by completed runs. Current summaries and regulation positions do not claim to describe every historical cutoff.
+
+Caches in `data/federal_analysis_labels.json` and `data/federal_analysis_profiles.json` preserve individual model assessments, source hashes, model IDs, times, and generation IDs. Changed evidence, attribution, prompts, models, or role context invalidate affected work. Changed profile evidence also invalidates its summary and regulation assessments. Congressional caches remain separate. Public exports live in `site/data/federal_analysis.json` and `site/data/federal_analysis/`.
+
+```bash
+make federal-analysis-plan
+make federal-analysis ANALYSIS_ARGS="--max-cost 5 --workers 4"
+make federal-analysis-build
+# A pilot or retry can select eligible profiles:
+make federal-analysis ANALYSIS_ARGS="--ids exec_rudd,sisc --max-cost 2"
+```
+
+Daily collection runs the new analysis after named-policy judgments. Both stages share the existing $2 model allowance; monthly and lifetime limits also apply. Manual X workflows use the same shared allowance. The backfill command has its own invocation limit and uses the lifetime cap. Every request reserves its maximum cost against live model prices. A missing response or unknown provider cost retains the reservation. Completed assessments save immediately, and retries resume the remaining work. The ordinary site build makes no paid calls.
+
+The older congressional cascade calibration measured agreement with model labels. It does not validate these federal results against human judgments. The named-policy confidence threshold also remains uncalibrated against human review.
 
 ## Federal historical research
 

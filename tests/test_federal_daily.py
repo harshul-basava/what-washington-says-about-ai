@@ -350,3 +350,20 @@ class FederalTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+class FederalAnalysisDailyTests(unittest.TestCase):
+    def test_policy_and_broad_analysis_share_the_model_allowance(self):
+        import federal
+        import federal_analysis_models
+        import llm
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);(root/'config').mkdir()
+            (root/'config/federal_analysis.json').write_text('{}')
+            with patch.object(federal,'judge',return_value={'status':'ok'}), \
+                 patch.object(federal,'build',return_value=None), \
+                 patch.object(llm,'spent',side_effect=[10.0,10.2]), \
+                 patch.object(federal_analysis_models,'run',return_value={'status':'ok'}) as analysis:
+                report=federal.run(root,CONFIG,skip_collect=True)
+            self.assertEqual(report['analysis']['status'],'ok')
+            self.assertAlmostEqual(analysis.call_args.kwargs['max_cost'],0.3)
+            self.assertTrue(analysis.call_args.kwargs['daily'])

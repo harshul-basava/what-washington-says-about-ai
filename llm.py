@@ -74,7 +74,8 @@ def _log(provider: str, cost: float, tag: str, meta: dict) -> None:
 
 
 def chat(messages: list[dict], *, tag: str, tools: list | None = None, model: str = MODEL,
-         response_format: dict | None = None, max_tokens: int = 8000, **extra) -> dict:
+         response_format: dict | None = None, max_tokens: int = 8000,
+         retry_attempts: int = 4, request_timeout: float = 600, **extra) -> dict:
     """One OpenRouter chat completion. Returns the raw response JSON."""
     _check("openrouter", tag)
     body = {"model": model, "messages": messages, "max_tokens": max_tokens, **extra}
@@ -83,15 +84,17 @@ def chat(messages: list[dict], *, tag: str, tools: list | None = None, model: st
     if response_format:
         body["response_format"] = response_format
     headers = {"Authorization": f"Bearer {os.environ['OPENROUTER_API_KEY']}"}
-    for attempt in range(4):
+    if type(retry_attempts) is not int or not 1 <= retry_attempts <= 4:
+        raise ValueError("retry_attempts must be 1–4")
+    for attempt in range(retry_attempts):
         try:
-            r = httpx.post(OPENROUTER_URL, json=body, headers=headers, timeout=600)
+            r = httpx.post(OPENROUTER_URL, json=body, headers=headers, timeout=request_timeout)
         except (httpx.TimeoutException, httpx.TransportError):
-            if attempt < 3:
+            if attempt < retry_attempts - 1:
                 time.sleep(5 * 2**attempt)
                 continue
             raise
-        if r.status_code in (429, 500, 502, 503) and attempt < 3:
+        if r.status_code in (429, 500, 502, 503) and attempt < retry_attempts - 1:
             time.sleep(5 * 2**attempt)
             continue
         break

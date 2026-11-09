@@ -388,17 +388,31 @@ def judge(root, max_cost, dry=False):
 
 def build(root):
     import policy_judgments
+    if (root / 'config/federal_analysis.json').exists():
+        import federal_analysis
+        federal_analysis.build(root)
     return policy_judgments.build(root)
 
 
 def run(root, config, since=None, dry=False, skip_collect=False):
     import federal_x
+    import llm
+    model_start = None
+    def broad_analysis():
+        if not (root / 'config/federal_analysis.json').exists():
+            return {'status': 'not_configured'}
+        import federal_analysis_models
+        remaining = config['judgment_max_cost'] if dry else max(0, config['judgment_max_cost'] - (llm.spent('openrouter') - model_start))
+        return federal_analysis_models.run(root, max_cost=remaining, workers=2, daily=True, dry=dry)
     report = {'date': today(), 'status': 'dry_run' if dry else 'ok', 'schedule_utc': '11:00'}
     if not dry:
         write(root / 'data/federal_status.json', {**report, 'status': 'in_progress'})
     for stage, action in [('collection', lambda: collect(root, config, since, dry)),
                           ('x', lambda: federal_x.collect(root, since=since, dry=dry)),
-                          ('judgments', lambda: judge(root, config['judgment_max_cost'], dry))]:
+                          ('judgments', lambda: judge(root, config['judgment_max_cost'], dry)),
+                          ('analysis', broad_analysis)]:
+        if stage == 'judgments' and not dry:
+            model_start = llm.spent('openrouter')
         if stage in ('collection', 'x') and skip_collect:
             report[stage] = {'status': 'skipped'}
             continue

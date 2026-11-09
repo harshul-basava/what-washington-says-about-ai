@@ -172,6 +172,10 @@ def main():
     # Rebuild from saved judgments only; new or changed evidence stays pending.
     policies = build_policies(ROOT)
     print("policies", len(policies["policies"]))
+    if (ROOT / 'config/federal_analysis.json').exists():
+        import federal_analysis
+        federal = federal_analysis.build(ROOT)
+        print('federal analysis profiles', len(federal['members']))
 
 
 if __name__ == "__main__":

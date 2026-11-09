@@ -85,3 +85,13 @@ test:
 regfocus:          ## Which kinds of AI rules each member supports or opposes (config/reg_focus.md)
 	$(PY) scripts/phase6_reg_focus.py
 	$(PY) scripts/phase5_build_site.py
+
+.PHONY: federal-analysis-plan federal-analysis federal-analysis-build
+federal-analysis-plan: ## Offline federal broad-analysis backlog
+	$(PY) scripts/federal_analysis.py plan $(ANALYSIS_ARGS)
+
+federal-analysis: ## Resumable federal scores, rule categories, summaries and topics
+	$(PY) scripts/federal_analysis.py label $(ANALYSIS_ARGS)
+
+federal-analysis-build: ## Offline federal profiles and reconstructed histories
+	$(PY) scripts/federal_analysis.py build
