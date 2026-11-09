@@ -44,6 +44,28 @@ class FederalAnalysisTests(unittest.TestCase):
         self.assertEqual(result['b']['x_risk'],2)
         self.assertEqual(a.resolve_labels(self.entry())['status'],'complete')
 
+    def test_targeted_astra_review_changes_only_ai_overall_and_preserves_original_runs(self):
+        entry=self.entry({'regulation':2})
+        original=copy.deepcopy(entry['assessments'])
+        entry['assessments']['astra_stance_review']={'model':'openai/gpt-6-astra','value':{
+            'reviewed_dimension':'ai_overall','labels':{'ai_overall':3},'confidence':{'ai_overall':4},
+            'reason':'A general statement of benefits.','supporting_quote':'AI benefits our whole economy.',
+            'support_basis':'excerpt','review_id':'review-1'}}
+        result=self.a.resolve_labels(entry)
+        self.assertEqual(result['a'],{'regulation':2,'ai_overall':3})
+        self.assertEqual(result['b'],{'regulation':2,'ai_overall':3})
+        self.assertEqual(result['stance_review']['review_id'],'review-1')
+        for key,value in original.items():self.assertEqual(entry['assessments'][key],value)
+
+    def test_low_confidence_review_cannot_create_a_score(self):
+        entry=self.entry()
+        entry['assessments']['astra_stance_review']={'value':{
+            'reviewed_dimension':'ai_overall','labels':{'ai_overall':3},'confidence':{'ai_overall':2},
+            'reason':'Uncertain.', 'supporting_quote':'Perhaps AI helps.'}}
+        result=self.a.resolve_labels(entry)
+        self.assertNotIn('ai_overall',result['a'])
+        self.assertNotIn('ai_overall',result['b'])
+
     def test_regulation_requires_all_areas_and_real_source_ids(self):
         a=self.a
         value={'stances':{k:{'stance':0,'sids':[],'why':'No stance.'} for k in a.AREA_IDS}}

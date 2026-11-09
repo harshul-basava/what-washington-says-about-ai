@@ -142,7 +142,17 @@ def resolve_labels(entry,settings=None):
             if abs(av-a[k])>abs(av-b[k]):a[k]=av
             else:b[k]=av
     counts=Counter(t for r in runs for t in r['topics']);topics=[t for t,n in counts.most_common(3) if n>=2] or [counts.most_common(1)[0][0]]
-    return {'status':'complete','a':a,'b':b,'topics':topics,'confidence':conf,'escalated':esc}
+    result={'status':'complete','a':a,'b':b,'topics':topics,'confidence':conf,'escalated':esc}
+    review_record=assessments.get('astra_stance_review',{})
+    review=review_record.get('value',{})
+    if review.get('reviewed_dimension')=='ai_overall':
+        label=review.get('labels',{}).get('ai_overall');confidence=review.get('confidence',{}).get('ai_overall')
+        accepted=type(label) is int and 0<=label<=4 and type(confidence) in (int,float) and 3<=confidence<=5
+        if accepted:
+            a['ai_overall']=b['ai_overall']=label;conf['ai_overall']=confidence
+        result['stance_review']={**review,'accepted':accepted,'model':review_record.get('model'),
+            'assessed_at':review_record.get('assessed_at'),'generation_id':review_record.get('generation_id')}
+    return result
 
 def resolve_regulation(entry):
     assessments=entry.get('assessments',{});a=assessments.get('reg_ds',{}).get('value');b=assessments.get('reg_sol',{}).get('value')
