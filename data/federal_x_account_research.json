@@ -25,9 +25,23 @@
         "requested_results": 655
       }
     ],
-    "search_requests": 411,
-    "requested_results": 2055,
-    "note": "Requested results sum numResults across Exa searches, including retries. This is not a count of unique pages read."
+    "search_requests": 417,
+    "requested_results": 2085,
+    "note": "Requested results sum numResults across Exa searches, including retries. This is not a count of unique pages read.",
+    "followup_searches": [
+      {
+        "purpose": "Additional unresolved-handle checks",
+        "repeated_profiles": 2,
+        "search_requests": 2,
+        "requested_results": 10
+      },
+      {
+        "purpose": "Investigate live API validation failures",
+        "repeated_profiles": 2,
+        "search_requests": 4,
+        "requested_results": 20
+      }
+    ]
   },
   "summary": {
     "researched_profiles": 165,
@@ -117,7 +131,8 @@
         "Official government or institutional biography for Alan Mislove links his Twitter or X account",
         "Alan Mislove Office of Science and Technology Policy Twitter X account handle",
         "Alan Mislove official personal university website biography Twitter social media",
-        "Alan Mislove amislove Twitter account professor"
+        "Alan Mislove amislove Twitter account professor",
+        "News reports or research interviews explicitly identifying Northeastern professor Alan Mislove's Twitter handle @amislove"
       ],
       "sources": [
         {
@@ -140,10 +155,45 @@
           "claim": "Search result reviewed for identity and account ownership; this result alone does not verify a mapping.",
           "source_kind": "government",
           "support_excerpt": ""
+        },
+        {
+          "url": "https://english.elpais.com/technology/2024-11-19/alan-mislove-researcher-there-are-technology-companies-with-an-incredible-influence-on-how-we-speak-and-think.html",
+          "title": "Follow-up search result",
+          "claim": "Reviewed search result did not establish independent ownership of the candidate handle.",
+          "source_kind": "search_result",
+          "support_excerpt": ""
+        },
+        {
+          "url": "https://phys.org/news/2010-06-alan-mislove-virtual-privacy.html",
+          "title": "Follow-up search result",
+          "claim": "Reviewed search result did not establish independent ownership of the candidate handle.",
+          "source_kind": "search_result",
+          "support_excerpt": ""
+        },
+        {
+          "url": "https://repository.library.northeastern.edu/downloads/neu:m042z585g?datastream_id=content",
+          "title": "Follow-up search result",
+          "claim": "Reviewed search result did not establish independent ownership of the candidate handle.",
+          "source_kind": "search_result",
+          "support_excerpt": ""
+        },
+        {
+          "url": "https://news.northeastern.edu/2022/10/25/facebook-algorithm-discrimination/",
+          "title": "Follow-up search result",
+          "claim": "Reviewed search result did not establish independent ownership of the candidate handle.",
+          "source_kind": "search_result",
+          "support_excerpt": ""
+        },
+        {
+          "url": "https://cssh.northeastern.edu/nulab/nulab-faculty-alan-mislove-interviewed-on-the-influence-of-algorithms/",
+          "title": "Follow-up search result",
+          "claim": "Reviewed search result did not establish independent ownership of the candidate handle.",
+          "source_kind": "search_result",
+          "support_excerpt": ""
         }
       ],
       "accounts": [],
-      "reason": "The @amislove candidate appeared in X mirrors. His own website and Northeastern biographies did not explicitly link it, so independent ownership proof remains missing."
+      "reason": "The @amislove candidate appeared in X mirrors. His own website and Northeastern biographies did not explicitly link it, so independent ownership proof remains missing. A third search of interviews and reporting found biography and policy sources, but no explicit independent handle link."
     },
     {
       "subject_id": "exec_mayorkas",
@@ -276,7 +326,9 @@
       "queries": [
         "Alvaro Bedoya Federal Trade Commission Twitter X account handle",
         "site:ftc.gov Alvaro Bedoya Follow Twitter BedoyaFTC BedoyaUSA",
-        "Alvaro Bedoya BedoyaUSA Twitter FTC commissioner"
+        "Alvaro Bedoya BedoyaUSA Twitter FTC commissioner",
+        "Alvaro Bedoya current official biography personal website Twitter X BedoyaUSA alvarombedoya",
+        "Alvaro Bedoya BedoyaUSA Twitter account renamed changed deleted current handle Economic Liberties"
       ],
       "sources": [
         {
@@ -292,6 +344,40 @@
           "claim": "Names Bedoya and links the account's post.",
           "source_kind": "reporting",
           "support_excerpt": "Alvaro Bedoya"
+        },
+        {
+          "url": "https://pdsoros.org/fellows/alvaro-bedoya/",
+          "title": "Alvaro Bedoya – Paul & Daisy Soros Fellowships for New Americans",
+          "source_kind": "institutional_biography",
+          "claim": "The subject's X link points to https://twitter.com/alvarombedoya. This supports the already known alternative handle, but does not connect it to a rename from BedoyaUSA.",
+          "support_excerpt": "Alvaro's Links",
+          "linked_account_url": "https://twitter.com/alvarombedoya",
+          "inspection": "Exa full-page fetch and web page link inspection."
+        },
+        {
+          "url": "https://linkedin.com/in/alvaro-bedoya-9312b258",
+          "title": "Alvaro Bedoya",
+          "source_kind": "professional_profile",
+          "claim": "The indexed professional profile still names BedoyaUSA. It provides no documented change or proof of current API availability.",
+          "support_excerpt": "Twitter: @BedoyaUSA",
+          "inspection": "Exa search content."
+        },
+        {
+          "url": "https://www.economicliberties.us/alvaro-bedoya/",
+          "title": "Alvaro Bedoya – American Economic Liberties Project",
+          "source_kind": "employer_biography",
+          "claim": "The employer biography identifies Bedoya as a senior adviser. The inspected content contains no explicit replacement X handle.",
+          "support_excerpt": "Alvaro Bedoya is a Senior Adviser",
+          "inspection": "Exa full-page fetch; direct HTML request returned HTTP 403."
+        },
+        {
+          "url": "https://gizmodo.com/a-reminder-from-lina-khan-we-dont-need-new-laws-to-prosecute-ceos-at-ai-companies-2000811503",
+          "title": "A Reminder From Lina Khan: We Don't Need New Laws to Prosecute CEOs at AI Companies",
+          "source_kind": "reporting",
+          "claim": "Earlier ownership research linked Bedoya to a BedoyaUSA post. This historical ownership proof remains separate from lookup validation.",
+          "support_excerpt": "Alvaro Bedoya",
+          "linked_account_url": "https://x.com/bedoyausa/status/2099144876939948254?s=46",
+          "inspection": "Retained from the completed ownership review; no new search."
         }
       ],
       "accounts": [
@@ -314,7 +400,18 @@
           "verification_basis": "The inspected source explicitly names or links the handle for this subject."
         }
       ],
-      "reason": "A source explicitly identifies the subject and account."
+      "reason": "A source explicitly identifies the subject and account.",
+      "collection_followup": {
+        "reviewed_on": "2026-11-09",
+        "run_id": 42541038224,
+        "requested_handle": "BedoyaUSA",
+        "api_observation": {
+          "reconciled_result_count": 1,
+          "error": "malformed_response",
+          "interpretation": "The lookup returned one result. The failure cause remains unresolved; this does not establish account unavailability or a rename."
+        },
+        "outcome": "No sourced rename or new replacement account emerged from the two search angles. The known handle alvarombedoya has separate ownership proof. Neither the sources nor the supplied ledger evidence establish whether the two handles share one account identity."
+      }
     },
     {
       "subject_id": "exec_fields_meyer",
@@ -3415,7 +3512,8 @@
         "Kathleen Hicks Department of War / Defense official biography website Twitter X social media account",
         "Kathleen Hicks official Twitter DepSecDef account archive",
         "Kathleen Hicks DepSecDefHicks Twitter archive site:defense.gov",
-        "DepSecDefHicks archived account Kathleen Hicks January 2025"
+        "DepSecDefHicks archived account Kathleen Hicks January 2025",
+        "Kathleen Hicks archived Twitter account @DepSecDefHicks news reports official archive social media"
       ],
       "sources": [
         {
@@ -3438,10 +3536,38 @@
           "claim": "Reviewed for account ownership; this source did not establish an accepted handle.",
           "source_kind": "official",
           "support_excerpt": ""
+        },
+        {
+          "url": "https://twstalker.com/DepSecDefHicks",
+          "title": "Follow-up search result",
+          "claim": "Reviewed search result did not establish independent ownership of the candidate handle.",
+          "source_kind": "search_result",
+          "support_excerpt": ""
+        },
+        {
+          "url": "https://www.war.gov/News/News-Stories/Article/Article/3864923/defense-community-increasing-pace-of-innovation-hicks-says/",
+          "title": "Follow-up search result",
+          "claim": "Reviewed search result did not establish independent ownership of the candidate handle.",
+          "source_kind": "search_result",
+          "support_excerpt": ""
+        },
+        {
+          "url": "https://www.war.gov/News/News-Stories/Article/Article/3507514/hicks-underscores-us-innovation-in-unveiling-strategy-to-counter-chinas-militar/",
+          "title": "Follow-up search result",
+          "claim": "Reviewed search result did not establish independent ownership of the candidate handle.",
+          "source_kind": "search_result",
+          "support_excerpt": ""
+        },
+        {
+          "url": "https://www.defense.gov/News/News-Stories/Article/Article/3924617/dod-launches-defense-security-cooperation-service-to-further-bolster-us-advanta/",
+          "title": "Follow-up search result",
+          "claim": "Reviewed search result did not establish independent ownership of the candidate handle.",
+          "source_kind": "search_result",
+          "support_excerpt": ""
         }
       ],
       "accounts": [],
-      "reason": "@DepSecDefHicks is a plausible archived handle, but the reviewed government pages and mirrors did not establish the archived account linkage independently."
+      "reason": "@DepSecDefHicks is a plausible archived handle, but the reviewed government pages and mirrors did not establish the archived account linkage independently. A third targeted search returned an X mirror and government policy reports, but no independent archived-handle identification."
     },
     {
       "subject_id": "exec_koizumi",
@@ -3728,7 +3854,9 @@
       "name": "Lisa Einstein",
       "status": "verified",
       "queries": [
-        "Lisa Einstein Cybersecurity and Infrastructure Security Agency Twitter X account handle"
+        "Lisa Einstein Cybersecurity and Infrastructure Security Agency Twitter X account handle",
+        "Lisa Einstein CISA current personal website biography Twitter X LisaEinstein",
+        "Lisa Einstein Twitter account renamed changed deleted new handle personal website Anthropic Stanford"
       ],
       "sources": [
         {
@@ -3737,6 +3865,31 @@
           "claim": "Identifies @LisaEinstein as Lisa Einstein's account.",
           "source_kind": "institutional_biography",
           "support_excerpt": "Twitter @LisaEinstein"
+        },
+        {
+          "url": "https://www.aspentechpolicyhub.org/team/lisa-einstein/",
+          "title": "Lisa Einstein – Aspen Tech Policy Hub",
+          "source_kind": "institutional_biography",
+          "claim": "The subject's biography still explicitly links https://twitter.com/LisaEinstein. This supports ownership, not current account availability.",
+          "support_excerpt": "Twitter @LisaEinstein",
+          "linked_account_url": "https://twitter.com/LisaEinstein",
+          "inspection": "Exa full-page fetch and direct HTML request, HTTP 200."
+        },
+        {
+          "url": "https://www.hoover.org/profiles/lisa-einstein",
+          "title": "Lisa Einstein – Hoover Institution",
+          "source_kind": "institutional_biography",
+          "claim": "The biography identifies Einstein and her former CISA role. The inspected page contains no individual replacement X link; the HooverInst footer is institutional.",
+          "support_excerpt": "Lisa Einstein",
+          "inspection": "Exa full-page fetch and direct HTML request, HTTP 200."
+        },
+        {
+          "url": "https://frenchamerican.org/young-leader/lisa-einstein/",
+          "title": "Lisa Einstein – French-American Foundation",
+          "source_kind": "institutional_biography",
+          "claim": "The inspected biography contains no explicit replacement X handle.",
+          "support_excerpt": "Lisa Einstein",
+          "inspection": "Exa full-page fetch; direct HTML request returned HTTP 403."
         }
       ],
       "accounts": [
@@ -3750,7 +3903,18 @@
           "verification_basis": "The inspected source explicitly names or links the handle for this subject."
         }
       ],
-      "reason": "A source explicitly identifies the subject and account."
+      "reason": "A source explicitly identifies the subject and account.",
+      "collection_followup": {
+        "reviewed_on": "2026-11-09",
+        "run_id": 42541038224,
+        "requested_handle": "LisaEinstein",
+        "api_observation": {
+          "reconciled_result_count": 0,
+          "error": "malformed_response",
+          "interpretation": "The lookup yielded no reconciled account object. Without the raw response, the cause and current availability remain unresolved."
+        },
+        "outcome": "No sourced rename or replacement account emerged from the two search angles. Aspen still identifies LisaEinstein. The API result does not establish deletion, suspension, or a rename."
+      }
     },
     {
       "subject_id": "exec_monaco",

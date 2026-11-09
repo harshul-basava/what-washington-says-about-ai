@@ -4,7 +4,7 @@ The registry contains 105 sourced X handles for 92 of 186 federal profiles. It s
 
 The expansion researched all 165 profiles that lacked a mapping. It verified ownership for 71 additional profiles and added 82 handles across 83 intervals. The remaining 94 profiles have unresolved ownership. This does not establish that they lack an X account. Their web research and daily named searches continue.
 
-The [research audit](../data/federal_x_account_research.json) records every profile, query, source, accepted account, and unresolved reason. The three research groups made 411 Exa searches and requested 2,055 results, including retries. This result count does not count unique pages read. Ownership proof uses government directories, personal or academic sites, and explicit reporting. An X checkmark or matching name alone does not qualify.
+The [research audit](../data/federal_x_account_research.json) records every profile, query, source, accepted account, and unresolved reason. The three research groups made 417 Exa searches and requested 2,085 results, including retries. This result count does not count unique pages read. Ownership proof uses government directories, personal or academic sites, and explicit reporting. An X checkmark or matching name alone does not qualify.
 
 Institutions supply institutional evidence. Their posts do not propagate to their leaders or members. Named office accounts use bounded roles. Personal accounts use personal attribution. API collection checks public availability, pins numeric account IDs, and verifies post authors.
 
