@@ -94,7 +94,7 @@ def manifest(root):
     a.write(path,saved);return saved
 
 
-def run(root,max_cost=20,workers=3,ids=None):
+def run(root,max_cost=20,workers=1,ids=None):
     import llm
     saved=manifest(root);config=a.configuration(root);subjects,evidence=a.inputs(root)
     selected=set(saved['target_ids']) if ids is None else set(ids)
@@ -270,10 +270,82 @@ def fetch_x_context(root):
         a.write(out/'x_report.json',{'profiles':report,'cost':client.spent})
 
 
+def apply(root):
+    """Validate the entire audit before updating any cached assessment or score event."""
+    root=Path(root);audit=a.read(root/PATH);config=a.configuration(root)
+    subjects,evidence=a.inputs(root);subjects={s['id']:s for s in subjects}
+    targets=audit['target_ids'];labels,profiles=a.state(root)
+    if len(set(targets))!=len(targets) or not set(targets)<=set(subjects):
+        raise ValueError('Review cohort is duplicated or no longer eligible')
+    prepared=[]
+    for pid in targets:
+        entry=audit['profiles'].get(pid,{})
+        if entry.get('error') or not entry.get('result') or entry.get('model')!=MODEL:
+            raise ValueError('Astra review is incomplete: '+pid)
+        subject=subjects[pid];ss=evidence[pid]
+        if entry.get('evidence_hash')!=a.digest(ss):raise ValueError('Review evidence changed: '+pid)
+        contexts=load_contexts(root,entry.get('contexts',{}))
+        signature=a.digest([PROMPT_VERSION,MODEL,a.subject_context(subject),ss,contexts,config['rubric'],config['prompt']])
+        if entry.get('input_hash') and entry['input_hash']!=signature:
+            raise ValueError('Review inputs changed: '+pid)
+        result=dict(entry['result'])
+        result.setdefault('summary_sentences',result.get('summary',{}).get('sentences'))
+        result=parse_review(json.dumps(result),ss,contexts)
+        if result['context_requests']:raise ValueError('Source context still needs review: '+pid)
+        for statement in ss:
+            cached=a.valid_entry(labels,subject,[statement],'labels',config)
+            if a.resolve_labels(cached,config['settings'])['status']!='complete':
+                raise ValueError('Original assessments are missing or stale: '+pid)
+        if not a.valid_entry(profiles,subject,ss,'profile',config):
+            raise ValueError('Profile assessment is missing or stale: '+pid)
+        prepared.append((pid,entry,result,ss))
+    changes=a.read(root/'data/federal_analysis_changes.json',[])
+    for pid,entry,result,ss in prepared:
+        review_id=a.digest([pid,entry.get('generation_id'),entry['evidence_hash'],result])
+        provenance={k:entry.get(k) for k in ('model','generation_id','assessed_at')}
+        findings={r['sid']:r for r in result['findings']}
+        accepted=[r['sid'] for r in result['findings'] if r['confidence']>=3]
+        for statement in ss:
+            sid=statement['sid'];finding=findings.get(sid)
+            value={'reviewed_dimension':'ai_overall','review_id':review_id,
+                   'labels':{'ai_overall':finding['label']} if finding else {},
+                   'confidence':{'ai_overall':finding['confidence']} if finding else {},
+                   'review_confidence':result['confidence'],
+                   'reason':finding['reason'] if finding else 'Astra found no qualifying AI overall stance in this excerpt.'}
+            if finding:
+                value.update({k:finding[k] for k in ('supporting_quote','support_basis')})
+                if finding['support_basis']=='context':
+                    meta=entry['contexts'][sid]
+                    value['source_context']={k:meta[k] for k in ('url','text_hash','retrieval')}
+                    value['source_context'].update({'quote':finding['supporting_quote'],
+                        'attribution_quote':finding['attribution_quote'],'original_date':statement.get('date')})
+            labels['profiles'][pid][sid]['assessments']['astra_stance_review']={**provenance,'value':value}
+        profile=profiles['profiles'][pid]['assessments']
+        profile['stance_review']={**provenance,'value':{
+            'review_id':review_id,'dimension':'ai_overall','status':'complete','reason':result['reason'],
+            'confidence':result['confidence'],'n_statements':len(ss),'n_contexts':len(entry.get('contexts',{})),
+            'accepted_sids':accepted,'finding_count':len(findings)}}
+        if accepted:
+            if 'original_summary' not in entry:entry['original_summary']=profile.get('summary')
+            profile['summary']={**provenance,'value':result['summary']}
+            resolved={s['sid']:a.resolve_labels(labels['profiles'][pid][s['sid']],config['settings']) for s in ss}
+            scores,_=a.score(ss,resolved,entry['assessed_at'][:10])
+            old=audit['original_scores'][pid]['ai_overall'];new=scores['ai_overall']
+            if old!=new and not any(c.get('review_id')==review_id for c in changes):
+                changes.append({'id':pid,'date':entry['assessed_at'][:10],'dimension':'ai_overall',
+                    'old':old,'new':new,'kind':'big','cause':'Astra review of existing evidence and source context',
+                    'sids':accepted,'review_id':review_id})
+        entry['applied_review_id']=review_id
+    a.write(root/a.LABEL_PATH,labels);a.write(root/a.PROFILE_PATH,profiles)
+    a.write(root/'data/federal_analysis_changes.json',changes);a.write(root/PATH,audit)
+    return {'reviewed_profiles':len(targets),'accepted_findings':sum(len([r for r in result['findings'] if r['confidence']>=3]) for _,_,result,_ in prepared)}
+
+
 def main():
-    p=argparse.ArgumentParser();p.add_argument('command',choices=['review','context','x-context']);p.add_argument('--max-cost',type=float,default=20)
-    p.add_argument('--workers',type=int,default=3);p.add_argument('--ids');args=p.parse_args()
-    if args.command=='x-context':fetch_x_context(ROOT)
+    p=argparse.ArgumentParser();p.add_argument('command',choices=['review','context','x-context','apply']);p.add_argument('--max-cost',type=float,default=20)
+    p.add_argument('--workers',type=int,default=1);p.add_argument('--ids');args=p.parse_args()
+    if args.command=='apply':print(json.dumps(apply(ROOT)))
+    elif args.command=='x-context':fetch_x_context(ROOT)
     elif args.command=='context':fetch_contexts(ROOT,args.workers)
     else:run(ROOT,args.max_cost,args.workers,args.ids.split(',') if args.ids else None)
 

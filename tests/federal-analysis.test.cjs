@@ -81,6 +81,22 @@ test('source quotes escape text, retain attribution and assessments, and reject 
   assert.equal(view.safeURL('https://example.gov/quote'), 'https://example.gov/quote');
 });
 
+test('Astra review exposes support, confidence, and the final-judge override safely', () => {
+  const review={accepted:true,labels:{ai_overall:4},confidence:{ai_overall:3},review_confidence:3,
+    reason:'Broad <benefits>.',support_basis:'context',supporting_quote:'AI helps <people>.',
+    source_context:{url:'javascript:alert(1)',quote:'AI helps <people>.'},model:'openai/gpt-6-astra',assessed_at:'2026-11-09'};
+  const html=view.renderStatement({sid:'s1',text:'Original quote',analysis:{status:'complete',stance_review:review}},dimensions);
+  assert.match(html,/Astra stance review/);
+  assert.match(html,/3 of 5/);
+  assert.match(html,/AI helps &lt;people&gt;/);
+  assert.match(html,/both AI overall columns/);
+  assert.doesNotMatch(html,/href="javascript:|<people>|<benefits>/);
+  const profile=view.renderStanceReview({status:'complete',reason:'No broad stance.',n_statements:4,n_contexts:2,
+    confidence:4,accepted_sids:[],assessed_at:'2026-11-09',model:'openai/gpt-6-astra'},[]);
+  assert.match(profile,/4 statements/);
+  assert.match(profile,/No qualifying stance/);
+});
+
 test('citation links resolve only inside the current profile and incomplete summaries remain explicit', () => {
   const statements=[{sid:'s1',text:'A quote'}];
   const html=view.renderSummary({status:'complete',text:'A <claim>.',sids:['s1','someone_else']},statements);

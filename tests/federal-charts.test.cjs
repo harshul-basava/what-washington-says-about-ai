@@ -82,3 +82,8 @@ test('a silence zero remains scored under the congressional intensity rules',()=
   const result=charts.scoreAvailability([m],'x_risk');
   assert.equal(result.scored,1);assert.deepEqual(result.groups,[]);
 });
+
+test('a new score can appear in recent changes without treating the previous blank as zero',()=>{
+  const html=charts.renderRecent([person('a')],{a:{changes:[{date:'2026-11-09',dimension:'ai_overall',old:null,new:3,cause:'Astra review'}]}},'ai_overall','2026-11-09');
+  assert.match(html,/Unscored → 3/);
+});

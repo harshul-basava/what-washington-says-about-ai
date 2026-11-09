@@ -266,6 +266,9 @@ def build(root,asof=None,record=False):
                 for t in r['topics']:topics[t]+=1/len(r['topics'])
         member={**policy_subjects.public_profile(subject),'n_statements':len(ss),'n_labeled':complete,'status':status,
             'scores':scores,'score_details':details,'summary':summary,'topics':{k:round(v,3) for k,v in topics.items()},'regulation':regulation}
+        review=entry.get('assessments',{}).get('stance_review')
+        if review:
+            member['stance_review']={**review['value'],**{k:review.get(k) for k in ('model','assessed_at','generation_id')}}
         members.append(member)
         if complete==len(ss):
             snapshots[pid]={'date':asof,'scores':scores,'complete':True,'evidence_hash':digest(ss)}
@@ -308,7 +311,7 @@ def build(root,asof=None,record=False):
             'history':history,'changes':profile_changes})
     coverage=plan(root)
     result={'schema_version':1,'built_on':asof,'revision':revision,'dimensions':DIMENSIONS,'regulation_areas':REGULATION_AREAS,'topics':TOPICS,
-        'methodology':{'models':config['settings']['models'],'text':"Five scores use the congressional rubric and fixed formula. Three DeepSeek passes trigger independent Sol/Astra review. Regulation uses DeepSeek and Sol with Astra for direction disagreements. Histories reconstruct dated evidence for today's eligible roster; they do not track historical office membership. A silence zero means no discussion in this corpus, not rejection."},
+        'methodology':{'models':config['settings']['models'],'text':"Five scores use the congressional rubric and fixed formula. Three DeepSeek passes trigger independent Sol/Astra review. Regulation uses DeepSeek and Sol with Astra for direction disagreements. Histories reconstruct dated evidence for today's eligible roster; they do not track historical office membership. A silence zero means no discussion in this corpus, not rejection. Profiles with a targeted Astra stance review show its reason, confidence, and source context. Accepted corrections use Astra for both AI overall label columns; the original assessments remain available."},
         'coverage':coverage,'organizations':policy_subjects.load_registry(root)['organizations'],'members':members}
     write(root/'site/data/federal_analysis.json',result)
     write(root/'site/data/federal_charts.json',{'schema_version':1,'revision':revision,'profiles':chart_profiles})

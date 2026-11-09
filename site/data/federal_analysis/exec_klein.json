@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_klein",
- "revision": "6e25f11f86d4c7fba33b0f702fad36dfd3d20c99f91bfc56ba2d1b4ab9d16fe8",
+ "revision": "49eaa5228b34ded840ebedc0807942e5b28767240fc67b1898d724d8219ae47d",
  "profile": {
   "id": "exec_klein",
   "name": "Ethan Klein",
@@ -44,7 +44,7 @@
   "n_statements": 4,
   "n_labeled": 4,
   "scores": {
-   "ai_overall": null,
+   "ai_overall": 4.0,
    "agi_pilled": 0.0,
    "x_risk": 0.0,
    "china_race": 3.0,
@@ -52,11 +52,13 @@
   },
   "score_details": {
    "ai_overall": {
-    "score": null,
-    "reason_a": "no_statements",
-    "reason_b": "no_statements",
-    "sids": [],
-    "label_count": 0
+    "score": 4.0,
+    "reason_a": "median_of_1",
+    "reason_b": "median_of_1",
+    "sids": [
+     "s2"
+    ],
+    "label_count": 1
    },
    "agi_pilled": {
     "score": 0.0,
@@ -93,36 +95,23 @@
   },
   "summary": {
    "status": "complete",
-   "text": "In a September 17, 2025 opening statement, Ethan Klein said OSTP could lead the United States to global dominance in AI and other critical and emerging technologies. In the same statement, he said emerging technologies promise economic opportunity, public health, and national security benefits, while policy discourse had at times leaned too far toward restraint and slowed progress. He also described OSTP under Director Kratsios as having authored America’s AI Action Plan and assisted the President with executive orders to promote artificial intelligence, accelerate nuclear energy, and spur advanced aviation. In a February 6, 2026 reported statement, Klein referred to what he called an “overly burdensome” regulatory regime.",
+   "text": "In his September 17, 2025 nominee statement, Klein argued that OSTP could lead America toward global dominance in AI and other emerging technologies. In that statement, he expressed optimism that emerging technologies could improve American lives and argued that governance discussions had sometimes leaned too far toward restraint.",
    "sids": [
     "s1",
-    "s2",
-    "s4",
-    "s3"
+    "s2"
    ],
    "sentences": [
     {
-     "text": "In a September 17, 2025 opening statement, Ethan Klein said OSTP could lead the United States to global dominance in AI and other critical and emerging technologies.",
+     "text": "In his September 17, 2025 nominee statement, Klein argued that OSTP could lead America toward global dominance in AI and other emerging technologies.",
      "sids": [
-      "s1"
-     ]
-    },
-    {
-     "text": "In the same statement, he said emerging technologies promise economic opportunity, public health, and national security benefits, while policy discourse had at times leaned too far toward restraint and slowed progress.",
-     "sids": [
+      "s1",
       "s2"
      ]
     },
     {
-     "text": "He also described OSTP under Director Kratsios as having authored America’s AI Action Plan and assisted the President with executive orders to promote artificial intelligence, accelerate nuclear energy, and spur advanced aviation.",
+     "text": "In that statement, he expressed optimism that emerging technologies could improve American lives and argued that governance discussions had sometimes leaned too far toward restraint.",
      "sids": [
-      "s4"
-     ]
-    },
-    {
-     "text": "In a February 6, 2026 reported statement, Klein referred to what he called an “overly burdensome” regulatory regime.",
-     "sids": [
-      "s3"
+      "s2"
      ]
     }
    ]
@@ -255,6 +244,22 @@
     }
    },
    "disputed": []
+  },
+  "stance_review": {
+   "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
+   "dimension": "ai_overall",
+   "status": "complete",
+   "reason": "The supplied evidence supports an optimistic AI-inclusive technology outlook in Klein’s September 2025 nominee statement, but not a standalone assessment of AI’s overall effects. The other excerpts concern international leadership, regulatory burden, or administration actions and do not independently establish an overall AI stance.",
+   "confidence": 3,
+   "n_statements": 4,
+   "n_contexts": 1,
+   "accepted_sids": [
+    "s2"
+   ],
+   "finding_count": 1,
+   "model": "openai/gpt-6-astra",
+   "assessed_at": "2026-11-09T05:23:51.743972+00:00",
+   "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
   }
  },
  "statements": [
@@ -287,8 +292,21 @@
      "china_race": 3.33
     },
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 3,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T05:23:51.743972+00:00",
+     "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -334,6 +352,17 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-09T03:06:35.663418+00:00",
       "generation_id": "gen-1794193583-t8YjW8F1Nzt5IXHp8CmS"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 3,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T05:23:51.743972+00:00",
+      "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
      }
     }
    }
@@ -354,24 +383,55 @@
    "analysis": {
     "status": "complete",
     "a": {
-     "regulation": 1
+     "regulation": 1,
+     "ai_overall": 4
     },
-    "b": {},
+    "b": {
+     "ai_overall": 4
+    },
     "topics": [
      "regulation",
      "jobs/economy",
      "national security"
     ],
     "confidence": {
-     "regulation": 3.0
+     "regulation": 3.0,
+     "ai_overall": 3
     },
     "escalated": [
      "ai_overall",
      "regulation"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
+     "labels": {
+      "ai_overall": 4
+     },
+     "confidence": {
+      "ai_overall": 3
+     },
+     "review_confidence": 3,
+     "reason": "In context, Klein includes AI among the emerging technologies under discussion and expresses broad optimism about their benefits for Americans, while criticizing excessive restraint. Benefits dominate and no substantive harms are acknowledged. Confidence is limited because this outlook covers emerging technologies collectively rather than AI alone.",
+     "supporting_quote": "Emerging technologies promise to expand economic opportunity, improve public health, and enhance national security. Yet in policy discussions about their governance, discourse has at times leaned too far toward restraint, slowing the pace of progress. As a technologist, I remain fundamentally hopeful that technology can improve American lives and further our nation’s flourishing.",
+     "support_basis": "context",
+     "source_context": {
+      "url": "https://www.commerce.senate.gov/wp-content/uploads/media/doc/Dr.%20Ethan%20Klein%20Opening%20Statement%20for%209.17.25.pdf",
+      "text_hash": "e88d66494f6f6b0efed0176f1b5cd5b2e9f191aff6e8c7d545b75d3c8330bb03",
+      "retrieval": "exact_normalized_search_retrieval",
+      "quote": "Emerging technologies promise to expand economic opportunity, improve public health, and enhance national security. Yet in policy discussions about their governance, discourse has at times leaned too far toward restraint, slowing the pace of progress. As a technologist, I remain fundamentally hopeful that technology can improve American lives and further our nation’s flourishing.",
+      "attribution_quote": "Statement of Dr. Ethan A. Klein Nominee for Associate Director of the Office of Science and Technology Policy",
+      "original_date": "2025-09-17"
+     },
+     "accepted": true,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T05:23:51.743972+00:00",
+     "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -435,6 +495,31 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-09T03:13:49.488221+00:00",
       "generation_id": "gen-1794194026-FMBJp1lC4JkIxPcZf2tw"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "review_confidence": 3,
+      "reason": "In context, Klein includes AI among the emerging technologies under discussion and expresses broad optimism about their benefits for Americans, while criticizing excessive restraint. Benefits dominate and no substantive harms are acknowledged. Confidence is limited because this outlook covers emerging technologies collectively rather than AI alone.",
+      "supporting_quote": "Emerging technologies promise to expand economic opportunity, improve public health, and enhance national security. Yet in policy discussions about their governance, discourse has at times leaned too far toward restraint, slowing the pace of progress. As a technologist, I remain fundamentally hopeful that technology can improve American lives and further our nation’s flourishing.",
+      "support_basis": "context",
+      "source_context": {
+       "url": "https://www.commerce.senate.gov/wp-content/uploads/media/doc/Dr.%20Ethan%20Klein%20Opening%20Statement%20for%209.17.25.pdf",
+       "text_hash": "e88d66494f6f6b0efed0176f1b5cd5b2e9f191aff6e8c7d545b75d3c8330bb03",
+       "retrieval": "exact_normalized_search_retrieval",
+       "quote": "Emerging technologies promise to expand economic opportunity, improve public health, and enhance national security. Yet in policy discussions about their governance, discourse has at times leaned too far toward restraint, slowing the pace of progress. As a technologist, I remain fundamentally hopeful that technology can improve American lives and further our nation’s flourishing.",
+       "attribution_quote": "Statement of Dr. Ethan A. Klein Nominee for Associate Director of the Office of Science and Technology Policy",
+       "original_date": "2025-09-17"
+      },
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T05:23:51.743972+00:00",
+      "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
      }
     }
    }
@@ -467,9 +552,22 @@
     "escalated": [
      "regulation"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 3,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T05:23:51.743972+00:00",
+     "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -523,6 +621,17 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-09T03:13:49.488221+00:00",
       "generation_id": "gen-1794194026-FMBJp1lC4JkIxPcZf2tw"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 3,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T05:23:51.743972+00:00",
+      "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
      }
     }
    }
@@ -551,8 +660,21 @@
     ],
     "confidence": {},
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 3,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T05:23:51.743972+00:00",
+     "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -588,6 +710,17 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-09T03:06:35.663418+00:00",
       "generation_id": "gen-1794193583-t8YjW8F1Nzt5IXHp8CmS"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 3,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T05:23:51.743972+00:00",
+      "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
      }
     }
    }
@@ -1013,7 +1146,7 @@
   {
    "date": "2025-09-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 4.0,
     "agi_pilled": 0.0,
     "x_risk": 0.0,
     "china_race": 3.0,
@@ -1026,7 +1159,7 @@
   {
    "date": "2025-10-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 4.0,
     "agi_pilled": 0.0,
     "x_risk": 0.0,
     "china_race": 3.0,
@@ -1039,7 +1172,7 @@
   {
    "date": "2025-11-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 4.0,
     "agi_pilled": 0.0,
     "x_risk": 0.0,
     "china_race": 3.0,
@@ -1052,7 +1185,7 @@
   {
    "date": "2025-12-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 4.0,
     "agi_pilled": 0.0,
     "x_risk": 0.0,
     "china_race": 3.0,
@@ -1065,7 +1198,7 @@
   {
    "date": "2026-01-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 4.0,
     "agi_pilled": 0.0,
     "x_risk": 0.0,
     "china_race": 3.0,
@@ -1078,7 +1211,7 @@
   {
    "date": "2026-02-28",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 4.0,
     "agi_pilled": 0.0,
     "x_risk": 0.0,
     "china_race": 3.0,
@@ -1091,7 +1224,7 @@
   {
    "date": "2026-03-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 4.0,
     "agi_pilled": 0.0,
     "x_risk": 0.0,
     "china_race": 3.0,
@@ -1104,7 +1237,7 @@
   {
    "date": "2026-04-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 4.0,
     "agi_pilled": 0.0,
     "x_risk": 0.0,
     "china_race": 3.0,
@@ -1117,7 +1250,7 @@
   {
    "date": "2026-05-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 4.0,
     "agi_pilled": 0.0,
     "x_risk": 0.0,
     "china_race": 3.0,
@@ -1130,7 +1263,7 @@
   {
    "date": "2026-06-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 4.0,
     "agi_pilled": 0.0,
     "x_risk": 0.0,
     "china_race": 3.0,
@@ -1143,7 +1276,7 @@
   {
    "date": "2026-07-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 4.0,
     "agi_pilled": 0.0,
     "x_risk": 0.0,
     "china_race": 3.0,
@@ -1156,7 +1289,7 @@
   {
    "date": "2026-08-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 4.0,
     "agi_pilled": 0.0,
     "x_risk": 0.0,
     "china_race": 3.0,
@@ -1169,7 +1302,7 @@
   {
    "date": "2026-09-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 4.0,
     "agi_pilled": 0.0,
     "x_risk": 0.0,
     "china_race": 3.0,
@@ -1182,7 +1315,7 @@
   {
    "date": "2026-10-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 4.0,
     "agi_pilled": 0.0,
     "x_risk": 0.0,
     "china_race": 3.0,
@@ -1206,5 +1339,19 @@
    "kind": "observed"
   }
  ],
- "changes": []
+ "changes": [
+  {
+   "id": "exec_klein",
+   "date": "2026-11-09",
+   "dimension": "ai_overall",
+   "old": null,
+   "new": 4.0,
+   "kind": "big",
+   "cause": "Astra review of existing evidence and source context",
+   "sids": [
+    "s2"
+   ],
+   "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3"
+  }
+ ]
 }

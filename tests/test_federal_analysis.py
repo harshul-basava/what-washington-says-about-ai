@@ -66,6 +66,41 @@ class FederalAnalysisTests(unittest.TestCase):
         self.assertNotIn('ai_overall',result['a'])
         self.assertNotIn('ai_overall',result['b'])
 
+    def test_stance_audit_applies_idempotently_and_rejects_changed_evidence(self):
+        import federal_stance_review as review
+        a=self.a
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root);config=a.configuration(root)
+            ss=[{'sid':f's{i}','date':'2026-01-01','text':'AI will benefit our whole economy.',
+                 'url':'https://example.gov/ai','verified':True,'source_type':'web',
+                 'attribution':{'kind':'personal','speaker':'Official A'}} for i in range(1,4)]
+            a.write(root/'evidence/executive_a.json',{'statements':ss})
+            subjects,evidence=a.inputs(root);subject=next(s for s in subjects if s['id']=='executive_a');ss=evidence['executive_a']
+            labels={'profiles':{'executive_a':{}}}
+            for s in ss:
+                labels['profiles']['executive_a'][s['sid']]={**self.entry(),
+                    'input_hash':a.fingerprint(subject,[s],'labels',config)}
+            a.write(root/a.LABEL_PATH,labels)
+            a.write(root/a.PROFILE_PATH,{'profiles':{'executive_a':{
+                'input_hash':a.fingerprint(subject,ss,'profile',config),'assessments':{}}}})
+            result={'findings':[{'sid':'s1','label':3,'confidence':4,'reason':'Broad benefits.',
+                                'supporting_quote':ss[0]['text'],'support_basis':'excerpt'}],
+                    'no_stance_sids':['s2','s3'],'context_requests':[],'confidence':4,'reason':'One broad stance.',
+                    'summary':{'status':'complete','text':'Expects broad benefits.','sids':['s1'],
+                               'sentences':[{'text':'Expects broad benefits.','sids':['s1']}]}}
+            audit={'model':review.MODEL,'target_ids':['executive_a'],'original_scores':{'executive_a':{'ai_overall':None}},
+                   'profiles':{'executive_a':{'model':review.MODEL,'generation_id':'g1','assessed_at':'2026-11-09',
+                        'evidence_hash':a.digest(ss),'contexts':{},'result':result}}}
+            a.write(root/review.PATH,audit)
+            review.apply(root)
+            first=(root/a.LABEL_PATH).read_bytes();review.apply(root)
+            self.assertEqual(first,(root/a.LABEL_PATH).read_bytes())
+            entry=a.read(root/a.LABEL_PATH)['profiles']['executive_a']['s1']
+            self.assertEqual(a.resolve_labels(entry)['a']['ai_overall'],3)
+            self.assertIn('ds_0',entry['assessments'])
+            ss[0]['text']='Changed evidence';a.write(root/'evidence/executive_a.json',{'statements':ss})
+            with self.assertRaises(ValueError):review.apply(root)
+
     def test_regulation_requires_all_areas_and_real_source_ids(self):
         a=self.a
         value={'stances':{k:{'stance':0,'sids':[],'why':'No stance.'} for k in a.AREA_IDS}}

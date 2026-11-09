@@ -111,6 +111,15 @@
     }
     return `<p class="fa-summary-text">${esc(summary.text)}</p><p class="fa-citations">${citations(summary.sids,statements)}</p>`;
   }
+  function renderStanceReview(review, statements) {
+    if (review?.status!=='complete') return '';
+    const accepted=review.accepted_sids || [];
+    return `<section class="fa-profile-block fa-review"><h3>Astra review: AI overall</h3>
+      <p><strong>${accepted.length ? 'Stance updated' : review.finding_count ? 'Finding below the confidence threshold' : 'No qualifying stance'}</strong> · ${count(review.n_statements)} statements reviewed · Source context checked for ${count(review.n_contexts)}.</p>
+      <p>${esc(review.reason)}</p><p class="fa-note">Review confidence: ${esc(review.confidence)} of 5. This is the model's confidence, not a measured accuracy rate.</p>
+      ${accepted.length ? `<p class="fa-citations">Corrected sources: ${citations(accepted,statements)}</p>` : ''}
+      <p class="fa-models">${esc(review.model)} · ${esc(dateLabel(review.assessed_at?.slice(0,10)))}</p></section>`;
+  }
   function renderRegulation(regulation, areas, statements) {
     const ready = regulation?.status === 'complete';
     const noEvidence = regulation?.status === 'no_evidence';
@@ -154,6 +163,14 @@
       <td>${complete && analysis.b ? label(analysis.b,d.id) : 'Pending'}</td><td>${number(analysis.confidence?.[d.id]) ? esc(analysis.confidence[d.id]) + ' of 5' : '—'}</td></tr>`).join('');
     const escalated = Array.isArray(analysis.escalated) ? analysis.escalated : [];
     const escalatedNames = escalated.map(id => dimensions.find(d => d.id === id)?.title || id);
+    const review=analysis.stance_review, contextURL=safeURL(review?.source_context?.url);
+    const reviewLabel=review?.accepted ? `AI overall: ${fmt(review.labels.ai_overall)} · ${LEVELS.ai_overall[review.labels.ai_overall]}` :
+      score(review?.labels?.ai_overall) ? 'Finding below the confidence threshold' : 'No qualifying stance';
+    const reviewHTML=review ? `<div class="fa-review"><h4>Astra stance review</h4><p><strong>${esc(reviewLabel)}</strong> · Confidence: ${esc(review.confidence?.ai_overall ?? review.review_confidence)} of 5.</p>
+      <p>${esc(review.reason)}</p>${review.supporting_quote ? `<p class="fa-note">${review.support_basis==='context' ? 'Support from the original source context' : 'Support from the original excerpt'}:</p><blockquote>${esc(review.supporting_quote)}</blockquote>` : ''}
+      ${contextURL ? `<p><a href="${esc(contextURL)}" target="_blank" rel="noopener noreferrer">Read the source context ↗</a></p>` : ''}
+      ${review.accepted ? '<p class="fa-note">Astra supplies both AI overall columns for this correction. They are not independent judgments. The original assessments remain in the profile download.</p>' : ''}
+      <p class="fa-models">${esc(review.model)} · ${esc(dateLabel(review.assessed_at?.slice(0,10)))}</p></div>` : '';
     return `<article class="fa-quote" id="${esc(quoteID(statement.sid))}" tabindex="-1"><div class="fa-quote-meta"><span class="fa-source-id">${esc(statement.sid)}</span>
       <span>${esc(dateLabel(statement.date))} · ${esc(statement.source_type || 'Source type unknown')}</span>
       ${source ? `<a href="${esc(source)}" target="_blank" rel="noopener noreferrer">Read source <span aria-hidden="true">↗</span></a>` : '<span class="fa-muted">Source link unavailable</span>'}</div>
@@ -161,6 +178,7 @@
       <blockquote>${esc(statement.text)}</blockquote><p class="fa-quote-topics">${(analysis.topics || []).map(t => `<span>${esc(t)}</span>`).join('')}</p>
       <details class="fa-assessment"><summary>${complete ? 'Assessment details' : 'Assessment pending'}</summary>
       <p class="fa-note">The two label columns feed the score formula. Confidence uses a model scale from 1 to 5; it does not measure accuracy.</p>
+      ${reviewHTML}
       <div class="fa-table-scroll"><table><caption class="fa-sr-only">Statement assessments for ${esc(statement.sid)}</caption><thead><tr><th scope="col">Question</th><th scope="col">A</th><th scope="col">B</th><th scope="col">Confidence</th></tr></thead><tbody>${rows}</tbody></table></div>
       ${escalatedNames.length ? `<p>Independent review: ${esc(escalatedNames.join(', '))}.</p>` : ''}${modelNames ? `<p class="fa-models">Model configuration: ${modelNames}</p>` : ''}</details></article>`;
   }
@@ -318,6 +336,7 @@
         <nav class="fa-profile-nav" aria-label="Profile sections"><a href="#fa-summary">Summary</a><a href="#fa-rules">AI rules</a><a href="#fa-history">History</a><a href="#fa-source-section">Sources</a></nav>
         ${renderScores(member,data.dimensions,statements)}
         <section id="fa-summary" class="fa-profile-block"><h3>What the evidence says</h3>${renderSummary(member.summary,statements)}</section>
+        ${renderStanceReview(member.stance_review,statements)}
         <section class="fa-profile-block"><h3>Topics in the statements</h3>${renderTopics(member,data.topics || [])}</section>
         <section id="fa-rules" class="fa-profile-block"><h3>Positions on ${data.regulation_areas.length} types of AI rules</h3><p class="fa-note">A stated harm alone does not establish support for a rule. No stated position does not mean opposition.</p>${renderRegulation(member.regulation,data.regulation_areas,statements)}</section>
         <section id="fa-history" class="fa-profile-block"><div class="fa-section-heading"><h3>Scores over time</h3><label class="fa-history-choice">Question<select id="fa-history-dimension">${data.dimensions.map(d=>`<option value="${esc(d.id)}" ${state.dimension===d.id ? 'selected' : ''}>${esc(d.title)}</option>`).join('')}</select></label></div><div id="fa-history-content"></div>${renderChanges(detail.changes,data.dimensions,statements)}</section>
@@ -408,7 +427,7 @@
         {rootMargin:'-56px 0px 0px 0px'}).observe(hero);
     }
   }
-  const api = {safeURL,dateLabel,filterMembers,scoreState,scoreDistribution,validateDetail,renderSummary,renderRegulation,
+  const api = {safeURL,dateLabel,filterMembers,scoreState,scoreDistribution,validateDetail,renderSummary,renderStanceReview,renderRegulation,
     renderStatement,renderTopics,historySeries,renderHistory,renderDistribution,mount};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else {

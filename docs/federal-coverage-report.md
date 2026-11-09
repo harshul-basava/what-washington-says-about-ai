@@ -25,11 +25,13 @@ The same congressional formula applies to all 97 federal profiles. It requires t
 
 | Question | Scored | No qualifying stance | One or two excerpts | No excerpts | Pending |
 |---|---:|---:|---:|---:|---:|
-| AI overall | 45 | 33 | 9 | 10 | 0 |
+| AI overall | 46 | 32 | 9 | 10 | 0 |
 | AGI-pilled | 78 | 0 | 9 | 10 | 0 |
 | AI x-risk | 78 | 0 | 9 | 10 | 0 |
 | China race | 78 | 0 | 9 | 10 | 0 |
 | Regulation | 50 | 28 | 9 | 10 | 0 |
+
+The [Astra stance review](federal-astra-stance-review.md) reviewed all 33 profiles that had three excerpts but no AI overall stance. It recovered context for 22 excerpts and changed one profile. The table includes that correction.
 
 For example, BIS has 54 verified, assessed excerpts and scores for China race and Regulation. Its excerpts do not establish an AI overall stance under the general-benefits rubric. A chip export position alone does not establish that broader stance.
 

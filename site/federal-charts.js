@@ -3,7 +3,7 @@
   'use strict';
   const view = () => typeof module !== 'undefined' && module.exports ? require('./federal-analysis.js') : global.FederalAnalysis;
   const esc = v => String(v ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const fmt = n => Number.isInteger(n) ? String(n) : n.toFixed(1);
+  const fmt = n => n===null || n===undefined ? 'Unscored' : Number.isInteger(n) ? String(n) : n.toFixed(1);
   const DAY = 86400000;
   const date = value => Date.parse(value+'T00:00:00Z');
   const iso = value => new Date(value).toISOString().slice(0,10);

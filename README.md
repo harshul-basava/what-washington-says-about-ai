@@ -272,3 +272,14 @@ What a person says in public is not the same as what they believe or how they vo
 ## Credits
 
 [CeSIA](https://cesia.org/en/data/attention/), the [@unitedstates project](https://github.com/unitedstates/congress-legislators), [GovTrack](https://www.govtrack.us/), and Zephy's earlier "What Washington Says About AGI".
+
+
+### Astra review of missing federal stances
+
+The [November 9, 2026 audit](docs/federal-astra-stance-review.md) reviewed all 33 federal profiles that had at least three excerpts but no AI overall stance. Astra reviewed all 466 excerpts. It requested context for 22 excerpts, then reviewed the retrieved sources. One profile changed; 32 retained no qualifying stance.
+
+The audit uses the existing Congress rubric. It accepts a correction only with exact source support and confidence of at least 3 out of 5. Confidence describes model certainty, not measured accuracy. The audit preserves the original assessments and adds a final Astra judgment for AI overall only. Both effective label columns use that final judgment. The site identifies this override and shows its source support, confidence, date, and reason.
+
+Daily builds retain the correction while its evidence and analysis inputs remain valid. New evidence still uses the normal DeepSeek/Sol/Astra cascade. The daily job does not repeat this paid cohort review. The audit updates reconstructed histories and records the correction date. Earlier observed snapshots remain unchanged.
+
+The resumable audit lives in `federal_stance_review.py`; its results live in `data/federal_stance_review.json`. The `review` command calls Astra, `context` retrieves requested public sources, and `apply` validates completed reviews before updating the caches. Full source text stays in ignored local caches. The manual `federal-stance-context.yml` workflow can retrieve requested X posts using the original repository secret, within a $0.50 limit. It does not run daily.
