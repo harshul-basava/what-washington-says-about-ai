@@ -49,6 +49,26 @@ class ModelTests(unittest.TestCase):
         with self.assertRaises(llm.BudgetExceeded):budget.call('model',[{'role':'user','content':'hello'}],10,'test')
         self.assertEqual(rows,[])
 
+    def test_daily_reservation_uses_only_reachable_price_tiers(self):
+        pricing={'prompt':'0.00001','completion':'0.00005','overrides':[
+            {'min_prompt_tokens':272000,'prompt':'0.00002','completion':'0.000075'}]}
+        gateway,rows=self.gateway();gateway.BUDGETS={'openrouter':350,'monthly':{'openrouter':35}}
+        budget=self.m.Budget(2,True,{'model':{'pricing':pricing}},gateway)
+        budget.call('model',[{'role':'user','content':'x'*129000}],12000,'daily_test')
+        self.assertAlmostEqual(rows[0][1],1.895)
+        # Once the conservative input bound can enter the premium tier, reserve that rate.
+        gateway,rows=self.gateway();gateway.BUDGETS={'openrouter':350}
+        budget=self.m.Budget(10,False,{'model':{'pricing':pricing}},gateway)
+        budget.call('model',[{'role':'user','content':'x'*272000}],12000,'test')
+        self.assertAlmostEqual(rows[0][1],6.35)
+        # An override without a known threshold remains possible and must be covered.
+        pricing['overrides'][0].pop('min_prompt_tokens')
+        gateway,rows=self.gateway();gateway.BUDGETS={'openrouter':350}
+        budget=self.m.Budget(2,False,{'model':{'pricing':pricing}},gateway)
+        with self.assertRaises(llm.BudgetExceeded):
+            budget.call('model',[{'role':'user','content':'x'*129000}],12000,'test')
+        self.assertEqual(rows,[])
+
     def test_zero_allowance_keeps_pending_work_without_network(self):
         from test_federal_analysis import FederalAnalysisTests
         import federal_analysis as a

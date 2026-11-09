@@ -11,12 +11,19 @@ class Budget:
         self.baseline=gateway.spent('openrouter');self.lock=threading.Lock();self.uncertain=0
 
     def call(self,model,messages,max_tokens,tag,**options):
-        gateway=self.gateway;pricing=self.metadata[model]['pricing'];tiers=[pricing,*pricing.get('overrides',[])]
+        gateway=self.gateway;pricing=self.metadata[model]['pricing']
+        input_bound=sum(len(m['content'].encode()) for m in messages)+500
+        # Bytes conservatively bound input tokens. A tier above that bound cannot apply.
+        # Unknown threshold formats remain included, so new provider formats fail safely.
+        tiers=[pricing,*[tier for tier in pricing.get('overrides',[])
+            if type(tier.get('min_prompt_tokens')) not in (int,float)
+            or not math.isfinite(tier['min_prompt_tokens'])
+            or tier['min_prompt_tokens']<=input_bound]]
         input_rate=max(float(t.get('prompt',pricing['prompt'])) for t in tiers)
         output_rate=max(float(t.get('completion',pricing['completion'])) for t in tiers)
         request_rate=max(float(t.get('request',pricing.get('request',0)) or 0) for t in tiers)
         if any(not math.isfinite(v) or v<0 for v in (input_rate,output_rate,request_rate)):raise ValueError('Invalid model pricing')
-        reserve=(sum(len(m['content'].encode()) for m in messages)+500)*input_rate+max_tokens*output_rate+request_rate
+        reserve=input_bound*input_rate+max_tokens*output_rate+request_rate
         request_id='federal-analysis-'+uuid.uuid4().hex
         with self.lock:
             spent=gateway.spent('openrouter')
