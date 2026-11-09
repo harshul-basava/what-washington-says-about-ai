@@ -30,6 +30,20 @@ class BudgetExceeded(RuntimeError):
     pass
 
 
+class OpenRouterRequestError(RuntimeError):
+    """A rejected HTTP request, distinct from a failed or uncertain generation."""
+    def __init__(self,status_code,error,retry_after=None):
+        self.status_code=status_code
+        metadata=error.get('metadata') or {}
+        self.limit_source=metadata.get('limit_source') if isinstance(metadata,dict) else None
+        self.reason=metadata.get('reason') if isinstance(metadata,dict) else None
+        self.rejected_before_inference=status_code==402 and self.limit_source in (
+            'openrouter_in_flight_budget','openrouter_credits','openrouter_key_limit')
+        try:self.retry_after=max(0,float(retry_after)) if retry_after is not None else None
+        except (TypeError,ValueError):self.retry_after=None
+        super().__init__(f"OpenRouter {status_code}: {str(error.get('message','Request failed'))[:500]}")
+
+
 def spent(provider: str) -> float:
     if not LEDGER.exists():
         return 0.0
@@ -99,7 +113,10 @@ def chat(messages: list[dict], *, tag: str, tools: list | None = None, model: st
             continue
         break
     if r.status_code != 200:
-        raise RuntimeError(f"OpenRouter {r.status_code}: {r.text[:500]}")
+        try:payload=r.json()
+        except ValueError:payload={}
+        error=payload.get('error') if isinstance(payload,dict) else None
+        raise OpenRouterRequestError(r.status_code,error if isinstance(error,dict) else {},r.headers.get('Retry-After'))
     data = r.json()
     usage = data.get("usage") or {}
     cost = float(usage.get("cost") or 0.0)

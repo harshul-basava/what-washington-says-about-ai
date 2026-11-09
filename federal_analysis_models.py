@@ -121,6 +121,7 @@ def run(root,max_cost=5,workers=4,ids=None,daily=False,dry=False,stages=None):
                 else:value=a.parse_summary(content,sids)
                 return job,{'value':value,'model':model,'generation_id':result.get('id'),'assessed_at':datetime.now(timezone.utc).isoformat()},None
             except llm.BudgetExceeded:return job,None,'budget_exceeded'
+            except llm.OpenRouterRequestError as exc:return job,None,f'openrouter_http_{exc.status_code}'
             except (ValueError,KeyError,TypeError):last_error='invalid_response'
             except Exception as exc:return job,None,type(exc).__name__
         return job,None,last_error

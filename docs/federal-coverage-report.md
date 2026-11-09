@@ -58,6 +58,20 @@ All 97 eligible profiles receive named queries in 15 source groups. The configur
 
 The current policy corpus contains 625 candidate excerpts and 722 statement-policy pairs. All pairs have assessments. Of these, 18 require human review and remain outside accepted stance charts. The DeepSeek/Astra threshold remains 0.80.
 
+## Federal analysis backfill
+
+The five-score backfill completed on November 9, 2026 UTC. It used the existing 3,499 verified excerpts. Every excerpt received three DeepSeek assessments. Sol independently reviewed 1,165 statements, and Astra reviewed 20 statements with larger disagreements. No statement labels remain pending.
+
+All 87 profiles with evidence now have 23 regulation categories and an individually cited summary. DeepSeek and Sol assessed each profile's regulation categories independently. Astra resolved category disagreements for 26 profiles. The ten profiles without evidence remain visible with an explicit absence of evidence. Sparse evidence can also leave individual scores unavailable.
+
+The website includes topics and 4,559 history records: 4,462 monthly reconstructions and 97 saved observations. Reconstructions use the current eligible roster and dated evidence available by each month-end, starting in January 2023. They exclude 371 undated excerpts. Another 124 excerpts have only a month or year; they enter after that full date interval ends. The records do not reconstruct historical government membership.
+
+Daily federal updates and manual X workflows now update all these analyses after named-policy judgments. These stages share the existing $2 model allowance. A repeat analysis and the daily path with collection skipped completed without network calls or new charges, respectively.
+
+The [backfill audit](../data/federal_analysis_backfill.json) checks all source IDs, category coverage, citations, and historical scores. It also confirms that all 835 existing evidence files, congressional analysis, named-policy caches, eligibility rules, X state, and budget limits remain unchanged. The final code passed 162 Python tests and 38 JavaScript tests. Desktop and 390-pixel browser checks covered the completed page.
+
+The ledger records $12.097384 in known inference costs. It also retains $7.151830 for five requests with unknown final costs, for a conservative total of $19.249214. Three confirmed HTTP 402 rejections occurred before inference and received documented reservation releases. No budget limit increased.
+
 The November 8 web follow-up checked all 339 pending URLs in the earlier broad roster. Its [source audit](../data/federal_web_completion.json) remains an archival effort record. These broad totals must not become current-roster counts.
 
 The [current scope audit](current-federal-scope.md) records inclusion and exclusion sources. The [scope archive](../data/federal_scope_archive.json) preserves the removed profiles and mappings. Raw evidence and model caches remain intact. The website and daily collectors use only eligible profiles.

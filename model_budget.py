@@ -36,8 +36,14 @@ class Budget:
         try:
             result=gateway.chat(messages,model=model,tag=tag,max_tokens=max_tokens,response_format={'type':'json_object'},
                                 retry_attempts=1,request_timeout=240,**options)
-        except Exception:
-            with self.lock:self.uncertain+=1
+        except Exception as exc:
+            with self.lock:
+                if isinstance(exc,getattr(gateway,'OpenRouterRequestError',())) and exc.rejected_before_inference:
+                    # OpenRouter documents these 402 rejections as occurring before provider dispatch.
+                    gateway._log('openrouter',-reserve,tag,{'phase':'reconciliation','request_id':request_id,'model':model,
+                        'http_status':exc.status_code,'limit_source':exc.limit_source,'reason':'rejected_before_inference',
+                        'cost_uncertain':False})
+                else:self.uncertain+=1
             raise
         cost=(result.get('usage') or {}).get('cost')
         with self.lock:

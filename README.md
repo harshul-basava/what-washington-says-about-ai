@@ -146,7 +146,7 @@ make federal-analysis-build
 make federal-analysis ANALYSIS_ARGS="--ids exec_rudd,sisc --max-cost 2"
 ```
 
-Daily collection runs the new analysis after named-policy judgments. Both stages share the existing $2 model allowance; monthly and lifetime limits also apply. Manual X workflows use the same shared allowance. The backfill command has its own invocation limit and uses the lifetime cap. Every request reserves its maximum cost against live model prices. A missing response or unknown provider cost retains the reservation. Completed assessments save immediately, and retries resume the remaining work. The ordinary site build makes no paid calls.
+Daily collection runs the new analysis after named-policy judgments. Both stages share the existing $2 model allowance; monthly and lifetime limits also apply. Manual X workflows use the same shared allowance. The backfill command has its own invocation limit and uses the lifetime cap. Every request reserves its maximum cost against live model prices and reachable price tiers. A missing response or unknown provider cost retains the reservation. Confirmed OpenRouter credit rejections before inference release their reservations; other failures retain them. Completed assessments save immediately, and retries resume the remaining work. The ordinary site build makes no paid calls.
 
 The older congressional cascade calibration measured agreement with model labels. It does not validate these federal results against human judgments. The named-policy confidence threshold also remains uncalibrated against human review.
 
