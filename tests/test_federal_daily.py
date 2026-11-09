@@ -47,6 +47,21 @@ class FederalTests(unittest.TestCase):
                     'https://commerce.gov@evil.test', 'https://commerce.gov:8080/news']:
             self.assertFalse(sources.allowed_url(url, ['commerce.gov']))
 
+    def test_named_searches_use_only_current_scope(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            policy.write_json(root/'config/federal_scope.json',{'version':1,'mode':'current_government',
+                'reviewed_on':'2026-11-09','profiles':[
+                    {'subject_id':'commerce','decision':'include','reason':'Active institution',
+                     'checked_on':'2026-11-09','source_url':'https://commerce.gov'}]})
+            config=copy.deepcopy(CONFIG);config['named_searches']=True
+            config['groups'][0]['organization_ids']=['commerce','task_force']
+            report=federal.collect(root,config,dry=True)
+            self.assertEqual(report['groups']['commerce']['subject_ids'],['commerce'])
+            subjects=federal.policy_subjects.load_subjects(root)
+            queries=federal.search_groups(config,subjects)[0]['queries']
+            self.assertFalse(any('Official A' in query for query in queries))
+
     def test_extraction_accepts_one_fenced_json_result_after_provider_prose(self):
         self.assertEqual(sources.parse_json('Here is the result:\n```json\n{"statements": []}\n```'), {'statements': []})
         with self.assertRaises(ValueError):

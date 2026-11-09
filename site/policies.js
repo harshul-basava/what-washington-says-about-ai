@@ -184,7 +184,7 @@
       get('policy-coverage-download').hidden = congress;
       root.querySelectorAll('[data-scope]').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.scope===state.scope)));
       get('policy-scope-note').textContent = congress ? 'Congressional policy statements. The five-score charts above cover Congress only.' :
-        `Curated federal coverage. ${state.scope === 'institutions' ? 'Each profile represents an institution. Statements do not establish its officials’ personal views.' : 'Each official counts once. Agency filters include linked roles; bars use each official’s primary organization.'} ${researchCoverageNote(data.federal_research)} ${federalUpdateNote(data.federal_update)} Role and membership records need manual review; the registry check date is ${data.subjects_verified_on || data.built_on}.`;
+        `${data.federal_scope?.mode === 'current_government' ? 'Current federal officials and government institutions only.' : 'Curated federal coverage.'} ${state.scope === 'institutions' ? 'Each profile represents an institution. Statements do not establish its officials’ personal views.' : 'Each official counts once. Agency filters include linked roles; bars use each official’s primary organization.'} ${researchCoverageNote(data.federal_research)} ${federalUpdateNote(data.federal_update)} Role and membership records need manual review; the registry check date is ${data.subjects_verified_on || data.built_on}.`;
       get('policy-detail-title').textContent = target.title;
       renderCharts();
       get('policy-description').textContent = target.kind === 'issue' ?

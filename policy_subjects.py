@@ -29,8 +29,36 @@ def load_registry(root):
     return _read(path) if path.exists() else {'version': 1, 'organizations': [], 'subjects': []}
 
 
+def load_scope(root, registry=None):
+    """Explicit current-government eligibility; unreviewed federal profiles stay out."""
+    registry = registry if registry is not None else load_registry(root)
+    path = Path(root) / 'config/federal_scope.json'
+    if not path.exists():
+        if registry.get('coverage_mode') == 'current_government':
+            raise ValueError('Current government scope file is required')
+        return None
+    scope = _read(path)
+    if scope.get('version') != 1 or scope.get('mode') != 'current_government':
+        raise ValueError('Invalid federal scope')
+    date.fromisoformat(scope['reviewed_on'])
+    known = {p['id'] for p in registry['subjects']}
+    seen = set()
+    for row in scope['profiles']:
+        pid = row.get('subject_id')
+        if (pid not in known or pid in seen or row.get('decision') not in ('include', 'exclude')
+                or not row.get('reason') or not row.get('checked_on')
+                or (row['decision'] == 'include' and not _url(row.get('source_url')))):
+            raise ValueError('Invalid or unsourced federal scope entry')
+        date.fromisoformat(row['checked_on'])
+        seen.add(pid)
+    return scope
+
+
 def load_subjects(root):
     config = load_registry(root)
+    scope = load_scope(root, config)
+    eligible = ({row['subject_id']: row for row in scope['profiles'] if row['decision'] == 'include'}
+                if scope is not None else None)
     organizations = {o['id']: o for o in config['organizations']}
     if config['version'] != 1 or len(organizations) != len(config['organizations']):
         raise ValueError('Invalid subject registry or duplicate organization')
@@ -67,6 +95,10 @@ def load_subjects(root):
         p.update(party=None, state='', chamber='', status='institution' if p['entity_type'] == 'institution' else 'official',
                  organization_name=organizations[p['organization_id']]['name'],
                  organization_ids=sorted({ancestor for oid in [p['organization_id'], *[r['organization_id'] for r in p['roles']]] for ancestor in ancestry(oid)}))
+        if eligible is not None:
+            if p['id'] not in eligible:
+                continue
+            p['government_scope'] = {k: eligible[p['id']][k] for k in ('checked_on', 'source_url', 'reason')}
         subjects.append(p)
     return subjects
 
@@ -97,7 +129,7 @@ def load_evidence(root, subject):
 
 def public_profile(subject):
     fields = ('id', 'name', 'party', 'state', 'chamber', 'status', 'entity_type', 'branch',
-              'organization_id', 'organization_ids', 'organization_name', 'roles', 'source_url', 'description', 'aliases', 'verified_on')
+              'organization_id', 'organization_ids', 'organization_name', 'roles', 'source_url', 'description', 'aliases', 'verified_on', 'government_scope')
     return {k: subject[k] for k in fields if k in subject}
 
 

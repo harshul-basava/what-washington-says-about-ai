@@ -208,7 +208,7 @@ def append_evidence(root, subject_id, statements):
 
 
 def search_groups(config, subjects):
-    """Expand explicit agency assignments into named searches, including former officials."""
+    """Expand agency assignments into named searches for the eligible federal roster."""
     groups = [{**g, 'queries': list(g['queries']), 'subject_ids': []} for g in config['groups']]
     if not config.get('named_searches'):
         return groups

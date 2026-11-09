@@ -1,5 +1,7 @@
 # Federal X Account Expansion Implementation Plan
 
+> Superseded on 2026-11-09 UTC by the user’s current-government-only correction. The broad research remains an audit record. Active scope and completion follow [the correction record](2026-11-09-current-federal-scope.md).
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Research all 165 unmapped federal profiles, add defensible account mappings, collect their public AI-policy history, and include them in daily updates.

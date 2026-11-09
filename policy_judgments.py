@@ -231,6 +231,11 @@ def build(root):
     root = Path(root)
     from federal_coverage import coverage
     roster = subjects.load_subjects(root)
+    # These are generated public files. Remove excluded profiles from direct URLs too.
+    active_ids = {person['id'] for person in roster}
+    for path in (root / 'site/data/policy_members').glob('*.json'):
+        if path.stem not in active_ids:
+            path.unlink()
     research_audit = read_json(root / 'data/federal_research.json') if (root / 'data/federal_research.json').exists() else {}
     research = coverage(root, [s for s in roster if s['branch'] == 'executive'], research_audit)
     research['methodology'] = read_json(root / 'config/federal_research.json') if (root / 'config/federal_research.json').exists() else {}
@@ -282,13 +287,18 @@ def build(root):
                        ({'research': research['profiles'][person['id']]} if person['branch'] == 'executive' else {}))
         write_json(root / "site/data/policy_members" / f"{person['id']}.json", {"id": person["id"], "policies": detail, **({'statements': library} if library else {})})
     organization_registry = subjects.load_registry(root)
+    scope = subjects.load_scope(root, organization_registry)
+    scope_meta = ({k: scope[k] for k in ('mode', 'reviewed_on')} if scope else None)
+    used_organizations = {oid for person in roster for oid in person.get('organization_ids', [])}
+    public_organizations = [o for o in organization_registry['organizations'] if o['id'] in used_organizations]
     chart_revision = hashlib.sha256(json.dumps([strategy, chart_rows, members, organization_registry], sort_keys=True).encode()).hexdigest()
     write_json(root / "site/data/policy_charts.json", {"schema_version": 1, "revision": chart_revision, "strategy": strategy, "policies": chart_rows})
     meta = {"schema_version": 1, "built_on": date.today().isoformat(), "judges": cascade.models(strategy) if strategy else JUDGES, "strategy": strategy, "chart_revision": chart_revision,
             "method": ("DeepSeek confidence assessment; independent Astra review below threshold; unresolved cases require human review." if strategy else "Two independent statement judgments; all-history stance; no numerical averaging."),
             "coverage_note": "Keyword retrieval over the existing verified corpus; no matching evidence is not proof of silence.",
             "policies": registry["policies"], "members": members,
-            "organizations": organization_registry['organizations'],
+            "organizations": public_organizations,
+            "federal_scope": scope_meta,
             "subjects_verified_on": organization_registry.get('verified_on'),
             "federal_research": {k: v for k, v in research.items() if k != 'profiles'},
             "federal_update": read_json(root / 'data/federal_status.json') if (root / 'data/federal_status.json').exists() else None}

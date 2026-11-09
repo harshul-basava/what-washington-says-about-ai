@@ -1,73 +1,63 @@
-# Federal coverage audit — 2026-11-08
+# Federal coverage audit — current government scope
 
-The registry contains 150 people and 36 institutions across 41 organizations. Each profile completed eight separate historical web search passes. A separate source pass checked government pages and testimony. The combined corpus contains 3,073 excerpts from 1,955 distinct source URLs, including 1,121 direct X excerpts.
+Reviewed on 2026-11-09 UTC. The active roster contains 62 current officials and 35 government institutions. It excludes 89 previously researched profiles under the user’s current-government rule.
 
-Evidence depth remains below Congress. Missing evidence does not establish a neutral or opposing stance.
+The current corpus contains 3,499 verified excerpts from 2,749 distinct URLs, including 2,256 direct X excerpts. All 97 profiles completed eight historical web search passes. Search completion does not establish exhaustive coverage.
 
 ## Comparison of people
 
-Institution excerpts do not enter this comparison. Quote counts measure available evidence, not search completeness or importance.
+Institution excerpts do not enter this comparison. Counts measure available evidence, not importance or search completeness.
 
 | Metric | Federal people | Congress |
 |---|---:|---:|
-| Profiles | 150 | 649 |
-| Stored excerpts | 1344 | 15728 |
-| Median excerpts per person | 6 | 12 |
-| Median source URLs per person | 4 | 10 |
-| Median quoted words per person | 164.5 | 584 |
+| Profiles | 62 | 649 |
+| Stored excerpts | 1570 | 15728 |
+| Median excerpts per person | 7.5 | 12 |
+| Median source URLs per person | 5.0 | 10 |
+
+Federal evidence depth remains below Congress. Federal research has no bulk govinfo collection channel. Missing evidence does not establish a neutral or opposing stance.
 
 ## Coverage by daily group
 
 | Group | People | Institutions | Median excerpts per person | People without excerpts |
 |---|---:|---:|---:|---:|
-| White House and executive policy offices | 50 | 9 | 4.5 | 4 |
-| Commerce and its agencies | 25 | 7 | 5 | 5 |
-| NSA and its security center | 6 | 2 | 8.5 | 0 |
-| Intelligence community | 8 | 2 | 5.5 | 1 |
-| Defense and military AI | 10 | 2 | 11.5 | 0 |
-| Treasury | 6 | 1 | 7 | 0 |
-| State and trade policy | 10 | 3 | 6 | 0 |
-| Justice and its task forces | 7 | 3 | 3 | 0 |
-| Homeland security and CISA | 7 | 2 | 7 | 0 |
-| Energy | 4 | 1 | 15.5 | 0 |
-| Procurement and personnel | 8 | 2 | 9.5 | 1 |
-| Federal Trade Commission | 5 | 1 | 24 | 0 |
-| Health and social security | 2 | 0 | 5 | 0 |
-| Environmental Protection Agency | 1 | 0 | 8 | 0 |
-| White House Super Intelligence Force | 1 | 1 | 6 | 0 |
-
-## Historical X search
-
-The November 8 emusks backfill imported 1,114 excerpts from 23 sourced accounts for 21 profiles. The collector processed 159 successful pages. Emusks supplied completion signals for 23 account intervals; 0 emusks intervals remain pending.
-
-The follow-up completed the five remaining historical intervals and all daily windows. It found no additional posts. Provider completion signals do not establish a complete archive.
-
-The official X API then completed all 23 configured historical intervals across 47 successful pages. Four bounded batches added seven excerpts for five profiles, at an estimated X cost of $6.465. Historical intervals end on November 8, 2026, exclusive, or an earlier account ownership boundary. A separate daily pass completed all 18 active account windows across 22 pages, added no excerpts, and cost an estimated $0.21. No official historical or daily windows remain pending. The [aggregate audit](../data/federal_x_official_completion.json) links every run. The official collector uses separate checkpoints and retains existing evidence with its emusks provenance. The merged original repository now runs daily federal collection with its existing bearer secret; the fork's duplicate daily workflow is paused.
-
-A follow-up checked all 165 previously unmapped profiles and verified accounts for 71 of them. The registry now has 105 sourced handles across 106 ownership intervals for 92 profiles. Another 94 profiles remain unresolved. The [account research audit](../data/federal_x_account_research.json) records every outcome. Expanded collection progress follows the provider reports; the 23-interval completion above describes the initial pass. The [X coverage report](federal-x-coverage.md) lists mappings, ownership dates, and gaps. Bulk govinfo collection remains absent.
+| executive | 10 | 8 | 7.5 | 1 |
+| commerce | 17 | 7 | 4 | 5 |
+| nsa | 1 | 2 | 8 | 0 |
+| intelligence | 3 | 2 | 7 | 1 |
+| defense | 4 | 2 | 11.0 | 0 |
+| treasury | 3 | 1 | 9 | 0 |
+| state | 5 | 3 | 9 | 0 |
+| justice | 4 | 3 | 7.5 | 0 |
+| homeland | 2 | 2 | 7.0 | 0 |
+| energy | 3 | 1 | 89 | 0 |
+| procurement | 5 | 2 | 11 | 1 |
+| regulators | 2 | 1 | 22.0 | 0 |
+| health | 2 | 0 | 5.0 | 0 |
+| environment | 1 | 0 | 8 | 0 |
+| si_task_force | 0 | 1 | — | 0 |
 
 ## Remaining evidence gaps
 
-The following people have no verified excerpts after these searches:
+The following current officials have no verified excerpts:
 
 - Allison Curran.
-- Jake Easter.
 - Jennifer Hill.
 - Jessica Curyto.
 - John Sonderman.
 - Katherine Reid.
 - Noah Jaffe.
-- Richard Walters.
 - Ted Suzman.
 - Thomas Flagg.
-- Thomas Lind.
 
-The follow-up checked 339 source URLs, including all 321 queued daily pages and the 18 pending government sources. It added 380 verified excerpts. Exact-source checks rejected 590 distinct model proposals across extraction attempts, including proposals later repaired. Rejected proposals never enter evidence. The audit records resolved URLs, source hashes, and exclusions in `data/federal_web_completion.json`. This bounded source review does not establish exhaustive coverage. Roles and memberships require manual review.
+There are 58 sourced X handles for 50 eligible profiles. Another 47 profiles lack a verified mapping. Historical search completed 58 of 59 ownership intervals; the retired `MHolyoakFTC` account remains unavailable. The [X report](federal-x-coverage.md) lists accounts and ownership sources.
 
-## Daily inclusion
+## Daily inclusion and judgments
 
-All 186 profiles have named queries in 15 source groups. The configuration produces 111 queries and checks up to six queued pages per group per invocation. Searches run with up to four workers. The daily schedule is 11:00 UTC. Fork workflows default to federal-only updates and accept explicit source overrides.
+All 97 eligible profiles receive named queries in 15 source groups. The configuration produces 67 agency and named queries. The collector checks up to six queued pages per group per invocation. The daily schedule is 11:00 UTC.
 
-The latest federal web report retains 0 queued pages. The current policy corpus has 548 candidate excerpts and 664 statement-policy pairs. Model assessment has 0 pending pairs; 10 pairs require human review and remain outside accepted stance charts. The historical X additions required one new DeepSeek judgment, which met the confidence threshold.
+The current policy corpus contains 625 candidate excerpts and 722 statement-policy pairs. All pairs have assessments. Of these, 18 require human review and remain outside accepted stance charts. The DeepSeek/Astra threshold remains 0.80.
 
-The user approved a $40 monthly cap for daily X updates. The $150 X lifetime cap and other provider caps remain unchanged. Budget limits and source failures preserve checkpoints. The site reports coverage and provides `site/data/federal_coverage.csv` for every profile.
+The November 8 web follow-up checked all 339 pending URLs in the earlier broad roster. Its [source audit](../data/federal_web_completion.json) remains an archival effort record. These broad totals must not become current-roster counts.
+
+The [current scope audit](current-federal-scope.md) records inclusion and exclusion sources. The [scope archive](../data/federal_scope_archive.json) preserves the removed profiles and mappings. Raw evidence and model caches remain intact. The website and daily collectors use only eligible profiles.

@@ -41,6 +41,20 @@ class XTests(unittest.TestCase):
         self.assertEqual(self.x.windows('2024-01-20','2024-03-02'),[
             ('2024-01-20','2024-02-01'),('2024-02-01','2024-03-01'),('2024-03-01','2024-03-02')])
 
+    def test_excluded_profile_never_reaches_transport_even_with_stale_account_config(self):
+        import federal_coverage
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            write_json(root/'config/federal_scope.json',{'version':1,'mode':'current_government',
+                'reviewed_on':'2026-11-09','profiles':[]})
+            calls=[]
+            report=self.x.collect(root,client=lambda request:calls.append(request),now='2026-11-09')
+            self.assertEqual(calls,[])
+            self.assertEqual(report['accounts'],0)
+            self.assertEqual(report['pending_windows'],0)
+            coverage=federal_coverage.coverage(root,policy_subjects.load_subjects(root),{})
+            self.assertEqual(coverage['summary']['x_accounts'],0)
+
     def test_two_ownership_intervals_count_as_one_account_but_keep_both_searches(self):
         import federal_coverage
         with tempfile.TemporaryDirectory() as tmp:

@@ -20,7 +20,21 @@ def coverage(root, subjects, audit):
         x_status={'status':'not_started','provider':x_provider}
     else:
         x_status={**x_status,'provider':x_provider}
-    x_accounts=x_config['accounts']
+    subject_ids={s['id'] for s in subjects}
+    x_accounts=[a for a in x_config['accounts'] if a['subject_id'] in subject_ids]
+    account_ids={a['id'] for a in x_accounts}
+    x_status={**x_status,'accounts':len({a['handle'].lower() for a in x_accounts}),
+        'account_intervals':len(x_accounts),'mapped_profiles':len({a['subject_id'] for a in x_accounts}),
+        'unmapped_profiles':len(subject_ids-{a['subject_id'] for a in x_accounts})}
+    if 'added' in x_status:
+        x_status['added']={pid:ids for pid,ids in x_status['added'].items() if pid in subject_ids}
+    if 'errors' in x_status:
+        x_status['errors']=[e for e in x_status['errors'] if e.get('account_id') in account_ids or not e.get('account_id')]
+    if 'pending_windows' in x_status:
+        fps={a['id']:fingerprint(a) for a in x_accounts}
+        until=(datetime.now(timezone.utc).date()+timedelta(days=1)).isoformat()
+        x_status['pending_windows']=sum(j['status']!='searched' for j in x_state['jobs'].values()
+            if current_job(j,fps,x_config,until) and j['mode']==x_status.get('mode'))
     seed_audit = read(root / 'data/federal_seed_research.json', {}).get('profiles', {})
     for subject in subjects:
         statements = read(root / 'evidence' / f"{subject['id']}.json", {'statements': []})['statements']
@@ -59,7 +73,7 @@ def coverage(root, subjects, audit):
         'people': len(people), 'institutions': len(profiles) - len(people),
         'statements': sum(p['statements'] for p in profiles.values()),
         'unique_source_pages': len(source_urls),
-        'official_source_pages_checked': len({url for p in seed_audit.values() for url, entry in p.get('sources', {}).items() if entry.get('status') == 'completed'}),
+        'official_source_pages_checked': len({url for pid,p in seed_audit.items() if pid in subject_ids for url, entry in p.get('sources', {}).items() if entry.get('status') == 'completed'}),
         'people_median_statements': statistics.median(counts) if counts else 0,
         'people_without_evidence': sum(n == 0 for n in counts), 'people_with_12_statements': sum(n >= 12 for n in counts),
         'people_searched': sum(p['completed_passes'] > 0 for p in people),

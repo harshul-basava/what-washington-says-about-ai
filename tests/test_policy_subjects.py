@@ -35,6 +35,44 @@ class SubjectTests(unittest.TestCase):
         p.write_json(root / 'evidence/executive_a.json', {'statements': [stmt]})
         p.write_json(root / 'evidence/commerce.json', {'statements': []})
 
+    def test_current_scope_removes_former_profiles_candidates_and_stale_exports(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); self.fixture(root)
+            p.build(root)
+            original = (root / 'evidence/executive_a.json').read_bytes()
+            p.write_json(root / 'config/federal_scope.json', {'version': 1, 'mode': 'current_government',
+                'reviewed_on': '2026-11-09', 'profiles': [
+                    {'subject_id': 'executive_a', 'decision': 'exclude', 'reason': 'Former official',
+                     'checked_on': '2026-11-09', 'source_url': 'https://example.gov/former'},
+                    {'subject_id': 'commerce', 'decision': 'include', 'reason': 'Active government institution',
+                     'checked_on': '2026-11-09', 'source_url': 'https://example.gov/commerce'}]})
+            result = p.build(root)
+            self.assertEqual({m['id'] for m in result['members']}, {'P', 'commerce'})
+            self.assertEqual({s['person_id'] for s in p.candidates(root, REGISTRY)}, {'P'})
+            self.assertFalse((root / 'site/data/policy_members/executive_a.json').exists())
+            self.assertEqual((root / 'evidence/executive_a.json').read_bytes(), original)
+            self.assertEqual(result['federal_research']['summary']['people'], 0)
+
+    def test_current_scope_excludes_unreviewed_profiles_and_requires_sources(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); self.fixture(root)
+            scope = {'version': 1, 'mode': 'current_government', 'reviewed_on': '2026-11-09',
+                     'profiles': []}
+            p.write_json(root / 'config/federal_scope.json', scope)
+            self.assertEqual([m['id'] for m in p.build(root)['members']], ['P'])
+            scope['profiles'] = [{'subject_id': 'executive_a', 'decision': 'include',
+                                 'reason': 'Current', 'checked_on': '2026-11-09'}]
+            p.write_json(root / 'config/federal_scope.json', scope)
+            with self.assertRaisesRegex(ValueError, 'scope'):
+                p.build(root)
+
+    def test_required_current_scope_cannot_silently_fall_back_to_all_profiles(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); self.fixture(root)
+            p.write_json(root / 'config/policy_subjects.json', {**SUBJECTS, 'coverage_mode': 'current_government'})
+            with self.assertRaisesRegex(ValueError, 'scope'):
+                p.build(root)
+
     def test_public_exports_exclude_copied_reporting_context(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp); self.fixture(root)

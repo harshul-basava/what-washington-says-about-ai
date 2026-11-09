@@ -54,6 +54,10 @@ def registry(root):
         raise ValueError('Invalid historical window')
     if config.get('historical_until'):date.fromisoformat(config['historical_until'])
     subjects={p['id']:p for p in policy_subjects.load_subjects(root) if p['branch']=='executive'}
+    known={p['id'] for p in policy_subjects.load_registry(root)['subjects']}
+    # A stale account registry must never bypass a current-government exclusion.
+    config={**config,'accounts':[a for a in config['accounts']
+        if a.get('subject_id') in subjects or a.get('subject_id') not in known]}
     seen={};ids=set()
     for a in config['accounts']:
         p=subjects.get(a.get('subject_id'));handle=a.get('handle','')
