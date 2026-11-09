@@ -9,7 +9,7 @@ Authorized design: ../specs/2026-11-08-federal-analysis-design.md. Baseline: 3ae
 3. [x] Add `scripts/federal_analysis.py` with plan, label, and build commands. Add daily orchestration and manual X integration. Reserve maximum request costs using live model metadata, preserve results, fail partial, and keep current lifetime/monthly caps. Test dry-run and resumed execution.
 4. [x] Build `site/federal.html`, `site/federal-analysis.js`, and CSS. Link from the main site and policy profiles. Add meaningful JS tests for filtering, unknown data, history/date display, and source safety. Keep the existing Congress page and its generated data unchanged.
 5. [x] Run a bounded live pilot. Inspect source/label relationships, then complete the backfill in resumable batches. Record costs and coverage. Run the daily analysis again to prove no unnecessary model calls.
-6. [ ] Review, test, build, audit preservation and scope, verify desktop/mobile UI, push original master, and verify production. Update README, prompt documentation, and the coverage report with exact outcomes and limitations.
+6. [x] Review, test, build, audit preservation and scope, verify desktop/mobile UI, push original master, and verify production. Update README, prompt documentation, and the coverage report with exact outcomes and limitations.
 
 ## Public data contract
 
@@ -30,3 +30,5 @@ Independent review fixed fractional topic rendering, unsaved observations in off
 Completed backfill: all 3,499 statements; 87 summaries and 23-category profiles; zero pending analyses. Sol reviewed 1,165 statements; Astra reviewed 20 statements and regulation disagreements for 26 profiles. Ten empty profiles remain explicit. Final verification passed 162 Python and 38 JavaScript tests. The full preservation/history/citation audit passed. A network-blocked repeat and the daily analysis path made no new paid calls. Actual-data browser checks covered officials, institutions, citations, fractional topics, histories, and a 390-pixel layout.
 
 Budget follow-up: reserve only price tiers reachable by the conservative input bound. Confirmed HTTP 402 credit rejections release their reservations; unknown failures retain them. Both changes passed independent review. The cumulative ledger total is $19.249214, including $7.151830 still reserved for five uncertain requests. The lifetime, monthly, and daily caps are unchanged.
+
+Published to original master at 2f494e0fb90792ad6f2cfdbb1f58f6605ff9d620. Vercel reported success. All 102 checked public files matched local bytes, including every one of the 97 profile exports. The excluded Dean Ball profile returned HTTP 404. The original daily workflow remains active; the fork's duplicate workflow remains manually disabled. See data/federal_analysis_deployment.json for the file hashes and deployment audit.
