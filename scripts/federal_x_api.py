@@ -10,6 +10,7 @@ import httpx
 from dotenv import dotenv_values
 
 import llm
+from federal_x_config import PROBLEM_TYPES
 
 POST_COST=0.005
 USER_COST=0.010
@@ -17,9 +18,10 @@ GAP=3.1  # Below 300 requests per 15 minutes, including account lookups.
 
 
 class APIError(Exception):
-    def __init__(self,code,diagnostic=None):
+    def __init__(self,code,diagnostic=None,problem_types=None):
         super().__init__(code)
         self.diagnostic=diagnostic
+        self.problem_types=problem_types
 
 
 class Client:
@@ -90,7 +92,13 @@ class Client:
             raise APIError('malformed_response') from None
         reconcile(count)
         stage='search' if path=='tweets/search/all' else 'lookup'
-        if data.get('errors'):raise APIError('malformed_response',stage+'_response_errors')
+        if data.get('errors'):
+            allowed={prefix+kind:kind for prefix in ('https://api.x.com/2/problems/',
+                'https://api.twitter.com/2/problems/') for kind in PROBLEM_TYPES}
+            errors=data['errors'] if isinstance(data['errors'],list) else []
+            kinds=sorted({allowed[e['type']] for e in errors if isinstance(e,dict)
+                and isinstance(e.get('type'),str) and e['type'] in allowed})
+            raise APIError('malformed_response',stage+'_response_errors',kinds)
         if count>maximum:raise APIError('malformed_response','response_count_invalid')
         return data
 
@@ -145,6 +153,7 @@ class Client:
                                    'restricted':bool(post.get('withheld'))})
             return {'account':owner,'posts':normalized,'cursor':cursor}
         except APIError as exc:
-            return {'error':str(exc),**({'diagnostic':exc.diagnostic} if exc.diagnostic else {})}
+            return {'error':str(exc),**({'diagnostic':exc.diagnostic} if exc.diagnostic else {}),
+                    **({'problem_types':exc.problem_types} if exc.problem_types else {})}
         except (KeyError,ValueError,TypeError,AttributeError):
             return {'error':'malformed_response','diagnostic':stage+'_fields_invalid'}

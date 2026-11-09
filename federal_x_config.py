@@ -4,6 +4,11 @@ import json
 
 KEYWORDS = '(AI OR "artificial intelligence" OR AGI OR superintelligence OR "super intelligence" OR OpenAI OR Anthropic OR "AI chips" OR "export controls" OR "FRONTIER Act" OR "Kill Switch Act" OR "Stop Stealing Our Chips" OR "independent verification")'
 
+# Fixed public error categories; never copy provider titles, details, or values.
+PROBLEM_TYPES = frozenset({'invalid-request', 'resource-not-found', 'not-authorized-for-resource',
+    'not-authorized-for-field', 'field-unauthorized', 'field-hydration-failure', 'disallowed-resource',
+    'client-forbidden', 'usage-capped', 'rate-limit-exceeded', 'internal-error'})
+
 
 def provider(config):
     value = config.get('provider', 'emusks')

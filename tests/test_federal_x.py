@@ -113,6 +113,11 @@ class XTests(unittest.TestCase):
             result=self.x.collect(root,client=lambda req:{'error':'malformed_response',
                 'diagnostic':'credential=private-provider-text'},now='2026-11-08')
             self.assertNotIn('private-provider-text',json.dumps(result))
+            result=self.x.collect(root,client=lambda req:{'error':'malformed_response',
+                'diagnostic':'search_response_errors','problem_types':['resource-not-found',
+                    'private-provider-text',{'detail':'private-provider-text'}]},now='2026-11-08')
+            self.assertEqual(result['errors'][0]['problem_types'],['resource-not-found'])
+            self.assertNotIn('private-provider-text',json.dumps(result))
 
     def test_rate_limit_defers_later_searches_and_records_cooldown(self):
         with tempfile.TemporaryDirectory() as tmp:

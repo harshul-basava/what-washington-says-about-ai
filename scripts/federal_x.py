@@ -20,7 +20,7 @@ sys.path[:0]=[str(ROOT),str(ROOT/'scripts/daily')]
 import policy_subjects
 from dotenv import dotenv_values
 from federal_sources import digest
-from federal_x_config import KEYWORDS, fingerprint, current_job, provider as configured_provider, state_file
+from federal_x_config import KEYWORDS, PROBLEM_TYPES, fingerprint, current_job, provider as configured_provider, state_file
 
 AI=re.compile(r'\b(?:AI|AGI|artificial intelligence|superintelligence|super intelligence|OpenAI|Anthropic|export controls?|frontier act|kill switch act|stop stealing our chips|independent verification)\b',re.I)
 ERRORS={'missing_auth_token','missing_bearer_token','authentication_failed','rate_limited','timeout','request_failed','malformed_response','budget_exceeded','credits_exhausted','account_identity_changed','account_unavailable','window_not_ready'}
@@ -256,6 +256,10 @@ def collect(root, mode='daily', since=None, dry=False, client=None, now=None, id
             code=str(exc) if isinstance(exc,ValueError) and str(exc) in ERRORS|{'repeated_cursor','account_identity_changed','malformed_response'} else 'request_failed'
             diagnostic=result.get('diagnostic') if isinstance(result,dict) else None
             detail={'diagnostic':diagnostic} if isinstance(diagnostic,str) and diagnostic in DIAGNOSTICS else {}
+            kinds=result.get('problem_types') if isinstance(result,dict) else None
+            if isinstance(kinds,list):
+                safe=sorted({kind for kind in kinds if isinstance(kind,str) and kind in PROBLEM_TYPES})
+                if safe:detail['problem_types']=safe
             job.update(status='pending',error=code);report['errors'].append({'account_id':a['id'],'error':code,**detail})
             if code in ('rate_limited','authentication_failed','missing_auth_token','missing_bearer_token','budget_exceeded','credits_exhausted'):
                 report['error']=code;write(state_path,state);break

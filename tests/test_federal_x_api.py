@@ -102,6 +102,19 @@ class OfficialAPITests(unittest.TestCase):
         self.assertEqual(result,{'error':'malformed_response','diagnostic':'search_response_errors'})
         self.assertAlmostEqual(sum(r['cost'] for r in self.records()),0.015)
 
+    def test_partial_error_exposes_only_allowlisted_problem_types(self):
+        def send(req):
+            return httpx.Response(200,json={'data':USER} if '/users/' in req.url.path else
+                {'data':[POST],'meta':{'result_count':1},'errors':[
+                    {'type':'https://api.x.com/2/problems/resource-not-found','detail':'private details'},
+                    {'type':'https://api.twitter.com/2/problems/internal-error','value':'private value'},
+                    {'type':'https://untrusted.example/secret','detail':'official-test-bearer'}]})
+        result=self.client(send)(REQUEST)
+        self.assertEqual(result,{'error':'malformed_response','diagnostic':'search_response_errors',
+                                 'problem_types':['internal-error','resource-not-found']})
+        self.assertNotIn('private',json.dumps(result))
+        self.assertNotIn('official-test-bearer',json.dumps(result))
+
     def test_author_failure_has_a_safe_diagnostic_and_keeps_response_private(self):
         def send(req):
             return httpx.Response(200,json={'data':USER} if '/users/' in req.url.path else
