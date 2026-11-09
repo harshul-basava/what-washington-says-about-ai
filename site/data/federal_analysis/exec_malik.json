@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_malik",
- "revision": "49eaa5228b34ded840ebedc0807942e5b28767240fc67b1898d724d8219ae47d",
+ "revision": "7069276e182be8df03c493e52d91a33c961205fb2aedf4cb4dbdeae161ff417d",
  "profile": {
   "id": "exec_malik",
   "name": "Paras Malik",
@@ -49,29 +49,33 @@
    "source_url": "https://govciomedia.com/the-caios-leading-responsible-ai-development-across-government/",
    "reason": "current_government_official"
   },
-  "n_statements": 9,
-  "n_labeled": 9,
+  "n_statements": 11,
+  "n_labeled": 11,
   "scores": {
-   "ai_overall": null,
-   "agi_pilled": 0.0,
+   "ai_overall": 3.0,
+   "agi_pilled": 2.0,
    "x_risk": 0.0,
    "china_race": 0.0,
    "regulation": 2.0
   },
   "score_details": {
    "ai_overall": {
-    "score": null,
-    "reason_a": "no_statements",
-    "reason_b": "no_statements",
-    "sids": [],
-    "label_count": 0
+    "score": 3.0,
+    "reason_a": "median_of_2",
+    "reason_b": "median_of_2",
+    "sids": [
+     "s11"
+    ],
+    "label_count": 2
    },
    "agi_pilled": {
-    "score": 0.0,
-    "reason_a": "silent",
-    "reason_b": "silent",
-    "sids": [],
-    "label_count": 0
+    "score": 2.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s10"
+    ],
+    "label_count": 1
    },
    "x_risk": {
     "score": 0.0,
@@ -100,52 +104,40 @@
   },
   "summary": {
    "status": "complete",
-   "text": "In March 2026 official remarks, Malik said AI is moving from experimentation to enterprise-wide integration and that the priority is operationalizing it in core workflows to enhance risk management and resilience. In June 2026, he said AI adoption is moving from experimentation to implementation and that the challenge is operationalizing strategies at scale while maintaining trust, resilience, and effective governance in financial services. He said the AI Innovation Series convenes regulators and industry leaders to keep governance frameworks fit for purpose as AI becomes embedded in financial markets. A 2023 personal post said he shared how his team was developing AI capabilities to help clients deploy and scale AI, and an undated personal statement said innovation should be enabled without compromising safety and soundness.",
+   "text": "In July 2026, Malik described AI as one of the defining economic opportunities of our lifetime. In September 2026, Malik characterized the opportunity from AI and superintelligence as enormous while endorsing safe and responsible advancement of American innovation. Malik's March and June 2026 statements emphasized operationalizing AI, improving risk management and resilience, and maintaining effective governance in financial services.",
    "sids": [
-    "s1",
+    "s10",
+    "s11",
     "s7",
-    "s2",
-    "s6",
-    "s8",
-    "s4",
-    "s3",
-    "s5"
+    "s8"
    ],
    "sentences": [
     {
-     "text": "In March 2026 official remarks, Malik said AI is moving from experimentation to enterprise-wide integration and that the priority is operationalizing it in core workflows to enhance risk management and resilience.",
+     "text": "In July 2026, Malik described AI as one of the defining economic opportunities of our lifetime.",
      "sids": [
-      "s1",
-      "s7"
+      "s10"
      ]
     },
     {
-     "text": "In June 2026, he said AI adoption is moving from experimentation to implementation and that the challenge is operationalizing strategies at scale while maintaining trust, resilience, and effective governance in financial services.",
+     "text": "In September 2026, Malik characterized the opportunity from AI and superintelligence as enormous while endorsing safe and responsible advancement of American innovation.",
      "sids": [
-      "s2",
-      "s6",
+      "s11"
+     ]
+    },
+    {
+     "text": "Malik's March and June 2026 statements emphasized operationalizing AI, improving risk management and resilience, and maintaining effective governance in financial services.",
+     "sids": [
+      "s7",
       "s8"
-     ]
-    },
-    {
-     "text": "He said the AI Innovation Series convenes regulators and industry leaders to keep governance frameworks fit for purpose as AI becomes embedded in financial markets.",
-     "sids": [
-      "s4",
-      "s7"
-     ]
-    },
-    {
-     "text": "A 2023 personal post said he shared how his team was developing AI capabilities to help clients deploy and scale AI, and an undated personal statement said innovation should be enabled without compromising safety and soundness.",
-     "sids": [
-      "s3",
-      "s5"
      ]
     }
    ]
   },
   "topics": {
    "other": 4.5,
-   "regulation": 4.5
+   "regulation": 4.5,
+   "jobs/economy": 1.5,
+   "AGI/transformative": 0.5
   },
   "regulation": {
    "status": "complete",
@@ -269,18 +261,21 @@
    "disputed": []
   },
   "stance_review": {
-   "review_id": "7b7c0980164b8d895091ac8e3b602e34266a56e0be69d87503d6922e31964077",
+   "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
    "dimension": "ai_overall",
    "status": "complete",
-   "reason": "The supplied statements discuss AI deployment, client services, operational benefits, and financial-sector governance rather than AI’s overall effects on Americans. The supplied source context for s5 confirms that its innovation-and-safety language concerns financial-market supervision, not a general assessment of AI. No excerpt establishes an ai_overall stance; this conclusion is limited to the supplied evidence.",
-   "confidence": 5,
-   "n_statements": 9,
-   "n_contexts": 1,
-   "accepted_sids": [],
-   "finding_count": 0,
+   "reason": "Two supplied personal posts express general optimism about AI. The remaining statements concern deployment, client services, financial-sector governance, or adoption rather than AI's overall effects. The supplied context resolves the scope of s5 and s11; other speakers' remarks and reader comments are not attributed to Malik.",
+   "confidence": 4,
+   "n_statements": 11,
+   "n_contexts": 3,
+   "accepted_sids": [
+    "s10",
+    "s11"
+   ],
+   "finding_count": 2,
    "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-09T05:24:27.695663+00:00",
-   "generation_id": "gen-1794201861-JF0DPH707BiSheCPyqTk"
+   "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+   "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
   }
  },
  "statements": [
@@ -309,15 +304,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "7b7c0980164b8d895091ac8e3b602e34266a56e0be69d87503d6922e31964077",
+     "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:24:27.695663+00:00",
-     "generation_id": "gen-1794201861-JF0DPH707BiSheCPyqTk"
+     "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+     "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -356,14 +352,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "7b7c0980164b8d895091ac8e3b602e34266a56e0be69d87503d6922e31964077",
+      "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:24:27.695663+00:00",
-      "generation_id": "gen-1794201861-JF0DPH707BiSheCPyqTk"
+      "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+      "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
      }
     }
    }
@@ -393,15 +390,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "7b7c0980164b8d895091ac8e3b602e34266a56e0be69d87503d6922e31964077",
+     "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:24:27.695663+00:00",
-     "generation_id": "gen-1794201861-JF0DPH707BiSheCPyqTk"
+     "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+     "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -440,14 +438,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "7b7c0980164b8d895091ac8e3b602e34266a56e0be69d87503d6922e31964077",
+      "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:24:27.695663+00:00",
-      "generation_id": "gen-1794201861-JF0DPH707BiSheCPyqTk"
+      "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+      "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
      }
     }
    }
@@ -476,15 +475,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "7b7c0980164b8d895091ac8e3b602e34266a56e0be69d87503d6922e31964077",
+     "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:24:27.695663+00:00",
-     "generation_id": "gen-1794201861-JF0DPH707BiSheCPyqTk"
+     "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+     "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -523,14 +523,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "7b7c0980164b8d895091ac8e3b602e34266a56e0be69d87503d6922e31964077",
+      "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:24:27.695663+00:00",
-      "generation_id": "gen-1794201861-JF0DPH707BiSheCPyqTk"
+      "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+      "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
      }
     }
    }
@@ -566,15 +567,16 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "7b7c0980164b8d895091ac8e3b602e34266a56e0be69d87503d6922e31964077",
+     "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:24:27.695663+00:00",
-     "generation_id": "gen-1794201861-JF0DPH707BiSheCPyqTk"
+     "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+     "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -637,14 +639,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "7b7c0980164b8d895091ac8e3b602e34266a56e0be69d87503d6922e31964077",
+      "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:24:27.695663+00:00",
-      "generation_id": "gen-1794201861-JF0DPH707BiSheCPyqTk"
+      "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+      "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
      }
     }
    }
@@ -673,15 +676,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "7b7c0980164b8d895091ac8e3b602e34266a56e0be69d87503d6922e31964077",
+     "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:24:27.695663+00:00",
-     "generation_id": "gen-1794201861-JF0DPH707BiSheCPyqTk"
+     "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+     "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -720,14 +724,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "7b7c0980164b8d895091ac8e3b602e34266a56e0be69d87503d6922e31964077",
+      "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:24:27.695663+00:00",
-      "generation_id": "gen-1794201861-JF0DPH707BiSheCPyqTk"
+      "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+      "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
      }
     }
    }
@@ -757,15 +762,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "7b7c0980164b8d895091ac8e3b602e34266a56e0be69d87503d6922e31964077",
+     "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:24:27.695663+00:00",
-     "generation_id": "gen-1794201861-JF0DPH707BiSheCPyqTk"
+     "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+     "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -804,14 +810,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "7b7c0980164b8d895091ac8e3b602e34266a56e0be69d87503d6922e31964077",
+      "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:24:27.695663+00:00",
-      "generation_id": "gen-1794201861-JF0DPH707BiSheCPyqTk"
+      "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+      "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
      }
     }
    }
@@ -847,15 +854,16 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "7b7c0980164b8d895091ac8e3b602e34266a56e0be69d87503d6922e31964077",
+     "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:24:27.695663+00:00",
-     "generation_id": "gen-1794201861-JF0DPH707BiSheCPyqTk"
+     "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+     "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -919,14 +927,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "7b7c0980164b8d895091ac8e3b602e34266a56e0be69d87503d6922e31964077",
+      "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:24:27.695663+00:00",
-      "generation_id": "gen-1794201861-JF0DPH707BiSheCPyqTk"
+      "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+      "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
      }
     }
    }
@@ -958,15 +967,16 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "7b7c0980164b8d895091ac8e3b602e34266a56e0be69d87503d6922e31964077",
+     "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:24:27.695663+00:00",
-     "generation_id": "gen-1794201861-JF0DPH707BiSheCPyqTk"
+     "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+     "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1023,14 +1033,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "7b7c0980164b8d895091ac8e3b602e34266a56e0be69d87503d6922e31964077",
+      "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:24:27.695663+00:00",
-      "generation_id": "gen-1794201861-JF0DPH707BiSheCPyqTk"
+      "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+      "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
      }
     }
    }
@@ -1059,15 +1070,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "7b7c0980164b8d895091ac8e3b602e34266a56e0be69d87503d6922e31964077",
+     "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:24:27.695663+00:00",
-     "generation_id": "gen-1794201861-JF0DPH707BiSheCPyqTk"
+     "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+     "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1106,14 +1118,293 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "7b7c0980164b8d895091ac8e3b602e34266a56e0be69d87503d6922e31964077",
+      "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:24:27.695663+00:00",
-      "generation_id": "gen-1794201861-JF0DPH707BiSheCPyqTk"
+      "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+      "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s10",
+   "date": "2026-07-02",
+   "url": "https://www.linkedin.com/posts/pamalik_ai-is-one-of-the-defining-economic-opportunities-activity-7478472183418281984-2pti",
+   "text": "AI is one of the defining economic opportunities of our lifetime.",
+   "source_type": "reported_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Paras Malik",
+    "organization_id": "treasury",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "ai_overall": 4,
+     "agi_pilled": 2
+    },
+    "b": {
+     "ai_overall": 4,
+     "agi_pilled": 2
+    },
+    "topics": [
+     "jobs/economy",
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "ai_overall": 5,
+     "agi_pilled": 3.0
+    },
+    "escalated": [
+     "ai_overall",
+     "agi_pilled"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 4
+     },
+     "confidence": {
+      "ai_overall": 5
+     },
+     "review_confidence": 4,
+     "reason": "Malik explicitly presents AI as an exceptional economy-wide opportunity. The supplied post emphasizes productivity and growth without raising countervailing harms.",
+     "supporting_quote": "AI is one of the defining economic opportunities of our lifetime.",
+     "support_basis": "excerpt",
+     "accepted": true,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+     "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3,
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "ai_overall": 4,
+       "agi_pilled": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:37:23.514901+00:00",
+      "generation_id": "gen-1794206238-UVC5UOA93UfNzkDNWueC"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 4,
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "ai_overall": 4,
+       "agi_pilled": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:38:14.518726+00:00",
+      "generation_id": "gen-1794206264-BiRx8WSYmexxTEzKk4W7"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3,
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "ai_overall": 4,
+       "agi_pilled": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:38:48.270806+00:00",
+      "generation_id": "gen-1794206318-UpmUVFPyu4TgmjkaxkHA"
+     },
+     "sol": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 4
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T06:39:08.274209+00:00",
+      "generation_id": "gen-1794206343-6OYIAb4XyfJYveKlekcQ"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 5
+      },
+      "review_confidence": 4,
+      "reason": "Malik explicitly presents AI as an exceptional economy-wide opportunity. The supplied post emphasizes productivity and growth without raising countervailing harms.",
+      "supporting_quote": "AI is one of the defining economic opportunities of our lifetime.",
+      "support_basis": "excerpt",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+      "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s11",
+   "date": "2026-09-30",
+   "url": "https://www.linkedin.com/posts/pamalik_inaugurating-the-era-of-super-intelligence-activity-7511071383985057793-bGTs",
+   "text": "The opportunity ahead is enormous, and we will continue to lead by advancing American innovation safely and responsibly.",
+   "source_type": "reported_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Paras Malik",
+    "organization_id": "treasury",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "ai_overall": 3
+    },
+    "b": {
+     "ai_overall": 3
+    },
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {
+     "ai_overall": 4
+    },
+    "escalated": [
+     "ai_overall"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 3
+     },
+     "confidence": {
+      "ai_overall": 4
+     },
+     "review_confidence": 4,
+     "reason": "The supplied context establishes that the opportunity refers to AI and superintelligence. Malik presents a broadly positive outlook for American innovation while retaining a commitment to safe, responsible advancement.",
+     "supporting_quote": "The opportunity ahead is enormous, and we will continue to lead by advancing American innovation safely and responsibly.",
+     "support_basis": "excerpt",
+     "accepted": true,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+     "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:37:23.514901+00:00",
+      "generation_id": "gen-1794206238-UVC5UOA93UfNzkDNWueC"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:38:14.518726+00:00",
+      "generation_id": "gen-1794206264-BiRx8WSYmexxTEzKk4W7"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:38:48.270806+00:00",
+      "generation_id": "gen-1794206318-UpmUVFPyu4TgmjkaxkHA"
+     },
+     "sol": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T06:39:08.274209+00:00",
+      "generation_id": "gen-1794206343-6OYIAb4XyfJYveKlekcQ"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "review_confidence": 4,
+      "reason": "The supplied context establishes that the opportunity refers to AI and superintelligence. Malik presents a broadly positive outlook for American innovation while retaining a commitment to safe, responsible advancement.",
+      "supporting_quote": "The opportunity ahead is enormous, and we will continue to lead by advancing American innovation safely and responsibly.",
+      "support_basis": "excerpt",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+      "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
      }
     }
    }
@@ -1669,52 +1960,52 @@
   {
    "date": "2026-07-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": 0.0,
+    "ai_overall": 4.0,
+    "agi_pilled": 2.0,
     "x_risk": 0.0,
     "china_race": 0.0,
     "regulation": 2.0
    },
-   "n_statements": 8,
+   "n_statements": 9,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-08-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": 0.0,
+    "ai_overall": 4.0,
+    "agi_pilled": 2.0,
     "x_risk": 0.0,
     "china_race": 0.0,
     "regulation": 2.0
    },
-   "n_statements": 8,
+   "n_statements": 9,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-09-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": 0.0,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": 0.0,
     "china_race": 0.0,
     "regulation": 2.0
    },
-   "n_statements": 8,
+   "n_statements": 10,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-10-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": 0.0,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": 0.0,
     "china_race": 0.0,
     "regulation": 2.0
    },
-   "n_statements": 8,
+   "n_statements": 10,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1732,5 +2023,32 @@
    "kind": "observed"
   }
  ],
- "changes": []
+ "changes": [
+  {
+   "id": "exec_malik",
+   "date": "2026-11-09",
+   "dimension": "ai_overall",
+   "old": null,
+   "new": 3.0,
+   "kind": "big",
+   "cause": "Astra review after deeper web and X research",
+   "sids": [
+    "s10",
+    "s11"
+   ],
+   "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7"
+  },
+  {
+   "id": "exec_malik",
+   "date": "2026-11-09",
+   "dimension": "agi_pilled",
+   "old": 0.0,
+   "new": 2.0,
+   "kind": "big",
+   "cause": "evidence or assessment changed",
+   "sids": [
+    "s10"
+   ]
+  }
+ ]
 }

@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "built_on": "2026-11-09",
- "revision": "49eaa5228b34ded840ebedc0807942e5b28767240fc67b1898d724d8219ae47d",
+ "revision": "7069276e182be8df03c493e52d91a33c961205fb2aedf4cb4dbdeae161ff417d",
  "dimensions": [
   {
    "id": "ai_overall",
@@ -165,8 +165,8 @@
  },
  "coverage": {
   "profiles": 97,
-  "statements": 3499,
-  "labeled_statements": 3499,
+  "statements": 3513,
+  "labeled_statements": 3513,
   "pending_labels": 0,
   "pending_regulation": 0,
   "pending_summaries": 0,
@@ -707,31 +707,36 @@
     "source_url": "https://www.whitehouse.gov/administration/",
     "reason": "current_federal_official"
    },
-   "n_statements": 18,
-   "n_labeled": 18,
+   "n_statements": 21,
+   "n_labeled": 21,
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": 2.0,
     "x_risk": 0.5,
     "china_race": 0.0,
-    "regulation": null
+    "regulation": 0.0
    },
    "score_details": {
     "ai_overall": {
-     "score": null,
-     "reason_a": "no_statements",
-     "reason_b": "no_statements",
-     "sids": [],
-     "label_count": 0
+     "score": 3.0,
+     "reason_a": "median_of_4",
+     "reason_b": "median_of_4",
+     "sids": [
+      "s21",
+      "s20",
+      "s18"
+     ],
+     "label_count": 4
     },
     "agi_pilled": {
      "score": 2.0,
      "reason_a": "consistent",
      "reason_b": "consistent",
      "sids": [
+      "s19",
       "s3"
      ],
-     "label_count": 1
+     "label_count": 2
     },
     "x_risk": {
      "score": 0.5,
@@ -750,64 +755,55 @@
      "label_count": 0
     },
     "regulation": {
-     "score": null,
-     "reason_a": "no_statements",
-     "reason_b": "no_statements",
-     "sids": [],
-     "label_count": 0
+     "score": 0.0,
+     "reason_a": "dismissive",
+     "reason_b": "dismissive",
+     "sids": [
+      "s19"
+     ],
+     "label_count": 1
     }
    },
    "summary": {
     "status": "complete",
-    "text": "In February 2025 remarks at the AI Action Summit, Vice President JD Vance said the administration would block efforts to steal or misuse American AI and chip technologies and would work with allies to strengthen protections. In X posts, Vance criticized political bias in AI models, said fear of AI-caused mass unemployment distracts from job losses through trade, and said AI risks are either overstated or difficult to avoid. In a May 2026 X post, Vance said that in navigating an AI battlefield, matters of life and death must not be outsourced to machines. Official Vice President account posts in 2026 quoted Vance discussing superintelligence companies and saying AI tools should work without absolving companies, while also emphasizing giving workers a voice in wealth creation.",
+    "text": "On February 11, 2025, Vice President Vance described AI as exceptionally promising across economic innovation, employment, national security, health care, and free expression. In the same speech, he advocated worker-centered policies to secure productivity and prosperity gains and prioritized AI opportunities while acknowledging safety concerns. In September and October 2026, he called for AI companies to build safe tools and take responsibility for harms they warn their technology could cause.",
     "sids": [
-     "s1",
-     "s5",
-     "s10",
-     "s6",
-     "s8",
-     "s4",
-     "s14",
-     "s16"
+     "s19",
+     "s20",
+     "s21",
+     "s13",
+     "s14"
     ],
     "sentences": [
      {
-      "text": "In February 2025 remarks at the AI Action Summit, Vice President JD Vance said the administration would block efforts to steal or misuse American AI and chip technologies and would work with allies to strengthen protections.",
+      "text": "On February 11, 2025, Vice President Vance described AI as exceptionally promising across economic innovation, employment, national security, health care, and free expression.",
       "sids": [
-       "s1"
+       "s19"
       ]
      },
      {
-      "text": "In X posts, Vance criticized political bias in AI models, said fear of AI-caused mass unemployment distracts from job losses through trade, and said AI risks are either overstated or difficult to avoid.",
+      "text": "In the same speech, he advocated worker-centered policies to secure productivity and prosperity gains and prioritized AI opportunities while acknowledging safety concerns.",
       "sids": [
-       "s5",
-       "s10",
-       "s6",
-       "s8"
+       "s20",
+       "s21"
       ]
      },
      {
-      "text": "In a May 2026 X post, Vance said that in navigating an AI battlefield, matters of life and death must not be outsourced to machines.",
+      "text": "In September and October 2026, he called for AI companies to build safe tools and take responsibility for harms they warn their technology could cause.",
       "sids": [
-       "s4"
-      ]
-     },
-     {
-      "text": "Official Vice President account posts in 2026 quoted Vance discussing superintelligence companies and saying AI tools should work without absolving companies, while also emphasizing giving workers a voice in wealth creation.",
-      "sids": [
-       "s14",
-       "s16"
+       "s13",
+       "s14"
       ]
      }
     ]
    },
    "topics": {
-    "national security": 2.0,
+    "national security": 2.333,
     "regulation": 2.5,
     "energy/data centers": 0.5,
-    "AGI/transformative": 1.5,
-    "other": 4.0,
-    "jobs/economy": 3.0,
+    "AGI/transformative": 1.833,
+    "other": 5.0,
+    "jobs/economy": 4.333,
     "deepfakes/elections": 3.0,
     "x-risk/loss of control": 1.5
    },
@@ -864,11 +860,6 @@
       "sids": [],
       "why": "No stance in the supplied evidence."
      },
-     "chips": {
-      "stance": 0,
-      "sids": [],
-      "why": "No stance in the supplied evidence."
-     },
      "testing_mandate": {
       "stance": 0,
       "sids": [],
@@ -900,11 +891,11 @@
       "why": "No stance in the supplied evidence."
      },
      "autonomous_weapons": {
-      "stance": 1,
+      "stance": 2,
       "sids": [
        "s4"
       ],
-      "why": "Vance says matters of life and death must not be outsourced to machines on an AI battlefield, implying support for human control of lethal force."
+      "why": "Vance says the U.S. must not outsource matters of life and death to machines, supporting human control of lethal force."
      },
      "licensing": {
       "stance": 0,
@@ -912,11 +903,6 @@
       "why": "No stance in the supplied evidence."
      },
      "intl_agreement": {
-      "stance": 0,
-      "sids": [],
-      "why": "No stance in the supplied evidence."
-     },
-     "pause": {
       "stance": 0,
       "sids": [],
       "why": "No stance in the supplied evidence."
@@ -930,23 +916,43 @@
       "stance": 0,
       "sids": [],
       "why": "No stance in the supplied evidence."
+     },
+     "chips": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance on chip export controls in the supplied evidence; protecting chip technologies from theft and misuse does not establish support for export restrictions."
+     },
+     "pause": {
+      "stance": -1,
+      "sids": [
+       "s19"
+      ],
+      "why": "Vance criticizes restricting AI development now as favoring incumbents and paralyzing a promising technology, implying opposition to slowing development without naming a specific pause or moratorium."
      }
     },
-    "disputed": []
+    "disputed": [
+     "chips",
+     "pause"
+    ]
    },
    "stance_review": {
-    "review_id": "385ad6d28506236ef0e40b950a2ccab23d8664ec53b49afb3eb1280c52b5fbde",
+    "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied excerpts and available context do not clearly establish a rubric-level judgment that AI will be good or bad for Americans overall. Vance's reassurance about AI and characterization of its risks as overstated or difficult to avoid do not themselves establish an overall balance of benefits and harms. Other statements concern specific harms, infrastructure, workers, technology protections, or company responsibility. Several excerpts are truncated, but their visible claims concern narrower issues; no general stance is inferred from the missing text.",
+    "reason": "The clearest general assessments are opportunity-oriented statements from February 11, 2025; several are excerpts from the same speech, not independent occasions. The remaining evidence concerns particular risks, worker participation, regulation, infrastructure, or announcements without establishing an overall benefit-harm judgment. Supplied source context resolves the relevant truncated passages, but these findings do not establish that the February 2025 outlook remained unchanged in later statements.",
     "confidence": 4,
-    "n_statements": 18,
-    "n_contexts": 5,
-    "accepted_sids": [],
-    "finding_count": 0,
+    "n_statements": 21,
+    "n_contexts": 12,
+    "accepted_sids": [
+     "s18",
+     "s19",
+     "s20",
+     "s21"
+    ],
+    "finding_count": 4,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:23:08.246182+00:00",
-    "generation_id": "gen-1794201769-DQ0gaVCHk3Q4qRBCH7XT"
+    "assessed_at": "2026-11-09T06:43:46.961988+00:00",
+    "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
    }
   },
   {
@@ -1655,10 +1661,10 @@
     "source_url": "https://www.commerce.gov/about/leadership",
     "reason": "current_government_official"
    },
-   "n_statements": 32,
-   "n_labeled": 32,
+   "n_statements": 34,
+   "n_labeled": 34,
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 4.0,
     "agi_pilled": 0.0,
     "x_risk": 0.0,
     "china_race": 2.5,
@@ -1666,11 +1672,14 @@
    },
    "score_details": {
     "ai_overall": {
-     "score": null,
-     "reason_a": "no_statements",
-     "reason_b": "no_statements",
-     "sids": [],
-     "label_count": 0
+     "score": 4.0,
+     "reason_a": "median_of_2",
+     "reason_b": "median_of_2",
+     "sids": [
+      "s34",
+      "s33"
+     ],
+     "label_count": 2
     },
     "agi_pilled": {
      "score": 0.0,
@@ -1708,66 +1717,43 @@
    },
    "summary": {
     "status": "complete",
-    "text": "Secretary of Commerce Howard Lutnick said the American AI Exports Program is intended to deploy American AI systems globally and promote full-stack U.S. solutions for economic and national security. He also said Commerce would act to keep advanced U.S. technology from adversaries and that certain AI chips would not be sold to China, subject to detailed license terms. Lutnick described CAISI as evaluating commercial AI systems under national-security standards and cited Commerce and NIST work on AI standards and evaluations. He has also promoted AI data centers and energy infrastructure and a US-UAE AI partnership.",
+    "text": "At the September 2, 2026 G20 event, Lutnick endorsed AI as an opportunity for societal growth and broader access to intelligence, and rejected doomerism. In April 2026, he advocated exporting American AI systems as a way to strengthen economic and national security, deepen partnerships, and maintain U.S. leadership. In June 2025, he criticized regulatory constraints on innovators while saying CAISI would evaluate commercial AI systems against national security standards.",
     "sids": [
+     "s33",
+     "s34",
      "s1",
      "s10",
-     "s2",
-     "s3",
-     "s4",
-     "s5",
-     "s9",
-     "s8",
-     "s21",
-     "s24",
-     "s7",
-     "s18",
-     "s30",
-     "s32"
+     "s8"
     ],
     "sentences": [
      {
-      "text": "Secretary of Commerce Howard Lutnick said the American AI Exports Program is intended to deploy American AI systems globally and promote full-stack U.S. solutions for economic and national security.",
+      "text": "At the September 2, 2026 G20 event, Lutnick endorsed AI as an opportunity for societal growth and broader access to intelligence, and rejected doomerism.",
+      "sids": [
+       "s33",
+       "s34"
+      ]
+     },
+     {
+      "text": "In April 2026, he advocated exporting American AI systems as a way to strengthen economic and national security, deepen partnerships, and maintain U.S. leadership.",
       "sids": [
        "s1",
        "s10"
       ]
      },
      {
-      "text": "He also said Commerce would act to keep advanced U.S. technology from adversaries and that certain AI chips would not be sold to China, subject to detailed license terms.",
+      "text": "In June 2025, he criticized regulatory constraints on innovators while saying CAISI would evaluate commercial AI systems against national security standards.",
       "sids": [
-       "s2",
-       "s3",
-       "s4",
-       "s5",
-       "s9"
-      ]
-     },
-     {
-      "text": "Lutnick described CAISI as evaluating commercial AI systems under national-security standards and cited Commerce and NIST work on AI standards and evaluations.",
-      "sids": [
-       "s8",
-       "s21",
-       "s24"
-      ]
-     },
-     {
-      "text": "He has also promoted AI data centers and energy infrastructure and a US-UAE AI partnership.",
-      "sids": [
-       "s7",
-       "s18",
-       "s30",
-       "s32"
+       "s8"
       ]
      }
     ]
    },
    "topics": {
-    "other": 3.0,
+    "other": 4.5,
     "national security": 6.0,
     "China/competition": 8.0,
     "energy/data centers": 5.5,
-    "jobs/economy": 2.5,
+    "jobs/economy": 3.0,
     "regulation": 6.0,
     "AGI/transformative": 1.0
    },
@@ -1819,7 +1805,7 @@
       "sids": [
        "s26"
       ],
-      "why": "He explicitly endorses a single national AI standard that ends 'the chaos of 50 different state laws.'"
+      "why": "Explicitly supports a single national AI standard that ends the chaos of 50 different state laws."
      },
      "chips": {
       "stance": 2,
@@ -1828,7 +1814,7 @@
        "s5",
        "s9"
       ],
-      "why": "Lutnick says Commerce is restricting China's advanced AI computing capabilities and that the U.S. will not sell its best chips to China."
+      "why": "Repeatedly backs restricting advanced AI chip exports to China and says the U.S. will not sell its best chips there."
      },
      "testing_mandate": {
       "stance": 0,
@@ -1893,7 +1879,7 @@
      "licensing": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence. References to chip export licenses and approving a model do not establish support for mandatory approval to build or release advanced AI or for a new AI oversight agency."
+      "why": "No stance in the supplied evidence. Describing approval of a model does not establish support for mandatory approval to build or release powerful AI."
      }
     },
     "disputed": [
@@ -1902,18 +1888,21 @@
     ]
    },
    "stance_review": {
-    "review_id": "57fa5e12db49403c7d4bc0eb16ff1f3f8db93078c3dd5bd42af1aa7432996cf5",
+    "review_id": "4124dc9e354ee56f218e126924ef0102cd6655119640cb047209a94e56be42cc",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied statements support AI innovation, American leadership, exports, and infrastructure, but do not establish Lutnick's assessment of AI's overall effects on Americans. Specific economic claims concern data centers or export policy rather than AI generally. The supplied context resolves s6 as a defense of data centers; other speakers' general AI views in that source are not attributable to Lutnick. The full s27 post praises NIST and its research rather than assessing AI overall. Several excerpts are truncated, but none presents an unresolved general-stance claim requiring additional context.",
+    "reason": "Two September 2, 2026 statements establish enthusiastic general optimism about AI, with speaker attribution confirmed in the supplied transcript context. The other excerpts concern narrower policies, infrastructure benefits, competition, research, or announcements and do not independently establish an AI-overall stance. Some excerpts and transcripts are partial; conclusions are limited to the supplied text.",
     "confidence": 4,
-    "n_statements": 32,
-    "n_contexts": 2,
-    "accepted_sids": [],
-    "finding_count": 0,
+    "n_statements": 34,
+    "n_contexts": 13,
+    "accepted_sids": [
+     "s33",
+     "s34"
+    ],
+    "finding_count": 2,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:23:19.362680+00:00",
-    "generation_id": "gen-1794201788-zRF9V8LYS1Uw0a12sXJg"
+    "assessed_at": "2026-11-09T06:43:39.417396+00:00",
+    "generation_id": "gen-1794206601-rZitDIRZ3EBtZ8PivGHq"
    }
   },
   {
@@ -2167,18 +2156,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "ea82ac3025f48ebd0c1c5b8ef945d91ecf0b9239385399e766d046677e9d6f53",
+    "review_id": "b458974146d63aa283b725d72b8523cac0e9b65edf2189195dec51ec6603ad6e",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "None of the supplied excerpts establishes Kessler’s view of AI’s overall effects on Americans. They concern technology sharing, export controls, national security, enforcement resources, or enforcement actions. Support for controlled H200 sales and criticism of particular administration policies do not establish a general AI stance. This conclusion is limited to the supplied excerpts; no additional source context was provided.",
+    "reason": "None of the supplied excerpts establishes Kessler’s view of AI’s overall effects on Americans. They address technology distribution, export controls, national security, enforcement resources, or enforcement actions. Benefits attributed to controlled H200 sales do not establish a general AI stance. This conclusion is limited to the supplied excerpts; s1 retains the source’s unusual 'SI' terminology and noted possibility of later edits.",
     "confidence": 5,
     "n_statements": 8,
     "n_contexts": 0,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:15:57.673096+00:00",
-    "generation_id": "gen-1794201352-BfilVHb2yp12DqwTdwCy"
+    "assessed_at": "2026-11-09T06:45:59.515866+00:00",
+    "generation_id": "gen-1794206752-bt62Yy06E4ei1OU49wct"
    }
   },
   {
@@ -2456,18 +2445,18 @@
     ]
    },
    "stance_review": {
-    "review_id": "d21ed263b00105b2fb062931cbc275eee2c608feaba6af44f871560b44cb259e",
+    "review_id": "dc46b79b8087945b95ed52db862f7ec6f1803f84f0e2013788db337961cb3f25",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied excerpts address competition, national security, product responsibility, espionage, and enforcement against technology diversion. None expresses an overall assessment of AI's benefits and harms for Americans. Race framing and specific security concerns do not establish that assessment. This conclusion is limited to the supplied excerpts; no additional source context was provided.",
+    "reason": "The supplied excerpts address competition, national security, product responsibility, espionage, and enforcement rather than whether AI will benefit Americans overall. None establishes a general balance of AI's benefits and harms. This conclusion is limited to the short supplied excerpts; no additional source context was provided.",
     "confidence": 4,
     "n_statements": 9,
     "n_contexts": 0,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:16:04.851334+00:00",
-    "generation_id": "gen-1794201357-EYsM4ip2j9p4u7APVPZk"
+    "assessed_at": "2026-11-09T06:46:01.663895+00:00",
+    "generation_id": "gen-1794206752-O9tbUdanQhrhtBkVtlBM"
    }
   },
   {
@@ -3650,18 +3639,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "875e6815908152ce0b5d6b15fb64ac67da0f7e8ffb1589636605a090207a2772",
+    "review_id": "7ac5a56ac9f676a1d8de3fccfe62393cbac0a5bac71889cbefc628cf014b89df",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied statements address AI's military, intelligence, and national-security applications, not its overall effects on Americans. The supplied context for s2 confirms that its positive assessment concerns operational effectiveness and a research partnership. Neither those benefits nor the security threats described establish an ai_overall stance.",
+    "reason": "The supplied statements address military and intelligence applications, strategic competition, chip access, and security threats rather than whether AI will benefit Americans overall. The supplied context for s2 establishes operational optimism and responsible-use concerns, but not a general assessment of AI's effects. No ai_overall label is supported by this bounded evidence.",
     "confidence": 5,
     "n_statements": 8,
     "n_contexts": 1,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:23:28.486947+00:00",
-    "generation_id": "gen-1794201799-hiupbbnD1u8ocs19QSbp"
+    "assessed_at": "2026-11-09T06:46:07.850743+00:00",
+    "generation_id": "gen-1794206759-ZIUzCSTpEpYmSCe9LiPT"
    }
   },
   {
@@ -4845,7 +4834,7 @@
    "n_statements": 54,
    "n_labeled": 54,
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": 0.0,
     "x_risk": 2.5,
     "china_race": 3.0,
@@ -4853,11 +4842,13 @@
    },
    "score_details": {
     "ai_overall": {
-     "score": null,
-     "reason_a": "no_statements",
-     "reason_b": "no_statements",
-     "sids": [],
-     "label_count": 0
+     "score": 2.0,
+     "reason_a": "median_of_1",
+     "reason_b": "median_of_1",
+     "sids": [
+      "s36"
+     ],
+     "label_count": 1
     },
     "agi_pilled": {
      "score": 0.0,
@@ -4909,46 +4900,35 @@
    },
    "summary": {
     "status": "complete",
-    "text": "In May 2025, BIS issued guidance warning about the risks of allowing U.S. SI chips to be used for training and inference of Chinese SI models and announced additional licensing requirements for SI chip exports to Malaysia and Thailand. BIS also announced in May 2025 that it was rescinding the Biden-era AI Diffusion Rule, citing diplomatic and innovation concerns, and said it planned to formalize the rescission and issue a replacement rule. In January 2026, BIS said it would review export license applications for Nvidia H200, AMD MI325X, and similar chips case-by-case if certain security requirements were met, including conditions on global capacity, purchaser compliance, and U.S. third-party testing. BIS proposed mandatory reporting for leading AI developers and cloud providers about the most powerful AI models and computing clusters.",
+    "text": "On January 13, 2025, BIS described AI as offering tremendous potential economic and social benefits while warning that malicious actors' access could pose profound national-security and foreign-policy risks. In September 2024, BIS proposed mandatory reporting for leading AI developers and cloud providers, linking the information collection to safety, reliability, cybersecurity, and limiting misuse. In May 2025, BIS announced plans to formalize rescission of the AI Diffusion Rule and issue a replacement, alongside measures to strengthen overseas chip export controls.",
     "sids": [
-     "s4",
+     "s36",
+     "s21",
+     "s24",
      "s5",
      "s6",
-     "s10",
-     "s2",
-     "s14",
-     "s21",
-     "s22",
-     "s23"
+     "s4"
     ],
     "sentences": [
      {
-      "text": "In May 2025, BIS issued guidance warning about the risks of allowing U.S. SI chips to be used for training and inference of Chinese SI models and announced additional licensing requirements for SI chip exports to Malaysia and Thailand.",
+      "text": "On January 13, 2025, BIS described AI as offering tremendous potential economic and social benefits while warning that malicious actors' access could pose profound national-security and foreign-policy risks.",
       "sids": [
-       "s4"
+       "s36"
       ]
      },
      {
-      "text": "BIS also announced in May 2025 that it was rescinding the Biden-era AI Diffusion Rule, citing diplomatic and innovation concerns, and said it planned to formalize the rescission and issue a replacement rule.",
+      "text": "In September 2024, BIS proposed mandatory reporting for leading AI developers and cloud providers, linking the information collection to safety, reliability, cybersecurity, and limiting misuse.",
+      "sids": [
+       "s21",
+       "s24"
+      ]
+     },
+     {
+      "text": "In May 2025, BIS announced plans to formalize rescission of the AI Diffusion Rule and issue a replacement, alongside measures to strengthen overseas chip export controls.",
       "sids": [
        "s5",
        "s6",
-       "s10"
-      ]
-     },
-     {
-      "text": "In January 2026, BIS said it would review export license applications for Nvidia H200, AMD MI325X, and similar chips case-by-case if certain security requirements were met, including conditions on global capacity, purchaser compliance, and U.S. third-party testing.",
-      "sids": [
-       "s2",
-       "s14"
-      ]
-     },
-     {
-      "text": "BIS proposed mandatory reporting for leading AI developers and cloud providers about the most powerful AI models and computing clusters.",
-      "sids": [
-       "s21",
-       "s22",
-       "s23"
+       "s4"
       ]
      }
     ]
@@ -5099,18 +5079,20 @@
     ]
    },
    "stance_review": {
-    "review_id": "bfee69d9b1d1c719b65fa882c0fdda211b387e60eb91c5506c9ff73c01d71324",
+    "review_id": "ad72fdd35ea327ba9ea78b0ede25722be7c43f1c176462a23b8795e7c98b1f59",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied excerpts do not establish a general judgment about whether AI will be good or bad for Americans overall. They concern export controls, particular security risks, reporting requirements, technological leadership, or other government activities. Support for responsible innovation and warnings about adversarial misuse do not independently establish an overall AI stance. This conclusion is limited to the supplied excerpts; no additional source context was provided.",
+    "reason": "The supplied evidence contains one clear general AI assessment, in the verified full context for s36. The other excerpts concern specific controls, security risks, innovation or leadership objectives, and announcements rather than AI's overall effects. This conclusion is limited to the supplied excerpts and contexts, not BIS's views elsewhere.",
     "confidence": 5,
     "n_statements": 54,
-    "n_contexts": 0,
-    "accepted_sids": [],
-    "finding_count": 0,
+    "n_contexts": 2,
+    "accepted_sids": [
+     "s36"
+    ],
+    "finding_count": 1,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:16:15.862844+00:00",
-    "generation_id": "gen-1794201366-U8dIOwWryujd6zezCn5V"
+    "assessed_at": "2026-11-09T06:43:50.978922+00:00",
+    "generation_id": "gen-1794206619-WTnDaXe8sRY27oabhYbl"
    }
   },
   {
@@ -6434,18 +6416,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "a2928a4c18ca6445d521dbef1f55a4bbae88386b15a0c582118ec34ec1d87cdc",
+    "review_id": "181edb216ec6e7e1b8d1bb10df2ef8be891c25849fe84ef56f8ce69f73139a66",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied excerpts address U.S. leadership, institutional implementation, security obligations, and preparedness, rather than whether AI will be good for Americans overall. Leadership ambitions do not establish general benefits, and security conditions do not establish that AI's harms dominate. This conclusion is limited to the supplied excerpts.",
+    "reason": "The supplied excerpts address institutional implementation, U.S. leadership, security obligations, and preparedness. None establishes a general judgment about whether AI will be good or harmful for Americans overall. Leadership ambitions and security conditions alone do not establish that stance; this conclusion is limited to the supplied excerpts.",
     "confidence": 5,
     "n_statements": 4,
     "n_contexts": 0,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:16:16.952892+00:00",
-    "generation_id": "gen-1794201369-UEOKkvkINTo4zqEmQMXs"
+    "assessed_at": "2026-11-09T06:43:54.479895+00:00",
+    "generation_id": "gen-1794206627-aLg6OPbckIRcTHAPSAFx"
    }
   },
   {
@@ -7735,18 +7717,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "7a3a40cf6274bf4ce0d7f9915910d5d3ed8fba8984a601acfe89dd4e5aa0caee",
+    "review_id": "89c79f783a22888cdd2a66ca6e1301e070980d22a7283c187697a78478e5142e",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied evidence concerns practical AI adoption, output reliability, staff expertise, workflow design, and technology management rather than AI’s overall effects on Americans. The supplied source context clarifies that s1 is conditional advice about expertise, not a general rejection of AI. Its support for adoption with guardrails also does not establish an overall societal assessment. Several other excerpts are brief, but none establishes a general stance warranting an ai_overall label.",
+    "reason": "The supplied statements concern appropriate AI use, output reliability, workplace processes, and technical implementation rather than AI’s overall effects on Americans. The supplied source context for s1 clarifies that Farmer’s warning concerns expertise and output validation; his support for guarded agency adoption does not establish a general balance of AI’s societal benefits and harms. Several other excerpts are brief, but none supplies a clear overall stance or requires additional context to resolve a plausible overall-stance claim.",
     "confidence": 4,
     "n_statements": 8,
     "n_contexts": 1,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:23:38.094247+00:00",
-    "generation_id": "gen-1794201808-HhmgCbuk2oiDGq6tXEy2"
+    "assessed_at": "2026-11-09T06:46:12.691490+00:00",
+    "generation_id": "gen-1794206761-iVLhXd0hnAok0LY3IqzZ"
    }
   },
   {
@@ -8142,29 +8124,34 @@
     "source_url": "https://www.whitehouse.gov/releases/2026/11/what-they-are-saying-blowout-october-jobs-report-smashes-expectations/",
     "reason": "current_federal_official"
    },
-   "n_statements": 5,
-   "n_labeled": 5,
+   "n_statements": 7,
+   "n_labeled": 7,
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": 0.0,
+    "ai_overall": 4.0,
+    "agi_pilled": 2.0,
     "x_risk": 0.0,
     "china_race": 0.0,
     "regulation": 2.0
    },
    "score_details": {
     "ai_overall": {
-     "score": null,
-     "reason_a": "no_statements",
-     "reason_b": "no_statements",
-     "sids": [],
-     "label_count": 0
+     "score": 4.0,
+     "reason_a": "median_of_2",
+     "reason_b": "median_of_2",
+     "sids": [
+      "s7",
+      "s6"
+     ],
+     "label_count": 2
     },
     "agi_pilled": {
-     "score": 0.0,
-     "reason_a": "silent",
-     "reason_b": "silent",
-     "sids": [],
-     "label_count": 0
+     "score": 2.0,
+     "reason_a": "consistent",
+     "reason_b": "consistent",
+     "sids": [
+      "s6"
+     ],
+     "label_count": 1
     },
     "x_risk": {
      "score": 0.0,
@@ -8192,45 +8179,44 @@
    },
    "summary": {
     "status": "complete",
-    "text": "Hassett described working groups considering how AI can make both workers and firms more productive and referred to an unprecedented productivity boom. He said firms are finding AI makes workers productive enough that they do not necessarily need to hire new college graduates. He described AI-related risks as solvable problems and said the private sector is the right place to solve them. In May 2026, he said a possible executive order was being studied to provide a clear road map.",
+    "text": "Hassett described AI-driven societal changes as beneficial, anticipating higher wages and greater opportunities for leisure. On September 28, 2026, he emphasized AI's growth benefits and argued that labor-market stress was concentrated at firms not adopting it. In another supplied excerpt, he said AI productivity gains could reduce firms' need to hire new college graduates. He characterized AI risks as solvable by the private sector, with government monitoring and law enforcement when necessary.",
     "sids": [
-     "s1",
-     "s2",
+     "s6",
+     "s7",
      "s3",
-     "s4",
-     "s5"
+     "s4"
     ],
     "sentences": [
      {
-      "text": "Hassett described working groups considering how AI can make both workers and firms more productive and referred to an unprecedented productivity boom.",
+      "text": "Hassett described AI-driven societal changes as beneficial, anticipating higher wages and greater opportunities for leisure.",
       "sids": [
-       "s1",
-       "s2"
+       "s6"
       ]
      },
      {
-      "text": "He said firms are finding AI makes workers productive enough that they do not necessarily need to hire new college graduates.",
+      "text": "On September 28, 2026, he emphasized AI's growth benefits and argued that labor-market stress was concentrated at firms not adopting it.",
+      "sids": [
+       "s7"
+      ]
+     },
+     {
+      "text": "In another supplied excerpt, he said AI productivity gains could reduce firms' need to hire new college graduates.",
       "sids": [
        "s3"
       ]
      },
      {
-      "text": "He described AI-related risks as solvable problems and said the private sector is the right place to solve them.",
+      "text": "He characterized AI risks as solvable by the private sector, with government monitoring and law enforcement when necessary.",
       "sids": [
        "s4"
-      ]
-     },
-     {
-      "text": "In May 2026, he said a possible executive order was being studied to provide a clear road map.",
-      "sids": [
-       "s5"
       ]
      }
     ]
    },
    "topics": {
-    "jobs/economy": 3.0,
-    "regulation": 2.0
+    "jobs/economy": 4.0,
+    "regulation": 2.0,
+    "AGI/transformative": 1.0
    },
    "regulation": {
     "status": "complete",
@@ -8354,18 +8340,21 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "522a285e9a6dc0fe2fe4cec2aeec375490f364df15dd5b8d4f9281f5367737dd",
+    "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied evidence does not establish a general judgment that AI will be good or bad for Americans overall. Productivity and hiring observations are narrower economic claims; describing risks as solvable does not itself establish an overall positive stance; and studying an executive order is procedural. In the s2 context, the explicit description of AI as revolutionary and positive for productivity is attributed to Anna Wong, not Hassett, and cannot be transferred to him.",
+    "reason": "Two statements establish broad, enthusiastic optimism about AI's societal or economic effects. The others concern specific productivity or hiring effects, governance, or procedural plans. In s2, the supplied transcript attributes the clearest AI-specific economic optimism to Anna Wong, not Hassett; it is not transferred to him. Several statement dates are unspecified.",
     "confidence": 4,
-    "n_statements": 5,
-    "n_contexts": 2,
-    "accepted_sids": [],
-    "finding_count": 0,
+    "n_statements": 7,
+    "n_contexts": 4,
+    "accepted_sids": [
+     "s6",
+     "s7"
+    ],
+    "finding_count": 2,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:24:02.654833+00:00",
-    "generation_id": "gen-1794201831-eQnWieLqLcTZ5M8m8EtU"
+    "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+    "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
    }
   },
   {
@@ -9139,18 +9128,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "1610897c8b76a73c613ce166c653707718619ea000bfc39318b5fd2c54881e21",
+    "review_id": "f5a47e4ddf2346d9a1832bf1df181226857b8724cbbed1ebde80e7a44e8f0a97",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied excerpts address workforce recruitment, education, and executive-order provisions, but none establishes ONCD's assessment of AI's overall benefits versus harms. Workforce promotion does not itself establish general AI optimism, and describing safeguards does not establish general pessimism. These conclusions are limited to the supplied short excerpts.",
+    "reason": "The supplied statements promote workforce recruitment and education or describe an AI executive order's provisions and goals. None establishes an institutional judgment about whether AI will be good for Americans overall. The supplied full-post context for s2, s3, s4, and s6 does not change that conclusion; s1 and s5 remain limited excerpts focused on workforce issues.",
     "confidence": 4,
     "n_statements": 6,
-    "n_contexts": 0,
+    "n_contexts": 4,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:16:30.197422+00:00",
-    "generation_id": "gen-1794201383-Vcef9gdS7QXrUupqinQx"
+    "assessed_at": "2026-11-09T06:43:58.694922+00:00",
+    "generation_id": "gen-1794206631-4bChUuXywWbktV0aalYT"
    }
   },
   {
@@ -9384,18 +9373,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "ca1ec07c8f36a4f3207cbb5844c54d09e4a7d73544590bd0c01f64e566e958ce",
+    "review_id": "022d75f29e482509882adae39c5804cd1ffb6f7203e1fa09f064fc16c0ed55dc",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "None of the supplied statements establishes a general assessment of AI's overall benefits and harms. The expanded s2 text supports a specific UNESCO initiative and broader access to AI benefits, without assessing AI overall. The remaining excerpts concern sanctions, share news headlines, or announce a memorandum; they do not establish an institutional overall stance.",
+    "reason": "None of the supplied statements establishes an overall judgment about AI's effects on Americans. The retrieved text for s2 endorses an AI-related sustainable-development initiative and broader access to benefits, but does not establish that AI is beneficial overall. The remaining excerpts concern sanctions or share announcements and news headlines without expressing a general AI stance. This conclusion is limited to the supplied evidence.",
     "confidence": 4,
     "n_statements": 5,
     "n_contexts": 1,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:24:12.200946+00:00",
-    "generation_id": "gen-1794201842-5DDQy2QRh8E4IK9vnFOi"
+    "assessed_at": "2026-11-09T06:44:08.775171+00:00",
+    "generation_id": "gen-1794206634-0AWlAk9vyaaCnuZNtOWC"
    }
   },
   {
@@ -10813,18 +10802,18 @@
     ]
    },
    "stance_review": {
-    "review_id": "5f2b27a9dbdc25869455a99e2b5ade3469ef8107d9c4eb531a04cd003b05d1c6",
+    "review_id": "71b5b211d26262197708d8a6e567d6563dd9bbee004bcbfdf416cf0a45433b9f",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied excerpts address chip smuggling, unlawful technology transfers, and export-control enforcement. None expresses a general view of AI's benefits or harms for Americans. This conclusion is limited to the supplied excerpts.",
+    "reason": "The supplied excerpts address chip smuggling, sensitive-technology diversion, and export-control enforcement. None expresses a general assessment of AI's benefits and harms for Americans; these enforcement positions do not establish an ai_overall stance.",
     "confidence": 5,
     "n_statements": 3,
     "n_contexts": 0,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:16:31.028225+00:00",
-    "generation_id": "gen-1794201386-oHGxUVOyWQmeX0TISZhM"
+    "assessed_at": "2026-11-09T06:44:03.000298+00:00",
+    "generation_id": "gen-1794206638-EGQn5YhzcmUWy7NWSrhY"
    }
   },
   {
@@ -11361,18 +11350,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "e688052595cd70e23daa85f8b8130d27fd011a76395568a2ba2286031e43acf3",
+    "review_id": "cc3ed9df78b97c7a3da07933c36fa0b37040caeb2a26c9786a307c7e47232469",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied excerpts support AI innovation, research leadership, and particular applications, but none establishes a view of AI’s overall effects on Americans. The broader economic-growth statement concerns technology generally, not AI specifically. These excerpts therefore do not support an ai_overall label; this does not establish that Raman has expressed no general AI views elsewhere.",
+    "reason": "The supplied excerpts express enthusiasm for AI innovation, describe research programs and specific applications, or promote technology leadership generally. None establishes a view of AI’s overall effects on Americans. This conclusion is limited to the supplied excerpts, not Raman’s views elsewhere.",
     "confidence": 5,
     "n_statements": 7,
     "n_contexts": 0,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:16:43.168394+00:00",
-    "generation_id": "gen-1794201390-r6eumkwMkTcuEdYfmWKq"
+    "assessed_at": "2026-11-09T06:46:20.872698+00:00",
+    "generation_id": "gen-1794206772-d9FBlURrJiWSpkmlpcAN"
    }
   },
   {
@@ -12262,10 +12251,10 @@
     "source_url": "https://paulfchristiano.com/",
     "reason": "current_government_official"
    },
-   "n_statements": 4,
-   "n_labeled": 4,
+   "n_statements": 5,
+   "n_labeled": 5,
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 1.0,
     "agi_pilled": 3.0,
     "x_risk": 2.5,
     "china_race": 0.0,
@@ -12273,11 +12262,13 @@
    },
    "score_details": {
     "ai_overall": {
-     "score": null,
-     "reason_a": "no_statements",
-     "reason_b": "no_statements",
-     "sids": [],
-     "label_count": 0
+     "score": 1.0,
+     "reason_a": "median_of_1",
+     "reason_b": "median_of_1",
+     "sids": [
+      "s5"
+     ],
+     "label_count": 1
     },
     "agi_pilled": {
      "score": 3.0,
@@ -12315,36 +12306,22 @@
    },
    "summary": {
     "status": "complete",
-    "text": "Paul Christiano stated that if superintelligence is built without more robust alignment, he expects humanity will permanently lose control of it. He also described a possible 10 to 20% chance of AI takeover with many or most humans dead. He said the most likely way we die is not that AI comes out of the blue and kills us. He discussed having a lot of AI control over critical systems, even in running a military.",
+    "text": "In a personal essay originally published August 23, 2014, Christiano anticipated substantial welfare benefits from AI-driven growth and automation, while assigning greater long-run humanitarian importance to the risk that human values would lose influence over the future. In the statement dated September 9, 2026, he said he expected permanent loss of control if superintelligence were built without more robust alignment.",
     "sids": [
-     "s1",
-     "s2",
-     "s3",
-     "s4"
+     "s5",
+     "s1"
     ],
     "sentences": [
      {
-      "text": "Paul Christiano stated that if superintelligence is built without more robust alignment, he expects humanity will permanently lose control of it.",
+      "text": "In a personal essay originally published August 23, 2014, Christiano anticipated substantial welfare benefits from AI-driven growth and automation, while assigning greater long-run humanitarian importance to the risk that human values would lose influence over the future.",
+      "sids": [
+       "s5"
+      ]
+     },
+     {
+      "text": "In the statement dated September 9, 2026, he said he expected permanent loss of control if superintelligence were built without more robust alignment.",
       "sids": [
        "s1"
-      ]
-     },
-     {
-      "text": "He also described a possible 10 to 20% chance of AI takeover with many or most humans dead.",
-      "sids": [
-       "s2"
-      ]
-     },
-     {
-      "text": "He said the most likely way we die is not that AI comes out of the blue and kills us.",
-      "sids": [
-       "s3"
-      ]
-     },
-     {
-      "text": "He discussed having a lot of AI control over critical systems, even in running a military.",
-      "sids": [
-       "s4"
       ]
      }
     ]
@@ -12352,7 +12329,8 @@
    "topics": {
     "x-risk/loss of control": 3.0,
     "AGI/transformative": 0.5,
-    "national security": 0.5
+    "national security": 0.5,
+    "other": 1.0
    },
    "regulation": {
     "status": "complete",
@@ -12470,24 +12448,26 @@
      "superintelligence": {
       "stance": 0,
       "sids": [],
-      "why": "The supplied statements warn about losing control of superintelligence but do not explicitly call for a ban or prohibition."
+      "why": "No stance in the supplied evidence."
      }
     },
     "disputed": []
    },
    "stance_review": {
-    "review_id": "99d3e0916393305f9fd1df4bb97d32d2689e035993302b4047565af5b857e0f8",
+    "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied statements address catastrophic takeover, loss of control, and AI control of critical systems, rather than assessing AI's overall benefits and harms. The additional context for s3 explains a catastrophic-risk scenario but does not establish an overall judgment. These personal statements do not establish an institutional position.",
+    "reason": "The historical essay provides an explicit comparison of AI's broad benefits and risks. The remaining statements describe particular catastrophic scenarios or AI control of critical systems without establishing an overall net assessment. These personal statements do not establish an institutional position or justify carrying the historical assessment forward as his current view.",
     "confidence": 4,
-    "n_statements": 4,
-    "n_contexts": 1,
-    "accepted_sids": [],
-    "finding_count": 0,
+    "n_statements": 5,
+    "n_contexts": 2,
+    "accepted_sids": [
+     "s5"
+    ],
+    "finding_count": 1,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:24:21.486451+00:00",
-    "generation_id": "gen-1794201852-OZGro410rb2eGR1jvgWJ"
+    "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+    "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
    }
   },
   {
@@ -12831,29 +12811,33 @@
     "source_url": "https://govciomedia.com/the-caios-leading-responsible-ai-development-across-government/",
     "reason": "current_government_official"
    },
-   "n_statements": 9,
-   "n_labeled": 9,
+   "n_statements": 11,
+   "n_labeled": 11,
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": 0.0,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": 0.0,
     "china_race": 0.0,
     "regulation": 2.0
    },
    "score_details": {
     "ai_overall": {
-     "score": null,
-     "reason_a": "no_statements",
-     "reason_b": "no_statements",
-     "sids": [],
-     "label_count": 0
+     "score": 3.0,
+     "reason_a": "median_of_2",
+     "reason_b": "median_of_2",
+     "sids": [
+      "s11"
+     ],
+     "label_count": 2
     },
     "agi_pilled": {
-     "score": 0.0,
-     "reason_a": "silent",
-     "reason_b": "silent",
-     "sids": [],
-     "label_count": 0
+     "score": 2.0,
+     "reason_a": "consistent",
+     "reason_b": "consistent",
+     "sids": [
+      "s10"
+     ],
+     "label_count": 1
     },
     "x_risk": {
      "score": 0.0,
@@ -12882,52 +12866,40 @@
    },
    "summary": {
     "status": "complete",
-    "text": "In March 2026 official remarks, Malik said AI is moving from experimentation to enterprise-wide integration and that the priority is operationalizing it in core workflows to enhance risk management and resilience. In June 2026, he said AI adoption is moving from experimentation to implementation and that the challenge is operationalizing strategies at scale while maintaining trust, resilience, and effective governance in financial services. He said the AI Innovation Series convenes regulators and industry leaders to keep governance frameworks fit for purpose as AI becomes embedded in financial markets. A 2023 personal post said he shared how his team was developing AI capabilities to help clients deploy and scale AI, and an undated personal statement said innovation should be enabled without compromising safety and soundness.",
+    "text": "In July 2026, Malik described AI as one of the defining economic opportunities of our lifetime. In September 2026, Malik characterized the opportunity from AI and superintelligence as enormous while endorsing safe and responsible advancement of American innovation. Malik's March and June 2026 statements emphasized operationalizing AI, improving risk management and resilience, and maintaining effective governance in financial services.",
     "sids": [
-     "s1",
+     "s10",
+     "s11",
      "s7",
-     "s2",
-     "s6",
-     "s8",
-     "s4",
-     "s3",
-     "s5"
+     "s8"
     ],
     "sentences": [
      {
-      "text": "In March 2026 official remarks, Malik said AI is moving from experimentation to enterprise-wide integration and that the priority is operationalizing it in core workflows to enhance risk management and resilience.",
+      "text": "In July 2026, Malik described AI as one of the defining economic opportunities of our lifetime.",
       "sids": [
-       "s1",
-       "s7"
+       "s10"
       ]
      },
      {
-      "text": "In June 2026, he said AI adoption is moving from experimentation to implementation and that the challenge is operationalizing strategies at scale while maintaining trust, resilience, and effective governance in financial services.",
+      "text": "In September 2026, Malik characterized the opportunity from AI and superintelligence as enormous while endorsing safe and responsible advancement of American innovation.",
       "sids": [
-       "s2",
-       "s6",
+       "s11"
+      ]
+     },
+     {
+      "text": "Malik's March and June 2026 statements emphasized operationalizing AI, improving risk management and resilience, and maintaining effective governance in financial services.",
+      "sids": [
+       "s7",
        "s8"
-      ]
-     },
-     {
-      "text": "He said the AI Innovation Series convenes regulators and industry leaders to keep governance frameworks fit for purpose as AI becomes embedded in financial markets.",
-      "sids": [
-       "s4",
-       "s7"
-      ]
-     },
-     {
-      "text": "A 2023 personal post said he shared how his team was developing AI capabilities to help clients deploy and scale AI, and an undated personal statement said innovation should be enabled without compromising safety and soundness.",
-      "sids": [
-       "s3",
-       "s5"
       ]
      }
     ]
    },
    "topics": {
     "other": 4.5,
-    "regulation": 4.5
+    "regulation": 4.5,
+    "jobs/economy": 1.5,
+    "AGI/transformative": 0.5
    },
    "regulation": {
     "status": "complete",
@@ -13051,18 +13023,21 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "7b7c0980164b8d895091ac8e3b602e34266a56e0be69d87503d6922e31964077",
+    "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied statements discuss AI deployment, client services, operational benefits, and financial-sector governance rather than AI’s overall effects on Americans. The supplied source context for s5 confirms that its innovation-and-safety language concerns financial-market supervision, not a general assessment of AI. No excerpt establishes an ai_overall stance; this conclusion is limited to the supplied evidence.",
-    "confidence": 5,
-    "n_statements": 9,
-    "n_contexts": 1,
-    "accepted_sids": [],
-    "finding_count": 0,
+    "reason": "Two supplied personal posts express general optimism about AI. The remaining statements concern deployment, client services, financial-sector governance, or adoption rather than AI's overall effects. The supplied context resolves the scope of s5 and s11; other speakers' remarks and reader comments are not attributed to Malik.",
+    "confidence": 4,
+    "n_statements": 11,
+    "n_contexts": 3,
+    "accepted_sids": [
+     "s10",
+     "s11"
+    ],
+    "finding_count": 2,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:24:27.695663+00:00",
-    "generation_id": "gen-1794201861-JF0DPH707BiSheCPyqTk"
+    "assessed_at": "2026-11-09T06:44:21.430248+00:00",
+    "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
    }
   },
   {
@@ -13314,18 +13289,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "70f2e92917e6830719e47cb1ded3fd0ddcafe769ab2cccf40fe6f4ff19391b69",
+    "review_id": "73552e6885710f3e7f8d3d41b3c8b31fd58e62d8382d4a8e1298772fd325252d",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied excerpts address investment security, technological risks, and potential weaponization or dual use, rather than AI's overall effects on Americans. None supports an ai_overall label. This conclusion is limited to the supplied excerpts; no additional source context was provided.",
-    "confidence": 5,
+    "reason": "The supplied excerpts concern foreign investment, technology-related national security risks, and potential weaponization or dual use. None establishes Pilkerton's view of AI's overall effects on Americans. These narrow security positions do not support an ai_overall label; this conclusion is limited to the supplied excerpts.",
+    "confidence": 4,
     "n_statements": 5,
     "n_contexts": 0,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:16:46.498023+00:00",
-    "generation_id": "gen-1794201400-Sm53YUzxeZF8hgKLxv3F"
+    "assessed_at": "2026-11-09T06:44:27.477575+00:00",
+    "generation_id": "gen-1794206659-KlCZWXFG15jWu19ZCBEs"
    }
   },
   {
@@ -14127,18 +14102,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "cfa256f906f0c43a98c964ae144a708226a84130b6ca6b122154d3ba87f2239a",
+    "review_id": "fa8892dd9fe2741fd5bc09a8a9827cdde001534b4e1c6d0492b665d74e9bfd8c",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "None of the supplied statements establishes Greer's view of whether AI will be good for Americans overall. The export-control remarks concern negotiations, technology protection, and policy adjustment. The supplied context for s4 establishes an analogy about AI-related diplomatic communication, not an overall assessment of AI's benefits and harms. Other speakers' views in that source are not attributable to Greer.",
+    "reason": "None of the supplied statements establishes Greer's view of AI's overall benefits or harms. The export-control remarks concern trade and national security. The supplied context for s4 establishes an analogy about bilateral AI dialogue, not an overall assessment of AI; other speakers' views and the newsletter's commentary are not attributable to Greer. This conclusion is limited to the supplied evidence.",
     "confidence": 5,
     "n_statements": 4,
     "n_contexts": 1,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:24:33.492815+00:00",
-    "generation_id": "gen-1794201867-02DQHr0ib8RXYeFGpG3u"
+    "assessed_at": "2026-11-09T06:46:25.742682+00:00",
+    "generation_id": "gen-1794206781-c5YVOMEZQhpFSVJZGQz2"
    }
   },
   {
@@ -16006,18 +15981,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "5ea80e8d6fcd0ee0514e12a9bef28f80a9e7e99e3bdc6cf043e1a5d35593bb3b",
+    "review_id": "8dedbeef3eda0c6cf18e224d22c0bede069267249be5256d355612260bb8776c",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "None of the supplied excerpts establishes a general assessment of whether AI will be good for Americans overall. They concern infrastructure, planning uncertainty, mission-specific applications, implementation outcomes, or compliance safeguards. These short excerpts do not support inferring a broader stance.",
-    "confidence": 4,
+    "reason": "The supplied excerpts address AI infrastructure, planning, mission-specific applications, operational outcomes, and compliance safeguards. None establishes a general judgment about whether AI will be good for Americans overall. This conclusion is limited to the supplied excerpts, not Epley's views beyond them.",
+    "confidence": 5,
     "n_statements": 5,
     "n_contexts": 0,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:17:33.459485+00:00",
-    "generation_id": "gen-1794201445-XmB1L1IxPgh0S43C6smn"
+    "assessed_at": "2026-11-09T06:44:31.885512+00:00",
+    "generation_id": "gen-1794206661-A09tc9VZB7uuI6GKKHeL"
    }
   },
   {
@@ -16266,18 +16241,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "b453df7a2720a1b875d016bf61a3b7682bcf157751c84e51abd400f8ad431b13",
+    "review_id": "74a4e18d65bd76d94cd4209bbb0ae7e4656d687be956d63e54b573edf3c97d51",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied excerpts address employee accountability, adoption, workflow improvements, and Ritualo’s responsibilities, not AI’s overall effects on Americans. The workflow endorsement is a narrow benefit, and the third-person biography does not establish her personal overall stance. No general AI assessment is established by this bounded evidence.",
-    "confidence": 5,
+    "reason": "The supplied excerpts address employee accountability, confidence, peer learning, workflow improvements, and official responsibilities. None establishes Ritualo’s view of AI’s overall effects on Americans. Encouraging workplace adoption does not itself establish a general stance. The excerpts are brief and undated; this conclusion is limited to the supplied evidence.",
+    "confidence": 4,
     "n_statements": 5,
     "n_contexts": 0,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:17:39.553780+00:00",
-    "generation_id": "gen-1794201453-UrEWUiseuf37S7aE6zob"
+    "assessed_at": "2026-11-09T06:44:35.027380+00:00",
+    "generation_id": "gen-1794206667-sAZaEdd2XRDbTHG0B8no"
    }
   },
   {
@@ -16552,18 +16527,18 @@
     ]
    },
    "stance_review": {
-    "review_id": "405f82c1db132523f7cfcc9645d2dee69a10fb441bb85377da1e645148c406f9",
+    "review_id": "8fca6ae7c0c9b2846ec98145f7f88c83e6f1b7e9942bc65edd2630fa4975fc70",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied statements support enthusiasm for military AI adoption, not a general assessment of AI's overall effects on Americans. In s11, Hegseth adopts a dominance policy invoking human flourishing and economic competitiveness, but frames his position around military competition rather than assessing AI's overall benefits and harms. The supplied context for s4 establishes a dispute over military access to Anthropic's models, not a general AI stance. These conclusions are limited to the supplied evidence.",
+    "reason": "The supplied statements advocate military AI adoption, competition, infrastructure investment, and operational access, rather than assess whether AI will be good for Americans overall. Although s11 adopts a policy linking AI dominance to human flourishing, economic competitiveness, and national security, its claim concerns leadership and the military mission, not AI's overall balance of effects. The supplied context for s4 establishes a contractor dispute, not a general AI stance. These conclusions are limited to the supplied evidence.",
     "confidence": 4,
     "n_statements": 20,
     "n_contexts": 1,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:24:44.744802+00:00",
-    "generation_id": "gen-1794201873-AlWwdC6nDreHuB8baZGA"
+    "assessed_at": "2026-11-09T06:44:42.752042+00:00",
+    "generation_id": "gen-1794206672-1wQBwGLbFPNX3v71WDPT"
    }
   },
   {
@@ -17407,18 +17382,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "2afdc43554cff19745cb1c4c03d1e349a2c4f581117334f005a9934ff08a10f2",
+    "review_id": "b14b759e588dccda26996610e052badbec01a7356e8f3d9d2aec209b7ce8ff43",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "None of the supplied statements establishes a view of AI's overall benefits or harms for Americans. They concern procurement, technological capabilities, CIA operations, or strategic competition. The supplied source context clarifies that s3 advocates taking calculated risks in CIA technology adoption, rather than expressing a general assessment of AI.",
+    "reason": "The excerpts address CIA procurement, technology adoption, strategic competition, and frontier AI capabilities rather than whether AI will be good for Americans overall. The supplied source context clarifies that s3 advocates accepting risks in CIA technology deployment, not a general assessment of AI's benefits and harms. The digital nuclear weapons comparison in s2 does not by itself establish an overall negative stance.",
     "confidence": 5,
     "n_statements": 7,
     "n_contexts": 1,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:24:51.875909+00:00",
-    "generation_id": "gen-1794201884-gaiyh3SweuZdn3uBugjs"
+    "assessed_at": "2026-11-09T06:44:42.120475+00:00",
+    "generation_id": "gen-1794206675-NmEdHsDaZeRbTMLltz2V"
    }
   },
   {
@@ -17457,10 +17432,10 @@
     "source_url": "https://www.justice.gov/ag/staff-profile/meet-attorney-general",
     "reason": "current_government_official"
    },
-   "n_statements": 7,
-   "n_labeled": 7,
+   "n_statements": 8,
+   "n_labeled": 8,
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 4.0,
     "agi_pilled": 0.0,
     "x_risk": 0.0,
     "china_race": 1.0,
@@ -17468,11 +17443,13 @@
    },
    "score_details": {
     "ai_overall": {
-     "score": null,
-     "reason_a": "no_statements",
-     "reason_b": "no_statements",
-     "sids": [],
-     "label_count": 0
+     "score": 4.0,
+     "reason_a": "median_of_1",
+     "reason_b": "median_of_1",
+     "sids": [
+      "s8"
+     ],
+     "label_count": 1
     },
     "agi_pilled": {
      "score": 0.0,
@@ -17510,40 +17487,33 @@
    },
    "summary": {
     "status": "complete",
-    "text": "In a November 5, 2026 official statement, Attorney General Todd Blanche said the Department of Justice would launch a Super Intelligence Task Force to partner with SI Force Chair Jay Clayton and ensure critical SI technologies are not manipulated by bad actors. The same statement said DOJ would continue identifying and prosecuting individuals whose use of SI violates the law, including by targeting taxpayers, critical infrastructure, or national security. In reported remarks, Blanche said he did not need more AI laws or regulation right now and that “we’re prosecutors, not regulators,” so “we’re not going to try to regulate AI.” In the supplied evidence, Blanche also said “we can’t lose the AI race to China” and said theft of intellectual property involving cutting-edge super intelligence technology was taken extremely seriously.",
+    "text": "On September 15, 2026, Blanche described AI as extraordinarily beneficial to society and characterized the timing of public fears about it as politically motivated. In the November 5, 2026 statements attributed to him as attorney general, Blanche described a Justice Department super-intelligence task force and pledged continued prosecution of unlawful uses targeting Americans, infrastructure, or national security. In undated excerpts, Blanche opposed additional AI regulation at that time and described the Justice Department's role as prosecution rather than regulation.",
     "sids": [
+     "s8",
      "s1",
-     "s2",
+     "s6",
      "s3",
-     "s4",
-     "s5",
-     "s7"
+     "s4"
     ],
     "sentences": [
      {
-      "text": "In a November 5, 2026 official statement, Attorney General Todd Blanche said the Department of Justice would launch a Super Intelligence Task Force to partner with SI Force Chair Jay Clayton and ensure critical SI technologies are not manipulated by bad actors.",
+      "text": "On September 15, 2026, Blanche described AI as extraordinarily beneficial to society and characterized the timing of public fears about it as politically motivated.",
       "sids": [
-       "s1"
+       "s8"
       ]
      },
      {
-      "text": "The same statement said DOJ would continue identifying and prosecuting individuals whose use of SI violates the law, including by targeting taxpayers, critical infrastructure, or national security.",
+      "text": "In the November 5, 2026 statements attributed to him as attorney general, Blanche described a Justice Department super-intelligence task force and pledged continued prosecution of unlawful uses targeting Americans, infrastructure, or national security.",
       "sids": [
-       "s2"
+       "s1",
+       "s6"
       ]
      },
      {
-      "text": "In reported remarks, Blanche said he did not need more AI laws or regulation right now and that “we’re prosecutors, not regulators,” so “we’re not going to try to regulate AI.”",
+      "text": "In undated excerpts, Blanche opposed additional AI regulation at that time and described the Justice Department's role as prosecution rather than regulation.",
       "sids": [
        "s3",
        "s4"
-      ]
-     },
-     {
-      "text": "In the supplied evidence, Blanche also said “we can’t lose the AI race to China” and said theft of intellectual property involving cutting-edge super intelligence technology was taken extremely seriously.",
-      "sids": [
-       "s5",
-       "s7"
       ]
      }
     ]
@@ -17554,7 +17524,8 @@
     "misuse (bio/cyber)": 0.833,
     "regulation": 2.0,
     "China/competition": 1.0,
-    "copyright": 0.333
+    "copyright": 0.333,
+    "other": 1.0
    },
    "regulation": {
     "status": "complete",
@@ -17678,18 +17649,20 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "c3520dfa56a1a7f1fa41c88e3b39e18dfbb444fda969fea7d34ddd4920831551",
+    "review_id": "9811fd9baed661fe42b34103501680adacf614e10fdf174ad3c703973a6ae3d4",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied excerpts address enforcement, regulation, competition, and technology protection rather than AI's overall effects. The aim of ensuring super-intelligence technologies serve Americans does not itself establish an overall benefits-versus-risks assessment. The truncated s7 concerns intellectual-property theft, not a general AI stance. This conclusion is limited to the supplied excerpts.",
-    "confidence": 4,
-    "n_statements": 7,
-    "n_contexts": 0,
-    "accepted_sids": [],
-    "finding_count": 0,
+    "reason": "The supplied September 15, 2026 quotation and source context establish an enthusiastic general AI stance. The remaining excerpts concern task-force implementation, prosecution, regulation, competition with China, or intellectual-property theft rather than AI's overall effects. Although s7 is truncated, its supplied content concerns a specific theft-related threat and does not establish a general AI stance.",
+    "confidence": 5,
+    "n_statements": 8,
+    "n_contexts": 1,
+    "accepted_sids": [
+     "s8"
+    ],
+    "finding_count": 1,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:18:11.816164+00:00",
-    "generation_id": "gen-1794201484-c7tlo6EAoBwyz7DKBe18"
+    "assessed_at": "2026-11-09T06:44:54.549918+00:00",
+    "generation_id": "gen-1794206682-xJkUhdSLgmnXtpUPjVj7"
    }
   },
   {
@@ -18229,18 +18202,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "7671f85f607e91c98cdee227fd508707a8834bb8afc665088b1036b7c611d7b4",
+    "review_id": "53a21ba1ae3154f18546182306662bd3376678312c04bde49f2b0131ad73eb8a",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied excerpts describe support for advancing superintelligence technologies and protecting innovation, alongside enforcement and internal-control measures. They do not express an overall assessment of AI's effects on Americans. Technology advancement and risk-management objectives alone do not establish an ai_overall stance; this conclusion is limited to the supplied excerpts.",
+    "reason": "The excerpts describe priorities for advancing super-intelligence technologies and managing their misuse and risks, but do not assess AI's overall effects on Americans. Supporting technological advancement alone does not establish a general positive stance, and advocating safeguards alone does not establish a general negative stance. The excerpts overlap and should not be treated as independent expressions of an overall outlook.",
     "confidence": 5,
     "n_statements": 3,
     "n_contexts": 0,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:18:17.417753+00:00",
-    "generation_id": "gen-1794201492-WLxnGbr8BszS66BCFbxZ"
+    "assessed_at": "2026-11-09T06:44:49.927158+00:00",
+    "generation_id": "gen-1794206683-5GB6FKVXQ1RAcgmhdSMA"
    }
   },
   {
@@ -19368,29 +19341,33 @@
     "source_url": "https://www.ftc.gov/about-ftc/commissioners-staff/commissioners",
     "reason": "current_government_official"
    },
-   "n_statements": 7,
-   "n_labeled": 7,
+   "n_statements": 8,
+   "n_labeled": 8,
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": 0.0,
+    "ai_overall": 2.0,
+    "agi_pilled": 2.0,
     "x_risk": 0.0,
     "china_race": 0.0,
     "regulation": 2.0
    },
    "score_details": {
     "ai_overall": {
-     "score": null,
-     "reason_a": "no_statements",
-     "reason_b": "no_statements",
-     "sids": [],
-     "label_count": 0
+     "score": 2.0,
+     "reason_a": "median_of_1",
+     "reason_b": "median_of_1",
+     "sids": [
+      "s8"
+     ],
+     "label_count": 1
     },
     "agi_pilled": {
-     "score": 0.0,
-     "reason_a": "silent",
-     "reason_b": "silent",
-     "sids": [],
-     "label_count": 0
+     "score": 2.0,
+     "reason_a": "consistent",
+     "reason_b": "consistent",
+     "sids": [
+      "s8"
+     ],
+     "label_count": 1
     },
     "x_risk": {
      "score": 0.0,
@@ -19418,39 +19395,30 @@
    },
    "summary": {
     "status": "complete",
-    "text": "In an August 15, 2025 X post, Mark Meador said that innovative AI does not mean predatory AI and that Americans deserve the truth about Big Tech experiments on vulnerable children. On September 11, 2025, he said AI chatbots are products whose makers have a responsibility to comply with consumer protection laws, and he supported the Commission’s study of chatbot functions and behaviors. In a September 11, 2025 X post, he described the FTC as launching a major, sector-wide inquiry into AI chatbots used by Americans, including children. In March 2026, he said AI and data-driven markets may present new factual settings but long-standing governing principles can be applied, and that AI and data analytics can improve enforcement agencies’ investigative speed and accuracy.",
+    "text": "In January 2026, Meador contrasted AI's potential for major scientific and technological advances with risks to imagination, childhood development, political discourse, and social trust. In September 2025, he supported the FTC's study of chatbot behavior and said chatbot providers must comply with consumer protection laws. In March 2026, he described AI and data analytics as tools that could improve the speed and accuracy of enforcement investigations.",
     "sids": [
-     "s7",
+     "s8",
      "s1",
      "s2",
-     "s6",
-     "s4",
      "s5"
     ],
     "sentences": [
      {
-      "text": "In an August 15, 2025 X post, Mark Meador said that innovative AI does not mean predatory AI and that Americans deserve the truth about Big Tech experiments on vulnerable children.",
+      "text": "In January 2026, Meador contrasted AI's potential for major scientific and technological advances with risks to imagination, childhood development, political discourse, and social trust.",
       "sids": [
-       "s7"
+       "s8"
       ]
      },
      {
-      "text": "On September 11, 2025, he said AI chatbots are products whose makers have a responsibility to comply with consumer protection laws, and he supported the Commission’s study of chatbot functions and behaviors.",
+      "text": "In September 2025, he supported the FTC's study of chatbot behavior and said chatbot providers must comply with consumer protection laws.",
       "sids": [
        "s1",
        "s2"
       ]
      },
      {
-      "text": "In a September 11, 2025 X post, he described the FTC as launching a major, sector-wide inquiry into AI chatbots used by Americans, including children.",
+      "text": "In March 2026, he described AI and data analytics as tools that could improve the speed and accuracy of enforcement investigations.",
       "sids": [
-       "s6"
-      ]
-     },
-     {
-      "text": "In March 2026, he said AI and data-driven markets may present new factual settings but long-standing governing principles can be applied, and that AI and data analytics can improve enforcement agencies’ investigative speed and accuracy.",
-      "sids": [
-       "s4",
        "s5"
       ]
      }
@@ -19459,8 +19427,9 @@
    "topics": {
     "regulation": 4.5,
     "national security": 0.5,
-    "other": 1.0,
-    "kids/online safety": 1.0
+    "other": 1.5,
+    "kids/online safety": 1.0,
+    "AGI/transformative": 0.5
    },
    "regulation": {
     "status": "complete",
@@ -19468,7 +19437,7 @@
      "kids_chatbots": {
       "stance": 0,
       "sids": [],
-      "why": "The supplied statements criticize predatory chatbot practices and support an FTC study, but do not call for a ban, age verification, or a legal duty specific to AI chatbots for minors."
+      "why": "No stance in the supplied evidence."
      },
      "deepfakes": {
       "stance": 0,
@@ -19523,7 +19492,7 @@
      "testing_mandate": {
       "stance": 0,
       "sids": [],
-      "why": "Support for an FTC study of chatbot behavior is not support for mandatory pre-release safety testing."
+      "why": "No stance in the supplied evidence."
      },
      "transparency": {
       "stance": 0,
@@ -19538,7 +19507,7 @@
      "liability": {
       "stance": 0,
       "sids": [],
-      "why": "The statement that chatbot makers must comply with consumer protection laws does not address new developer liability for AI harms."
+      "why": "No stance in the supplied evidence."
      },
      "misuse": {
       "stance": 0,
@@ -19584,18 +19553,20 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "b14fd5465f6331c30b16df0b137235aa81875715d352e3a8ab56e82492838b25",
+    "review_id": "a28438aefaefb49fd255eda4ce88156d2c9ab9e2cda6faebc9000127d512545b",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "None of the supplied excerpts establishes Meador’s view of AI’s overall benefits and harms. They address chatbot consumer protection, children’s safety, antitrust principles, or specific investigative uses of AI. These positions do not warrant an ai_overall label; this conclusion is limited to the supplied excerpts.",
+    "reason": "One supplied statement clearly assesses AI's overall benefits and risks. The remaining excerpts address consumer protection, enforcement, particular applications, or announcements without establishing a general AI stance. This conclusion is limited to the supplied evidence.",
     "confidence": 5,
-    "n_statements": 7,
-    "n_contexts": 0,
-    "accepted_sids": [],
-    "finding_count": 0,
+    "n_statements": 8,
+    "n_contexts": 1,
+    "accepted_sids": [
+     "s8"
+    ],
+    "finding_count": 1,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:18:24.706186+00:00",
-    "generation_id": "gen-1794201497-rhhRKBEND6wvt4d6ORNC"
+    "assessed_at": "2026-11-09T06:45:00.742705+00:00",
+    "generation_id": "gen-1794206690-FYoyKidkkbTpOF0vdQoM"
    }
   },
   {
@@ -20130,18 +20101,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "087a14184b93f635a45ae3282cde84fc9b58e471bc78567dbc89e7929b511bc6",
+    "review_id": "e30c00ac29e38de01a03995cc9a338c7eacb2b9af6121c76ec2040295ec5865b",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied statements favor AI adoption for federal operations, procurement, and agency missions, but do not establish a view of AI’s overall effects on Americans. Support for particular government uses, national-security alignment, and international leadership does not independently qualify as an ai_overall stance. Several excerpts are truncated; this conclusion is limited to their supplied text and does not establish that Forst lacks broader views.",
+    "reason": "The supplied statements promote AI adoption for federal operations, procurement, agency missions, or national security, rather than assess AI’s overall effects on Americans. These specific benefits and implementation priorities do not establish an ai_overall stance. The supplied full context for s10 likewise concerns agency operations. Several other excerpts are fragmentary, limiting conclusions to their provided wording, but none presents a materially ambiguous general assessment requiring context.",
     "confidence": 4,
     "n_statements": 14,
-    "n_contexts": 0,
+    "n_contexts": 1,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:18:37.221133+00:00",
-    "generation_id": "gen-1794201504-JfB6HFS053Bo9MyLV5i9"
+    "assessed_at": "2026-11-09T06:45:06.573172+00:00",
+    "generation_id": "gen-1794206694-47eA0QczgXrbZxTTdfU8"
    }
   },
   {
@@ -20424,10 +20395,10 @@
     "source_url": "https://www.war.gov/About/Secretary-of-War/",
     "reason": "current_government_institution"
    },
-   "n_statements": 20,
-   "n_labeled": 20,
+   "n_statements": 21,
+   "n_labeled": 21,
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": 2.0,
     "x_risk": 0.0,
     "china_race": 3.0,
@@ -20435,11 +20406,13 @@
    },
    "score_details": {
     "ai_overall": {
-     "score": null,
-     "reason_a": "no_statements",
-     "reason_b": "no_statements",
-     "sids": [],
-     "label_count": 0
+     "score": 3.0,
+     "reason_a": "median_of_1",
+     "reason_b": "median_of_1",
+     "sids": [
+      "s21"
+     ],
+     "label_count": 1
     },
     "agi_pilled": {
      "score": 2.0,
@@ -20481,51 +20454,40 @@
    },
    "summary": {
     "status": "complete",
-    "text": "In a 2023 fact sheet, the Department said it had been investing in AI and responsibly fielding data- and AI-enabled systems for over 60 years, and that its 2023 data, analytics, and AI strategy built upon and superseded its 2018 AI and 2020 data strategies. The 2023 materials placed Responsible AI at the top of the Department's AI Hierarchy of Needs, described quality data as the foundation, and said assurance processes for testing, evaluation, validation, and verification are imperative for Responsible AI. A January 2026 release announced an AI Acceleration Strategy intended to extend the Department's lead in military AI deployment, while a December 2025 release said the Department was providing no-cost GenAI.mil training to all DoW employees. The Department's ai.mil page describes providing Department-wide access to frontier generative AI models, such as Google's Gemini and xAI's Grok, for DoW personnel at Impact Level 5 and above.",
+    "text": "In June 2022, the Department described a principled approach to AI rooted in democratic values as a path to peace, security, and societal progress. Its 2023 statements emphasized accelerating AI adoption for decision advantage and using testing, evaluation, validation, and verification to support responsible AI. On January 12, 2026, the Department announced an AI acceleration strategy focused on military AI leadership, experimentation, and integrating frontier capabilities across mission areas.",
     "sids": [
-     "s1",
-     "s2",
-     "s4",
-     "s5",
+     "s21",
      "s6",
+     "s7",
      "s9",
-     "s10",
-     "s12"
+     "s14"
     ],
     "sentences": [
      {
-      "text": "In a 2023 fact sheet, the Department said it had been investing in AI and responsibly fielding data- and AI-enabled systems for over 60 years, and that its 2023 data, analytics, and AI strategy built upon and superseded its 2018 AI and 2020 data strategies.",
+      "text": "In June 2022, the Department described a principled approach to AI rooted in democratic values as a path to peace, security, and societal progress.",
       "sids": [
-       "s1",
-       "s2"
+       "s21"
       ]
      },
      {
-      "text": "The 2023 materials placed Responsible AI at the top of the Department's AI Hierarchy of Needs, described quality data as the foundation, and said assurance processes for testing, evaluation, validation, and verification are imperative for Responsible AI.",
+      "text": "Its 2023 statements emphasized accelerating AI adoption for decision advantage and using testing, evaluation, validation, and verification to support responsible AI.",
       "sids": [
-       "s4",
-       "s5",
-       "s6"
+       "s6",
+       "s7"
       ]
      },
      {
-      "text": "A January 2026 release announced an AI Acceleration Strategy intended to extend the Department's lead in military AI deployment, while a December 2025 release said the Department was providing no-cost GenAI.mil training to all DoW employees.",
+      "text": "On January 12, 2026, the Department announced an AI acceleration strategy focused on military AI leadership, experimentation, and integrating frontier capabilities across mission areas.",
       "sids": [
        "s9",
-       "s10"
-      ]
-     },
-     {
-      "text": "The Department's ai.mil page describes providing Department-wide access to frontier generative AI models, such as Google's Gemini and xAI's Grok, for DoW personnel at Impact Level 5 and above.",
-      "sids": [
-       "s12"
+       "s14"
       ]
      }
     ]
    },
    "topics": {
-    "national security": 10.167,
-    "other": 4.5,
+    "national security": 10.667,
+    "other": 5.0,
     "regulation": 2.333,
     "China/competition": 1.667,
     "AGI/transformative": 1.333
@@ -20571,7 +20533,7 @@
      "bias_audits": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "The Department commits to 'Responsible AI' and 'DoD AI Ethical Principles' (s4, s8), but does not call for a specific legal duty to test or audit AI for discrimination."
      },
      "training_consent": {
       "stance": 0,
@@ -20591,12 +20553,12 @@
      "testing_mandate": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "The Department requires 'Sound assurance processes for testing, evaluation, validation, and verification' (s6), but this refers to internal processes, not a mandatory external testing requirement."
      },
      "transparency": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "The Department commits to 'Responsible AI' (s4), but does not call for specific duties to publish safety plans or share information with the government."
      },
      "whistleblowers": {
       "stance": 0,
@@ -20621,7 +20583,7 @@
      "autonomous_weapons": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "The Department focuses on accelerating AI deployment for military advantage (s9, s13, s14) but does not take a specific stance on human control or bans on lethal autonomous weapons."
      },
      "licensing": {
       "stance": 0,
@@ -20629,11 +20591,6 @@
       "why": "No stance in the supplied evidence."
      },
      "intl_agreement": {
-      "stance": 0,
-      "sids": [],
-      "why": "No stance in the supplied evidence."
-     },
-     "pause": {
       "stance": 0,
       "sids": [],
       "why": "No stance in the supplied evidence."
@@ -20646,24 +20603,33 @@
      "superintelligence": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "The Department refers to 'super intelligence' (s15) and aims for an 'SI-first' warfighting force (s16), but does not advocate for or against a ban on superintelligence."
+     },
+     "pause": {
+      "stance": 0,
+      "sids": [],
+      "why": "The supplied evidence advocates accelerating military AI adoption and removing bureaucratic barriers, but does not address a pause, moratorium, or slowdown on frontier AI development."
      }
     },
-    "disputed": []
+    "disputed": [
+     "pause"
+    ]
    },
    "stance_review": {
-    "review_id": "89d35ed16e1c0df2b241b1cf5dbfbf8de46bd0b3751b19432582fbc3dcb46f84",
+    "review_id": "9f3a54e050ed889b15239252114f3d60302f4ca46569ab98057ce845b80766a5",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied excerpts concern departmental AI adoption, military capabilities, responsible-use practices, and implementation announcements. Even the enthusiastic statements about military AI dominance do not establish a view of AI's overall effects on Americans. None warrants an ai_overall label; this conclusion is limited to the supplied excerpts.",
-    "confidence": 5,
-    "n_statements": 20,
-    "n_contexts": 0,
-    "accepted_sids": [],
-    "finding_count": 0,
+    "reason": "The supplied evidence contains one clear general stance: the June 2022 strategy connects responsible AI with societal progress. The remaining excerpts concern departmental adoption, military capabilities, ethical processes, access, training, or announcements; they do not establish a view of AI's overall effects on Americans. The historical general stance does not establish a current one.",
+    "confidence": 4,
+    "n_statements": 21,
+    "n_contexts": 2,
+    "accepted_sids": [
+     "s21"
+    ],
+    "finding_count": 1,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:18:43.845349+00:00",
-    "generation_id": "gen-1794201517-fKyhCRshRixjfXTzcO4X"
+    "assessed_at": "2026-11-09T06:45:11.655497+00:00",
+    "generation_id": "gen-1794206701-sNyi6sZegxdKg05O49N5"
    }
   },
   {
@@ -20924,18 +20890,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "be1bb4f92ea53ba8b9c5c5cb9b443a72e77230a8d53412ff52144d6a2f210dc7",
+    "review_id": "1ed2638d166f1c4fcb07ab2abf7612f9d666d90d00fdf5d15f19f12fb042f548",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied excerpts describe defense AI adoption, procurement, operational benefits, and responsible-use safeguards. None expresses a general judgment about whether AI will be good for Americans overall. Department-wide AI ambitions do not establish that broader stance. This conclusion is limited to the supplied excerpts; most have no statement date.",
+    "reason": "The supplied excerpts describe defense-focused AI adoption, procurement, organizational ambitions, and responsible-use practices. None expresses a general judgment about AI's overall effects on Americans. Support for military applications or safety practices does not independently establish an ai_overall stance. This conclusion is limited to the supplied excerpts.",
     "confidence": 5,
     "n_statements": 14,
     "n_contexts": 0,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:18:51.248776+00:00",
-    "generation_id": "gen-1794201524-65bgapRuYhkoCvnfOoru"
+    "assessed_at": "2026-11-09T06:45:13.513110+00:00",
+    "generation_id": "gen-1794206706-jJuM2jVDldM3qoKWZ1qe"
    }
   },
   {
@@ -21188,18 +21154,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "4add889f775b0a8069b9ff314d90745c586fe7b875eed4885a50f06f2f19d0ea",
+    "review_id": "eb42900726b7d1dc4f862a79ae2da30ad7df69298f11c1cae40fea7dec3a0c07",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied excerpts concern intelligence-community AI adoption, national-security capabilities, governance, research partnerships, or event participation. None establishes ODNI's view of whether AI will be good for Americans overall. Support for these specific applications and initiatives does not establish a general stance. Several X excerpts are truncated, but their supplied language provides no affirmative basis for an overall assessment.",
+    "reason": "The supplied statements concern intelligence-community AI adoption, national-security capabilities, internal governance, and research partnerships rather than AI’s overall effects on Americans. The full supplied context for s3 likewise stays within national-security applications. None establishes a general AI-overall stance; this conclusion is limited to the supplied evidence.",
     "confidence": 5,
     "n_statements": 10,
-    "n_contexts": 0,
+    "n_contexts": 1,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:19:00.178496+00:00",
-    "generation_id": "gen-1794201531-o3h6VBr8GMMl4QRR7znc"
+    "assessed_at": "2026-11-09T06:45:21.387712+00:00",
+    "generation_id": "gen-1794206711-Wl6YP3D0qNZFhUsmxkOV"
    }
   },
   {
@@ -21432,18 +21398,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "87f219f03e3522c902a1df7a9e9f5aaf010a4c7714d82f4805780467762965dd",
+    "review_id": "0b1a47011e61a96b5e82a120242d135c9b130dfc42d08167236c29183aca9590",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied statements do not establish a general stance on whether AI will be good for Americans overall. Positive language concerns CIA-specific adoption, capabilities, recruitment, and partnerships rather than AI’s overall societal effects. The supplied full context for s2 likewise describes operational benefits to the Agency. Several other excerpts are truncated, but their available language concerns announcements or narrow institutional uses and does not warrant inferring a broader position.",
-    "confidence": 4,
+    "reason": "The supplied statements describe CIA operations, recruitment, partnerships, and promotional material rather than AI’s overall effects on Americans. The supplied fuller context for s2 and s6 remains focused on agency capabilities and opportunities. Optimism about AI at CIA does not establish a general AI stance under this rubric.",
+    "confidence": 5,
     "n_statements": 7,
-    "n_contexts": 1,
+    "n_contexts": 2,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:25:00.938750+00:00",
-    "generation_id": "gen-1794201892-KpoCYf489Cdx8CG9t9Z1"
+    "assessed_at": "2026-11-09T06:45:21.009403+00:00",
+    "generation_id": "gen-1794206713-t1BDqPmfPE8bJ6YPXpY9"
    }
   },
   {
@@ -21473,10 +21439,10 @@
     "source_url": "https://www.whitehouse.gov/administration/cabinet/",
     "reason": "current_government_institution"
    },
-   "n_statements": 144,
-   "n_labeled": 144,
+   "n_statements": 145,
+   "n_labeled": 145,
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": 0.0,
     "x_risk": 2.5,
     "china_race": 0.0,
@@ -21484,11 +21450,14 @@
    },
    "score_details": {
     "ai_overall": {
-     "score": null,
-     "reason_a": "no_statements",
-     "reason_b": "no_statements",
-     "sids": [],
-     "label_count": 0
+     "score": 2.0,
+     "reason_a": "median_of_2",
+     "reason_b": "median_of_2",
+     "sids": [
+      "s145",
+      "s123"
+     ],
+     "label_count": 2
     },
     "agi_pilled": {
      "score": 0.0,
@@ -21532,49 +21501,46 @@
    },
    "summary": {
     "status": "complete",
-    "text": "DHS's September 2025 AI Strategy outlines a three-year approach to removing barriers to responsible AI use, enhancing AI maturity, and ensuring transparency and accountability to the public. DHS says it is establishing governance structures and an enterprise AI risk management framework to support safe, secure, responsible, trustworthy, and human-centered AI use. In 2024, DHS described a commitment to responsible and trustworthy AI that safeguards privacy, civil rights, and civil liberties, avoids inappropriate biases, and is transparent and explainable. DHS developed a voluntary Roles and Responsibilities Framework for AI in Critical Infrastructure in close consultation with its AI Safety and Security Board, recommending roles for safe and secure development and deployment.",
+    "text": "In November 2023 and March 2024, DHS described AI as transformative for services Americans rely on while acknowledging new risks. In 2024, DHS committed to testing its AI systems and protecting privacy, civil rights, and civil liberties. In September 2025, DHS described plans to advance AI for departmental effectiveness and public services while establishing governance and risk-management structures.",
     "sids": [
-     "s9",
-     "s1",
+     "s123",
+     "s145",
      "s15",
-     "s29",
-     "s30"
+     "s140",
+     "s1",
+     "s13"
     ],
     "sentences": [
      {
-      "text": "DHS's September 2025 AI Strategy outlines a three-year approach to removing barriers to responsible AI use, enhancing AI maturity, and ensuring transparency and accountability to the public.",
+      "text": "In November 2023 and March 2024, DHS described AI as transformative for services Americans rely on while acknowledging new risks.",
       "sids": [
-       "s9"
+       "s123",
+       "s145"
       ]
      },
      {
-      "text": "DHS says it is establishing governance structures and an enterprise AI risk management framework to support safe, secure, responsible, trustworthy, and human-centered AI use.",
+      "text": "In 2024, DHS committed to testing its AI systems and protecting privacy, civil rights, and civil liberties.",
       "sids": [
-       "s1"
+       "s15",
+       "s140"
       ]
      },
      {
-      "text": "In 2024, DHS described a commitment to responsible and trustworthy AI that safeguards privacy, civil rights, and civil liberties, avoids inappropriate biases, and is transparent and explainable.",
+      "text": "In September 2025, DHS described plans to advance AI for departmental effectiveness and public services while establishing governance and risk-management structures.",
       "sids": [
-       "s15"
-      ]
-     },
-     {
-      "text": "DHS developed a voluntary Roles and Responsibilities Framework for AI in Critical Infrastructure in close consultation with its AI Safety and Security Board, recommending roles for safe and secure development and deployment.",
-      "sids": [
-       "s29",
-       "s30"
+       "s1",
+       "s13"
       ]
      }
     ]
    },
    "topics": {
     "regulation": 68.5,
-    "other": 31.833,
+    "other": 32.333,
     "national security": 33.833,
     "AGI/transformative": 4.0,
     "misuse (bio/cyber)": 1.5,
-    "jobs/economy": 2.0,
+    "jobs/economy": 2.5,
     "deepfakes/elections": 1.0,
     "kids/online safety": 0.333,
     "copyright": 1.0
@@ -21620,11 +21586,11 @@
      "bias_audits": {
       "stance": 2,
       "sids": [
+       "s3",
        "s15",
-       "s20",
        "s28"
       ],
-      "why": "DHS commits to rigorous testing to avoid bias, prohibits discriminatory AI decisions, and joins an interagency statement on discrimination and bias in automated systems."
+      "why": "DHS explicitly prohibits AI systems that make decisions based on protected characteristics and commits to rigorous bias testing and civil-rights compliance."
      },
      "training_consent": {
       "stance": 0,
@@ -21699,7 +21665,7 @@
      "misuse": {
       "stance": 0,
       "sids": [],
-      "why": "The supplied evidence describes reducing AI-related weapons risks and improving cybersecurity, but does not advocate specific rules or safeguards against AI assistance in creating weapons."
+      "why": "DHS commits to reducing AI-related weapons-of-mass-destruction risks, but the supplied evidence does not establish support for or opposition to specific rules preventing AI weapons assistance."
      }
     },
     "disputed": [
@@ -21707,18 +21673,21 @@
     ]
    },
    "stance_review": {
-    "review_id": "1dccc905f1182ac2013b39172bed28e557d168075e9f2958b30d07e83dec381c",
+    "review_id": "d3b5a1e496db07c3d21fc99f86a41d5ce022d6c6dcc64a57b915ea82a54f62cc",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied evidence supports DHS's favorable assessment of mission-specific AI applications and its commitment to safeguards, but does not establish a general judgment about AI's overall effects on Americans. Benefits and risks discussed together remain scoped to homeland security, departmental operations, or critical infrastructure. The supplied context for s90 and s123 retains those limits; s62 is explicitly another speaker's view. Many X excerpts are truncated, but their supplied content does not warrant inferring an overall stance or requesting context solely because that stance is absent.",
+    "reason": "The supplied evidence contains two historical institutional assessments balancing broad public benefits with risks. Most other excerpts concern departmental applications, governance, specific harms, announcements, or attributed third-party views, rather than AI's overall effects on Americans. Supplied context resolves the relevant truncated assessment in s123 and confirms institutional attribution for s145. The bounded evidence does not establish a current general assessment; several excerpts are undated or truncated.",
     "confidence": 4,
-    "n_statements": 144,
-    "n_contexts": 3,
-    "accepted_sids": [],
-    "finding_count": 0,
+    "n_statements": 145,
+    "n_contexts": 19,
+    "accepted_sids": [
+     "s123",
+     "s145"
+    ],
+    "finding_count": 2,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:25:17.115486+00:00",
-    "generation_id": "gen-1794201901-uJcj5qxKDg64GD5wYivY"
+    "assessed_at": "2026-11-09T06:48:37.806438+00:00",
+    "generation_id": "gen-1794206893-AiRqlfx9EHn2scCA5sC7"
    }
   },
   {
@@ -22519,18 +22488,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "03b036d18e74da07bda6a0a06700c5e8743bb0bc28fce7337c52e431f4fea8b0",
+    "review_id": "4f034b2c604ef8b76c32999f21f8f2c6a531f7e9df41a2e1c3aae3b3fefa59a1",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied excerpts address American superintelligence leadership, preventing unlawful misuse, and coordinating enforcement. None expresses an overall judgment about AI's benefits and harms for Americans. Promoting American SI dominance does not by itself establish a general positive stance. This conclusion is limited to the supplied excerpts.",
+    "reason": "The supplied excerpts describe institutional coordination, enforcement against misuse, and promotion of American superintelligence leadership. None expresses a general judgment about AI's overall benefits or harms for Americans. Leadership ambitions and targeted enforcement do not establish an ai_overall stance; this conclusion is limited to the supplied excerpts.",
     "confidence": 5,
     "n_statements": 5,
     "n_contexts": 0,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:19:27.820900+00:00",
-    "generation_id": "gen-1794201562-a9pkSX1Aiz9Im64eHeXn"
+    "assessed_at": "2026-11-09T06:45:26.693165+00:00",
+    "generation_id": "gen-1794206721-g8of28gvY5qF0KdaKfyL"
    }
   },
   {
@@ -24418,18 +24387,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "bbad25ddfc5449f931ba9d690830112710ef8bda5f333e7e2599c17e95ae6079",
+    "review_id": "5e37537eb68ed2bf7bc25bb3101f39eff4a083a314603c63a63d13f9648d5fb5",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "All five excerpts promote training, acquisition services, or workplace IT modernization. None expresses a general assessment of AI's overall benefits and risks for Americans. Some excerpts are truncated, but their supplied content does not establish a broader stance; these findings are limited to that content.",
-    "confidence": 5,
+    "reason": "All five statements promote training or discuss AI within professional services and workplace IT modernization. None expresses a general assessment of AI's overall effects on Americans. Supplied source context confirms the promotional scope of s1, s2, s4, and s5; s3 remains truncated, but its available text provides only a narrow organizational-use discussion.",
+    "confidence": 4,
     "n_statements": 5,
-    "n_contexts": 0,
+    "n_contexts": 4,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-09T05:19:33.891291+00:00",
-    "generation_id": "gen-1794201568-WMBVozvHqLe4WaIEukV6"
+    "assessed_at": "2026-11-09T06:45:28.353659+00:00",
+    "generation_id": "gen-1794206721-ZOtd1EVyX6AHw8LHPf3b"
    }
   },
   {

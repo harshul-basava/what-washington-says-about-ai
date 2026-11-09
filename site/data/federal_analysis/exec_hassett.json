@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_hassett",
- "revision": "49eaa5228b34ded840ebedc0807942e5b28767240fc67b1898d724d8219ae47d",
+ "revision": "7069276e182be8df03c493e52d91a33c961205fb2aedf4cb4dbdeae161ff417d",
  "profile": {
   "id": "exec_hassett",
   "name": "Kevin Hassett",
@@ -41,29 +41,34 @@
    "source_url": "https://www.whitehouse.gov/releases/2026/11/what-they-are-saying-blowout-october-jobs-report-smashes-expectations/",
    "reason": "current_federal_official"
   },
-  "n_statements": 5,
-  "n_labeled": 5,
+  "n_statements": 7,
+  "n_labeled": 7,
   "scores": {
-   "ai_overall": null,
-   "agi_pilled": 0.0,
+   "ai_overall": 4.0,
+   "agi_pilled": 2.0,
    "x_risk": 0.0,
    "china_race": 0.0,
    "regulation": 2.0
   },
   "score_details": {
    "ai_overall": {
-    "score": null,
-    "reason_a": "no_statements",
-    "reason_b": "no_statements",
-    "sids": [],
-    "label_count": 0
+    "score": 4.0,
+    "reason_a": "median_of_2",
+    "reason_b": "median_of_2",
+    "sids": [
+     "s7",
+     "s6"
+    ],
+    "label_count": 2
    },
    "agi_pilled": {
-    "score": 0.0,
-    "reason_a": "silent",
-    "reason_b": "silent",
-    "sids": [],
-    "label_count": 0
+    "score": 2.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s6"
+    ],
+    "label_count": 1
    },
    "x_risk": {
     "score": 0.0,
@@ -91,45 +96,44 @@
   },
   "summary": {
    "status": "complete",
-   "text": "Hassett described working groups considering how AI can make both workers and firms more productive and referred to an unprecedented productivity boom. He said firms are finding AI makes workers productive enough that they do not necessarily need to hire new college graduates. He described AI-related risks as solvable problems and said the private sector is the right place to solve them. In May 2026, he said a possible executive order was being studied to provide a clear road map.",
+   "text": "Hassett described AI-driven societal changes as beneficial, anticipating higher wages and greater opportunities for leisure. On September 28, 2026, he emphasized AI's growth benefits and argued that labor-market stress was concentrated at firms not adopting it. In another supplied excerpt, he said AI productivity gains could reduce firms' need to hire new college graduates. He characterized AI risks as solvable by the private sector, with government monitoring and law enforcement when necessary.",
    "sids": [
-    "s1",
-    "s2",
+    "s6",
+    "s7",
     "s3",
-    "s4",
-    "s5"
+    "s4"
    ],
    "sentences": [
     {
-     "text": "Hassett described working groups considering how AI can make both workers and firms more productive and referred to an unprecedented productivity boom.",
+     "text": "Hassett described AI-driven societal changes as beneficial, anticipating higher wages and greater opportunities for leisure.",
      "sids": [
-      "s1",
-      "s2"
+      "s6"
      ]
     },
     {
-     "text": "He said firms are finding AI makes workers productive enough that they do not necessarily need to hire new college graduates.",
+     "text": "On September 28, 2026, he emphasized AI's growth benefits and argued that labor-market stress was concentrated at firms not adopting it.",
+     "sids": [
+      "s7"
+     ]
+    },
+    {
+     "text": "In another supplied excerpt, he said AI productivity gains could reduce firms' need to hire new college graduates.",
      "sids": [
       "s3"
      ]
     },
     {
-     "text": "He described AI-related risks as solvable problems and said the private sector is the right place to solve them.",
+     "text": "He characterized AI risks as solvable by the private sector, with government monitoring and law enforcement when necessary.",
      "sids": [
       "s4"
-     ]
-    },
-    {
-     "text": "In May 2026, he said a possible executive order was being studied to provide a clear road map.",
-     "sids": [
-      "s5"
      ]
     }
    ]
   },
   "topics": {
-   "jobs/economy": 3.0,
-   "regulation": 2.0
+   "jobs/economy": 4.0,
+   "regulation": 2.0,
+   "AGI/transformative": 1.0
   },
   "regulation": {
    "status": "complete",
@@ -253,18 +257,21 @@
    "disputed": []
   },
   "stance_review": {
-   "review_id": "522a285e9a6dc0fe2fe4cec2aeec375490f364df15dd5b8d4f9281f5367737dd",
+   "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
    "dimension": "ai_overall",
    "status": "complete",
-   "reason": "The supplied evidence does not establish a general judgment that AI will be good or bad for Americans overall. Productivity and hiring observations are narrower economic claims; describing risks as solvable does not itself establish an overall positive stance; and studying an executive order is procedural. In the s2 context, the explicit description of AI as revolutionary and positive for productivity is attributed to Anna Wong, not Hassett, and cannot be transferred to him.",
+   "reason": "Two statements establish broad, enthusiastic optimism about AI's societal or economic effects. The others concern specific productivity or hiring effects, governance, or procedural plans. In s2, the supplied transcript attributes the clearest AI-specific economic optimism to Anna Wong, not Hassett; it is not transferred to him. Several statement dates are unspecified.",
    "confidence": 4,
-   "n_statements": 5,
-   "n_contexts": 2,
-   "accepted_sids": [],
-   "finding_count": 0,
+   "n_statements": 7,
+   "n_contexts": 4,
+   "accepted_sids": [
+    "s6",
+    "s7"
+   ],
+   "finding_count": 2,
    "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-09T05:24:02.654833+00:00",
-   "generation_id": "gen-1794201831-eQnWieLqLcTZ5M8m8EtU"
+   "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+   "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
   }
  },
  "statements": [
@@ -295,15 +302,16 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "522a285e9a6dc0fe2fe4cec2aeec375490f364df15dd5b8d4f9281f5367737dd",
+     "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
      "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:24:02.654833+00:00",
-     "generation_id": "gen-1794201831-eQnWieLqLcTZ5M8m8EtU"
+     "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+     "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -360,14 +368,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "522a285e9a6dc0fe2fe4cec2aeec375490f364df15dd5b8d4f9281f5367737dd",
+      "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:24:02.654833+00:00",
-      "generation_id": "gen-1794201831-eQnWieLqLcTZ5M8m8EtU"
+      "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+      "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
      }
     }
    }
@@ -398,15 +407,16 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "522a285e9a6dc0fe2fe4cec2aeec375490f364df15dd5b8d4f9281f5367737dd",
+     "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
      "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:24:02.654833+00:00",
-     "generation_id": "gen-1794201831-eQnWieLqLcTZ5M8m8EtU"
+     "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+     "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -460,14 +470,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "522a285e9a6dc0fe2fe4cec2aeec375490f364df15dd5b8d4f9281f5367737dd",
+      "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:24:02.654833+00:00",
-      "generation_id": "gen-1794201831-eQnWieLqLcTZ5M8m8EtU"
+      "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+      "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
      }
     }
    }
@@ -498,15 +509,16 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "522a285e9a6dc0fe2fe4cec2aeec375490f364df15dd5b8d4f9281f5367737dd",
+     "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
      "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:24:02.654833+00:00",
-     "generation_id": "gen-1794201831-eQnWieLqLcTZ5M8m8EtU"
+     "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+     "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -560,14 +572,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "522a285e9a6dc0fe2fe4cec2aeec375490f364df15dd5b8d4f9281f5367737dd",
+      "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:24:02.654833+00:00",
-      "generation_id": "gen-1794201831-eQnWieLqLcTZ5M8m8EtU"
+      "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+      "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
      }
     }
    }
@@ -604,15 +617,16 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "522a285e9a6dc0fe2fe4cec2aeec375490f364df15dd5b8d4f9281f5367737dd",
+     "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
      "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:24:02.654833+00:00",
-     "generation_id": "gen-1794201831-eQnWieLqLcTZ5M8m8EtU"
+     "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+     "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -679,14 +693,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "522a285e9a6dc0fe2fe4cec2aeec375490f364df15dd5b8d4f9281f5367737dd",
+      "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:24:02.654833+00:00",
-      "generation_id": "gen-1794201831-eQnWieLqLcTZ5M8m8EtU"
+      "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+      "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
      }
     }
    }
@@ -722,15 +737,16 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "522a285e9a6dc0fe2fe4cec2aeec375490f364df15dd5b8d4f9281f5367737dd",
+     "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
      "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:24:02.654833+00:00",
-     "generation_id": "gen-1794201831-eQnWieLqLcTZ5M8m8EtU"
+     "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+     "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -791,14 +807,284 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "522a285e9a6dc0fe2fe4cec2aeec375490f364df15dd5b8d4f9281f5367737dd",
+      "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:24:02.654833+00:00",
-      "generation_id": "gen-1794201831-eQnWieLqLcTZ5M8m8EtU"
+      "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+      "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s6",
+   "date": null,
+   "url": "https://milkeninstitute.org/sites/default/files/2026-03/AConversationNECDirectorKevinHassett_Transcript_FoF26.pdf",
+   "text": "there'll be fundamental societal changes, but they'll be all—so I'm an optimist—they'll be all for the good",
+   "source_type": "reported_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Kevin Hassett",
+    "organization_id": "nec",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "ai_overall": 4,
+     "agi_pilled": 2
+    },
+    "b": {
+     "ai_overall": 4,
+     "agi_pilled": 2
+    },
+    "topics": [
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "ai_overall": 5,
+     "agi_pilled": 3.0
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 4
+     },
+     "confidence": {
+      "ai_overall": 5
+     },
+     "review_confidence": 4,
+     "reason": "Hassett explicitly expects AI-driven societal changes to be entirely beneficial, connecting productivity and wealth to higher wages and more leisure.",
+     "supporting_quote": "there'll be fundamental societal changes, but they'll be all—so I'm an optimist—they'll be all for the good",
+     "support_basis": "excerpt",
+     "accepted": true,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+     "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 4
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 4
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:37:19.654406+00:00",
+      "generation_id": "gen-1794206230-8V05NEZSqxAQzhBoUVSp"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 4
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:37:44.497656+00:00",
+      "generation_id": "gen-1794206259-rDK82OL184ytSTf3joZz"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 4
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:38:37.822238+00:00",
+      "generation_id": "gen-1794206314-YoWVSfw02zFfSwnZAufh"
+     },
+     "sol": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 4
+      },
+      "confidence": {
+       "agi_pilled": 5,
+       "ai_overall": 5
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T06:39:07.144497+00:00",
+      "generation_id": "gen-1794206342-Bpq1X0x6EmXc48FkuKzn"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 5
+      },
+      "review_confidence": 4,
+      "reason": "Hassett explicitly expects AI-driven societal changes to be entirely beneficial, connecting productivity and wealth to higher wages and more leisure.",
+      "supporting_quote": "there'll be fundamental societal changes, but they'll be all—so I'm an optimist—they'll be all for the good",
+      "support_basis": "excerpt",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+      "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s7",
+   "date": "2026-09-28",
+   "url": "https://www.cfodive.com/news/ai-creates-jobs-kills-white-house-economist-hassett-fed-economy-gdp-productivity/831553/",
+   "text": "The growth benefit of it is way bigger than you may think,",
+   "source_type": "reported_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Kevin Hassett",
+    "organization_id": "nec",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "ai_overall": 4
+    },
+    "b": {
+     "ai_overall": 4
+    },
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {
+     "ai_overall": 4
+    },
+    "escalated": [
+     "ai_overall"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 4
+     },
+     "confidence": {
+      "ai_overall": 4
+     },
+     "review_confidence": 4,
+     "reason": "The supplied context establishes enthusiastic, economy-wide optimism about AI-driven growth, employment and wages. He minimizes current labor-market stress and principally attributes it to firms not adopting AI.",
+     "supporting_quote": "The growth benefit of it is way bigger than you may think,",
+     "support_basis": "excerpt",
+     "accepted": true,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+     "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:37:19.654406+00:00",
+      "generation_id": "gen-1794206230-8V05NEZSqxAQzhBoUVSp"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:37:44.497656+00:00",
+      "generation_id": "gen-1794206259-rDK82OL184ytSTf3joZz"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:38:37.822238+00:00",
+      "generation_id": "gen-1794206314-YoWVSfw02zFfSwnZAufh"
+     },
+     "sol": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T06:39:07.144497+00:00",
+      "generation_id": "gen-1794206342-Bpq1X0x6EmXc48FkuKzn"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "review_confidence": 4,
+      "reason": "The supplied context establishes enthusiastic, economy-wide optimism about AI-driven growth, employment and wages. He minimizes current labor-market stress and principally attributes it to firms not adopting AI.",
+      "supporting_quote": "The growth benefit of it is way bigger than you may think,",
+      "support_basis": "excerpt",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+      "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
      }
     }
    }
@@ -1386,7 +1672,7 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 1,
+   "n_statements": 2,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1399,7 +1685,7 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 1,
+   "n_statements": 2,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1417,5 +1703,32 @@
    "kind": "observed"
   }
  ],
- "changes": []
+ "changes": [
+  {
+   "id": "exec_hassett",
+   "date": "2026-11-09",
+   "dimension": "ai_overall",
+   "old": null,
+   "new": 4.0,
+   "kind": "big",
+   "cause": "Astra review after deeper web and X research",
+   "sids": [
+    "s6",
+    "s7"
+   ],
+   "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4"
+  },
+  {
+   "id": "exec_hassett",
+   "date": "2026-11-09",
+   "dimension": "agi_pilled",
+   "old": 0.0,
+   "new": 2.0,
+   "kind": "big",
+   "cause": "evidence or assessment changed",
+   "sids": [
+    "s6"
+   ]
+  }
+ ]
 }

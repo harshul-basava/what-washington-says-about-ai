@@ -150,6 +150,8 @@ def resolve_labels(entry,settings=None):
         accepted=type(label) is int and 0<=label<=4 and type(confidence) in (int,float) and 3<=confidence<=5
         if accepted:
             a['ai_overall']=b['ai_overall']=label;conf['ai_overall']=confidence
+        elif review.get('decision') in ('no_stance','uncertain'):
+            a.pop('ai_overall',None);b.pop('ai_overall',None);conf.pop('ai_overall',None)
         result['stance_review']={**review,'accepted':accepted,'model':review_record.get('model'),
             'assessed_at':review_record.get('assessed_at'),'generation_id':review_record.get('generation_id')}
     return result

@@ -165,7 +165,7 @@
     const escalatedNames = escalated.map(id => dimensions.find(d => d.id === id)?.title || id);
     const review=analysis.stance_review, contextURL=safeURL(review?.source_context?.url);
     const reviewLabel=review?.accepted ? `AI overall: ${fmt(review.labels.ai_overall)} · ${LEVELS.ai_overall[review.labels.ai_overall]}` :
-      score(review?.labels?.ai_overall) ? 'Finding below the confidence threshold' : 'No qualifying stance';
+      review?.decision==='uncertain' || score(review?.labels?.ai_overall) ? 'Finding below the confidence threshold' : 'No qualifying stance';
     const reviewHTML=review ? `<div class="fa-review"><h4>Astra stance review</h4><p><strong>${esc(reviewLabel)}</strong> · Confidence: ${esc(review.confidence?.ai_overall ?? review.review_confidence)} of 5.</p>
       <p>${esc(review.reason)}</p>${review.supporting_quote ? `<p class="fa-note">${review.support_basis==='context' ? 'Support from the original source context' : 'Support from the original excerpt'}:</p><blockquote>${esc(review.supporting_quote)}</blockquote>` : ''}
       ${contextURL ? `<p><a href="${esc(contextURL)}" target="_blank" rel="noopener noreferrer">Read the source context ↗</a></p>` : ''}

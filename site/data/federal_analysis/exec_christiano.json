@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_christiano",
- "revision": "49eaa5228b34ded840ebedc0807942e5b28767240fc67b1898d724d8219ae47d",
+ "revision": "7069276e182be8df03c493e52d91a33c961205fb2aedf4cb4dbdeae161ff417d",
  "profile": {
   "id": "exec_christiano",
   "name": "Paul Christiano",
@@ -51,10 +51,10 @@
    "source_url": "https://paulfchristiano.com/",
    "reason": "current_government_official"
   },
-  "n_statements": 4,
-  "n_labeled": 4,
+  "n_statements": 5,
+  "n_labeled": 5,
   "scores": {
-   "ai_overall": null,
+   "ai_overall": 1.0,
    "agi_pilled": 3.0,
    "x_risk": 2.5,
    "china_race": 0.0,
@@ -62,11 +62,13 @@
   },
   "score_details": {
    "ai_overall": {
-    "score": null,
-    "reason_a": "no_statements",
-    "reason_b": "no_statements",
-    "sids": [],
-    "label_count": 0
+    "score": 1.0,
+    "reason_a": "median_of_1",
+    "reason_b": "median_of_1",
+    "sids": [
+     "s5"
+    ],
+    "label_count": 1
    },
    "agi_pilled": {
     "score": 3.0,
@@ -104,36 +106,22 @@
   },
   "summary": {
    "status": "complete",
-   "text": "Paul Christiano stated that if superintelligence is built without more robust alignment, he expects humanity will permanently lose control of it. He also described a possible 10 to 20% chance of AI takeover with many or most humans dead. He said the most likely way we die is not that AI comes out of the blue and kills us. He discussed having a lot of AI control over critical systems, even in running a military.",
+   "text": "In a personal essay originally published August 23, 2014, Christiano anticipated substantial welfare benefits from AI-driven growth and automation, while assigning greater long-run humanitarian importance to the risk that human values would lose influence over the future. In the statement dated September 9, 2026, he said he expected permanent loss of control if superintelligence were built without more robust alignment.",
    "sids": [
-    "s1",
-    "s2",
-    "s3",
-    "s4"
+    "s5",
+    "s1"
    ],
    "sentences": [
     {
-     "text": "Paul Christiano stated that if superintelligence is built without more robust alignment, he expects humanity will permanently lose control of it.",
+     "text": "In a personal essay originally published August 23, 2014, Christiano anticipated substantial welfare benefits from AI-driven growth and automation, while assigning greater long-run humanitarian importance to the risk that human values would lose influence over the future.",
+     "sids": [
+      "s5"
+     ]
+    },
+    {
+     "text": "In the statement dated September 9, 2026, he said he expected permanent loss of control if superintelligence were built without more robust alignment.",
      "sids": [
       "s1"
-     ]
-    },
-    {
-     "text": "He also described a possible 10 to 20% chance of AI takeover with many or most humans dead.",
-     "sids": [
-      "s2"
-     ]
-    },
-    {
-     "text": "He said the most likely way we die is not that AI comes out of the blue and kills us.",
-     "sids": [
-      "s3"
-     ]
-    },
-    {
-     "text": "He discussed having a lot of AI control over critical systems, even in running a military.",
-     "sids": [
-      "s4"
      ]
     }
    ]
@@ -141,7 +129,8 @@
   "topics": {
    "x-risk/loss of control": 3.0,
    "AGI/transformative": 0.5,
-   "national security": 0.5
+   "national security": 0.5,
+   "other": 1.0
   },
   "regulation": {
    "status": "complete",
@@ -259,24 +248,26 @@
     "superintelligence": {
      "stance": 0,
      "sids": [],
-     "why": "The supplied statements warn about losing control of superintelligence but do not explicitly call for a ban or prohibition."
+     "why": "No stance in the supplied evidence."
     }
    },
    "disputed": []
   },
   "stance_review": {
-   "review_id": "99d3e0916393305f9fd1df4bb97d32d2689e035993302b4047565af5b857e0f8",
+   "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
    "dimension": "ai_overall",
    "status": "complete",
-   "reason": "The supplied statements address catastrophic takeover, loss of control, and AI control of critical systems, rather than assessing AI's overall benefits and harms. The additional context for s3 explains a catastrophic-risk scenario but does not establish an overall judgment. These personal statements do not establish an institutional position.",
+   "reason": "The historical essay provides an explicit comparison of AI's broad benefits and risks. The remaining statements describe particular catastrophic scenarios or AI control of critical systems without establishing an overall net assessment. These personal statements do not establish an institutional position or justify carrying the historical assessment forward as his current view.",
    "confidence": 4,
-   "n_statements": 4,
-   "n_contexts": 1,
-   "accepted_sids": [],
-   "finding_count": 0,
+   "n_statements": 5,
+   "n_contexts": 2,
+   "accepted_sids": [
+    "s5"
+   ],
+   "finding_count": 1,
    "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-09T05:24:21.486451+00:00",
-   "generation_id": "gen-1794201852-OZGro410rb2eGR1jvgWJ"
+   "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+   "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
   }
  },
  "statements": [
@@ -317,15 +308,16 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "99d3e0916393305f9fd1df4bb97d32d2689e035993302b4047565af5b857e0f8",
+     "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
      "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:24:21.486451+00:00",
-     "generation_id": "gen-1794201852-OZGro410rb2eGR1jvgWJ"
+     "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+     "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -401,14 +393,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "99d3e0916393305f9fd1df4bb97d32d2689e035993302b4047565af5b857e0f8",
+      "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:24:21.486451+00:00",
-      "generation_id": "gen-1794201852-OZGro410rb2eGR1jvgWJ"
+      "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+      "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
      }
     }
    }
@@ -443,15 +436,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "99d3e0916393305f9fd1df4bb97d32d2689e035993302b4047565af5b857e0f8",
+     "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
      "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:24:21.486451+00:00",
-     "generation_id": "gen-1794201852-OZGro410rb2eGR1jvgWJ"
+     "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+     "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -502,14 +496,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "99d3e0916393305f9fd1df4bb97d32d2689e035993302b4047565af5b857e0f8",
+      "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:24:21.486451+00:00",
-      "generation_id": "gen-1794201852-OZGro410rb2eGR1jvgWJ"
+      "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+      "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
      }
     }
    }
@@ -546,15 +541,16 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "99d3e0916393305f9fd1df4bb97d32d2689e035993302b4047565af5b857e0f8",
+     "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
      "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:24:21.486451+00:00",
-     "generation_id": "gen-1794201852-OZGro410rb2eGR1jvgWJ"
+     "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+     "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -620,14 +616,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "99d3e0916393305f9fd1df4bb97d32d2689e035993302b4047565af5b857e0f8",
+      "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:24:21.486451+00:00",
-      "generation_id": "gen-1794201852-OZGro410rb2eGR1jvgWJ"
+      "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+      "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
      }
     }
    }
@@ -657,15 +654,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "99d3e0916393305f9fd1df4bb97d32d2689e035993302b4047565af5b857e0f8",
+     "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
      "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:24:21.486451+00:00",
-     "generation_id": "gen-1794201852-OZGro410rb2eGR1jvgWJ"
+     "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+     "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -707,14 +705,146 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "99d3e0916393305f9fd1df4bb97d32d2689e035993302b4047565af5b857e0f8",
+      "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:24:21.486451+00:00",
-      "generation_id": "gen-1794201852-OZGro410rb2eGR1jvgWJ"
+      "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+      "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s5",
+   "date": "2014-08-23",
+   "url": "https://paulfchristiano.medium.com/three-impacts-of-machine-intelligence-6285c8d85376",
+   "text": "their net effects on human welfare will be significant and positive. The third impact is more speculative, probably negative,",
+   "source_type": "reported_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Paul Christiano",
+    "organization_id": "caissi",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "ai_overall": 1
+    },
+    "b": {
+     "ai_overall": 1
+    },
+    "topics": [
+     "other"
+    ],
+    "confidence": {
+     "ai_overall": 3
+    },
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 1
+     },
+     "confidence": {
+      "ai_overall": 3
+     },
+     "review_confidence": 4,
+     "reason": "In this personal essay originally published August 23, 2014, Christiano anticipates significant welfare gains from growth and automation but assigns greater long-run humanitarian importance to the potentially negative displacement of human values. This supports a qualified harms-dominant assessment, although he describes that risk as speculative and potentially preventable.",
+     "supporting_quote": "and also I think more important on a long-run humanitarian perspective.",
+     "support_basis": "context",
+     "source_context": {
+      "url": "https://paulfchristiano.medium.com/three-impacts-of-machine-intelligence-6285c8d85376",
+      "text_hash": "e5e5b86772717370fa432dd58b57d9598f02fa93dd5598d74801951702becb5b",
+      "retrieval": "exact_normalized_exa_fetch",
+      "quote": "and also I think more important on a long-run humanitarian perspective.",
+      "attribution_quote": "Author: Paul Christiano",
+      "original_date": "2014-08-23"
+     },
+     "accepted": true,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+     "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:37:18.180309+00:00",
+      "generation_id": "gen-1794206232-rD6EKJovYi4iVmGUOlEN"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:37:47.627866+00:00",
+      "generation_id": "gen-1794206264-NZgWrpEkgNjfJEHG95wL"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:38:42.701076+00:00",
+      "generation_id": "gen-1794206317-ky4HFsbi9WBHafm5seFl"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 1
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "review_confidence": 4,
+      "reason": "In this personal essay originally published August 23, 2014, Christiano anticipates significant welfare gains from growth and automation but assigns greater long-run humanitarian importance to the potentially negative displacement of human values. This supports a qualified harms-dominant assessment, although he describes that risk as speculative and potentially preventable.",
+      "supporting_quote": "and also I think more important on a long-run humanitarian perspective.",
+      "support_basis": "context",
+      "source_context": {
+       "url": "https://paulfchristiano.medium.com/three-impacts-of-machine-intelligence-6285c8d85376",
+       "text_hash": "e5e5b86772717370fa432dd58b57d9598f02fa93dd5598d74801951702becb5b",
+       "retrieval": "exact_normalized_exa_fetch",
+       "quote": "and also I think more important on a long-run humanitarian perspective.",
+       "attribution_quote": "Author: Paul Christiano",
+       "original_date": "2014-08-23"
+      },
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+      "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
      }
     }
    }
@@ -730,571 +860,12 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 1,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2023-02-28",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2023-03-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2023-04-30",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2023-05-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2023-06-30",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2023-07-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2023-08-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2023-09-30",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2023-10-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2023-11-30",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2023-12-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2024-01-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2024-02-29",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2024-03-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2024-04-30",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2024-05-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2024-06-30",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2024-07-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2024-08-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2024-09-30",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2024-10-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2024-11-30",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2024-12-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2025-01-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2025-02-28",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2025-03-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2025-04-30",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2025-05-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2025-06-30",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2025-07-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2025-08-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2025-09-30",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2025-10-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2025-11-30",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2025-12-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2026-01-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2026-02-28",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2026-03-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2026-04-30",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2026-05-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2026-06-30",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2026-07-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2026-08-31",
-   "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
-   },
-   "n_statements": 0,
-   "status": "no_evidence",
-   "kind": "reconstructed"
-  },
-  {
-   "date": "2026-09-30",
    "scores": {
     "ai_overall": null,
     "agi_pilled": null,
@@ -1307,7 +878,7 @@
    "kind": "reconstructed"
   },
   {
-   "date": "2026-10-31",
+   "date": "2023-03-31",
    "scores": {
     "ai_overall": null,
     "agi_pilled": null,
@@ -1316,6 +887,565 @@
     "regulation": null
    },
    "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2023-04-30",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2023-05-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2023-06-30",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2023-07-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2023-08-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2023-09-30",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2023-10-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2023-11-30",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2023-12-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2024-01-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2024-02-29",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2024-03-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2024-04-30",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2024-05-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2024-06-30",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2024-07-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2024-08-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2024-09-30",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2024-10-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2024-11-30",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2024-12-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2025-01-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2025-02-28",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2025-03-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2025-04-30",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2025-05-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2025-06-30",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2025-07-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2025-08-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2025-09-30",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2025-10-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2025-11-30",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2025-12-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2026-01-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2026-02-28",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2026-03-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2026-04-30",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2026-05-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2026-06-30",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2026-07-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2026-08-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 1,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2026-09-30",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 2,
+   "status": "complete",
+   "kind": "reconstructed"
+  },
+  {
+   "date": "2026-10-31",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 2,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1333,5 +1463,19 @@
    "kind": "observed"
   }
  ],
- "changes": []
+ "changes": [
+  {
+   "id": "exec_christiano",
+   "date": "2026-11-09",
+   "dimension": "ai_overall",
+   "old": null,
+   "new": 1.0,
+   "kind": "big",
+   "cause": "Astra review after deeper web and X research",
+   "sids": [
+    "s5"
+   ],
+   "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4"
+  }
+ ]
 }

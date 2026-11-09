@@ -49,3 +49,16 @@ class StanceReviewTests(unittest.TestCase):
         with self.assertRaises(ValueError):review.verified_post_text(statement,{**post,'author_id':'8'})
         with self.assertRaises(ValueError):review.verified_post_text(statement,{**post,'id':'999'})
         with self.assertRaises(ValueError):review.verified_post_text(statement,{**post,'text':'Unrelated content'})
+
+    def test_verified_x_author_can_establish_context_attribution(self):
+        ss=[{'sid':'s1','text':'An AI chip rule.','source_type':'x','url':'https://x.com/a/status/123',
+             'attribution':{'user_id':'7'}},{'sid':'s2','text':'Another rule.'}]
+        context={'s1':{'status':'available','url':ss[0]['url'],
+            'text':'An AI chip rule. AI will benefit our whole economy.',
+            'retrieval':'official_x_api_post_and_author','verified_author_id':'7'}}
+        result=review.parse_review(json.dumps(self.result()),ss,context)
+        self.assertEqual(result['findings'][0]['support_basis'],'context')
+        for field,bad in [('verified_author_id','8'),('url','https://x.com/a/status/999'),
+                          ('retrieval','unverified_search_snippet')]:
+            changed={'s1':{**context['s1'],field:bad}}
+            with self.assertRaises(ValueError):review.parse_review(json.dumps(self.result()),ss,changed)

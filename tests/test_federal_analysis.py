@@ -66,6 +66,17 @@ class FederalAnalysisTests(unittest.TestCase):
         self.assertNotIn('ai_overall',result['a'])
         self.assertNotIn('ai_overall',result['b'])
 
+    def test_final_audit_can_remove_an_unsupported_base_stance(self):
+        for decision in ('no_stance','uncertain'):
+            entry=self.entry({'ai_overall':4,'regulation':2})
+            entry['assessments']['astra_stance_review']={'value':{
+                'reviewed_dimension':'ai_overall','decision':decision,
+                'labels':{},'confidence':{},'review_confidence':4}}
+            result=self.a.resolve_labels(entry)
+            self.assertEqual(result['a'],{'regulation':2})
+            self.assertEqual(result['b'],{'regulation':2})
+            self.assertNotIn('ai_overall',result['confidence'])
+
     def test_stance_audit_applies_idempotently_and_rejects_changed_evidence(self):
         import federal_stance_review as review
         a=self.a

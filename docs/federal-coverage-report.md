@@ -97,3 +97,9 @@ The November 8 web follow-up checked all 339 pending URLs in the earlier broad r
 The [current scope audit](current-federal-scope.md) records inclusion and exclusion sources. The [scope archive](../data/federal_scope_archive.json) preserves the removed profiles and mappings. Raw evidence and model caches remain intact. The website and daily collectors use only eligible profiles.
 
 The [current-only daily verification](https://github.com/harshul-basava/what-washington-says-about-ai/actions/runs/42548947075) completed all 51 eligible daily windows on November 9 UTC. The [scope verification](../data/federal_scope_verification.json) records preserved evidence, eligible account checks, costs, and production checks.
+
+## Deeper stance research
+
+The [November 9 follow-up](federal-astra-deeper-search.md) searched all 32 profiles that retained no general AI stance after the first Astra review. It added 14 verified web excerpts. Astra reviewed all 476 excerpts in that cohort, including wider source and X context. Ten profiles gained an AI overall score; 22 still lack a qualifying general stance.
+
+The current federal corpus contains 3,513 verified excerpts across 97 eligible profiles. All excerpts have complete analysis. All 87 profiles with evidence have complete regulation categories and summaries. The current AI overall coverage is 56 scored profiles, 22 without a qualifying stance, nine with too few excerpts, and ten without evidence. Daily collection and analysis still cover the same eligible roster.

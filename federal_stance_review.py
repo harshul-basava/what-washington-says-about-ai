@@ -17,7 +17,7 @@ from model_budget import Budget
 
 PATH='data/federal_stance_review.json'
 MODEL='openai/gpt-6-astra'
-PROMPT_VERSION=1
+PROMPT_VERSION=2
 
 
 def normalize(text):return ' '.join(str(text).split())
@@ -41,7 +41,13 @@ def parse_review(text,statements,contexts):
         else:
             context=contexts.get(row['sid'],{});source=normalize(context.get('text',''))
             attribution=normalize(row.get('attribution_quote',''))
-            if context.get('status')!='available' or quote not in source or not attribution or attribution not in source:
+            statement=byid[row['sid']]
+            verified_x=(statement.get('source_type')=='x' and
+                context.get('retrieval')=='official_x_api_post_and_author' and
+                context.get('url')==statement.get('url') and original in source and
+                bool(context.get('verified_author_id')) and
+                context['verified_author_id']==statement.get('attribution',{}).get('user_id'))
+            if context.get('status')!='available' or quote not in source or not (verified_x or attribution and attribution in source):
                 raise ValueError('Context support or attribution is not verified')
             row['support_basis']='context'
     for row in requests:
@@ -67,7 +73,9 @@ person's view to their institution, or another speaker's quote to the subject. R
 date and role. If a source is explicitly marked unavailable, classify only the existing excerpt,
 state the unresolved context limitation in the reason, and do not request the same source again.
 For each context finding, both supporting_quote and attribution_quote must occur in that supplied
-source text. Keep supporting quotes at most 150 words for government sources and 25 words otherwise.
+source text. An X context with retrieval official_x_api_post_and_author and verified_author_id already
+establishes its original author; that context does not require a literal attribution_quote.
+Keep supporting quotes at most 150 words for government sources and 25 words otherwise.
 Also write 1–4 neutral summary_sentences about this profile's AI statements, each with source IDs.
 Do not write a summary about this audit. Do not invent facts, dates, or source text.
 Return JSON only: {"findings":[{"sid":"s1","label":3,"confidence":4,"reason":"...",
@@ -257,6 +265,7 @@ def fetch_x_context(root):
                     response=client.request('tweets/'+post_id,{'tweet.fields':'author_id,created_at,note_tweet'},1,POST_COST)
                     text=verified_post_text(s,response.get('data',{}))
                     row={'status':'available','url':s['url'],'text':normalize(text),
+                         'verified_author_id':response['data']['author_id'],
                          'retrieval':'official_x_api_post_and_author','retrieved_at':datetime.now(timezone.utc).isoformat()}
                 except Exception as exc:
                     row={'status':'unavailable','url':s['url'],'reason':type(exc).__name__+': '+str(exc)[:100]}
@@ -308,6 +317,8 @@ def apply(root):
         for statement in ss:
             sid=statement['sid'];finding=findings.get(sid)
             value={'reviewed_dimension':'ai_overall','review_id':review_id,
+                   'decision':('stance' if finding['confidence']>=3 else 'uncertain') if finding else
+                              ('no_stance' if result['confidence']>=3 else 'uncertain'),
                    'labels':{'ai_overall':finding['label']} if finding else {},
                    'confidence':{'ai_overall':finding['confidence']} if finding else {},
                    'review_confidence':result['confidence'],
@@ -318,8 +329,13 @@ def apply(root):
                     meta=entry['contexts'][sid]
                     value['source_context']={k:meta[k] for k in ('url','text_hash','retrieval')}
                     value['source_context'].update({'quote':finding['supporting_quote'],
-                        'attribution_quote':finding['attribution_quote'],'original_date':statement.get('date')})
-            labels['profiles'][pid][sid]['assessments']['astra_stance_review']={**provenance,'value':value}
+                        'attribution_quote':finding.get('attribution_quote'),'original_date':statement.get('date')})
+                    if meta.get('verified_author_id'):value['source_context']['verified_author_id']=meta['verified_author_id']
+            cached=labels['profiles'][pid][sid]
+            old_review=cached['assessments'].get('astra_stance_review')
+            if old_review and old_review['value']['review_id']!=review_id:
+                cached.setdefault('stance_review_history',[]).append(old_review)
+            cached['assessments']['astra_stance_review']={**provenance,'value':value}
         profile=profiles['profiles'][pid]['assessments']
         profile['stance_review']={**provenance,'value':{
             'review_id':review_id,'dimension':'ai_overall','status':'complete','reason':result['reason'],
@@ -333,7 +349,7 @@ def apply(root):
             old=audit['original_scores'][pid]['ai_overall'];new=scores['ai_overall']
             if old!=new and not any(c.get('review_id')==review_id for c in changes):
                 changes.append({'id':pid,'date':entry['assessed_at'][:10],'dimension':'ai_overall',
-                    'old':old,'new':new,'kind':'big','cause':'Astra review of existing evidence and source context',
+                    'old':old,'new':new,'kind':'big','cause':audit.get('change_cause','Astra review of existing evidence and source context'),
                     'sids':accepted,'review_id':review_id})
         entry['applied_review_id']=review_id
     a.write(root/a.LABEL_PATH,labels);a.write(root/a.PROFILE_PATH,profiles)
@@ -342,8 +358,12 @@ def apply(root):
 
 
 def main():
+    global PATH
     p=argparse.ArgumentParser();p.add_argument('command',choices=['review','context','x-context','apply']);p.add_argument('--max-cost',type=float,default=20)
-    p.add_argument('--workers',type=int,default=1);p.add_argument('--ids');args=p.parse_args()
+    p.add_argument('--workers',type=int,default=1);p.add_argument('--ids');p.add_argument('--audit',default=PATH);args=p.parse_args()
+    audit=Path(args.audit)
+    if audit.parent!=Path('data') or audit.suffix!='.json':p.error('Audit must be a JSON file directly in data/')
+    PATH=str(audit)
     if args.command=='apply':print(json.dumps(apply(ROOT)))
     elif args.command=='x-context':fetch_x_context(ROOT)
     elif args.command=='context':fetch_contexts(ROOT,args.workers)
