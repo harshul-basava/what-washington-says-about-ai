@@ -1,0 +1,30 @@
+name: Federal stance X search
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: daily-update
+  cancel-in-progress: false
+jobs:
+  search:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --no-dev --frozen
+      - name: Search the remaining stance cohort within the existing two-dollar batch limit
+        env:
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+        run: uv run --no-dev python federal_stance_search.py x-search
+      - name: Save public posts and cost records for verification
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: federal-stance-search
+          path: data/raw/federal_stance_search/x/
+          retention-days: 7
