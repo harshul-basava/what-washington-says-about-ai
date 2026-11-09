@@ -94,6 +94,8 @@ class FederalTests(unittest.TestCase):
                    'roles': [{**PERSON['roles'][0], 'title': 'Secretary of Defense'}]}
         heading = 'Secretary of Defense Lloyd J. Austin III Statement on the New Chief Digital and Artificial Intelligence Officer'
         self.assertTrue(federal.explicit_document_author(heading, subject))
+        self.assertTrue(federal.explicit_document_author('Office of Commissioner Lloyd Austin Keynote Address Conference', subject))
+        self.assertFalse(federal.explicit_document_author('Office of Commissioner Someone Else Keynote Address thanking Lloyd Austin', subject))
         for unrelated in ('Statement on Secretary of Defense Lloyd J. Austin III',
                           'Letter to Secretary of Defense Lloyd J. Austin III',
                           'Secretary of Defense Lloyd J. Austin III mentioned in remarks by another official'):

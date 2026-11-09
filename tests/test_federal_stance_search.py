@@ -22,3 +22,14 @@ class StanceSearchTests(unittest.TestCase):
         after=s.search_jobs(subjects,[],'2026-11-10')[0]
         self.assertNotEqual(before['id'],after['id'])
 
+    def test_source_reviews_require_exact_url_coverage_and_verbatim_support(self):
+        import federal_stance_search as s
+        pages=[{'url':'https://example.gov/speech','text':'Official A says AI can benefit our whole society.'}]
+        rows={'pages':[{'url':pages[0]['url'],'reason':'A broad stance.', 'statements':[{
+            'quote':'AI can benefit our whole society.','attribution_quote':pages[0]['text'],
+            'ai_overall':3,'confidence':4,'reason':'Broad benefit.'}]}]}
+        self.assertEqual(len(s.validate_source_review(rows,pages)),1)
+        rows['pages'][0]['statements'][0]['quote']='Invented words'
+        with self.assertRaises(ValueError):s.validate_source_review(rows,pages)
+        with self.assertRaises(ValueError):s.validate_source_review({'pages':[]},pages)
+
