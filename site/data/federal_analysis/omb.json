@@ -1,14 +1,14 @@
 {
  "schema_version": 1,
  "id": "omb",
- "revision": "84c1234c57670bf35c31fba948056b9840b34b0e4f0f695b152573ba5df7985c",
+ "revision": "d27ea3c9cd79b53c6f96efffd426107e488dacc6570f95bbd1d9badf9e4fbe7c",
  "profile": {
   "id": "omb",
   "name": "Office of Management and Budget",
   "party": null,
   "state": "",
   "chamber": "",
-  "status": "complete",
+  "status": "partial",
   "entity_type": "institution",
   "branch": "executive",
   "organization_id": "omb",
@@ -29,8 +29,8 @@
    "source_url": "https://www.whitehouse.gov/omb/",
    "reason": "active_federal_institution"
   },
-  "n_statements": 20,
-  "n_labeled": 20,
+  "n_statements": 21,
+  "n_labeled": 21,
   "scores": {
    "ai_overall": 2.0,
    "agi_pilled": 0.0,
@@ -87,53 +87,12 @@
    }
   },
   "summary": {
-   "status": "complete",
-   "text": "OMB memoranda direct agencies to advance AI governance and innovation while managing risks from AI use, particularly risks affecting the rights and safety of the public. OMB required agencies to submit plans or written determinations about covered AI use and to inventory AI use cases at least annually, with public posting. OMB's 2025 memoranda rescinded and replaced earlier AI guidance, including M-24-10 and M-24-18, while providing guidance for agencies to acquire AI responsibly. An OMB memorandum requires agencies to include contractual requirements addressing compliance with the Unbiased AI Principles in certain LLM procurement solicitations or orders.",
-   "sids": [
-    "s6",
-    "s10",
-    "s17",
-    "s1",
-    "s2",
-    "s3",
-    "s13",
-    "s14",
-    "s4"
-   ],
-   "sentences": [
-    {
-     "text": "OMB memoranda direct agencies to advance AI governance and innovation while managing risks from AI use, particularly risks affecting the rights and safety of the public.",
-     "sids": [
-      "s6",
-      "s10",
-      "s17"
-     ]
-    },
-    {
-     "text": "OMB required agencies to submit plans or written determinations about covered AI use and to inventory AI use cases at least annually, with public posting.",
-     "sids": [
-      "s1",
-      "s2"
-     ]
-    },
-    {
-     "text": "OMB's 2025 memoranda rescinded and replaced earlier AI guidance, including M-24-10 and M-24-18, while providing guidance for agencies to acquire AI responsibly.",
-     "sids": [
-      "s3",
-      "s13",
-      "s14"
-     ]
-    },
-    {
-     "text": "An OMB memorandum requires agencies to include contractual requirements addressing compliance with the Unbiased AI Principles in certain LLM procurement solicitations or orders.",
-     "sids": [
-      "s4"
-     ]
-    }
-   ]
+   "status": "pending",
+   "text": "",
+   "sids": []
   },
   "topics": {
-   "regulation": 16.5,
+   "regulation": 17.5,
    "other": 3.5
   },
   "regulation": {
@@ -1811,6 +1770,65 @@
      }
     }
    }
+  },
+  {
+   "sid": "s21",
+   "date": null,
+   "url": "https://www.hhs.gov/sites/default/files/public-benefits-and-ai.pdf",
+   "text": "term “rights-impacting AI” refers to AI whose output serves as a principal basis for a decision or act ion concerning a specific individual or entity that has a legal, material, binding, or similarly significant effect on that individual’s or entity’s:",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "institutional",
+    "speaker": "Office of Management and Budget",
+    "organization_id": "omb",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:55:55.998880+00:00",
+      "generation_id": "gen-1794336953-OZssKJ3GqJk5lJ5uS2x9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:57:05.825653+00:00",
+      "generation_id": "gen-1794337024-NXpWRtuQ0URD3SQ2WXGl"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:58:23.371795+00:00",
+      "generation_id": "gen-1794337102-msFS6OukHkfl4RQ8uD2j"
+     }
+    }
+   }
   }
  ],
  "history": [
@@ -2422,6 +2440,19 @@
     "regulation": 2.0
    },
    "n_statements": 20,
+   "status": "complete",
+   "kind": "observed"
+  },
+  {
+   "date": "2026-11-10",
+   "scores": {
+    "ai_overall": 2.0,
+    "agi_pilled": 0.0,
+    "x_risk": 0.0,
+    "china_race": 0.0,
+    "regulation": 2.0
+   },
+   "n_statements": 21,
    "status": "complete",
    "kind": "observed"
   }

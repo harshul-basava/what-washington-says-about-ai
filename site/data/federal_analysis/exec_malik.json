@@ -1,14 +1,14 @@
 {
  "schema_version": 1,
  "id": "exec_malik",
- "revision": "84c1234c57670bf35c31fba948056b9840b34b0e4f0f695b152573ba5df7985c",
+ "revision": "d27ea3c9cd79b53c6f96efffd426107e488dacc6570f95bbd1d9badf9e4fbe7c",
  "profile": {
   "id": "exec_malik",
   "name": "Paras Malik",
   "party": null,
   "state": "",
   "chamber": "",
-  "status": "complete",
+  "status": "partial",
   "entity_type": "person",
   "branch": "executive",
   "organization_id": "treasury",
@@ -49,8 +49,8 @@
    "source_url": "https://govciomedia.com/the-caios-leading-responsible-ai-development-across-government/",
    "reason": "current_government_official"
   },
-  "n_statements": 11,
-  "n_labeled": 11,
+  "n_statements": 12,
+  "n_labeled": 12,
   "scores": {
    "ai_overall": 3.0,
    "agi_pilled": 2.0,
@@ -103,38 +103,12 @@
    }
   },
   "summary": {
-   "status": "complete",
-   "text": "In July 2026, Malik described AI as one of the defining economic opportunities of our lifetime. In September 2026, Malik characterized the opportunity from AI and superintelligence as enormous while endorsing safe and responsible advancement of American innovation. Malik's March and June 2026 statements emphasized operationalizing AI, improving risk management and resilience, and maintaining effective governance in financial services.",
-   "sids": [
-    "s10",
-    "s11",
-    "s7",
-    "s8"
-   ],
-   "sentences": [
-    {
-     "text": "In July 2026, Malik described AI as one of the defining economic opportunities of our lifetime.",
-     "sids": [
-      "s10"
-     ]
-    },
-    {
-     "text": "In September 2026, Malik characterized the opportunity from AI and superintelligence as enormous while endorsing safe and responsible advancement of American innovation.",
-     "sids": [
-      "s11"
-     ]
-    },
-    {
-     "text": "Malik's March and June 2026 statements emphasized operationalizing AI, improving risk management and resilience, and maintaining effective governance in financial services.",
-     "sids": [
-      "s7",
-      "s8"
-     ]
-    }
-   ]
+   "status": "pending",
+   "text": "",
+   "sids": []
   },
   "topics": {
-   "other": 4.5,
+   "other": 5.5,
    "regulation": 4.5,
    "jobs/economy": 1.5,
    "AGI/transformative": 0.5
@@ -259,23 +233,6 @@
     }
    },
    "disputed": []
-  },
-  "stance_review": {
-   "review_id": "c60e6db60dadb9b24acff42c49159d6ffad3826c38ece780d53786022a5829c7",
-   "dimension": "ai_overall",
-   "status": "complete",
-   "reason": "Two supplied personal posts express general optimism about AI. The remaining statements concern deployment, client services, financial-sector governance, or adoption rather than AI's overall effects. The supplied context resolves the scope of s5 and s11; other speakers' remarks and reader comments are not attributed to Malik.",
-   "confidence": 4,
-   "n_statements": 11,
-   "n_contexts": 3,
-   "accepted_sids": [
-    "s10",
-    "s11"
-   ],
-   "finding_count": 2,
-   "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-09T06:44:21.430248+00:00",
-   "generation_id": "gen-1794206649-v6UsXlzBliW301nWnyoR"
   }
  },
  "statements": [
@@ -1408,6 +1365,65 @@
      }
     }
    }
+  },
+  {
+   "sid": "s12",
+   "date": "2026-02-19",
+   "url": "https://home.treasury.gov/news/press-releases/sb0401",
+   "text": "These resources are designed to help institutions move faster with AI by reducing uncertainty and supporting consistent, scalable implementation.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Paras Malik",
+    "organization_id": "treasury",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:56:00.752987+00:00",
+      "generation_id": "gen-1794336958-ddVxNQlEC74kf7u0adg5"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:57:16.241721+00:00",
+      "generation_id": "gen-1794337034-3EOBUVlaLVN8YOaRCK04"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:58:40.143680+00:00",
+      "generation_id": "gen-1794337118-7c7AJwiJEn3gWEUFUpnd"
+     }
+    }
+   }
   }
  ],
  "history": [
@@ -1896,12 +1912,12 @@
    "date": "2026-02-28",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
+    "agi_pilled": 0.0,
+    "x_risk": 0.0,
+    "china_race": 0.0,
     "regulation": null
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1914,7 +1930,7 @@
     "china_race": 0.0,
     "regulation": 2.0
    },
-   "n_statements": 5,
+   "n_statements": 6,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1927,7 +1943,7 @@
     "china_race": 0.0,
     "regulation": 2.0
    },
-   "n_statements": 5,
+   "n_statements": 6,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1940,7 +1956,7 @@
     "china_race": 0.0,
     "regulation": 2.0
    },
-   "n_statements": 5,
+   "n_statements": 6,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1953,7 +1969,7 @@
     "china_race": 0.0,
     "regulation": 2.0
    },
-   "n_statements": 8,
+   "n_statements": 9,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1966,7 +1982,7 @@
     "china_race": 0.0,
     "regulation": 2.0
    },
-   "n_statements": 9,
+   "n_statements": 10,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1979,7 +1995,7 @@
     "china_race": 0.0,
     "regulation": 2.0
    },
-   "n_statements": 9,
+   "n_statements": 10,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1992,7 +2008,7 @@
     "china_race": 0.0,
     "regulation": 2.0
    },
-   "n_statements": 10,
+   "n_statements": 11,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2005,7 +2021,7 @@
     "china_race": 0.0,
     "regulation": 2.0
    },
-   "n_statements": 10,
+   "n_statements": 11,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2019,6 +2035,19 @@
     "regulation": 2.0
    },
    "n_statements": 9,
+   "status": "complete",
+   "kind": "observed"
+  },
+  {
+   "date": "2026-11-10",
+   "scores": {
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
+    "x_risk": 0.0,
+    "china_race": 0.0,
+    "regulation": 2.0
+   },
+   "n_statements": 12,
    "status": "complete",
    "kind": "observed"
   }

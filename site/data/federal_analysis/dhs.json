@@ -1,14 +1,14 @@
 {
  "schema_version": 1,
  "id": "dhs",
- "revision": "84c1234c57670bf35c31fba948056b9840b34b0e4f0f695b152573ba5df7985c",
+ "revision": "d27ea3c9cd79b53c6f96efffd426107e488dacc6570f95bbd1d9badf9e4fbe7c",
  "profile": {
   "id": "dhs",
   "name": "Department of Homeland Security",
   "party": null,
   "state": "",
   "chamber": "",
-  "status": "complete",
+  "status": "partial",
   "entity_type": "institution",
   "branch": "executive",
   "organization_id": "dhs",
@@ -29,8 +29,8 @@
    "source_url": "https://www.whitehouse.gov/administration/cabinet/",
    "reason": "current_government_institution"
   },
-  "n_statements": 145,
-  "n_labeled": 145,
+  "n_statements": 148,
+  "n_labeled": 148,
   "scores": {
    "ai_overall": 2.0,
    "agi_pilled": 0.0,
@@ -90,45 +90,15 @@
    }
   },
   "summary": {
-   "status": "complete",
-   "text": "In November 2023 and March 2024, DHS described AI as transformative for services Americans rely on while acknowledging new risks. In 2024, DHS committed to testing its AI systems and protecting privacy, civil rights, and civil liberties. In September 2025, DHS described plans to advance AI for departmental effectiveness and public services while establishing governance and risk-management structures.",
-   "sids": [
-    "s123",
-    "s145",
-    "s15",
-    "s140",
-    "s1",
-    "s13"
-   ],
-   "sentences": [
-    {
-     "text": "In November 2023 and March 2024, DHS described AI as transformative for services Americans rely on while acknowledging new risks.",
-     "sids": [
-      "s123",
-      "s145"
-     ]
-    },
-    {
-     "text": "In 2024, DHS committed to testing its AI systems and protecting privacy, civil rights, and civil liberties.",
-     "sids": [
-      "s15",
-      "s140"
-     ]
-    },
-    {
-     "text": "In September 2025, DHS described plans to advance AI for departmental effectiveness and public services while establishing governance and risk-management structures.",
-     "sids": [
-      "s1",
-      "s13"
-     ]
-    }
-   ]
+   "status": "pending",
+   "text": "",
+   "sids": []
   },
   "topics": {
-   "regulation": 68.5,
+   "regulation": 70.0,
    "other": 32.333,
    "national security": 33.833,
-   "AGI/transformative": 4.0,
+   "AGI/transformative": 5.5,
    "misuse (bio/cyber)": 1.5,
    "jobs/economy": 2.5,
    "deepfakes/elections": 1.0,
@@ -180,7 +150,7 @@
       "s15",
       "s28"
      ],
-     "why": "DHS explicitly prohibits AI systems that make decisions based on protected characteristics and commits to rigorous bias testing and civil-rights compliance."
+     "why": "DHS explicitly states it will not establish AI systems that make decisions based on protected traits, commits to rigorous testing to avoid bias, and joins an interagency statement on discrimination and bias in automated systems."
     },
     "training_consent": {
      "stance": 0,
@@ -213,6 +183,11 @@
      "why": "No stance in the supplied evidence."
     },
     "liability": {
+     "stance": 0,
+     "sids": [],
+     "why": "No stance in the supplied evidence."
+    },
+    "misuse": {
      "stance": 0,
      "sids": [],
      "why": "No stance in the supplied evidence."
@@ -251,33 +226,9 @@
      "stance": 0,
      "sids": [],
      "why": "No stance in the supplied evidence."
-    },
-    "misuse": {
-     "stance": 0,
-     "sids": [],
-     "why": "DHS commits to reducing AI-related weapons-of-mass-destruction risks, but the supplied evidence does not establish support for or opposition to specific rules preventing AI weapons assistance."
     }
    },
-   "disputed": [
-    "misuse"
-   ]
-  },
-  "stance_review": {
-   "review_id": "d3b5a1e496db07c3d21fc99f86a41d5ce022d6c6dcc64a57b915ea82a54f62cc",
-   "dimension": "ai_overall",
-   "status": "complete",
-   "reason": "The supplied evidence contains two historical institutional assessments balancing broad public benefits with risks. Most other excerpts concern departmental applications, governance, specific harms, announcements, or attributed third-party views, rather than AI's overall effects on Americans. Supplied context resolves the relevant truncated assessment in s123 and confirms institutional attribution for s145. The bounded evidence does not establish a current general assessment; several excerpts are undated or truncated.",
-   "confidence": 4,
-   "n_statements": 145,
-   "n_contexts": 19,
-   "accepted_sids": [
-    "s123",
-    "s145"
-   ],
-   "finding_count": 2,
-   "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-09T06:48:37.806438+00:00",
-   "generation_id": "gen-1794206893-AiRqlfx9EHn2scCA5sC7"
+   "disputed": []
   }
  },
  "statements": [
@@ -14728,6 +14679,195 @@
      }
     }
    }
+  },
+  {
+   "sid": "s146",
+   "date": null,
+   "url": "https://www.dhs.gov/si",
+   "text": "DHS's Super Intelligence (previously Artificial Intelligence) Strategy and Compliance Plan explain how DHS will responsibly use and manage SI aligned to the Administration's priorities outlined in the Office of Management & Budget Memorandum M-25-21 .",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "institutional",
+    "speaker": "Department of Homeland Security",
+    "organization_id": "dhs",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "AGI/transformative",
+     "regulation"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:56:17.284712+00:00",
+      "generation_id": "gen-1794336971-E1SkJGFza49hbciLP2zV"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:57:36.438736+00:00",
+      "generation_id": "gen-1794337042-rEJPMejYrJguATIj62Ba"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:58:50.679528+00:00",
+      "generation_id": "gen-1794337125-h4CrAzwqStW6hgIYGx9I"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s147",
+   "date": null,
+   "url": "https://www.dhs.gov/si",
+   "text": "It focuses on SI innovation, SI governance, and public trust through transparency in SI operations and investments.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "institutional",
+    "speaker": "Department of Homeland Security",
+    "organization_id": "dhs",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "AGI/transformative",
+     "regulation"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:56:17.284712+00:00",
+      "generation_id": "gen-1794336971-E1SkJGFza49hbciLP2zV"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:57:36.438736+00:00",
+      "generation_id": "gen-1794337042-rEJPMejYrJguATIj62Ba"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:58:50.679528+00:00",
+      "generation_id": "gen-1794337125-h4CrAzwqStW6hgIYGx9I"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s148",
+   "date": null,
+   "url": "https://www.dhs.gov/si",
+   "text": "DHS combines clear principles, strong collaboration, and comprehensive policy to ensure SI is used responsibly across its mission areas.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "institutional",
+    "speaker": "Department of Homeland Security",
+    "organization_id": "dhs",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "regulation",
+     "AGI/transformative"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:56:17.284712+00:00",
+      "generation_id": "gen-1794336971-E1SkJGFza49hbciLP2zV"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:57:36.438736+00:00",
+      "generation_id": "gen-1794337042-rEJPMejYrJguATIj62Ba"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:58:50.679528+00:00",
+      "generation_id": "gen-1794337125-h4CrAzwqStW6hgIYGx9I"
+     }
+    }
+   }
   }
  ],
  "history": [
@@ -15339,6 +15479,19 @@
     "regulation": 2.0
    },
    "n_statements": 144,
+   "status": "complete",
+   "kind": "observed"
+  },
+  {
+   "date": "2026-11-10",
+   "scores": {
+    "ai_overall": 2.0,
+    "agi_pilled": 0.0,
+    "x_risk": 2.5,
+    "china_race": 0.0,
+    "regulation": 2.0
+   },
+   "n_statements": 148,
    "status": "complete",
    "kind": "observed"
   }
