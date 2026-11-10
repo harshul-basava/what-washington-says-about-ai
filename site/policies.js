@@ -114,7 +114,7 @@
       <button type="button" data-scope="congress" aria-pressed="true">Congress</button>
       <button type="button" data-scope="executive" aria-pressed="false">Executive officials</button>
       <button type="button" data-scope="institutions" aria-pressed="false">Institutions</button>
-    </div><p class="note" id="policy-scope-note" hidden></p><p id="policy-coverage-download" hidden><a href="data/federal_coverage.csv" download>Download federal research coverage</a></p><div class="policy-controls" hidden>
+    </div><p class="note" id="policy-scope-note" hidden></p><div class="policy-controls" hidden>
       <label>Policy or question<select id="policy-choice">${options}</select></label>
       <label>Observed stance<select id="policy-stance"><option value="all">All stances</option>${['support','oppose','mixed','neutral','unclear','disputed','pending'].map(s=>`<option value="${s}">${LABELS[s]}</option>`).join('')}<option value="no_evidence">No evidence found</option></select></label>
       <label id="policy-party-control">Party<select id="policy-party"><option value="all">All parties</option><option value="D">Democrats</option><option value="R">Republicans</option><option value="I">Independents</option></select></label>
@@ -179,7 +179,6 @@
       get('policy-party-control').hidden = !congress;
       get('policy-population-control').hidden = !congress;
       get('policy-organization-control').hidden = congress;
-      get('policy-coverage-download').hidden = congress;
       root.querySelectorAll('[data-scope]').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.scope===state.scope)));
       get('policy-scope-note').textContent = congress ? 'Statements by members of Congress.' :
         `${data.federal_scope?.mode === 'current_government' ? 'Current federal officials and government institutions only.' : 'Curated federal coverage.'} ${state.scope === 'institutions' ? 'Each profile represents an institution. Statements do not establish its officials’ personal views.' : 'Each official counts once. Agency filters include linked roles; bars use each official’s primary organization.'} ${researchCoverageNote(data.federal_research)} ${federalUpdateNote(data.federal_update)} Role and membership records need manual review; the registry check date is ${data.subjects_verified_on || data.built_on}.`;
