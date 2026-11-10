@@ -89,7 +89,7 @@
 
   function renderOverview(root, members, policies, selected, onSelect) {
     const rows=policies.map(p=>({...breakdown(members,p.id),id:p.id,title:p.title}));
-    root.innerHTML = `<h3>Policy positions at a glance</h3>
+    root.innerHTML = `
       ${legend()}<div class="pc-overview-head" aria-hidden="true"><span>Policy or question</span><span>Positions of all profiles in this view</span></div>
       ${rows.map(row=>`<div class="pc-overview-row"><button type="button" class="pc-policy-link" data-policy="${esc(row.id)}" aria-current="${row.id===selected ? 'true' : 'false'}">${esc(row.title)}</button>${stanceBar(row)}</div>`).join('')}
       ${exactTable(rows,'Exact counts for every policy')}`;

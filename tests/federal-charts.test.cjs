@@ -83,7 +83,10 @@ test('a silence zero remains scored under the congressional intensity rules',()=
   assert.equal(result.scored,1);assert.deepEqual(result.groups,[]);
 });
 
-test('a new score can appear in recent changes without treating the previous blank as zero',()=>{
-  const html=charts.renderRecent([person('a')],{a:{changes:[{date:'2026-11-09',dimension:'ai_overall',old:null,new:3,cause:'Astra review'}]}},'ai_overall','2026-11-09');
-  assert.match(html,/Unscored → 3/);
+test('recent changes list only moves of more than 1 point between two scores',()=>{
+  const html=charts.renderRecent([person('a')],{a:{changes:[{date:'2026-11-09',dimension:'ai_overall',old:null,new:3,cause:'Astra review'},
+    {date:'2026-11-08',dimension:'ai_overall',old:1,new:3,cause:'new statements'},{date:'2026-11-07',dimension:'ai_overall',old:2,new:3,cause:'small'}]}},'ai_overall','2026-11-09');
+  assert.doesNotMatch(html,/Unscored → 3/);
+  assert.match(html,/1 → 3/);
+  assert.doesNotMatch(html,/small/);
 });
