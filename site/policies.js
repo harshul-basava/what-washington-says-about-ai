@@ -115,15 +115,14 @@
       <button type="button" data-scope="executive" aria-pressed="false">Executive officials</button>
       <button type="button" data-scope="institutions" aria-pressed="false">Institutions</button>
     </div><p class="note" id="policy-scope-note" hidden></p><div class="policy-controls" hidden>
-      <label>Policy or question<select id="policy-choice">${options}</select></label>
       <label>Observed stance<select id="policy-stance"><option value="all">All stances</option>${['support','oppose','mixed','neutral','unclear','disputed','pending'].map(s=>`<option value="${s}">${LABELS[s]}</option>`).join('')}<option value="no_evidence">No evidence found</option></select></label>
       <label id="policy-party-control">Party<select id="policy-party"><option value="all">All parties</option><option value="D">Democrats</option><option value="R">Republicans</option><option value="I">Independents</option></select></label>
       <label id="policy-population-control">Members<select id="policy-population"><option value="all">Current and members-elect</option><option value="current">Current members</option><option value="member_elect">Members-elect</option></select></label>
       <label id="policy-organization-control" hidden>Agency or membership<select id="policy-organization"><option value="all">All organizations</option>${(data.organizations || []).map(o=>`<option value="${esc(o.id)}">${esc(o.name)}</option>`).join('')}</select></label>
-      <label class="policy-search">Name, state, or organization<input type="search" id="policy-search" placeholder="Search profiles"></label>
     </div><div id="policy-chart-overview" class="pc-root"></div>
     <div id="policy-detail" hidden><h3 id="policy-detail-title"></h3><p id="policy-description"></p><p class="note" id="policy-source"></p>
-    <div id="policy-chart-detail" class="pc-root"></div></div><h3 id="policy-profiles-title" tabindex="-1">Profiles and source quotes: <span id="policy-profiles-name"></span></h3>
+    <div id="policy-chart-detail" class="pc-root"></div></div><h3 id="policy-profiles-title" tabindex="-1">Profiles and source quotes</h3>
+    <div class="policy-listbar"><select id="policy-choice" aria-label="Policy">${options}</select><input type="search" id="policy-search" placeholder="Search name or state…" aria-label="Search profiles"><span id="policy-profiles-name" hidden></span></div>
     <div id="policy-counts" class="policy-counts" aria-live="polite" hidden></div>
     <div id="policy-results"></div><div class="policy-pages"><button id="policy-prev">Previous</button><span id="policy-page" aria-live="polite"></span><button id="policy-next">Next</button></div>
     <p class="note"><a href="data/policies.csv" download>Download policy summaries (CSV)</a> ·
@@ -134,7 +133,7 @@
         get('policy-chart-overview').innerHTML = '<p role="status">Charts are unavailable. Reload the page to retry.</p>';
         return;
       }
-      const members = filterMembers(data.members, {...state, stance:'all'});
+      const members = filterMembers(data.members, {...state, stance:'all', search:''});
       const target = data.policies.find(p=>p.id === state.policy);
       global.PolicyCharts.renderOverview(get('policy-chart-overview'), members, data.policies, state.policy, id=>{
         state.policy = id;
@@ -191,7 +190,7 @@
           china_race_dynamics:'Support means that the speaker makes AI competition with China a policy priority. Additional labels identify safety, speed, cooperation, and export policy.'}[target.id] || target.title) :
         `Positions on ${target.title}. General views about AI do not establish support for this specific proposal.`;
       get('policy-source').innerHTML = `${esc(target.version)} · <a href="${safeURL(target.source_url)}" target="_blank" rel="noopener noreferrer">Policy reference</a>`;
-      const rows = filterMembers(data.members, state).sort((a,b) =>
+      const rows = filterMembers(data.members, state).filter(m => (m.policies[state.policy]?.relevant || 0) > 0).sort((a,b) =>
         (b.policies[state.policy].relevant - a.policies[state.policy].relevant) || a.name.localeCompare(b.name));
       const pages = Math.max(1, Math.ceil(rows.length / 30));
       state.page = Math.min(state.page, pages - 1);
@@ -206,7 +205,7 @@
           <span class="policy-badge policy-${esc(r.stance || 'none')}">${esc(summaryLabel(r))}</span>
           <span class="policy-evidence-count">${r.relevant} quote${r.relevant === 1 ? '' : 's'}${r.has_undated_evidence ? ' · some undated' : r.last_statement_date ? ' · latest ' + esc(dateLabel(r.last_statement_date)) : ''}</span>`;
         return r.candidates || m.branch === 'executive' ? `<details class="policy-member" data-person="${esc(m.id)}"><summary>${body}</summary>${renderProfile(m,data.organizations || [],data.members)}<div class="policy-evidence"></div></details>` : `<div class="policy-member policy-empty">${body}</div>`;
-      }).join('') : '<p>No profiles match these filters.</p>';
+      }).join('') : '<p class="note">Nobody with a quote on this policy matches.</p>';
       root.querySelectorAll('details.policy-member').forEach(details => {
         const member = data.members.find(m => m.id === details.dataset.person);
         const targetID = state.policy;
