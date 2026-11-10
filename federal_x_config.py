@@ -37,7 +37,8 @@ def current_job(job, fingerprints, config, until=None):
         return False
     account = next(a for a in config['accounts'] if a['id'] == job['account_id'])
     start = max(config['since'], account['valid_from'])
-    ends = [v for v in (config.get('historical_until'), account.get('valid_until'), until) if v]
+    cutoff = job.get('historical_until', config.get('historical_until'))
+    ends = [v for v in (cutoff, account.get('valid_until'), until) if v]
     end = min(ends) if ends else None
     # Fixed account intervals must match exactly. Monthly jobs remain bounded
     # subintervals; daily jobs keep their independent overlapping checkpoints.

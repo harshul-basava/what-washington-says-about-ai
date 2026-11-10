@@ -9,6 +9,16 @@ on:
         options: [historical, daily]
         default: historical
         required: true
+      subject_ids:
+        description: "Optional comma-separated eligible federal profile IDs"
+        type: string
+      historical_until:
+        description: "Optional exclusive UTC cutoff (YYYY-MM-DD) for selected historical profiles"
+        type: string
+      collect_only:
+        description: "Collect X evidence and rebuild exports without model judgments"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -25,6 +35,8 @@ jobs:
     timeout-minutes: 30
     env:
       X_MODE: ${{ inputs.mode }}
+      X_SUBJECT_IDS: ${{ inputs.subject_ids }}
+      X_HISTORICAL_UNTIL: ${{ inputs.historical_until }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -36,49 +48,70 @@ jobs:
       - name: Install
         run: uv sync --no-dev --frozen
 
+      - name: Validate collection scope without credentials
+        id: validate
+        run: |
+          case "$X_MODE" in historical|daily) ;; *) exit 2 ;; esac
+          args=()
+          if [[ -n "$X_SUBJECT_IDS" ]]; then
+            if [[ ! "$X_SUBJECT_IDS" =~ ^[a-z0-9_]+(,[a-z0-9_]+)*$ ]]; then
+              echo 'subject_ids must be comma-separated federal profile IDs.' >&2
+              exit 2
+            fi
+            args+=(--ids "$X_SUBJECT_IDS")
+          fi
+          if [[ -n "$X_HISTORICAL_UNTIL" ]]; then
+            args+=("--until=$X_HISTORICAL_UNTIL")
+          fi
+          uv run --no-dev python scripts/federal_x.py plan --mode "$X_MODE" "${args[@]}"
+
       - name: Collect one bounded X batch
         id: collect
         continue-on-error: true
         env:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
         run: |
-          case "$X_MODE" in historical|daily) ;; *) exit 2 ;; esac
+          args=()
+          [[ -z "$X_SUBJECT_IDS" ]] || args+=(--ids "$X_SUBJECT_IDS")
+          [[ -z "$X_HISTORICAL_UNTIL" ]] || args+=("--until=$X_HISTORICAL_UNTIL")
           set +e
-          uv run --no-dev python scripts/federal_x.py collect --mode "$X_MODE" | tee "$RUNNER_TEMP/federal-x-report.json"
+          uv run --no-dev python scripts/federal_x.py collect --mode "$X_MODE" "${args[@]}" | tee "$RUNNER_TEMP/federal-x-report.json"
           result=${PIPESTATUS[0]}
           set -e
-          if jq -e '.provider == "x_api" and .mode == env.X_MODE' "$RUNNER_TEMP/federal-x-report.json" >/dev/null; then
+          if [[ -z "$X_SUBJECT_IDS" ]] && jq -e '.provider == "x_api" and .mode == env.X_MODE' "$RUNNER_TEMP/federal-x-report.json" >/dev/null; then
             cp "$RUNNER_TEMP/federal-x-report.json" "data/federal_x_api_${X_MODE}_status.json"
           fi
           exit "$result"
 
       - name: Assess federal policy evidence
         id: judgments
-        if: always() && steps.collect.outcome != 'skipped'
+        if: always() && steps.validate.outcome == 'success' && steps.collect.outcome != 'skipped' && inputs.collect_only != true
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
           echo "MODEL_SPEND_BASELINE=$(uv run --no-dev python -c 'import llm; print(llm.spent("openrouter"))')" >> "$GITHUB_ENV"
           args=()
           [ "$X_MODE" = daily ] && args+=(--daily)
+          [[ -z "$X_SUBJECT_IDS" ]] || args+=(--ids "$X_SUBJECT_IDS")
           # One request at a time lets each conservative reservation settle under the $2 cap.
           uv run --no-dev python scripts/phase3_policies.py label --scope executive --max-cost 2 --workers 1 "${args[@]}"
 
       - name: Update federal scores, regulation, summaries and histories
-        if: always() && steps.collect.outcome != 'skipped' && env.MODEL_SPEND_BASELINE != ''
+        if: always() && steps.validate.outcome == 'success' && steps.collect.outcome != 'skipped' && inputs.collect_only != true && env.MODEL_SPEND_BASELINE != ''
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
           args=()
           [ "$X_MODE" = daily ] && args+=(--daily)
+          [[ -z "$X_SUBJECT_IDS" ]] || args+=(--ids "$X_SUBJECT_IDS")
           uv run --no-dev python scripts/federal_analysis.py label --max-cost 2 --budget-baseline "$MODEL_SPEND_BASELINE" --workers 1 "${args[@]}"
 
       - name: Build site data
-        if: always() && steps.collect.outcome != 'skipped'
+        if: always() && steps.validate.outcome == 'success' && steps.collect.outcome != 'skipped'
         run: uv run --no-dev python scripts/phase5_build_site.py
 
       - name: Save progress and costs
-        if: always() && steps.collect.outcome != 'skipped'
+        if: always() && steps.validate.outcome == 'success' && steps.collect.outcome != 'skipped'
         run: |
           git config user.name "dc-on-ai-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -88,7 +121,7 @@ jobs:
           git push
 
       - name: Report batch outcome
-        if: always() && steps.collect.outcome != 'skipped'
+        if: always() && steps.validate.outcome == 'success' && steps.collect.outcome != 'skipped'
         run: |
           echo '### Federal X batch (pending windows require another run)' >> "$GITHUB_STEP_SUMMARY"
           echo '```json' >> "$GITHUB_STEP_SUMMARY"

@@ -2,6 +2,31 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const view = require('../site/federal-analysis.js');
 
+test('roster coverage distinguishes unknown scope and escapes office names', () => {
+  assert.match(view.renderRosterCoverage(null), /Coverage inventory is unavailable/);
+  const coverage={status:'available',checked_on:'2026-11-10',summary:{},organizations:[
+    {id:'agency',registry_id:'agency',name:'Agency <script>',parent_id:null,included_people:2,
+     included_roles:3,role_counts:{vacant:1},unresolved_roles:1,discovery_complete:false,checked_on:'2026-11-10'},
+    {id:'office',registry_id:'office',name:'Office',parent_id:'agency',included_people:1,
+     included_roles:1,role_counts:{},unresolved_roles:0,discovery_complete:true,checked_on:'2026-11-10'}]};
+  const html=view.renderRosterCoverage(coverage);
+  assert.match(html,/Agency &lt;script&gt;/);
+  assert.doesNotMatch(html,/<script>/);
+  assert.match(html,/Review incomplete/);
+  assert.match(html,/Office/);
+  assert.match(html,/Unique officials/);
+  assert.match(view.renderRosterCoverage(coverage,'office'), /Public offices reviewed/);
+  assert.doesNotMatch(view.renderRosterCoverage(coverage,'office'), /Agency &lt;script&gt;/);
+});
+
+test('role facts show verification sources without unsafe links or invented dates', () => {
+  const html=view.renderRoles({government_scope:{checked_on:'2026-11-10',source_url:'https://example.gov/current'},
+    roles:[{title:'Acting Director',organization_id:'agency',source_url:'javascript:alert(1)',start_date:null,end_date:null}]});
+  assert.match(html,/Acting Director/);
+  assert.match(html,/Current service checked/);
+  assert.doesNotMatch(html,/javascript:|Date unknown/);
+});
+
 const dimensions = [{id:'ai_overall',title:'AI overall'}, {id:'x_risk',title:'Catastrophic risk'}];
 const member = (overrides = {}) => ({id:'official', name:'An Official', entity_type:'person',
   organization_id:'child',organization_ids:['child','task'],organization_name:'Child agency',

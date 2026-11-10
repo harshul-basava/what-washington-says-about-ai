@@ -17,11 +17,17 @@ import policy_cascade as cascade
 MAX_TOKENS = 10000
 
 
+def select_subject_scope(subjects, scope):
+    if scope == 'all':
+        return subjects
+    branch = 'executive' if scope == 'executive' else 'legislative'
+    return [s for s in subjects if s['branch'] == branch]
+
+
 def select_scope(items, subjects, scope):
     if scope == 'all':
         return items
-    branch = 'executive' if scope == 'executive' else 'legislative'
-    ids = {s['id'] for s in subjects if s['branch'] == branch}
+    ids = {s['id'] for s in select_subject_scope(subjects, scope)}
     return [s for s in items if s['person_id'] in ids]
 
 
@@ -135,6 +141,7 @@ def main():
     parser.add_argument("command", choices=("plan", "label", "build"))
     parser.add_argument("--limit-people", type=int)
     parser.add_argument('--scope', choices=('all', 'congress', 'executive'), default='all')
+    parser.add_argument('--ids', help='Comma-separated eligible subject IDs for plan or label')
     parser.add_argument('--daily', action='store_true', help='Use daily spend tags and reserve against the monthly cap')
     parser.add_argument("--targets", help="Comma-separated registry IDs; filters candidate statements, not output labels")
     parser.add_argument("--batch-size", type=int, default=4)
@@ -144,13 +151,20 @@ def main():
     if not 1 <= args.batch_size <= 40 or (args.limit_people is not None and args.limit_people < 1):
         parser.error("batch-size must be 1–40; limit-people must be positive")
     if args.command == "build":
+        if args.ids is not None:
+            parser.error('--ids applies only to plan and label')
         result = p.build(ROOT)
         print(f"Built {len(result['policies'])} policies for {len(result['members'])} people from tracked inputs.")
         return
+    subjects = select_subject_scope(p.subjects.load_subjects(ROOT), args.scope)
+    if args.ids is not None:
+        wanted = set(args.ids.split(','))
+        if not wanted <= {s['id'] for s in subjects}:
+            parser.error('Unknown subject ID for the selected scope')
+        subjects = [s for s in subjects if s['id'] in wanted]
     registry = p.load_registry(ROOT)
     rubric = (ROOT / "config/policy_rubric.md").read_text()
-    items = p.candidates(ROOT, registry)
-    items = select_scope(items, p.subjects.load_subjects(ROOT), args.scope)
+    items = p.candidates(ROOT, registry, selected_subjects=subjects)
     if args.targets:
         wanted = set(args.targets.split(","))
         known = {t["id"] for t in registry["policies"]}

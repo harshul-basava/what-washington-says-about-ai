@@ -59,6 +59,26 @@
       return true;
     });
   }
+  function renderRosterCoverage(coverage, organization='all') {
+    if (coverage?.status !== 'available') return '<p class="fa-empty">Coverage inventory is unavailable.</p>';
+    const all=coverage.organizations || [], selected=new Set([organization]);
+    let changed=true;
+    while (changed) { changed=false; for (const row of all) {
+      if (selected.has(row.parent_id) && !selected.has(row.id)) { selected.add(row.id); changed=true; }
+    } }
+    const rows=all.filter(row=>organization==='all' || selected.has(row.id) || row.registry_id===organization);
+    const table=items=>`<div class="fa-table-scroll"><table><thead><tr><th scope="col">Agency or office</th><th scope="col">Unique officials</th><th scope="col">Unresolved roles</th><th scope="col">Vacant roles</th><th scope="col">Office review</th><th scope="col">Last role review</th></tr></thead><tbody>${items.map(row=>`<tr><th scope="row">${row.registry_id ? `<a href="?organization=${encodeURIComponent(row.registry_id)}#fa-roster-coverage">${esc(row.name)}</a>` : esc(row.name)}</th><td>${count(row.included_people)}</td><td>${count(row.unresolved_roles)}</td><td>${count(row.role_counts?.vacant)}</td><td>${row.discovery_complete ? 'Public offices reviewed' : 'Review incomplete'}${row.pending_role_reviews ? ' · role changes need review' : ''}${row.unavailable_sources ? ' · source unavailable' : ''}</td><td>${esc(row.checked_on || 'Unknown')}</td></tr>`).join('')}</tbody></table></div>`;
+    const main=organization==='all' ? rows.filter(row=>!row.parent_id) : rows;
+    const offices=organization==='all' ? rows.filter(row=>row.parent_id) : [];
+    return `<p>These counts describe tracked current officials. One official can hold several roles. Agency totals include their offices and count each official once.</p><p>Office discovery, source evidence, and completed judgments are separate measures. An empty profile remains in the roster.</p>${main.length ? table(main) : '<p>No reviewed inventory for this selection.</p>'}${offices.length ? `<details><summary>Component offices (${offices.length})</summary>${table(offices)}</details>` : ''}`;
+  }
+  function renderRoles(member) {
+    const scope=member.government_scope || {}, source=safeURL(scope.source_url);
+    return `<section class="fa-role-details"><h4>Government roles</h4>${scope.checked_on ? `<p>Current service checked ${esc(dateLabel(scope.checked_on))}${source ? ` · <a href="${esc(source)}" target="_blank" rel="noopener noreferrer">Role source</a>` : ''}</p>` : ''}${(member.roles || []).map(role=>{
+      const url=safeURL(role.source_url), dates=[role.start_date,role.end_date].filter(Boolean).map(dateLabel).join(' to ');
+      return `<p>${esc(role.title)}${dates ? ` · ${esc(dates)}` : ''}${role.end_date ? ' · historical role' : ''}${url ? ` · <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">Source</a>` : ''}</p>`;
+    }).join('')}</section>`;
+  }
   function scoreState(member, dimension) {
     const detail = member.score_details?.[dimension] || {};
     if (member.status === 'no_evidence' || member.n_statements === 0) return {kind:'no_evidence',value:null,label:'No evidence'};
@@ -257,7 +277,7 @@
       chartData=charts.validateCharts(await response.json(),data);
     } catch(error) {chartError=error.message;}
     const state = {scope:initial?.entity_type === 'institution' || params.get('scope') === 'institutions' ? 'institutions' : 'officials',
-      organization:'all',search:'',selected:initial?.id || null,dimension:data.dimensions[0]?.id,page:0,
+      organization:(data.organizations || []).some(o=>o.id===params.get('organization')) ? params.get('organization') : 'all',search:'',selected:initial?.id || null,dimension:data.dimensions[0]?.id,page:0,
       chartDimension:'x_risk',compare:'regulation',historyKind:'reconstructed',topic:data.topics[0],range:'12m',preset:'agi_low_risk',rule:null};
     let request = 0, currentDetail = null;
     const cache = new Map();
@@ -265,9 +285,10 @@
     root.innerHTML = `<nav class="fc-toc" aria-label="Federal analysis sections"><a href="#fc-cohort">Profiles by score</a><a href="#fc-comparison">Compare scores</a><a href="#fc-agency-section">Scores by agency</a><a href="#fc-timeline-section">Scores over time</a><a href="#fc-recent-section">Recent changes</a><a href="#fc-policy-section">Policies they support</a><a href="#fc-topic-section">Topics</a><a href="#fc-groups-section">Profile groups</a><a href="#fc-members-section">All profiles</a><a href="#fa-profiles">Sources and history</a></nav>
       <section class="fc-controlbar" aria-label="Chart controls"><label>Question <select id="fc-dimension">${dimensionOptions(state.chartDimension)}</select></label><div class="fa-scope" role="group" aria-label="Profile type"><button type="button" data-scope="officials" aria-pressed="true">Executive officials</button><button type="button" data-scope="institutions" aria-pressed="false">Institutions</button></div></section>
       <section class="fa-filter-section" aria-label="Filter federal profiles">
-      <div class="fa-filters"><label>Agency or membership<select id="fa-agency"><option value="all">All organizations</option>${(data.organizations || []).map(o=>`<option value="${esc(o.id)}">${esc(o.name)}</option>`).join('')}</select></label><label>Name or organization<input id="fa-search" type="search" placeholder="Search profiles" autocomplete="off"></label></div>
+      <div class="fa-filters"><label>Agency, office, or membership<select id="fa-agency"><option value="all">All organizations</option>${(data.organizations || []).map(o=>`<option value="${esc(o.id)}" ${o.id===state.organization ? 'selected' : ''}>${esc(o.name)}</option>`).join('')}</select></label><label>Name or organization<input id="fa-search" type="search" placeholder="Search profiles" autocomplete="off"></label></div>
       </section>
       <div id="fa-coverage" class="fa-coverage" aria-live="polite"></div>
+      <section class="fc-section" id="fa-roster-coverage"><details><summary>Officials and offices covered</summary><div id="fa-roster-table"></div></details></section>
       <section class="fc-section" id="fc-cohort"><h2 id="fc-cohort-title">Federal profiles by score</h2><p class="fc-description">Each dot is one profile, colored by the selected score.</p><div id="fc-dots"></div><div id="fc-availability" aria-live="polite"></div></section>
       <section class="fc-section" id="fc-comparison"><div class="fa-section-heading"><h2>Compare two AI scores</h2><label class="fc-control">Vertical axis<select id="fc-compare">${dimensionOptions(state.compare)}</select></label></div><p class="fc-description" id="fc-scatter-description"></p><div id="fc-scatter"></div></section>
       <section class="fc-section" id="fc-agency-section"><h2>Scores by agency</h2><p class="fc-description">Profiles in each agency, by the selected score.</p><div id="fc-agencies"></div><div id="fc-agency-selection" aria-live="polite"></div></section>
@@ -318,6 +339,7 @@
       if (!global.history?.replaceState) return;
       const url = new URL(global.location.href);
       url.searchParams.set('scope',state.scope);
+      if (state.organization !== 'all') url.searchParams.set('organization',state.organization); else url.searchParams.delete('organization');
       if (state.selected) url.searchParams.set('profile',state.selected); else url.searchParams.delete('profile');
       url.hash = '';
       global.history.replaceState(null,'',url);
@@ -335,6 +357,7 @@
         <h3 id="fa-profile-name" tabindex="-1">${esc(member.name)}</h3><p>${count(member.n_statements)} verified statements · ${count(member.n_labeled)} assessed · <span class="fa-status">${esc(STATUS[member.status] || 'Assessment pending')}</span></p>
         <p class="fa-note">${member.entity_type === 'institution' ? 'This profile uses institutional statements. Its positions do not transfer to its members.' : "This profile uses this official's statements. Agency positions do not transfer to this official."}</p></header>
         <nav class="fa-profile-nav" aria-label="Profile sections"><a href="#fa-summary">Summary</a><a href="#fa-rules">AI rules</a><a href="#fa-history">History</a><a href="#fa-source-section">Sources</a></nav>
+        ${member.entity_type === 'person' ? renderRoles(member) : ''}
         ${renderScores(member,data.dimensions,statements)}
         <section id="fa-summary" class="fa-profile-block"><h3>What the evidence says</h3>${renderSummary(member.summary,statements)}</section>
         ${renderStanceReview(member.stance_review,statements)}
@@ -373,6 +396,7 @@
       const assessed = members.reduce((n,m)=>n+count(m.n_labeled),0), total = members.reduce((n,m)=>n+count(m.n_statements),0);
       get('fa-coverage').innerHTML = `<div><strong>${members.length}</strong><span>${state.scope === 'institutions' ? 'institutions' : 'officials'} in this view</span></div><div><strong>${total.toLocaleString()}</strong><span>verified statements</span></div><div><strong>${assessed.toLocaleString()}</strong><span>statements assessed</span></div><div><strong>${members.filter(m=>m.status==='partial').length}</strong><span>profiles with unfinished work</span></div>`;
       get('fa-distributions').innerHTML = renderDistribution(members,data.dimensions);
+      get('fa-roster-table').innerHTML = renderRosterCoverage(data.roster_coverage,state.organization);
       if (!skipCharts) renderCharts();
       get('fa-profile-choice').innerHTML = members.length ? members.map(m=>`<option value="${esc(m.id)}" ${m.id===state.selected ? 'selected' : ''}>${esc(m.name)}</option>`).join('') : '<option>No matching profiles</option>';
       get('fa-profile-choice').disabled = !members.length;
@@ -428,7 +452,7 @@
         {rootMargin:'-56px 0px 0px 0px'}).observe(hero);
     }
   }
-  const api = {safeURL,dateLabel,filterMembers,scoreState,scoreDistribution,validateDetail,renderSummary,renderStanceReview,renderRegulation,
+  const api = {safeURL,dateLabel,filterMembers,scoreState,scoreDistribution,validateDetail,renderSummary,renderStanceReview,renderRegulation,renderRosterCoverage,renderRoles,
     renderStatement,renderTopics,historySeries,renderHistory,renderDistribution,mount};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else {

@@ -72,10 +72,11 @@ def match_targets(statement, registry):
             and any(re.search(pattern, text, re.I | re.S) for pattern in p["patterns"])]
 
 
-def candidates(root, registry):
+def candidates(root, registry, *, selected_subjects=None):
     root = Path(root)
     out = []
-    for person in subjects.load_subjects(root):
+    people = subjects.load_subjects(root) if selected_subjects is None else selected_subjects
+    for person in people:
         for s in subjects.load_evidence(root, person):
             if s.get("verified") is not True or not s.get("url") or not s.get("text"):
                 continue

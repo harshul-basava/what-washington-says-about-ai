@@ -1,6 +1,7 @@
 import contextlib
 import importlib.util
 import io
+import json
 import sys
 import tempfile
 import threading
@@ -10,6 +11,7 @@ from types import SimpleNamespace
 from unittest.mock import patch
 
 from test_policy_judgments import ITEM, REGISTRY, response
+from test_policy_subjects import ATTRIBUTION, SUBJECTS
 import policy_judgments as p
 
 spec = importlib.util.spec_from_file_location("policy_runner", Path(__file__).resolve().parents[1] / "scripts/phase3_policies.py")
@@ -68,6 +70,38 @@ class RunnerTests(unittest.TestCase):
                     {'id': 'official_a', 'branch': 'executive'}, {'id': 'agency_a', 'branch': 'executive'}]
         self.assertEqual([s['person_id'] for s in runner.select_scope(items, subjects, 'executive')], ['official_a', 'agency_a'])
         self.assertEqual(runner.select_scope(items, subjects, 'all'), items)
+
+    def test_cohort_plan_reads_only_selected_subject_evidence(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            p.write_json(root / 'config/policy_subjects.json', SUBJECTS)
+            p.write_json(root / 'config/policies.json', REGISTRY)
+            (root / 'config/policy_rubric.md').write_text('rubric')
+            p.write_json(root / 'data/roster.json', [{'id': 'P', 'name': 'Person'}])
+            p.write_json(root / 'evidence/executive_a.json', {'statements': [ITEM | {
+                'verified': True, 'attribution': ATTRIBUTION}]})
+            p.write_json(root / 'evidence/commerce.json', {'statements': []})
+            (root / 'evidence/P.json').write_text('invalid outside the cohort')
+
+            for ids, statements in [('executive_a', 1), ('commerce', 0)]:
+                with self.subTest(ids=ids), patch.object(runner, 'ROOT', root), patch.object(sys, 'argv', [
+                    'phase3_policies.py', 'plan', '--scope', 'executive', '--ids', ids,
+                    '--targets', 'kill_switch_act_119',
+                ]), contextlib.redirect_stdout(io.StringIO()) as output, contextlib.redirect_stderr(io.StringIO()) as errors:
+                    try:
+                        runner.main()
+                    except SystemExit as exc:
+                        self.fail(f'Expected an offline plan, got exit {exc.code}: {errors.getvalue()}')
+                    report = json.loads(output.getvalue())
+                    self.assertEqual(report['candidate_statements'], statements)
+                    self.assertEqual(report['people'], statements)
+
+            with patch.object(runner, 'ROOT', root), patch.object(sys, 'argv', [
+                'phase3_policies.py', 'label', '--scope', 'executive', '--ids', 'unknown',
+            ]), contextlib.redirect_stderr(io.StringIO()) as output, self.assertRaises(SystemExit) as raised:
+                runner.main()
+            self.assertEqual(raised.exception.code, 2)
+            self.assertIn('Unknown subject ID', output.getvalue())
 
     def test_daily_judgments_reserve_monthly_budget_and_use_daily_tags(self):
         import json

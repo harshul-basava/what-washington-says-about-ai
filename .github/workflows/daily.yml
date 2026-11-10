@@ -75,6 +75,11 @@ jobs:
           [[ "$IN_SINCE" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]] && args+=(--since "$IN_SINCE")
           uv run --no-dev python scripts/daily/run.py "${args[@]}"
 
+      - name: Check due federal leadership directories
+        if: always() && steps.keys.outputs.skip != 'true'
+        timeout-minutes: 5
+        run: uv run --no-dev python federal_roster.py check --max-pages 40
+
       - name: Report federal update status
         if: always() && steps.keys.outputs.skip != 'true'
         run: |

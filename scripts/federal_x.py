@@ -1,7 +1,7 @@
 """Resumable federal X search through the configured official API or emusks provider.
 
 Usage: uv run python scripts/federal_x.py plan [--mode historical]
-       uv run python scripts/federal_x.py collect --mode historical [--ids nsa,commerce]
+       uv run python scripts/federal_x.py collect --mode historical --ids nsa,commerce [--until YYYY-MM-DD]
 """
 import argparse
 import json
@@ -36,6 +36,17 @@ def write(path, value):
     temporary=path.with_suffix(path.suffix+'.tmp')
     temporary.write_text(json.dumps(value,indent=2)+'\n')
     temporary.replace(path)
+
+def save_status(root, report):
+    if 'subject_ids' not in report:
+        write(root/'data/federal_x_status.json',report)
+        return
+    path=root/'data/federal_x_cohort_status.json'
+    saved=read(path,{'version':1,'cohorts':{}})
+    key=':'.join((report['provider'],report['mode'],','.join(report['subject_ids']),
+                  report.get('historical_until',''),report.get('since','')))
+    saved['cohorts'][key]=report
+    write(path,saved)
 
 def windows(start, end):
     current=date.fromisoformat(start);last=date.fromisoformat(end);out=[]
@@ -139,37 +150,57 @@ def request_page(root, request):
     except subprocess.TimeoutExpired:return {'error':'timeout'}
     except Exception:return {'error':'request_failed'}
 
-def collect(root, mode='daily', since=None, dry=False, client=None, now=None, ids=None, page_limit=None):
+def collect(root, mode='daily', since=None, dry=False, client=None, now=None, ids=None, page_limit=None, until=None):
     from federal import append_evidence
-    root=Path(root);now=now or datetime.now(timezone.utc).date().isoformat();date.fromisoformat(now)
+    root=Path(root);now=now or datetime.now(timezone.utc).date().isoformat()
     config,subjects=registry(root)
     provider=configured_provider(config)
     if mode not in ('daily','historical'):raise ValueError('Unknown X collection mode')
+    end=(date.fromisoformat(now)+timedelta(days=1)).isoformat()
+    if until is not None:
+        if mode!='historical' or not ids:
+            raise ValueError('--until requires historical mode and selected --ids')
+        if not re.fullmatch(r'[0-9]{4}-[0-9]{2}-[0-9]{2}',until) or until>end:
+            raise ValueError('--until must be YYYY-MM-DD and no later than tomorrow (exclusive UTC)')
+        try:
+            date.fromisoformat(until)
+        except ValueError as exc:
+            raise ValueError('--until must be a valid YYYY-MM-DD date') from exc
     if since:
         date.fromisoformat(since)
         # Use the requested start for historical checkpoint selection too.
         if mode=='historical':config={**config,'since':since}
-    accounts=[a for a in config['accounts'] if not ids or a['subject_id'] in ids]
-    if ids and set(ids)-set(subjects):raise ValueError('Unknown federal profile')
-    mapped={a['subject_id'] for a in config['accounts']}
+    selected=set(ids) if ids else set(subjects)
+    if selected-set(subjects):raise ValueError('Unknown federal profile')
+    accounts=[a for a in config['accounts'] if a['subject_id'] in selected]
+    mapped={a['subject_id'] for a in accounts}
+    unmapped=selected-mapped
     report={'date':now,'provider':provider,'mode':mode,'status':'dry_run' if dry else 'ok',
         'accounts':len({a['handle'].lower() for a in accounts}),'account_intervals':len(accounts),
-        'mapped_profiles':len(mapped),'unmapped_profiles':len(subjects)-len(mapped),'pages':0,'added':{},'errors':[],
+        'mapped_profiles':len(mapped),'unmapped_profiles':len(unmapped),'pages':0,'added':{},'errors':[],
         'note':'Search results are not a complete X archive. Unmapped profiles need sourced account mappings.'}
+    if ids:report.update(subject_ids=sorted(selected),unmapped_subject_ids=sorted(unmapped))
+    if until is not None:report['historical_until']=until
+    if ids and since:report['since']=since
     if not config.get('enabled'):return report|{'status':'disabled'}
-    state_path=root/'data'/state_file(config);status_path=root/'data/federal_x_status.json'
+    state_path=root/'data'/state_file(config)
     legacy=read(root/'data/federal_x_state.json',{}) if provider=='x_api' else {}
     state=read(state_path,{'version':1,'accounts':legacy.get('accounts',{}),'jobs':{},'last_request_at':0})
-    end=(date.fromisoformat(now)+timedelta(days=1)).isoformat()
     # Historical and daily jobs have independent checkpoints.
     history_window=config.get('historical_window','month')
-    if mode=='historical' and history_window=='account' and (not config.get('historical_until') or config['historical_until']>end):
+    history_cutoff=until or config.get('historical_until')
+    if mode=='historical' and history_window=='account' and (not history_cutoff or history_cutoff>end):
         raise ValueError('Account history requires a fixed historical_until no later than tomorrow (exclusive)')
     jobs=[]
     active_fingerprints={a['id']:fingerprint(a) for a in accounts}
     for a in accounts:
         account_fingerprint=active_fingerprints[a['id']]
-        previous=[j for j in state['jobs'].values() if j['account_id']==a['id'] and j['mode']==mode and current_job(j,active_fingerprints,config,end)]
+        # An explicit cutoff resumes only the exact planned intervals, including any
+        # identical intervals already saved under the default or another cohort.
+        previous=[] if until is not None else [j for j in state['jobs'].values()
+            if j['account_id']==a['id'] and j['mode']==mode
+            and j.get('historical_until') in (None,history_cutoff)
+            and current_job(j,active_fingerprints,config,end)]
         pending=sorted([j for j in previous if j['status']!='searched'],key=lambda j:j['start'])
         jobs.extend(pending)
         if mode=='daily':
@@ -180,24 +211,28 @@ def collect(root, mode='daily', since=None, dry=False, client=None, now=None, id
             intervals=[(max(start,a['valid_from']),min(end,a.get('valid_until') or end))]
         else:
             start=max(since or config['since'],a['valid_from'])
-            stop=min(end,a.get('valid_until') or end,config.get('historical_until') or end)
+            stop=min(end,a.get('valid_until') or end,history_cutoff or end)
             intervals=[(start,stop)] if history_window=='account' else windows(start,stop)
         for start,stop in intervals:
             if start>=stop:continue
             key=digest(f'{account_fingerprint}:{mode}:{start}:{stop}'+(':account' if mode=='historical' and history_window=='account' else ''))
             existing=state['jobs'].get(key)
             if existing and existing['status']=='searched':continue
-            jobs.append(existing or {'key':key,'account_id':a['id'],'fingerprint':account_fingerprint,'mode':mode,
-                'start':start,'end':stop,'cursor':None,'status':'pending','pages':0,'last_attempt':0,
-                'window':history_window if mode=='historical' else 'daily'})
+            if existing is None:
+                existing={'key':key,'account_id':a['id'],'fingerprint':account_fingerprint,'mode':mode,
+                    'start':start,'end':stop,'cursor':None,'status':'pending','pages':0,'last_attempt':0,
+                    'window':history_window if mode=='historical' else 'daily'}
+                if until is not None:existing['historical_until']=until
+            jobs.append(existing)
     jobs=list({j['key']:j for j in jobs}.values())
+    planned_keys={j['key'] for j in jobs}
     report['pending_windows']=len(jobs)
     if dry:return report
     auth_name='X_BEARER_TOKEN' if provider=='x_api' else 'X_AUTH_TOKEN'
     if client is None and not (os.environ.get(auth_name) or dotenv_values(root/'.env').get(auth_name)):
-        report.update(status='unavailable',error='missing_bearer_token' if provider=='x_api' else 'missing_auth_token');write(status_path,report);return report
+        report.update(status='unavailable',error='missing_bearer_token' if provider=='x_api' else 'missing_auth_token');save_status(root,report);return report
     if state.get('retry_after',0)>time.time():
-        report.update(status='partial',error='rate_limited',retry_after=state['retry_after']);write(status_path,report);return report
+        report.update(status='partial',error='rate_limited',retry_after=state['retry_after']);save_status(root,report);return report
     # An injected client is an offline transport; production always applies the global interval.
     if client is not None:
         transport=client
@@ -270,18 +305,22 @@ def collect(root, mode='daily', since=None, dry=False, client=None, now=None, id
             # A failed account waits until the next invocation instead of starving other accounts.
             jobs=[j for j in jobs if j['account_id']!=a['id']]
         write(state_path,state)
-    report['pending_windows']=sum(j['status']!='searched' for j in state['jobs'].values()
-        if j['mode']==mode and current_job(j,active_fingerprints,config,end))
+    report['pending_windows']=sum(state['jobs'][key]['status']!='searched' for key in planned_keys)
     if report['pending_windows'] or report['errors']:report['status']='partial'
     if provider=='x_api' and client is None:report['estimated_cost_usd']=round(transport.spent,4)
-    write(status_path,report);return report
+    save_status(root,report);return report
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('command',choices=['plan','collect']);parser.add_argument('--mode',choices=['daily','historical'],default='daily')
     parser.add_argument('--since');parser.add_argument('--ids');parser.add_argument('--max-pages',type=int)
+    parser.add_argument('--until',help='Exclusive UTC cutoff YYYY-MM-DD for selected historical profiles')
     args=parser.parse_args()
-    report=collect(ROOT,mode=args.mode,since=args.since,dry=args.command=='plan',ids=args.ids.split(',') if args.ids else None,page_limit=args.max_pages)
+    try:
+        report=collect(ROOT,mode=args.mode,since=args.since,dry=args.command=='plan',ids=args.ids.split(',') if args.ids is not None else None,
+                       page_limit=args.max_pages,until=args.until)
+    except ValueError as exc:
+        parser.error(str(exc))
     print(json.dumps(report,indent=2))
     return int(report['status'] in ('partial','unavailable'))
 

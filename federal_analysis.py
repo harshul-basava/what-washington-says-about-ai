@@ -244,7 +244,9 @@ def chart_topics(statements,resolved):
 
 def build(root,asof=None,record=False):
     root=Path(root);asof=asof or today();config=configuration(root);subjects,evidence=inputs(root);labels,profiles=state(root)
-    revision=digest([config,[(subject_context(s),evidence[s['id']],labels.get('profiles',{}).get(s['id']),profiles.get('profiles',{}).get(s['id'])) for s in subjects],asof])
+    from federal_roster import coverage_report
+    roster_coverage=coverage_report(root)
+    revision=digest([config,[(subject_context(s),evidence[s['id']],labels.get('profiles',{}).get(s['id']),profiles.get('profiles',{}).get(s['id'])) for s in subjects],asof,roster_coverage])
     output=root/'site/data/federal_analysis';output.mkdir(parents=True,exist_ok=True);ids={s['id'] for s in subjects}
     for path in output.glob('*.json'):
         if path.stem not in ids:path.unlink()
@@ -314,7 +316,7 @@ def build(root,asof=None,record=False):
     coverage=plan(root)
     result={'schema_version':1,'built_on':asof,'revision':revision,'dimensions':DIMENSIONS,'regulation_areas':REGULATION_AREAS,'topics':TOPICS,
         'methodology':{'models':config['settings']['models'],'text':"Five scores use the congressional rubric and fixed formula. Three DeepSeek passes trigger independent Sol/Astra review. Regulation uses DeepSeek and Sol with Astra for direction disagreements. Histories reconstruct dated evidence for today's eligible roster; they do not track historical office membership. A profile that never addresses a question gets no score on it, not a zero. Profiles with a targeted Astra stance review show its reason, confidence, and source context. Accepted corrections use Astra for both AI overall label columns; the original assessments remain available."},
-        'coverage':coverage,'organizations':policy_subjects.load_registry(root)['organizations'],'members':members}
+        'coverage':coverage,'roster_coverage':roster_coverage,'organizations':policy_subjects.load_registry(root)['organizations'],'members':members}
     write(root/'site/data/federal_analysis.json',result)
     write(root/'site/data/federal_charts.json',{'schema_version':1,'revision':revision,'profiles':chart_profiles})
     if record:

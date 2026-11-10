@@ -1,14 +1,14 @@
 {
  "schema_version": 1,
  "id": "nist_itl",
- "revision": "d27ea3c9cd79b53c6f96efffd426107e488dacc6570f95bbd1d9badf9e4fbe7c",
+ "revision": "7d446abe469fad18b7a0b1fcf2494610f2cd7817c7c52833c0b3cb9902a97b14",
  "profile": {
   "id": "nist_itl",
   "name": "NIST Information Technology Laboratory",
   "party": null,
   "state": "",
   "chamber": "",
-  "status": "complete",
+  "status": "partial",
   "entity_type": "institution",
   "branch": "executive",
   "organization_id": "nist_itl",
@@ -32,70 +32,49 @@
    "reason": "current_government_institution"
   },
   "n_statements": 18,
-  "n_labeled": 18,
+  "n_labeled": 0,
   "scores": {
-   "ai_overall": 2.5,
-   "agi_pilled": 1.5,
+   "ai_overall": null,
+   "agi_pilled": null,
    "x_risk": null,
-   "china_race": 1.0,
-   "regulation": 1.0
+   "china_race": null,
+   "regulation": null
   },
   "score_details": {
    "ai_overall": {
-    "score": 2.5,
-    "reason_a": "median_of_2",
-    "reason_b": "median_of_3",
-    "sids": [
-     "s7",
-     "s9",
-     "s4"
-    ],
-    "label_count": 3
+    "score": null,
+    "reason_a": "pending",
+    "reason_b": "pending",
+    "sids": [],
+    "label_count": 0
    },
    "agi_pilled": {
-    "score": 1.5,
-    "reason_a": "consistent",
-    "reason_b": "silent",
-    "sids": [
-     "s12",
-     "s11",
-     "s10",
-     "s9",
-     "s8",
-     "s7"
-    ],
-    "label_count": 8
+    "score": null,
+    "reason_a": "pending",
+    "reason_b": "pending",
+    "sids": [],
+    "label_count": 0
    },
    "x_risk": {
     "score": null,
-    "reason_a": "silent",
-    "reason_b": "silent",
+    "reason_a": "pending",
+    "reason_b": "pending",
     "sids": [],
     "label_count": 0
    },
    "china_race": {
-    "score": 1.0,
-    "reason_a": "consistent",
-    "reason_b": "silent",
-    "sids": [
-     "s2",
-     "s10",
-     "s4"
-    ],
-    "label_count": 3
+    "score": null,
+    "reason_a": "pending",
+    "reason_b": "pending",
+    "sids": [],
+    "label_count": 0
    },
    "regulation": {
-    "score": 1.0,
-    "reason_a": "consistent",
-    "reason_b": "consistent",
-    "sids": [
-     "s2",
-     "s12",
-     "s11",
-     "s3",
-     "s1"
-    ],
-    "label_count": 5
+    "score": null,
+    "reason_a": "pending",
+    "reason_b": "pending",
+    "sids": [],
+    "label_count": 0
    }
   },
   "summary": {
@@ -146,13 +125,7 @@
     }
    ]
   },
-  "topics": {
-   "regulation": 7.667,
-   "China/competition": 1.167,
-   "AGI/transformative": 4.167,
-   "other": 4.5,
-   "jobs/economy": 0.5
-  },
+  "topics": {},
   "regulation": {
    "status": "complete",
    "areas": {
@@ -290,81 +263,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "regulation": 1
-    },
+    "status": "pending",
+    "a": {},
     "b": {},
-    "topics": [
-     "regulation"
-    ],
-    "confidence": {
-     "regulation": 3.5
-    },
-    "escalated": [
-     "ai_overall",
-     "x_risk",
-     "regulation"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "regulation": 1
-      },
-      "confidence": {
-       "regulation": 2
-      },
-      "topics": [
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:45:38.897565+00:00",
-      "generation_id": "gen-1794192329-DPWSJG4cqhSDb5H0yUYB"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:58:00.652130+00:00",
-      "generation_id": "gen-1794193028-KN7LR11OsjIypl53xEYK"
-     },
-     "ds_2": {
-      "labels": {
-       "x_risk": 3,
-       "ai_overall": 2,
-       "regulation": 3
-      },
-      "confidence": {
-       "x_risk": 5,
-       "ai_overall": 5,
-       "regulation": 5
-      },
-      "topics": [
-       "regulation",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:09:25.685090+00:00",
-      "generation_id": "gen-1794193729-GzhOwp1MdN4IfPaTT3NS"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:14:10.743315+00:00",
-      "generation_id": "gen-1794194043-10vbb45zigAFSVI0mOhl"
-     }
-    }
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -381,94 +287,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "china_race": 2,
-     "regulation": 1
-    },
+    "status": "pending",
+    "a": {},
     "b": {},
-    "topics": [
-     "China/competition",
-     "regulation"
-    ],
-    "confidence": {
-     "china_race": 3.33,
-     "regulation": 3.5
-    },
-    "escalated": [
-     "ai_overall",
-     "china_race",
-     "regulation"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "china_race": 2
-      },
-      "confidence": {
-       "china_race": 2
-      },
-      "topics": [
-       "China/competition",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:45:38.897565+00:00",
-      "generation_id": "gen-1794192329-DPWSJG4cqhSDb5H0yUYB"
-     },
-     "ds_1": {
-      "labels": {
-       "china_race": 2,
-       "regulation": 1
-      },
-      "confidence": {
-       "china_race": 3,
-       "regulation": 2
-      },
-      "topics": [
-       "China/competition",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:58:00.652130+00:00",
-      "generation_id": "gen-1794193028-KN7LR11OsjIypl53xEYK"
-     },
-     "ds_2": {
-      "labels": {
-       "china_race": 3,
-       "ai_overall": 3,
-       "regulation": 1
-      },
-      "confidence": {
-       "china_race": 5,
-       "ai_overall": 5,
-       "regulation": 5
-      },
-      "topics": [
-       "China/competition",
-       "jobs/economy",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:09:25.685090+00:00",
-      "generation_id": "gen-1794193729-GzhOwp1MdN4IfPaTT3NS"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "China/competition",
-       "regulation"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:14:10.743315+00:00",
-      "generation_id": "gen-1794194043-10vbb45zigAFSVI0mOhl"
-     }
-    }
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -485,74 +311,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "regulation": 1
-    },
+    "status": "pending",
+    "a": {},
     "b": {},
-    "topics": [
-     "regulation"
-    ],
-    "confidence": {
-     "regulation": 4.0
-    },
-    "escalated": [
-     "regulation"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "regulation": 1
-      },
-      "confidence": {
-       "regulation": 3
-      },
-      "topics": [
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:45:38.897565+00:00",
-      "generation_id": "gen-1794192329-DPWSJG4cqhSDb5H0yUYB"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:58:00.652130+00:00",
-      "generation_id": "gen-1794193028-KN7LR11OsjIypl53xEYK"
-     },
-     "ds_2": {
-      "labels": {
-       "regulation": 1
-      },
-      "confidence": {
-       "regulation": 5
-      },
-      "topics": [
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:09:25.685090+00:00",
-      "generation_id": "gen-1794193729-GzhOwp1MdN4IfPaTT3NS"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:14:10.743315+00:00",
-      "generation_id": "gen-1794194043-10vbb45zigAFSVI0mOhl"
-     }
-    }
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -569,110 +335,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "agi_pilled": 3,
-     "china_race": 2
-    },
-    "b": {
-     "ai_overall": 3
-    },
-    "topics": [
-     "AGI/transformative",
-     "China/competition",
-     "regulation"
-    ],
-    "confidence": {
-     "agi_pilled": 4.0,
-     "china_race": 3.33
-    },
-    "escalated": [
-     "ai_overall",
-     "agi_pilled",
-     "x_risk",
-     "china_race",
-     "regulation"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "agi_pilled": 3,
-       "china_race": 2
-      },
-      "confidence": {
-       "agi_pilled": 3,
-       "china_race": 2
-      },
-      "topics": [
-       "AGI/transformative",
-       "China/competition"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:45:38.897565+00:00",
-      "generation_id": "gen-1794192329-DPWSJG4cqhSDb5H0yUYB"
-     },
-     "ds_1": {
-      "labels": {
-       "agi_pilled": 3,
-       "china_race": 2
-      },
-      "confidence": {
-       "agi_pilled": 4,
-       "china_race": 3
-      },
-      "topics": [
-       "AGI/transformative",
-       "China/competition",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:58:00.652130+00:00",
-      "generation_id": "gen-1794193028-KN7LR11OsjIypl53xEYK"
-     },
-     "ds_2": {
-      "labels": {
-       "x_risk": 3,
-       "agi_pilled": 3,
-       "china_race": 3,
-       "ai_overall": 3,
-       "regulation": 3
-      },
-      "confidence": {
-       "x_risk": 5,
-       "agi_pilled": 5,
-       "china_race": 5,
-       "ai_overall": 5,
-       "regulation": 5
-      },
-      "topics": [
-       "AGI/transformative",
-       "China/competition",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:09:25.685090+00:00",
-      "generation_id": "gen-1794193729-GzhOwp1MdN4IfPaTT3NS"
-     },
-     "sol": {
-      "labels": {
-       "ai_overall": 3
-      },
-      "confidence": {
-       "ai_overall": 3
-      },
-      "topics": [
-       "AGI/transformative",
-       "regulation"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:14:10.743315+00:00",
-      "generation_id": "gen-1794194043-10vbb45zigAFSVI0mOhl"
-     }
-    }
+    "status": "pending",
+    "a": {},
+    "b": {},
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -689,49 +359,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:45:38.897565+00:00",
-      "generation_id": "gen-1794192329-DPWSJG4cqhSDb5H0yUYB"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:58:00.652130+00:00",
-      "generation_id": "gen-1794193028-KN7LR11OsjIypl53xEYK"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:09:25.685090+00:00",
-      "generation_id": "gen-1794193729-GzhOwp1MdN4IfPaTT3NS"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -748,90 +383,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "agi_pilled": 3
-    },
+    "status": "pending",
+    "a": {},
     "b": {},
-    "topics": [
-     "AGI/transformative",
-     "regulation"
-    ],
-    "confidence": {
-     "agi_pilled": 3.33
-    },
-    "escalated": [
-     "ai_overall",
-     "agi_pilled",
-     "x_risk",
-     "regulation"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "agi_pilled": 3
-      },
-      "confidence": {
-       "agi_pilled": 2
-      },
-      "topics": [
-       "AGI/transformative"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:45:38.897565+00:00",
-      "generation_id": "gen-1794192329-DPWSJG4cqhSDb5H0yUYB"
-     },
-     "ds_1": {
-      "labels": {
-       "agi_pilled": 3
-      },
-      "confidence": {
-       "agi_pilled": 3
-      },
-      "topics": [
-       "AGI/transformative",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:58:00.652130+00:00",
-      "generation_id": "gen-1794193028-KN7LR11OsjIypl53xEYK"
-     },
-     "ds_2": {
-      "labels": {
-       "x_risk": 3,
-       "agi_pilled": 3,
-       "ai_overall": 3,
-       "regulation": 3
-      },
-      "confidence": {
-       "x_risk": 5,
-       "agi_pilled": 5,
-       "ai_overall": 5,
-       "regulation": 5
-      },
-      "topics": [
-       "AGI/transformative",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:09:25.685090+00:00",
-      "generation_id": "gen-1794193729-GzhOwp1MdN4IfPaTT3NS"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:14:10.743315+00:00",
-      "generation_id": "gen-1794194043-10vbb45zigAFSVI0mOhl"
-     }
-    }
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -848,100 +407,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "ai_overall": 2,
-     "agi_pilled": 3
-    },
-    "b": {
-     "ai_overall": 2
-    },
-    "topics": [
-     "AGI/transformative"
-    ],
-    "confidence": {
-     "ai_overall": 3.67,
-     "agi_pilled": 3.33
-    },
-    "escalated": [
-     "agi_pilled",
-     "x_risk",
-     "regulation"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "agi_pilled": 3,
-       "ai_overall": 2
-      },
-      "confidence": {
-       "agi_pilled": 2,
-       "ai_overall": 3
-      },
-      "topics": [
-       "AGI/transformative"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:45:38.897565+00:00",
-      "generation_id": "gen-1794192329-DPWSJG4cqhSDb5H0yUYB"
-     },
-     "ds_1": {
-      "labels": {
-       "agi_pilled": 3,
-       "ai_overall": 2
-      },
-      "confidence": {
-       "agi_pilled": 3,
-       "ai_overall": 3
-      },
-      "topics": [
-       "AGI/transformative",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:58:00.652130+00:00",
-      "generation_id": "gen-1794193028-KN7LR11OsjIypl53xEYK"
-     },
-     "ds_2": {
-      "labels": {
-       "x_risk": 3,
-       "agi_pilled": 3,
-       "ai_overall": 2,
-       "regulation": 3
-      },
-      "confidence": {
-       "x_risk": 5,
-       "agi_pilled": 5,
-       "ai_overall": 5,
-       "regulation": 5
-      },
-      "topics": [
-       "regulation",
-       "AGI/transformative"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:09:25.685090+00:00",
-      "generation_id": "gen-1794193729-GzhOwp1MdN4IfPaTT3NS"
-     },
-     "sol": {
-      "labels": {
-       "ai_overall": 2
-      },
-      "confidence": {
-       "ai_overall": 4
-      },
-      "topics": [
-       "other"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:14:10.743315+00:00",
-      "generation_id": "gen-1794194043-10vbb45zigAFSVI0mOhl"
-     }
-    }
+    "status": "pending",
+    "a": {},
+    "b": {},
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -958,80 +431,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "agi_pilled": 3
-    },
+    "status": "pending",
+    "a": {},
     "b": {},
-    "topics": [
-     "other",
-     "AGI/transformative"
-    ],
-    "confidence": {
-     "agi_pilled": 3.5
-    },
-    "escalated": [
-     "agi_pilled",
-     "regulation"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:45:38.897565+00:00",
-      "generation_id": "gen-1794192329-DPWSJG4cqhSDb5H0yUYB"
-     },
-     "ds_1": {
-      "labels": {
-       "agi_pilled": 3
-      },
-      "confidence": {
-       "agi_pilled": 2
-      },
-      "topics": [
-       "AGI/transformative",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:58:00.652130+00:00",
-      "generation_id": "gen-1794193028-KN7LR11OsjIypl53xEYK"
-     },
-     "ds_2": {
-      "labels": {
-       "agi_pilled": 3,
-       "regulation": 2
-      },
-      "confidence": {
-       "agi_pilled": 5,
-       "regulation": 5
-      },
-      "topics": [
-       "AGI/transformative",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:09:25.685090+00:00",
-      "generation_id": "gen-1794193729-GzhOwp1MdN4IfPaTT3NS"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:14:10.743315+00:00",
-      "generation_id": "gen-1794194043-10vbb45zigAFSVI0mOhl"
-     }
-    }
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1048,106 +455,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "ai_overall": 3,
-     "agi_pilled": 3
-    },
-    "b": {
-     "ai_overall": 3
-    },
-    "topics": [
-     "AGI/transformative",
-     "jobs/economy"
-    ],
-    "confidence": {
-     "ai_overall": 3.33,
-     "agi_pilled": 3.33
-    },
-    "escalated": [
-     "agi_pilled",
-     "x_risk",
-     "china_race",
-     "regulation"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "agi_pilled": 3,
-       "ai_overall": 3
-      },
-      "confidence": {
-       "agi_pilled": 2,
-       "ai_overall": 2
-      },
-      "topics": [
-       "AGI/transformative"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:45:38.897565+00:00",
-      "generation_id": "gen-1794192329-DPWSJG4cqhSDb5H0yUYB"
-     },
-     "ds_1": {
-      "labels": {
-       "agi_pilled": 3,
-       "ai_overall": 3
-      },
-      "confidence": {
-       "agi_pilled": 3,
-       "ai_overall": 3
-      },
-      "topics": [
-       "AGI/transformative",
-       "jobs/economy"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:58:00.652130+00:00",
-      "generation_id": "gen-1794193028-KN7LR11OsjIypl53xEYK"
-     },
-     "ds_2": {
-      "labels": {
-       "x_risk": 3,
-       "agi_pilled": 3,
-       "china_race": 2,
-       "ai_overall": 3,
-       "regulation": 3
-      },
-      "confidence": {
-       "x_risk": 5,
-       "agi_pilled": 5,
-       "china_race": 5,
-       "ai_overall": 5,
-       "regulation": 5
-      },
-      "topics": [
-       "China/competition",
-       "jobs/economy",
-       "AGI/transformative"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:09:25.685090+00:00",
-      "generation_id": "gen-1794193729-GzhOwp1MdN4IfPaTT3NS"
-     },
-     "sol": {
-      "labels": {
-       "ai_overall": 3
-      },
-      "confidence": {
-       "ai_overall": 4
-      },
-      "topics": [
-       "jobs/economy",
-       "regulation"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:14:10.743315+00:00",
-      "generation_id": "gen-1794194043-10vbb45zigAFSVI0mOhl"
-     }
-    }
+    "status": "pending",
+    "a": {},
+    "b": {},
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1164,102 +479,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "agi_pilled": 3,
-     "china_race": 2
-    },
+    "status": "pending",
+    "a": {},
     "b": {},
-    "topics": [
-     "AGI/transformative",
-     "China/competition",
-     "regulation"
-    ],
-    "confidence": {
-     "agi_pilled": 3.33,
-     "china_race": 3.5
-    },
-    "escalated": [
-     "ai_overall",
-     "agi_pilled",
-     "x_risk",
-     "china_race",
-     "regulation"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "agi_pilled": 3
-      },
-      "confidence": {
-       "agi_pilled": 2
-      },
-      "topics": [
-       "AGI/transformative"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:45:38.897565+00:00",
-      "generation_id": "gen-1794192329-DPWSJG4cqhSDb5H0yUYB"
-     },
-     "ds_1": {
-      "labels": {
-       "agi_pilled": 3,
-       "china_race": 2,
-       "regulation": 1
-      },
-      "confidence": {
-       "agi_pilled": 3,
-       "china_race": 2,
-       "regulation": 3
-      },
-      "topics": [
-       "AGI/transformative",
-       "China/competition",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:58:00.652130+00:00",
-      "generation_id": "gen-1794193028-KN7LR11OsjIypl53xEYK"
-     },
-     "ds_2": {
-      "labels": {
-       "x_risk": 3,
-       "agi_pilled": 3,
-       "china_race": 2,
-       "ai_overall": 3,
-       "regulation": 3
-      },
-      "confidence": {
-       "x_risk": 5,
-       "agi_pilled": 5,
-       "china_race": 5,
-       "ai_overall": 5,
-       "regulation": 5
-      },
-      "topics": [
-       "AGI/transformative",
-       "China/competition",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:09:25.685090+00:00",
-      "generation_id": "gen-1794193729-GzhOwp1MdN4IfPaTT3NS"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:14:10.743315+00:00",
-      "generation_id": "gen-1794194043-10vbb45zigAFSVI0mOhl"
-     }
-    }
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1276,99 +503,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "agi_pilled": 3,
-     "regulation": 1
-    },
-    "b": {
-     "regulation": 1
-    },
-    "topics": [
-     "regulation",
-     "AGI/transformative"
-    ],
-    "confidence": {
-     "agi_pilled": 4.0,
-     "regulation": 3.67
-    },
-    "escalated": [
-     "ai_overall",
-     "agi_pilled",
-     "x_risk",
-     "china_race"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "regulation": 1
-      },
-      "confidence": {
-       "regulation": 3
-      },
-      "topics": [
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:45:38.897565+00:00",
-      "generation_id": "gen-1794192329-DPWSJG4cqhSDb5H0yUYB"
-     },
-     "ds_1": {
-      "labels": {
-       "agi_pilled": 3,
-       "regulation": 1
-      },
-      "confidence": {
-       "agi_pilled": 3,
-       "regulation": 3
-      },
-      "topics": [
-       "AGI/transformative",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:58:00.652130+00:00",
-      "generation_id": "gen-1794193028-KN7LR11OsjIypl53xEYK"
-     },
-     "ds_2": {
-      "labels": {
-       "x_risk": 3,
-       "agi_pilled": 3,
-       "china_race": 2,
-       "ai_overall": 3,
-       "regulation": 1
-      },
-      "confidence": {
-       "x_risk": 5,
-       "agi_pilled": 5,
-       "china_race": 5,
-       "ai_overall": 5,
-       "regulation": 5
-      },
-      "topics": [
-       "AGI/transformative",
-       "China/competition",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:09:25.685090+00:00",
-      "generation_id": "gen-1794193729-GzhOwp1MdN4IfPaTT3NS"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:14:10.743315+00:00",
-      "generation_id": "gen-1794194043-10vbb45zigAFSVI0mOhl"
-     }
-    }
+    "status": "pending",
+    "a": {},
+    "b": {},
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1385,94 +527,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "agi_pilled": 3,
-     "regulation": 1
-    },
+    "status": "pending",
+    "a": {},
     "b": {},
-    "topics": [
-     "regulation",
-     "AGI/transformative"
-    ],
-    "confidence": {
-     "agi_pilled": 4.0,
-     "regulation": 3.0
-    },
-    "escalated": [
-     "ai_overall",
-     "agi_pilled",
-     "x_risk",
-     "regulation"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "regulation": 1
-      },
-      "confidence": {
-       "regulation": 2
-      },
-      "topics": [
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:45:38.897565+00:00",
-      "generation_id": "gen-1794192329-DPWSJG4cqhSDb5H0yUYB"
-     },
-     "ds_1": {
-      "labels": {
-       "agi_pilled": 3,
-       "regulation": 1
-      },
-      "confidence": {
-       "agi_pilled": 3,
-       "regulation": 2
-      },
-      "topics": [
-       "AGI/transformative",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:58:00.652130+00:00",
-      "generation_id": "gen-1794193028-KN7LR11OsjIypl53xEYK"
-     },
-     "ds_2": {
-      "labels": {
-       "x_risk": 3,
-       "agi_pilled": 3,
-       "ai_overall": 2,
-       "regulation": 3
-      },
-      "confidence": {
-       "x_risk": 5,
-       "agi_pilled": 5,
-       "ai_overall": 5,
-       "regulation": 5
-      },
-      "topics": [
-       "AGI/transformative",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:09:25.685090+00:00",
-      "generation_id": "gen-1794193729-GzhOwp1MdN4IfPaTT3NS"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:14:10.743315+00:00",
-      "generation_id": "gen-1794194043-10vbb45zigAFSVI0mOhl"
-     }
-    }
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1489,79 +551,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "regulation"
-    ],
+    "topics": [],
     "confidence": {},
-    "escalated": [
-     "ai_overall",
-     "agi_pilled",
-     "x_risk",
-     "china_race",
-     "regulation"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:45:38.897565+00:00",
-      "generation_id": "gen-1794192329-DPWSJG4cqhSDb5H0yUYB"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:58:00.652130+00:00",
-      "generation_id": "gen-1794193028-KN7LR11OsjIypl53xEYK"
-     },
-     "ds_2": {
-      "labels": {
-       "x_risk": 3,
-       "agi_pilled": 2,
-       "china_race": 1,
-       "ai_overall": 2,
-       "regulation": 2
-      },
-      "confidence": {
-       "x_risk": 5,
-       "agi_pilled": 5,
-       "china_race": 5,
-       "ai_overall": 5,
-       "regulation": 5
-      },
-      "topics": [
-       "regulation",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:09:25.685090+00:00",
-      "generation_id": "gen-1794193729-GzhOwp1MdN4IfPaTT3NS"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:14:10.743315+00:00",
-      "generation_id": "gen-1794194043-10vbb45zigAFSVI0mOhl"
-     }
-    }
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1578,66 +575,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
-    "escalated": [
-     "regulation"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:45:38.897565+00:00",
-      "generation_id": "gen-1794192329-DPWSJG4cqhSDb5H0yUYB"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:58:00.652130+00:00",
-      "generation_id": "gen-1794193028-KN7LR11OsjIypl53xEYK"
-     },
-     "ds_2": {
-      "labels": {
-       "regulation": 2
-      },
-      "confidence": {
-       "regulation": 5
-      },
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:09:25.685090+00:00",
-      "generation_id": "gen-1794193729-GzhOwp1MdN4IfPaTT3NS"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:14:10.743315+00:00",
-      "generation_id": "gen-1794194043-10vbb45zigAFSVI0mOhl"
-     }
-    }
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1654,79 +599,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "regulation"
-    ],
+    "topics": [],
     "confidence": {},
-    "escalated": [
-     "ai_overall",
-     "agi_pilled",
-     "x_risk",
-     "china_race",
-     "regulation"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:45:38.897565+00:00",
-      "generation_id": "gen-1794192329-DPWSJG4cqhSDb5H0yUYB"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:58:00.652130+00:00",
-      "generation_id": "gen-1794193028-KN7LR11OsjIypl53xEYK"
-     },
-     "ds_2": {
-      "labels": {
-       "x_risk": 3,
-       "agi_pilled": 2,
-       "china_race": 1,
-       "ai_overall": 2,
-       "regulation": 2
-      },
-      "confidence": {
-       "x_risk": 5,
-       "agi_pilled": 5,
-       "china_race": 5,
-       "ai_overall": 5,
-       "regulation": 5
-      },
-      "topics": [
-       "regulation",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:09:25.685090+00:00",
-      "generation_id": "gen-1794193729-GzhOwp1MdN4IfPaTT3NS"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:14:10.743315+00:00",
-      "generation_id": "gen-1794194043-10vbb45zigAFSVI0mOhl"
-     }
-    }
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1743,80 +623,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "other",
-     "regulation"
-    ],
+    "topics": [],
     "confidence": {},
-    "escalated": [
-     "ai_overall",
-     "agi_pilled",
-     "x_risk",
-     "china_race",
-     "regulation"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:45:38.897565+00:00",
-      "generation_id": "gen-1794192329-DPWSJG4cqhSDb5H0yUYB"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:58:00.652130+00:00",
-      "generation_id": "gen-1794193028-KN7LR11OsjIypl53xEYK"
-     },
-     "ds_2": {
-      "labels": {
-       "x_risk": 3,
-       "agi_pilled": 2,
-       "china_race": 1,
-       "ai_overall": 2,
-       "regulation": 2
-      },
-      "confidence": {
-       "x_risk": 5,
-       "agi_pilled": 5,
-       "china_race": 5,
-       "ai_overall": 5,
-       "regulation": 5
-      },
-      "topics": [
-       "regulation",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:09:25.685090+00:00",
-      "generation_id": "gen-1794193729-GzhOwp1MdN4IfPaTT3NS"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:14:10.743315+00:00",
-      "generation_id": "gen-1794194043-10vbb45zigAFSVI0mOhl"
-     }
-    }
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1833,76 +647,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
-    "escalated": [
-     "ai_overall",
-     "agi_pilled",
-     "x_risk",
-     "regulation"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:45:38.897565+00:00",
-      "generation_id": "gen-1794192329-DPWSJG4cqhSDb5H0yUYB"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:58:00.652130+00:00",
-      "generation_id": "gen-1794193028-KN7LR11OsjIypl53xEYK"
-     },
-     "ds_2": {
-      "labels": {
-       "x_risk": 3,
-       "agi_pilled": 2,
-       "ai_overall": 2,
-       "regulation": 2
-      },
-      "confidence": {
-       "x_risk": 5,
-       "agi_pilled": 5,
-       "ai_overall": 5,
-       "regulation": 5
-      },
-      "topics": [
-       "regulation",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:09:25.685090+00:00",
-      "generation_id": "gen-1794193729-GzhOwp1MdN4IfPaTT3NS"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:14:10.743315+00:00",
-      "generation_id": "gen-1794194043-10vbb45zigAFSVI0mOhl"
-     }
-    }
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1919,78 +671,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "regulation",
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
-    "escalated": [
-     "ai_overall",
-     "agi_pilled",
-     "x_risk",
-     "regulation"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:45:38.897565+00:00",
-      "generation_id": "gen-1794192329-DPWSJG4cqhSDb5H0yUYB"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:58:00.652130+00:00",
-      "generation_id": "gen-1794193028-KN7LR11OsjIypl53xEYK"
-     },
-     "ds_2": {
-      "labels": {
-       "x_risk": 3,
-       "agi_pilled": 2,
-       "ai_overall": 3,
-       "regulation": 3
-      },
-      "confidence": {
-       "x_risk": 5,
-       "agi_pilled": 5,
-       "ai_overall": 5,
-       "regulation": 5
-      },
-      "topics": [
-       "regulation",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:09:25.685090+00:00",
-      "generation_id": "gen-1794193729-GzhOwp1MdN4IfPaTT3NS"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:14:10.743315+00:00",
-      "generation_id": "gen-1794194043-10vbb45zigAFSVI0mOhl"
-     }
-    }
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   }
  ],
@@ -2486,7 +1174,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
@@ -2499,7 +1187,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
@@ -2512,7 +1200,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
@@ -2525,7 +1213,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
@@ -2538,7 +1226,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
@@ -2551,7 +1239,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
@@ -2564,7 +1252,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
@@ -2577,7 +1265,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
@@ -2590,7 +1278,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {

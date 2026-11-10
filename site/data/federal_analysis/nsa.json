@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "nsa",
- "revision": "d27ea3c9cd79b53c6f96efffd426107e488dacc6570f95bbd1d9badf9e4fbe7c",
+ "revision": "7d446abe469fad18b7a0b1fcf2494610f2cd7817c7c52833c0b3cb9902a97b14",
  "profile": {
   "id": "nsa",
   "name": "National Security Agency (NSA)",
@@ -30,65 +30,49 @@
    "reason": "current_government_institution"
   },
   "n_statements": 65,
-  "n_labeled": 65,
+  "n_labeled": 0,
   "scores": {
-   "ai_overall": 2.0,
-   "agi_pilled": 3.5,
-   "x_risk": 3.0,
-   "china_race": 1.0,
-   "regulation": 1.0
+   "ai_overall": null,
+   "agi_pilled": null,
+   "x_risk": null,
+   "china_race": null,
+   "regulation": null
   },
   "score_details": {
    "ai_overall": {
-    "score": 2.0,
-    "reason_a": "median_of_2",
-    "reason_b": "median_of_2",
-    "sids": [
-     "s32",
-     "s11"
-    ],
-    "label_count": 2
+    "score": null,
+    "reason_a": "pending",
+    "reason_b": "pending",
+    "sids": [],
+    "label_count": 0
    },
    "agi_pilled": {
-    "score": 3.5,
-    "reason_a": "consistent",
-    "reason_b": "consistent",
-    "sids": [
-     "s14",
-     "s11"
-    ],
-    "label_count": 3
+    "score": null,
+    "reason_a": "pending",
+    "reason_b": "pending",
+    "sids": [],
+    "label_count": 0
    },
    "x_risk": {
-    "score": 3.0,
-    "reason_a": "consistent",
-    "reason_b": "consistent",
-    "sids": [
-     "s14"
-    ],
-    "label_count": 1
+    "score": null,
+    "reason_a": "pending",
+    "reason_b": "pending",
+    "sids": [],
+    "label_count": 0
    },
    "china_race": {
-    "score": 1.0,
-    "reason_a": "consistent",
-    "reason_b": "consistent",
-    "sids": [
-     "s60",
-     "s16",
-     "s1"
-    ],
-    "label_count": 6
+    "score": null,
+    "reason_a": "pending",
+    "reason_b": "pending",
+    "sids": [],
+    "label_count": 0
    },
    "regulation": {
-    "score": 1.0,
-    "reason_a": "consistent",
-    "reason_b": "no_statements",
-    "sids": [
-     "s23",
-     "s24",
-     "s61"
-    ],
-    "label_count": 3
+    "score": null,
+    "reason_a": "pending",
+    "reason_b": "pending",
+    "sids": [],
+    "label_count": 0
    }
   },
   "summary": {
@@ -96,17 +80,7 @@
    "text": "",
    "sids": []
   },
-  "topics": {
-   "China/competition": 4.5,
-   "national security": 30.5,
-   "AGI/transformative": 3.333,
-   "regulation": 8.0,
-   "other": 11.5,
-   "misuse (bio/cyber)": 5.667,
-   "x-risk/loss of control": 0.333,
-   "deepfakes/elections": 0.667,
-   "jobs/economy": 0.5
-  },
+  "topics": {},
   "regulation": {
    "status": "complete",
    "areas": {
@@ -243,105 +217,14 @@
     "note": "NSA release describing a joint NSA, FBI, and CISA advisory. No personal director endorsement is inferred."
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "china_race": 1
-    },
-    "b": {
-     "china_race": 1
-    },
-    "topics": [
-     "China/competition",
-     "national security"
-    ],
-    "confidence": {
-     "china_race": 3.67
-    },
-    "escalated": [
-     "china_race"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol",
-     "astra": "openai/gpt-6-astra"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "china_race": 3
-      },
-      "confidence": {
-       "china_race": 4
-      },
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:56.831466+00:00",
-      "generation_id": "gen-1794192151-S97jHlXCPryknrWrsfiR"
-     },
-     "ds_1": {
-      "labels": {
-       "china_race": 2
-      },
-      "confidence": {
-       "china_race": 3
-      },
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:45.409008+00:00",
-      "generation_id": "gen-1794192845-PWXe7ab1EzsnmScFxkc9"
-     },
-     "ds_2": {
-      "labels": {
-       "china_race": 3
-      },
-      "confidence": {
-       "china_race": 4
-      },
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:27.155438+00:00",
-      "generation_id": "gen-1794193577-ykL8zwC5qoocvABvwWoi"
-     },
-     "sol": {
-      "labels": {
-       "china_race": 1
-      },
-      "confidence": {
-       "china_race": 4
-      },
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:13:48.843449+00:00",
-      "generation_id": "gen-1794194021-qBiNZaGipCfJOQwtFLTl"
-     },
-     "astra": {
-      "labels": {
-       "china_race": 1
-      },
-      "confidence": {
-       "china_race": 4
-      },
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T03:14:38.515250+00:00",
-      "generation_id": "gen-1794194074-dKGDfvGZaV0HmqwY67P5"
-     }
-    }
+    "status": "pending",
+    "a": {},
+    "b": {},
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -357,52 +240,14 @@
     "note": "Automated extraction; exact quote and local attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "AGI/transformative"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "AGI/transformative",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:56.831466+00:00",
-      "generation_id": "gen-1794192151-S97jHlXCPryknrWrsfiR"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "AGI/transformative"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:45.409008+00:00",
-      "generation_id": "gen-1794192845-PWXe7ab1EzsnmScFxkc9"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:27.155438+00:00",
-      "generation_id": "gen-1794193577-ykL8zwC5qoocvABvwWoi"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -418,52 +263,14 @@
     "note": "Automated extraction; exact quote and local attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "AGI/transformative"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "AGI/transformative",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:56.831466+00:00",
-      "generation_id": "gen-1794192151-S97jHlXCPryknrWrsfiR"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "AGI/transformative"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:45.409008+00:00",
-      "generation_id": "gen-1794192845-PWXe7ab1EzsnmScFxkc9"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:27.155438+00:00",
-      "generation_id": "gen-1794193577-ykL8zwC5qoocvABvwWoi"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -479,52 +286,14 @@
     "note": "Automated extraction; exact quote and local attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "AGI/transformative"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "AGI/transformative",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:56.831466+00:00",
-      "generation_id": "gen-1794192151-S97jHlXCPryknrWrsfiR"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "AGI/transformative"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:45.409008+00:00",
-      "generation_id": "gen-1794192845-PWXe7ab1EzsnmScFxkc9"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:27.155438+00:00",
-      "generation_id": "gen-1794193577-ykL8zwC5qoocvABvwWoi"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -540,52 +309,14 @@
     "note": "Automated extraction; exact quote and local attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "AGI/transformative"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "AGI/transformative",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:56.831466+00:00",
-      "generation_id": "gen-1794192151-S97jHlXCPryknrWrsfiR"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "AGI/transformative"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:45.409008+00:00",
-      "generation_id": "gen-1794192845-PWXe7ab1EzsnmScFxkc9"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:27.155438+00:00",
-      "generation_id": "gen-1794193577-ykL8zwC5qoocvABvwWoi"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -601,52 +332,14 @@
     "note": "Automated extraction; exact quote and local attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "regulation"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:56.831466+00:00",
-      "generation_id": "gen-1794192151-S97jHlXCPryknrWrsfiR"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:45.409008+00:00",
-      "generation_id": "gen-1794192845-PWXe7ab1EzsnmScFxkc9"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:27.155438+00:00",
-      "generation_id": "gen-1794193577-ykL8zwC5qoocvABvwWoi"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -663,52 +356,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "regulation"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:56.831466+00:00",
-      "generation_id": "gen-1794192151-S97jHlXCPryknrWrsfiR"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:45.409008+00:00",
-      "generation_id": "gen-1794192845-PWXe7ab1EzsnmScFxkc9"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:27.155438+00:00",
-      "generation_id": "gen-1794193577-ykL8zwC5qoocvABvwWoi"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -725,51 +380,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "AGI/transformative",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:56.831466+00:00",
-      "generation_id": "gen-1794192151-S97jHlXCPryknrWrsfiR"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:45.409008+00:00",
-      "generation_id": "gen-1794192845-PWXe7ab1EzsnmScFxkc9"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:27.155438+00:00",
-      "generation_id": "gen-1794193577-ykL8zwC5qoocvABvwWoi"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -786,52 +404,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:56.831466+00:00",
-      "generation_id": "gen-1794192151-S97jHlXCPryknrWrsfiR"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:45.409008+00:00",
-      "generation_id": "gen-1794192845-PWXe7ab1EzsnmScFxkc9"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:27.155438+00:00",
-      "generation_id": "gen-1794193577-ykL8zwC5qoocvABvwWoi"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -848,52 +428,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "regulation"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:56.831466+00:00",
-      "generation_id": "gen-1794192151-S97jHlXCPryknrWrsfiR"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:45.409008+00:00",
-      "generation_id": "gen-1794192845-PWXe7ab1EzsnmScFxkc9"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:27.155438+00:00",
-      "generation_id": "gen-1794193577-ykL8zwC5qoocvABvwWoi"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -910,98 +452,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "ai_overall": 2,
-     "agi_pilled": 3
-    },
-    "b": {
-     "ai_overall": 2,
-     "agi_pilled": 3
-    },
-    "topics": [
-     "AGI/transformative",
-     "national security"
-    ],
-    "confidence": {
-     "ai_overall": 3.0,
-     "agi_pilled": 2.5
-    },
-    "escalated": [
-     "agi_pilled"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "agi_pilled": 3,
-       "ai_overall": 2
-      },
-      "confidence": {
-       "agi_pilled": 3,
-       "ai_overall": 3
-      },
-      "topics": [
-       "AGI/transformative",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:56.831466+00:00",
-      "generation_id": "gen-1794192151-S97jHlXCPryknrWrsfiR"
-     },
-     "ds_1": {
-      "labels": {
-       "agi_pilled": 3,
-       "ai_overall": 2
-      },
-      "confidence": {
-       "agi_pilled": 2,
-       "ai_overall": 3
-      },
-      "topics": [
-       "AGI/transformative",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:45.409008+00:00",
-      "generation_id": "gen-1794192845-PWXe7ab1EzsnmScFxkc9"
-     },
-     "ds_2": {
-      "labels": {
-       "ai_overall": 2
-      },
-      "confidence": {
-       "ai_overall": 3
-      },
-      "topics": [
-       "AGI/transformative",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:27.155438+00:00",
-      "generation_id": "gen-1794193577-ykL8zwC5qoocvABvwWoi"
-     },
-     "sol": {
-      "labels": {
-       "agi_pilled": 3,
-       "ai_overall": 2
-      },
-      "confidence": {
-       "agi_pilled": 3,
-       "ai_overall": 4
-      },
-      "topics": [
-       "AGI/transformative",
-       "national security"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:13:48.843449+00:00",
-      "generation_id": "gen-1794194021-qBiNZaGipCfJOQwtFLTl"
-     }
-    }
+    "status": "pending",
+    "a": {},
+    "b": {},
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1018,52 +476,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "misuse (bio/cyber)"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:56.831466+00:00",
-      "generation_id": "gen-1794192151-S97jHlXCPryknrWrsfiR"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:45.409008+00:00",
-      "generation_id": "gen-1794192845-PWXe7ab1EzsnmScFxkc9"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:27.155438+00:00",
-      "generation_id": "gen-1794193577-ykL8zwC5qoocvABvwWoi"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1080,52 +500,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "regulation"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:56.831466+00:00",
-      "generation_id": "gen-1794192151-S97jHlXCPryknrWrsfiR"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:45.409008+00:00",
-      "generation_id": "gen-1794192845-PWXe7ab1EzsnmScFxkc9"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:27.155438+00:00",
-      "generation_id": "gen-1794193577-ykL8zwC5qoocvABvwWoi"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1142,99 +524,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "agi_pilled": 4,
-     "x_risk": 3
-    },
-    "b": {
-     "x_risk": 3
-    },
-    "topics": [
-     "x-risk/loss of control",
-     "national security",
-     "AGI/transformative"
-    ],
-    "confidence": {
-     "agi_pilled": 3.0,
-     "x_risk": 2.67
-    },
-    "escalated": [
-     "agi_pilled",
-     "x_risk"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "agi_pilled": 4,
-       "x_risk": 3
-      },
-      "confidence": {
-       "agi_pilled": 3,
-       "x_risk": 3
-      },
-      "topics": [
-       "x-risk/loss of control",
-       "AGI/transformative",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:56.831466+00:00",
-      "generation_id": "gen-1794192151-S97jHlXCPryknrWrsfiR"
-     },
-     "ds_1": {
-      "labels": {
-       "x_risk": 3,
-       "agi_pilled": 3
-      },
-      "confidence": {
-       "x_risk": 3,
-       "agi_pilled": 3
-      },
-      "topics": [
-       "x-risk/loss of control",
-       "AGI/transformative",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:45.409008+00:00",
-      "generation_id": "gen-1794192845-PWXe7ab1EzsnmScFxkc9"
-     },
-     "ds_2": {
-      "labels": {
-       "x_risk": 2
-      },
-      "confidence": {
-       "x_risk": 2
-      },
-      "topics": [
-       "x-risk/loss of control",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:27.155438+00:00",
-      "generation_id": "gen-1794193577-ykL8zwC5qoocvABvwWoi"
-     },
-     "sol": {
-      "labels": {
-       "x_risk": 3
-      },
-      "confidence": {
-       "x_risk": 3
-      },
-      "topics": [
-       "x-risk/loss of control",
-       "AGI/transformative"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:13:48.843449+00:00",
-      "generation_id": "gen-1794194021-qBiNZaGipCfJOQwtFLTl"
-     }
-    }
+    "status": "pending",
+    "a": {},
+    "b": {},
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1251,52 +548,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:56.831466+00:00",
-      "generation_id": "gen-1794192151-S97jHlXCPryknrWrsfiR"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:45.409008+00:00",
-      "generation_id": "gen-1794192845-PWXe7ab1EzsnmScFxkc9"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:27.155438+00:00",
-      "generation_id": "gen-1794193577-ykL8zwC5qoocvABvwWoi"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1314,105 +573,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "china_race": 1
-    },
-    "b": {
-     "china_race": 1
-    },
-    "topics": [
-     "China/competition",
-     "national security"
-    ],
-    "confidence": {
-     "china_race": 3.33
-    },
-    "escalated": [
-     "china_race"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol",
-     "astra": "openai/gpt-6-astra"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "china_race": 3
-      },
-      "confidence": {
-       "china_race": 4
-      },
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:56.831466+00:00",
-      "generation_id": "gen-1794192151-S97jHlXCPryknrWrsfiR"
-     },
-     "ds_1": {
-      "labels": {
-       "china_race": 1
-      },
-      "confidence": {
-       "china_race": 3
-      },
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:45.409008+00:00",
-      "generation_id": "gen-1794192845-PWXe7ab1EzsnmScFxkc9"
-     },
-     "ds_2": {
-      "labels": {
-       "china_race": 2
-      },
-      "confidence": {
-       "china_race": 3
-      },
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:27.155438+00:00",
-      "generation_id": "gen-1794193577-ykL8zwC5qoocvABvwWoi"
-     },
-     "sol": {
-      "labels": {
-       "china_race": 1
-      },
-      "confidence": {
-       "china_race": 5
-      },
-      "topics": [
-       "China/competition",
-       "misuse (bio/cyber)"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:13:48.843449+00:00",
-      "generation_id": "gen-1794194021-qBiNZaGipCfJOQwtFLTl"
-     },
-     "astra": {
-      "labels": {
-       "china_race": 1
-      },
-      "confidence": {
-       "china_race": 5
-      },
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T03:14:38.515250+00:00",
-      "generation_id": "gen-1794194074-dKGDfvGZaV0HmqwY67P5"
-     }
-    }
+    "status": "pending",
+    "a": {},
+    "b": {},
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1430,52 +598,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "misuse (bio/cyber)"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:56.831466+00:00",
-      "generation_id": "gen-1794192151-S97jHlXCPryknrWrsfiR"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:45.409008+00:00",
-      "generation_id": "gen-1794192845-PWXe7ab1EzsnmScFxkc9"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:27.155438+00:00",
-      "generation_id": "gen-1794193577-ykL8zwC5qoocvABvwWoi"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1493,52 +623,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "misuse (bio/cyber)"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:56.831466+00:00",
-      "generation_id": "gen-1794192151-S97jHlXCPryknrWrsfiR"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:45.409008+00:00",
-      "generation_id": "gen-1794192845-PWXe7ab1EzsnmScFxkc9"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:27.155438+00:00",
-      "generation_id": "gen-1794193577-ykL8zwC5qoocvABvwWoi"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1556,52 +648,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:56.831466+00:00",
-      "generation_id": "gen-1794192151-S97jHlXCPryknrWrsfiR"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:45.409008+00:00",
-      "generation_id": "gen-1794192845-PWXe7ab1EzsnmScFxkc9"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:27.155438+00:00",
-      "generation_id": "gen-1794193577-ykL8zwC5qoocvABvwWoi"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1619,52 +673,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "misuse (bio/cyber)"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:56.831466+00:00",
-      "generation_id": "gen-1794192151-S97jHlXCPryknrWrsfiR"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:45.409008+00:00",
-      "generation_id": "gen-1794192845-PWXe7ab1EzsnmScFxkc9"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:27.155438+00:00",
-      "generation_id": "gen-1794193577-ykL8zwC5qoocvABvwWoi"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1682,70 +698,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "regulation"
-    ],
+    "topics": [],
     "confidence": {},
-    "escalated": [
-     "regulation"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_1": {
-      "labels": {
-       "regulation": 1
-      },
-      "confidence": {
-       "regulation": 2
-      },
-      "topics": [
-       "regulation",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:51.749395+00:00",
-      "generation_id": "gen-1794192855-hrvaPhmJk2eYctwyb85W"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:23.177365+00:00",
-      "generation_id": "gen-1794193557-1vazefj44hiN5RR3GYtD"
-     },
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:22:27.665620+00:00",
-      "generation_id": "gen-1794194526-FvHHpuKNa7psktwPVh7l"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "misuse (bio/cyber)"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:25:24.577115+00:00",
-      "generation_id": "gen-1794194720-2yS7CUrC08EXkmO1Z1rV"
-     }
-    }
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1763,53 +723,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "regulation"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:51.749395+00:00",
-      "generation_id": "gen-1794192855-hrvaPhmJk2eYctwyb85W"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:23.177365+00:00",
-      "generation_id": "gen-1794193557-1vazefj44hiN5RR3GYtD"
-     },
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:22:27.665620+00:00",
-      "generation_id": "gen-1794194526-FvHHpuKNa7psktwPVh7l"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1827,82 +748,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "regulation": 1
-    },
+    "status": "pending",
+    "a": {},
     "b": {},
-    "topics": [
-     "regulation",
-     "national security"
-    ],
-    "confidence": {
-     "regulation": 2.67
-    },
-    "escalated": [
-     "regulation"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_1": {
-      "labels": {
-       "regulation": 1
-      },
-      "confidence": {
-       "regulation": 3
-      },
-      "topics": [
-       "regulation",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:51.749395+00:00",
-      "generation_id": "gen-1794192855-hrvaPhmJk2eYctwyb85W"
-     },
-     "ds_2": {
-      "labels": {
-       "regulation": 1
-      },
-      "confidence": {
-       "regulation": 2
-      },
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:23.177365+00:00",
-      "generation_id": "gen-1794193557-1vazefj44hiN5RR3GYtD"
-     },
-     "ds_0": {
-      "labels": {
-       "regulation": 1
-      },
-      "confidence": {
-       "regulation": 3
-      },
-      "topics": [
-       "regulation",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:22:27.665620+00:00",
-      "generation_id": "gen-1794194526-FvHHpuKNa7psktwPVh7l"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "misuse (bio/cyber)"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:25:24.577115+00:00",
-      "generation_id": "gen-1794194720-2yS7CUrC08EXkmO1Z1rV"
-     }
-    }
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -1920,82 +773,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "regulation": 1
-    },
+    "status": "pending",
+    "a": {},
     "b": {},
-    "topics": [
-     "regulation",
-     "national security"
-    ],
-    "confidence": {
-     "regulation": 2.67
-    },
-    "escalated": [
-     "regulation"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_1": {
-      "labels": {
-       "regulation": 1
-      },
-      "confidence": {
-       "regulation": 3
-      },
-      "topics": [
-       "regulation",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:51.749395+00:00",
-      "generation_id": "gen-1794192855-hrvaPhmJk2eYctwyb85W"
-     },
-     "ds_2": {
-      "labels": {
-       "regulation": 1
-      },
-      "confidence": {
-       "regulation": 2
-      },
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:23.177365+00:00",
-      "generation_id": "gen-1794193557-1vazefj44hiN5RR3GYtD"
-     },
-     "ds_0": {
-      "labels": {
-       "regulation": 1
-      },
-      "confidence": {
-       "regulation": 3
-      },
-      "topics": [
-       "regulation",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:22:27.665620+00:00",
-      "generation_id": "gen-1794194526-FvHHpuKNa7psktwPVh7l"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "misuse (bio/cyber)"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:25:24.577115+00:00",
-      "generation_id": "gen-1794194720-2yS7CUrC08EXkmO1Z1rV"
-     }
-    }
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -2013,52 +798,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:51.749395+00:00",
-      "generation_id": "gen-1794192855-hrvaPhmJk2eYctwyb85W"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:23.177365+00:00",
-      "generation_id": "gen-1794193557-1vazefj44hiN5RR3GYtD"
-     },
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:22:27.665620+00:00",
-      "generation_id": "gen-1794194526-FvHHpuKNa7psktwPVh7l"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -2076,56 +823,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "misuse (bio/cyber)",
-     "deepfakes/elections"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "deepfakes/elections",
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:51.749395+00:00",
-      "generation_id": "gen-1794192855-hrvaPhmJk2eYctwyb85W"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "misuse (bio/cyber)",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:23.177365+00:00",
-      "generation_id": "gen-1794193557-1vazefj44hiN5RR3GYtD"
-     },
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "deepfakes/elections",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:22:27.665620+00:00",
-      "generation_id": "gen-1794194526-FvHHpuKNa7psktwPVh7l"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -2143,53 +848,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "regulation"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:51.749395+00:00",
-      "generation_id": "gen-1794192855-hrvaPhmJk2eYctwyb85W"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:23.177365+00:00",
-      "generation_id": "gen-1794193557-1vazefj44hiN5RR3GYtD"
-     },
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:22:27.665620+00:00",
-      "generation_id": "gen-1794194526-FvHHpuKNa7psktwPVh7l"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -2207,52 +873,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "regulation"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:51.749395+00:00",
-      "generation_id": "gen-1794192855-hrvaPhmJk2eYctwyb85W"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:23.177365+00:00",
-      "generation_id": "gen-1794193557-1vazefj44hiN5RR3GYtD"
-     },
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:22:27.665620+00:00",
-      "generation_id": "gen-1794194526-FvHHpuKNa7psktwPVh7l"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -2270,83 +898,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "china_race": 1
-    },
+    "status": "pending",
+    "a": {},
     "b": {},
-    "topics": [
-     "China/competition",
-     "national security"
-    ],
-    "confidence": {
-     "china_race": 2.0
-    },
-    "escalated": [
-     "china_race"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_1": {
-      "labels": {
-       "china_race": 1
-      },
-      "confidence": {
-       "china_race": 2
-      },
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:51.749395+00:00",
-      "generation_id": "gen-1794192855-hrvaPhmJk2eYctwyb85W"
-     },
-     "ds_2": {
-      "labels": {
-       "china_race": 1
-      },
-      "confidence": {
-       "china_race": 2
-      },
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:23.177365+00:00",
-      "generation_id": "gen-1794193557-1vazefj44hiN5RR3GYtD"
-     },
-     "ds_0": {
-      "labels": {
-       "china_race": 1
-      },
-      "confidence": {
-       "china_race": 2
-      },
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:22:27.665620+00:00",
-      "generation_id": "gen-1794194526-FvHHpuKNa7psktwPVh7l"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "China/competition"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:25:24.577115+00:00",
-      "generation_id": "gen-1794194720-2yS7CUrC08EXkmO1Z1rV"
-     }
-    }
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -2364,53 +923,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "misuse (bio/cyber)"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:51.749395+00:00",
-      "generation_id": "gen-1794192855-hrvaPhmJk2eYctwyb85W"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:23.177365+00:00",
-      "generation_id": "gen-1794193557-1vazefj44hiN5RR3GYtD"
-     },
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:22:27.665620+00:00",
-      "generation_id": "gen-1794194526-FvHHpuKNa7psktwPVh7l"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -2428,83 +948,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "china_race": 1
-    },
+    "status": "pending",
+    "a": {},
     "b": {},
-    "topics": [
-     "China/competition",
-     "national security"
-    ],
-    "confidence": {
-     "china_race": 2.0
-    },
-    "escalated": [
-     "china_race"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_1": {
-      "labels": {
-       "china_race": 1
-      },
-      "confidence": {
-       "china_race": 2
-      },
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:51.749395+00:00",
-      "generation_id": "gen-1794192855-hrvaPhmJk2eYctwyb85W"
-     },
-     "ds_2": {
-      "labels": {
-       "china_race": 1
-      },
-      "confidence": {
-       "china_race": 2
-      },
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:23.177365+00:00",
-      "generation_id": "gen-1794193557-1vazefj44hiN5RR3GYtD"
-     },
-     "ds_0": {
-      "labels": {
-       "china_race": 1
-      },
-      "confidence": {
-       "china_race": 2
-      },
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:22:27.665620+00:00",
-      "generation_id": "gen-1794194526-FvHHpuKNa7psktwPVh7l"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "China/competition"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:25:24.577115+00:00",
-      "generation_id": "gen-1794194720-2yS7CUrC08EXkmO1Z1rV"
-     }
-    }
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -2522,71 +973,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "ai_overall": 2
-    },
-    "b": {
-     "ai_overall": 2
-    },
-    "topics": [
-     "national security",
-     "regulation"
-    ],
-    "confidence": {
-     "ai_overall": 3.0
-    },
+    "status": "pending",
+    "a": {},
+    "b": {},
+    "topics": [],
+    "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_1": {
-      "labels": {
-       "ai_overall": 2
-      },
-      "confidence": {
-       "ai_overall": 3
-      },
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:51.749395+00:00",
-      "generation_id": "gen-1794192855-hrvaPhmJk2eYctwyb85W"
-     },
-     "ds_2": {
-      "labels": {
-       "ai_overall": 2
-      },
-      "confidence": {
-       "ai_overall": 3
-      },
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:23.177365+00:00",
-      "generation_id": "gen-1794193557-1vazefj44hiN5RR3GYtD"
-     },
-     "ds_0": {
-      "labels": {
-       "ai_overall": 2
-      },
-      "confidence": {
-       "ai_overall": 3
-      },
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:22:27.665620+00:00",
-      "generation_id": "gen-1794194526-FvHHpuKNa7psktwPVh7l"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -2604,53 +998,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "regulation"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:51.749395+00:00",
-      "generation_id": "gen-1794192855-hrvaPhmJk2eYctwyb85W"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:23.177365+00:00",
-      "generation_id": "gen-1794193557-1vazefj44hiN5RR3GYtD"
-     },
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:22:27.665620+00:00",
-      "generation_id": "gen-1794194526-FvHHpuKNa7psktwPVh7l"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -2668,51 +1023,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "regulation"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:51.749395+00:00",
-      "generation_id": "gen-1794192855-hrvaPhmJk2eYctwyb85W"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:23.177365+00:00",
-      "generation_id": "gen-1794193557-1vazefj44hiN5RR3GYtD"
-     },
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:22:27.665620+00:00",
-      "generation_id": "gen-1794194526-FvHHpuKNa7psktwPVh7l"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -2730,52 +1048,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:51.749395+00:00",
-      "generation_id": "gen-1794192855-hrvaPhmJk2eYctwyb85W"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:23.177365+00:00",
-      "generation_id": "gen-1794193557-1vazefj44hiN5RR3GYtD"
-     },
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:22:27.665620+00:00",
-      "generation_id": "gen-1794194526-FvHHpuKNa7psktwPVh7l"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -2793,76 +1073,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "deepfakes/elections",
-     "misuse (bio/cyber)"
-    ],
+    "topics": [],
     "confidence": {},
-    "escalated": [
-     "agi_pilled"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_1": {
-      "labels": {
-       "agi_pilled": 3
-      },
-      "confidence": {
-       "agi_pilled": 3
-      },
-      "topics": [
-       "AGI/transformative",
-       "deepfakes/elections",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:51.749395+00:00",
-      "generation_id": "gen-1794192855-hrvaPhmJk2eYctwyb85W"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "misuse (bio/cyber)",
-       "national security",
-       "deepfakes/elections"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:23.177365+00:00",
-      "generation_id": "gen-1794193557-1vazefj44hiN5RR3GYtD"
-     },
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)",
-       "deepfakes/elections"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:22:27.665620+00:00",
-      "generation_id": "gen-1794194526-FvHHpuKNa7psktwPVh7l"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "misuse (bio/cyber)",
-       "deepfakes/elections",
-       "national security"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:25:24.577115+00:00",
-      "generation_id": "gen-1794194720-2yS7CUrC08EXkmO1Z1rV"
-     }
-    }
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -2880,53 +1098,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:51.749395+00:00",
-      "generation_id": "gen-1794192855-hrvaPhmJk2eYctwyb85W"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:23.177365+00:00",
-      "generation_id": "gen-1794193557-1vazefj44hiN5RR3GYtD"
-     },
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:22:27.665620+00:00",
-      "generation_id": "gen-1794194526-FvHHpuKNa7psktwPVh7l"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -2944,52 +1123,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:51.749395+00:00",
-      "generation_id": "gen-1794192855-hrvaPhmJk2eYctwyb85W"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:23.177365+00:00",
-      "generation_id": "gen-1794193557-1vazefj44hiN5RR3GYtD"
-     },
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:22:27.665620+00:00",
-      "generation_id": "gen-1794194526-FvHHpuKNa7psktwPVh7l"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -3007,53 +1148,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "jobs/economy"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:51.749395+00:00",
-      "generation_id": "gen-1794192855-hrvaPhmJk2eYctwyb85W"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "jobs/economy",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:23.177365+00:00",
-      "generation_id": "gen-1794193557-1vazefj44hiN5RR3GYtD"
-     },
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "jobs/economy",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:22:27.665620+00:00",
-      "generation_id": "gen-1794194526-FvHHpuKNa7psktwPVh7l"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -3071,52 +1173,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "other",
-     "national security"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:51.749395+00:00",
-      "generation_id": "gen-1794192855-hrvaPhmJk2eYctwyb85W"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:23.177365+00:00",
-      "generation_id": "gen-1794193557-1vazefj44hiN5RR3GYtD"
-     },
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:22:27.665620+00:00",
-      "generation_id": "gen-1794194526-FvHHpuKNa7psktwPVh7l"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -3134,49 +1198,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:55.365787+00:00",
-      "generation_id": "gen-1794192160-cuf4Wi39o0m35j7gWuRz"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:55:02.339221+00:00",
-      "generation_id": "gen-1794192861-lb2LWM96SqlWipHLMSZc"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:37.059900+00:00",
-      "generation_id": "gen-1794193557-i09gYozZHv3hRkfHhjrm"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -3194,49 +1223,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:55.365787+00:00",
-      "generation_id": "gen-1794192160-cuf4Wi39o0m35j7gWuRz"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:55:02.339221+00:00",
-      "generation_id": "gen-1794192861-lb2LWM96SqlWipHLMSZc"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:37.059900+00:00",
-      "generation_id": "gen-1794193557-i09gYozZHv3hRkfHhjrm"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -3254,49 +1248,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:55.365787+00:00",
-      "generation_id": "gen-1794192160-cuf4Wi39o0m35j7gWuRz"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:55:02.339221+00:00",
-      "generation_id": "gen-1794192861-lb2LWM96SqlWipHLMSZc"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:37.059900+00:00",
-      "generation_id": "gen-1794193557-i09gYozZHv3hRkfHhjrm"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -3314,49 +1273,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:55.365787+00:00",
-      "generation_id": "gen-1794192160-cuf4Wi39o0m35j7gWuRz"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:55:02.339221+00:00",
-      "generation_id": "gen-1794192861-lb2LWM96SqlWipHLMSZc"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:37.059900+00:00",
-      "generation_id": "gen-1794193557-i09gYozZHv3hRkfHhjrm"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -3374,53 +1298,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:55.365787+00:00",
-      "generation_id": "gen-1794192160-cuf4Wi39o0m35j7gWuRz"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:55:02.339221+00:00",
-      "generation_id": "gen-1794192861-lb2LWM96SqlWipHLMSZc"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:37.059900+00:00",
-      "generation_id": "gen-1794193557-i09gYozZHv3hRkfHhjrm"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -3438,71 +1323,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "China/competition"
-    ],
+    "topics": [],
     "confidence": {},
-    "escalated": [
-     "china_race"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "china_race": 1
-      },
-      "confidence": {
-       "china_race": 2
-      },
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:55.365787+00:00",
-      "generation_id": "gen-1794192160-cuf4Wi39o0m35j7gWuRz"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:55:02.339221+00:00",
-      "generation_id": "gen-1794192861-lb2LWM96SqlWipHLMSZc"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:37.059900+00:00",
-      "generation_id": "gen-1794193557-i09gYozZHv3hRkfHhjrm"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "China/competition",
-       "other"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:13:48.843449+00:00",
-      "generation_id": "gen-1794194021-qBiNZaGipCfJOQwtFLTl"
-     }
-    }
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -3520,71 +1348,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "China/competition"
-    ],
+    "topics": [],
     "confidence": {},
-    "escalated": [
-     "china_race"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "china_race": 1
-      },
-      "confidence": {
-       "china_race": 2
-      },
-      "topics": [
-       "national security",
-       "China/competition"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:55.365787+00:00",
-      "generation_id": "gen-1794192160-cuf4Wi39o0m35j7gWuRz"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:55:02.339221+00:00",
-      "generation_id": "gen-1794192861-lb2LWM96SqlWipHLMSZc"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "China/competition"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:37.059900+00:00",
-      "generation_id": "gen-1794193557-i09gYozZHv3hRkfHhjrm"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:13:48.843449+00:00",
-      "generation_id": "gen-1794194021-qBiNZaGipCfJOQwtFLTl"
-     }
-    }
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -3602,52 +1373,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:55.365787+00:00",
-      "generation_id": "gen-1794192160-cuf4Wi39o0m35j7gWuRz"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:55:02.339221+00:00",
-      "generation_id": "gen-1794192861-lb2LWM96SqlWipHLMSZc"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:37.059900+00:00",
-      "generation_id": "gen-1794193557-i09gYozZHv3hRkfHhjrm"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -3665,53 +1398,14 @@
     "organization_id": "nsa"
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:55.365787+00:00",
-      "generation_id": "gen-1794192160-cuf4Wi39o0m35j7gWuRz"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:55:02.339221+00:00",
-      "generation_id": "gen-1794192861-lb2LWM96SqlWipHLMSZc"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:37.059900+00:00",
-      "generation_id": "gen-1794193557-i09gYozZHv3hRkfHhjrm"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -3728,52 +1422,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:55.365787+00:00",
-      "generation_id": "gen-1794192160-cuf4Wi39o0m35j7gWuRz"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:55:02.339221+00:00",
-      "generation_id": "gen-1794192861-lb2LWM96SqlWipHLMSZc"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:37.059900+00:00",
-      "generation_id": "gen-1794193557-i09gYozZHv3hRkfHhjrm"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -3790,78 +1446,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
-    "b": {
-     "china_race": 1
-    },
-    "topics": [
-     "national security",
-     "China/competition"
-    ],
+    "b": {},
+    "topics": [],
     "confidence": {},
-    "escalated": [
-     "china_race"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "china_race": 1
-      },
-      "confidence": {
-       "china_race": 2
-      },
-      "topics": [
-       "national security",
-       "China/competition"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:55.365787+00:00",
-      "generation_id": "gen-1794192160-cuf4Wi39o0m35j7gWuRz"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:55:02.339221+00:00",
-      "generation_id": "gen-1794192861-lb2LWM96SqlWipHLMSZc"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "China/competition"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:37.059900+00:00",
-      "generation_id": "gen-1794193557-i09gYozZHv3hRkfHhjrm"
-     },
-     "sol": {
-      "labels": {
-       "china_race": 1
-      },
-      "confidence": {
-       "china_race": 4
-      },
-      "topics": [
-       "China/competition",
-       "national security",
-       "AGI/transformative"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:13:48.843449+00:00",
-      "generation_id": "gen-1794194021-qBiNZaGipCfJOQwtFLTl"
-     }
-    }
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -3878,53 +1470,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "misuse (bio/cyber)"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:55.365787+00:00",
-      "generation_id": "gen-1794192160-cuf4Wi39o0m35j7gWuRz"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:55:02.339221+00:00",
-      "generation_id": "gen-1794192861-lb2LWM96SqlWipHLMSZc"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "misuse (bio/cyber)",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:37.059900+00:00",
-      "generation_id": "gen-1794193557-i09gYozZHv3hRkfHhjrm"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -3941,53 +1494,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:55.365787+00:00",
-      "generation_id": "gen-1794192160-cuf4Wi39o0m35j7gWuRz"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:55:02.339221+00:00",
-      "generation_id": "gen-1794192861-lb2LWM96SqlWipHLMSZc"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "misuse (bio/cyber)",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:37.059900+00:00",
-      "generation_id": "gen-1794193557-i09gYozZHv3hRkfHhjrm"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -4004,52 +1518,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:55.365787+00:00",
-      "generation_id": "gen-1794192160-cuf4Wi39o0m35j7gWuRz"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:55:02.339221+00:00",
-      "generation_id": "gen-1794192861-lb2LWM96SqlWipHLMSZc"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "misuse (bio/cyber)",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:37.059900+00:00",
-      "generation_id": "gen-1794193557-i09gYozZHv3hRkfHhjrm"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -4066,54 +1542,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "misuse (bio/cyber)"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:55.365787+00:00",
-      "generation_id": "gen-1794192160-cuf4Wi39o0m35j7gWuRz"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:55:02.339221+00:00",
-      "generation_id": "gen-1794192861-lb2LWM96SqlWipHLMSZc"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "misuse (bio/cyber)",
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:37.059900+00:00",
-      "generation_id": "gen-1794193557-i09gYozZHv3hRkfHhjrm"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -4130,53 +1566,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:55.365787+00:00",
-      "generation_id": "gen-1794192160-cuf4Wi39o0m35j7gWuRz"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:55:02.339221+00:00",
-      "generation_id": "gen-1794192861-lb2LWM96SqlWipHLMSZc"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "misuse (bio/cyber)",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:37.059900+00:00",
-      "generation_id": "gen-1794193557-i09gYozZHv3hRkfHhjrm"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -4193,53 +1590,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:55.365787+00:00",
-      "generation_id": "gen-1794192160-cuf4Wi39o0m35j7gWuRz"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:55:02.339221+00:00",
-      "generation_id": "gen-1794192861-lb2LWM96SqlWipHLMSZc"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "misuse (bio/cyber)",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:37.059900+00:00",
-      "generation_id": "gen-1794193557-i09gYozZHv3hRkfHhjrm"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -4256,53 +1614,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "misuse (bio/cyber)"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:55.365787+00:00",
-      "generation_id": "gen-1794192160-cuf4Wi39o0m35j7gWuRz"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:55:02.339221+00:00",
-      "generation_id": "gen-1794192861-lb2LWM96SqlWipHLMSZc"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "misuse (bio/cyber)",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:37.059900+00:00",
-      "generation_id": "gen-1794193557-i09gYozZHv3hRkfHhjrm"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -4319,81 +1638,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "agi_pilled": 3
-    },
+    "status": "pending",
+    "a": {},
     "b": {},
-    "topics": [
-     "AGI/transformative",
-     "national security"
-    ],
-    "confidence": {
-     "agi_pilled": 2.5
-    },
-    "escalated": [
-     "agi_pilled"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "agi_pilled": 3
-      },
-      "confidence": {
-       "agi_pilled": 2
-      },
-      "topics": [
-       "AGI/transformative",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:55.365787+00:00",
-      "generation_id": "gen-1794192160-cuf4Wi39o0m35j7gWuRz"
-     },
-     "ds_1": {
-      "labels": {
-       "agi_pilled": 3
-      },
-      "confidence": {
-       "agi_pilled": 3
-      },
-      "topics": [
-       "AGI/transformative",
-       "national security",
-       "x-risk/loss of control"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:55:02.339221+00:00",
-      "generation_id": "gen-1794192861-lb2LWM96SqlWipHLMSZc"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "AGI/transformative",
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:37.059900+00:00",
-      "generation_id": "gen-1794193557-i09gYozZHv3hRkfHhjrm"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "AGI/transformative",
-       "misuse (bio/cyber)"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:13:48.843449+00:00",
-      "generation_id": "gen-1794194021-qBiNZaGipCfJOQwtFLTl"
-     }
-    }
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -4410,90 +1662,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "china_race": 1
-    },
-    "b": {
-     "china_race": 1
-    },
-    "topics": [
-     "China/competition",
-     "national security"
-    ],
-    "confidence": {
-     "china_race": 3.33
-    },
-    "escalated": [
-     "china_race"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "china_race": 1
-      },
-      "confidence": {
-       "china_race": 3
-      },
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:55.365787+00:00",
-      "generation_id": "gen-1794192160-cuf4Wi39o0m35j7gWuRz"
-     },
-     "ds_1": {
-      "labels": {
-       "china_race": 2
-      },
-      "confidence": {
-       "china_race": 3
-      },
-      "topics": [
-       "China/competition",
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:55:02.339221+00:00",
-      "generation_id": "gen-1794192861-lb2LWM96SqlWipHLMSZc"
-     },
-     "ds_2": {
-      "labels": {
-       "china_race": 1
-      },
-      "confidence": {
-       "china_race": 4
-      },
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:37.059900+00:00",
-      "generation_id": "gen-1794193557-i09gYozZHv3hRkfHhjrm"
-     },
-     "sol": {
-      "labels": {
-       "china_race": 1
-      },
-      "confidence": {
-       "china_race": 5
-      },
-      "topics": [
-       "China/competition",
-       "misuse (bio/cyber)"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:13:48.843449+00:00",
-      "generation_id": "gen-1794194021-qBiNZaGipCfJOQwtFLTl"
-     }
-    }
+    "status": "pending",
+    "a": {},
+    "b": {},
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -4510,78 +1686,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "regulation": 1
-    },
+    "status": "pending",
+    "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "regulation"
-    ],
-    "confidence": {
-     "regulation": 2.0
-    },
-    "escalated": [
-     "regulation"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "regulation": 1
-      },
-      "confidence": {
-       "regulation": 2
-      },
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:49.610003+00:00",
-      "generation_id": "gen-1794192162-BueiFkKMlGuouvIlHvCl"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:32.204876+00:00",
-      "generation_id": "gen-1794192870-ClcwvrL2y6wYedCwtxG2"
-     },
-     "ds_2": {
-      "labels": {
-       "regulation": 1
-      },
-      "confidence": {
-       "regulation": 2
-      },
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:07.078272+00:00",
-      "generation_id": "gen-1794193558-snCBkLOw4n59YEf7hAf0"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "misuse (bio/cyber)"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:13:48.843449+00:00",
-      "generation_id": "gen-1794194021-qBiNZaGipCfJOQwtFLTl"
-     }
-    }
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -4598,72 +1710,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "China/competition"
-    ],
+    "topics": [],
     "confidence": {},
-    "escalated": [
-     "china_race"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:42:49.610003+00:00",
-      "generation_id": "gen-1794192162-BueiFkKMlGuouvIlHvCl"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "China/competition"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:32.204876+00:00",
-      "generation_id": "gen-1794192870-ClcwvrL2y6wYedCwtxG2"
-     },
-     "ds_2": {
-      "labels": {
-       "china_race": 1
-      },
-      "confidence": {
-       "china_race": 2
-      },
-      "topics": [
-       "China/competition",
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:07.078272+00:00",
-      "generation_id": "gen-1794193558-snCBkLOw4n59YEf7hAf0"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "misuse (bio/cyber)",
-       "national security"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:13:48.843449+00:00",
-      "generation_id": "gen-1794194021-qBiNZaGipCfJOQwtFLTl"
-     }
-    }
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -4680,54 +1734,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "misuse (bio/cyber)"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T21:50:42.059165+00:00",
-      "generation_id": "gen-1794261037-AnQDyaohKEtJmuxwqEXg"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T21:52:42.907548+00:00",
-      "generation_id": "gen-1794261127-qou3G0xZSSx3xBvVfeSP"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T21:54:34.586790+00:00",
-      "generation_id": "gen-1794261253-aizp4lMpyNqw0hORyE5E"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -4744,71 +1758,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "misuse (bio/cyber)"
-    ],
+    "topics": [],
     "confidence": {},
-    "escalated": [
-     "ai_overall"
-    ],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "ai_overall": 2
-      },
-      "confidence": {
-       "ai_overall": 2
-      },
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T21:50:42.059165+00:00",
-      "generation_id": "gen-1794261037-AnQDyaohKEtJmuxwqEXg"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T21:52:42.907548+00:00",
-      "generation_id": "gen-1794261127-qou3G0xZSSx3xBvVfeSP"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T21:54:34.586790+00:00",
-      "generation_id": "gen-1794261253-aizp4lMpyNqw0hORyE5E"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "misuse (bio/cyber)"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T21:56:04.751876+00:00",
-      "generation_id": "gen-1794261362-EbW6HHXycBn5OEZh3gyy"
-     }
-    }
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -4825,54 +1782,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "national security",
-     "regulation"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T21:50:42.059165+00:00",
-      "generation_id": "gen-1794261037-AnQDyaohKEtJmuxwqEXg"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T21:52:42.907548+00:00",
-      "generation_id": "gen-1794261127-qou3G0xZSSx3xBvVfeSP"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "national security",
-       "regulation",
-       "misuse (bio/cyber)"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T21:54:34.586790+00:00",
-      "generation_id": "gen-1794261253-aizp4lMpyNqw0hORyE5E"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   }
  ],
@@ -4913,7 +1830,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
@@ -4926,7 +1843,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
@@ -4939,7 +1856,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
@@ -4952,7 +1869,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
@@ -4965,7 +1882,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
@@ -4978,7 +1895,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
@@ -4991,7 +1908,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
@@ -5004,7 +1921,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
@@ -5014,465 +1931,465 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": 1.0
+    "regulation": null
    },
    "n_statements": 5,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2023-12-31",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 9,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2024-01-31",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 11,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2024-02-29",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 12,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2024-03-31",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 14,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2024-04-30",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 20,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2024-05-31",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 20,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2024-06-30",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 20,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2024-07-31",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 21,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2024-08-31",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 21,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2024-09-30",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 26,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2024-10-31",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 28,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2024-11-30",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 28,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2024-12-31",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 28,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2025-01-31",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 29,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2025-02-28",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 29,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2025-03-31",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 29,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2025-04-30",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 29,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2025-05-31",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 31,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2025-06-30",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 32,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2025-07-31",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 33,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2025-08-31",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 33,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2025-09-30",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 33,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2025-10-31",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 33,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2025-11-30",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 33,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2025-12-31",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 37,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2026-01-31",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 38,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2026-02-28",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 38,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2026-03-31",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 38,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2026-04-30",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 44,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2026-05-31",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 46,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2026-06-30",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 46,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2026-07-31",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 46,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2026-08-31",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 0.5,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 47,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2026-09-30",
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 1.0,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 54,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2026-10-31",
    "scores": {
-    "ai_overall": 2.0,
-    "agi_pilled": 2.0,
-    "x_risk": 3.0,
-    "china_race": 1.0,
-    "regulation": 1.0
+    "ai_overall": null,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 57,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {

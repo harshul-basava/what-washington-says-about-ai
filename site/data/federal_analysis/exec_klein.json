@@ -1,14 +1,14 @@
 {
  "schema_version": 1,
  "id": "exec_klein",
- "revision": "d27ea3c9cd79b53c6f96efffd426107e488dacc6570f95bbd1d9badf9e4fbe7c",
+ "revision": "7d446abe469fad18b7a0b1fcf2494610f2cd7817c7c52833c0b3cb9902a97b14",
  "profile": {
   "id": "exec_klein",
   "name": "Ethan Klein",
   "party": null,
   "state": "",
   "chamber": "",
-  "status": "complete",
+  "status": "partial",
   "entity_type": "person",
   "branch": "executive",
   "organization_id": "ostp",
@@ -42,55 +42,49 @@
    "reason": "current_federal_official"
   },
   "n_statements": 4,
-  "n_labeled": 4,
+  "n_labeled": 0,
   "scores": {
-   "ai_overall": 4.0,
+   "ai_overall": null,
    "agi_pilled": null,
    "x_risk": null,
-   "china_race": 3.0,
-   "regulation": 1.0
+   "china_race": null,
+   "regulation": null
   },
   "score_details": {
    "ai_overall": {
-    "score": 4.0,
-    "reason_a": "median_of_1",
-    "reason_b": "median_of_1",
-    "sids": [
-     "s2"
-    ],
-    "label_count": 1
+    "score": null,
+    "reason_a": "pending",
+    "reason_b": "pending",
+    "sids": [],
+    "label_count": 0
    },
    "agi_pilled": {
     "score": null,
-    "reason_a": "silent",
-    "reason_b": "silent",
+    "reason_a": "pending",
+    "reason_b": "pending",
     "sids": [],
     "label_count": 0
    },
    "x_risk": {
     "score": null,
-    "reason_a": "silent",
-    "reason_b": "silent",
+    "reason_a": "pending",
+    "reason_b": "pending",
     "sids": [],
     "label_count": 0
    },
    "china_race": {
-    "score": 3.0,
-    "reason_a": "consistent",
-    "reason_b": "consistent",
-    "sids": [
-     "s1"
-    ],
-    "label_count": 1
+    "score": null,
+    "reason_a": "pending",
+    "reason_b": "pending",
+    "sids": [],
+    "label_count": 0
    },
    "regulation": {
-    "score": 1.0,
-    "reason_a": "consistent",
-    "reason_b": "no_statements",
-    "sids": [
-     "s2"
-    ],
-    "label_count": 2
+    "score": null,
+    "reason_a": "pending",
+    "reason_b": "pending",
+    "sids": [],
+    "label_count": 0
    }
   },
   "summary": {
@@ -116,14 +110,7 @@
     }
    ]
   },
-  "topics": {
-   "China/competition": 0.5,
-   "national security": 0.833,
-   "regulation": 1.667,
-   "jobs/economy": 0.333,
-   "energy/data centers": 0.333,
-   "other": 0.333
-  },
+  "topics": {},
   "regulation": {
    "status": "complete",
    "areas": {
@@ -277,94 +264,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "china_race": 3
-    },
-    "b": {
-     "china_race": 3
-    },
-    "topics": [
-     "China/competition",
-     "national security"
-    ],
-    "confidence": {
-     "china_race": 3.33
-    },
+    "status": "pending",
+    "a": {},
+    "b": {},
+    "topics": [],
+    "confidence": {},
     "escalated": [],
-    "stance_review": {
-     "reviewed_dimension": "ai_overall",
-     "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
-     "labels": {},
-     "confidence": {},
-     "review_confidence": 3,
-     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
-     "accepted": false,
-     "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:23:51.743972+00:00",
-     "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
-    },
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "astra_stance_review": "openai/gpt-6-astra"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "china_race": 3
-      },
-      "confidence": {
-       "china_race": 4
-      },
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:43:27.909814+00:00",
-      "generation_id": "gen-1794192179-FsH4FAtlpDGfukkW8iZ5"
-     },
-     "ds_1": {
-      "labels": {
-       "china_race": 3
-      },
-      "confidence": {
-       "china_race": 3
-      },
-      "topics": [
-       "China/competition",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:53.886866+00:00",
-      "generation_id": "gen-1794192885-mnUczgrwSObNSv4XFcmE"
-     },
-     "ds_2": {
-      "labels": {
-       "china_race": 3
-      },
-      "confidence": {
-       "china_race": 3
-      },
-      "topics": [
-       "China/competition"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:35.663418+00:00",
-      "generation_id": "gen-1794193583-t8YjW8F1Nzt5IXHp8CmS"
-     },
-     "astra_stance_review": {
-      "reviewed_dimension": "ai_overall",
-      "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
-      "labels": {},
-      "confidence": {},
-      "review_confidence": 3,
-      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
-      "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:23:51.743972+00:00",
-      "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -381,147 +288,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "regulation": 1,
-     "ai_overall": 4
-    },
-    "b": {
-     "ai_overall": 4
-    },
-    "topics": [
-     "regulation",
-     "jobs/economy",
-     "national security"
-    ],
-    "confidence": {
-     "regulation": 3.0,
-     "ai_overall": 3
-    },
-    "escalated": [
-     "ai_overall",
-     "regulation"
-    ],
-    "stance_review": {
-     "reviewed_dimension": "ai_overall",
-     "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
-     "labels": {
-      "ai_overall": 4
-     },
-     "confidence": {
-      "ai_overall": 3
-     },
-     "review_confidence": 3,
-     "reason": "In context, Klein includes AI among the emerging technologies under discussion and expresses broad optimism about their benefits for Americans, while criticizing excessive restraint. Benefits dominate and no substantive harms are acknowledged. Confidence is limited because this outlook covers emerging technologies collectively rather than AI alone.",
-     "supporting_quote": "Emerging technologies promise to expand economic opportunity, improve public health, and enhance national security. Yet in policy discussions about their governance, discourse has at times leaned too far toward restraint, slowing the pace of progress. As a technologist, I remain fundamentally hopeful that technology can improve American lives and further our nation’s flourishing.",
-     "support_basis": "context",
-     "source_context": {
-      "url": "https://www.commerce.senate.gov/wp-content/uploads/media/doc/Dr.%20Ethan%20Klein%20Opening%20Statement%20for%209.17.25.pdf",
-      "text_hash": "e88d66494f6f6b0efed0176f1b5cd5b2e9f191aff6e8c7d545b75d3c8330bb03",
-      "retrieval": "exact_normalized_search_retrieval",
-      "quote": "Emerging technologies promise to expand economic opportunity, improve public health, and enhance national security. Yet in policy discussions about their governance, discourse has at times leaned too far toward restraint, slowing the pace of progress. As a technologist, I remain fundamentally hopeful that technology can improve American lives and further our nation’s flourishing.",
-      "attribution_quote": "Statement of Dr. Ethan A. Klein Nominee for Associate Director of the Office of Science and Technology Policy",
-      "original_date": "2025-09-17"
-     },
-     "accepted": true,
-     "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:23:51.743972+00:00",
-     "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
-    },
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol",
-     "astra_stance_review": "openai/gpt-6-astra"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "regulation": 1
-      },
-      "confidence": {
-       "regulation": 3
-      },
-      "topics": [
-       "regulation",
-       "jobs/economy",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:43:27.909814+00:00",
-      "generation_id": "gen-1794192179-FsH4FAtlpDGfukkW8iZ5"
-     },
-     "ds_1": {
-      "labels": {
-       "regulation": 0,
-       "ai_overall": 3
-      },
-      "confidence": {
-       "regulation": 3,
-       "ai_overall": 2
-      },
-      "topics": [
-       "regulation",
-       "jobs/economy",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:53.886866+00:00",
-      "generation_id": "gen-1794192885-mnUczgrwSObNSv4XFcmE"
-     },
-     "ds_2": {
-      "labels": {
-       "regulation": 1
-      },
-      "confidence": {
-       "regulation": 3
-      },
-      "topics": [
-       "regulation",
-       "jobs/economy",
-       "national security"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:35.663418+00:00",
-      "generation_id": "gen-1794193583-t8YjW8F1Nzt5IXHp8CmS"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "jobs/economy",
-       "national security",
-       "regulation"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:13:49.488221+00:00",
-      "generation_id": "gen-1794194026-FMBJp1lC4JkIxPcZf2tw"
-     },
-     "astra_stance_review": {
-      "reviewed_dimension": "ai_overall",
-      "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
-      "labels": {
-       "ai_overall": 4
-      },
-      "confidence": {
-       "ai_overall": 3
-      },
-      "review_confidence": 3,
-      "reason": "In context, Klein includes AI among the emerging technologies under discussion and expresses broad optimism about their benefits for Americans, while criticizing excessive restraint. Benefits dominate and no substantive harms are acknowledged. Confidence is limited because this outlook covers emerging technologies collectively rather than AI alone.",
-      "supporting_quote": "Emerging technologies promise to expand economic opportunity, improve public health, and enhance national security. Yet in policy discussions about their governance, discourse has at times leaned too far toward restraint, slowing the pace of progress. As a technologist, I remain fundamentally hopeful that technology can improve American lives and further our nation’s flourishing.",
-      "support_basis": "context",
-      "source_context": {
-       "url": "https://www.commerce.senate.gov/wp-content/uploads/media/doc/Dr.%20Ethan%20Klein%20Opening%20Statement%20for%209.17.25.pdf",
-       "text_hash": "e88d66494f6f6b0efed0176f1b5cd5b2e9f191aff6e8c7d545b75d3c8330bb03",
-       "retrieval": "exact_normalized_search_retrieval",
-       "quote": "Emerging technologies promise to expand economic opportunity, improve public health, and enhance national security. Yet in policy discussions about their governance, discourse has at times leaned too far toward restraint, slowing the pace of progress. As a technologist, I remain fundamentally hopeful that technology can improve American lives and further our nation’s flourishing.",
-       "attribution_quote": "Statement of Dr. Ethan A. Klein Nominee for Associate Director of the Office of Science and Technology Policy",
-       "original_date": "2025-09-17"
-      },
-      "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:23:51.743972+00:00",
-      "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
-     }
-    }
+    "status": "pending",
+    "a": {},
+    "b": {},
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -538,102 +312,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
-    "a": {
-     "regulation": 0
-    },
+    "status": "pending",
+    "a": {},
     "b": {},
-    "topics": [
-     "regulation"
-    ],
-    "confidence": {
-     "regulation": 3.33
-    },
-    "escalated": [
-     "regulation"
-    ],
-    "stance_review": {
-     "reviewed_dimension": "ai_overall",
-     "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
-     "labels": {},
-     "confidence": {},
-     "review_confidence": 3,
-     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
-     "accepted": false,
-     "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:23:51.743972+00:00",
-     "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
-    },
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol",
-     "astra_stance_review": "openai/gpt-6-astra"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {
-       "regulation": 1
-      },
-      "confidence": {
-       "regulation": 3
-      },
-      "topics": [
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:43:27.909814+00:00",
-      "generation_id": "gen-1794192179-FsH4FAtlpDGfukkW8iZ5"
-     },
-     "ds_1": {
-      "labels": {
-       "regulation": 0
-      },
-      "confidence": {
-       "regulation": 3
-      },
-      "topics": [
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:53.886866+00:00",
-      "generation_id": "gen-1794192885-mnUczgrwSObNSv4XFcmE"
-     },
-     "ds_2": {
-      "labels": {
-       "regulation": 0
-      },
-      "confidence": {
-       "regulation": 4
-      },
-      "topics": [
-       "regulation"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:35.663418+00:00",
-      "generation_id": "gen-1794193583-t8YjW8F1Nzt5IXHp8CmS"
-     },
-     "sol": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation"
-      ],
-      "model": "openai/gpt-6.1-sol",
-      "assessed_at": "2026-11-09T03:13:49.488221+00:00",
-      "generation_id": "gen-1794194026-FMBJp1lC4JkIxPcZf2tw"
-     },
-     "astra_stance_review": {
-      "reviewed_dimension": "ai_overall",
-      "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
-      "labels": {},
-      "confidence": {},
-      "review_confidence": 3,
-      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
-      "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:23:51.743972+00:00",
-      "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
-     }
-    }
+    "topics": [],
+    "confidence": {},
+    "escalated": [],
+    "models": {},
+    "assessments": {}
    }
   },
   {
@@ -650,79 +336,14 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "complete",
+    "status": "pending",
     "a": {},
     "b": {},
-    "topics": [
-     "energy/data centers",
-     "regulation",
-     "other"
-    ],
+    "topics": [],
     "confidence": {},
     "escalated": [],
-    "stance_review": {
-     "reviewed_dimension": "ai_overall",
-     "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
-     "labels": {},
-     "confidence": {},
-     "review_confidence": 3,
-     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
-     "accepted": false,
-     "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:23:51.743972+00:00",
-     "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
-    },
-    "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "astra_stance_review": "openai/gpt-6-astra"
-    },
-    "assessments": {
-     "ds_0": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation",
-       "energy/data centers",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:43:27.909814+00:00",
-      "generation_id": "gen-1794192179-FsH4FAtlpDGfukkW8iZ5"
-     },
-     "ds_1": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "regulation",
-       "energy/data centers"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T02:54:53.886866+00:00",
-      "generation_id": "gen-1794192885-mnUczgrwSObNSv4XFcmE"
-     },
-     "ds_2": {
-      "labels": {},
-      "confidence": {},
-      "topics": [
-       "energy/data centers",
-       "other"
-      ],
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "assessed_at": "2026-11-09T03:06:35.663418+00:00",
-      "generation_id": "gen-1794193583-t8YjW8F1Nzt5IXHp8CmS"
-     },
-     "astra_stance_review": {
-      "reviewed_dimension": "ai_overall",
-      "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
-      "labels": {},
-      "confidence": {},
-      "review_confidence": 3,
-      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
-      "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:23:51.743972+00:00",
-      "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
-     }
-    }
+    "models": {},
+    "assessments": {}
    }
   }
  ],
@@ -1146,183 +767,183 @@
   {
    "date": "2025-09-30",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 3.0,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 3,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2025-10-31",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 3.0,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 3,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2025-11-30",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 3.0,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 3,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2025-12-31",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 3.0,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 3,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2026-01-31",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 3.0,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 3,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2026-02-28",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 3.0,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 4,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2026-03-31",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 3.0,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 4,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2026-04-30",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 3.0,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 4,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2026-05-31",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 3.0,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 4,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2026-06-30",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 3.0,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 4,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2026-07-31",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 3.0,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 4,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2026-08-31",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 3.0,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 4,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2026-09-30",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 3.0,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 4,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {
    "date": "2026-10-31",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": 3.0,
-    "regulation": 1.0
+    "china_race": null,
+    "regulation": null
    },
    "n_statements": 4,
-   "status": "complete",
+   "status": "pending",
    "kind": "reconstructed"
   },
   {

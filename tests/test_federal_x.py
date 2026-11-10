@@ -414,4 +414,85 @@ class XTests(unittest.TestCase):
                     self.x.collect(root,mode='historical',client=lambda req:PAGE,now='2026-11-08')
                 self.assertFalse((root/'data/federal_x_state.json').exists())
 
+    def test_cohort_cutoff_resumes_official_archive_without_touching_other_jobs(self):
+        from federal_x_config import current_job, fingerprint
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            institution=ACCOUNT|{'id':'commerce_x','subject_id':INSTITUTION['id'],
+                'handle':'Commerce','kind':'institutional'}
+            config=CONFIG|{'provider':'x_api','historical_window':'account',
+                'historical_until':'2026-11-03','accounts':[ACCOUNT,institution]}
+            write_json(root/'config/federal_x.json',config)
+            state_path=root/'data/federal_x_api_state.json'
+            status_path=root/'data/federal_x_status.json'
+            now=datetime(2026,11,10,12,tzinfo=timezone.utc).timestamp()
+            calls=[]
+
+            def api(request):
+                calls.append(request)
+                if 'from:Commerce ' in request['query']:
+                    return {'account':{'id':'8','username':'Commerce'},'posts':[],'cursor':'commerce-next'}
+                if request['end_time']=='2026-11-03T00:00:00Z':
+                    return PAGE|{'posts':[],'cursor':'original-next'}
+                if request['cursor'] is None:
+                    return PAGE|{'posts':[],'cursor':'cohort-next'}
+                return PAGE|{'posts':[
+                    POST,
+                    POST|{'id':'101','created_at':'2026-11-08T00:00:00Z'},
+                    POST|{'id':'102','author_id':'8'},
+                ]}
+
+            with patch.object(self.x.time,'time',return_value=now):
+                self.x.collect(root,mode='historical',client=api,now='2026-11-10')
+                original_jobs=self.x.read(state_path,{})['jobs']
+                original_status=status_path.read_bytes()
+                scope={'mode':'historical','ids':[PERSON['id']],'until':'2026-11-08',
+                    'now':'2026-11-10','page_limit':1}
+                plan=self.x.collect(root,dry=True,**scope)
+                self.assertEqual(plan['pending_windows'],1)
+                self.assertEqual(plan['historical_until'],'2026-11-08')
+                self.assertEqual(plan['subject_ids'],[PERSON['id']])
+                first=self.x.collect(root,client=api,**scope)
+                self.assertEqual(first['pending_windows'],1)
+                second=self.x.collect(root,client=api,**scope)
+                self.assertEqual(second['status'],'ok')
+                self.assertEqual(second['pending_windows'],0)
+                self.assertEqual(self.x.collect(root,dry=True,mode='historical',now='2026-11-10')['pending_windows'],2)
+
+            self.assertEqual([r['cursor'] for r in calls[-2:]],[None,'cohort-next'])
+            self.assertTrue(all(r['end_time']=='2026-11-08T00:00:00Z' for r in calls[-2:]))
+            self.assertTrue(all('from:OfficialA ' in r['query'] for r in calls[-2:]))
+            jobs=self.x.read(state_path,{})['jobs']
+            self.assertEqual({k:jobs[k] for k in original_jobs},original_jobs)
+            self.assertEqual(status_path.read_bytes(),original_status)
+            cohort,=[job for key,job in jobs.items() if key not in original_jobs]
+            self.assertEqual(cohort['historical_until'],'2026-11-08')
+            self.assertTrue(current_job(cohort,{ACCOUNT['id']:fingerprint(ACCOUNT)},config,'2026-11-11'))
+            self.assertEqual([s['post_id'] for s in self.x.read(root/f"evidence/{PERSON['id']}.json",{})['statements']],['100'])
+            reports=self.x.read(root/'data/federal_x_cohort_status.json',{})['cohorts']
+            self.assertEqual(list(reports.values()),[second])
+
+    def test_cohort_cutoff_requires_selected_historical_subjects_and_iso_date(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            for mode,ids,until in [
+                ('daily',[PERSON['id']],'2026-11-08'),
+                ('historical',None,'2026-11-08'),
+                ('historical',[PERSON['id']],'20261108'),
+                ('historical',[PERSON['id']],'2026-02-30'),
+                ('historical',[PERSON['id']],'2026-12-01'),
+            ]:
+                with self.subTest(mode=mode,ids=ids,until=until), self.assertRaisesRegex(ValueError,'until'):
+                    self.x.collect(root,mode=mode,ids=ids,until=until,dry=True,now='2026-11-10')
+
+    def test_cohort_plan_identifies_profiles_without_an_account(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            report=self.x.collect(root,mode='historical',ids=[INSTITUTION['id']],until='2023-02-01',
+                dry=True,now='2026-11-10')
+            self.assertEqual(report.get('unmapped_subject_ids'),[INSTITUTION['id']])
+            self.assertEqual(report['unmapped_profiles'],1)
+            self.assertEqual(report['pending_windows'],0)
+
 if __name__=='__main__':unittest.main()

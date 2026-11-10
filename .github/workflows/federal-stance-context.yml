@@ -1,6 +1,11 @@
 name: Federal stance source context
 on:
   workflow_dispatch:
+    inputs:
+      audit_path:
+        description: "Existing audit JSON file directly in data/"
+        type: string
+        default: data/federal_stance_review.json
 permissions:
   contents: read
 concurrency:
@@ -20,7 +25,14 @@ jobs:
       - name: Read only the posts flagged by Astra
         env:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
-        run: uv run --no-dev python federal_stance_review.py x-context
+          FEDERAL_AUDIT_PATH: ${{ inputs.audit_path }}
+        run: |
+          audit="${FEDERAL_AUDIT_PATH:-data/federal_stance_review.json}"
+          if [[ ! "$audit" =~ ^data/[A-Za-z0-9_.-]+\.json$ || ! -f "$audit" || -L "$audit" ]]; then
+            echo 'audit_path must name an existing JSON file directly in data/.' >&2
+            exit 2
+          fi
+          uv run --no-dev python federal_stance_review.py x-context --audit "$audit"
       - name: Save public source context and cost records
         if: always()
         uses: actions/upload-artifact@v4
