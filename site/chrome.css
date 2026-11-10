@@ -39,3 +39,12 @@ dialog.cite pre{white-space:pre-wrap;font:13px/1.5 ui-monospace,SFMono-Regular,M
 dialog.cite .note{font-size:13px;color:var(--muted)}
 .herolinks{font-size:13px;margin:14px 0 0;color:var(--muted)}
 .herolinks a{color:var(--accent)}
+/* About menu: opens on hover or keyboard focus; clicking "About" goes to the method */
+.navmenu{position:relative;display:flex;align-items:center}
+.navmenu-btn{display:inline-flex;align-items:center;gap:4px}
+.navmenu-list{position:absolute;top:100%;right:0;margin-top:8px;min-width:170px;padding:6px;display:none;flex-direction:column;background:var(--surface-raised,var(--raised,var(--bg)));border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.14);z-index:50}
+.navmenu-list::before{content:"";position:absolute;left:0;right:0;top:-10px;height:10px}
+.navmenu:hover .navmenu-list,.navmenu:focus-within .navmenu-list{display:flex}
+.topbar nav .navmenu-list a,.navmenu-list button{display:block;width:100%;text-align:left;padding:7px 10px;border:0;border-radius:6px;background:none;color:var(--fg);font:inherit;font-size:14px;cursor:pointer;text-decoration:none}
+.topbar nav .navmenu-list a:hover,.navmenu-list button:hover,.navmenu-list a:focus-visible,.navmenu-list button:focus-visible{background:var(--hover);color:var(--fg)}
+.topbar nav .navmenu-list a[href^="https://github.com/"]{display:block}

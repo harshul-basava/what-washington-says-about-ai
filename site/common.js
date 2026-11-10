@@ -47,3 +47,12 @@ document.addEventListener("click", e=>{
   const q = e.target.closest("[data-quote]"); if (q) { e.stopPropagation(); const [pid,sid]=q.dataset.quote.split("|"); const t=typeof quoteText==="function" && quoteText(pid,sid); if (t) copy(t,"Quote copied with its source"); return; }
   const k = e.target.closest("[data-copy]"); if (k) { copy(document.getElementById(k.dataset.copy).textContent); return; }
 }, true);
+
+// "About" and "Method" go to the method section; open it if it is a collapsed <details>
+document.addEventListener("click", e=>{
+  const a = e.target.closest('a[href="#method"]'); if (!a) return;
+  const m = document.getElementById("method"); if (m && m.tagName==="DETAILS") m.open = true;
+  if (location.hash === "#method" && m) { e.preventDefault(); m.scrollIntoView({behavior:"smooth"}); }
+  document.activeElement && document.activeElement.blur();
+});
+document.addEventListener("click", e=>{ if (e.target.closest(".navmenu-list [data-cite]")) document.activeElement && document.activeElement.blur(); }, true);
