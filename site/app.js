@@ -21,8 +21,8 @@ const PNAME = {D:"Democrats",R:"Republicans",I:"Independents"};
 const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const PC = p => css(p==="D"?"--pD":p==="R"?"--pR":"--pI");
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-let M = [], TL = [], COMM = {}, UPDATED = "", DAILY = null, HISTORY = null, CHANGES = null, RF = null, rfSel = null;
-const S = {cong:"119", party:"all", dim:"x_risk", preset:null, range:"365", events:false};   // range: topic chart window in days
+let FED = null, M = [], TL = [], COMM = {}, UPDATED = "", DAILY = null, HISTORY = null, CHANGES = null, RF = null, rfSel = null;
+const S = {cong:"119", party:"all", dim:"x_risk", preset:null, range:"365", events:false, who:"congress"};   // range: topic chart window in days
 let sortKey = "n", sortDir = -1, open = null;
 
 /* ---------- helpers ---------- */
@@ -60,6 +60,12 @@ async function init(){
   M = mj.members; TL = tl; COMM = cm; UPDATED = mj.updated;
   const opt = f => fetch(`data/${f}.json`).then(r=>r.ok?r.json():null).catch(()=>null);
   [DAILY, HISTORY, CHANGES, RF] = await Promise.all([opt("daily"), opt("history"), opt("changes"), opt("regfocus")]);
+  if ($("rfchart") && document.querySelector("[data-who]")) FED = await opt("federal_analysis");
+  // Policies page: Congress / Executive officials / Institutions switch drives both charts
+  document.querySelectorAll("[data-who]").forEach(b=>b.onclick=()=>{ S.who=b.dataset.who; rfSel=null;
+    document.querySelectorAll("[data-who]").forEach(x=>x.setAttribute("aria-checked", x.dataset.who===S.who));
+    if ($("congsel")) $("congsel").hidden = S.who!=="congress";
+    keepPlace(()=>{ drawRegFocus(); dispatchEvent(new CustomEvent("policyscope",{detail:S.who})); }); });
   if ($("updated")) $("updated").textContent = mj.updated;
   if ($("nmembers")) $("nmembers").textContent = M.length.toLocaleString();
   if ($("nquotes")) $("nquotes").textContent = M.reduce((a,m)=>a+m.n,0).toLocaleString();
@@ -234,13 +240,20 @@ const pct = v => v>0 && v<0.005 ? "<1%" : Math.round(v*100)+"%";
 const RFGROUP = {harms:"Everyday harms", frontier:"Catastrophic and frontier risk"};
 const RFKIND = [[2,"Explicit support"],[1,"Implied support"],[-1,"Implied opposition"],[-2,"Explicit opposition"]];
 function rfColor(v){ const c=d3.color(css(v>0?"--r4":"--r0")); if (Math.abs(v)===1) c.opacity=0.45; return c.formatRgb(); }
+// who the policy chart covers: Congress (reg_focus labels) or federal officials / institutions (federal analysis)
+function rfSource(){
+  if (S.who==="congress" || !FED) return {ms: M.filter(m=>inCong(m) && partyOk(m)), get: rfStance, noun:"members", fed:false};
+  const inst = S.who==="institutions";
+  return {ms: FED.members.filter(m=>(m.entity_type==="institution")===inst), get:(m,a)=>(m.regulation?.areas?.[a]?.stance)||0, noun: inst?"institutions":"officials", fed:true};
+}
 function rfStance(m, a){ const r = RF && RF.m[m.id] && RF.m[m.id][a]; return r ? r[0] : 0; }
 function drawRegFocus(){
   const el = document.getElementById("rfchart"); el.innerHTML = "";
   if (!RF){ el.innerHTML = '<p class="note">No data yet.</p>'; return; }
-  const ms = M.filter(m=>inCong(m) && partyOk(m)), N = ms.length;
+  const src = rfSource(), ms = src.ms, N = ms.length;
+  setTitle("regfocus", `Which AI policies ${src.noun} support`);
   const rows = RF.areas.map(([a,name,g,sup,opp])=>{ const c={2:0,1:0,"-1":0,"-2":0};
-    for (const m of ms){ const v=rfStance(m,a); if (v) c[v]++; }
+    for (const m of ms){ const v=src.get(m,a); if (v) c[v]++; }
     return {a, name, g, sup, opp, c, s:(c[2]+c[1])/N, o:(c[-1]+c[-2])/N}; });
   const groups = ["harms","frontier"].map(g=>({g, rows: rows.filter(r=>r.g===g).sort((x,y)=>y.s-x.s || x.o-y.o)}));
   const W = widthOf(el), narrow = W < 560, LW = narrow ? 128 : 262, RH = 26, GH = 30, PADR = 44, PADL = 40;
@@ -273,13 +286,13 @@ function drawRegFocus(){
   svg.append("text").attr("x",x0-6).attr("y",y+16).attr("text-anchor","end").attr("fill",mu).attr("font-size",11).text("← oppose");
   svg.append("text").attr("x",x0+6).attr("y",y+16).attr("fill",mu).attr("font-size",11).text("support →");
   const pc = (n)=>`${n} (${Math.round(n/N*100)}%)`;
-  const party = (r, sgn)=>["D","R","I"].map(p=>{ const n=ms.filter(m=>m.party===p && Math.sign(rfStance(m,r.a))===sgn).length; return n?`${p} ${n}`:""; }).filter(Boolean).join(" · ");
+  const party = (r, sgn)=>src.fed ? "" : ["D","R","I"].map(p=>{ const n=ms.filter(m=>m.party===p && Math.sign(rfStance(m,r.a))===sgn).length; return n?`${p} ${n}`:""; }).filter(Boolean).join(" · ");
   svg.append("g").selectAll("rect").data(segs).join("rect")
     .attr("x",d=>d.x+(d.v>0?1:0)).attr("y",d=>d.y).attr("width",d=>Math.max(1,d.w-1)).attr("height",RH-10).attr("rx",2)
     .attr("fill",d=>rfColor(d.v)).classed("hit",true)
     .on("mousemove",(e,d)=>{ const r=d.r; showTip(e, `<b>${esc(r.name)}</b><br><span class="note">Support means: ${esc(r.sup)}</span><br>`+
       `Support: <b>${pc(r.c[2]+r.c[1])}</b>: ${r.c[2]} explicit, ${r.c[1]} implied${party(r,1)?` · ${party(r,1)}`:""}<br>`+
-      `Oppose: <b>${pc(r.c[-1]+r.c[-2])}</b>: ${r.c[-2]} explicit, ${r.c[-1]} implied${party(r,-1)?` · ${party(r,-1)}`:""}<br><span class="note">Out of ${N} members. Click to see them.</span>`); })
+      `Oppose: <b>${pc(r.c[-1]+r.c[-2])}</b>: ${r.c[-2]} explicit, ${r.c[-1]} implied${party(r,-1)?` · ${party(r,-1)}`:""}<br><span class="note">Out of ${N} ${src.noun}. Click to see them.</span>`); })
     .on("mouseleave",hideTip).on("click",(e,d)=>{ hideTip(); rfSel={a:d.r.a, name:d.r.name, sgn:Math.sign(d.v)}; listRF(); });
   document.getElementById("rf-legend").innerHTML = RFKIND.map(([v,l])=>`<span><i style="background:${rfColor(v)}"></i>${l}</span>`).join("");
   listRF();
@@ -287,10 +300,13 @@ function drawRegFocus(){
 function listRF(){
   const cap=document.getElementById("rf-cap"), box=document.getElementById("rf-names");
   if (!rfSel){ cap.textContent=""; box.innerHTML=""; return; }
-  const list = M.filter(m=>inCong(m) && partyOk(m) && Math.sign(rfStance(m,rfSel.a))===rfSel.sgn)
-    .sort((a,b)=>Math.abs(rfStance(b,rfSel.a))-Math.abs(rfStance(a,rfSel.a)) || b.n-a.n);
-  cap.innerHTML = `<b>${esc(rfSel.name)}</b>: members who ${rfSel.sgn>0?"support":"oppose"} it (${list.length})`;
-  nameChips(box, list, m=>Math.abs(rfStance(m,rfSel.a))===2?"explicit":"implied");
+  const src = rfSource();
+  const list = src.ms.filter(m=>Math.sign(src.get(m,rfSel.a))===rfSel.sgn)
+    .sort((a,b)=>Math.abs(src.get(b,rfSel.a))-Math.abs(src.get(a,rfSel.a)) || (b.n||b.n_statements||0)-(a.n||a.n_statements||0));
+  cap.innerHTML = `<b>${esc(rfSel.name)}</b>: ${src.noun} who ${rfSel.sgn>0?"support":"oppose"} it (${list.length})`;
+  const kind = m=>Math.abs(src.get(m,rfSel.a))===2?"explicit":"implied";
+  if (!src.fed) { nameChips(box, list, kind); return; }
+  box.innerHTML = list.map(m=>`<a class="nm" style="text-decoration:none" href="federal.html?scope=${S.who}&profile=${encodeURIComponent(m.id)}">${esc(m.name)} <span class="note">${esc(m.organization_name||"")}</span><b>${kind(m)}</b></a>`).join("");
 }
 
 /* ---------- key events, drawn as dashed lines on the time charts ---------- */

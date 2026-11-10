@@ -11,9 +11,9 @@
 <script>try{if(localStorage.getItem("theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=3">
+<link rel="stylesheet" href="site.css?v=4">
 <link rel="stylesheet" href="policies.css?v=8">
-<link rel="stylesheet" href="policy-charts.css?v=6">
+<link rel="stylesheet" href="policy-charts.css?v=7">
 <link rel="stylesheet" href="chrome.css?v=3">
 </head>
 <body data-page="policies">
@@ -40,7 +40,12 @@
 </header>
 
 <div class="controlbar" role="toolbar" aria-label="Chart settings">
-  <div class="segmented" role="radiogroup" aria-label="Congress">
+  <div class="segmented" role="radiogroup" aria-label="Who">
+    <button type="button" role="radio" data-who="congress" aria-checked="true">Congress</button>
+    <button type="button" role="radio" data-who="officials" aria-checked="false">Executive officials</button>
+    <button type="button" role="radio" data-who="institutions" aria-checked="false">Institutions</button>
+  </div>
+  <div class="segmented" role="radiogroup" aria-label="Congress" id="congsel">
     <button type="button" role="radio" data-cong="119" aria-checked="true">119th Congress<small>today</small></button>
     <button type="button" role="radio" data-cong="120" aria-checked="false">120th Congress<small>from Jan 2027</small></button>
   </div>
@@ -48,11 +53,11 @@
 
 <div class="withtoc">
 <nav class="toc" aria-label="Contents"><div class="tocin"><ol>
-    <li><a href="#regfocus">Policies Congress supports</a></li>
+    <li><a href="#regfocus">Policies they support</a></li>
     <li><a href="#policy-section">Positions on named policies</a></li>
   </ol></div></nav>
 <h2 id="regfocus">Which AI policies members support</h2>
-<p class="sub">Percent of members who support (right) or oppose (left) each AI policy.</p>
+<p class="sub">Percent who support (right) or oppose (left) each AI policy.</p>
 <div class="chart" id="rfchart"></div>
 <div class="legend" id="rf-legend"></div>
 <p class="note" id="rf-cap"></p>
@@ -71,7 +76,7 @@
   <li><b>Policies they support:</b> a second rubric (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/main/config/reg_focus.md">config/reg_focus.md</a>) lists 23 concrete AI policies, from limits on AI chatbots for minors and data center moratoriums to a ban on superintelligence. DeepSeek V4.1 Flash and GPT-6.1 Sol each read all of a member's statements and mark each policy as explicit or implied support, explicit or implied opposition, or no stance, with the quotes that show it. A harm alone is not support: the member must ask for that specific policy, or back a bill that makes it. A general call to "protect workers" or "protect kids" does not count. When the two models point in different directions, GPT-6 Astra reads the cited quotes and decides. When they agree, the weaker of the two strengths is kept. The daily job checks a member again when their new statements talk about AI rules.</li>
   <li><b>Policy judgments:</b> keyword searches identify candidate statements in the existing corpus. DeepSeek V4.1 Flash 1017 assesses each candidate with a confidence score. Astra independently reviews confidence below the configured threshold. Cases that remain uncertain require human review. The policy view preserves both assessments and separates no matching evidence from incomplete assessment. Confidence scores are model estimates that require calibration. Each framework has its own dated registry entry. New entries require a manual refresh. These labels have not received a human validation study.</li>
   <li><b>Executive and institutional coverage:</b> the policy explorer adds a curated set of federal officials and institutions. Profiles show sourced roles and memberships. Each quote distinguishes a personal statement, a statement in an official role, or an institutional statement. Membership does not establish endorsement. Agency filters include subagencies and linked roles. Each official counts once; charts use the primary organization. Some roles and statement dates remain unknown. The daily job searches configured federal sources, verifies excerpts, and updates policy judgments. The site shows partial updates and work that awaits retry. Roles and memberships still need manual review.</li>
-  <li><b>Reading the charts:</b> in "Which AI policies members support", the percent uses all members of the selected Congress, including members with no statements. Most members have said nothing about most policies, so the two bars do not add up to 100%. "Explicit" means that the member names the policy or a bill that makes it; "implied" means that the member clearly asks for the policy but does not name it or a bill. In "Positions on specific AI policies", each bar covers every profile in the view. "No evidence" means that the profile has no relevant statement, or that its assessment is not finished yet. "Mixed or unclear" combines mixed positions, statements that only describe the policy, and unclear statements. For executive officials, each official counts once and the bars use each official's primary organization; agency filters include linked roles. An institution's statements do not show its officials' personal views. Coverage includes the White House, Commerce, the National Security Agency and the Superintelligence Task Force. DeepSeek V4.1 Flash 1017 assesses each statement with a confidence score, and Astra reviews each assessment below the confidence threshold. Confidence scores are model estimates, not calibrated accuracy. In "Profiles and source quotes", each position summarizes the available statement history, not a current position, and no matching evidence does not mean opposition.</li>
+  <li><b>Reading the charts:</b> in the first chart, the percent uses everyone in the selected group, including those with no statements. For Congress, it uses all members of the selected Congress. For executive officials and institutions, it uses the same 23 policies and the same two-model method, applied to the federal statements on the <a href="federal.html">Federal page</a>. Most members have said nothing about most policies, so the two bars do not add up to 100%. "Explicit" means that the member names the policy or a bill that makes it; "implied" means that the member clearly asks for the policy but does not name it or a bill. In "Positions on specific AI policies", each bar covers every profile in the view. "No evidence" means that the profile has no relevant statement, or that its assessment is not finished yet. "Mixed or unclear" combines mixed positions, statements that only describe the policy, and unclear statements. For executive officials, each official counts once and the bars use each official's primary organization; agency filters include linked roles. An institution's statements do not show its officials' personal views. Coverage includes the White House, Commerce, the National Security Agency and the Superintelligence Task Force. DeepSeek V4.1 Flash 1017 assesses each statement with a confidence score, and Astra reviews each assessment below the confidence threshold. Confidence scores are model estimates, not calibrated accuracy. In "Profiles and source quotes", each position summarizes the available statement history, not a current position, and no matching evidence does not mean opposition.</li>
 </ol>
 <p><b>Caveats.</b> What people say in public is not the same as what they believe or how they vote. Language models make these labels, and people check only some of them. Members who rarely talk about AI have little or no evidence. That does not mean they have no views. The <a href="index.html#method">Congress method</a> explains how we collect the statements.</p>
 </details>
@@ -97,8 +102,8 @@
 <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.16/dist/plot.umd.min.js"></script>
 <script src="common.js?v=2"></script>
-<script src="app.js?v=3"></script>
-<script src="policy-charts.js?v=5"></script>
-<script src="policies.js?v=12"></script>
+<script src="app.js?v=4"></script>
+<script src="policy-charts.js?v=6"></script>
+<script src="policies.js?v=13"></script>
 </body>
 </html>

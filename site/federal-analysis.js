@@ -262,58 +262,51 @@
     let request = 0, currentDetail = null;
     const cache = new Map();
     const dimensionOptions=id=>data.dimensions.map(d=>`<option value="${esc(d.id)}" ${d.id===id?'selected':''}>${esc(d.title)}</option>`).join('');
-    root.innerHTML = `<nav class="fc-toc" aria-label="Federal analysis sections"><a href="#fc-cohort">Profiles by score</a><a href="#fc-comparison">Compare scores</a><a href="#fc-agency-section">Scores by agency</a><a href="#fc-timeline-section">Scores over time</a><a href="#fc-recent-section">Recent changes</a><a href="#fc-policy-section">Policies they support</a><a href="#fc-topic-section">Topics</a><a href="#fc-groups-section">Profile groups</a><a href="#fc-members-section">All profiles</a><a href="#fa-profiles">Sources and history</a></nav>
-      <section class="fc-controlbar" aria-label="Chart controls"><label>Question <select id="fc-dimension">${dimensionOptions(state.chartDimension)}</select></label><div class="fa-scope" role="group" aria-label="Profile type"><button type="button" data-scope="officials" aria-pressed="true">Executive officials</button><button type="button" data-scope="institutions" aria-pressed="false">Institutions</button></div></section>
-      <section class="fa-filter-section" aria-label="Filter federal profiles">
-      <div class="fa-filters"><label>Agency or membership<select id="fa-agency"><option value="all">All organizations</option>${(data.organizations || []).map(o=>`<option value="${esc(o.id)}">${esc(o.name)}</option>`).join('')}</select></label><label>Name or organization<input id="fa-search" type="search" placeholder="Search profiles" autocomplete="off"></label></div>
-      </section>
-      <div id="fa-coverage" class="fa-coverage" aria-live="polite"></div>
-      <section class="fc-section" id="fc-cohort"><h2 id="fc-cohort-title">Federal profiles by score</h2><p class="fc-description">Each dot is one profile, colored by the selected score.</p><div id="fc-dots"></div><div id="fc-availability" aria-live="polite"></div></section>
-      <section class="fc-section" id="fc-comparison"><div class="fa-section-heading"><h2>Compare two AI scores</h2><label class="fc-control">Vertical axis<select id="fc-compare">${dimensionOptions(state.compare)}</select></label></div><p class="fc-description" id="fc-scatter-description"></p><div id="fc-scatter"></div></section>
+    // the topic charts follow the question, as on the Congress page
+    const TOPIC_OF={ai_overall:'jobs/economy',agi_pilled:'AGI/transformative',x_risk:'x-risk/loss of control',china_race:'China/competition',regulation:'regulation'};
+    const TOPIC_NAME={'jobs/economy':'jobs and the economy','AGI/transformative':'AGI and transformative AI','x-risk/loss of control':'x-risk and loss of control','China/competition':'China and competition','regulation':'AI rules'};
+    const HIGH={ai_overall:'are optimistic about AI',agi_pilled:'expect AGI',x_risk:'want action on AI x-risk',china_race:'say the China race drives their AI views',regulation:'want substantial AI rules'};
+    const who=()=>state.scope==='institutions'?'Institutions':'Officials';
+    root.innerHTML = `<section class="fc-controlbar" aria-label="Chart settings"><label>Question <select id="fc-dimension">${dimensionOptions(state.chartDimension)}</select></label><div class="fa-scope" role="group" aria-label="Profile type"><button type="button" data-scope="officials" aria-pressed="true">Executive officials</button><button type="button" data-scope="institutions" aria-pressed="false">Institutions</button></div></section>
+      <nav class="fc-toc" aria-label="Contents"><a href="#fc-cohort">By score</a><a href="#fc-agency-section">By agency</a><a href="#fc-timeline-section">Over time</a><a href="#fc-recent-section">Recent changes</a><a href="policies.html">Policies they support</a><a href="#fc-topic-section">Topics</a><a href="#fc-members-section">All profiles</a></nav>
+      <section class="fc-section" id="fc-cohort"><h2 id="fc-cohort-title"></h2><p class="fc-description">Each dot is one profile, colored by the selected score.</p><div id="fc-dots"></div></section>
       <section class="fc-section" id="fc-agency-section"><h2>Scores by agency</h2><p class="fc-description">Profiles in each agency, by the selected score.</p><div id="fc-agencies"></div><div id="fc-agency-selection" aria-live="polite"></div></section>
-      <section class="fc-section" id="fc-timeline-section"><div class="fa-section-heading"><h2>Profiles scoring 3 or more over time</h2><label class="fc-control">History<select id="fc-history-kind"><option value="reconstructed">Monthly reconstruction</option><option value="observed">Observed snapshots</option></select></label></div><p class="fc-description">Percent of profiles with a score of 3 or more on the selected question.</p><div id="fc-timeline"></div></section>
-      <section class="fc-section" id="fc-recent-section"><h2>Recent score changes</h2><p class="fc-description">Observed changes in the selected question over the past 60 days.</p><div id="fc-recent"></div></section>
-      <section class="fc-section" id="fc-policy-section"><h2>Which AI policies they support</h2><p class="fc-description">Profiles that support (right) or oppose (left) each AI policy.</p><div id="fc-policies"></div><div id="fc-policy-selection" aria-live="polite"></div></section>
-      <section class="fc-section" id="fc-topic-section"><div class="fa-section-heading"><h2>What they talk about</h2><label class="fc-control">Time range<select id="fc-range"><option value="3m">3 months</option><option value="12m" selected>12 months</option><option value="all">All time</option></select></label></div><p class="fc-description">Share of statements about each topic.</p><div id="fc-topic-share"></div><div class="fa-section-heading fc-voices-heading"><h3>Top voices on a topic</h3><label class="fc-control">Topic<select id="fc-topic">${data.topics.map(t=>`<option>${esc(t)}</option>`).join('')}</select></label></div><div id="fc-voices"></div></section>
-      <section class="fc-section" id="fc-groups-section"><h2>Profile groups</h2><p class="fc-description">Groups of profiles, selected by their scores.</p><div class="fc-presets">${charts.PRESETS.map(p=>`<button type="button" data-preset="${p.id}" aria-pressed="${p.id===state.preset}">${esc(p.title)}</button>`).join('')}</div><div id="fc-group-members" class="fc-profile-chips" aria-live="polite"></div></section>
-      <section class="fc-section" id="fc-members-section"><h2>All profiles</h2><p class="fc-description">The five scores of every profile in this view.</p><div id="fc-members"></div></section>
-      <section class="fa-overview" aria-labelledby="fa-overview-title"><div class="fa-section-heading"><div><p class="fa-eyebrow">The current cohort</p><h2 id="fa-overview-title">Five questions about AI</h2></div><a href="#fa-profiles">Explore a profile ↓</a></div>
-      <div id="fa-distributions"></div></section>
-      <section id="fa-profiles" class="fa-profile-section" aria-labelledby="fa-profile-section-title"><div class="fa-section-heading"><div><p class="fa-eyebrow">Evidence behind the scores</p><h2 id="fa-profile-section-title">Explore a profile</h2></div></div>
-      <div class="fa-explorer"><aside class="fa-profile-picker"><label for="fa-profile-choice">Choose a profile</label><select id="fa-profile-choice"></select><p id="fa-profile-count" class="fa-note"></p><div id="fa-profile-list" class="fa-profile-list" aria-label="Profiles"></div></aside><div id="fa-profile-panel" class="fa-profile-panel" aria-live="polite"></div></div></section>
-      <section class="fa-method" id="method"><p class="fa-eyebrow">How to read this page</p><h2>Sources, scores, and limits</h2><p>${esc(data.methodology?.text || 'The analysis uses verified public statements, model labels, and a fixed score formula.')}</p>
-      <p><b>Reading the charts.</b> Agency filters include subagencies and linked roles; each profile counts once, and officials and institutions have separate totals. Colors round scores to the nearest whole number, as on the Congress page; gray means not enough evidence. A profile that never addresses a question has not enough evidence on it; a 0 means the profile dismisses the idea or opposes AI rules. In "Scores by agency", each profile's primary affiliation sets its group, subagencies roll up to their parent, and linked roles do not add a second count. "Profiles scoring 3 or more over time" uses all selected profiles, including those without scores; the monthly reconstruction applies today's labels to dated evidence for today's roster, does not track who held office then, and keeps observed snapshots separate, and earlier coverage is often thinner. In the policy chart, each side uses the same scale, and no stated position does not mean opposition. Topic shares use a rolling 30-day window, and each statement splits its weight equally among its topics; partial dates count at the end of their month or year, and undated or unfinished statements are left out. The top voices are the 15 profiles with the largest share of statements on the topic. Low scores can reflect silence, so open each profile to check the explanation and sources. Bars in "Five questions about AI" count profiles by the nearest whole score; missing evidence and unfinished labels are left out.</p>
-      <p>A profile needs at least three statements for a score. A profile that never addresses a question gets no score on it; a 0 is the lowest position on the rubric. Score details explain the result.</p>
-      <p>Institutional statements describe the institution. They do not establish an official's personal views. Officials' views do not establish institutional positions.</p>
-      <p>These records cover today's eligible federal roster. Search completion does not establish complete evidence or equal evidence depth.</p>
+      <section class="fc-section" id="fc-timeline-section"><h2 id="fc-timeline-title"></h2><p class="fc-description">Percent of profiles, month by month.</p><div id="fc-timeline"></div></section>
+      <section class="fc-section" id="fc-recent-section"><h2>Recent changes</h2><p class="fc-description">Scores that moved by more than 1 point in the last 60 days.</p><div id="fc-recent"></div></section>
+      <section class="fc-section" id="fc-topic-section"><h2>Topics</h2><h3>Share of statements about each topic</h3><div id="fc-topic-share"></div><h3 id="fc-voices-title"></h3><div id="fc-voices"></div></section>
+      <section class="fc-section" id="fc-members-section"><h2>All profiles</h2><div class="fa-listbar"><input id="fa-search" type="search" placeholder="Search name or agency…" autocomplete="off" aria-label="Search profiles"></div><div id="fc-members"></div></section>
+      <details class="method" id="method"><summary><h2>Method</h2><span class="fa-muted">How we collected, scored and checked the data</span></summary><p>${esc(data.methodology?.text || 'The analysis uses verified public statements, model labels, and a fixed score formula.')}</p>
+      <p><b>Reading the charts.</b> Each profile counts once, and officials and institutions have separate totals. Colors round scores to the nearest whole number, as on the Congress page; gray means not enough evidence. A profile that never addresses a question has not enough evidence on it; a 0 means the profile dismisses the idea or opposes AI rules. In "Scores by agency", each profile's primary affiliation sets its group, and subagencies roll up to their parent. The chart over time applies today's labels to dated evidence for today's roster, month by month; it does not track who held office then, and earlier coverage is often thinner. Topic shares use a rolling 30-day window over the last 12 months, and each statement splits its weight equally among its topics. Low scores can reflect silence, so open each profile to check the summary and sources.</p>
+      <p>A profile needs at least three statements for a score. Institutional statements describe the institution. They do not establish an official's personal views. Officials' views do not establish institutional positions. These records cover today's federal roster.</p>
       <p class="fa-models">${esc(Object.entries(data.methodology?.models || {}).map(([key,value])=>`${key}: ${value}`).join(' · '))}</p>
-      <p><a href="data/federal_analysis.json" download>Download the analysis index (JSON)</a> · <a href="policies.html#policy-section">Explore named policies</a></p><p class="fa-note">Export built ${esc(dateLabel(data.built_on?.slice(0,10)))}.</p></section>`;
+      <p class="fa-muted">Export built ${esc(dateLabel(data.built_on?.slice(0,10)))}.</p></details>`;
     const get = id => root.querySelector('#' + id);
-    const selectedMembers=()=>filterMembers(data.members,state,data.organizations || []).sort((a,b)=>a.name.localeCompare(b.name));
+    const selectedMembers=()=>filterMembers(data.members,{...state,search:''},data.organizations || []).sort((a,b)=>a.name.localeCompare(b.name));
+    const levelText=(id,v)=>v===null||v===undefined?'Not enough evidence':Number.isInteger(v)?(LEVELS[id]||[])[v]:`Between “${LEVELS[id][Math.floor(v)]}” and “${LEVELS[id][Math.floor(v)+1]}”`;
     function renderCharts() {
-      const members=selectedMembers(),dim=data.dimensions.find(d=>d.id===state.chartDimension),profiles=chartData?.profiles;
-      get('fc-cohort-title').textContent=`${state.scope==='institutions'?'Institutions':'Officials'} by ${dim.title} score`;
+      const members=selectedMembers(),dim=data.dimensions.find(d=>d.id===state.chartDimension),profiles=chartData?.profiles,topic=TOPIC_OF[state.chartDimension];
+      get('fc-cohort-title').textContent=`${who()} by ${dim.title} score`;
       get('fc-dots').innerHTML=charts.renderDots(members,state.chartDimension);
-      get('fc-availability').innerHTML=charts.renderAvailability(members,dim);
-      get('fc-scatter-description').textContent=`Horizontal axis: ${dim.title}. Vertical axis: ${data.dimensions.find(d=>d.id===state.compare).title}.`;
-      get('fc-scatter').innerHTML=charts.renderScatter(members,state.chartDimension,state.compare,data.dimensions);
       get('fc-agencies').innerHTML=charts.renderAgencies(members,state.chartDimension,data.organizations || []);
       get('fc-agency-selection').innerHTML='';
       const unavailable=`<p class="fa-empty" role="status">${esc(chartError)}</p>`;
-      get('fc-timeline').innerHTML=profiles?charts.renderTimeline(members,profiles,state.chartDimension,state.historyKind):unavailable;
+      get('fc-timeline-title').textContent=`${who()} who ${HIGH[state.chartDimension]}, over time`;
+      get('fc-timeline').innerHTML=profiles?charts.renderTimeline(members,profiles,state.chartDimension,'reconstructed'):unavailable;
       get('fc-recent').innerHTML=profiles?charts.renderRecent(members,profiles,state.chartDimension,data.built_on.slice(0,10)):unavailable;
-      get('fc-policies').innerHTML=charts.renderPolicies(members,data.regulation_areas,state.rule);
-      get('fc-policy-selection').innerHTML=charts.renderPolicySelection(members,data.regulation_areas,state.rule);
-      get('fc-topic-share').innerHTML=profiles?charts.renderTopicShare(members,profiles,data.topics,state.range,data.built_on.slice(0,10)):unavailable;
-      get('fc-voices').innerHTML=charts.renderVoices(members,state.topic);
-      renderGroup();
-      get('fc-members').innerHTML=charts.renderMembers(members,data.dimensions);
+      get('fc-topic-share').innerHTML=profiles?charts.renderTopicShare(members,profiles,data.topics,'12m',data.built_on.slice(0,10)):unavailable;
+      get('fc-voices-title').textContent=`${who()} who talk most about ${TOPIC_NAME[topic]}`;
+      get('fc-voices').innerHTML=charts.renderVoices(members,topic);
+      renderTable();
     }
-    function renderGroup() {
-      root.querySelectorAll('[data-preset]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.preset===state.preset)));
-      const members=charts.presetMembers(selectedMembers(),state.preset);
-      get('fc-group-members').innerHTML=members.length?members.map(m=>`<a href="#fa-profiles" data-chart-profile data-profile="${esc(m.id)}">${esc(m.name)}</a>`).join(''):'<p class="fa-empty">No profiles in this view meet these score thresholds.</p>';
+    function renderTable() {
+      const q=state.search.trim().toLowerCase();
+      const rows=selectedMembers().filter(m=>!q || [m.name,m.organization_name,...(m.aliases||[]),...(m.roles||[]).map(r=>r.title)].join(' ').toLowerCase().includes(q));
+      get('fc-members').innerHTML=rows.length?charts.renderMembers(rows,data.dimensions):'<p class="fa-empty">No profile matches this search.</p>';
+      const tr=[...get('fc-members').querySelectorAll('tr')].find(r=>r.querySelector(`[data-profile="${CSS.escape(state.selected||'')}"]`));
+      if (tr) { tr.classList.add('fa-selected'); tr.insertAdjacentHTML('afterend',`<tr class="fa-detail"><td colspan="${tr.children.length}"><div id="fa-profile-panel" class="fa-profile-panel" aria-live="polite"></div></td></tr>`); }
+      if (tr && currentDetail?.id===state.selected) { const m=data.members.find(x=>x.id===state.selected); if (m) renderProfile(m,currentDetail); }
     }
+    const panel=()=>get('fa-profile-panel') || {set innerHTML(_){}, scrollIntoView(){}};
     function updateURL() {
       if (!global.history?.replaceState) return;
       const url = new URL(global.location.href);
@@ -322,34 +315,37 @@
       url.hash = '';
       global.history.replaceState(null,'',url);
     }
+    // one quote, styled like the quotes on the Congress page
+    function quoteHTML(st) {
+      const src=safeURL(st.url), topics=(st.analysis?.topics||[]);
+      return `<div class="fa-q" id="${esc(quoteID(st.sid))}" tabindex="-1">“${esc(st.text)}”<div class="fa-q-src">${esc(dateLabel(st.date))}${src?` · <a href="${esc(src)}" target="_blank" rel="noopener noreferrer">source</a>`:''} ${topics.map(t=>`<span class="fa-chip">${esc(t)}</span>`).join('')}</div></div>`;
+    }
     function renderSources() {
       if (!currentDetail) return;
       const sources = currentDetail.statements, pages = Math.max(1,Math.ceil(sources.length/20));
       state.page = Math.min(state.page,pages-1);
-      get('fa-sources').innerHTML = sources.length ? sources.slice(state.page*20,(state.page+1)*20).map(s=>renderStatement(s,data.dimensions)).join('') : '<p class="fa-empty">No verified statements in this profile.</p>';
-      get('fa-source-pages').innerHTML = sources.length > 20 ? `<button type="button" data-source-page="${state.page-1}" ${state.page===0 ? 'disabled' : ''}>Previous quotes</button><span>Page ${state.page+1} of ${pages}</span><button type="button" data-source-page="${state.page+1}" ${state.page===pages-1 ? 'disabled' : ''}>Next quotes</button>` : '';
+      get('fa-sources').innerHTML = sources.length ? sources.slice(state.page*20,(state.page+1)*20).map(quoteHTML).join('') : '<p class="fa-empty">No verified statements in this profile.</p>';
+      get('fa-source-pages').innerHTML = sources.length > 20 ? `<button type="button" data-source-page="${state.page-1}" ${state.page===0 ? 'disabled' : ''}>Previous</button><span>Page ${state.page+1} of ${pages}</span><button type="button" data-source-page="${state.page+1}" ${state.page===pages-1 ? 'disabled' : ''}>Next</button>` : '';
+    }
+    function rulesHTML(member) {
+      const areas=member.regulation?.areas||{}, name=id=>data.regulation_areas.find(a=>a.id===id)?.title||id;
+      const part=sgn=>Object.entries(areas).filter(([,v])=>Math.sign(v?.stance||0)===sgn).map(([id,v])=>`<span class="fa-chip" title="${esc((Math.abs(v.stance)===2?'Explicit. ':'Implied. ')+(v.why||''))}">${esc(name(id))}</span>`).join('');
+      const sup=part(1), opp=part(-1);
+      return sup||opp ? `<p class="fa-muted fa-rules">${sup?`Policies they support: ${sup}`:''}${sup&&opp?'<br>':''}${opp?`Policies they oppose: ${opp}`:''}</p>` : '';
     }
     function renderProfile(member, detail) {
-      const statements = detail.statements;
-      get('fa-profile-panel').innerHTML = `<header class="fa-profile-header"><p class="fa-eyebrow">${member.entity_type === 'institution' ? 'Institution' : 'Executive official'} · ${esc(member.organization_name || 'Organization not listed')}</p>
-        <h3 id="fa-profile-name" tabindex="-1">${esc(member.name)}</h3><p>${count(member.n_statements)} verified statements · ${count(member.n_labeled)} assessed · <span class="fa-status">${esc(STATUS[member.status] || 'Assessment pending')}</span></p>
-        <p class="fa-note">${member.entity_type === 'institution' ? 'This profile uses institutional statements. Its positions do not transfer to its members.' : "This profile uses this official's statements. Agency positions do not transfer to this official."}</p></header>
-        <nav class="fa-profile-nav" aria-label="Profile sections"><a href="#fa-summary">Summary</a><a href="#fa-rules">AI rules</a><a href="#fa-history">History</a><a href="#fa-source-section">Sources</a></nav>
-        ${renderScores(member,data.dimensions,statements)}
-        <section id="fa-summary" class="fa-profile-block"><h3>What the evidence says</h3>${renderSummary(member.summary,statements)}</section>
-        ${renderStanceReview(member.stance_review,statements)}
-        <section class="fa-profile-block"><h3>Topics in the statements</h3>${renderTopics(member,data.topics || [])}</section>
-        <section id="fa-rules" class="fa-profile-block"><h3>Positions on ${data.regulation_areas.length} types of AI rules</h3><p class="fa-note">A stated harm alone does not establish support for a rule. No stated position does not mean opposition.</p>${renderRegulation(member.regulation,data.regulation_areas,statements)}</section>
-        <section id="fa-history" class="fa-profile-block"><div class="fa-section-heading"><h3>Scores over time</h3><label class="fa-history-choice">Question<select id="fa-history-dimension">${data.dimensions.map(d=>`<option value="${esc(d.id)}" ${state.dimension===d.id ? 'selected' : ''}>${esc(d.title)}</option>`).join('')}</select></label></div><div id="fa-history-content"></div>${renderChanges(detail.changes,data.dimensions,statements)}</section>
-        <section id="fa-source-section" class="fa-profile-block"><div class="fa-section-heading"><h3>Source quotes</h3><a href="data/federal_analysis/${encodeURIComponent(member.id)}.json" download>Download profile (JSON)</a></div><p class="fa-note">Quotes retain their source dates and attribution. Assessment details show the labels, confidence, and model IDs.</p><div id="fa-sources"></div><div id="fa-source-pages" class="fa-pages"></div></section>`;
-      get('fa-history-content').innerHTML = renderHistory(detail.history,state.dimension,data.dimensions.find(d=>d.id===state.dimension)?.title || 'Score');
+      panel().innerHTML = `<h3 id="fa-profile-name" tabindex="-1">${esc(member.name)}</h3>
+        <p class="fa-muted fa-profile-meta">${esc(member.organization_name || '')}${member.entity_type === 'institution' ? ' · Institution' : ''} · ${count(member.n_statements)} verified statement${count(member.n_statements)===1?'':'s'}</p>
+        ${member.summary?.status==='complete' && member.summary.text ? renderSummary(member.summary,detail.statements) : ''}
+        ${rulesHTML(member)}
+        <div class="fa-dims">${data.dimensions.map(d=>{const v=scoreState(member,d.id).value;return `<div class="fa-dim"><b>${esc(d.title)}</b>${esc(levelText(d.id,v))}</div>`;}).join('')}</div>
+        <div id="fa-sources"></div><div id="fa-source-pages" class="fa-pages"></div>`;
       renderSources();
     }
     async function loadProfile(member) {
       const token = ++request;
       currentDetail = null;
-      get('fa-profile-panel').setAttribute('aria-busy','true');
-      get('fa-profile-panel').innerHTML = '<p class="fa-empty" role="status">Load source quotes and analysis…</p>';
+      panel().innerHTML = '<p class="fa-empty" role="status">Loading…</p>';
       try {
         let detail = cache.get(member.id);
         if (!detail) {
@@ -363,54 +359,47 @@
         renderProfile(member,detail);
       } catch (error) {
         if (token !== request) return;
-        get('fa-profile-panel').innerHTML = `<div class="fa-empty" role="status"><h3>${esc(member.name)}</h3><p>${esc(error.message)}</p><p>Unavailable data does not establish a position.</p><button type="button" data-retry>Retry this profile</button></div>`;
-      } finally { if (token === request) get('fa-profile-panel').setAttribute('aria-busy','false'); }
+        panel().innerHTML = `<p class="fa-empty" role="status">${esc(error.message)} <button type="button" data-retry>Retry</button></p>`;
+      }
     }
-    function render(skipCharts=false) {
-      const members = filterMembers(data.members,state,data.organizations || []).sort((a,b)=>a.name.localeCompare(b.name));
-      if (!members.some(m=>m.id===state.selected)) state.selected = members[0]?.id || null;
+    function select(id, scroll) {
+      if (scroll && state.selected===id && get('fa-profile-panel')) { state.selected=null; updateURL(); renderTable(); return; }   // click again to close
+      state.selected=id; state.page=0; updateURL(); renderTable();
+      const member=data.members.find(m=>m.id===id); if (!member) { panel().innerHTML=''; return; }
+      loadProfile(member);
+    }
+    function render() {
       root.querySelectorAll('[data-scope]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.scope===state.scope)));
-      const assessed = members.reduce((n,m)=>n+count(m.n_labeled),0), total = members.reduce((n,m)=>n+count(m.n_statements),0);
-      get('fa-coverage').innerHTML = `<div><strong>${members.length}</strong><span>${state.scope === 'institutions' ? 'institutions' : 'officials'} in this view</span></div><div><strong>${total.toLocaleString()}</strong><span>verified statements</span></div><div><strong>${assessed.toLocaleString()}</strong><span>statements assessed</span></div><div><strong>${members.filter(m=>m.status==='partial').length}</strong><span>profiles with unfinished work</span></div>`;
-      get('fa-distributions').innerHTML = renderDistribution(members,data.dimensions);
-      if (!skipCharts) renderCharts();
-      get('fa-profile-choice').innerHTML = members.length ? members.map(m=>`<option value="${esc(m.id)}" ${m.id===state.selected ? 'selected' : ''}>${esc(m.name)}</option>`).join('') : '<option>No matching profiles</option>';
-      get('fa-profile-choice').disabled = !members.length;
-      get('fa-profile-count').textContent = members.length + ' matching profiles';
-      get('fa-profile-list').innerHTML = members.map(m=>`<button type="button" data-profile="${esc(m.id)}" aria-pressed="${m.id===state.selected}"><span>${esc(m.name)}</span><small>${esc(m.organization_name || '')}</small><span class="fa-list-count">${count(m.n_statements)} quotes${m.status==='partial' ? ' · pending' : m.status==='no_evidence' ? ' · no evidence' : ''}</span></button>`).join('');
-      updateURL();
-      const selected = members.find(m=>m.id===state.selected);
-      state.page = 0;
-      if (selected) loadProfile(selected);
-      else { request++; currentDetail=null; get('fa-profile-panel').innerHTML='<p class="fa-empty">No profiles match these filters. Change the name or agency filter.</p>'; get('fa-profile-panel').setAttribute('aria-busy','false'); }
+      renderCharts();
+      if (state.selected && selectedMembers().some(m=>m.id===state.selected)) select(state.selected,false);
+      else { state.selected=null; request++; currentDetail=null; panel().innerHTML=''; updateURL(); }
     }
-    get('fa-agency').addEventListener('change',event=>{ state.organization=event.target.value; render(); });
-    get('fa-search').addEventListener('input',event=>{ state.search=event.target.value; render(); });
-    get('fa-profile-choice').addEventListener('change',event=>{ state.selected=event.target.value; render(true); });
+    // keep the reader's place when a setting redraws the charts
+    function keepPlace(fn) {
+      const hs=[...root.querySelectorAll('h2[id], h3[id], section[id]')];
+      const anchor=hs.filter(h=>h.getBoundingClientRect().top<=innerHeight*0.4).pop(), before=anchor&&anchor.getBoundingClientRect().top;
+      fn();
+      if (anchor) { const d=anchor.getBoundingClientRect().top-before; if (Math.abs(d)>1) global.scrollBy({top:d,behavior:'instant'}); }
+    }
+    get('fa-search').addEventListener('input',event=>{ state.search=event.target.value; renderTable(); });
     root.addEventListener('change',event=>{
-      const controls={'fc-dimension':'chartDimension','fc-compare':'compare','fc-history-kind':'historyKind','fc-range':'range','fc-topic':'topic'};
-      if(controls[event.target.id]) {state[controls[event.target.id]]=event.target.value;renderCharts();return;}
-      if (event.target.id === 'fa-history-dimension' && currentDetail) { state.dimension=event.target.value; get('fa-history-content').innerHTML=renderHistory(currentDetail.history,state.dimension,data.dimensions.find(d=>d.id===state.dimension)?.title || 'Score'); }
+      if (event.target.id==='fc-dimension') { state.chartDimension=event.target.value; keepPlace(renderCharts); }
     });
     root.addEventListener('click',event=>{
       const scope = event.target.closest('[data-scope]');
-      if (scope) { state.scope=scope.dataset.scope; state.selected=null; render(); return; }
+      if (scope) { state.scope=scope.dataset.scope; state.selected=null; state.rule=null; keepPlace(render); return; }
       const profile = event.target.closest('[data-profile]');
-      if (profile) { event.preventDefault();state.selected=profile.dataset.profile; render(true);if(profile.hasAttribute('data-chart-profile')) get('fa-profiles').scrollIntoView({block:'start'});return; }
-      const preset=event.target.closest('[data-preset]');
-      if(preset) {state.preset=preset.dataset.preset;renderGroup();return;}
-      const rule=event.target.closest('[data-rule]');
-      if(rule) {state.rule=rule.dataset.rule;get('fc-policies').innerHTML=charts.renderPolicies(selectedMembers(),data.regulation_areas,state.rule);get('fc-policy-selection').innerHTML=charts.renderPolicySelection(selectedMembers(),data.regulation_areas,state.rule);get('fc-policy-selection').scrollIntoView({block:'center'});return;}
+      if (profile) { event.preventDefault(); const inTable=!!profile.closest('#fc-members'); if(!inTable){ state.search=''; get('fa-search').value=''; } select(profile.dataset.profile,inTable||true); if(!inTable) panel().scrollIntoView({block:'center'}); return; }
       const agency=event.target.closest('[data-agency-group]');
       if(agency) {
         const group=charts.agencyDistribution(selectedMembers(),state.chartDimension,data.organizations || []).find(g=>g.id===agency.dataset.agencyGroup);
-        get('fc-agency-selection').innerHTML=`<h3>${esc(group.name)}</h3><div class="fc-profile-chips">${group.members.map(m=>`<a href="#fa-profiles" data-profile="${esc(m.id)}" data-chart-profile>${esc(m.name)}</a>`).join('')}</div>`;
+        get('fc-agency-selection').innerHTML=`<h3>${esc(group.name)}</h3><div class="fc-profile-chips">${group.members.map(m=>`<a href="#fc-members-section" data-profile="${esc(m.id)}">${esc(m.name)}</a>`).join('')}</div>`;
         return;
       }
       const retry = event.target.closest('[data-retry]');
       if (retry) { const member=data.members.find(m=>m.id===state.selected); if (member) loadProfile(member); return; }
       const page = event.target.closest('[data-source-page]');
-      if (page && currentDetail) { state.page=Math.max(0,Number(page.dataset.sourcePage)); renderSources(); get('fa-source-section').scrollIntoView({block:'start'}); return; }
+      if (page && currentDetail) { state.page=Math.max(0,Number(page.dataset.sourcePage)); renderSources(); get('fa-sources').scrollIntoView({block:'start'}); return; }
       const quote = event.target.closest('[data-quote]');
       if (quote && currentDetail) {
         event.preventDefault();
@@ -423,10 +412,8 @@
     });
     render();
     const hero=document.querySelector('.fa-hero'),toc=root.querySelector('.fc-toc');
-    if (hero && 'IntersectionObserver' in global) {
-      new IntersectionObserver(entries=>{toc.style.visibility=entries[0].isIntersecting?'hidden':'visible';},
-        {rootMargin:'-56px 0px 0px 0px'}).observe(hero);
-    }
+    if (hero && toc && 'IntersectionObserver' in global) new IntersectionObserver(entries=>{toc.style.visibility=entries[0].isIntersecting?'hidden':'visible';},{rootMargin:'-56px 0px 0px 0px'}).observe(hero);
+    if (initial) panel().scrollIntoView({block:'center'});
   }
   const api = {safeURL,dateLabel,filterMembers,scoreState,scoreDistribution,validateDetail,renderSummary,renderStanceReview,renderRegulation,
     renderStatement,renderTopics,historySeries,renderHistory,renderDistribution,mount};

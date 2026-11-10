@@ -41,3 +41,36 @@ html{scroll-padding-top:0}
 .fc-availability{border-top:1px solid var(--line);padding-top:16px;margin-top:20px;font-size:13px}.fc-availability details{margin:10px 0}.fc-availability details[open]{padding-bottom:10px}.fc-availability>p:first-child{margin-bottom:8px}
 
 .fa-review{border-left:3px solid var(--accent);padding-left:18px}.fa-review p{overflow-wrap:anywhere}.fa-review h4{font-size:14px;margin:18px 0 10px}
+/* ---- simplified layout, matching the Congress and Policies pages ---- */
+#fc-timeline details,#fc-topic-share details{display:none}
+.fc-policy-row small{display:none}
+.fc-policy-row{grid-template-columns:240px minmax(0,1fr)}
+@media(max-width:700px){.fc-policy-row{grid-template-columns:minmax(110px,1fr) minmax(105px,1.1fr)}}
+.fc-section h3{font-size:17px;font-weight:600;margin:28px 0 8px;font-family:Inter,system-ui,sans-serif}
+details.method summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:56px;padding-top:16px}
+details.method summary::-webkit-details-marker{display:none}
+details.method summary h2{margin:0;padding:0;border:0}
+details.method summary h2::before{content:"▸";display:inline-block;width:1em;color:var(--muted);transition:transform .15s}
+details.method[open] summary h2::before{transform:rotate(90deg)}
+details.method p{max-width:760px}
+.fa-muted{color:var(--muted);font-size:13px}
+.fa-listbar{display:flex;gap:8px;margin:10px 0}
+.fa-listbar input{flex:1;min-width:180px;padding:7px 10px;border-radius:8px}
+.fc-member-table tr.fa-selected{background:var(--hover)}
+.fa-profile-panel:not(:empty){margin-top:18px;padding:16px;background:var(--hover);border-radius:8px}
+.fa-profile-panel h3{font-family:Inter,system-ui,sans-serif;font-size:20px;font-weight:600;margin:0 0 2px}
+.fa-profile-meta{margin:0 0 10px}
+.fa-profile-panel .fa-summary-text{font-family:Inter,system-ui,sans-serif;font-size:15px;line-height:1.55;margin:0 0 8px}
+.fa-rules{margin:4px 0 0}
+.fa-chip{display:inline-block;font-size:11px;background:var(--chip);border-radius:4px;padding:0 5px;margin-right:4px;color:var(--muted)}
+.fa-dims{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:12px 0}
+.fa-dim{border-top:2px solid var(--line);padding:8px 2px;font-size:13px}
+.fa-dim b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.fa-q{border-left:3px solid var(--line);padding:4px 0 4px 12px;margin:10px 0;font-size:14px}
+.fa-q-src{font-size:12px;color:var(--muted);margin-top:2px}
+.fa-pages{display:flex;gap:12px;align-items:center;font-size:13px}
+details.method summary{color:var(--fg)}
+.fa-sitefoot{margin:40px var(--gr) 40px var(--gl)}
+.fc-member-table tr.fa-detail>td{padding:0 0 12px;background:transparent}
+.fa-detail .fa-profile-panel{margin-top:0}
+.fc-member-table{max-height:80vh;overflow-y:auto;border-top:2px solid var(--line)}

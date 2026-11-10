@@ -110,11 +110,7 @@
     const cache = new Map();
     const options = ['bill','framework','issue'].map(kind => `<optgroup label="${{bill:'Named bills',framework:'Policy frameworks',issue:'Policy questions'}[kind]}">
       ${data.policies.filter(p => p.kind === kind).map(p=>`<option value="${esc(p.id)}">${esc(p.title)}</option>`).join('')}</optgroup>`).join('');
-    root.innerHTML = `<div class="policy-scope" role="group" aria-label="Policy coverage">
-      <button type="button" data-scope="congress" aria-pressed="true">Congress</button>
-      <button type="button" data-scope="executive" aria-pressed="false">Executive officials</button>
-      <button type="button" data-scope="institutions" aria-pressed="false">Institutions</button>
-    </div><p class="note" id="policy-scope-note" hidden></p><div class="policy-controls" hidden>
+    root.innerHTML = `<p class="note" id="policy-scope-note" hidden></p><div class="policy-controls" hidden>
       <label>Observed stance<select id="policy-stance"><option value="all">All stances</option>${['support','oppose','mixed','neutral','unclear','disputed','pending'].map(s=>`<option value="${s}">${LABELS[s]}</option>`).join('')}<option value="no_evidence">No evidence found</option></select></label>
       <label id="policy-party-control">Party<select id="policy-party"><option value="all">All parties</option><option value="D">Democrats</option><option value="R">Republicans</option><option value="I">Independents</option></select></label>
       <label id="policy-population-control">Members<select id="policy-population"><option value="all">Current and members-elect</option><option value="current">Current members</option><option value="member_elect">Members-elect</option></select></label>
@@ -223,7 +219,8 @@
       for (const id of ['policy-party','policy-population','policy-organization','policy-stance']) get(id).value='all';
       get('policy-search').value='';
     }
-    root.querySelectorAll('[data-scope]').forEach(b=>b.onclick=()=>{setScope(b.dataset.scope); render();});
+    // the Congress / Executive officials / Institutions switch lives in the page's top bar
+    global.addEventListener('policyscope', e=>{ setScope({congress:'congress',officials:'executive',institutions:'institutions'}[e.detail] || 'congress'); render(); });
     root.addEventListener('click', e=>{
       const button=e.target.closest('[data-open-subject]');
       if (!button) return;
