@@ -60,12 +60,12 @@ async function init(){
   M = mj.members; TL = tl; COMM = cm; UPDATED = mj.updated;
   const opt = f => fetch(`data/${f}.json`).then(r=>r.ok?r.json():null).catch(()=>null);
   [DAILY, HISTORY, CHANGES, RF] = await Promise.all([opt("daily"), opt("history"), opt("changes"), opt("regfocus")]);
-  if ($("rfchart") && document.querySelector("[data-who]")) FED = await opt("federal_analysis");
+  if ($("rfchart") && document.querySelector("[data-pick]")) FED = await opt("federal_analysis");
   // Policies page: Congress / Executive officials / Institutions switch drives both charts
-  document.querySelectorAll("[data-who]").forEach(b=>b.onclick=()=>{ S.who=b.dataset.who; rfSel=null;
-    document.querySelectorAll("[data-who]").forEach(x=>x.setAttribute("aria-checked", x.dataset.who===S.who));
-    if ($("congsel")) $("congsel").hidden = S.who!=="congress";
-    keepPlace(()=>{ drawRegFocus(); dispatchEvent(new CustomEvent("policyscope",{detail:S.who})); }); });
+  document.querySelectorAll("[data-pick]").forEach(b=>b.onclick=()=>{ const v=b.dataset.pick, was=S.who;
+    if (v==="119"||v==="120") { S.who="congress"; S.cong=v; } else S.who=v;
+    rfSel=null; document.querySelectorAll("[data-pick]").forEach(x=>x.setAttribute("aria-checked", x===b));
+    keepPlace(()=>{ drawRegFocus(); if (S.who!==was) dispatchEvent(new CustomEvent("policyscope",{detail:S.who})); }); });
   if ($("updated")) $("updated").textContent = mj.updated;
   if ($("nmembers")) $("nmembers").textContent = M.length.toLocaleString();
   if ($("nquotes")) $("nquotes").textContent = M.reduce((a,m)=>a+m.n,0).toLocaleString();

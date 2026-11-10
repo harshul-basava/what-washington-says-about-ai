@@ -41,13 +41,10 @@
 
 <div class="controlbar" role="toolbar" aria-label="Chart settings">
   <div class="segmented" role="radiogroup" aria-label="Who">
-    <button type="button" role="radio" data-who="congress" aria-checked="true">Congress</button>
-    <button type="button" role="radio" data-who="officials" aria-checked="false">Executive officials</button>
-    <button type="button" role="radio" data-who="institutions" aria-checked="false">Institutions</button>
-  </div>
-  <div class="segmented" role="radiogroup" aria-label="Congress" id="congsel">
-    <button type="button" role="radio" data-cong="119" aria-checked="true">119th Congress<small>today</small></button>
-    <button type="button" role="radio" data-cong="120" aria-checked="false">120th Congress<small>from Jan 2027</small></button>
+    <button type="button" role="radio" data-pick="119" aria-checked="true">119th Congress<small>today</small></button>
+    <button type="button" role="radio" data-pick="120" aria-checked="false">120th Congress<small>from Jan 2027</small></button>
+    <button type="button" role="radio" data-pick="officials" aria-checked="false">Executive officials<small>federal</small></button>
+    <button type="button" role="radio" data-pick="institutions" aria-checked="false">Institutions<small>federal</small></button>
   </div>
 </div>
 
@@ -102,7 +99,7 @@
 <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.16/dist/plot.umd.min.js"></script>
 <script src="common.js?v=2"></script>
-<script src="app.js?v=4"></script>
+<script src="app.js?v=5"></script>
 <script src="policy-charts.js?v=6"></script>
 <script src="policies.js?v=13"></script>
 </body>
