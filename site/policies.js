@@ -114,7 +114,7 @@
       <button type="button" data-scope="congress" aria-pressed="true">Congress</button>
       <button type="button" data-scope="executive" aria-pressed="false">Executive officials</button>
       <button type="button" data-scope="institutions" aria-pressed="false">Institutions</button>
-    </div><p class="note" id="policy-scope-note" hidden></p><p id="policy-coverage-download" hidden><a href="data/federal_coverage.csv" download>Download federal research coverage</a></p><div class="policy-controls">
+    </div><p class="note" id="policy-scope-note" hidden></p><p id="policy-coverage-download" hidden><a href="data/federal_coverage.csv" download>Download federal research coverage</a></p><div class="policy-controls" hidden>
       <label>Policy or question<select id="policy-choice">${options}</select></label>
       <label>Observed stance<select id="policy-stance"><option value="all">All stances</option>${['support','oppose','mixed','neutral','unclear','disputed','pending'].map(s=>`<option value="${s}">${LABELS[s]}</option>`).join('')}<option value="no_evidence">No evidence found</option></select></label>
       <label id="policy-party-control">Party<select id="policy-party"><option value="all">All parties</option><option value="D">Democrats</option><option value="R">Republicans</option><option value="I">Independents</option></select></label>
@@ -122,8 +122,8 @@
       <label id="policy-organization-control" hidden>Agency or membership<select id="policy-organization"><option value="all">All organizations</option>${(data.organizations || []).map(o=>`<option value="${esc(o.id)}">${esc(o.name)}</option>`).join('')}</select></label>
       <label class="policy-search">Name, state, or organization<input type="search" id="policy-search" placeholder="Search profiles"></label>
     </div><div id="policy-chart-overview" class="pc-root"></div>
-    <h3 id="policy-detail-title" tabindex="-1"></h3><p id="policy-description"></p><p class="note" id="policy-source"></p>
-    <div id="policy-chart-detail" class="pc-root"></div><h3>Profiles and source quotes</h3>
+    <div id="policy-detail" hidden><h3 id="policy-detail-title"></h3><p id="policy-description"></p><p class="note" id="policy-source"></p>
+    <div id="policy-chart-detail" class="pc-root"></div></div><h3 id="policy-profiles-title" tabindex="-1">Profiles and source quotes: <span id="policy-profiles-name"></span></h3>
     <div id="policy-counts" class="policy-counts" aria-live="polite"></div>
     <p class="note">These labels summarize the available statement history. They do not establish a current position.
     No matching evidence means that the search found no candidate quote in this dataset. It does not mean opposition.</p>
@@ -145,8 +145,8 @@
         get('policy-choice').value = id;
         get('policy-stance').value = 'all';
         render();
-        get('policy-detail-title').focus({preventScroll:true});
-        get('policy-detail-title').scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+        get('policy-profiles-title').focus({preventScroll:true});
+        get('policy-profiles-title').scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
       });
       global.PolicyCharts.renderSelected(get('policy-chart-detail'), members, target, chartData, FACETS, chartError, state.scope);
     }
@@ -186,6 +186,7 @@
       get('policy-scope-note').textContent = congress ? 'Statements by members of Congress.' :
         `${data.federal_scope?.mode === 'current_government' ? 'Current federal officials and government institutions only.' : 'Curated federal coverage.'} ${state.scope === 'institutions' ? 'Each profile represents an institution. Statements do not establish its officials’ personal views.' : 'Each official counts once. Agency filters include linked roles; bars use each official’s primary organization.'} ${researchCoverageNote(data.federal_research)} ${federalUpdateNote(data.federal_update)} Role and membership records need manual review; the registry check date is ${data.subjects_verified_on || data.built_on}.`;
       get('policy-detail-title').textContent = target.title;
+      get('policy-profiles-name').textContent = target.title;
       renderCharts();
       get('policy-description').textContent = target.kind === 'issue' ?
         ({export_controls:'Positions on restrictions and enforcement for overseas access to AI chips, models, and compute.',
