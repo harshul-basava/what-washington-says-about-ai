@@ -288,8 +288,8 @@
     const HIGH={ai_overall:'are optimistic about AI',agi_pilled:'expect AGI',x_risk:'want action on AI x-risk',china_race:'say the China race drives their AI views',regulation:'want substantial AI rules'};
     const who=()=>state.scope==='institutions'?'Institutions':'Officials';
     root.innerHTML = `<section class="fc-controlbar" aria-label="Chart settings"><label>Question <select id="fc-dimension">${dimensionOptions(state.chartDimension)}</select></label><div class="fa-scope" role="group" aria-label="Profile type"><button type="button" data-scope="officials" aria-pressed="true">Executive officials</button><button type="button" data-scope="institutions" aria-pressed="false">Institutions</button></div></section>
-      <section class="fc-section" id="fa-roster-coverage"><details><summary>Officials and offices covered</summary><label class="fc-control">Agency or office<select id="fa-agency"><option value="all">All organizations</option>${(data.organizations || []).map(o=>`<option value="${esc(o.id)}" ${o.id===state.organization ? 'selected' : ''}>${esc(o.name)}</option>`).join('')}</select></label><div id="fa-roster-table"></div></details></section>
-      <nav class="fc-toc" aria-label="Contents"><a href="#fc-cohort">By score</a><a href="#fc-agency-section">By agency</a><a href="#fc-timeline-section">Over time</a><a href="#fc-recent-section">Recent changes</a><a href="policies.html">Policies they support</a><a href="#fc-topic-section">Topics</a><a href="#fc-members-section">All profiles</a></nav>
+<nav class="fc-toc" aria-label="Contents"><a href="#fc-cohort">Profiles by score</a><a href="#fc-agency-section">Scores by agency</a><a href="#fc-timeline-section">Scores over time</a><a href="#fc-recent-section">Recent changes</a><a href="#fc-topic-section">Topics</a><a href="#fc-members-section">All profiles</a></nav>
+<section class="fc-section" id="fa-roster-coverage"><details><summary>Officials and offices covered</summary><label class="fc-control">Agency or office<select id="fa-agency"><option value="all">All organizations</option>${(data.organizations || []).map(o=>`<option value="${esc(o.id)}" ${o.id===state.organization ? 'selected' : ''}>${esc(o.name)}</option>`).join('')}</select></label><div id="fa-roster-table"></div></details></section>
       <section class="fc-section" id="fc-cohort"><h2 id="fc-cohort-title"></h2><p class="fc-description">Each dot is one profile, colored by the selected score.</p><div id="fc-dots"></div></section>
       <section class="fc-section" id="fc-agency-section"><h2>Scores by agency</h2><p class="fc-description">Profiles in each agency, by the selected score.</p><div id="fc-agencies"></div><div id="fc-agency-selection" aria-live="polite"></div></section>
       <section class="fc-section" id="fc-timeline-section"><h2 id="fc-timeline-title"></h2><p class="fc-description">Percent of profiles, month by month.</p><div id="fc-timeline"></div></section>
@@ -438,6 +438,10 @@
     });
     render();
     const hero=document.querySelector('.fa-hero'),toc=root.querySelector('.fc-toc');
+    // mark the section in view, as on the other pages
+    const tocLinks=[...root.querySelectorAll('.fc-toc a[href^="#"]')];
+    const tocActive=()=>{ let cur=null; for (const a of tocLinks){ const el=document.getElementById(a.getAttribute('href').slice(1)); if (el && el.getBoundingClientRect().top<170) cur=a; } tocLinks.forEach(a=>a.classList.toggle('active',a===cur)); };
+    global.addEventListener('scroll',()=>global.requestAnimationFrame(tocActive),{passive:true}); tocActive();
     if (hero && toc && 'IntersectionObserver' in global) new IntersectionObserver(entries=>{toc.style.visibility=entries[0].isIntersecting?'hidden':'visible';},{rootMargin:'-56px 0px 0px 0px'}).observe(hero);
     if (initial) panel().scrollIntoView({block:'center'});
   }
