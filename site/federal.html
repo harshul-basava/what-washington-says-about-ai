@@ -6,27 +6,57 @@
   <title>Federal AI analysis · What Washington Says About AI</title>
   <meta name="description" content="Explore executive officials and federal institutions through five AI scores, 23 types of AI rules, source quotes, and monthly history.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <script>try{if(localStorage.getItem("theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="federal-analysis.css?v=4">
-  <script src="federal-charts.js?v=3" defer></script>
-  <script src="federal-analysis.js?v=4" defer></script>
+  <link rel="stylesheet" href="chrome.css?v=3">
+  <script src="federal-charts.js?v=5" defer></script>
+  <script src="federal-analysis.js?v=5" defer></script>
 </head>
-<body>
+<body data-page="federal">
   <a class="fa-skip" href="#main">Skip to analysis</a>
-  <header class="fa-topbar"><div class="fa-topbar-inner">
-    <a class="fa-brand" href="index.html"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><g fill="currentColor"><path d="M7 9a5 5 0 0 1 10 0zM2 11h20v2H2zM2 21h20v2H2zM4 15h2v4H4zM9 15h2v4H9zM14 15h2v4h-2zM19 15h2v4h-2zM11 1h2v3h-2z"/></g></svg><span>DC on AI</span></a>
-    <nav aria-label="Main navigation"><a href="index.html#members">Congress</a><a href="federal.html" aria-current="page">Federal analysis</a><a href="index.html#policy-section">Policies</a></nav>
-    <button type="button" id="fa-theme" class="fa-theme">Dark theme</button>
-  </div></header>
+  <header class="topbar">
+  <div class="topin">
+    <a class="brand" href="index.html" id="brand"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><g fill="currentColor"><rect x="11.4" y="1.5" width="1.2" height="3" rx=".4"/><path d="M7.2 9.6a4.8 4.8 0 0 1 9.6 0z"/><rect x="6.4" y="9.6" width="11.2" height="1.6" rx=".3"/><rect x="2.8" y="11.6" width="18.4" height="1.6" rx=".3"/><rect x="4.2" y="13.6" width="1.6" height="5.2"/><rect x="8.1" y="13.6" width="1.6" height="5.2"/><rect x="11.2" y="13.6" width="1.6" height="5.2"/><rect x="14.3" y="13.6" width="1.6" height="5.2"/><rect x="18.2" y="13.6" width="1.6" height="5.2"/><rect x="2" y="19.2" width="20" height="2" rx=".4"/></g></svg><span>DC on AI</span></a>
+    <nav aria-label="Sections">
+      <a href="index.html">Congress</a><a href="federal.html" aria-current="page">Federal analysis</a><a href="policies.html">Policies</a><div class="navmenu">
+        <a href="#method" class="navmenu-btn" aria-haspopup="true">About<svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="navmenu-list" role="menu">
+          <a href="#method" role="menuitem">Method</a>
+          <button type="button" role="menuitem" data-cite="page">Cite this page</button>
+          <a href="https://github.com/harshul-basava/what-washington-says-about-ai" role="menuitem">GitHub</a>
+        </div>
+      </div>
+    </nav>
+    <button id="theme" class="themebtn" type="button" aria-label="Switch to dark mode" title="Switch theme"><svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+  </div>
+</header>
   <main id="main">
-    <header class="fa-hero"><p class="fa-eyebrow">What Washington Says About AI</p><h1>AI views across the<br>federal government.</h1>
+    <header class="fa-hero"><p class="fa-eyebrow">What Washington Says About AI</p><h1>What do federal officials say about AI?</h1>
       <p class="fa-lede">Explore the public statements of executive officials and federal institutions. Follow each score and policy position to its source.</p>
-      <div class="fa-hero-footer"><span>Five questions. Twenty-three types of rules.</span><a href="#method">Read the method <span aria-hidden="true">↗</span></a></div>
     </header>
     <div id="federal-analysis"><p class="fa-empty" role="status">Load federal analysis…</p></div>
     <noscript><p>This page needs JavaScript to display profiles and charts. <a href="data/federal_analysis.json">Download the data as JSON.</a></p></noscript>
   </main>
-  <footer class="fa-footer"><span>What Washington Says About AI</span><a href="index.html">Congress and policy explorer</a><a href="https://github.com/harshul-basava/what-washington-says-about-ai">Source code</a></footer>
+  <footer class="sitefoot fa-sitefoot">
+    <span>What Washington Says About AI</span>
+    <a href="data/federal_analysis.json" download>Download JSON</a>
+    <a href="https://github.com/harshul-basava/what-washington-says-about-ai">GitHub</a>
+    <a href="https://github.com/harshul-basava/what-washington-says-about-ai/issues">Contact / corrections (GitHub issues)</a>
+  </footer>
+  <dialog class="cite" id="citedlg" aria-labelledby="citehead">
+    <form method="dialog"><button class="xclose" aria-label="Close" title="Close"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></form>
+    <h3 id="citehead">Cite this page</h3>
+    <p class="note" id="citewhat" style="margin:0"></p>
+    <div class="fmt"><div class="fmthead"><b>Text</b><button type="button" class="copyic" data-copy="cite-text" aria-label="Copy text" title="Copy"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 15V6a2 2 0 0 1 2-2h9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div><pre id="cite-text"></pre></div>
+    <div class="fmt"><div class="fmthead"><b>BibTeX</b><button type="button" class="copyic" data-copy="cite-bib" aria-label="Copy bibtex" title="Copy"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 15V6a2 2 0 0 1 2-2h9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div><pre id="cite-bib"></pre></div>
+    <div class="fmt"><div class="fmthead"><b>Link</b><button type="button" class="copyic" data-copy="cite-url" aria-label="Copy link" title="Copy"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 15V6a2 2 0 0 1 2-2h9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div><pre id="cite-url"></pre></div>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  
+  <script src="common.js?v=2"></script>
 </body>
 </html>

@@ -1,14 +1,17 @@
 /* Offline policy charts. All calculations use published judgments, not new model calls. */
 (function (global) {
   'use strict';
-  const STANCES = ['support','oppose','mixed','neutral','unclear','disputed'];
-  const LABELS = {support:'Support',oppose:'Oppose',mixed:'Mixed',neutral:'Description only',unclear:'Unclear',disputed:'Models disagree'};
+  const RAW = ['support','oppose','mixed','neutral','unclear','disputed'];
+  // mixed, description-only and unclear read as one group on the charts
+  const STANCES = ['support','oppose','other','disputed'];
+  const GROUP = s => ['mixed','neutral','unclear'].includes(s) ? 'other' : s;
+  const LABELS = {support:'Support',oppose:'Oppose',other:'Mixed or unclear',disputed:'Models disagree'};
   const PARTIES = {D:'Democrats',R:'Republicans',I:'Independents'};
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const blank = () => Object.fromEntries(STANCES.map(s=>[s,0]));
   const percent = (n,d) => d > 0 ? Math.max(0,Math.min(100,100*n/d)) : 0;
   const party = p => /^dem|^dfl$|^D$/i.test(p) ? 'D' : /^rep|^R$/i.test(p) ? 'R' : 'I';
-  const relevant = r => STANCES.includes(r.stance);
+  const relevant = r => RAW.includes(r.stance);
   const countText = counts => STANCES.filter(s=>counts[s]).map(s=>`${counts[s]} ${LABELS[s].toLowerCase()}`).join(', ');
 
   function breakdown(members, target) {
@@ -16,8 +19,8 @@
     for (const member of members) {
       const row = member.policies[target];
       if (!row || ['pending','partial'].includes(row.coverage)) result.pending++;
-      else if (row.relevant > 0 && STANCES.includes(row.stance)) {
-        result.counts[row.stance]++;
+      else if (row.relevant > 0 && RAW.includes(row.stance)) {
+        result.counts[GROUP(row.stance)]++;
         result.observed++;
       } else result.missing++;
     }
@@ -50,7 +53,7 @@
     }
     for (const {row,month} of dated) {
       const period=result.periods[Math.floor(month/size)-first];
-      period.counts[row.stance]++;
+      period.counts[GROUP(row.stance)]++;
       period.total++;
       period.ids.add(row.person_id);
     }
@@ -64,14 +67,16 @@
       disputed:rows.filter(r=>r.facets_final ? r.final_judge === 'astra' && r.facets_final.includes(id) : r.facets_disputed.includes(id)).length}));
   }
 
-  function stanceBar(row) {
-    if (!row.observed) return '<div class="pc-empty-bar">No completed assessment with relevant evidence</div>';
-    return `<div class="pc-stack" role="img" aria-label="${esc(countText(row.counts))}; ${row.observed} profiles total">${STANCES.filter(s=>row.counts[s]).map(s=>
-      `<span class="pc-fill pc-${s}" style="width:${percent(row.counts[s],row.observed)}%" title="${esc(LABELS[s])}: ${row.counts[s]} profiles (${percent(row.counts[s],row.observed).toFixed(1)}%)" aria-hidden="true">${percent(row.counts[s],row.observed)>=9 ? row.counts[s] : ''}</span>`).join('')}</div>`;
+  function stanceBar(row) {   // every profile in the view: stances, then "no evidence" (no relevant statements, or not assessed yet)
+    const total = row.total ?? row.observed, none = Math.max(0, total - row.observed);
+    if (!total) return '<div class="pc-empty-bar">No profiles in this view</div>';
+    const seg = (cls, label, n) => `<span class="pc-fill pc-${cls}" style="width:${percent(n,total)}%" title="${esc(label)}: ${n} of ${total} profiles (${percent(n,total).toFixed(1)}%)" aria-hidden="true">${percent(n,total)>=6 ? n : ''}</span>`;
+    return `<div class="pc-stack" role="img" aria-label="${esc(countText(row.counts))}${none ? `, ${none} no evidence` : ''}; ${total} profiles total">${
+      STANCES.filter(s=>row.counts[s]).map(s=>seg(s, LABELS[s], row.counts[s])).join('')}${none ? seg('none','No evidence',none) : ''}</div>`;
   }
 
   function legend() {
-    return `<div class="pc-legend" aria-label="Stance colors">${STANCES.map(s=>`<span><i class="pc-${s}" aria-hidden="true"></i>${LABELS[s]}</span>`).join('')}</div>`;
+    return `<div class="pc-legend" aria-label="Stance colors">${STANCES.map(s=>`<span><i class="pc-${s}" aria-hidden="true"></i>${LABELS[s]}</span>`).join('')}<span><i class="pc-none" aria-hidden="true"></i>No evidence</span></div>`;
   }
 
   function coverage(row) {
@@ -85,10 +90,8 @@
   function renderOverview(root, members, policies, selected, onSelect) {
     const rows=policies.map(p=>({...breakdown(members,p.id),id:p.id,title:p.title}));
     root.innerHTML = `<h3>Policy positions at a glance</h3>
-      <p class="note">Each stance bar covers profiles with relevant evidence and a complete assessment. Numbers count profiles. The coverage column compares this group with the filtered roster.</p>
-      ${legend()}<div class="pc-overview-head" aria-hidden="true"><span>Policy or question</span><span>Positions among profiles with evidence</span><span>Evidence / roster</span></div>
-      ${rows.map(row=>`<div class="pc-overview-row"><button type="button" class="pc-policy-link" data-policy="${esc(row.id)}" aria-current="${row.id===selected ? 'true' : 'false'}">${esc(row.title)}</button>${stanceBar(row)}${coverage(row)}</div>`).join('')}
-      <p class="note">Scope, organization, party, and name filters apply to all charts. The stance filter applies only to the profile list. Choose a policy name for its detailed charts.</p>
+      ${legend()}<div class="pc-overview-head" aria-hidden="true"><span>Policy or question</span><span>Positions of all profiles in this view</span></div>
+      ${rows.map(row=>`<div class="pc-overview-row"><button type="button" class="pc-policy-link" data-policy="${esc(row.id)}" aria-current="${row.id===selected ? 'true' : 'false'}">${esc(row.title)}</button>${stanceBar(row)}</div>`).join('')}
       ${exactTable(rows,'Exact counts for every policy')}`;
     root.querySelectorAll('[data-policy]').forEach(button=>button.addEventListener('click',()=>onSelect(button.dataset.policy)));
   }
@@ -119,7 +122,7 @@
 
   function renderSelected(root, members, target, chartData, facetNames, error, scope='congress') {
     const parties=groupBreakdowns(members,target.id,scope);
-    const partyHTML = `<section class="pc-party"><h4>Positions by ${scope === 'congress' ? 'party' : 'organization'}</h4><p class="note">Each bar covers completed assessments with relevant evidence. Coverage appears at the right.</p>${parties.length ? parties.map(row=>`<div class="pc-party-row"><span>${esc(row.title)}</span>${stanceBar(row)}${coverage(row)}</div>`).join('') : '<p>No profiles match these filters.</p>'}${exactTable(parties,scope === 'congress' ? 'Exact counts by party' : 'Exact counts by organization')}</section>`;
+    const partyHTML = `<section class="pc-party"><h4>Positions by ${scope === 'congress' ? 'party' : 'organization'}</h4>${parties.length ? parties.map(row=>`<div class="pc-party-row"><span>${esc(row.title)}</span>${stanceBar(row)}</div>`).join('') : '<p>No profiles match these filters.</p>'}${exactTable(parties,scope === 'congress' ? 'Exact counts by party' : 'Exact counts by organization')}</section>`;
     if (!chartData) {
       root.innerHTML=legend()+partyHTML+`<p role="status">${error ? 'Statement charts are unavailable. Reload the page to retry. The profile summaries remain available.' : 'Loading statement charts…'}</p>`;
       return;
@@ -127,14 +130,13 @@
     const ids=new Set(members.map(m=>m.id));
     const rows=chartData.policies[target.id].filter(r=>ids.has(r.person_id));
     const history=timeline(rows);
-    let html=`${legend()}<div class="pc-detail-grid">${partyHTML}<section><h4>Statements over time</h4><p class="note">Recorded statements by ${history.granularity}. One profile can contribute several statements. These counts do not establish changes in individual views.</p>
-      ${timelineHTML(history,root.clientWidth>760 ? (root.clientWidth-28)/2 : root.clientWidth)}
-      <p class="note">${history.excludedDates} relevant statements lack a usable month or day.${history.pending ? ` ${history.pending} candidate statements await a final assessment.` : ''} Empty periods contain no dated relevant statements in this dataset.</p></section></div>`;
+    let html=`${legend()}<div class="pc-detail-grid">${partyHTML}<section><h4>Statements over time</h4>
+      ${timelineHTML(history,root.clientWidth>760 ? (root.clientWidth-28)/2 : root.clientWidth)}</section></div>`;
     if (target.facets.length) {
       const cascade = chartData.strategy?.kind === 'confidence_cascade';
       const facets=facetCounts(rows,target.facets).sort((a,b)=>(b.agreed+b.disputed)-(a.agreed+a.disputed));
       const max=Math.max(1,...facets.map(f=>f.agreed+f.disputed));
-      html+=`<section class="pc-facets"><h4>Details in these statements</h4><p class="note">Counts show statements with each label. A statement can have several labels, including labels about details the speaker opposes.</p>
+      html+=`<section class="pc-facets"><h4>Details in these statements</h4>
         <div class="pc-legend"><span><i class="pc-agreed" aria-hidden="true"></i>${cascade ? 'Accepted from DeepSeek' : 'Both models applied the label'}</span><span><i class="${cascade ? 'pc-reviewed' : 'pc-disputed'}" aria-hidden="true"></i>${cascade ? 'Accepted after Astra review' : 'One model applied the label'}</span><span>Shared scale: 0–${max} statements</span></div>
         ${facets.map(f=>`<div class="pc-facet-row"><span>${esc(facetNames[f.id] || f.id)}</span><div class="pc-facet-track" role="img" aria-label="${esc(facetNames[f.id] || f.id)}: ${f.agreed} ${cascade ? 'accepted from DeepSeek' : 'statements tagged by both models'}, ${f.disputed} ${cascade ? 'accepted after Astra review' : 'by one model'}"><span class="pc-agreed" style="width:${percent(f.agreed,max)}%"></span><span class="${cascade ? 'pc-reviewed' : 'pc-disputed'}" style="width:${percent(f.disputed,max)}%"></span></div><span>${f.agreed} ${cascade ? 'first' : 'both'} · ${f.disputed} ${cascade ? 'reviewed' : 'one'}</span></div>`).join('')}</section>`;
     }

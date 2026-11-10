@@ -1,14 +1,14 @@
 {
  "schema_version": 1,
  "id": "gsa_fas",
- "revision": "7069276e182be8df03c493e52d91a33c961205fb2aedf4cb4dbdeae161ff417d",
+ "revision": "d27ea3c9cd79b53c6f96efffd426107e488dacc6570f95bbd1d9badf9e4fbe7c",
  "profile": {
   "id": "gsa_fas",
   "name": "Federal Acquisition Service",
   "party": null,
   "state": "",
   "chamber": "",
-  "status": "complete",
+  "status": "partial",
   "entity_type": "institution",
   "branch": "executive",
   "organization_id": "gsa_fas",
@@ -30,13 +30,13 @@
    "source_url": "https://www.gsa.gov/about-gsa/newsroom/news-releases/gsa-announces-commissioner-appointments-for-pbs-and-fas-11042026",
    "reason": "current_government_institution"
   },
-  "n_statements": 5,
-  "n_labeled": 5,
+  "n_statements": 6,
+  "n_labeled": 6,
   "scores": {
    "ai_overall": null,
-   "agi_pilled": 0.0,
-   "x_risk": 0.0,
-   "china_race": 0.0,
+   "agi_pilled": null,
+   "x_risk": null,
+   "china_race": null,
    "regulation": null
   },
   "score_details": {
@@ -48,21 +48,21 @@
     "label_count": 0
    },
    "agi_pilled": {
-    "score": 0.0,
+    "score": null,
     "reason_a": "silent",
     "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "x_risk": {
-    "score": 0.0,
+    "score": null,
     "reason_a": "silent",
     "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "china_race": {
-    "score": 0.0,
+    "score": null,
     "reason_a": "silent",
     "reason_b": "silent",
     "sids": [],
@@ -77,40 +77,13 @@
    }
   },
   "summary": {
-   "status": "complete",
-   "text": "In 2024, the Federal Acquisition Service promoted FAST24 virtual training events covering topics such as evolving marketplaces and AI as a Service. In 2023, it described learning how emerging AI and cybersecurity technologies could affect teams and how GSA vehicles could help organizations improve resiliency and deploy solutions. It also listed AI, telecom, and cybersecurity as technologies impacting IT solutions and promoted modernizing technology workspaces with GSA.",
-   "sids": [
-    "s1",
-    "s2",
-    "s3",
-    "s4",
-    "s5"
-   ],
-   "sentences": [
-    {
-     "text": "In 2024, the Federal Acquisition Service promoted FAST24 virtual training events covering topics such as evolving marketplaces and AI as a Service.",
-     "sids": [
-      "s1",
-      "s2"
-     ]
-    },
-    {
-     "text": "In 2023, it described learning how emerging AI and cybersecurity technologies could affect teams and how GSA vehicles could help organizations improve resiliency and deploy solutions.",
-     "sids": [
-      "s3"
-     ]
-    },
-    {
-     "text": "It also listed AI, telecom, and cybersecurity as technologies impacting IT solutions and promoted modernizing technology workspaces with GSA.",
-     "sids": [
-      "s4",
-      "s5"
-     ]
-    }
-   ]
+   "status": "pending",
+   "text": "",
+   "sids": []
   },
   "topics": {
-   "other": 5.0
+   "other": 5.0,
+   "regulation": 1.0
   },
   "regulation": {
    "status": "complete",
@@ -232,20 +205,6 @@
     }
    },
    "disputed": []
-  },
-  "stance_review": {
-   "review_id": "5e37537eb68ed2bf7bc25bb3101f39eff4a083a314603c63a63d13f9648d5fb5",
-   "dimension": "ai_overall",
-   "status": "complete",
-   "reason": "All five statements promote training or discuss AI within professional services and workplace IT modernization. None expresses a general assessment of AI's overall effects on Americans. Supplied source context confirms the promotional scope of s1, s2, s4, and s5; s3 remains truncated, but its available text provides only a narrow organizational-use discussion.",
-   "confidence": 4,
-   "n_statements": 5,
-   "n_contexts": 4,
-   "accepted_sids": [],
-   "finding_count": 0,
-   "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-09T06:45:28.353659+00:00",
-   "generation_id": "gen-1794206721-ZOtd1EVyX6AHw8LHPf3b"
   }
  },
  "statements": [
@@ -678,6 +637,82 @@
      }
     }
    }
+  },
+  {
+   "sid": "s6",
+   "date": "2026-02",
+   "url": "https://buy.gsa.gov/interact/system/files/Refresh_31_Webinar%20and%20QA.pdf",
+   "text": "FAS intends to incorporate Government Terms and Conditions for AI Systems ● For any AI systems or services offered under the MAS Solicitation, offerors must comply with the Government Terms and Conditions for AI systems. These requirements are pursuant to the U.S. Office of Management and Budget (“OMB”) memorandum M-25-22 Driving Efficient Acquisition of Artificial Intelligence in Government.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "institutional",
+    "speaker": "Federal Acquisition Service",
+    "organization_id": "gsa_fas",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {},
+    "escalated": [
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T21:51:45.138434+00:00",
+      "generation_id": "gen-1794261103-69GwgcuK9fkpYFEMKCm8"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 2
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T21:53:20.260657+00:00",
+      "generation_id": "gen-1794261197-xSNlz0AHAtpSH9F9NzIU"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T21:55:34.371415+00:00",
+      "generation_id": "gen-1794261332-D6Omxll3NiE3Gepov9vD"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T21:56:25.246257+00:00",
+      "generation_id": "gen-1794261381-9uojLZVgnjf9jnGIVo0F"
+     }
+    }
+   }
   }
  ],
  "history": [
@@ -711,9 +746,9 @@
    "date": "2023-03-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 3,
@@ -724,9 +759,9 @@
    "date": "2023-04-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 3,
@@ -737,9 +772,9 @@
    "date": "2023-05-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 3,
@@ -750,9 +785,9 @@
    "date": "2023-06-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 3,
@@ -763,9 +798,9 @@
    "date": "2023-07-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 3,
@@ -776,9 +811,9 @@
    "date": "2023-08-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 3,
@@ -789,9 +824,9 @@
    "date": "2023-09-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 3,
@@ -802,9 +837,9 @@
    "date": "2023-10-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 3,
@@ -815,9 +850,9 @@
    "date": "2023-11-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 3,
@@ -828,9 +863,9 @@
    "date": "2023-12-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 3,
@@ -841,9 +876,9 @@
    "date": "2024-01-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 3,
@@ -854,9 +889,9 @@
    "date": "2024-02-29",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 4,
@@ -867,9 +902,9 @@
    "date": "2024-03-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -880,9 +915,9 @@
    "date": "2024-04-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -893,9 +928,9 @@
    "date": "2024-05-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -906,9 +941,9 @@
    "date": "2024-06-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -919,9 +954,9 @@
    "date": "2024-07-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -932,9 +967,9 @@
    "date": "2024-08-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -945,9 +980,9 @@
    "date": "2024-09-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -958,9 +993,9 @@
    "date": "2024-10-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -971,9 +1006,9 @@
    "date": "2024-11-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -984,9 +1019,9 @@
    "date": "2024-12-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -997,9 +1032,9 @@
    "date": "2025-01-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -1010,9 +1045,9 @@
    "date": "2025-02-28",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -1023,9 +1058,9 @@
    "date": "2025-03-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -1036,9 +1071,9 @@
    "date": "2025-04-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -1049,9 +1084,9 @@
    "date": "2025-05-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -1062,9 +1097,9 @@
    "date": "2025-06-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -1075,9 +1110,9 @@
    "date": "2025-07-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -1088,9 +1123,9 @@
    "date": "2025-08-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -1101,9 +1136,9 @@
    "date": "2025-09-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -1114,9 +1149,9 @@
    "date": "2025-10-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -1127,9 +1162,9 @@
    "date": "2025-11-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -1140,9 +1175,9 @@
    "date": "2025-12-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -1153,9 +1188,9 @@
    "date": "2026-01-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
@@ -1166,12 +1201,12 @@
    "date": "2026-02-28",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
-   "n_statements": 5,
+   "n_statements": 6,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1179,12 +1214,12 @@
    "date": "2026-03-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
-   "n_statements": 5,
+   "n_statements": 6,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1192,12 +1227,12 @@
    "date": "2026-04-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
-   "n_statements": 5,
+   "n_statements": 6,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1205,12 +1240,12 @@
    "date": "2026-05-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
-   "n_statements": 5,
+   "n_statements": 6,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1218,12 +1253,12 @@
    "date": "2026-06-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
-   "n_statements": 5,
+   "n_statements": 6,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1231,12 +1266,12 @@
    "date": "2026-07-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
-   "n_statements": 5,
+   "n_statements": 6,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1244,12 +1279,12 @@
    "date": "2026-08-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
-   "n_statements": 5,
+   "n_statements": 6,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1257,12 +1292,12 @@
    "date": "2026-09-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
-   "n_statements": 5,
+   "n_statements": 6,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1270,12 +1305,12 @@
    "date": "2026-10-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
-   "n_statements": 5,
+   "n_statements": 6,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1289,6 +1324,19 @@
     "regulation": null
    },
    "n_statements": 5,
+   "status": "complete",
+   "kind": "observed"
+  },
+  {
+   "date": "2026-11-10",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": 0.0,
+    "x_risk": 0.0,
+    "china_race": 0.0,
+    "regulation": null
+   },
+   "n_statements": 6,
    "status": "complete",
    "kind": "observed"
   }

@@ -110,11 +110,11 @@
     const cache = new Map();
     const options = ['bill','framework','issue'].map(kind => `<optgroup label="${{bill:'Named bills',framework:'Policy frameworks',issue:'Policy questions'}[kind]}">
       ${data.policies.filter(p => p.kind === kind).map(p=>`<option value="${esc(p.id)}">${esc(p.title)}</option>`).join('')}</optgroup>`).join('');
-    root.innerHTML = `${isCascade ? `<p class="note">DeepSeek V4.1 Flash 1017 assesses each statement. Astra independently reviews confidence below ${Number(data.strategy.threshold).toFixed(2)}. These confidence scores are model estimates; they are not calibrated accuracy measurements. Cases that remain uncertain require human review.</p>` : ''}<div class="policy-scope" role="group" aria-label="Policy coverage">
+    root.innerHTML = `<div class="policy-scope" role="group" aria-label="Policy coverage">
       <button type="button" data-scope="congress" aria-pressed="true">Congress</button>
       <button type="button" data-scope="executive" aria-pressed="false">Executive officials</button>
       <button type="button" data-scope="institutions" aria-pressed="false">Institutions</button>
-    </div><p class="note" id="policy-scope-note"></p><p id="policy-coverage-download" hidden><a href="data/federal_coverage.csv" download>Download federal research coverage</a></p><div class="policy-controls">
+    </div><p class="note" id="policy-scope-note" hidden></p><div class="policy-controls" hidden>
       <label>Policy or question<select id="policy-choice">${options}</select></label>
       <label>Observed stance<select id="policy-stance"><option value="all">All stances</option>${['support','oppose','mixed','neutral','unclear','disputed','pending'].map(s=>`<option value="${s}">${LABELS[s]}</option>`).join('')}<option value="no_evidence">No evidence found</option></select></label>
       <label id="policy-party-control">Party<select id="policy-party"><option value="all">All parties</option><option value="D">Democrats</option><option value="R">Republicans</option><option value="I">Independents</option></select></label>
@@ -122,11 +122,9 @@
       <label id="policy-organization-control" hidden>Agency or membership<select id="policy-organization"><option value="all">All organizations</option>${(data.organizations || []).map(o=>`<option value="${esc(o.id)}">${esc(o.name)}</option>`).join('')}</select></label>
       <label class="policy-search">Name, state, or organization<input type="search" id="policy-search" placeholder="Search profiles"></label>
     </div><div id="policy-chart-overview" class="pc-root"></div>
-    <h3 id="policy-detail-title" tabindex="-1"></h3><p id="policy-description"></p><p class="note" id="policy-source"></p>
-    <div id="policy-chart-detail" class="pc-root"></div><h3>Profiles and source quotes</h3>
-    <div id="policy-counts" class="policy-counts" aria-live="polite"></div>
-    <p class="note">These labels summarize the available statement history. They do not establish a current position.
-    No matching evidence means that the search found no candidate quote in this dataset. It does not mean opposition.</p>
+    <div id="policy-detail" hidden><h3 id="policy-detail-title"></h3><p id="policy-description"></p><p class="note" id="policy-source"></p>
+    <div id="policy-chart-detail" class="pc-root"></div></div><h3 id="policy-profiles-title" tabindex="-1">Profiles and source quotes: <span id="policy-profiles-name"></span></h3>
+    <div id="policy-counts" class="policy-counts" aria-live="polite" hidden></div>
     <div id="policy-results"></div><div class="policy-pages"><button id="policy-prev">Previous</button><span id="policy-page" aria-live="polite"></span><button id="policy-next">Next</button></div>
     <p class="note"><a href="data/policies.csv" download>Download policy summaries (CSV)</a> ·
     <a href="data/policies.json" download>Download policy data (JSON)</a> · Export built ${esc(data.built_on)}</p>`;
@@ -145,8 +143,8 @@
         get('policy-choice').value = id;
         get('policy-stance').value = 'all';
         render();
-        get('policy-detail-title').focus({preventScroll:true});
-        get('policy-detail-title').scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+        get('policy-profiles-title').focus({preventScroll:true});
+        get('policy-profiles-title').scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
       });
       global.PolicyCharts.renderSelected(get('policy-chart-detail'), members, target, chartData, FACETS, chartError, state.scope);
     }
@@ -181,11 +179,11 @@
       get('policy-party-control').hidden = !congress;
       get('policy-population-control').hidden = !congress;
       get('policy-organization-control').hidden = congress;
-      get('policy-coverage-download').hidden = congress;
       root.querySelectorAll('[data-scope]').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.scope===state.scope)));
-      get('policy-scope-note').textContent = congress ? 'Congressional policy statements. The five-score charts above cover Congress only.' :
+      get('policy-scope-note').textContent = congress ? 'Statements by members of Congress.' :
         `${data.federal_scope?.mode === 'current_government' ? 'Current federal officials and government institutions only.' : 'Curated federal coverage.'} ${state.scope === 'institutions' ? 'Each profile represents an institution. Statements do not establish its officials’ personal views.' : 'Each official counts once. Agency filters include linked roles; bars use each official’s primary organization.'} ${researchCoverageNote(data.federal_research)} ${federalUpdateNote(data.federal_update)} Role and membership records need manual review; the registry check date is ${data.subjects_verified_on || data.built_on}.`;
       get('policy-detail-title').textContent = target.title;
+      get('policy-profiles-name').textContent = target.title;
       renderCharts();
       get('policy-description').textContent = target.kind === 'issue' ?
         ({export_controls:'Positions on restrictions and enforcement for overseas access to AI chips, models, and compute.',
@@ -201,11 +199,12 @@
       const assessed = rows.reduce((n,m)=>n+m.policies[state.policy].assessed,0);
       const candidates = rows.reduce((n,m)=>n+m.policies[state.policy].candidates,0);
       get('policy-counts').textContent = `${rows.length} profile${rows.length === 1 ? '' : 's'} in this view · ${assessed} of ${candidates} candidate statements with final assessments${isCascade ? ` · ${rows.reduce((n,m)=>n+(m.policies[state.policy].astra_reviewed || 0),0)} accepted after Astra review · ${rows.reduce((n,m)=>n+(m.policies[state.policy].human_review || 0),0)} need human review` : ''}`;
-      get('policy-results').innerHTML = page.length ? page.map(m => {
+      get('policy-results').innerHTML = page.length ? '<div class="policy-head" aria-hidden="true"><span>Name</span><span>Position</span><span>Quotes</span></div>' + page.map(m => {
         const r = m.policies[state.policy];
-        const body = `<span><b>${esc(m.name)}</b><span class="policy-member-meta">${m.branch === 'executive' ? esc(m.organization_name) + (m.entity_type === 'institution' ? ' · Institution' : ' · Official') : party(m.party) + ' · ' + esc(m.state) + ' · ' + esc(m.chamber) + (m.status === 'member_elect' ? ' · member-elect' : '')}</span></span>
+        const pc = m.branch === 'executive' ? '' : party(m.party).charAt(0);
+        const body = `<span>${pc ? `<span class="p${pc}">●</span> ` : ''}<b>${esc(m.name)}</b><span class="policy-member-meta">${m.branch === 'executive' ? esc(m.organization_name) + (m.entity_type === 'institution' ? ' · Institution' : '') : pc + '-' + esc(m.state) + ' · ' + (m.chamber === 'senate' ? 'Senate' : 'House') + (m.status === 'member_elect' ? ' · new member' : '')}</span></span>
           <span class="policy-badge policy-${esc(r.stance || 'none')}">${esc(summaryLabel(r))}</span>
-          <span class="policy-evidence-count">${r.relevant} relevant quote${r.relevant === 1 ? '' : 's'}${r.has_undated_evidence ? '<br>Includes undated quotes' : r.last_statement_date ? '<br>' + esc(dateLabel(r.last_statement_date)) : ''}</span>`;
+          <span class="policy-evidence-count">${r.relevant} quote${r.relevant === 1 ? '' : 's'}${r.has_undated_evidence ? ' · some undated' : r.last_statement_date ? ' · latest ' + esc(dateLabel(r.last_statement_date)) : ''}</span>`;
         return r.candidates || m.branch === 'executive' ? `<details class="policy-member" data-person="${esc(m.id)}"><summary>${body}</summary>${renderProfile(m,data.organizations || [],data.members)}<div class="policy-evidence"></div></details>` : `<div class="policy-member policy-empty">${body}</div>`;
       }).join('') : '<p>No profiles match these filters.</p>';
       root.querySelectorAll('details.policy-member').forEach(details => {

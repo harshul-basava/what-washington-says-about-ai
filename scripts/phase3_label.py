@@ -282,14 +282,15 @@ def score_one(levels_by_sid, dates, k, recent_from=None):
     if len(recent) >= 3:
         lv = recent
     if not lv:
-        return (0, "silent", []) if k in INTENSITY else (None, "no_statements", [])
+        return (None, "silent", []) if k in INTENSITY else (None, "no_statements", [])   # silence is not dismissal
     vals = sorted((v for _, v in lv), reverse=True)
     if k in CONSISTENT:
         top = vals[0]
         if vals.count(top) >= 2 or vals.count(top) * 3 >= len(vals):
             sc, why = top, "consistent"
         else:
-            sc, why = max(top - 1, 0), "one_off_capped" if top > 0 else "dismissive"
+            # a one-off never drops a member who engaged with the question to 0, which means "dismisses / opposes"
+            sc, why = (max(top - 1, 1), "one_off_capped") if top > 0 else (0, "dismissive")
         if sc == 0 and why == "consistent":
             why = "dismissive"
         cite_levels = {top} if why == "one_off_capped" else {sc}
@@ -314,7 +315,7 @@ LEVEL_TEXT = {
     "regulation": ["opposes regulating AI", "prefers light-touch rules", "supports narrow, targeted rules",
                    "supports substantial obligations on AI companies", "supports comprehensive regulation"],
 }
-WHY_TEXT = {"silent": "No statement addresses this, so it scores 0 (doesn't discuss it).",
+WHY_TEXT = {"silent": "No statement addresses this.",
             "dismissive": "Their statements on this reject the claim.",
             "consistent": "At least two statements reach this level.",
             "one_off_capped": "Only one statement reaches the highest level, so the score is one step lower.",
@@ -348,6 +349,10 @@ def score_member(L, dates, n_statements, recent_from=None):
             out[k] = (None, None, None)
             continue
         a, b = (score_one(L[j], dates, k, recent_from) for j in JUDGES)
+        # one judge found the question addressed and the other did not: the silent judge counts as 0, as before;
+        # only when neither judge finds the question addressed is it "not enough evidence"
+        if k in INTENSITY and (a[0] is None) != (b[0] is None):
+            a, b = [(0, "silent", []) if r[0] is None else r for r in (a, b)]
         nums = [r[0] for r in (a, b) if r[0] is not None]
         out[k] = (sum(nums) / len(nums) if nums else None, a, b)
     return out

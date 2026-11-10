@@ -1,14 +1,14 @@
 {
  "schema_version": 1,
  "id": "exec_kessler",
- "revision": "7069276e182be8df03c493e52d91a33c961205fb2aedf4cb4dbdeae161ff417d",
+ "revision": "d27ea3c9cd79b53c6f96efffd426107e488dacc6570f95bbd1d9badf9e4fbe7c",
  "profile": {
   "id": "exec_kessler",
   "name": "Jeffrey Kessler",
   "party": null,
   "state": "",
   "chamber": "",
-  "status": "complete",
+  "status": "partial",
   "entity_type": "person",
   "branch": "executive",
   "organization_id": "bis",
@@ -37,13 +37,13 @@
    "source_url": "https://www.bis.gov/node/18231",
    "reason": "current_government_official"
   },
-  "n_statements": 8,
-  "n_labeled": 8,
+  "n_statements": 10,
+  "n_labeled": 10,
   "scores": {
    "ai_overall": null,
-   "agi_pilled": 0.0,
-   "x_risk": 0.0,
-   "china_race": 0.0,
+   "agi_pilled": null,
+   "x_risk": null,
+   "china_race": null,
    "regulation": null
   },
   "score_details": {
@@ -55,21 +55,21 @@
     "label_count": 0
    },
    "agi_pilled": {
-    "score": 0.0,
+    "score": null,
     "reason_a": "silent",
     "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "x_risk": {
-    "score": 0.0,
+    "score": null,
     "reason_a": "silent",
     "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "china_race": {
-    "score": 0.0,
+    "score": null,
     "reason_a": "silent",
     "reason_b": "silent",
     "sids": [],
@@ -84,50 +84,16 @@
    }
   },
   "summary": {
-   "status": "complete",
-   "text": "In a May 2025 statement, Jeffrey Kessler said the Trump administration would pursue a strategy for American SI technology with trusted foreign countries while keeping it from adversaries, and he rejected the Biden administration’s SI policies. In January 2026, Kessler said export controls should evolve with technology while protecting national security, and that permitting H200 sales to China under controlled conditions would strengthen the American technology ecosystem. In July 2026 statements, Kessler said BIS enforcement resources are spread too thin and that its enforcement unit should be orders of magnitude larger. Kessler also cited BIS settlements involving Applied Materials, Cadence Design Systems, and Bosch, and described budget request increases for BIS’s Export Administration unit.",
-   "sids": [
-    "s1",
-    "s2",
-    "s3",
-    "s4",
-    "s7",
-    "s8"
-   ],
-   "sentences": [
-    {
-     "text": "In a May 2025 statement, Jeffrey Kessler said the Trump administration would pursue a strategy for American SI technology with trusted foreign countries while keeping it from adversaries, and he rejected the Biden administration’s SI policies.",
-     "sids": [
-      "s1"
-     ]
-    },
-    {
-     "text": "In January 2026, Kessler said export controls should evolve with technology while protecting national security, and that permitting H200 sales to China under controlled conditions would strengthen the American technology ecosystem.",
-     "sids": [
-      "s2"
-     ]
-    },
-    {
-     "text": "In July 2026 statements, Kessler said BIS enforcement resources are spread too thin and that its enforcement unit should be orders of magnitude larger.",
-     "sids": [
-      "s3",
-      "s4"
-     ]
-    },
-    {
-     "text": "Kessler also cited BIS settlements involving Applied Materials, Cadence Design Systems, and Bosch, and described budget request increases for BIS’s Export Administration unit.",
-     "sids": [
-      "s7",
-      "s8"
-     ]
-    }
-   ]
+   "status": "pending",
+   "text": "",
+   "sids": []
   },
   "topics": {
    "China/competition": 0.667,
-   "national security": 3.667,
+   "national security": 4.667,
    "regulation": 2.667,
-   "other": 1.0
+   "other": 1.0,
+   "jobs/economy": 1.0
   },
   "regulation": {
    "status": "complete",
@@ -187,7 +153,7 @@
      "sids": [
       "s2"
      ],
-     "why": "s2 explicitly supports permitting the sale of H200 chips to China under controlled conditions, favoring looser advanced chip sales over stricter export controls."
+     "why": "Kessler explicitly supports permitting sale of the advanced H200 chip to China under controlled conditions, favoring more advanced chip sales over stricter controls."
     },
     "testing_mandate": {
      "stance": 0,
@@ -251,20 +217,6 @@
     }
    },
    "disputed": []
-  },
-  "stance_review": {
-   "review_id": "b458974146d63aa283b725d72b8523cac0e9b65edf2189195dec51ec6603ad6e",
-   "dimension": "ai_overall",
-   "status": "complete",
-   "reason": "None of the supplied excerpts establishes Kessler’s view of AI’s overall effects on Americans. They address technology distribution, export controls, national security, enforcement resources, or enforcement actions. Benefits attributed to controlled H200 sales do not establish a general AI stance. This conclusion is limited to the supplied excerpts; s1 retains the source’s unusual 'SI' terminology and noted possibility of later edits.",
-   "confidence": 5,
-   "n_statements": 8,
-   "n_contexts": 0,
-   "accepted_sids": [],
-   "finding_count": 0,
-   "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-09T06:45:59.515866+00:00",
-   "generation_id": "gen-1794206752-bt62Yy06E4ei1OU49wct"
   }
  },
  "statements": [
@@ -990,6 +942,128 @@
      }
     }
    }
+  },
+  {
+   "sid": "s9",
+   "date": "2025-08-29",
+   "url": "https://www.bis.gov/news-updates",
+   "text": "The Trump Administration is committed to closing export control loopholes — particularly those that put U.S. companies at a competitive disadvantage. Today’s decision is an important step towards fulfilling this commitment.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Jeffrey Kessler",
+    "organization_id": "bis",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "role": "Under Secretary of Commerce for Industry and Security"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T21:50:05.058180+00:00",
+      "generation_id": "gen-1794261000-tlxdMCqnMLJausPPCUBZ"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T21:51:49.682067+00:00",
+      "generation_id": "gen-1794261106-PDWgnzUpTM0V7kWF0Rvk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T21:53:55.930994+00:00",
+      "generation_id": "gen-1794261229-EbSHYAHRCqTSKCKhUbYA"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s10",
+   "date": null,
+   "url": "https://www.bis.gov/news-updates",
+   "text": "American technology should never be used against the American people. BIS is sending a clear, resounding message that the Trump administration will work tirelessly to safeguard our national security by preventing U.S. technologies and goods from being misused for high performance computing, hypersonic missiles, military aircraft training, and UAVs that threaten our national security",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Jeffrey Kessler",
+    "organization_id": "bis",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "national security"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T21:50:05.058180+00:00",
+      "generation_id": "gen-1794261000-tlxdMCqnMLJausPPCUBZ"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T21:51:49.682067+00:00",
+      "generation_id": "gen-1794261106-PDWgnzUpTM0V7kWF0Rvk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T21:53:55.930994+00:00",
+      "generation_id": "gen-1794261229-EbSHYAHRCqTSKCKhUbYA"
+     }
+    }
+   }
   }
  ],
  "history": [
@@ -1405,7 +1479,7 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1418,7 +1492,7 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1431,7 +1505,7 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1444,7 +1518,7 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1457,7 +1531,7 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1465,12 +1539,12 @@
    "date": "2026-01-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
-   "n_statements": 3,
+   "n_statements": 4,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1478,12 +1552,12 @@
    "date": "2026-02-28",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
-   "n_statements": 3,
+   "n_statements": 4,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1491,12 +1565,12 @@
    "date": "2026-03-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
-   "n_statements": 3,
+   "n_statements": 4,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1504,12 +1578,12 @@
    "date": "2026-04-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
-   "n_statements": 3,
+   "n_statements": 4,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1517,12 +1591,12 @@
    "date": "2026-05-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
-   "n_statements": 3,
+   "n_statements": 4,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1530,12 +1604,12 @@
    "date": "2026-06-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
-   "n_statements": 3,
+   "n_statements": 4,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1543,12 +1617,12 @@
    "date": "2026-07-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
-   "n_statements": 7,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1556,12 +1630,12 @@
    "date": "2026-08-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
-   "n_statements": 7,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1569,12 +1643,12 @@
    "date": "2026-09-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
-   "n_statements": 7,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1582,12 +1656,12 @@
    "date": "2026-10-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": 0.0,
-    "x_risk": 0.0,
-    "china_race": 0.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": null,
     "regulation": null
    },
-   "n_statements": 7,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1601,6 +1675,19 @@
     "regulation": null
    },
    "n_statements": 8,
+   "status": "complete",
+   "kind": "observed"
+  },
+  {
+   "date": "2026-11-10",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": 0.0,
+    "x_risk": 0.0,
+    "china_race": 0.0,
+    "regulation": null
+   },
+   "n_statements": 10,
    "status": "complete",
    "kind": "observed"
   }

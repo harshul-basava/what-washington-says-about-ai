@@ -40,10 +40,10 @@ test('silence zeros are explicit and incomplete evidence cannot become silence',
   assert.equal(view.scoreState(member(), 'x_risk').label,'0 · No discussion');
   assert.equal(view.scoreState(member({status:'partial',n_labeled:1}), 'x_risk').kind,'pending');
   assert.equal(view.scoreState(member({status:'no_evidence',n_statements:0,n_labeled:0}), 'x_risk').label,'No evidence');
-  assert.equal(view.scoreState(member({scores:{}}), 'x_risk').label,'Score unavailable');
+  assert.equal(view.scoreState(member({scores:{}}), 'x_risk').label,'Not enough evidence: no statements on this question');
   assert.equal(view.scoreState(member({status:'partial'}), 'x_risk').label,'0 · No discussion');
-  assert.equal(view.scoreState(member({scores:{regulation:0},score_details:{regulation:{reason_a:'consistent',reason_b:'consistent'}}}), 'regulation').label,'0 · Opposes rules');
-  assert.equal(view.scoreState(member({scores:{regulation:null},score_details:{regulation:{reason_a:'no_statements',reason_b:'no_statements'}}}), 'regulation').label,'No discussion');
+  assert.equal(view.scoreState(member({scores:{regulation:0},score_details:{regulation:{reason_a:'consistent',reason_b:'consistent'}}}), 'regulation').label,'0 · Opposes AI rules');
+  assert.equal(view.scoreState(member({scores:{regulation:null},score_details:{regulation:{reason_a:'no_statements',reason_b:'no_statements'}}}), 'regulation').label,'Not enough evidence: no statements on this question');
   assert.equal(view.scoreState(member({scores:{x_risk:0},score_details:{}}), 'x_risk').label,'0');
 });
 
@@ -116,7 +116,7 @@ test('sentence-level summaries place each citation beside its supported sentence
   assert.ok(html.indexOf('Second claim.') < html.indexOf('href="#quote-s2"'));
 });
 
-test('topic charts preserve fractional statement shares and explain split attribution', () => {
+test('topic charts preserve fractional statement shares', () => {
   const split=view.renderTopics(member({n_statements:1,n_labeled:1,topics:{safety:0.5,economy:0.5}}),['safety','economy']);
   assert.deepEqual([...split.matchAll(/<strong>([^<]+)<\/strong>/g)].map(match=>match[1]),['0.5','0.5']);
   const html=view.renderTopics(member({n_statements:2,n_labeled:2,topics:{safety:0.5,economy:1.5}}),['safety','economy']);
@@ -124,8 +124,7 @@ test('topic charts preserve fractional statement shares and explain split attrib
   const widths=[...html.matchAll(/style="width:([\d.]+)%"/g)].map(match=>Number(match[1]));
   assert.ok(Math.abs(widths[0]-100/3)<0.001);
   assert.equal(widths[1],100);
-  assert.match(html,/statement shares/i);
-  assert.match(html,/split equally/i);
+  // the explanation of split weights now lives in the page's method section, not next to the chart
 });
 
 test('regulation areas distinguish completed no stance from unfinished assessments', () => {
@@ -148,7 +147,6 @@ test('history separates reconstructed and observed records and leaves gaps for u
   const html=view.renderHistory(history,'x_risk','Catastrophic risk');
   assert.match(html,/Reconstructed history/);
   assert.match(html,/Observed snapshots/);
-  assert.match(html,/No discussion can produce a zero/);
   assert.match(html,/Assessment pending/);
   assert.match(view.dateLabel('2025-03'),/day unknown/);
   assert.equal(view.dateLabel(null),'Date unknown');

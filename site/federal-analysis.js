@@ -5,11 +5,11 @@
   const fmt = value => Number.isInteger(value) ? String(value) : String(Math.round(value * 100) / 100);
   const STANCES = {'-2':'Explicit opposition','-1':'Implied opposition','0':'No stated position','1':'Implied support','2':'Explicit support'};
   const LEVELS = {
-    ai_overall:['Mainly a threat','Harms dominate','Balanced','Mainly an opportunity','Enthusiastic'],
-    agi_pilled:['Dismisses human-level AI','Ordinary technology','Very large change','Human-level AI is possible','Human-level AI is near'],
-    x_risk:['Dismisses the risk','Raises it, plays it down','A real risk','Wants action','A top priority'],
-    china_race:['Rejects the race','Mentions the race','One reason among several','The main reason','Outweighs other concerns'],
-    regulation:['Opposes rules','Light-touch rules','Targeted rules','Substantial rules','Comprehensive rules']
+    ai_overall:['Sees AI mainly as a threat','Sees more harm than good','Weighs harm and good equally','Sees AI mainly as an opportunity','Enthusiastic about AI'],
+    agi_pilled:['Dismisses AGI','Sees AI as ordinary technology','Expects very large change','Thinks AGI is possible','Thinks AGI is near'],
+    x_risk:['Dismisses AI x-risk','Mentions x-risk, plays it down','Calls x-risk a real risk','Wants action on x-risk','Calls x-risk a top priority'],
+    china_race:['Rejects the China race','Mentions the China race','China race is one reason','China race is the main reason','China race outweighs all else'],
+    regulation:['Opposes AI rules','Wants light-touch rules','Wants targeted rules','Wants substantial rules','Wants comprehensive rules']
   };
   const QUESTION_TEXT = {
     ai_overall:'Does AI offer benefits or harms?', agi_pilled:'Will AI reach human-level intelligence?',
@@ -69,7 +69,7 @@
     const reasons = [detail.reason_a,detail.reason_b];
     if (!score(value)) return {kind:'unavailable',value:null,label:
       member.n_statements < 3 || detail.reason_a === 'insufficient_evidence' ? 'Insufficient evidence' :
-        reasons.every(reason=>reason === 'no_statements') ? 'No discussion' : 'Score unavailable'};
+        reasons.every(reason=>['silent','no_statements'].includes(reason)) ? 'Not enough evidence: no statements on this question' : 'Score unavailable'};
     const silent = reasons.every(reason => ['silent','no_statements'].includes(reason));
     const meaning = value === 0 && silent ? 'No discussion' : value === 0 && reasons.some(reason=>!reason || ['silent','no_statements'].includes(reason)) ? null :
       Number.isInteger(value) ? LEVELS[dimension]?.[value] : null;
@@ -205,11 +205,11 @@
       <text x="${left}" y="${height-8}">${esc(rows[0].date)}</text>${rows.length > 1 ? `<text x="${width-right}" y="${height-8}" text-anchor="end">${esc(rows[rows.length-1].date)}</text>` : ''}</svg>`;
   }
   function renderHistory(history, dimension, title) {
-    return `<p class="fa-note">Reconstructed history applies today's labels to evidence available by each month-end. It tracks today's eligible roster, not historical membership.</p>
-      <p class="fa-note">Partial dates enter after their full date range ends. Undated statements stay out. No discussion can produce a zero; so can the rubric's lowest position.</p>
+    return `
+      
       ${['reconstructed','observed'].map(kind => {
         const rows = historySeries(history,dimension,kind), label = kind === 'reconstructed' ? 'Reconstructed history' : 'Observed snapshots';
-        return `<section class="fa-history-kind"><h4>${label}</h4><p class="fa-note">${kind === 'observed' ? 'These snapshots record the scores that the update process produced on those dates.' : 'The line shows an estimate from available dated statements. Gaps mark unavailable scores.'}</p>
+        return `<section class="fa-history-kind"><h4>${label}</h4>
           ${rows.length ? `${historyChart(rows,dimension,kind,title + ': ' + label)}<details><summary>Exact dates and scores (${rows.length})</summary><div class="fa-table-scroll"><table><thead><tr><th scope="col">Date</th><th scope="col">Score</th><th scope="col">Statements</th></tr></thead><tbody>${rows.map(row => `<tr><td>${esc(row.date)}</td><td>${row.value === null ? row.status === 'partial' || row.status === 'pending' ? 'Assessment pending' : row.n_statements < 3 ? 'Insufficient evidence' : 'No score' : fmt(row.value)}</td><td>${count(row.n_statements)}</td></tr>`).join('')}</tbody></table></div></details>` : `<p class="fa-empty">No ${label.toLowerCase()} available.</p>`}</section>`;
       }).join('')}`;
   }
@@ -228,7 +228,7 @@
   function renderTopics(member, topics) {
     const counts = topics.map(topic => ({topic,total:number(member.topics?.[topic]) && member.topics[topic] >= 0 ? member.topics[topic] : 0}));
     const max = Math.max(1,...counts.map(row=>row.total));
-    return `<p class="fa-note">Topic totals show statement shares across ${count(member.n_labeled)} assessed statements. Each statement's weight is split equally among its topics.${member.n_labeled < member.n_statements ? ' Unfinished assessments can change these totals.' : ''}</p>
+    return `
       <div class="fa-topics">${counts.map(row=>`<div class="fa-topic"><span>${esc(row.topic)}</span><div class="fa-topic-track" aria-hidden="true"><span style="width:${row.total/max*100}%"></span></div><strong>${fmt(row.total)}</strong></div>`).join('')}</div>`;
   }
   function renderChanges(changes, dimensions, statements) {
@@ -244,7 +244,7 @@
       data = await response.json();
       if (data.schema_version !== 1 || !data.revision || !Array.isArray(data.members) || !Array.isArray(data.dimensions) || !Array.isArray(data.regulation_areas)) throw new Error('Invalid export');
     } catch (_) {
-      root.innerHTML = '<div class="fa-empty" role="status"><h2>Federal analysis is unavailable</h2><p>The export is missing or incomplete. Please reload the page later.</p><a href="index.html#policy-section">Open the policy explorer</a></div>';
+      root.innerHTML = '<div class="fa-empty" role="status"><h2>Federal analysis is unavailable</h2><p>The export is missing or incomplete. Please reload the page later.</p><a href="policies.html#policy-section">Open the policy explorer</a></div>';
       return;
     }
     const params = new URLSearchParams(global.location?.search || '');
@@ -266,27 +266,28 @@
       <section class="fc-controlbar" aria-label="Chart controls"><label>Question <select id="fc-dimension">${dimensionOptions(state.chartDimension)}</select></label><div class="fa-scope" role="group" aria-label="Profile type"><button type="button" data-scope="officials" aria-pressed="true">Executive officials</button><button type="button" data-scope="institutions" aria-pressed="false">Institutions</button></div></section>
       <section class="fa-filter-section" aria-label="Filter federal profiles">
       <div class="fa-filters"><label>Agency or membership<select id="fa-agency"><option value="all">All organizations</option>${(data.organizations || []).map(o=>`<option value="${esc(o.id)}">${esc(o.name)}</option>`).join('')}</select></label><label>Name or organization<input id="fa-search" type="search" placeholder="Search profiles" autocomplete="off"></label></div>
-      <p class="fa-note">Agency filters include subagencies and linked roles. Each profile counts once. Officials and institutions have separate totals.</p></section>
+      </section>
       <div id="fa-coverage" class="fa-coverage" aria-live="polite"></div>
-      <section class="fc-section" id="fc-cohort"><h2 id="fc-cohort-title">Federal profiles by score</h2><p class="fc-description">Each dot is one profile. Colors show the selected score, from low to high. Select a dot to read its evidence.</p><div id="fc-dots"></div><p class="fa-note">Colors round scores to the nearest whole number, as on the Congress page. A zero can mean no discussion. Gray means unscored.</p><div id="fc-availability" aria-live="polite"></div></section>
+      <section class="fc-section" id="fc-cohort"><h2 id="fc-cohort-title">Federal profiles by score</h2><p class="fc-description">Each dot is one profile, colored by the selected score.</p><div id="fc-dots"></div><div id="fc-availability" aria-live="polite"></div></section>
       <section class="fc-section" id="fc-comparison"><div class="fa-section-heading"><h2>Compare two AI scores</h2><label class="fc-control">Vertical axis<select id="fc-compare">${dimensionOptions(state.compare)}</select></label></div><p class="fc-description" id="fc-scatter-description"></p><div id="fc-scatter"></div></section>
-      <section class="fc-section" id="fc-agency-section"><h2>Scores by agency</h2><p class="fc-description">Each bar includes all selected profiles in that agency. Select a bar to see its profiles.</p><div id="fc-agencies"></div><p class="fa-note">Primary affiliation determines each group. Subagencies roll up to their parent. Linked roles do not add a second count.</p><div id="fc-agency-selection" aria-live="polite"></div></section>
-      <section class="fc-section" id="fc-timeline-section"><div class="fa-section-heading"><h2>Profiles scoring 3 or more over time</h2><label class="fc-control">History<select id="fc-history-kind"><option value="reconstructed">Monthly reconstruction</option><option value="observed">Observed snapshots</option></select></label></div><p class="fc-description">The share uses all selected profiles, including those without scores. Earlier coverage is often thinner.</p><div id="fc-timeline"></div><p class="fa-note">Reconstruction applies current labels to dated evidence for today's eligible roster. It does not track historical office membership. Observed snapshots stay separate.</p></section>
+      <section class="fc-section" id="fc-agency-section"><h2>Scores by agency</h2><p class="fc-description">Profiles in each agency, by the selected score.</p><div id="fc-agencies"></div><div id="fc-agency-selection" aria-live="polite"></div></section>
+      <section class="fc-section" id="fc-timeline-section"><div class="fa-section-heading"><h2>Profiles scoring 3 or more over time</h2><label class="fc-control">History<select id="fc-history-kind"><option value="reconstructed">Monthly reconstruction</option><option value="observed">Observed snapshots</option></select></label></div><p class="fc-description">Percent of profiles with a score of 3 or more on the selected question.</p><div id="fc-timeline"></div></section>
       <section class="fc-section" id="fc-recent-section"><h2>Recent score changes</h2><p class="fc-description">Observed changes in the selected question over the past 60 days.</p><div id="fc-recent"></div></section>
-      <section class="fc-section" id="fc-policy-section"><h2>Which AI policies they support</h2><p class="fc-description">Bars extend left for opposition and right for support. Select a policy to see the profiles behind each position.</p><div id="fc-policies"></div><div id="fc-policy-selection" aria-live="polite"></div></section>
-      <section class="fc-section" id="fc-topic-section"><div class="fa-section-heading"><h2>What they talk about</h2><label class="fc-control">Time range<select id="fc-range"><option value="3m">3 months</option><option value="12m" selected>12 months</option><option value="all">All time</option></select></label></div><p class="fc-description">Topic shares use a rolling 30-day window. Each statement divides its weight equally among its topics.</p><div id="fc-topic-share"></div><p class="fa-note">Partial dates enter at the end of their month or year. Undated and unfinished statements stay out. Gaps mean no dated statements.</p><div class="fa-section-heading fc-voices-heading"><h3>Top voices on a topic</h3><label class="fc-control">Topic<select id="fc-topic">${data.topics.map(t=>`<option>${esc(t)}</option>`).join('')}</select></label></div><p class="fa-note">The top 15 profiles by statement share across all assessed evidence, including undated statements. Select a name to read its sources.</p><div id="fc-voices"></div></section>
-      <section class="fc-section" id="fc-groups-section"><h2>Profile groups</h2><p class="fc-description">Find profiles with a particular combination of views. High means at least 3; low means below 2.</p><div class="fc-presets">${charts.PRESETS.map(p=>`<button type="button" data-preset="${p.id}" aria-pressed="${p.id===state.preset}">${esc(p.title)}</button>`).join('')}</div><p class="fa-note">Low scores can reflect silence. Open each profile to check the explanation and sources.</p><div id="fc-group-members" class="fc-profile-chips" aria-live="polite"></div></section>
-      <section class="fc-section" id="fc-members-section"><h2>All profiles</h2><p class="fc-description">Compare the five scores and open the evidence for any profile in this view.</p><div id="fc-members"></div></section>
+      <section class="fc-section" id="fc-policy-section"><h2>Which AI policies they support</h2><p class="fc-description">Profiles that support (right) or oppose (left) each AI policy.</p><div id="fc-policies"></div><div id="fc-policy-selection" aria-live="polite"></div></section>
+      <section class="fc-section" id="fc-topic-section"><div class="fa-section-heading"><h2>What they talk about</h2><label class="fc-control">Time range<select id="fc-range"><option value="3m">3 months</option><option value="12m" selected>12 months</option><option value="all">All time</option></select></label></div><p class="fc-description">Share of statements about each topic.</p><div id="fc-topic-share"></div><div class="fa-section-heading fc-voices-heading"><h3>Top voices on a topic</h3><label class="fc-control">Topic<select id="fc-topic">${data.topics.map(t=>`<option>${esc(t)}</option>`).join('')}</select></label></div><div id="fc-voices"></div></section>
+      <section class="fc-section" id="fc-groups-section"><h2>Profile groups</h2><p class="fc-description">Groups of profiles, selected by their scores.</p><div class="fc-presets">${charts.PRESETS.map(p=>`<button type="button" data-preset="${p.id}" aria-pressed="${p.id===state.preset}">${esc(p.title)}</button>`).join('')}</div><div id="fc-group-members" class="fc-profile-chips" aria-live="polite"></div></section>
+      <section class="fc-section" id="fc-members-section"><h2>All profiles</h2><p class="fc-description">The five scores of every profile in this view.</p><div id="fc-members"></div></section>
       <section class="fa-overview" aria-labelledby="fa-overview-title"><div class="fa-section-heading"><div><p class="fa-eyebrow">The current cohort</p><h2 id="fa-overview-title">Five questions about AI</h2></div><a href="#fa-profiles">Explore a profile ↓</a></div>
-      <p class="fa-note">Bars count profiles by the nearest whole score. Missing evidence and unfinished labels stay outside the bars.</p><div id="fa-distributions"></div></section>
+      <div id="fa-distributions"></div></section>
       <section id="fa-profiles" class="fa-profile-section" aria-labelledby="fa-profile-section-title"><div class="fa-section-heading"><div><p class="fa-eyebrow">Evidence behind the scores</p><h2 id="fa-profile-section-title">Explore a profile</h2></div></div>
       <div class="fa-explorer"><aside class="fa-profile-picker"><label for="fa-profile-choice">Choose a profile</label><select id="fa-profile-choice"></select><p id="fa-profile-count" class="fa-note"></p><div id="fa-profile-list" class="fa-profile-list" aria-label="Profiles"></div></aside><div id="fa-profile-panel" class="fa-profile-panel" aria-live="polite"></div></div></section>
       <section class="fa-method" id="method"><p class="fa-eyebrow">How to read this page</p><h2>Sources, scores, and limits</h2><p>${esc(data.methodology?.text || 'The analysis uses verified public statements, model labels, and a fixed score formula.')}</p>
-      <p>A profile needs at least three statements for a score. A zero can mean no discussion or the lowest rubric position. Score details explain the result.</p>
+      <p><b>Reading the charts.</b> Agency filters include subagencies and linked roles; each profile counts once, and officials and institutions have separate totals. Colors round scores to the nearest whole number, as on the Congress page; gray means not enough evidence. A profile that never addresses a question has not enough evidence on it; a 0 means the profile dismisses the idea or opposes AI rules. In "Scores by agency", each profile's primary affiliation sets its group, subagencies roll up to their parent, and linked roles do not add a second count. "Profiles scoring 3 or more over time" uses all selected profiles, including those without scores; the monthly reconstruction applies today's labels to dated evidence for today's roster, does not track who held office then, and keeps observed snapshots separate, and earlier coverage is often thinner. In the policy chart, each side uses the same scale, and no stated position does not mean opposition. Topic shares use a rolling 30-day window, and each statement splits its weight equally among its topics; partial dates count at the end of their month or year, and undated or unfinished statements are left out. The top voices are the 15 profiles with the largest share of statements on the topic. Low scores can reflect silence, so open each profile to check the explanation and sources. Bars in "Five questions about AI" count profiles by the nearest whole score; missing evidence and unfinished labels are left out.</p>
+      <p>A profile needs at least three statements for a score. A profile that never addresses a question gets no score on it; a 0 is the lowest position on the rubric. Score details explain the result.</p>
       <p>Institutional statements describe the institution. They do not establish an official's personal views. Officials' views do not establish institutional positions.</p>
       <p>These records cover today's eligible federal roster. Search completion does not establish complete evidence or equal evidence depth.</p>
       <p class="fa-models">${esc(Object.entries(data.methodology?.models || {}).map(([key,value])=>`${key}: ${value}`).join(' · '))}</p>
-      <p><a href="data/federal_analysis.json" download>Download the analysis index (JSON)</a> · <a href="index.html#policy-section">Explore named policies</a></p><p class="fa-note">Export built ${esc(dateLabel(data.built_on?.slice(0,10)))}.</p></section>`;
+      <p><a href="data/federal_analysis.json" download>Download the analysis index (JSON)</a> · <a href="policies.html#policy-section">Explore named policies</a></p><p class="fa-note">Export built ${esc(dateLabel(data.built_on?.slice(0,10)))}.</p></section>`;
     const get = id => root.querySelector('#' + id);
     const selectedMembers=()=>filterMembers(data.members,state,data.organizations || []).sort((a,b)=>a.name.localeCompare(b.name));
     function renderCharts() {
