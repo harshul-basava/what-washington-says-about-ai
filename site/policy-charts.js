@@ -1,14 +1,17 @@
 /* Offline policy charts. All calculations use published judgments, not new model calls. */
 (function (global) {
   'use strict';
-  const STANCES = ['support','oppose','mixed','neutral','unclear','disputed'];
-  const LABELS = {support:'Support',oppose:'Oppose',mixed:'Mixed',neutral:'Description only',unclear:'Unclear',disputed:'Models disagree'};
+  const RAW = ['support','oppose','mixed','neutral','unclear','disputed'];
+  // mixed, description-only and unclear read as one group on the charts
+  const STANCES = ['support','oppose','other','disputed'];
+  const GROUP = s => ['mixed','neutral','unclear'].includes(s) ? 'other' : s;
+  const LABELS = {support:'Support',oppose:'Oppose',other:'Mixed or unclear',disputed:'Models disagree'};
   const PARTIES = {D:'Democrats',R:'Republicans',I:'Independents'};
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const blank = () => Object.fromEntries(STANCES.map(s=>[s,0]));
   const percent = (n,d) => d > 0 ? Math.max(0,Math.min(100,100*n/d)) : 0;
   const party = p => /^dem|^dfl$|^D$/i.test(p) ? 'D' : /^rep|^R$/i.test(p) ? 'R' : 'I';
-  const relevant = r => STANCES.includes(r.stance);
+  const relevant = r => RAW.includes(r.stance);
   const countText = counts => STANCES.filter(s=>counts[s]).map(s=>`${counts[s]} ${LABELS[s].toLowerCase()}`).join(', ');
 
   function breakdown(members, target) {
@@ -16,8 +19,8 @@
     for (const member of members) {
       const row = member.policies[target];
       if (!row || ['pending','partial'].includes(row.coverage)) result.pending++;
-      else if (row.relevant > 0 && STANCES.includes(row.stance)) {
-        result.counts[row.stance]++;
+      else if (row.relevant > 0 && RAW.includes(row.stance)) {
+        result.counts[GROUP(row.stance)]++;
         result.observed++;
       } else result.missing++;
     }
@@ -50,7 +53,7 @@
     }
     for (const {row,month} of dated) {
       const period=result.periods[Math.floor(month/size)-first];
-      period.counts[row.stance]++;
+      period.counts[GROUP(row.stance)]++;
       period.total++;
       period.ids.add(row.person_id);
     }
@@ -64,14 +67,16 @@
       disputed:rows.filter(r=>r.facets_final ? r.final_judge === 'astra' && r.facets_final.includes(id) : r.facets_disputed.includes(id)).length}));
   }
 
-  function stanceBar(row) {
-    if (!row.observed) return '<div class="pc-empty-bar">No completed assessment with relevant evidence</div>';
-    return `<div class="pc-stack" role="img" aria-label="${esc(countText(row.counts))}; ${row.observed} profiles total">${STANCES.filter(s=>row.counts[s]).map(s=>
-      `<span class="pc-fill pc-${s}" style="width:${percent(row.counts[s],row.observed)}%" title="${esc(LABELS[s])}: ${row.counts[s]} profiles (${percent(row.counts[s],row.observed).toFixed(1)}%)" aria-hidden="true">${percent(row.counts[s],row.observed)>=9 ? row.counts[s] : ''}</span>`).join('')}</div>`;
+  function stanceBar(row) {   // every profile in the view: stances, then "no evidence" (no relevant statements, or not assessed yet)
+    const total = row.total ?? row.observed, none = Math.max(0, total - row.observed);
+    if (!total) return '<div class="pc-empty-bar">No profiles in this view</div>';
+    const seg = (cls, label, n) => `<span class="pc-fill pc-${cls}" style="width:${percent(n,total)}%" title="${esc(label)}: ${n} of ${total} profiles (${percent(n,total).toFixed(1)}%)" aria-hidden="true">${percent(n,total)>=6 ? n : ''}</span>`;
+    return `<div class="pc-stack" role="img" aria-label="${esc(countText(row.counts))}${none ? `, ${none} no evidence` : ''}; ${total} profiles total">${
+      STANCES.filter(s=>row.counts[s]).map(s=>seg(s, LABELS[s], row.counts[s])).join('')}${none ? seg('none','No evidence',none) : ''}</div>`;
   }
 
   function legend() {
-    return `<div class="pc-legend" aria-label="Stance colors">${STANCES.map(s=>`<span><i class="pc-${s}" aria-hidden="true"></i>${LABELS[s]}</span>`).join('')}</div>`;
+    return `<div class="pc-legend" aria-label="Stance colors">${STANCES.map(s=>`<span><i class="pc-${s}" aria-hidden="true"></i>${LABELS[s]}</span>`).join('')}<span><i class="pc-none" aria-hidden="true"></i>No evidence</span></div>`;
   }
 
   function coverage(row) {
@@ -85,8 +90,8 @@
   function renderOverview(root, members, policies, selected, onSelect) {
     const rows=policies.map(p=>({...breakdown(members,p.id),id:p.id,title:p.title}));
     root.innerHTML = `<h3>Policy positions at a glance</h3>
-      ${legend()}<div class="pc-overview-head" aria-hidden="true"><span>Policy or question</span><span>Positions among profiles with evidence</span><span>Evidence / roster</span></div>
-      ${rows.map(row=>`<div class="pc-overview-row"><button type="button" class="pc-policy-link" data-policy="${esc(row.id)}" aria-current="${row.id===selected ? 'true' : 'false'}">${esc(row.title)}</button>${stanceBar(row)}${coverage(row)}</div>`).join('')}
+      ${legend()}<div class="pc-overview-head" aria-hidden="true"><span>Policy or question</span><span>Positions of all profiles in this view</span></div>
+      ${rows.map(row=>`<div class="pc-overview-row"><button type="button" class="pc-policy-link" data-policy="${esc(row.id)}" aria-current="${row.id===selected ? 'true' : 'false'}">${esc(row.title)}</button>${stanceBar(row)}</div>`).join('')}
       ${exactTable(rows,'Exact counts for every policy')}`;
     root.querySelectorAll('[data-policy]').forEach(button=>button.addEventListener('click',()=>onSelect(button.dataset.policy)));
   }
@@ -117,7 +122,7 @@
 
   function renderSelected(root, members, target, chartData, facetNames, error, scope='congress') {
     const parties=groupBreakdowns(members,target.id,scope);
-    const partyHTML = `<section class="pc-party"><h4>Positions by ${scope === 'congress' ? 'party' : 'organization'}</h4>${parties.length ? parties.map(row=>`<div class="pc-party-row"><span>${esc(row.title)}</span>${stanceBar(row)}${coverage(row)}</div>`).join('') : '<p>No profiles match these filters.</p>'}${exactTable(parties,scope === 'congress' ? 'Exact counts by party' : 'Exact counts by organization')}</section>`;
+    const partyHTML = `<section class="pc-party"><h4>Positions by ${scope === 'congress' ? 'party' : 'organization'}</h4>${parties.length ? parties.map(row=>`<div class="pc-party-row"><span>${esc(row.title)}</span>${stanceBar(row)}</div>`).join('') : '<p>No profiles match these filters.</p>'}${exactTable(parties,scope === 'congress' ? 'Exact counts by party' : 'Exact counts by organization')}</section>`;
     if (!chartData) {
       root.innerHTML=legend()+partyHTML+`<p role="status">${error ? 'Statement charts are unavailable. Reload the page to retry. The profile summaries remain available.' : 'Loading statement charts…'}</p>`;
       return;
