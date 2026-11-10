@@ -392,6 +392,11 @@
       const member=data.members.find(m=>m.id===id); if (!member) { panel().innerHTML=''; return; }
       loadProfile(member);
     }
+    function showProfile(id, smooth=true) {
+      const m=data.members.find(x=>x.id===id); if (!m) return;
+      state.search=m.name; get('fa-search').value=m.name; state.selected=null; select(id,false);
+      get('fc-members-section').scrollIntoView({block:'start',behavior:smooth?'smooth':'instant'});
+    }
     function render() {
       get('fa-roster-table').innerHTML=renderRosterCoverage(data.roster_coverage,state.organization);
       root.querySelectorAll('[data-scope]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.scope===state.scope)));
@@ -415,7 +420,7 @@
       const scope = event.target.closest('[data-scope]');
       if (scope) { state.scope=scope.dataset.scope; state.selected=null; state.rule=null; keepPlace(render); return; }
       const profile = event.target.closest('[data-profile]');
-      if (profile) { event.preventDefault(); const inTable=!!profile.closest('#fc-members'); if(!inTable){ state.search=''; get('fa-search').value=''; } select(profile.dataset.profile,inTable||true); if(!inTable) panel().scrollIntoView({block:'center'}); return; }
+      if (profile) { event.preventDefault(); if (profile.closest('#fc-members')) select(profile.dataset.profile,true); else showProfile(profile.dataset.profile); return; }
       const agency=event.target.closest('[data-agency-group]');
       if(agency) {
         const group=charts.agencyDistribution(selectedMembers(),state.chartDimension,data.organizations || []).find(g=>g.id===agency.dataset.agencyGroup);
@@ -443,7 +448,7 @@
     const tocActive=()=>{ let cur=null; for (const a of tocLinks){ const el=document.getElementById(a.getAttribute('href').slice(1)); if (el && el.getBoundingClientRect().top<170) cur=a; } tocLinks.forEach(a=>a.classList.toggle('active',a===cur)); };
     global.addEventListener('scroll',()=>global.requestAnimationFrame(tocActive),{passive:true}); tocActive();
     if (hero && toc && 'IntersectionObserver' in global) new IntersectionObserver(entries=>{toc.style.visibility=entries[0].isIntersecting?'hidden':'visible';},{rootMargin:'-56px 0px 0px 0px'}).observe(hero);
-    if (initial) panel().scrollIntoView({block:'center'});
+    if (initial) global.requestAnimationFrame(()=>showProfile(initial.id,false));
   }
   const api = {renderRosterCoverage,renderRoles,safeURL,dateLabel,filterMembers,scoreState,scoreDistribution,validateDetail,renderSummary,renderStanceReview,renderRegulation,
     renderStatement,renderTopics,historySeries,renderHistory,renderDistribution,mount};
