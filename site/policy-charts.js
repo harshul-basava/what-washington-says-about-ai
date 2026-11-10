@@ -85,10 +85,8 @@
   function renderOverview(root, members, policies, selected, onSelect) {
     const rows=policies.map(p=>({...breakdown(members,p.id),id:p.id,title:p.title}));
     root.innerHTML = `<h3>Policy positions at a glance</h3>
-      <p class="note">Each stance bar covers profiles with relevant evidence and a complete assessment. Numbers count profiles. The coverage column compares this group with the filtered roster.</p>
       ${legend()}<div class="pc-overview-head" aria-hidden="true"><span>Policy or question</span><span>Positions among profiles with evidence</span><span>Evidence / roster</span></div>
       ${rows.map(row=>`<div class="pc-overview-row"><button type="button" class="pc-policy-link" data-policy="${esc(row.id)}" aria-current="${row.id===selected ? 'true' : 'false'}">${esc(row.title)}</button>${stanceBar(row)}${coverage(row)}</div>`).join('')}
-      <p class="note">Scope, organization, party, and name filters apply to all charts. The stance filter applies only to the profile list. Choose a policy name for its detailed charts.</p>
       ${exactTable(rows,'Exact counts for every policy')}`;
     root.querySelectorAll('[data-policy]').forEach(button=>button.addEventListener('click',()=>onSelect(button.dataset.policy)));
   }
@@ -119,7 +117,7 @@
 
   function renderSelected(root, members, target, chartData, facetNames, error, scope='congress') {
     const parties=groupBreakdowns(members,target.id,scope);
-    const partyHTML = `<section class="pc-party"><h4>Positions by ${scope === 'congress' ? 'party' : 'organization'}</h4><p class="note">Each bar covers completed assessments with relevant evidence. Coverage appears at the right.</p>${parties.length ? parties.map(row=>`<div class="pc-party-row"><span>${esc(row.title)}</span>${stanceBar(row)}${coverage(row)}</div>`).join('') : '<p>No profiles match these filters.</p>'}${exactTable(parties,scope === 'congress' ? 'Exact counts by party' : 'Exact counts by organization')}</section>`;
+    const partyHTML = `<section class="pc-party"><h4>Positions by ${scope === 'congress' ? 'party' : 'organization'}</h4>${parties.length ? parties.map(row=>`<div class="pc-party-row"><span>${esc(row.title)}</span>${stanceBar(row)}${coverage(row)}</div>`).join('') : '<p>No profiles match these filters.</p>'}${exactTable(parties,scope === 'congress' ? 'Exact counts by party' : 'Exact counts by organization')}</section>`;
     if (!chartData) {
       root.innerHTML=legend()+partyHTML+`<p role="status">${error ? 'Statement charts are unavailable. Reload the page to retry. The profile summaries remain available.' : 'Loading statement charts…'}</p>`;
       return;
@@ -127,14 +125,13 @@
     const ids=new Set(members.map(m=>m.id));
     const rows=chartData.policies[target.id].filter(r=>ids.has(r.person_id));
     const history=timeline(rows);
-    let html=`${legend()}<div class="pc-detail-grid">${partyHTML}<section><h4>Statements over time</h4><p class="note">Recorded statements by ${history.granularity}. One profile can contribute several statements. These counts do not establish changes in individual views.</p>
-      ${timelineHTML(history,root.clientWidth>760 ? (root.clientWidth-28)/2 : root.clientWidth)}
-      <p class="note">${history.excludedDates} relevant statements lack a usable month or day.${history.pending ? ` ${history.pending} candidate statements await a final assessment.` : ''} Empty periods contain no dated relevant statements in this dataset.</p></section></div>`;
+    let html=`${legend()}<div class="pc-detail-grid">${partyHTML}<section><h4>Statements over time</h4>
+      ${timelineHTML(history,root.clientWidth>760 ? (root.clientWidth-28)/2 : root.clientWidth)}</section></div>`;
     if (target.facets.length) {
       const cascade = chartData.strategy?.kind === 'confidence_cascade';
       const facets=facetCounts(rows,target.facets).sort((a,b)=>(b.agreed+b.disputed)-(a.agreed+a.disputed));
       const max=Math.max(1,...facets.map(f=>f.agreed+f.disputed));
-      html+=`<section class="pc-facets"><h4>Details in these statements</h4><p class="note">Counts show statements with each label. A statement can have several labels, including labels about details the speaker opposes.</p>
+      html+=`<section class="pc-facets"><h4>Details in these statements</h4>
         <div class="pc-legend"><span><i class="pc-agreed" aria-hidden="true"></i>${cascade ? 'Accepted from DeepSeek' : 'Both models applied the label'}</span><span><i class="${cascade ? 'pc-reviewed' : 'pc-disputed'}" aria-hidden="true"></i>${cascade ? 'Accepted after Astra review' : 'One model applied the label'}</span><span>Shared scale: 0–${max} statements</span></div>
         ${facets.map(f=>`<div class="pc-facet-row"><span>${esc(facetNames[f.id] || f.id)}</span><div class="pc-facet-track" role="img" aria-label="${esc(facetNames[f.id] || f.id)}: ${f.agreed} ${cascade ? 'accepted from DeepSeek' : 'statements tagged by both models'}, ${f.disputed} ${cascade ? 'accepted after Astra review' : 'by one model'}"><span class="pc-agreed" style="width:${percent(f.agreed,max)}%"></span><span class="${cascade ? 'pc-reviewed' : 'pc-disputed'}" style="width:${percent(f.disputed,max)}%"></span></div><span>${f.agreed} ${cascade ? 'first' : 'both'} · ${f.disputed} ${cascade ? 'reviewed' : 'one'}</span></div>`).join('')}</section>`;
     }

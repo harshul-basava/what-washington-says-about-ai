@@ -85,8 +85,17 @@
       return high!==null && other!==null && high>=3 && (p.low ? other<2 : other>=3);
     });
   }
-  function scoreLegend() {
-    return `<div class="fc-legend">${[0,1,2,3,4].map(n=>`<span><i style="background:${color(n)}"></i>Score ${n}</span>`).join('')}<span><i style="background:var(--nodata)"></i>Unscored</span></div>`;
+  // plain words for each score level and for "3 or more", matching the Congress page
+  const LEVEL_NAMES = {
+    ai_overall:['Mainly a threat','Harms dominate','Balanced','Mainly an opportunity','Enthusiastic'],
+    agi_pilled:['Dismisses human-level AI','Ordinary technology','Very large change','Human-level AI is possible','Human-level AI is near'],
+    x_risk:['Dismisses the risk','Raises it, plays it down','A real risk','Wants action','A top priority'],
+    china_race:['Rejects the race','Mentions the race','One reason among several','The main reason','Outweighs other concerns'],
+    regulation:['Opposes rules','Light-touch rules','Targeted rules','Substantial rules','Comprehensive rules']};
+  const HIGH = {ai_overall:'optimistic about AI',agi_pilled:'expect AGI',x_risk:'want action on AI x-risk',china_race:'say the China race drives their AI views',regulation:'want substantial AI rules'};
+  const levelName = (dimension,n) => (LEVEL_NAMES[dimension]||[])[n] || `Score ${n}`;
+  function scoreLegend(dimension) {
+    return `<div class="fc-legend">${[0,1,2,3,4].map(n=>`<span><i style="background:${color(n)}"></i>${esc(levelName(dimension,n))}</span>`).join('')}<span><i style="background:var(--nodata)"></i>Unscored</span></div>`;
   }
   function scoreAvailability(members,dimension) {
     const groups=[
@@ -111,9 +120,9 @@
     if (!members.length) return '';
     const result=scoreAvailability(members,dimension.id);
     return `<div class="fc-availability"><p><strong>${result.scored} of ${result.total} profiles have a score for ${esc(dimension.title)}.</strong></p>
-      ${result.groups.length ? `<p class="fa-note">Gray marks mean no score for this question. They do not indicate an unverified identity. Expand a reason to see the profiles.</p>
+      ${result.groups.length ? `
       ${result.groups.map(g=>`<details><summary>${g.members.length} · ${g.title}</summary><p class="fa-note">${g.description}</p><div class="fc-profile-chips">${g.members.map(m=>profileLink(m,esc(m.name))).join('')}</div></details>`).join('')}` : ''}
-      <p class="fa-note">AI overall and Regulation need a qualifying stance. For AGI-pilled, AI x-risk, and China race, the Congress rubric scores silence as 0 once a profile has three excerpts.</p></div>`;
+      </div>`;
   }
   function renderDots(members,dimension) {
     if (!members.length) return '<p class="fa-empty">No profiles match these filters.</p>';
@@ -124,10 +133,10 @@
     return `<div class="fc-dot-layout"><div class="fc-dots">${sorted.map(m=>{
       const label=m.name+': '+view().scoreState(m,dimension).label;
       return profileLink(m,'',`class="fc-dot" style="--dot:${color(value(m,dimension))}" title="${esc(label)}" aria-label="${esc(label)}"`);
-    }).join('')}</div><div class="fc-pie-wrap"><div class="fc-pie" role="img" aria-label="${esc(bins.map((n,i)=>`${i===5?'Unscored':'Score '+i}: ${n}`).join('. '))}" style="background:conic-gradient(${members.length?gradient:'var(--nodata) 0% 100%'})"></div><p>${members.length ? fmt(members.filter(m=>value(m,dimension)!==null && value(m,dimension)>=3).length/members.length*100) : 0}% score 3 or more</p></div></div>${scoreLegend()}`;
+    }).join('')}</div><div class="fc-pie-wrap"><div class="fc-pie" role="img" aria-label="${esc(bins.map((n,i)=>`${i===5?'Unscored':levelName(dimension,i)}: ${n}`).join('. '))}" style="background:conic-gradient(${members.length?gradient:'var(--nodata) 0% 100%'})"></div><p>${members.length ? fmt(members.filter(m=>value(m,dimension)!==null && value(m,dimension)>=3).length/members.length*100) : 0}% ${esc(HIGH[dimension] ? (dimension==='ai_overall' ? 'are '+HIGH[dimension] : HIGH[dimension]) : 'score 3 or more')}</p></div></div>${scoreLegend(dimension)}`;
   }
   function renderAgencies(members,dimension,organizations) {
-    return `<div class="fc-agencies">${agencyDistribution(members,dimension,organizations).map(g=>`<div class="fc-agency"><span>${esc(g.name)} <small>(${g.total})</small></span><div class="fc-stack">${[...g.bins,g.missing].map((n,i)=>n ? `<button type="button" data-agency-group="${esc(g.id)}" style="width:${n/g.total*100}%;background:${i===5?'var(--nodata)':color(i)}" aria-label="${esc(g.name)}: ${n} ${i===5?'unscored':'at score '+i}. Show profiles." title="${n} of ${g.total} · ${fmt(n/g.total*100)}%">${n/g.total>=.09?n:''}</button>` : '').join('')}</div></div>`).join('')}</div>${scoreLegend()}`;
+    return `<div class="fc-agencies">${agencyDistribution(members,dimension,organizations).map(g=>`<div class="fc-agency"><span>${esc(g.name)} <small>(${g.total})</small></span><div class="fc-stack">${[...g.bins,g.missing].map((n,i)=>n ? `<button type="button" data-agency-group="${esc(g.id)}" style="width:${n/g.total*100}%;background:${i===5?'var(--nodata)':color(i)}" aria-label="${esc(g.name)}: ${n} ${i===5?'unscored':'at score '+i}. Show profiles." title="${n} of ${g.total} · ${fmt(n/g.total*100)}%">${n/g.total>=.09?n:''}</button>` : '').join('')}</div></div>`).join('')}</div>${scoreLegend(dimension)}`;
   }
   function lineChart(series,{title,yMax=100,percent=true,connect=true}={}) {
     const all=series.flatMap(s=>s.rows),dates=all.map(r=>date(r.date));
@@ -156,7 +165,7 @@
       const heading=row.group!==group?`<h3>${row.group==='harms'?'Present-day harms':'Frontier and catastrophic risk'}</h3>`:'';group=row.group;
       const negative=row.counts[-2]+row.counts[-1],positive=row.counts[1]+row.counts[2];
       return `${heading}<button type="button" class="fc-policy-row" data-rule="${esc(row.id)}" aria-pressed="${selected===row.id}" aria-label="${esc(row.title)}: ${negative} oppose, ${positive} support, ${row.counts[0]} no stated position, ${row.unknown} unassessed. Show profiles."><span>${esc(row.title)}</span><span class="fc-diverging"><span class="fc-negative">${[-2,-1].map(n=>`<i class="fc-opposed ${n===-1?'fc-implied':''}" style="width:${row.counts[n]/max*100}%"></i>`).join('')}</span><span class="fc-positive">${[1,2].map(n=>`<i class="fc-supported ${n===1?'fc-implied':''}" style="width:${row.counts[n]/max*100}%"></i>`).join('')}</span></span><small>${negative} / ${positive}</small></button>`;
-    }).join('')}</div><p class="fa-note">Counts: oppose / support. Each side uses the same scale, from 0 to ${max} profiles. This view includes ${members.length} profiles. No stated position does not mean opposition.</p>`;
+    }).join('')}</div>`;
   }
   function renderPolicySelection(members,areas,id) {
     const area=areas.find(a=>a.id===id);if(!area)return '';
@@ -175,7 +184,7 @@
       const radius=index?3*Math.sqrt(index):0,angle=index*2.4;
       const tip=`${m.name}: ${dimensions.find(d=>d.id===xDim)?.title} ${fmt(m.x)}; ${dimensions.find(d=>d.id===yDim)?.title} ${fmt(m.y)}`;
       return profileLink(m,`<circle cx="${x(m.x)+Math.cos(angle)*radius}" cy="${y(m.y)+Math.sin(angle)*radius}" r="6" style="fill:${color(m.y)}"><title>${esc(tip)}</title></circle>`,`aria-label="${esc(tip)}"`);
-    }).join('')}</svg><p class="fa-note">${rows.length} profiles have both scores. Small offsets separate equal scores. Point details show exact values.</p>`;
+    }).join('')}</svg>`;
   }
   function renderTopicShare(members,profiles,topics,range,end) {
     const dates=members.flatMap(m=>(profiles[m.id]?.topics||[]).map(r=>r.date)).filter(d=>d<=end).sort();
