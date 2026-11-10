@@ -1,5 +1,7 @@
 # Current federal scope — 2026-11-09
 
+This document preserves the November 9 snapshot. The [November 10 expansion report](federal-roster-expansion-progress.md) covers the current 500 officials and 35 institutions. See the [scope registry](../config/federal_scope.json) for eligibility and the [selection audit](../data/federal_roster_selection.json) for sources and amendments.
+
 The user restricted federal coverage to current officials and government institutions. The review includes 97 profiles and excludes 89 profiles.
 
 The included profiles comprise 62 people and 35 institutions. A current formal government appointment qualifies. A private advisory role or historical appointment does not qualify. Unverified current roles remain excluded.

@@ -1,5 +1,7 @@
 # Federal coverage audit — current government scope
 
+This document preserves the November 9 snapshot. The [November 10 expansion report](federal-roster-expansion-progress.md) covers the current 500 officials and 35 institutions. See the [scope registry](../config/federal_scope.json) for eligibility and the [selection audit](../data/federal_roster_selection.json) for sources and amendments.
+
 Reviewed on 2026-11-09 UTC. The active roster contains 62 current officials and 35 government institutions. It excludes 89 previously researched profiles under the user’s current-government rule.
 
 The current corpus contains 3,499 verified excerpts from 2,749 distinct URLs, including 2,256 direct X excerpts. All 97 profiles completed eight historical web search passes. Search completion does not establish exhaustive coverage.

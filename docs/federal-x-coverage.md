@@ -1,5 +1,7 @@
 # Federal X coverage — current government scope
 
+This document preserves the November 9 snapshot. The [November 10 expansion report](federal-roster-expansion-progress.md) covers the current 500 officials and 35 institutions. See the [scope registry](../config/federal_scope.json) for eligibility and the [selection audit](../data/federal_roster_selection.json) for sources and amendments.
+
 Reviewed on 2026-11-09 UTC. The registry contains 58 sourced handles for 50 of 97 eligible federal profiles. It contains 59 ownership intervals and 51 current intervals for daily searches.
 
 Another 47 eligible profiles lack a verified account mapping. This does not establish that they lack an X account. Their web research and daily named searches continue.

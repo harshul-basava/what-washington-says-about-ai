@@ -1,5 +1,7 @@
 # Current federal roster and sources
 
+This document preserves the November 9 snapshot. The [November 10 expansion report](federal-roster-expansion-progress.md) covers the current 500 officials and 35 institutions. See the [scope registry](../config/federal_scope.json) for eligibility and the [selection audit](../data/federal_roster_selection.json) for sources and amendments.
+
 Reviewed on 2026-11-09 UTC. The active roster contains 62 people and 35 government institutions.
 
 Sources establish a current government role or institution. They do not establish a policy stance. Unknown appointment dates remain unknown.
