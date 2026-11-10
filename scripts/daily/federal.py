@@ -365,6 +365,51 @@ def collect(root, config, since=None, dry=False):
     return report
 
 
+def schedule_policy_jobs(root, queues, assess, baseline, review_jobs):
+    """Give each ready role and profile a turn under the daily allowance."""
+    import llm
+    path = root / 'data/federal_policy_scheduler.json'
+    cursor = read(path, {'version': 1, 'next_stage': 'deepseek'})
+    preferred = cursor.get('next_stage')
+    if preferred not in queues:
+        preferred = 'deepseek'
+
+    while any(queues.values()):
+        role = preferred if queues[preferred] else ('astra' if preferred == 'deepseek' else 'deepseek')
+        queue = queues[role]
+        last_profile = cursor.get('last_profile', {}).get(role, '')
+        profile = min((item['person_id'] for item in queue.values()), key=lambda pid: (pid <= last_profile, pid))
+        items = [(int(item['sid'][1:]), item) for item in queue.values() if item['person_id'] == profile]
+        last_batch, end = cursor.get('batch_cursor', {}).get(role, {}).get(profile, [0, 0])
+        batch, item = min(items, key=lambda row: (not last_batch < row[0] <= end, row[0]))
+        if not last_batch < batch <= end:
+            # Fix the end of this round so new arrivals cannot delay wraparound.
+            end = max(number for number, _ in items)
+
+        preferred = 'astra' if role == 'deepseek' else 'deepseek'
+        cursor['next_stage'] = preferred
+        write(path, cursor)
+        status = assess((role, [item]))
+        if status == 'budget_exceeded' and llm.spent('openrouter') > baseline:
+            # Retry the job with the next invocation's full allowance.
+            cursor['next_stage'] = role
+            write(path, cursor)
+            return
+
+        # Count invalid responses and oversized jobs as turns. Keep them pending
+        # in the cache and allow other work to use the remaining allowance.
+        del queue[item['key']]
+        cursor.setdefault('last_profile', {})[role] = profile
+        cursor.setdefault('batch_cursor', {}).setdefault(role, {})[profile] = [batch, end]
+        write(path, cursor)
+        if status == 'ok' and role == 'deepseek':
+            for _, [review] in review_jobs([item]):
+                existing = queues['astra'].get(review['key'])
+                if existing:
+                    review = {**review, 'targets': sorted(set(existing['targets']) | set(review['targets']))}
+                queues['astra'][review['key']] = review
+
+
 def judge(root, max_cost, dry=False):
     import policy_cascade as cascade
     import phase3_policies as runner
@@ -376,10 +421,16 @@ def judge(root, max_cost, dry=False):
     strategy = cascade.load_strategy(root)
     saved = read(root / 'data/policy_cascade.json', {'schema_version': 1, 'results': {}})
     errors = 0
-    work = [job for role in cascade.ROLES for job in cascade.jobs(items, saved, registry, rubric, confidence, strategy, role, 1)]
-    if work and not dry:
-        args = SimpleNamespace(max_cost=max_cost, workers=1, batch_size=1, daily=True)
-        errors = runner.label_cascade(items, saved, registry, rubric, confidence, strategy, args)
+    def jobs(candidates, role):
+        return cascade.jobs(candidates, saved, registry, rubric, confidence, strategy, role, 1)
+
+    if not dry and max_cost != 0:
+        queues = {role: {item['key']: item for _, [item] in jobs(items, role)} for role in cascade.ROLES}
+        if any(queues.values()):
+            args = SimpleNamespace(max_cost=max_cost, workers=1, daily=True)
+            def schedule(assess, baseline):
+                schedule_policy_jobs(root, queues, assess, baseline, lambda batch: jobs(batch, 'astra'))
+            errors = runner.label([], saved, registry, rubric, args, strategy, confidence, root=root, schedule=schedule)
     counts = Counter(cascade.resolve(s, target, saved, registry, rubric, confidence, strategy)['review_status']
                      for s in items for target in s['targets'])
     pending = counts['awaiting_deepseek'] + counts['awaiting_astra']
@@ -400,21 +451,31 @@ def run(root, config, since=None, dry=False, skip_collect=False):
     import federal_x
     import llm
     model_start = None
+    scheduler_path = root / 'data/federal_judgment_scheduler.json'
+    scheduler = read(scheduler_path, {'version': 1, 'next_stage': 'judgments'})
+    first = scheduler.get('next_stage', 'judgments')
+    if first not in ('judgments', 'analysis'):
+        first = 'judgments'
+    def remaining_model_allowance():
+        return config['judgment_max_cost'] if dry else max(0, config['judgment_max_cost'] - (llm.spent('openrouter') - model_start))
     def broad_analysis():
         if not (root / 'config/federal_analysis.json').exists():
             return {'status': 'not_configured'}
         import federal_analysis_models
-        remaining = config['judgment_max_cost'] if dry else max(0, config['judgment_max_cost'] - (llm.spent('openrouter') - model_start))
-        return federal_analysis_models.run(root, max_cost=remaining, workers=2, daily=True, dry=dry)
+        return federal_analysis_models.run(root, max_cost=remaining_model_allowance(), workers=2, daily=True, dry=dry)
     report = {'date': today(), 'status': 'dry_run' if dry else 'ok', 'schedule_utc': '11:00'}
     if not dry:
         write(root / 'data/federal_status.json', {**report, 'status': 'in_progress'})
+    judges = {'judgments': lambda: judge(root, remaining_model_allowance(), dry), 'analysis': broad_analysis}
+    order = [first, 'analysis' if first == 'judgments' else 'judgments']
+    report['judgment_order'] = order
     for stage, action in [('collection', lambda: collect(root, config, since, dry)),
                           ('x', lambda: federal_x.collect(root, since=since, dry=dry)),
-                          ('judgments', lambda: judge(root, config['judgment_max_cost'], dry)),
-                          ('analysis', broad_analysis)]:
-        if stage == 'judgments' and not dry:
+                          *[(name, judges[name]) for name in order]]:
+        if stage == first and not dry:
             model_start = llm.spent('openrouter')
+            # Persist the next turn before a paid request, including failed requests.
+            write(scheduler_path, {'version': 1, 'next_stage': order[1]})
         if stage in ('collection', 'x') and skip_collect:
             report[stage] = {'status': 'skipped'}
             continue

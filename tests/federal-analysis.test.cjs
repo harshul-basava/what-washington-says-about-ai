@@ -25,6 +25,8 @@ test('role facts show verification sources without unsafe links or invented date
   assert.match(html,/Acting Director/);
   assert.match(html,/Current service checked/);
   assert.doesNotMatch(html,/javascript:|Date unknown/);
+  const historical=view.renderRoles({roles:[{title:'Former adviser',status:'historical',end_date:null}]});
+  assert.match(historical,/historical role/);
 });
 
 const dimensions = [{id:'ai_overall',title:'AI overall'}, {id:'x_risk',title:'Catastrophic risk'}];

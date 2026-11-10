@@ -76,7 +76,7 @@
     const scope=member.government_scope || {}, source=safeURL(scope.source_url);
     return `<section class="fa-role-details"><h4>Government roles</h4>${scope.checked_on ? `<p>Current service checked ${esc(dateLabel(scope.checked_on))}${source ? ` · <a href="${esc(source)}" target="_blank" rel="noopener noreferrer">Role source</a>` : ''}</p>` : ''}${(member.roles || []).map(role=>{
       const url=safeURL(role.source_url), dates=[role.start_date,role.end_date].filter(Boolean).map(dateLabel).join(' to ');
-      return `<p>${esc(role.title)}${dates ? ` · ${esc(dates)}` : ''}${role.end_date ? ' · historical role' : ''}${url ? ` · <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">Source</a>` : ''}</p>`;
+      return `<p>${esc(role.title)}${dates ? ` · ${esc(dates)}` : ''}${role.end_date || role.status === 'historical' ? ' · historical role' : ''}${url ? ` · <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">Source</a>` : ''}</p>`;
     }).join('')}</section>`;
   }
   function scoreState(member, dimension) {

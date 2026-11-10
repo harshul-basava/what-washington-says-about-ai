@@ -56,7 +56,7 @@ def jobs(items, saved, registry, rubric, batch_size):
     return out
 
 
-def label(work, saved, registry, rubric, args, strategy=None, confidence_prompt="", baseline=None):
+def label(work, saved, registry, rubric, args, strategy=None, confidence_prompt="", baseline=None, *, root=None, schedule=None):
     # Import the existing paid-call gateway only for the explicit label command.
     import llm
     if not math.isfinite(args.max_cost) or args.max_cost <= 0 or not 1 <= args.workers <= 8:
@@ -76,6 +76,7 @@ def label(work, saved, registry, rubric, args, strategy=None, confidence_prompt=
     from model_budget import Budget
     budget = Budget(args.max_cost, getattr(args, 'daily', False), metadata, llm)
     budget.baseline = baseline
+    output_path = (ROOT if root is None else root) / ("data/policy_cascade.json" if strategy else "data/policy_judgments.json")
 
     def run(job):
         judge, items = job
@@ -93,31 +94,41 @@ def label(work, saved, registry, rubric, args, strategy=None, confidence_prompt=
             except ValueError as exc:
                 # These fixed validation messages never include raw provider bodies.
                 detail = f"{exc.msg}, line {exc.lineno}, column {exc.colno}" if isinstance(exc, json.JSONDecodeError) else str(exc)
-                return judge, items, None, f"Invalid judgment ({detail}); rerun to resume", None
-            return judge, items, labels, None, result.get("id")
+                return judge, items, None, f"Invalid judgment ({detail}); rerun to resume", None, "incomplete"
+            return judge, items, labels, None, result.get("id"), "ok"
         except Exception as exc:
             # Do not echo provider bodies, keys, or untrusted response text into logs.
-            return judge, items, None, f"{type(exc).__name__}: batch incomplete; rerun to resume", None
+            status = "budget_exceeded" if isinstance(exc, llm.BudgetExceeded) else "incomplete"
+            return judge, items, None, f"{type(exc).__name__}: batch incomplete; rerun to resume", None, status
 
     errors = 0
-    with ThreadPoolExecutor(max_workers=args.workers) as pool:
-        futures = [pool.submit(run, job) for job in work]
-        for number, future in enumerate(as_completed(futures), 1):
-            judge, items, labels, error, generation_id = future.result()
-            if error:
-                errors += 1
-                print(f"{number}/{len(work)} {judge}: {error}", flush=True)
+    def checkpoint(outcome, progress):
+        nonlocal errors
+        judge, items, labels, error, generation_id, status = outcome
+        if error:
+            errors += 1
+            print(f"{progress} {judge}: {error}", flush=True)
+            return status
+        for item in items:
+            if strategy:
+                for target, value in labels[item["key"]].items():
+                    cascade.save_result(saved, item, target, judge, value, registry, rubric, confidence_prompt, strategy, generation_id)
                 continue
-            for item in items:
-                if strategy:
-                    for target, value in labels[item["key"]].items():
-                        cascade.save_result(saved, item, target, judge, value, registry, rubric, confidence_prompt, strategy, generation_id)
-                    continue
-                saved.setdefault("results", {}).setdefault(item["key"], {})[judge] = {
-                    "model": p.JUDGES[judge], "input_hash": p.fingerprint([item], registry, rubric, p.JUDGES[judge]),
-                    "judged_at": datetime.now(timezone.utc).isoformat(), "labels": labels[item["key"]]}
-            p.write_json(ROOT / ("data/policy_cascade.json" if strategy else "data/policy_judgments.json"), saved)
-            print(f"{number}/{len(work)} {judge}: {len(items)} statements; run cost ${llm.spent('openrouter') - baseline:.3f}", flush=True)
+            saved.setdefault("results", {}).setdefault(item["key"], {})[judge] = {
+                "model": p.JUDGES[judge], "input_hash": p.fingerprint([item], registry, rubric, p.JUDGES[judge]),
+                "judged_at": datetime.now(timezone.utc).isoformat(), "labels": labels[item["key"]]}
+        p.write_json(output_path, saved)
+        print(f"{progress} {judge}: {len(items)} statements; run cost ${llm.spent('openrouter') - baseline:.3f}", flush=True)
+        return status
+
+    if schedule is not None:
+        # Daily work can select its next job after this result is saved.
+        schedule(lambda job: checkpoint(run(job), "Daily"), baseline)
+    else:
+        with ThreadPoolExecutor(max_workers=args.workers) as pool:
+            futures = [pool.submit(run, job) for job in work]
+            for number, future in enumerate(as_completed(futures), 1):
+                checkpoint(future.result(), f"{number}/{len(work)}")
     cost = llm.spent("openrouter") - baseline
     print(f"Run cost ${cost:.3f}; {errors} incomplete batches. Saved results resume automatically.")
     return errors

@@ -81,37 +81,51 @@
    },
    "model": "openai/gpt-6-astra",
    "generation_id": "gen-1794349822-8isjyngyteiABMyqHD8m",
-   "assessed_at": "2026-11-10T22:30:26.176644+00:00"
+   "assessed_at": "2026-11-10T22:30:26.176644+00:00",
+   "applied_review_id": "d617bec4d7950a8b0bf4f27f959901828591a5ce46d4b5914effabd1e8480a84"
   },
   "exec_stephen_miller": {
-   "input_hash": "31d8d16eea85335ea1dad45ac235458860a80e0c19b585cd6d88703a5b778fb6",
+   "input_hash": "d21099ee6e4c159ed81e8dfe2d51bb68ed2a32b2e909bc617d01b5f4b4d72c79",
    "evidence_hash": "f0719ab073307c098f479188211fac097e6d20180283fc6a0d3a7eadd445ad92",
-   "contexts": {},
+   "contexts": {
+    "s3": {
+     "status": "available",
+     "url": "https://x.com/StephenM/status/1833138022377750842",
+     "verified_author_id": "1329891389430243330",
+     "retrieval": "official_x_api_post_and_author",
+     "retrieved_at": "2026-11-10T22:31:50.973523+00:00",
+     "text_hash": "a9ec2a2b2b3f205f1970e43c59c33e73163a6442c1a5bb596c20c132a014ecc9",
+     "cache_path": "data/raw/federal_stance_context/exec_stephen_miller/s3.json"
+    }
+   },
    "result": {
     "findings": [],
     "no_stance_sids": [
      "s1",
      "s2",
+     "s3",
      "s4",
      "s5"
     ],
-    "context_requests": [
-     {
-      "sid": "s3",
-      "reason": "The excerpt begins mid-clause and ends mid-list, omitting the governing assertion. The full post could clarify whether Miller is merely discussing manufacturing investment or expressing a broader assessment of AI’s economic effects."
-     }
-    ],
-    "confidence": 4,
-    "reason": "The supplied excerpts do not clearly establish a general assessment of AI’s overall benefits and harms. They concern technological ambition, particular applications, or a specific concern about financial transactions. The incomplete investment statement warrants context before classification.",
+    "context_requests": [],
+    "confidence": 5,
+    "reason": "None of the supplied statements establishes a view of AI's overall benefits or harms. The excerpts address technological ambition, manufacturing investment, farm automation, financial transactions, or signature comparisons. The supplied full context for s3 remains focused on manufacturing and trade policy rather than AI's overall effects. This conclusion is limited to the supplied evidence.",
     "summary_sentences": [
      {
-      "text": "On October 17, 2024, Miller advocated investment in farm automation while invoking AI.",
+      "text": "In an undated statement, Miller described a revolution encompassing quantum computing, AI, and advanced manufacturing.",
       "sids": [
+       "s1"
+      ]
+     },
+     {
+      "text": "In September and October 2024, Miller discussed investment in AI and robotics within manufacturing policy and argued for investment in farm automation.",
+      "sids": [
+       "s3",
        "s2"
       ]
      },
      {
-      "text": "On February 22, 2024, Miller warned about what he called “woke AI” governing every financial transaction in America.",
+      "text": "In February 2024, Miller raised concern about “woke AI” governing financial transactions in America.",
       "sids": [
        "s4"
       ]
@@ -119,20 +133,29 @@
     ],
     "summary": {
      "status": "complete",
-     "text": "On October 17, 2024, Miller advocated investment in farm automation while invoking AI. On February 22, 2024, Miller warned about what he called “woke AI” governing every financial transaction in America.",
+     "text": "In an undated statement, Miller described a revolution encompassing quantum computing, AI, and advanced manufacturing. In September and October 2024, Miller discussed investment in AI and robotics within manufacturing policy and argued for investment in farm automation. In February 2024, Miller raised concern about “woke AI” governing financial transactions in America.",
      "sids": [
+      "s1",
+      "s3",
       "s2",
       "s4"
      ],
      "sentences": [
       {
-       "text": "On October 17, 2024, Miller advocated investment in farm automation while invoking AI.",
+       "text": "In an undated statement, Miller described a revolution encompassing quantum computing, AI, and advanced manufacturing.",
        "sids": [
+        "s1"
+       ]
+      },
+      {
+       "text": "In September and October 2024, Miller discussed investment in AI and robotics within manufacturing policy and argued for investment in farm automation.",
+       "sids": [
+        "s3",
         "s2"
        ]
       },
       {
-       "text": "On February 22, 2024, Miller warned about what he called “woke AI” governing every financial transaction in America.",
+       "text": "In February 2024, Miller raised concern about “woke AI” governing financial transactions in America.",
        "sids": [
         "s4"
        ]
@@ -141,16 +164,100 @@
     }
    },
    "model": "openai/gpt-6-astra",
-   "generation_id": "gen-1794349822-eJjIUuutWQBzLm8uKwS0",
-   "assessed_at": "2026-11-10T22:30:34.551310+00:00"
+   "generation_id": "gen-1794350278-KR3CrEj4lgHwfgq4ux0m",
+   "assessed_at": "2026-11-10T22:38:08.112591+00:00",
+   "previous_reviews": [
+    {
+     "input_hash": "31d8d16eea85335ea1dad45ac235458860a80e0c19b585cd6d88703a5b778fb6",
+     "evidence_hash": "f0719ab073307c098f479188211fac097e6d20180283fc6a0d3a7eadd445ad92",
+     "contexts": {
+      "s3": {
+       "status": "available",
+       "url": "https://x.com/StephenM/status/1833138022377750842",
+       "verified_author_id": "1329891389430243330",
+       "retrieval": "official_x_api_post_and_author",
+       "retrieved_at": "2026-11-10T22:31:50.973523+00:00",
+       "text_hash": "a9ec2a2b2b3f205f1970e43c59c33e73163a6442c1a5bb596c20c132a014ecc9",
+       "cache_path": "data/raw/federal_stance_context/exec_stephen_miller/s3.json"
+      }
+     },
+     "result": {
+      "findings": [],
+      "no_stance_sids": [
+       "s1",
+       "s2",
+       "s4",
+       "s5"
+      ],
+      "context_requests": [
+       {
+        "sid": "s3",
+        "reason": "The excerpt begins mid-clause and ends mid-list, omitting the governing assertion. The full post could clarify whether Miller is merely discussing manufacturing investment or expressing a broader assessment of AI’s economic effects."
+       }
+      ],
+      "confidence": 4,
+      "reason": "The supplied excerpts do not clearly establish a general assessment of AI’s overall benefits and harms. They concern technological ambition, particular applications, or a specific concern about financial transactions. The incomplete investment statement warrants context before classification.",
+      "summary_sentences": [
+       {
+        "text": "On October 17, 2024, Miller advocated investment in farm automation while invoking AI.",
+        "sids": [
+         "s2"
+        ]
+       },
+       {
+        "text": "On February 22, 2024, Miller warned about what he called “woke AI” governing every financial transaction in America.",
+        "sids": [
+         "s4"
+        ]
+       }
+      ],
+      "summary": {
+       "status": "complete",
+       "text": "On October 17, 2024, Miller advocated investment in farm automation while invoking AI. On February 22, 2024, Miller warned about what he called “woke AI” governing every financial transaction in America.",
+       "sids": [
+        "s2",
+        "s4"
+       ],
+       "sentences": [
+        {
+         "text": "On October 17, 2024, Miller advocated investment in farm automation while invoking AI.",
+         "sids": [
+          "s2"
+         ]
+        },
+        {
+         "text": "On February 22, 2024, Miller warned about what he called “woke AI” governing every financial transaction in America.",
+         "sids": [
+          "s4"
+         ]
+        }
+       ]
+      }
+     },
+     "model": "openai/gpt-6-astra",
+     "generation_id": "gen-1794349822-eJjIUuutWQBzLm8uKwS0",
+     "assessed_at": "2026-11-10T22:30:34.551310+00:00"
+    }
+   ],
+   "applied_review_id": "175d1b3ba8aa55d0e24c863a22b0bc2ead8cee1eec740e10654563f1049de675"
   },
   "exec_michael_ellis": {
-   "input_hash": "4c185d1be48fcac36b69c39d1bdcb6144eec7b8829e513e7b31449f1d042d381",
+   "input_hash": "e4aecdb847c29223c781412ab5011f5470a4bc33c9e548519bb22d8263f67bd3",
    "evidence_hash": "63e42ef8f0197de270c00a838b5d02e76ebd0863f712d452d04fb7d67000db7c",
-   "contexts": {},
+   "contexts": {
+    "s1": {
+     "status": "available",
+     "url": "https://www.thedartmouth.com/article/2026/10/holty-cia-deputy-director-michael-ellis-06-discusses-ai-and-china-at-davidson-institute-event",
+     "retrieval": "direct_page",
+     "retrieved_at": "2026-11-10T22:31:01.291718+00:00",
+     "text_hash": "02897cb1a34cc2ff44728178382b725665fc6518d2fb163397708e2ebec97a26",
+     "cache_path": "data/raw/federal_stance_context/exec_michael_ellis/s1.json"
+    }
+   },
    "result": {
     "findings": [],
     "no_stance_sids": [
+     "s1",
      "s2",
      "s3",
      "s4",
@@ -161,30 +268,25 @@
      "s9",
      "s10"
     ],
-    "context_requests": [
-     {
-      "sid": "s1",
-      "reason": "The excerpt does not identify the tasks or their scope. Surrounding context could establish whether Ellis is describing a narrow operational benefit or making a broader assessment of AI's benefits for people and the economy."
-     }
-    ],
+    "context_requests": [],
     "confidence": 4,
-    "reason": "The supplied excerpts do not establish an overall assessment of AI's benefits versus harms for Americans. They primarily concern capabilities, intelligence applications, commercial partnerships, agency discretion, and competition with China. No retrieved source context was supplied; s1's scope remains unresolved. Although s9 ends mid-sentence, its supplied content establishes only an event announcement and race framing, not an overall AI stance.",
+    "reason": "The supplied statements discuss AI capabilities, intelligence applications, commercial partnerships, operational autonomy, and international competition, without establishing a general judgment about whether AI will benefit Americans overall. The supplied context for s1 likewise focuses on intelligence applications and security risks rather than AI's overall societal balance. Several excerpts are short and s9 is truncated; these conclusions are limited to the supplied evidence.",
     "summary_sentences": [
      {
-      "text": "Ellis described AI as helping analysts draft judgments, improve clarity, and check drafts against tradecraft standards without doing their thinking for them.",
+      "text": "Ellis described AI as helping intelligence analysts draft judgments, improve clarity, and compare drafts against tradecraft standards without doing their thinking for them.",
       "sids": [
        "s3"
       ]
      },
      {
-      "text": "He described commercial partnerships involving AI and other technologies and opposed private companies dictating the CIA's lawful use of their technologies.",
+      "text": "He described commercial partnerships spanning AI and other technologies and opposed private companies dictating the CIA's lawful use of their technologies.",
       "sids": [
        "s4",
        "s5"
       ]
      },
      {
-      "text": "In July 2025, Ellis endorsed President Trump's AI Action Plan as helping the American private sector win the advanced-AI race with China.",
+      "text": "In his July 31, 2025 post, Ellis endorsed President Trump's AI Action Plan as positioning the American private sector to win an advanced-AI race with China.",
       "sids": [
        "s10"
       ]
@@ -192,7 +294,7 @@
     ],
     "summary": {
      "status": "complete",
-     "text": "Ellis described AI as helping analysts draft judgments, improve clarity, and check drafts against tradecraft standards without doing their thinking for them. He described commercial partnerships involving AI and other technologies and opposed private companies dictating the CIA's lawful use of their technologies. In July 2025, Ellis endorsed President Trump's AI Action Plan as helping the American private sector win the advanced-AI race with China.",
+     "text": "Ellis described AI as helping intelligence analysts draft judgments, improve clarity, and compare drafts against tradecraft standards without doing their thinking for them. He described commercial partnerships spanning AI and other technologies and opposed private companies dictating the CIA's lawful use of their technologies. In his July 31, 2025 post, Ellis endorsed President Trump's AI Action Plan as positioning the American private sector to win an advanced-AI race with China.",
      "sids": [
       "s3",
       "s4",
@@ -201,20 +303,20 @@
      ],
      "sentences": [
       {
-       "text": "Ellis described AI as helping analysts draft judgments, improve clarity, and check drafts against tradecraft standards without doing their thinking for them.",
+       "text": "Ellis described AI as helping intelligence analysts draft judgments, improve clarity, and compare drafts against tradecraft standards without doing their thinking for them.",
        "sids": [
         "s3"
        ]
       },
       {
-       "text": "He described commercial partnerships involving AI and other technologies and opposed private companies dictating the CIA's lawful use of their technologies.",
+       "text": "He described commercial partnerships spanning AI and other technologies and opposed private companies dictating the CIA's lawful use of their technologies.",
        "sids": [
         "s4",
         "s5"
        ]
       },
       {
-       "text": "In July 2025, Ellis endorsed President Trump's AI Action Plan as helping the American private sector win the advanced-AI race with China.",
+       "text": "In his July 31, 2025 post, Ellis endorsed President Trump's AI Action Plan as positioning the American private sector to win an advanced-AI race with China.",
        "sids": [
         "s10"
        ]
@@ -223,13 +325,117 @@
     }
    },
    "model": "openai/gpt-6-astra",
-   "generation_id": "gen-1794349822-MmT6oxggCRJ9qMGD0oeb",
-   "assessed_at": "2026-11-10T22:30:39.583437+00:00"
+   "generation_id": "gen-1794350278-xMyP3nZYiJyCYmRMxvHf",
+   "assessed_at": "2026-11-10T22:38:09.428349+00:00",
+   "previous_reviews": [
+    {
+     "input_hash": "4c185d1be48fcac36b69c39d1bdcb6144eec7b8829e513e7b31449f1d042d381",
+     "evidence_hash": "63e42ef8f0197de270c00a838b5d02e76ebd0863f712d452d04fb7d67000db7c",
+     "contexts": {
+      "s1": {
+       "status": "available",
+       "url": "https://www.thedartmouth.com/article/2026/10/holty-cia-deputy-director-michael-ellis-06-discusses-ai-and-china-at-davidson-institute-event",
+       "retrieval": "direct_page",
+       "retrieved_at": "2026-11-10T22:31:01.291718+00:00",
+       "text_hash": "02897cb1a34cc2ff44728178382b725665fc6518d2fb163397708e2ebec97a26",
+       "cache_path": "data/raw/federal_stance_context/exec_michael_ellis/s1.json"
+      }
+     },
+     "result": {
+      "findings": [],
+      "no_stance_sids": [
+       "s2",
+       "s3",
+       "s4",
+       "s5",
+       "s6",
+       "s7",
+       "s8",
+       "s9",
+       "s10"
+      ],
+      "context_requests": [
+       {
+        "sid": "s1",
+        "reason": "The excerpt does not identify the tasks or their scope. Surrounding context could establish whether Ellis is describing a narrow operational benefit or making a broader assessment of AI's benefits for people and the economy."
+       }
+      ],
+      "confidence": 4,
+      "reason": "The supplied excerpts do not establish an overall assessment of AI's benefits versus harms for Americans. They primarily concern capabilities, intelligence applications, commercial partnerships, agency discretion, and competition with China. No retrieved source context was supplied; s1's scope remains unresolved. Although s9 ends mid-sentence, its supplied content establishes only an event announcement and race framing, not an overall AI stance.",
+      "summary_sentences": [
+       {
+        "text": "Ellis described AI as helping analysts draft judgments, improve clarity, and check drafts against tradecraft standards without doing their thinking for them.",
+        "sids": [
+         "s3"
+        ]
+       },
+       {
+        "text": "He described commercial partnerships involving AI and other technologies and opposed private companies dictating the CIA's lawful use of their technologies.",
+        "sids": [
+         "s4",
+         "s5"
+        ]
+       },
+       {
+        "text": "In July 2025, Ellis endorsed President Trump's AI Action Plan as helping the American private sector win the advanced-AI race with China.",
+        "sids": [
+         "s10"
+        ]
+       }
+      ],
+      "summary": {
+       "status": "complete",
+       "text": "Ellis described AI as helping analysts draft judgments, improve clarity, and check drafts against tradecraft standards without doing their thinking for them. He described commercial partnerships involving AI and other technologies and opposed private companies dictating the CIA's lawful use of their technologies. In July 2025, Ellis endorsed President Trump's AI Action Plan as helping the American private sector win the advanced-AI race with China.",
+       "sids": [
+        "s3",
+        "s4",
+        "s5",
+        "s10"
+       ],
+       "sentences": [
+        {
+         "text": "Ellis described AI as helping analysts draft judgments, improve clarity, and check drafts against tradecraft standards without doing their thinking for them.",
+         "sids": [
+          "s3"
+         ]
+        },
+        {
+         "text": "He described commercial partnerships involving AI and other technologies and opposed private companies dictating the CIA's lawful use of their technologies.",
+         "sids": [
+          "s4",
+          "s5"
+         ]
+        },
+        {
+         "text": "In July 2025, Ellis endorsed President Trump's AI Action Plan as helping the American private sector win the advanced-AI race with China.",
+         "sids": [
+          "s10"
+         ]
+        }
+       ]
+      }
+     },
+     "model": "openai/gpt-6-astra",
+     "generation_id": "gen-1794349822-MmT6oxggCRJ9qMGD0oeb",
+     "assessed_at": "2026-11-10T22:30:39.583437+00:00"
+    }
+   ],
+   "applied_review_id": "6ca22807b53856dbea14c7144381e5601ae429d1bc04f5a1a811bb3dae50b9c6"
   },
   "exec_paul_atkins": {
-   "input_hash": "779eea31f303e4a866f0f39cf821fca4242e352905a758ca6cb8d8c1e70f910f",
+   "input_hash": "cef1104babc94ac459431a2f99973641e35886bebde6fb41b8ff41021a03dbee",
    "evidence_hash": "1c89d91b6b14a3c7c8273b77db6d2c3474ab07a0a3c705e5689fa1bd20ad4e12",
-   "contexts": {},
+   "contexts": {
+    "s10": {
+     "status": "available",
+     "url": "https://x.com/SECPaulSAtkins/status/1965817301565059320",
+     "verified_author_id": "1917675528082911232",
+     "retrieval": "official_x_api_post_and_author",
+     "retrieved_at": "2026-11-10T22:31:53.948293+00:00",
+     "text_hash": "1dcd16b3c21f45e501b994dee15258fc88d0e0ad8b559f973cdf4ca25fe12dc9",
+     "cache_path": "data/raw/federal_stance_context/exec_paul_atkins/s10.json"
+    }
+   },
    "result": {
     "findings": [],
     "no_stance_sids": [
@@ -242,17 +448,13 @@
      "s7",
      "s8",
      "s9",
+     "s10",
      "s11",
      "s12"
     ],
-    "context_requests": [
-     {
-      "sid": "s10",
-      "reason": "The excerpt begins mid-sentence and links AI and blockchains to empowerment, competition, and prosperity. The complete post could clarify whether this is a general assessment of AI’s economic effects or only a claim about access to financial strategies."
-     }
-    ],
+    "context_requests": [],
     "confidence": 4,
-    "reason": "The supplied excerpts principally address financial applications, investor disclosures, and the SEC’s regulatory approach, rather than AI’s overall effects on Americans. The panel introduction in s3 does not establish a general stance beyond its event framing. No overall label is warranted from those excerpts alone; s10 requires context to resolve the scope of its prosperity claim. This does not establish that Atkins lacks a general AI position outside this corpus.",
+    "reason": "The supplied statements discuss AI’s benefits and risks in finance, corporate disclosures, and SEC operations, rather than its overall effects on Americans. Broadly positive language remains tied to financial applications, including in the retrieved s10 context. The panel introduction in s3 acknowledges promise and concerns but does not establish an overall assessment. These bounded excerpts therefore do not support an ai_overall label; this does not establish that Atkins lacks a broader view.",
     "summary_sentences": [
      {
       "text": "In March 2026, Atkins described AI as potentially improving investor confidence, capital allocation, and financial-market oversight.",
@@ -261,27 +463,34 @@
       ]
      },
      {
-      "text": "In September 2026, he emphasized human judgment and warned about hallucinations in disclosures, opaque models, and errors cascading across financial markets.",
+      "text": "In September 2026, he emphasized human judgment and warned about AI errors in disclosures, opaque models, and errors cascading across markets.",
       "sids": [
        "s6",
        "s7"
       ]
      },
      {
-      "text": "He also said the SEC would oversee market rules rather than prescribe the specific models firms must use.",
+      "text": "He said the SEC would oversee market rules rather than prescribe which AI models firms must use.",
       "sids": [
        "s8"
+      ]
+     },
+     {
+      "text": "In September 2025, he highlighted potential benefits from combining AI and blockchains, including faster markets, lower costs, and broader access to financial strategies.",
+      "sids": [
+       "s10"
       ]
      }
     ],
     "summary": {
      "status": "complete",
-     "text": "In March 2026, Atkins described AI as potentially improving investor confidence, capital allocation, and financial-market oversight. In September 2026, he emphasized human judgment and warned about hallucinations in disclosures, opaque models, and errors cascading across financial markets. He also said the SEC would oversee market rules rather than prescribe the specific models firms must use.",
+     "text": "In March 2026, Atkins described AI as potentially improving investor confidence, capital allocation, and financial-market oversight. In September 2026, he emphasized human judgment and warned about AI errors in disclosures, opaque models, and errors cascading across markets. He said the SEC would oversee market rules rather than prescribe which AI models firms must use. In September 2025, he highlighted potential benefits from combining AI and blockchains, including faster markets, lower costs, and broader access to financial strategies.",
      "sids": [
       "s1",
       "s6",
       "s7",
-      "s8"
+      "s8",
+      "s10"
      ],
      "sentences": [
       {
@@ -291,26 +500,129 @@
        ]
       },
       {
-       "text": "In September 2026, he emphasized human judgment and warned about hallucinations in disclosures, opaque models, and errors cascading across financial markets.",
+       "text": "In September 2026, he emphasized human judgment and warned about AI errors in disclosures, opaque models, and errors cascading across markets.",
        "sids": [
         "s6",
         "s7"
        ]
       },
       {
-       "text": "He also said the SEC would oversee market rules rather than prescribe the specific models firms must use.",
+       "text": "He said the SEC would oversee market rules rather than prescribe which AI models firms must use.",
        "sids": [
         "s8"
+       ]
+      },
+      {
+       "text": "In September 2025, he highlighted potential benefits from combining AI and blockchains, including faster markets, lower costs, and broader access to financial strategies.",
+       "sids": [
+        "s10"
        ]
       }
      ]
     }
    },
    "model": "openai/gpt-6-astra",
-   "generation_id": "gen-1794349822-a5hwn2XTHNYOEaxdqqDg",
-   "assessed_at": "2026-11-10T22:30:40.568931+00:00"
+   "generation_id": "gen-1794350278-f82y0vXAiaY3ZjXkAvt8",
+   "assessed_at": "2026-11-10T22:38:16.636982+00:00",
+   "previous_reviews": [
+    {
+     "input_hash": "779eea31f303e4a866f0f39cf821fca4242e352905a758ca6cb8d8c1e70f910f",
+     "evidence_hash": "1c89d91b6b14a3c7c8273b77db6d2c3474ab07a0a3c705e5689fa1bd20ad4e12",
+     "contexts": {
+      "s10": {
+       "status": "available",
+       "url": "https://x.com/SECPaulSAtkins/status/1965817301565059320",
+       "verified_author_id": "1917675528082911232",
+       "retrieval": "official_x_api_post_and_author",
+       "retrieved_at": "2026-11-10T22:31:53.948293+00:00",
+       "text_hash": "1dcd16b3c21f45e501b994dee15258fc88d0e0ad8b559f973cdf4ca25fe12dc9",
+       "cache_path": "data/raw/federal_stance_context/exec_paul_atkins/s10.json"
+      }
+     },
+     "result": {
+      "findings": [],
+      "no_stance_sids": [
+       "s1",
+       "s2",
+       "s3",
+       "s4",
+       "s5",
+       "s6",
+       "s7",
+       "s8",
+       "s9",
+       "s11",
+       "s12"
+      ],
+      "context_requests": [
+       {
+        "sid": "s10",
+        "reason": "The excerpt begins mid-sentence and links AI and blockchains to empowerment, competition, and prosperity. The complete post could clarify whether this is a general assessment of AI’s economic effects or only a claim about access to financial strategies."
+       }
+      ],
+      "confidence": 4,
+      "reason": "The supplied excerpts principally address financial applications, investor disclosures, and the SEC’s regulatory approach, rather than AI’s overall effects on Americans. The panel introduction in s3 does not establish a general stance beyond its event framing. No overall label is warranted from those excerpts alone; s10 requires context to resolve the scope of its prosperity claim. This does not establish that Atkins lacks a general AI position outside this corpus.",
+      "summary_sentences": [
+       {
+        "text": "In March 2026, Atkins described AI as potentially improving investor confidence, capital allocation, and financial-market oversight.",
+        "sids": [
+         "s1"
+        ]
+       },
+       {
+        "text": "In September 2026, he emphasized human judgment and warned about hallucinations in disclosures, opaque models, and errors cascading across financial markets.",
+        "sids": [
+         "s6",
+         "s7"
+        ]
+       },
+       {
+        "text": "He also said the SEC would oversee market rules rather than prescribe the specific models firms must use.",
+        "sids": [
+         "s8"
+        ]
+       }
+      ],
+      "summary": {
+       "status": "complete",
+       "text": "In March 2026, Atkins described AI as potentially improving investor confidence, capital allocation, and financial-market oversight. In September 2026, he emphasized human judgment and warned about hallucinations in disclosures, opaque models, and errors cascading across financial markets. He also said the SEC would oversee market rules rather than prescribe the specific models firms must use.",
+       "sids": [
+        "s1",
+        "s6",
+        "s7",
+        "s8"
+       ],
+       "sentences": [
+        {
+         "text": "In March 2026, Atkins described AI as potentially improving investor confidence, capital allocation, and financial-market oversight.",
+         "sids": [
+          "s1"
+         ]
+        },
+        {
+         "text": "In September 2026, he emphasized human judgment and warned about hallucinations in disclosures, opaque models, and errors cascading across financial markets.",
+         "sids": [
+          "s6",
+          "s7"
+         ]
+        },
+        {
+         "text": "He also said the SEC would oversee market rules rather than prescribe the specific models firms must use.",
+         "sids": [
+          "s8"
+         ]
+        }
+       ]
+      }
+     },
+     "model": "openai/gpt-6-astra",
+     "generation_id": "gen-1794349822-a5hwn2XTHNYOEaxdqqDg",
+     "assessed_at": "2026-11-10T22:30:40.568931+00:00"
+    }
+   ],
+   "applied_review_id": "b5cc9e3488bd5ed6495ffad227311d7afa169361aefd3ae11d0f8773a47418d9"
   }
  },
  "change_cause": "Astra review of federal roster expansion evidence",
- "ledger_cost": 0.192697
+ "ledger_cost": 0.361339
 }

@@ -363,9 +363,152 @@ class FederalAnalysisDailyTests(unittest.TestCase):
             (root/'config/federal_analysis.json').write_text('{}')
             with patch.object(federal,'judge',return_value={'status':'ok'}), \
                  patch.object(federal,'build',return_value=None), \
-                 patch.object(llm,'spent',side_effect=[10.0,10.2]), \
+                 patch.object(llm,'spent',side_effect=[10.0,10.0,10.2]), \
                  patch.object(federal_analysis_models,'run',return_value={'status':'ok'}) as analysis:
                 report=federal.run(root,CONFIG,skip_collect=True)
             self.assertEqual(report['analysis']['status'],'ok')
             self.assertAlmostEqual(analysis.call_args.kwargs['max_cost'],0.3)
             self.assertTrue(analysis.call_args.kwargs['daily'])
+
+    def test_judgment_pipelines_rotate_without_adding_budget(self):
+        import federal
+        import federal_analysis_models
+        import llm
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);(root/'config').mkdir()
+            (root/'config/federal_analysis.json').write_text('{}')
+            ledger=[10.0];calls=[]
+            def policy_run(root,max_cost,dry=False):
+                calls.append(('judgments',round(max_cost,4)))
+                ledger[0]+=max_cost
+                return {'status':'partial'}
+            def analysis_run(root,max_cost,**kwargs):
+                calls.append(('analysis',round(max_cost,4)))
+                ledger[0]+=max_cost
+                return {'status':'partial'}
+            with patch.object(federal,'judge',side_effect=policy_run), \
+                 patch.object(federal,'build',return_value=None), \
+                 patch.object(llm,'spent',side_effect=lambda *args:ledger[0]), \
+                 patch.object(federal_analysis_models,'run',side_effect=analysis_run):
+                federal.run(root,CONFIG,skip_collect=True)
+                federal.run(root,CONFIG,skip_collect=True)
+            self.assertEqual(calls,[('judgments',0.5),('analysis',0),('analysis',0.5),('judgments',0)])
+            self.assertAlmostEqual(ledger[0],11.0)
+            scheduler=root/'data/federal_judgment_scheduler.json'
+            before=scheduler.read_text()
+            with patch.object(federal,'judge',return_value={'status':'dry_run'}), \
+                 patch.object(federal_analysis_models,'run',return_value={'status':'dry_run'}):
+                federal.run(root,CONFIG,skip_collect=True,dry=True)
+            self.assertEqual(scheduler.read_text(),before)
+
+
+    def policy_fixture(self, root):
+        from test_policy_cascade import STRATEGY
+        from test_policy_judgments import REGISTRY
+        FederalTests().fixture(root)
+        policy.write_json(root / 'config/policies.json', REGISTRY)
+        policy.write_json(root / 'config/policy_judging.json', STRATEGY)
+        (root / 'config/policy_rubric.md').write_text('rubric')
+        (root / 'config/policy_confidence.md').write_text('confidence')
+        return REGISTRY, STRATEGY
+
+    def policy_evidence(self, root, subject, count):
+        from test_policy_judgments import ITEM
+        attribution = {'kind': 'personal', 'speaker': subject['name']}
+        if subject['entity_type'] == 'institution':
+            attribution.update(kind='institutional', organization_id=subject['id'])
+        policy.write_json(root / 'evidence' / f"{subject['id']}.json", {'statements': [
+            {**ITEM, 'sid': f's{i}', 'text': f"{ITEM['text']} Excerpt {i}.", 'verified': True, 'attribution': attribution}
+            for i in range(1, count + 1)
+        ]})
+
+    def test_real_daily_judge_reports_pending_pairs_at_zero_allowance(self):
+        import federal
+        import phase3_policies as runner
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.policy_fixture(root)
+            self.policy_evidence(root, PERSON, 1)
+            with patch.object(runner, 'label_cascade', side_effect=AssertionError('No label call at zero allowance')), \
+                 patch.object(runner, 'label', side_effect=AssertionError('No label call at zero allowance')):
+                report = federal.judge(root, max_cost=0)
+            self.assertEqual(report['status'], 'partial')
+            self.assertEqual(report['candidate_statements'], 1)
+            self.assertEqual(report['pending_pairs'], 1)
+            self.assertEqual(report['incomplete_batches'], 0)
+            self.assertEqual(report['review_counts'], {'awaiting_deepseek': 1})
+            self.assertEqual(list((root / 'data').iterdir()), [root / 'data/roster.json'])
+
+    def test_daily_policy_rotation_reaches_later_agency_and_review_backlog(self):
+        import contextlib
+        import io
+        from types import SimpleNamespace
+        import federal
+        import llm
+        import phase3_policies as runner
+        import policy_cascade as cascade
+        from test_policy_cascade import label
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            registry, strategy = self.policy_fixture(root)
+            late = {**INSTITUTION, 'id': 'z_agency', 'name': 'Later Agency'}
+            policy.write_json(root / 'config/policy_subjects.json', {**SUBJECTS, 'subjects': [*SUBJECTS['subjects'], late]})
+            self.policy_evidence(root, PERSON, 1)
+            self.policy_evidence(root, late, 1)
+            target = 'kill_switch_act_119'
+            prior = next(item for item in policy.candidates(root, registry) if item['person_id'] == PERSON['id'])
+            saved_path = root / 'data/policy_cascade.json'
+            saved = {'schema_version': 1, 'results': {}}
+            cascade.save_result(saved, prior, target, 'deepseek', label(confidence=0.7), registry, 'rubric', 'confidence', strategy, 'seed')
+            policy.write_json(saved_path, saved)
+            metadata = {'data': [{'id': model, 'pricing': {'prompt': '0', 'completion': '0', 'request': '1'}}
+                                 for model in cascade.models(strategy).values()]}
+            meta = SimpleNamespace(raise_for_status=lambda: None, json=lambda: metadata)
+            ledger = []
+            calls = []
+            def chat(messages, **kwargs):
+                role = kwargs['tag'].removeprefix('daily_policy_cascade_')
+                batch = json.loads(messages[1]['content'].split('\n', 1)[1])
+                self.assertEqual(len(batch), 1)
+                item = batch[0]
+                key = item['key']
+                ledger.append(1)
+                calls.append((role, key))
+                value = {}
+                if key != 'commerce|s1':
+                    value = {'judgments': [{'key': key, 'targets': {
+                        target: label(confidence=0.7 if key == 'z_agency|s1' and role == 'deepseek' else 0.9)
+                    }}]}
+                if role == 'astra':
+                    primary = policy.read_json(saved_path)['results'][key][target]['deepseek']['label']
+                    self.assertLess(primary['confidence'], strategy['threshold'])
+                return {'id': 'fake-generation', 'usage': {'cost': 1}, 'choices': [{'message': {'content': json.dumps(value)}}]}
+            with patch.object(runner, 'ROOT', root / 'manual-root'), patch.dict(llm.os.environ, {'OPENROUTER_API_KEY': 'test'}), \
+                 patch.object(llm, 'BUDGETS', {'openrouter': 100, 'monthly': {'openrouter': 100}}), \
+                 patch.object(llm, 'spent', side_effect=lambda _: sum(ledger)), \
+                 patch.object(llm, 'spent_this_month', side_effect=lambda _: sum(ledger)), \
+                 patch.object(llm, '_log', side_effect=lambda provider, cost, tag, metadata: ledger.append(cost)), \
+                 patch.object(llm, 'chat', side_effect=chat), patch.object(llm.httpx, 'get', return_value=meta) as get, \
+                 contextlib.redirect_stdout(io.StringIO()):
+                for day in range(12):
+                    self.policy_evidence(root, INSTITUTION, day + 2)
+                    before = sum(ledger)
+                    report = federal.judge(root, max_cost=1.01)
+                    self.assertLessEqual(sum(ledger) - before, 1.01)
+            results = policy.read_json(saved_path)['results']
+            self.assertIn('astra', results[prior['key']][target])
+            self.assertIn('astra', results['z_agency|s1'][target])
+            self.assertIn('deepseek', results['commerce|s2'][target])
+            self.assertNotIn('commerce|s1', results)
+            self.assertGreaterEqual(calls.count(('deepseek', 'commerce|s1')), 2)
+            self.assertEqual(report['status'], 'partial')
+            self.assertGreater(report['pending_pairs'], 0)
+            self.assertEqual(get.call_count, 12)
+            self.assertFalse((root / 'manual-root').exists())
+            cursor = root / 'data/federal_policy_scheduler.json'
+            before = cursor.read_bytes()
+            with patch.object(runner, 'label', side_effect=AssertionError('No label call in dry run')):
+                dry_report = federal.judge(root, max_cost=1.01, dry=True)
+            self.assertEqual(dry_report['status'], 'dry_run')
+            self.assertEqual(dry_report['pending_pairs'], report['pending_pairs'])
+            self.assertEqual(cursor.read_bytes(), before)
