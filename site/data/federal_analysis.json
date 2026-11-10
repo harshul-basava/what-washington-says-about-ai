@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "built_on": "2026-11-10",
- "revision": "e42c2213522bd7891b3debc8faf8d25d219bcf9aa3c1c89c2d0ea257467a6b6b",
+ "revision": "bfbc7b903866d290a43dd568a0458b239ee612b1082adaff2ed4c95e50a500fd",
  "dimensions": [
   {
    "id": "ai_overall",
@@ -166,15 +166,11 @@
  "coverage": {
   "profiles": 102,
   "statements": 3612,
-  "labeled_statements": 3584,
-  "pending_labels": 28,
-  "pending_regulation": 15,
-  "pending_summaries": 32,
-  "pending_stages": {
-   "ds_0": 28,
-   "ds_1": 28,
-   "ds_2": 28
-  },
+  "labeled_statements": 3612,
+  "pending_labels": 0,
+  "pending_regulation": 11,
+  "pending_summaries": 28,
+  "pending_stages": {},
   "status": "partial"
  },
  "roster_coverage": {
@@ -22120,7 +22116,7 @@
    "party": null,
    "state": "",
    "chamber": "",
-   "status": "partial",
+   "status": "complete",
    "entity_type": "person",
    "branch": "executive",
    "organization_id": "white_house",
@@ -22132,13 +22128,14 @@
     {
      "organization_id": "white_house",
      "title": "White House Chief of Staff",
-     "start_date": "2026-11-06",
+     "start_date": null,
      "end_date": null,
      "verified_on": "2026-11-10",
      "source_url": "https://www.whitehouse.gov/releases/2026/11/president-trump-names-stephen-miller-as-33rd-white-house-chief-of-staff/",
      "source_type": "official",
      "status": "documented",
-     "source_excerpt": "the appointment of Stephen Miller as the 33rd White House Chief of Staff, succeeding Susie Wiles"
+     "source_excerpt": "the appointment of Stephen Miller as the 33rd White House Chief of Staff, succeeding Susie Wiles",
+     "appointment_announced_on": "2026-11-06"
     }
    ],
    "source_url": "https://www.whitehouse.gov/releases/2026/11/president-trump-names-stephen-miller-as-33rd-white-house-chief-of-staff/",
@@ -22150,10 +22147,10 @@
     "reason": "current_government_official"
    },
    "n_statements": 5,
-   "n_labeled": 0,
+   "n_labeled": 5,
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
@@ -22161,49 +22158,204 @@
    "score_details": {
     "ai_overall": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "no_statements",
+     "reason_b": "no_statements",
      "sids": [],
      "label_count": 0
     },
     "agi_pilled": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 1.0,
+     "reason_a": "consistent",
+     "reason_b": "silent",
+     "sids": [
+      "s1"
+     ],
+     "label_count": 1
     },
     "x_risk": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "china_race": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "regulation": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "no_statements",
+     "reason_b": "no_statements",
      "sids": [],
      "label_count": 0
     }
    },
    "summary": {
-    "status": "pending",
-    "text": "",
-    "sids": []
+    "status": "complete",
+    "text": "Stephen Miller said there is a \"revolution in quantum computing, artificial intelligence, advanced manufacturing\" and that the semiconductor industry is being brought back to the United States. In September 2024, he wrote about investing heavily in advanced manufacturing, including AI and robotics, along with energy policies and R&D tax credits. In October 2024, he asked whether investment should go to farm automation, addressing a recipient as someone passionate about AI. In February 2024, he wrote, \"Imagine when woke AI is governing every financial transaction in America.\"",
+    "sids": [
+     "s1",
+     "s3",
+     "s2",
+     "s4"
+    ],
+    "sentences": [
+     {
+      "text": "Stephen Miller said there is a \"revolution in quantum computing, artificial intelligence, advanced manufacturing\" and that the semiconductor industry is being brought back to the United States.",
+      "sids": [
+       "s1"
+      ]
+     },
+     {
+      "text": "In September 2024, he wrote about investing heavily in advanced manufacturing, including AI and robotics, along with energy policies and R&D tax credits.",
+      "sids": [
+       "s3"
+      ]
+     },
+     {
+      "text": "In October 2024, he asked whether investment should go to farm automation, addressing a recipient as someone passionate about AI.",
+      "sids": [
+       "s2"
+      ]
+     },
+     {
+      "text": "In February 2024, he wrote, \"Imagine when woke AI is governing every financial transaction in America.\"",
+      "sids": [
+       "s4"
+      ]
+     }
+    ]
    },
-   "topics": {},
+   "topics": {
+    "AGI/transformative": 0.5,
+    "jobs/economy": 1.5,
+    "other": 2.5,
+    "energy/data centers": 0.5
+   },
    "regulation": {
-    "status": "pending",
-    "areas": {}
+    "status": "complete",
+    "areas": {
+     "kids_chatbots": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "deepfakes": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "election_ads": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "labeling": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_moratorium": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_ratepayers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "layoff_reporting": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "bias_audits": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "training_consent": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "preemption": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "chips": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "testing_mandate": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "transparency": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "whistleblowers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "liability": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "misuse": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "nuclear": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "autonomous_weapons": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "licensing": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "intl_agreement": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "pause": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "rsi": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "superintelligence": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     }
+    },
+    "disputed": []
    }
   },
   {
@@ -22225,7 +22377,7 @@
     {
      "organization_id": "nist",
      "title": "Associate Director for Laboratory Programs",
-     "start_date": null,
+     "start_date": "2025-06-01",
      "end_date": null,
      "verified_on": "2026-11-10",
      "source_url": "https://www.nist.gov/director/leadership",
@@ -22305,7 +22457,7 @@
    "party": null,
    "state": "",
    "chamber": "",
-   "status": "partial",
+   "status": "complete",
    "entity_type": "person",
    "branch": "executive",
    "organization_id": "cia",
@@ -22317,7 +22469,7 @@
     {
      "organization_id": "cia",
      "title": "Deputy Director",
-     "start_date": null,
+     "start_date": "2025-02-10",
      "end_date": null,
      "verified_on": "2026-11-10",
      "source_url": "https://www.cia.gov/about/director-of-cia/",
@@ -22335,60 +22487,227 @@
     "reason": "current_government_official"
    },
    "n_statements": 10,
-   "n_labeled": 0,
+   "n_labeled": 10,
    "scores": {
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
    "score_details": {
     "ai_overall": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "no_statements",
+     "reason_b": "no_statements",
      "sids": [],
      "label_count": 0
     },
     "agi_pilled": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "x_risk": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "china_race": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 3.0,
+     "reason_a": "consistent",
+     "reason_b": "consistent",
+     "sids": [
+      "s9",
+      "s10"
+     ],
+     "label_count": 4
     },
     "regulation": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "no_statements",
+     "reason_b": "no_statements",
      "sids": [],
      "label_count": 0
     }
    },
    "summary": {
-    "status": "pending",
-    "text": "",
-    "sids": []
+    "status": "complete",
+    "text": "Michael Ellis said AI could reduce tasks that once took months or years to hours or days and called it a potential “game changer” that could fundamentally reshape the intelligence business. He said such models can bring knowledge and capabilities previously held only by nation-states to a wide range of actors, and that AI would help CIA analysts draft key judgments, edit for clarity, and compare drafts against tradecraft standards. Ellis said CIA is entering commercial partnerships in areas including AI and that it should not let private companies dictate how and when CIA makes lawful use of their technologies. He described competition with China as unlike anything the United States has faced and said the U.S. must continue to lead the AI race, citing President Trump’s AI Action Plan as setting up the private sector to win that race.",
+    "sids": [
+     "s1",
+     "s6",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s8",
+     "s9",
+     "s10"
+    ],
+    "sentences": [
+     {
+      "text": "Michael Ellis said AI could reduce tasks that once took months or years to hours or days and called it a potential “game changer” that could fundamentally reshape the intelligence business.",
+      "sids": [
+       "s1",
+       "s6"
+      ]
+     },
+     {
+      "text": "He said such models can bring knowledge and capabilities previously held only by nation-states to a wide range of actors, and that AI would help CIA analysts draft key judgments, edit for clarity, and compare drafts against tradecraft standards.",
+      "sids": [
+       "s2",
+       "s3"
+      ]
+     },
+     {
+      "text": "Ellis said CIA is entering commercial partnerships in areas including AI and that it should not let private companies dictate how and when CIA makes lawful use of their technologies.",
+      "sids": [
+       "s4",
+       "s5"
+      ]
+     },
+     {
+      "text": "He described competition with China as unlike anything the United States has faced and said the U.S. must continue to lead the AI race, citing President Trump’s AI Action Plan as setting up the private sector to win that race.",
+      "sids": [
+       "s8",
+       "s9",
+       "s10"
+      ]
+     }
+    ]
    },
-   "topics": {},
+   "topics": {
+    "AGI/transformative": 1.5,
+    "national security": 4.5,
+    "other": 1.0,
+    "regulation": 0.5,
+    "China/competition": 2.5
+   },
    "regulation": {
-    "status": "pending",
-    "areas": {}
+    "status": "complete",
+    "areas": {
+     "kids_chatbots": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "deepfakes": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "election_ads": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "labeling": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_moratorium": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_ratepayers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "layoff_reporting": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "bias_audits": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "training_consent": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "preemption": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "chips": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "testing_mandate": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "transparency": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "whistleblowers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "liability": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "misuse": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "nuclear": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "autonomous_weapons": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "licensing": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "intl_agreement": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "pause": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "rsi": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "superintelligence": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     }
+    },
+    "disputed": []
    }
   },
   {
@@ -22397,7 +22716,7 @@
    "party": null,
    "state": "",
    "chamber": "",
-   "status": "partial",
+   "status": "complete",
    "entity_type": "person",
    "branch": "executive",
    "organization_id": "sec",
@@ -22409,7 +22728,7 @@
     {
      "organization_id": "sec",
      "title": "Chairman",
-     "start_date": null,
+     "start_date": "2025-04-21",
      "end_date": null,
      "verified_on": "2026-11-10",
      "source_url": "https://www.sec.gov/about/sec-commissioners",
@@ -22429,60 +22748,221 @@
     "reason": "current_government_official"
    },
    "n_statements": 12,
-   "n_labeled": 0,
+   "n_labeled": 12,
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "score_details": {
     "ai_overall": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 3.0,
+     "reason_a": "median_of_7",
+     "reason_b": "median_of_2",
+     "sids": [
+      "s2",
+      "s1",
+      "s12",
+      "s10"
+     ],
+     "label_count": 7
     },
     "agi_pilled": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "x_risk": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "china_race": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "regulation": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 1.0,
+     "reason_a": "consistent",
+     "reason_b": "consistent",
+     "sids": [
+      "s8"
+     ],
+     "label_count": 1
     }
    },
    "summary": {
-    "status": "pending",
-    "text": "",
-    "sids": []
+    "status": "complete",
+    "text": "In March 2026 remarks, Atkins described AI as more than an efficiency tool and as a force that could help investors, businesses, and regulators. He said the SEC intended to understand AI, assess its potential, and adopt its solutions where appropriate. In September 2026 remarks, he said AI should complement rather than substitute for human judgment, citing error and hallucination concerns, while also noting risks such as model opaqueness and cascading errors. He also said the SEC would not prescribe specific models and would focus on establishing rules of the road rather than selecting winners or losers.",
+    "sids": [
+     "s1",
+     "s2",
+     "s6",
+     "s7",
+     "s8"
+    ],
+    "sentences": [
+     {
+      "text": "In March 2026 remarks, Atkins described AI as more than an efficiency tool and as a force that could help investors, businesses, and regulators.",
+      "sids": [
+       "s1"
+      ]
+     },
+     {
+      "text": "He said the SEC intended to understand AI, assess its potential, and adopt its solutions where appropriate.",
+      "sids": [
+       "s2"
+      ]
+     },
+     {
+      "text": "In September 2026 remarks, he said AI should complement rather than substitute for human judgment, citing error and hallucination concerns, while also noting risks such as model opaqueness and cascading errors.",
+      "sids": [
+       "s6",
+       "s7"
+      ]
+     },
+     {
+      "text": "He also said the SEC would not prescribe specific models and would focus on establishing rules of the road rather than selecting winners or losers.",
+      "sids": [
+       "s8"
+      ]
+     }
+    ]
    },
-   "topics": {},
+   "topics": {
+    "jobs/economy": 2.5,
+    "other": 5.5,
+    "regulation": 4.0
+   },
    "regulation": {
-    "status": "pending",
-    "areas": {}
+    "status": "complete",
+    "areas": {
+     "kids_chatbots": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "deepfakes": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "election_ads": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "labeling": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_moratorium": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_ratepayers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "layoff_reporting": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "bias_audits": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "training_consent": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "preemption": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "chips": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "testing_mandate": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "transparency": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "whistleblowers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "liability": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "misuse": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "nuclear": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "autonomous_weapons": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "licensing": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "intl_agreement": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "pause": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "rsi": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "superintelligence": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     }
+    },
+    "disputed": []
    }
   },
   {
@@ -22491,7 +22971,7 @@
    "party": null,
    "state": "",
    "chamber": "",
-   "status": "partial",
+   "status": "complete",
    "entity_type": "person",
    "branch": "executive",
    "organization_id": "transportation",
@@ -22521,7 +23001,7 @@
     "reason": "current_government_official"
    },
    "n_statements": 1,
-   "n_labeled": 0,
+   "n_labeled": 1,
    "scores": {
     "ai_overall": null,
     "agi_pilled": null,
@@ -22532,49 +23012,190 @@
    "score_details": {
     "ai_overall": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "insufficient_evidence",
+     "reason_b": "insufficient_evidence",
      "sids": [],
      "label_count": 0
     },
     "agi_pilled": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "insufficient_evidence",
+     "reason_b": "insufficient_evidence",
      "sids": [],
      "label_count": 0
     },
     "x_risk": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "insufficient_evidence",
+     "reason_b": "insufficient_evidence",
      "sids": [],
      "label_count": 0
     },
     "china_race": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "insufficient_evidence",
+     "reason_b": "insufficient_evidence",
      "sids": [],
      "label_count": 0
     },
     "regulation": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "insufficient_evidence",
+     "reason_b": "insufficient_evidence",
      "sids": [],
      "label_count": 0
     }
    },
    "summary": {
-    "status": "pending",
-    "text": "",
-    "sids": []
+    "status": "complete",
+    "text": "Brian Brotsos holds the position of Acting Chief Data and SI Officer (CDSIO) at the U.S. Department of Transportation (DOT). He is responsible for overseeing DOT’s data strategy and the integration of Super Intelligence (SI). His duties ensure the Department effectively uses SI products and possesses the necessary data frameworks and capabilities to support these tools.",
+    "sids": [
+     "s1"
+    ],
+    "sentences": [
+     {
+      "text": "Brian Brotsos holds the position of Acting Chief Data and SI Officer (CDSIO) at the U.S. Department of Transportation (DOT).",
+      "sids": [
+       "s1"
+      ]
+     },
+     {
+      "text": "He is responsible for overseeing DOT’s data strategy and the integration of Super Intelligence (SI).",
+      "sids": [
+       "s1"
+      ]
+     },
+     {
+      "text": "His duties ensure the Department effectively uses SI products and possesses the necessary data frameworks and capabilities to support these tools.",
+      "sids": [
+       "s1"
+      ]
+     }
+    ]
    },
-   "topics": {},
+   "topics": {
+    "other": 1.0
+   },
    "regulation": {
-    "status": "pending",
-    "areas": {}
+    "status": "complete",
+    "areas": {
+     "kids_chatbots": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "deepfakes": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "election_ads": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "labeling": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_moratorium": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_ratepayers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "layoff_reporting": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "bias_audits": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "training_consent": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "preemption": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "chips": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "testing_mandate": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "transparency": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "whistleblowers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "liability": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "misuse": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "nuclear": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "autonomous_weapons": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "licensing": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "intl_agreement": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "pause": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "rsi": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "superintelligence": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     }
+    },
+    "disputed": []
    }
   }
  ]
