@@ -125,8 +125,6 @@
     <div id="policy-detail" hidden><h3 id="policy-detail-title"></h3><p id="policy-description"></p><p class="note" id="policy-source"></p>
     <div id="policy-chart-detail" class="pc-root"></div></div><h3 id="policy-profiles-title" tabindex="-1">Profiles and source quotes: <span id="policy-profiles-name"></span></h3>
     <div id="policy-counts" class="policy-counts" aria-live="polite"></div>
-    <p class="note">These labels summarize the available statement history. They do not establish a current position.
-    No matching evidence means that the search found no candidate quote in this dataset. It does not mean opposition.</p>
     <div id="policy-results"></div><div class="policy-pages"><button id="policy-prev">Previous</button><span id="policy-page" aria-live="polite"></span><button id="policy-next">Next</button></div>
     <p class="note"><a href="data/policies.csv" download>Download policy summaries (CSV)</a> ·
     <a href="data/policies.json" download>Download policy data (JSON)</a> · Export built ${esc(data.built_on)}</p>`;
@@ -202,11 +200,12 @@
       const assessed = rows.reduce((n,m)=>n+m.policies[state.policy].assessed,0);
       const candidates = rows.reduce((n,m)=>n+m.policies[state.policy].candidates,0);
       get('policy-counts').textContent = `${rows.length} profile${rows.length === 1 ? '' : 's'} in this view · ${assessed} of ${candidates} candidate statements with final assessments${isCascade ? ` · ${rows.reduce((n,m)=>n+(m.policies[state.policy].astra_reviewed || 0),0)} accepted after Astra review · ${rows.reduce((n,m)=>n+(m.policies[state.policy].human_review || 0),0)} need human review` : ''}`;
-      get('policy-results').innerHTML = page.length ? page.map(m => {
+      get('policy-results').innerHTML = page.length ? '<div class="policy-head" aria-hidden="true"><span>Name</span><span>Position</span><span>Quotes</span></div>' + page.map(m => {
         const r = m.policies[state.policy];
-        const body = `<span><b>${esc(m.name)}</b><span class="policy-member-meta">${m.branch === 'executive' ? esc(m.organization_name) + (m.entity_type === 'institution' ? ' · Institution' : ' · Official') : party(m.party) + ' · ' + esc(m.state) + ' · ' + esc(m.chamber) + (m.status === 'member_elect' ? ' · member-elect' : '')}</span></span>
+        const pc = m.branch === 'executive' ? '' : party(m.party).charAt(0);
+        const body = `<span>${pc ? `<span class="p${pc}">●</span> ` : ''}<b>${esc(m.name)}</b><span class="policy-member-meta">${m.branch === 'executive' ? esc(m.organization_name) + (m.entity_type === 'institution' ? ' · Institution' : '') : pc + '-' + esc(m.state) + ' · ' + (m.chamber === 'senate' ? 'Senate' : 'House') + (m.status === 'member_elect' ? ' · new member' : '')}</span></span>
           <span class="policy-badge policy-${esc(r.stance || 'none')}">${esc(summaryLabel(r))}</span>
-          <span class="policy-evidence-count">${r.relevant} relevant quote${r.relevant === 1 ? '' : 's'}${r.has_undated_evidence ? '<br>Includes undated quotes' : r.last_statement_date ? '<br>' + esc(dateLabel(r.last_statement_date)) : ''}</span>`;
+          <span class="policy-evidence-count">${r.relevant} quote${r.relevant === 1 ? '' : 's'}${r.has_undated_evidence ? ' · some undated' : r.last_statement_date ? ' · latest ' + esc(dateLabel(r.last_statement_date)) : ''}</span>`;
         return r.candidates || m.branch === 'executive' ? `<details class="policy-member" data-person="${esc(m.id)}"><summary>${body}</summary>${renderProfile(m,data.organizations || [],data.members)}<div class="policy-evidence"></div></details>` : `<div class="policy-member policy-empty">${body}</div>`;
       }).join('') : '<p>No profiles match these filters.</p>';
       root.querySelectorAll('details.policy-member').forEach(details => {

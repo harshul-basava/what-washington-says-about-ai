@@ -40,3 +40,15 @@
 .policy-pages button:disabled{opacity:.4;cursor:default}
 @media(max-width:600px){.policy-member>summary,.policy-empty{grid-template-columns:1fr auto;gap:8px;padding:14px 0}.policy-badge{grid-column:1;grid-row:2}.policy-evidence-count{grid-column:2;grid-row:1 / span 2}.policy-evidence{padding:0 2px 14px}.policy-controls label:first-child{flex-basis:100%}.policy-controls{gap:10px}}
 .policy-controls[hidden],#policy-detail[hidden]{display:none}
+
+/* compact list, like the members table on the Congress page */
+.policy-head,.policy-member>summary,.policy-empty{display:grid;grid-template-columns:minmax(0,2fr) 150px minmax(0,1.2fr);gap:12px;align-items:center;padding:8px 6px;font-size:14px}
+.policy-head{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);border-bottom:2px solid var(--line)}
+.policy-member>summary>span:first-child>b:before,.policy-member[open]>summary>span:first-child>b:before{content:none}
+.policy-member-meta{display:inline;margin:0 0 0 6px;font-size:13px}
+.policy-member>summary>span:first-child b{font-weight:500}
+.policy-evidence-count{text-align:left;font-size:13px}
+.policy-badge{padding:1px 8px}
+.policy-counts{padding:6px 0;font-size:13px;color:var(--muted);border-top:0}
+.policy-results .pD,#policy-results .pD{color:var(--pD)}#policy-results .pR{color:var(--pR)}#policy-results .pI{color:#a86f00}
+@media(max-width:600px){.policy-head{display:none}.policy-member>summary,.policy-empty{grid-template-columns:1fr auto;padding:8px 0}.policy-evidence-count{grid-column:1/-1;grid-row:2}}
