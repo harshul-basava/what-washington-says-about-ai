@@ -278,7 +278,7 @@
     } catch(error) {chartError=error.message;}
     const state = {scope:initial?.entity_type === 'institution' || params.get('scope') === 'institutions' ? 'institutions' : 'officials',
       organization:(data.organizations || []).some(o=>o.id===params.get('organization')) ? params.get('organization') : 'all',search:'',selected:initial?.id || null,dimension:data.dimensions[0]?.id,page:0,
-      chartDimension:'x_risk',compare:'regulation',historyKind:'reconstructed',topic:data.topics[0],range:'12m',preset:'agi_low_risk',rule:null};
+      chartDimension:'x_risk',trange:'12m',topicrange:'12m',compare:'regulation',historyKind:'reconstructed',topic:data.topics[0],range:'12m',preset:'agi_low_risk',rule:null};
     let request = 0, currentDetail = null;
     const cache = new Map();
     const dimensionOptions=id=>data.dimensions.map(d=>`<option value="${esc(d.id)}" ${d.id===id?'selected':''}>${esc(d.title)}</option>`).join('');
@@ -292,9 +292,9 @@
 <section class="fc-section" id="fa-roster-coverage"><details><summary>Officials and offices covered</summary><label class="fc-control">Agency or office<select id="fa-agency"><option value="all">All organizations</option>${(data.organizations || []).map(o=>`<option value="${esc(o.id)}" ${o.id===state.organization ? 'selected' : ''}>${esc(o.name)}</option>`).join('')}</select></label><div id="fa-roster-table"></div></details></section>
       <section class="fc-section" id="fc-cohort"><h2 id="fc-cohort-title"></h2><p class="fc-description">Each dot is one profile, colored by the selected score.</p><div id="fc-dots"></div></section>
       <section class="fc-section" id="fc-agency-section"><h2>Scores by agency</h2><p class="fc-description">Profiles in each agency, by the selected score.</p><div id="fc-agencies"></div><div id="fc-agency-selection" aria-live="polite"></div></section>
-      <section class="fc-section" id="fc-timeline-section"><h2 id="fc-timeline-title"></h2><p class="fc-description">Percent of profiles, month by month.</p><div id="fc-timeline"></div></section>
+      <section class="fc-section" id="fc-timeline-section"><h2 id="fc-timeline-title"></h2><p class="fc-description">Percent of profiles, month by month.</p><div class="fa-range" role="radiogroup" aria-label="Time range"><button type="button" role="radio" data-trange="3m" aria-checked="false">3 months</button><button type="button" role="radio" data-trange="12m" aria-checked="true">12 months</button><button type="button" role="radio" data-trange="all" aria-checked="false">All</button></div><div id="fc-timeline" class="fc-plot"></div></section>
       <section class="fc-section" id="fc-recent-section"><h2>Recent changes</h2><p class="fc-description">Scores that moved by more than 1 point in the last 60 days.</p><div id="fc-recent"></div></section>
-      <section class="fc-section" id="fc-topic-section"><h2>Topics</h2><h3>Share of statements about each topic</h3><div id="fc-topic-share"></div><h3 id="fc-voices-title"></h3><div id="fc-voices"></div></section>
+      <section class="fc-section" id="fc-topic-section"><h2>Topics</h2><h3>Share of statements about each topic</h3><div class="fa-range" role="radiogroup" aria-label="Time range"><button type="button" role="radio" data-topicrange="3m" aria-checked="false">3 months</button><button type="button" role="radio" data-topicrange="12m" aria-checked="true">12 months</button><button type="button" role="radio" data-topicrange="all" aria-checked="false">All</button></div><div id="fc-topic-share"></div><h3 id="fc-voices-title"></h3><div id="fc-voices"></div></section>
       <section class="fc-section" id="fc-members-section"><h2>All profiles</h2><div class="fa-listbar"><input id="fa-search" type="search" placeholder="Search name or agency…" autocomplete="off" aria-label="Search profiles"></div><div id="fc-members"></div></section>
       <details class="method" id="method"><summary><h2>Method</h2><span class="fa-muted">How we collected, scored and checked the data</span></summary><p>${esc(data.methodology?.text || 'The analysis uses verified public statements, model labels, and a fixed score formula.')}</p>
       <p><b>Reading the charts.</b> Each profile counts once, and officials and institutions have separate totals. Colors round scores to the nearest whole number, as on the Congress page; gray means not enough evidence. A profile that never addresses a question has not enough evidence on it; a 0 means the profile dismisses the idea or opposes AI rules. In "Scores by agency", each profile's primary affiliation sets its group, and subagencies roll up to their parent. The chart over time applies today's labels to dated evidence for today's roster, month by month; it does not track who held office then, and earlier coverage is often thinner. Topic shares use a rolling 30-day window over the last 12 months, and each statement splits its weight equally among its topics. Low scores can reflect silence, so open each profile to check the summary and sources.</p>
@@ -312,12 +312,29 @@
       get('fc-agency-selection').innerHTML='';
       const unavailable=`<p class="fa-empty" role="status">${esc(chartError)}</p>`;
       get('fc-timeline-title').textContent=`${who()} who ${HIGH[state.chartDimension]}, over time`;
-      get('fc-timeline').innerHTML=profiles?charts.renderTimeline(members,profiles,state.chartDimension,'reconstructed'):unavailable;
+      if (profiles) drawTimeline(members,profiles); else get('fc-timeline').innerHTML=unavailable;
       get('fc-recent').innerHTML=profiles?charts.renderRecent(members,profiles,state.chartDimension,data.built_on.slice(0,10)):unavailable;
-      get('fc-topic-share').innerHTML=profiles?charts.renderTopicShare(members,profiles,data.topics,'12m',data.built_on.slice(0,10)):unavailable;
+      get('fc-topic-share').innerHTML=profiles?charts.renderTopicShare(members,profiles,data.topics,state.topicrange,data.built_on.slice(0,10)):unavailable;
       get('fc-voices-title').textContent=`${who()} who talk most about ${TOPIC_NAME[topic]}`;
       get('fc-voices').innerHTML=charts.renderVoices(members,topic);
       renderTable();
+    }
+    // same look as the Congress page's chart over time: one line, percent axis, end label, hover readout
+    function drawTimeline(members,profiles) {
+      const el=get('fc-timeline'); el.innerHTML='';
+      const Plot=global.Plot, css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+      const end=new Date(data.built_on.slice(0,10)+'T00:00:00Z'), days={'3m':90,'12m':365}[state.trange];
+      const rows=charts.cohortHistory(members,profiles,state.chartDimension,'reconstructed').map(r=>({d:new Date(r.date+'T00:00:00Z'),v:r.percent/100,high:r.high,n:r.total}))
+        .filter(r=>!days || r.d>=new Date(+end-days*864e5));
+      if (!Plot || !rows.length) { el.innerHTML='<p class="fa-empty">No history in this range.</p>'; return; }
+      const W=Math.max(300,el.clientWidth-24), name=who();
+      el.append(Plot.plot({width:W,height:290,marginLeft:48,marginRight:90,marginTop:20,style:{background:'transparent',fontSize:'11px',color:css('--fg')},
+        x:{type:'utc',label:null}, y:{label:null,percent:true,grid:true,tickFormat:d=>d+'%',domain:[0,Math.max(10,...rows.map(r=>r.v*100))]},
+        marks:[Plot.ruleY([0],{stroke:css('--line')}),
+          Plot.line(rows,{x:'d',y:'v',stroke:css('--accent'),strokeWidth:2}),
+          Plot.text(rows.slice(-1),{x:'d',y:'v',text:()=>name,fill:css('--accent'),dx:6,textAnchor:'start',fontWeight:600}),
+          Plot.tip(rows,Plot.pointerX({x:'d',y:'v',fill:css('--raised')||css('--bg'),stroke:css('--line'),
+            channels:{Date:r=>r.d.toISOString().slice(0,10),Share:r=>`${(r.v*100).toFixed(0)}%`,Profiles:r=>`${r.high} of ${r.n}`},format:{x:false,y:false}}))]}));
     }
     function renderTable() {
       const q=state.search.trim().toLowerCase();
@@ -417,6 +434,12 @@
       if (event.target.id==='fc-dimension') { state.chartDimension=event.target.value; keepPlace(renderCharts); }
     });
     root.addEventListener('click',event=>{
+      const tr=event.target.closest('[data-trange]'), tp=event.target.closest('[data-topicrange]');
+      if (tr || tp) { const key=tr?'trange':'topicrange', b=tr||tp; state[key]=b.dataset[key];
+        b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-checked',String(x===b)));
+        const members=selectedMembers(), profiles=chartData?.profiles; if (!profiles) return;
+        keepPlace(()=>{ if (tr) drawTimeline(members,profiles); else get('fc-topic-share').innerHTML=charts.renderTopicShare(members,profiles,data.topics,state.topicrange,data.built_on.slice(0,10)); });
+        return; }
       const scope = event.target.closest('[data-scope]');
       if (scope) { state.scope=scope.dataset.scope; state.selected=null; state.rule=null; keepPlace(render); return; }
       const profile = event.target.closest('[data-profile]');

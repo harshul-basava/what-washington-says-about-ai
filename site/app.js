@@ -69,6 +69,8 @@ async function init(){
   if ($("updated")) $("updated").textContent = mj.updated;
   if ($("nmembers")) $("nmembers").textContent = M.length.toLocaleString();
   if ($("nquotes")) $("nquotes").textContent = M.reduce((a,m)=>a+m.n,0).toLocaleString();
+  document.querySelectorAll("[data-range]").forEach(b=>b.onclick=()=>{ S.range=b.dataset.range;
+    document.querySelectorAll("[data-range]").forEach(x=>x.setAttribute("aria-checked", x.dataset.range===S.range)); keepPlace(drawFocus); });
   if ($("dimsel")){ dimsel.innerHTML = DIMS.map(([k,l])=>`<option value="${k}">${l}</option>`).join(""); dimsel.value = S.dim;
     dimsel.onchange = ()=>{ S.dim = dimsel.value; drawAll(); }; }
   const evt = $("evtoggle");
