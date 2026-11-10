@@ -74,3 +74,10 @@ details.method summary{color:var(--fg)}
 .fc-member-table tr.fa-detail>td{padding:0 0 12px;background:transparent}
 .fa-detail .fa-profile-panel{margin-top:0}
 .fc-member-table{max-height:80vh;overflow-y:auto;border-top:2px solid var(--line)}
+/* contents list: same look and place as on the Congress and Policies pages */
+@media(min-width:1200px){
+  .fc-toc{left:calc(var(--gl) - min(200px, calc(var(--gl) - 40px)) - 32px);width:min(200px, calc(var(--gl) - 40px));top:150px;gap:0;font-size:14px;line-height:1.35}
+  .fc-toc a{position:relative;display:block;padding-left:16px;margin:0 0 12px;color:var(--muted);text-decoration:none}
+  .fc-toc a:hover,.fc-toc a.active{color:var(--fg)}
+  .fc-toc a.active::before{content:"";position:absolute;left:2px;top:.55em;width:5px;height:5px;border-radius:50%;background:currentColor}
+}
