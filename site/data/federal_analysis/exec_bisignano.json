@@ -8,7 +8,7 @@
   "party": null,
   "state": "",
   "chamber": "",
-  "status": "partial",
+  "status": "complete",
   "entity_type": "person",
   "branch": "executive",
   "organization_id": "ssa",
@@ -54,9 +54,9 @@
    "reason": "current_government_official"
   },
   "n_statements": 8,
-  "n_labeled": 0,
+  "n_labeled": 8,
   "scores": {
-   "ai_overall": null,
+   "ai_overall": 3.0,
    "agi_pilled": null,
    "x_risk": null,
    "china_race": null,
@@ -64,37 +64,41 @@
   },
   "score_details": {
    "ai_overall": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 3.0,
+    "reason_a": "median_of_3",
+    "reason_b": "median_of_1",
+    "sids": [
+     "s6",
+     "s4",
+     "s1"
+    ],
+    "label_count": 3
    },
    "agi_pilled": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "x_risk": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "china_race": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "regulation": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "no_statements",
+    "reason_b": "no_statements",
     "sids": [],
     "label_count": 0
    }
@@ -143,7 +147,10 @@
     }
    ]
   },
-  "topics": {},
+  "topics": {
+   "jobs/economy": 2.0,
+   "other": 6.0
+  },
   "regulation": {
    "status": "complete",
    "areas": {
@@ -281,14 +288,76 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "ai_overall": 3
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "jobs/economy",
+     "other"
+    ],
+    "confidence": {
+     "ai_overall": 3.0
+    },
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:43:02.897036+00:00",
+      "generation_id": "gen-1794192177-aSvhzPl8sy8IYh39rtx6"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:54:50.111866+00:00",
+      "generation_id": "gen-1794192881-A4I6X6cA46LS1X982jJr"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:06:21.880804+00:00",
+      "generation_id": "gen-1794193575-5oxF3r4yv6ERZ1y4SIhq"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:13:46.725839+00:00",
+      "generation_id": "gen-1794194025-Uljsn5aUGQQR6GIxyPYC"
+     }
+    }
    }
   },
   {
@@ -305,14 +374,49 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:43:02.897036+00:00",
+      "generation_id": "gen-1794192177-aSvhzPl8sy8IYh39rtx6"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:54:50.111866+00:00",
+      "generation_id": "gen-1794192881-A4I6X6cA46LS1X982jJr"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:06:21.880804+00:00",
+      "generation_id": "gen-1794193575-5oxF3r4yv6ERZ1y4SIhq"
+     }
+    }
    }
   },
   {
@@ -329,14 +433,49 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:43:02.897036+00:00",
+      "generation_id": "gen-1794192177-aSvhzPl8sy8IYh39rtx6"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:54:50.111866+00:00",
+      "generation_id": "gen-1794192881-A4I6X6cA46LS1X982jJr"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:06:21.880804+00:00",
+      "generation_id": "gen-1794193575-5oxF3r4yv6ERZ1y4SIhq"
+     }
+    }
    }
   },
   {
@@ -353,14 +492,68 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "ai_overall": 3
+    },
+    "b": {
+     "ai_overall": 3
+    },
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {
+     "ai_overall": 3.0
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:43:02.897036+00:00",
+      "generation_id": "gen-1794192177-aSvhzPl8sy8IYh39rtx6"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:54:50.111866+00:00",
+      "generation_id": "gen-1794192881-A4I6X6cA46LS1X982jJr"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:06:21.880804+00:00",
+      "generation_id": "gen-1794193575-5oxF3r4yv6ERZ1y4SIhq"
+     }
+    }
    }
   },
   {
@@ -377,14 +570,49 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:43:02.897036+00:00",
+      "generation_id": "gen-1794192177-aSvhzPl8sy8IYh39rtx6"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:54:50.111866+00:00",
+      "generation_id": "gen-1794192881-A4I6X6cA46LS1X982jJr"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:06:21.880804+00:00",
+      "generation_id": "gen-1794193575-5oxF3r4yv6ERZ1y4SIhq"
+     }
+    }
    }
   },
   {
@@ -401,14 +629,74 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "ai_overall": 3
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "other"
+    ],
+    "confidence": {
+     "ai_overall": 2.5
+    },
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:43:02.897036+00:00",
+      "generation_id": "gen-1794192177-aSvhzPl8sy8IYh39rtx6"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:54:50.111866+00:00",
+      "generation_id": "gen-1794192881-A4I6X6cA46LS1X982jJr"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:06:21.880804+00:00",
+      "generation_id": "gen-1794193575-5oxF3r4yv6ERZ1y4SIhq"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:13:46.725839+00:00",
+      "generation_id": "gen-1794194025-Uljsn5aUGQQR6GIxyPYC"
+     }
+    }
    }
   },
   {
@@ -425,14 +713,52 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:43:02.897036+00:00",
+      "generation_id": "gen-1794192177-aSvhzPl8sy8IYh39rtx6"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:54:50.111866+00:00",
+      "generation_id": "gen-1794192881-A4I6X6cA46LS1X982jJr"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:06:21.880804+00:00",
+      "generation_id": "gen-1794193575-5oxF3r4yv6ERZ1y4SIhq"
+     }
+    }
    }
   },
   {
@@ -449,14 +775,49 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:43:02.897036+00:00",
+      "generation_id": "gen-1794192177-aSvhzPl8sy8IYh39rtx6"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:54:50.111866+00:00",
+      "generation_id": "gen-1794192881-A4I6X6cA46LS1X982jJr"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:06:21.880804+00:00",
+      "generation_id": "gen-1794193575-5oxF3r4yv6ERZ1y4SIhq"
+     }
+    }
    }
   }
  ],
@@ -835,7 +1196,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -848,7 +1209,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -861,7 +1222,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -874,7 +1235,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -887,7 +1248,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -900,7 +1261,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -913,7 +1274,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -926,7 +1287,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -939,7 +1300,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -952,7 +1313,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -965,7 +1326,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -978,7 +1339,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -991,7 +1352,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1004,7 +1365,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1017,7 +1378,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1030,7 +1391,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1043,7 +1404,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1056,7 +1417,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {

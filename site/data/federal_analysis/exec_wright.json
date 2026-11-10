@@ -39,49 +39,81 @@
    "reason": "current_government_official"
   },
   "n_statements": 90,
-  "n_labeled": 0,
+  "n_labeled": 90,
   "scores": {
-   "ai_overall": null,
-   "agi_pilled": null,
+   "ai_overall": 3.5,
+   "agi_pilled": 2.0,
    "x_risk": null,
-   "china_race": null,
-   "regulation": null
+   "china_race": 3.0,
+   "regulation": 0.0
   },
   "score_details": {
    "ai_overall": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 3.5,
+    "reason_a": "median_of_15",
+    "reason_b": "median_of_12",
+    "sids": [
+     "s12",
+     "s29",
+     "s30",
+     "s33",
+     "s1",
+     "s41",
+     "s17",
+     "s48",
+     "s49",
+     "s56",
+     "s67"
+    ],
+    "label_count": 16
    },
    "agi_pilled": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 2.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s12",
+     "s30",
+     "s49",
+     "s56",
+     "s57",
+     "s64",
+     "s72"
+    ],
+    "label_count": 12
    },
    "x_risk": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "china_race": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 3.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s46",
+     "s56",
+     "s66",
+     "s77",
+     "s82",
+     "s8",
+     "s24",
+     "s1",
+     "s61"
+    ],
+    "label_count": 18
    },
    "regulation": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 0.0,
+    "reason_a": "dismissive",
+    "reason_b": "no_statements",
+    "sids": [
+     "s81"
+    ],
+    "label_count": 1
    }
   },
   "summary": {
@@ -89,7 +121,15 @@
    "text": "",
    "sids": []
   },
-  "topics": {},
+  "topics": {
+   "other": 15.333,
+   "China/competition": 11.667,
+   "energy/data centers": 36.5,
+   "AGI/transformative": 10.667,
+   "national security": 2.333,
+   "jobs/economy": 12.0,
+   "regulation": 1.5
+  },
   "regulation": {
    "status": "complete",
    "areas": {
@@ -230,14 +270,86 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 3
+    },
+    "b": {
+     "china_race": 3
+    },
+    "topics": [
+     "other"
+    ],
+    "confidence": {
+     "ai_overall": 2.5
+    },
+    "escalated": [
+     "ai_overall",
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 2,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "china_race": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:36.831709+00:00",
+      "generation_id": "gen-1794192365-U3W8K6j1BNEboyRB2ZY9"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:59.026254+00:00",
+      "generation_id": "gen-1794193056-PwW27Brl25vrZPskuu7P"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:50.013649+00:00",
+      "generation_id": "gen-1794193765-fZNnY7U03X4sTl7HOwfc"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.197896+00:00",
+      "generation_id": "gen-1794194045-8OMjKutz5srEFfNeS0uX"
+     }
+    }
    }
   },
   {
@@ -255,14 +367,99 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "agi_pilled": 2,
+     "china_race": 3
+    },
+    "b": {
+     "china_race": 3
+    },
+    "topics": [
+     "China/competition",
+     "energy/data centers",
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "agi_pilled": 2.5,
+     "china_race": 4.0
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 3,
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "china_race": 4,
+       "agi_pilled": 3
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:36.831709+00:00",
+      "generation_id": "gen-1794192365-U3W8K6j1BNEboyRB2ZY9"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 3,
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "china_race": 4,
+       "agi_pilled": 2
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:59.026254+00:00",
+      "generation_id": "gen-1794193056-PwW27Brl25vrZPskuu7P"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:50.013649+00:00",
+      "generation_id": "gen-1794193765-fZNnY7U03X4sTl7HOwfc"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 5
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.197896+00:00",
+      "generation_id": "gen-1794194045-8OMjKutz5srEFfNeS0uX"
+     }
+    }
    }
   },
   {
@@ -279,14 +476,71 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "china_race": 3
+    },
+    "b": {
+     "china_race": 3
+    },
+    "topics": [
+     "China/competition",
+     "national security"
+    ],
+    "confidence": {
+     "china_race": 4.0
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:36.831709+00:00",
+      "generation_id": "gen-1794192365-U3W8K6j1BNEboyRB2ZY9"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:59.026254+00:00",
+      "generation_id": "gen-1794193056-PwW27Brl25vrZPskuu7P"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:50.013649+00:00",
+      "generation_id": "gen-1794193765-fZNnY7U03X4sTl7HOwfc"
+     }
+    }
    }
   },
   {
@@ -303,14 +557,52 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:36.831709+00:00",
+      "generation_id": "gen-1794192365-U3W8K6j1BNEboyRB2ZY9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:59.026254+00:00",
+      "generation_id": "gen-1794193056-PwW27Brl25vrZPskuu7P"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:50.013649+00:00",
+      "generation_id": "gen-1794193765-fZNnY7U03X4sTl7HOwfc"
+     }
+    }
    }
   },
   {
@@ -327,14 +619,53 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy",
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:36.831709+00:00",
+      "generation_id": "gen-1794192365-U3W8K6j1BNEboyRB2ZY9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:59.026254+00:00",
+      "generation_id": "gen-1794193056-PwW27Brl25vrZPskuu7P"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:50.013649+00:00",
+      "generation_id": "gen-1794193765-fZNnY7U03X4sTl7HOwfc"
+     }
+    }
    }
   },
   {
@@ -352,14 +683,49 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:36.831709+00:00",
+      "generation_id": "gen-1794192365-U3W8K6j1BNEboyRB2ZY9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:59.026254+00:00",
+      "generation_id": "gen-1794193056-PwW27Brl25vrZPskuu7P"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:50.013649+00:00",
+      "generation_id": "gen-1794193765-fZNnY7U03X4sTl7HOwfc"
+     }
+    }
    }
   },
   {
@@ -376,14 +742,49 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:36.831709+00:00",
+      "generation_id": "gen-1794192365-U3W8K6j1BNEboyRB2ZY9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:59.026254+00:00",
+      "generation_id": "gen-1794193056-PwW27Brl25vrZPskuu7P"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:50.013649+00:00",
+      "generation_id": "gen-1794193765-fZNnY7U03X4sTl7HOwfc"
+     }
+    }
    }
   },
   {
@@ -400,14 +801,99 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "agi_pilled": 2,
+     "china_race": 3
+    },
+    "b": {
+     "china_race": 3
+    },
+    "topics": [
+     "China/competition",
+     "energy/data centers",
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "agi_pilled": 2.5,
+     "china_race": 4.0
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 3,
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "china_race": 4,
+       "agi_pilled": 3
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:36.831709+00:00",
+      "generation_id": "gen-1794192365-U3W8K6j1BNEboyRB2ZY9"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 3,
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "china_race": 4,
+       "agi_pilled": 2
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:59.026254+00:00",
+      "generation_id": "gen-1794193056-PwW27Brl25vrZPskuu7P"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:50.013649+00:00",
+      "generation_id": "gen-1794193765-fZNnY7U03X4sTl7HOwfc"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 5
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.197896+00:00",
+      "generation_id": "gen-1794194045-8OMjKutz5srEFfNeS0uX"
+     }
+    }
    }
   },
   {
@@ -425,14 +911,51 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:36.831709+00:00",
+      "generation_id": "gen-1794192365-U3W8K6j1BNEboyRB2ZY9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:59.026254+00:00",
+      "generation_id": "gen-1794193056-PwW27Brl25vrZPskuu7P"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:50.013649+00:00",
+      "generation_id": "gen-1794193765-fZNnY7U03X4sTl7HOwfc"
+     }
+    }
    }
   },
   {
@@ -451,14 +974,50 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:36.831709+00:00",
+      "generation_id": "gen-1794192365-U3W8K6j1BNEboyRB2ZY9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:59.026254+00:00",
+      "generation_id": "gen-1794193056-PwW27Brl25vrZPskuu7P"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:50.013649+00:00",
+      "generation_id": "gen-1794193765-fZNnY7U03X4sTl7HOwfc"
+     }
+    }
    }
   },
   {
@@ -477,14 +1036,52 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "jobs/economy"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:36.831709+00:00",
+      "generation_id": "gen-1794192365-U3W8K6j1BNEboyRB2ZY9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:59.026254+00:00",
+      "generation_id": "gen-1794193056-PwW27Brl25vrZPskuu7P"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:50.013649+00:00",
+      "generation_id": "gen-1794193765-fZNnY7U03X4sTl7HOwfc"
+     }
+    }
    }
   },
   {
@@ -503,14 +1100,101 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 3,
+     "agi_pilled": 2
+    },
+    "b": {
+     "ai_overall": 3,
+     "agi_pilled": 2
+    },
+    "topics": [
+     "AGI/transformative",
+     "other"
+    ],
+    "confidence": {
+     "ai_overall": 3.0,
+     "agi_pilled": 2.67
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:36.831709+00:00",
+      "generation_id": "gen-1794192365-U3W8K6j1BNEboyRB2ZY9"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3,
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "ai_overall": 3,
+       "agi_pilled": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:59.026254+00:00",
+      "generation_id": "gen-1794193056-PwW27Brl25vrZPskuu7P"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:50.013649+00:00",
+      "generation_id": "gen-1794193765-fZNnY7U03X4sTl7HOwfc"
+     },
+     "sol": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 4
+      },
+      "confidence": {
+       "agi_pilled": 5,
+       "ai_overall": 5
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.197896+00:00",
+      "generation_id": "gen-1794194045-8OMjKutz5srEFfNeS0uX"
+     }
+    }
    }
   },
   {
@@ -529,14 +1213,71 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "jobs/economy"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:36.831709+00:00",
+      "generation_id": "gen-1794192365-U3W8K6j1BNEboyRB2ZY9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:59.026254+00:00",
+      "generation_id": "gen-1794193056-PwW27Brl25vrZPskuu7P"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:50.013649+00:00",
+      "generation_id": "gen-1794193765-fZNnY7U03X4sTl7HOwfc"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.197896+00:00",
+      "generation_id": "gen-1794194045-8OMjKutz5srEFfNeS0uX"
+     }
+    }
    }
   },
   {
@@ -555,14 +1296,57 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security",
+     "energy/data centers",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:36.831709+00:00",
+      "generation_id": "gen-1794192365-U3W8K6j1BNEboyRB2ZY9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:59.026254+00:00",
+      "generation_id": "gen-1794193056-PwW27Brl25vrZPskuu7P"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:50.013649+00:00",
+      "generation_id": "gen-1794193765-fZNnY7U03X4sTl7HOwfc"
+     }
+    }
    }
   },
   {
@@ -581,14 +1365,50 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:36.831709+00:00",
+      "generation_id": "gen-1794192365-U3W8K6j1BNEboyRB2ZY9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:59.026254+00:00",
+      "generation_id": "gen-1794193056-PwW27Brl25vrZPskuu7P"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:50.013649+00:00",
+      "generation_id": "gen-1794193765-fZNnY7U03X4sTl7HOwfc"
+     }
+    }
    }
   },
   {
@@ -607,14 +1427,53 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy",
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:36.831709+00:00",
+      "generation_id": "gen-1794192365-U3W8K6j1BNEboyRB2ZY9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:59.026254+00:00",
+      "generation_id": "gen-1794193056-PwW27Brl25vrZPskuu7P"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:50.013649+00:00",
+      "generation_id": "gen-1794193765-fZNnY7U03X4sTl7HOwfc"
+     }
+    }
    }
   },
   {
@@ -633,14 +1492,88 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 4
+    },
+    "b": {
+     "ai_overall": 4
+    },
+    "topics": [
+     "jobs/economy",
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "ai_overall": 3.67
+    },
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:36.831709+00:00",
+      "generation_id": "gen-1794192365-U3W8K6j1BNEboyRB2ZY9"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:59.026254+00:00",
+      "generation_id": "gen-1794193056-PwW27Brl25vrZPskuu7P"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:50.013649+00:00",
+      "generation_id": "gen-1794193765-fZNnY7U03X4sTl7HOwfc"
+     },
+     "sol": {
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 5
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.197896+00:00",
+      "generation_id": "gen-1794194045-8OMjKutz5srEFfNeS0uX"
+     }
+    }
    }
   },
   {
@@ -659,14 +1592,54 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy",
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition",
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:36.831709+00:00",
+      "generation_id": "gen-1794192365-U3W8K6j1BNEboyRB2ZY9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:59.026254+00:00",
+      "generation_id": "gen-1794193056-PwW27Brl25vrZPskuu7P"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:50.013649+00:00",
+      "generation_id": "gen-1794193765-fZNnY7U03X4sTl7HOwfc"
+     }
+    }
    }
   },
   {
@@ -685,14 +1658,50 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:36.831709+00:00",
+      "generation_id": "gen-1794192365-U3W8K6j1BNEboyRB2ZY9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:59.026254+00:00",
+      "generation_id": "gen-1794193056-PwW27Brl25vrZPskuu7P"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:50.013649+00:00",
+      "generation_id": "gen-1794193765-fZNnY7U03X4sTl7HOwfc"
+     }
+    }
    }
   },
   {
@@ -711,14 +1720,70 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "jobs/economy"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 2
+      },
+      "topics": [
+       "energy/data centers",
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:36.831709+00:00",
+      "generation_id": "gen-1794192365-U3W8K6j1BNEboyRB2ZY9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:59.026254+00:00",
+      "generation_id": "gen-1794193056-PwW27Brl25vrZPskuu7P"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:50.013649+00:00",
+      "generation_id": "gen-1794193765-fZNnY7U03X4sTl7HOwfc"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.197896+00:00",
+      "generation_id": "gen-1794194045-8OMjKutz5srEFfNeS0uX"
+     }
+    }
    }
   },
   {
@@ -737,14 +1802,70 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "regulation",
+     "China/competition"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:28.620333+00:00",
+      "generation_id": "gen-1794192365-lZfAytaSztRjeceLJ9Ne"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:06.891303+00:00",
+      "generation_id": "gen-1794193059-xQBwXCj5Q2fvdSj0VcFb"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.409407+00:00",
+      "generation_id": "gen-1794193766-2Kw8BnTwIj6DFDL8U42P"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.197896+00:00",
+      "generation_id": "gen-1794194045-8OMjKutz5srEFfNeS0uX"
+     }
+    }
    }
   },
   {
@@ -763,14 +1884,49 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:28.620333+00:00",
+      "generation_id": "gen-1794192365-lZfAytaSztRjeceLJ9Ne"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:06.891303+00:00",
+      "generation_id": "gen-1794193059-xQBwXCj5Q2fvdSj0VcFb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.409407+00:00",
+      "generation_id": "gen-1794193766-2Kw8BnTwIj6DFDL8U42P"
+     }
+    }
    }
   },
   {
@@ -789,14 +1945,75 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "jobs/economy",
+     "China/competition"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:28.620333+00:00",
+      "generation_id": "gen-1794192365-lZfAytaSztRjeceLJ9Ne"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:06.891303+00:00",
+      "generation_id": "gen-1794193059-xQBwXCj5Q2fvdSj0VcFb"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "energy/data centers",
+       "jobs/economy",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.409407+00:00",
+      "generation_id": "gen-1794193766-2Kw8BnTwIj6DFDL8U42P"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.197896+00:00",
+      "generation_id": "gen-1794194045-8OMjKutz5srEFfNeS0uX"
+     }
+    }
    }
   },
   {
@@ -815,14 +2032,76 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
-    "b": {},
-    "topics": [],
+    "b": {
+     "china_race": 3
+    },
+    "topics": [
+     "energy/data centers",
+     "China/competition"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:28.620333+00:00",
+      "generation_id": "gen-1794192365-lZfAytaSztRjeceLJ9Ne"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:06.891303+00:00",
+      "generation_id": "gen-1794193059-xQBwXCj5Q2fvdSj0VcFb"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 2
+      },
+      "topics": [
+       "energy/data centers",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.409407+00:00",
+      "generation_id": "gen-1794193766-2Kw8BnTwIj6DFDL8U42P"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.197896+00:00",
+      "generation_id": "gen-1794194045-8OMjKutz5srEFfNeS0uX"
+     }
+    }
    }
   },
   {
@@ -841,14 +2120,53 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "national security"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:28.620333+00:00",
+      "generation_id": "gen-1794192365-lZfAytaSztRjeceLJ9Ne"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:06.891303+00:00",
+      "generation_id": "gen-1794193059-xQBwXCj5Q2fvdSj0VcFb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.409407+00:00",
+      "generation_id": "gen-1794193766-2Kw8BnTwIj6DFDL8U42P"
+     }
+    }
    }
   },
   {
@@ -867,14 +2185,50 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:28.620333+00:00",
+      "generation_id": "gen-1794192365-lZfAytaSztRjeceLJ9Ne"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:06.891303+00:00",
+      "generation_id": "gen-1794193059-xQBwXCj5Q2fvdSj0VcFb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.409407+00:00",
+      "generation_id": "gen-1794193766-2Kw8BnTwIj6DFDL8U42P"
+     }
+    }
    }
   },
   {
@@ -893,14 +2247,53 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "jobs/economy"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:28.620333+00:00",
+      "generation_id": "gen-1794192365-lZfAytaSztRjeceLJ9Ne"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:06.891303+00:00",
+      "generation_id": "gen-1794193059-xQBwXCj5Q2fvdSj0VcFb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.409407+00:00",
+      "generation_id": "gen-1794193766-2Kw8BnTwIj6DFDL8U42P"
+     }
+    }
    }
   },
   {
@@ -919,14 +2312,50 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:28.620333+00:00",
+      "generation_id": "gen-1794192365-lZfAytaSztRjeceLJ9Ne"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:06.891303+00:00",
+      "generation_id": "gen-1794193059-xQBwXCj5Q2fvdSj0VcFb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.409407+00:00",
+      "generation_id": "gen-1794193766-2Kw8BnTwIj6DFDL8U42P"
+     }
+    }
    }
   },
   {
@@ -945,14 +2374,81 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 3
+    },
+    "b": {
+     "ai_overall": 4
+    },
+    "topics": [
+     "other"
+    ],
+    "confidence": {
+     "ai_overall": 3.0
+    },
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:28.620333+00:00",
+      "generation_id": "gen-1794192365-lZfAytaSztRjeceLJ9Ne"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:06.891303+00:00",
+      "generation_id": "gen-1794193059-xQBwXCj5Q2fvdSj0VcFb"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.409407+00:00",
+      "generation_id": "gen-1794193766-2Kw8BnTwIj6DFDL8U42P"
+     },
+     "sol": {
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.197896+00:00",
+      "generation_id": "gen-1794194045-8OMjKutz5srEFfNeS0uX"
+     }
+    }
    }
   },
   {
@@ -971,14 +2467,88 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "ai_overall": 3,
+     "agi_pilled": 2
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "AGI/transformative",
+     "other"
+    ],
+    "confidence": {
+     "ai_overall": 2.5,
+     "agi_pilled": 2.67
+    },
+    "escalated": [
+     "ai_overall",
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:28.620333+00:00",
+      "generation_id": "gen-1794192365-lZfAytaSztRjeceLJ9Ne"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3,
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "ai_overall": 3,
+       "agi_pilled": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:06.891303+00:00",
+      "generation_id": "gen-1794193059-xQBwXCj5Q2fvdSj0VcFb"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 2
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.409407+00:00",
+      "generation_id": "gen-1794193766-2Kw8BnTwIj6DFDL8U42P"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.197896+00:00",
+      "generation_id": "gen-1794194045-8OMjKutz5srEFfNeS0uX"
+     }
+    }
    }
   },
   {
@@ -997,14 +2567,50 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:28.620333+00:00",
+      "generation_id": "gen-1794192365-lZfAytaSztRjeceLJ9Ne"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:06.891303+00:00",
+      "generation_id": "gen-1794193059-xQBwXCj5Q2fvdSj0VcFb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.409407+00:00",
+      "generation_id": "gen-1794193766-2Kw8BnTwIj6DFDL8U42P"
+     }
+    }
    }
   },
   {
@@ -1023,14 +2629,69 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:28.620333+00:00",
+      "generation_id": "gen-1794192365-lZfAytaSztRjeceLJ9Ne"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:06.891303+00:00",
+      "generation_id": "gen-1794193059-xQBwXCj5Q2fvdSj0VcFb"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.409407+00:00",
+      "generation_id": "gen-1794193766-2Kw8BnTwIj6DFDL8U42P"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.197896+00:00",
+      "generation_id": "gen-1794194045-8OMjKutz5srEFfNeS0uX"
+     }
+    }
    }
   },
   {
@@ -1049,14 +2710,75 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "ai_overall": 3
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "other"
+    ],
+    "confidence": {
+     "ai_overall": 2.5
+    },
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:28.620333+00:00",
+      "generation_id": "gen-1794192365-lZfAytaSztRjeceLJ9Ne"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:06.891303+00:00",
+      "generation_id": "gen-1794193059-xQBwXCj5Q2fvdSj0VcFb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.409407+00:00",
+      "generation_id": "gen-1794193766-2Kw8BnTwIj6DFDL8U42P"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.197896+00:00",
+      "generation_id": "gen-1794194045-8OMjKutz5srEFfNeS0uX"
+     }
+    }
    }
   },
   {
@@ -1075,14 +2797,49 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:28.620333+00:00",
+      "generation_id": "gen-1794192365-lZfAytaSztRjeceLJ9Ne"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:06.891303+00:00",
+      "generation_id": "gen-1794193059-xQBwXCj5Q2fvdSj0VcFb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.409407+00:00",
+      "generation_id": "gen-1794193766-2Kw8BnTwIj6DFDL8U42P"
+     }
+    }
    }
   },
   {
@@ -1101,14 +2858,53 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "AGI/transformative"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:28.620333+00:00",
+      "generation_id": "gen-1794192365-lZfAytaSztRjeceLJ9Ne"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:06.891303+00:00",
+      "generation_id": "gen-1794193059-xQBwXCj5Q2fvdSj0VcFb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.409407+00:00",
+      "generation_id": "gen-1794193766-2Kw8BnTwIj6DFDL8U42P"
+     }
+    }
    }
   },
   {
@@ -1127,14 +2923,50 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:28.620333+00:00",
+      "generation_id": "gen-1794192365-lZfAytaSztRjeceLJ9Ne"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:06.891303+00:00",
+      "generation_id": "gen-1794193059-xQBwXCj5Q2fvdSj0VcFb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.409407+00:00",
+      "generation_id": "gen-1794193766-2Kw8BnTwIj6DFDL8U42P"
+     }
+    }
    }
   },
   {
@@ -1153,14 +2985,69 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "China/competition"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:28.620333+00:00",
+      "generation_id": "gen-1794192365-lZfAytaSztRjeceLJ9Ne"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:06.891303+00:00",
+      "generation_id": "gen-1794193059-xQBwXCj5Q2fvdSj0VcFb"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.409407+00:00",
+      "generation_id": "gen-1794193766-2Kw8BnTwIj6DFDL8U42P"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "China/competition"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.197896+00:00",
+      "generation_id": "gen-1794194045-8OMjKutz5srEFfNeS0uX"
+     }
+    }
    }
   },
   {
@@ -1179,14 +3066,70 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "jobs/economy"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:28.620333+00:00",
+      "generation_id": "gen-1794192365-lZfAytaSztRjeceLJ9Ne"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:06.891303+00:00",
+      "generation_id": "gen-1794193059-xQBwXCj5Q2fvdSj0VcFb"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.409407+00:00",
+      "generation_id": "gen-1794193766-2Kw8BnTwIj6DFDL8U42P"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.197896+00:00",
+      "generation_id": "gen-1794194045-8OMjKutz5srEFfNeS0uX"
+     }
+    }
    }
   },
   {
@@ -1205,14 +3148,50 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:28.620333+00:00",
+      "generation_id": "gen-1794192365-lZfAytaSztRjeceLJ9Ne"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:06.891303+00:00",
+      "generation_id": "gen-1794193059-xQBwXCj5Q2fvdSj0VcFb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.409407+00:00",
+      "generation_id": "gen-1794193766-2Kw8BnTwIj6DFDL8U42P"
+     }
+    }
    }
   },
   {
@@ -1231,14 +3210,52 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "regulation",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:28.620333+00:00",
+      "generation_id": "gen-1794192365-lZfAytaSztRjeceLJ9Ne"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:06.891303+00:00",
+      "generation_id": "gen-1794193059-xQBwXCj5Q2fvdSj0VcFb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.409407+00:00",
+      "generation_id": "gen-1794193766-2Kw8BnTwIj6DFDL8U42P"
+     }
+    }
    }
   },
   {
@@ -1257,14 +3274,71 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "ai_overall": 3
+    },
+    "b": {
+     "ai_overall": 3
+    },
+    "topics": [
+     "jobs/economy",
+     "energy/data centers"
+    ],
+    "confidence": {
+     "ai_overall": 3.33
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:51.342104+00:00",
+      "generation_id": "gen-1794192367-n6ocKCmaqXfkFRrvVBQ3"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:55.078643+00:00",
+      "generation_id": "gen-1794193063-QyiJnvH8J1P0m4OQ7Ay3"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:55.764893+00:00",
+      "generation_id": "gen-1794193767-0Mwis065QZN1Ahu9AcG5"
+     }
+    }
    }
   },
   {
@@ -1283,14 +3357,50 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:51.342104+00:00",
+      "generation_id": "gen-1794192367-n6ocKCmaqXfkFRrvVBQ3"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:55.078643+00:00",
+      "generation_id": "gen-1794193063-QyiJnvH8J1P0m4OQ7Ay3"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:55.764893+00:00",
+      "generation_id": "gen-1794193767-0Mwis065QZN1Ahu9AcG5"
+     }
+    }
    }
   },
   {
@@ -1309,14 +3419,52 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "jobs/economy"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:51.342104+00:00",
+      "generation_id": "gen-1794192367-n6ocKCmaqXfkFRrvVBQ3"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:55.078643+00:00",
+      "generation_id": "gen-1794193063-QyiJnvH8J1P0m4OQ7Ay3"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:55.764893+00:00",
+      "generation_id": "gen-1794193767-0Mwis065QZN1Ahu9AcG5"
+     }
+    }
    }
   },
   {
@@ -1335,14 +3483,50 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:51.342104+00:00",
+      "generation_id": "gen-1794192367-n6ocKCmaqXfkFRrvVBQ3"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:55.078643+00:00",
+      "generation_id": "gen-1794193063-QyiJnvH8J1P0m4OQ7Ay3"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:55.764893+00:00",
+      "generation_id": "gen-1794193767-0Mwis065QZN1Ahu9AcG5"
+     }
+    }
    }
   },
   {
@@ -1361,14 +3545,74 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "china_race": 2
+    },
+    "b": {
+     "china_race": 2
+    },
+    "topics": [
+     "China/competition",
+     "energy/data centers",
+     "jobs/economy"
+    ],
+    "confidence": {
+     "china_race": 3.33
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:51.342104+00:00",
+      "generation_id": "gen-1794192367-n6ocKCmaqXfkFRrvVBQ3"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "energy/data centers",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:55.078643+00:00",
+      "generation_id": "gen-1794193063-QyiJnvH8J1P0m4OQ7Ay3"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:55.764893+00:00",
+      "generation_id": "gen-1794193767-0Mwis065QZN1Ahu9AcG5"
+     }
+    }
    }
   },
   {
@@ -1387,14 +3631,89 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "china_race": 3
+    },
+    "b": {
+     "china_race": 2
+    },
+    "topics": [
+     "China/competition",
+     "energy/data centers"
+    ],
+    "confidence": {
+     "china_race": 3.67
+    },
+    "escalated": [
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:51.342104+00:00",
+      "generation_id": "gen-1794192367-n6ocKCmaqXfkFRrvVBQ3"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "energy/data centers",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:55.078643+00:00",
+      "generation_id": "gen-1794193063-QyiJnvH8J1P0m4OQ7Ay3"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:55.764893+00:00",
+      "generation_id": "gen-1794193767-0Mwis065QZN1Ahu9AcG5"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 5
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.197896+00:00",
+      "generation_id": "gen-1794194045-8OMjKutz5srEFfNeS0uX"
+     }
+    }
    }
   },
   {
@@ -1413,14 +3732,49 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:51.342104+00:00",
+      "generation_id": "gen-1794192367-n6ocKCmaqXfkFRrvVBQ3"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:55.078643+00:00",
+      "generation_id": "gen-1794193063-QyiJnvH8J1P0m4OQ7Ay3"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:55.764893+00:00",
+      "generation_id": "gen-1794193767-0Mwis065QZN1Ahu9AcG5"
+     }
+    }
    }
   },
   {
@@ -1439,14 +3793,88 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 3
+    },
+    "b": {
+     "ai_overall": 4
+    },
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {
+     "ai_overall": 3.67
+    },
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:51.342104+00:00",
+      "generation_id": "gen-1794192367-n6ocKCmaqXfkFRrvVBQ3"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:55.078643+00:00",
+      "generation_id": "gen-1794193063-QyiJnvH8J1P0m4OQ7Ay3"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:55.764893+00:00",
+      "generation_id": "gen-1794193767-0Mwis065QZN1Ahu9AcG5"
+     },
+     "sol": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 4
+      },
+      "confidence": {
+       "agi_pilled": 4,
+       "ai_overall": 5
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.197896+00:00",
+      "generation_id": "gen-1794194045-8OMjKutz5srEFfNeS0uX"
+     }
+    }
    }
   },
   {
@@ -1465,14 +3893,92 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 3,
+     "agi_pilled": 2
+    },
+    "b": {
+     "ai_overall": 4,
+     "agi_pilled": 2
+    },
+    "topics": [
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "ai_overall": 3.0,
+     "agi_pilled": 2.5
+    },
+    "escalated": [
+     "ai_overall",
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:51.342104+00:00",
+      "generation_id": "gen-1794192367-n6ocKCmaqXfkFRrvVBQ3"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3,
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "ai_overall": 3,
+       "agi_pilled": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:55.078643+00:00",
+      "generation_id": "gen-1794193063-QyiJnvH8J1P0m4OQ7Ay3"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:55.764893+00:00",
+      "generation_id": "gen-1794193767-0Mwis065QZN1Ahu9AcG5"
+     },
+     "sol": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 4
+      },
+      "confidence": {
+       "agi_pilled": 4,
+       "ai_overall": 4
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.197896+00:00",
+      "generation_id": "gen-1794194045-8OMjKutz5srEFfNeS0uX"
+     }
+    }
    }
   },
   {
@@ -1491,14 +3997,54 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "national security"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:51.342104+00:00",
+      "generation_id": "gen-1794192367-n6ocKCmaqXfkFRrvVBQ3"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:55.078643+00:00",
+      "generation_id": "gen-1794193063-QyiJnvH8J1P0m4OQ7Ay3"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:55.764893+00:00",
+      "generation_id": "gen-1794193767-0Mwis065QZN1Ahu9AcG5"
+     }
+    }
    }
   },
   {
@@ -1517,14 +4063,49 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:51.342104+00:00",
+      "generation_id": "gen-1794192367-n6ocKCmaqXfkFRrvVBQ3"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:55.078643+00:00",
+      "generation_id": "gen-1794193063-QyiJnvH8J1P0m4OQ7Ay3"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:55.764893+00:00",
+      "generation_id": "gen-1794193767-0Mwis065QZN1Ahu9AcG5"
+     }
+    }
    }
   },
   {
@@ -1543,14 +4124,49 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:51.342104+00:00",
+      "generation_id": "gen-1794192367-n6ocKCmaqXfkFRrvVBQ3"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:55.078643+00:00",
+      "generation_id": "gen-1794193063-QyiJnvH8J1P0m4OQ7Ay3"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:55.764893+00:00",
+      "generation_id": "gen-1794193767-0Mwis065QZN1Ahu9AcG5"
+     }
+    }
    }
   },
   {
@@ -1569,14 +4185,93 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "china_race": 2
+    },
+    "b": {
+     "china_race": 2
+    },
+    "topics": [
+     "China/competition",
+     "energy/data centers",
+     "jobs/economy"
+    ],
+    "confidence": {
+     "china_race": 3.67
+    },
+    "escalated": [
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:51.342104+00:00",
+      "generation_id": "gen-1794192367-n6ocKCmaqXfkFRrvVBQ3"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:55.078643+00:00",
+      "generation_id": "gen-1794193063-QyiJnvH8J1P0m4OQ7Ay3"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:55.764893+00:00",
+      "generation_id": "gen-1794193767-0Mwis065QZN1Ahu9AcG5"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 5
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.197896+00:00",
+      "generation_id": "gen-1794194045-8OMjKutz5srEFfNeS0uX"
+     }
+    }
    }
   },
   {
@@ -1595,14 +4290,50 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:51.342104+00:00",
+      "generation_id": "gen-1794192367-n6ocKCmaqXfkFRrvVBQ3"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:55.078643+00:00",
+      "generation_id": "gen-1794193063-QyiJnvH8J1P0m4OQ7Ay3"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:55.764893+00:00",
+      "generation_id": "gen-1794193767-0Mwis065QZN1Ahu9AcG5"
+     }
+    }
    }
   },
   {
@@ -1621,14 +4352,49 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:51.342104+00:00",
+      "generation_id": "gen-1794192367-n6ocKCmaqXfkFRrvVBQ3"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:55.078643+00:00",
+      "generation_id": "gen-1794193063-QyiJnvH8J1P0m4OQ7Ay3"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:55.764893+00:00",
+      "generation_id": "gen-1794193767-0Mwis065QZN1Ahu9AcG5"
+     }
+    }
    }
   },
   {
@@ -1647,14 +4413,106 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 3,
+     "agi_pilled": 2,
+     "china_race": 3
+    },
+    "b": {
+     "ai_overall": 4,
+     "china_race": 2
+    },
+    "topics": [
+     "China/competition",
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "ai_overall": 3.0,
+     "agi_pilled": 2.5,
+     "china_race": 3.67
+    },
+    "escalated": [
+     "ai_overall",
+     "agi_pilled",
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 3,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "china_race": 4,
+       "ai_overall": 3
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:51.342104+00:00",
+      "generation_id": "gen-1794192367-n6ocKCmaqXfkFRrvVBQ3"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 2,
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "china_race": 3,
+       "agi_pilled": 2
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:55.078643+00:00",
+      "generation_id": "gen-1794193063-QyiJnvH8J1P0m4OQ7Ay3"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3,
+       "agi_pilled": 2,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "china_race": 4,
+       "agi_pilled": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:55.764893+00:00",
+      "generation_id": "gen-1794193767-0Mwis065QZN1Ahu9AcG5"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 2,
+       "ai_overall": 4
+      },
+      "confidence": {
+       "china_race": 4,
+       "ai_overall": 4
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.778096+00:00",
+      "generation_id": "gen-1794194048-o6zePWbRQyBmLmMnI37G"
+     }
+    }
    }
   },
   {
@@ -1673,14 +4531,92 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "agi_pilled": 2
+    },
+    "b": {
+     "agi_pilled": 2
+    },
+    "topics": [
+     "AGI/transformative",
+     "China/competition"
+    ],
+    "confidence": {
+     "agi_pilled": 2.67
+    },
+    "escalated": [
+     "agi_pilled",
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:51.342104+00:00",
+      "generation_id": "gen-1794192367-n6ocKCmaqXfkFRrvVBQ3"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 2,
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "china_race": 3,
+       "agi_pilled": 2
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:55.078643+00:00",
+      "generation_id": "gen-1794193063-QyiJnvH8J1P0m4OQ7Ay3"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:55.764893+00:00",
+      "generation_id": "gen-1794193767-0Mwis065QZN1Ahu9AcG5"
+     },
+     "sol": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "China/competition"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.778096+00:00",
+      "generation_id": "gen-1794194048-o6zePWbRQyBmLmMnI37G"
+     }
+    }
    }
   },
   {
@@ -1699,14 +4635,49 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:51.342104+00:00",
+      "generation_id": "gen-1794192367-n6ocKCmaqXfkFRrvVBQ3"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:55.078643+00:00",
+      "generation_id": "gen-1794193063-QyiJnvH8J1P0m4OQ7Ay3"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:55.764893+00:00",
+      "generation_id": "gen-1794193767-0Mwis065QZN1Ahu9AcG5"
+     }
+    }
    }
   },
   {
@@ -1725,14 +4696,50 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:51.342104+00:00",
+      "generation_id": "gen-1794192367-n6ocKCmaqXfkFRrvVBQ3"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:55.078643+00:00",
+      "generation_id": "gen-1794193063-QyiJnvH8J1P0m4OQ7Ay3"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:55.764893+00:00",
+      "generation_id": "gen-1794193767-0Mwis065QZN1Ahu9AcG5"
+     }
+    }
    }
   },
   {
@@ -1751,14 +4758,49 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:51.342104+00:00",
+      "generation_id": "gen-1794192367-n6ocKCmaqXfkFRrvVBQ3"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:55.078643+00:00",
+      "generation_id": "gen-1794193063-QyiJnvH8J1P0m4OQ7Ay3"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:55.764893+00:00",
+      "generation_id": "gen-1794193767-0Mwis065QZN1Ahu9AcG5"
+     }
+    }
    }
   },
   {
@@ -1777,14 +4819,85 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "china_race": 2
+    },
+    "b": {
+     "china_race": 3
+    },
+    "topics": [
+     "China/competition",
+     "energy/data centers"
+    ],
+    "confidence": {
+     "china_race": 2.5
+    },
+    "escalated": [
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:30.800555+00:00",
+      "generation_id": "gen-1794192367-4h92qmDLJjKx6ZLdGl6N"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:34.538554+00:00",
+      "generation_id": "gen-1794193064-Wzi4ypFIxdnZStN2jMgb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:14.902752+00:00",
+      "generation_id": "gen-1794193769-Plm2gKLL3YdN08ieNQJ4"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.778096+00:00",
+      "generation_id": "gen-1794194048-o6zePWbRQyBmLmMnI37G"
+     }
+    }
    }
   },
   {
@@ -1803,14 +4916,51 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:30.800555+00:00",
+      "generation_id": "gen-1794192367-4h92qmDLJjKx6ZLdGl6N"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:34.538554+00:00",
+      "generation_id": "gen-1794193064-Wzi4ypFIxdnZStN2jMgb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:14.902752+00:00",
+      "generation_id": "gen-1794193769-Plm2gKLL3YdN08ieNQJ4"
+     }
+    }
    }
   },
   {
@@ -1829,14 +4979,67 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "china_race": 1
+    },
+    "b": {
+     "china_race": 1
+    },
+    "topics": [
+     "China/competition"
+    ],
+    "confidence": {
+     "china_race": 3.67
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:30.800555+00:00",
+      "generation_id": "gen-1794192367-4h92qmDLJjKx6ZLdGl6N"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:34.538554+00:00",
+      "generation_id": "gen-1794193064-Wzi4ypFIxdnZStN2jMgb"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:14.902752+00:00",
+      "generation_id": "gen-1794193769-Plm2gKLL3YdN08ieNQJ4"
+     }
+    }
    }
   },
   {
@@ -1855,14 +5058,82 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "agi_pilled": 2
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "AGI/transformative",
+     "energy/data centers"
+    ],
+    "confidence": {
+     "agi_pilled": 2.67
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:30.800555+00:00",
+      "generation_id": "gen-1794192367-4h92qmDLJjKx6ZLdGl6N"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:34.538554+00:00",
+      "generation_id": "gen-1794193064-Wzi4ypFIxdnZStN2jMgb"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:14.902752+00:00",
+      "generation_id": "gen-1794193769-Plm2gKLL3YdN08ieNQJ4"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.778096+00:00",
+      "generation_id": "gen-1794194048-o6zePWbRQyBmLmMnI37G"
+     }
+    }
    }
   },
   {
@@ -1881,14 +5152,89 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 3
+    },
+    "b": {
+     "ai_overall": 3
+    },
+    "topics": [
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "ai_overall": 3.0
+    },
+    "escalated": [
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3,
+       "china_race": 1
+      },
+      "confidence": {
+       "ai_overall": 3,
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:30.800555+00:00",
+      "generation_id": "gen-1794192367-4h92qmDLJjKx6ZLdGl6N"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:34.538554+00:00",
+      "generation_id": "gen-1794193064-Wzi4ypFIxdnZStN2jMgb"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:14.902752+00:00",
+      "generation_id": "gen-1794193769-Plm2gKLL3YdN08ieNQJ4"
+     },
+     "sol": {
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "China/competition"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.778096+00:00",
+      "generation_id": "gen-1794194048-o6zePWbRQyBmLmMnI37G"
+     }
+    }
    }
   },
   {
@@ -1907,14 +5253,97 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "agi_pilled": 2,
+     "china_race": 3
+    },
+    "b": {
+     "china_race": 3
+    },
+    "topics": [
+     "China/competition",
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "agi_pilled": 2.67,
+     "china_race": 3.33
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2,
+       "china_race": 3
+      },
+      "confidence": {
+       "agi_pilled": 2,
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:30.800555+00:00",
+      "generation_id": "gen-1794192367-4h92qmDLJjKx6ZLdGl6N"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2,
+       "china_race": 3
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "china_race": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:34.538554+00:00",
+      "generation_id": "gen-1794193064-Wzi4ypFIxdnZStN2jMgb"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2,
+       "china_race": 3
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "china_race": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:14.902752+00:00",
+      "generation_id": "gen-1794193769-Plm2gKLL3YdN08ieNQJ4"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 5
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.778096+00:00",
+      "generation_id": "gen-1794194048-o6zePWbRQyBmLmMnI37G"
+     }
+    }
    }
   },
   {
@@ -1933,14 +5362,77 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
-    "b": {},
-    "topics": [],
+    "b": {
+     "ai_overall": 4
+    },
+    "topics": [
+     "energy/data centers",
+     "AGI/transformative"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "energy/data centers",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:30.800555+00:00",
+      "generation_id": "gen-1794192367-4h92qmDLJjKx6ZLdGl6N"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:34.538554+00:00",
+      "generation_id": "gen-1794193064-Wzi4ypFIxdnZStN2jMgb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:14.902752+00:00",
+      "generation_id": "gen-1794193769-Plm2gKLL3YdN08ieNQJ4"
+     },
+     "sol": {
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "energy/data centers",
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.778096+00:00",
+      "generation_id": "gen-1794194048-o6zePWbRQyBmLmMnI37G"
+     }
+    }
    }
   },
   {
@@ -1959,14 +5451,70 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy",
+     "energy/data centers"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:30.800555+00:00",
+      "generation_id": "gen-1794192367-4h92qmDLJjKx6ZLdGl6N"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:34.538554+00:00",
+      "generation_id": "gen-1794193064-Wzi4ypFIxdnZStN2jMgb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:14.902752+00:00",
+      "generation_id": "gen-1794193769-Plm2gKLL3YdN08ieNQJ4"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.778096+00:00",
+      "generation_id": "gen-1794194048-o6zePWbRQyBmLmMnI37G"
+     }
+    }
    }
   },
   {
@@ -1985,14 +5533,53 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy",
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:30.800555+00:00",
+      "generation_id": "gen-1794192367-4h92qmDLJjKx6ZLdGl6N"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:34.538554+00:00",
+      "generation_id": "gen-1794193064-Wzi4ypFIxdnZStN2jMgb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:14.902752+00:00",
+      "generation_id": "gen-1794193769-Plm2gKLL3YdN08ieNQJ4"
+     }
+    }
    }
   },
   {
@@ -2011,14 +5598,53 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:30.800555+00:00",
+      "generation_id": "gen-1794192367-4h92qmDLJjKx6ZLdGl6N"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:34.538554+00:00",
+      "generation_id": "gen-1794193064-Wzi4ypFIxdnZStN2jMgb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:14.902752+00:00",
+      "generation_id": "gen-1794193769-Plm2gKLL3YdN08ieNQJ4"
+     }
+    }
    }
   },
   {
@@ -2037,14 +5663,50 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:30.800555+00:00",
+      "generation_id": "gen-1794192367-4h92qmDLJjKx6ZLdGl6N"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:34.538554+00:00",
+      "generation_id": "gen-1794193064-Wzi4ypFIxdnZStN2jMgb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:14.902752+00:00",
+      "generation_id": "gen-1794193769-Plm2gKLL3YdN08ieNQJ4"
+     }
+    }
    }
   },
   {
@@ -2063,14 +5725,102 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 4,
+     "agi_pilled": 2
+    },
+    "b": {
+     "ai_overall": 4,
+     "agi_pilled": 2
+    },
+    "topics": [
+     "AGI/transformative",
+     "energy/data centers"
+    ],
+    "confidence": {
+     "ai_overall": 3.0,
+     "agi_pilled": 2.67
+    },
+    "escalated": [
+     "ai_overall",
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 4
+      },
+      "confidence": {
+       "agi_pilled": 2,
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:30.800555+00:00",
+      "generation_id": "gen-1794192367-4h92qmDLJjKx6ZLdGl6N"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:34.538554+00:00",
+      "generation_id": "gen-1794193064-Wzi4ypFIxdnZStN2jMgb"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 4
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:14.902752+00:00",
+      "generation_id": "gen-1794193769-Plm2gKLL3YdN08ieNQJ4"
+     },
+     "sol": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 4
+      },
+      "confidence": {
+       "agi_pilled": 4,
+       "ai_overall": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "energy/data centers"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.778096+00:00",
+      "generation_id": "gen-1794194048-o6zePWbRQyBmLmMnI37G"
+     }
+    }
    }
   },
   {
@@ -2089,14 +5839,102 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "china_race": 1
+    },
+    "b": {
+     "china_race": 2
+    },
+    "topics": [
+     "China/competition",
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "china_race": 3.0
+    },
+    "escalated": [
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:30.800555+00:00",
+      "generation_id": "gen-1794192367-4h92qmDLJjKx6ZLdGl6N"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:34.538554+00:00",
+      "generation_id": "gen-1794193064-Wzi4ypFIxdnZStN2jMgb"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:14.902752+00:00",
+      "generation_id": "gen-1794193769-Plm2gKLL3YdN08ieNQJ4"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.778096+00:00",
+      "generation_id": "gen-1794194048-o6zePWbRQyBmLmMnI37G"
+     },
+     "astra": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T03:14:40.493130+00:00",
+      "generation_id": "gen-1794194074-XNN7AkU8RfcCzclKb38a"
+     }
+    }
    }
   },
   {
@@ -2115,14 +5953,85 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "agi_pilled": 2
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "AGI/transformative",
+     "energy/data centers"
+    ],
+    "confidence": {
+     "agi_pilled": 2.67
+    },
+    "escalated": [
+     "ai_overall",
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "agi_pilled": 2,
+       "ai_overall": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:30.800555+00:00",
+      "generation_id": "gen-1794192367-4h92qmDLJjKx6ZLdGl6N"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:34.538554+00:00",
+      "generation_id": "gen-1794193064-Wzi4ypFIxdnZStN2jMgb"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:14.902752+00:00",
+      "generation_id": "gen-1794193769-Plm2gKLL3YdN08ieNQJ4"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.778096+00:00",
+      "generation_id": "gen-1794194048-o6zePWbRQyBmLmMnI37G"
+     }
+    }
    }
   },
   {
@@ -2141,14 +6050,98 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "agi_pilled": 2,
+     "china_race": 1
+    },
+    "b": {
+     "china_race": 1
+    },
+    "topics": [
+     "China/competition",
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "agi_pilled": 2.67,
+     "china_race": 3.33
+    },
+    "escalated": [
+     "agi_pilled",
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2,
+       "china_race": 2
+      },
+      "confidence": {
+       "agi_pilled": 2,
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:30.800555+00:00",
+      "generation_id": "gen-1794192367-4h92qmDLJjKx6ZLdGl6N"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2,
+       "china_race": 1
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "china_race": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:34.538554+00:00",
+      "generation_id": "gen-1794193064-Wzi4ypFIxdnZStN2jMgb"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2,
+       "china_race": 1
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "china_race": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:14.902752+00:00",
+      "generation_id": "gen-1794193769-Plm2gKLL3YdN08ieNQJ4"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.778096+00:00",
+      "generation_id": "gen-1794194048-o6zePWbRQyBmLmMnI37G"
+     }
+    }
    }
   },
   {
@@ -2167,14 +6160,78 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "ai_overall": 3
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "energy/data centers",
+     "jobs/economy"
+    ],
+    "confidence": {
+     "ai_overall": 2.0
+    },
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:30.800555+00:00",
+      "generation_id": "gen-1794192367-4h92qmDLJjKx6ZLdGl6N"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:34.538554+00:00",
+      "generation_id": "gen-1794193064-Wzi4ypFIxdnZStN2jMgb"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:14.902752+00:00",
+      "generation_id": "gen-1794193769-Plm2gKLL3YdN08ieNQJ4"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.778096+00:00",
+      "generation_id": "gen-1794194048-o6zePWbRQyBmLmMnI37G"
+     }
+    }
    }
   },
   {
@@ -2193,14 +6250,92 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "china_race": 3
+    },
+    "b": {
+     "china_race": 3
+    },
+    "topics": [
+     "China/competition",
+     "energy/data centers"
+    ],
+    "confidence": {
+     "china_race": 3.67
+    },
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3,
+       "china_race": 3
+      },
+      "confidence": {
+       "ai_overall": 2,
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:30.800555+00:00",
+      "generation_id": "gen-1794192367-4h92qmDLJjKx6ZLdGl6N"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:34.538554+00:00",
+      "generation_id": "gen-1794193064-Wzi4ypFIxdnZStN2jMgb"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:14.902752+00:00",
+      "generation_id": "gen-1794193769-Plm2gKLL3YdN08ieNQJ4"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.778096+00:00",
+      "generation_id": "gen-1794194048-o6zePWbRQyBmLmMnI37G"
+     }
+    }
    }
   },
   {
@@ -2219,14 +6354,104 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 3,
+     "china_race": 1
+    },
+    "b": {
+     "ai_overall": 4,
+     "china_race": 2
+    },
+    "topics": [
+     "China/competition",
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "ai_overall": 2.67,
+     "china_race": 2.67
+    },
+    "escalated": [
+     "ai_overall",
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3,
+       "china_race": 2
+      },
+      "confidence": {
+       "ai_overall": 2,
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:30.800555+00:00",
+      "generation_id": "gen-1794192367-4h92qmDLJjKx6ZLdGl6N"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 1,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "china_race": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:34.538554+00:00",
+      "generation_id": "gen-1794193064-Wzi4ypFIxdnZStN2jMgb"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 1,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "china_race": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:14.902752+00:00",
+      "generation_id": "gen-1794193769-Plm2gKLL3YdN08ieNQJ4"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 2,
+       "agi_pilled": 2,
+       "ai_overall": 4
+      },
+      "confidence": {
+       "china_race": 3,
+       "agi_pilled": 4,
+       "ai_overall": 5
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.778096+00:00",
+      "generation_id": "gen-1794194048-o6zePWbRQyBmLmMnI37G"
+     }
+    }
    }
   },
   {
@@ -2245,14 +6470,91 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "china_race": 2
+    },
+    "b": {
+     "china_race": 2
+    },
+    "topics": [
+     "China/competition",
+     "energy/data centers"
+    ],
+    "confidence": {
+     "china_race": 3.0
+    },
+    "escalated": [
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:30.800555+00:00",
+      "generation_id": "gen-1794192367-4h92qmDLJjKx6ZLdGl6N"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:34.538554+00:00",
+      "generation_id": "gen-1794193064-Wzi4ypFIxdnZStN2jMgb"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:14.902752+00:00",
+      "generation_id": "gen-1794193769-Plm2gKLL3YdN08ieNQJ4"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 5
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.778096+00:00",
+      "generation_id": "gen-1794194048-o6zePWbRQyBmLmMnI37G"
+     }
+    }
    }
   },
   {
@@ -2271,14 +6573,53 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "AGI/transformative"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:30.800555+00:00",
+      "generation_id": "gen-1794192367-4h92qmDLJjKx6ZLdGl6N"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:34.538554+00:00",
+      "generation_id": "gen-1794193064-Wzi4ypFIxdnZStN2jMgb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:14.902752+00:00",
+      "generation_id": "gen-1794193769-Plm2gKLL3YdN08ieNQJ4"
+     }
+    }
    }
   },
   {
@@ -2297,14 +6638,86 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "regulation": 0
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "regulation",
+     "jobs/economy"
+    ],
+    "confidence": {
+     "regulation": 2.67
+    },
+    "escalated": [
+     "ai_overall",
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 0
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:21.021118+00:00",
+      "generation_id": "gen-1794192367-cm8GnQv3rcPQsfolj9fA"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 0
+      },
+      "confidence": {
+       "regulation": 2
+      },
+      "topics": [
+       "regulation",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:09.484206+00:00",
+      "generation_id": "gen-1794193068-ngr2BAX7UP2HvwA7JUXN"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 0,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "regulation": 3,
+       "ai_overall": 2
+      },
+      "topics": [
+       "regulation",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:52.778648+00:00",
+      "generation_id": "gen-1794193769-Ej0XD1To9N3jTcfyRBwT"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.778096+00:00",
+      "generation_id": "gen-1794194048-o6zePWbRQyBmLmMnI37G"
+     }
+    }
    }
   },
   {
@@ -2323,14 +6736,67 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "china_race": 3
+    },
+    "b": {
+     "china_race": 3
+    },
+    "topics": [
+     "China/competition"
+    ],
+    "confidence": {
+     "china_race": 3.67
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:21.021118+00:00",
+      "generation_id": "gen-1794192367-cm8GnQv3rcPQsfolj9fA"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:09.484206+00:00",
+      "generation_id": "gen-1794193068-ngr2BAX7UP2HvwA7JUXN"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:52.778648+00:00",
+      "generation_id": "gen-1794193769-Ej0XD1To9N3jTcfyRBwT"
+     }
+    }
    }
   },
   {
@@ -2349,14 +6815,53 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "national security"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:21.021118+00:00",
+      "generation_id": "gen-1794192367-cm8GnQv3rcPQsfolj9fA"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:09.484206+00:00",
+      "generation_id": "gen-1794193068-ngr2BAX7UP2HvwA7JUXN"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:52.778648+00:00",
+      "generation_id": "gen-1794193769-Ej0XD1To9N3jTcfyRBwT"
+     }
+    }
    }
   },
   {
@@ -2375,14 +6880,52 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "jobs/economy"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:21.021118+00:00",
+      "generation_id": "gen-1794192367-cm8GnQv3rcPQsfolj9fA"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:09.484206+00:00",
+      "generation_id": "gen-1794193068-ngr2BAX7UP2HvwA7JUXN"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:52.778648+00:00",
+      "generation_id": "gen-1794193769-Ej0XD1To9N3jTcfyRBwT"
+     }
+    }
    }
   },
   {
@@ -2401,14 +6944,85 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 3
+    },
+    "b": {
+     "ai_overall": 4
+    },
+    "topics": [
+     "energy/data centers"
+    ],
+    "confidence": {
+     "ai_overall": 2.0
+    },
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:21.021118+00:00",
+      "generation_id": "gen-1794192367-cm8GnQv3rcPQsfolj9fA"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:09.484206+00:00",
+      "generation_id": "gen-1794193068-ngr2BAX7UP2HvwA7JUXN"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "energy/data centers",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:52.778648+00:00",
+      "generation_id": "gen-1794193769-Ej0XD1To9N3jTcfyRBwT"
+     },
+     "sol": {
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.778096+00:00",
+      "generation_id": "gen-1794194048-o6zePWbRQyBmLmMnI37G"
+     }
+    }
    }
   },
   {
@@ -2427,14 +7041,52 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:21.021118+00:00",
+      "generation_id": "gen-1794192367-cm8GnQv3rcPQsfolj9fA"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:09.484206+00:00",
+      "generation_id": "gen-1794193068-ngr2BAX7UP2HvwA7JUXN"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:52.778648+00:00",
+      "generation_id": "gen-1794193769-Ej0XD1To9N3jTcfyRBwT"
+     }
+    }
    }
   },
   {
@@ -2453,14 +7105,51 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:21.021118+00:00",
+      "generation_id": "gen-1794192367-cm8GnQv3rcPQsfolj9fA"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:09.484206+00:00",
+      "generation_id": "gen-1794193068-ngr2BAX7UP2HvwA7JUXN"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:52.778648+00:00",
+      "generation_id": "gen-1794193769-Ej0XD1To9N3jTcfyRBwT"
+     }
+    }
    }
   },
   {
@@ -2479,14 +7168,69 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "AGI/transformative",
+     "other"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:21.021118+00:00",
+      "generation_id": "gen-1794192367-cm8GnQv3rcPQsfolj9fA"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:09.484206+00:00",
+      "generation_id": "gen-1794193068-ngr2BAX7UP2HvwA7JUXN"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:52.778648+00:00",
+      "generation_id": "gen-1794193769-Ej0XD1To9N3jTcfyRBwT"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:14.778096+00:00",
+      "generation_id": "gen-1794194048-o6zePWbRQyBmLmMnI37G"
+     }
+    }
    }
   },
   {
@@ -2505,14 +7249,49 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:21.021118+00:00",
+      "generation_id": "gen-1794192367-cm8GnQv3rcPQsfolj9fA"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:09.484206+00:00",
+      "generation_id": "gen-1794193068-ngr2BAX7UP2HvwA7JUXN"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:52.778648+00:00",
+      "generation_id": "gen-1794193769-Ej0XD1To9N3jTcfyRBwT"
+     }
+    }
    }
   },
   {
@@ -2530,14 +7309,71 @@
     "role": "Secretary of Energy"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other",
+     "China/competition"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T21:51:09.613895+00:00",
+      "generation_id": "gen-1794261064-Gz03KXykEmdQshuSmpDp"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition",
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T21:52:51.920839+00:00",
+      "generation_id": "gen-1794261163-8bz3H8WfASMtjdgj1Pld"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T21:54:44.948920+00:00",
+      "generation_id": "gen-1794261275-DIcOvNvH3prtSgU0ClDj"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition",
+       "energy/data centers"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T21:56:11.353532+00:00",
+      "generation_id": "gen-1794261365-JKd65QrpDrlmoG2Csk8g"
+     }
+    }
    }
   }
  ],
@@ -2871,273 +7707,273 @@
    "date": "2025-02-28",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 1.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-03-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 1.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-04-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 1.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-05-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.5,
+    "agi_pilled": 1.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
    "n_statements": 8,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-06-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.5,
+    "agi_pilled": 1.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.0,
+    "regulation": 0.0
    },
    "n_statements": 13,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-07-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.0,
+    "regulation": 0.0
    },
    "n_statements": 36,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-08-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.0,
+    "regulation": 0.0
    },
    "n_statements": 39,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-09-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.0,
+    "regulation": 0.0
    },
    "n_statements": 47,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-10-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.0,
+    "regulation": 0.0
    },
    "n_statements": 54,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-11-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.0,
+    "regulation": 0.0
    },
    "n_statements": 68,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-12-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.0,
+    "regulation": 0.0
    },
    "n_statements": 75,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-01-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.0,
+    "regulation": 0.0
    },
    "n_statements": 76,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-02-28",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.0,
+    "regulation": 0.0
    },
    "n_statements": 76,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-03-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.0,
+    "regulation": 0.0
    },
    "n_statements": 78,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-04-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.0,
+    "regulation": 0.0
    },
    "n_statements": 78,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-05-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.0,
+    "regulation": 0.0
    },
    "n_statements": 79,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-06-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.0,
+    "regulation": 0.0
    },
    "n_statements": 80,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-07-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.0,
+    "regulation": 0.0
    },
    "n_statements": 86,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-08-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.0,
+    "regulation": 0.0
    },
    "n_statements": 87,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-09-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.0,
+    "regulation": 0.0
    },
    "n_statements": 89,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-10-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.0,
+    "regulation": 0.0
    },
    "n_statements": 89,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {

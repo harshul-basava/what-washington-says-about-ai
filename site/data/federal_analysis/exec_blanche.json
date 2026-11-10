@@ -8,7 +8,7 @@
   "party": null,
   "state": "",
   "chamber": "",
-  "status": "partial",
+  "status": "complete",
   "entity_type": "person",
   "branch": "executive",
   "organization_id": "justice",
@@ -39,49 +39,56 @@
    "reason": "current_government_official"
   },
   "n_statements": 8,
-  "n_labeled": 0,
+  "n_labeled": 8,
   "scores": {
-   "ai_overall": null,
+   "ai_overall": 4.0,
    "agi_pilled": null,
    "x_risk": null,
-   "china_race": null,
-   "regulation": null
+   "china_race": 1.0,
+   "regulation": 0.0
   },
   "score_details": {
    "ai_overall": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 4.0,
+    "reason_a": "median_of_1",
+    "reason_b": "median_of_1",
+    "sids": [
+     "s8"
+    ],
+    "label_count": 1
    },
    "agi_pilled": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "x_risk": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "china_race": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 1.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s5"
+    ],
+    "label_count": 1
    },
    "regulation": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 0.0,
+    "reason_a": "dismissive",
+    "reason_b": "dismissive",
+    "sids": [
+     "s4",
+     "s3"
+    ],
+    "label_count": 2
    }
   },
   "summary": {
@@ -117,7 +124,15 @@
     }
    ]
   },
-  "topics": {},
+  "topics": {
+   "AGI/transformative": 1.167,
+   "national security": 1.667,
+   "misuse (bio/cyber)": 0.833,
+   "regulation": 2.0,
+   "China/competition": 1.0,
+   "copyright": 0.333,
+   "other": 1.0
+  },
   "regulation": {
    "status": "complete",
    "areas": {
@@ -272,14 +287,79 @@
     "role": "Attorney General"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "AGI/transformative",
+     "national security"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9811fd9baed661fe42b34103501680adacf614e10fdf174ad3c703973a6ae3d4",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:44:54.549918+00:00",
+     "generation_id": "gen-1794206682-xJkUhdSLgmnXtpUPjVj7"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:16.995764+00:00",
+      "generation_id": "gen-1794192350-iemVWVMzWCybngrFOi5q"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:43.505316+00:00",
+      "generation_id": "gen-1794193051-sGkEO42nWfEIAVN2PKql"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:29.088482+00:00",
+      "generation_id": "gen-1794193744-zFu1Mk44lFCg20Pv5LjW"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9811fd9baed661fe42b34103501680adacf614e10fdf174ad3c703973a6ae3d4",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:44:54.549918+00:00",
+      "generation_id": "gen-1794206682-xJkUhdSLgmnXtpUPjVj7"
+     }
+    }
    }
   },
   {
@@ -297,14 +377,79 @@
     "role": "Attorney General"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security",
+     "misuse (bio/cyber)"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9811fd9baed661fe42b34103501680adacf614e10fdf174ad3c703973a6ae3d4",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:44:54.549918+00:00",
+     "generation_id": "gen-1794206682-xJkUhdSLgmnXtpUPjVj7"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:16.995764+00:00",
+      "generation_id": "gen-1794192350-iemVWVMzWCybngrFOi5q"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:43.505316+00:00",
+      "generation_id": "gen-1794193051-sGkEO42nWfEIAVN2PKql"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:29.088482+00:00",
+      "generation_id": "gen-1794193744-zFu1Mk44lFCg20Pv5LjW"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9811fd9baed661fe42b34103501680adacf614e10fdf174ad3c703973a6ae3d4",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:44:54.549918+00:00",
+      "generation_id": "gen-1794206682-xJkUhdSLgmnXtpUPjVj7"
+     }
+    }
    }
   },
   {
@@ -321,14 +466,93 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "regulation": 0
+    },
+    "b": {
+     "regulation": 0
+    },
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 4.67
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9811fd9baed661fe42b34103501680adacf614e10fdf174ad3c703973a6ae3d4",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:44:54.549918+00:00",
+     "generation_id": "gen-1794206682-xJkUhdSLgmnXtpUPjVj7"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 0
+      },
+      "confidence": {
+       "regulation": 5
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:16.995764+00:00",
+      "generation_id": "gen-1794192350-iemVWVMzWCybngrFOi5q"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 0
+      },
+      "confidence": {
+       "regulation": 5
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:43.505316+00:00",
+      "generation_id": "gen-1794193051-sGkEO42nWfEIAVN2PKql"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 0
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:29.088482+00:00",
+      "generation_id": "gen-1794193744-zFu1Mk44lFCg20Pv5LjW"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9811fd9baed661fe42b34103501680adacf614e10fdf174ad3c703973a6ae3d4",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:44:54.549918+00:00",
+      "generation_id": "gen-1794206682-xJkUhdSLgmnXtpUPjVj7"
+     }
+    }
    }
   },
   {
@@ -345,14 +569,93 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "regulation": 0
+    },
+    "b": {
+     "regulation": 0
+    },
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 5.0
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9811fd9baed661fe42b34103501680adacf614e10fdf174ad3c703973a6ae3d4",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:44:54.549918+00:00",
+     "generation_id": "gen-1794206682-xJkUhdSLgmnXtpUPjVj7"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 0
+      },
+      "confidence": {
+       "regulation": 5
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:16.995764+00:00",
+      "generation_id": "gen-1794192350-iemVWVMzWCybngrFOi5q"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 0
+      },
+      "confidence": {
+       "regulation": 5
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:43.505316+00:00",
+      "generation_id": "gen-1794193051-sGkEO42nWfEIAVN2PKql"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 0
+      },
+      "confidence": {
+       "regulation": 5
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:29.088482+00:00",
+      "generation_id": "gen-1794193744-zFu1Mk44lFCg20Pv5LjW"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9811fd9baed661fe42b34103501680adacf614e10fdf174ad3c703973a6ae3d4",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:44:54.549918+00:00",
+      "generation_id": "gen-1794206682-xJkUhdSLgmnXtpUPjVj7"
+     }
+    }
    }
   },
   {
@@ -369,14 +672,93 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "china_race": 1
+    },
+    "b": {
+     "china_race": 1
+    },
+    "topics": [
+     "China/competition"
+    ],
+    "confidence": {
+     "china_race": 3.67
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9811fd9baed661fe42b34103501680adacf614e10fdf174ad3c703973a6ae3d4",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:44:54.549918+00:00",
+     "generation_id": "gen-1794206682-xJkUhdSLgmnXtpUPjVj7"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:16.995764+00:00",
+      "generation_id": "gen-1794192350-iemVWVMzWCybngrFOi5q"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:43.505316+00:00",
+      "generation_id": "gen-1794193051-sGkEO42nWfEIAVN2PKql"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:29.088482+00:00",
+      "generation_id": "gen-1794193744-zFu1Mk44lFCg20Pv5LjW"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9811fd9baed661fe42b34103501680adacf614e10fdf174ad3c703973a6ae3d4",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:44:54.549918+00:00",
+      "generation_id": "gen-1794206682-xJkUhdSLgmnXtpUPjVj7"
+     }
+    }
    }
   },
   {
@@ -394,14 +776,83 @@
     "role": "Attorney General"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "AGI/transformative",
+     "national security",
+     "misuse (bio/cyber)"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9811fd9baed661fe42b34103501680adacf614e10fdf174ad3c703973a6ae3d4",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:44:54.549918+00:00",
+     "generation_id": "gen-1794206682-xJkUhdSLgmnXtpUPjVj7"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "national security",
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:16.995764+00:00",
+      "generation_id": "gen-1794192350-iemVWVMzWCybngrFOi5q"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "national security",
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:43.505316+00:00",
+      "generation_id": "gen-1794193051-sGkEO42nWfEIAVN2PKql"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "national security",
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:29.088482+00:00",
+      "generation_id": "gen-1794193744-zFu1Mk44lFCg20Pv5LjW"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9811fd9baed661fe42b34103501680adacf614e10fdf174ad3c703973a6ae3d4",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:44:54.549918+00:00",
+      "generation_id": "gen-1794206682-xJkUhdSLgmnXtpUPjVj7"
+     }
+    }
    }
   },
   {
@@ -420,14 +871,83 @@
     "role": "Attorney General"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "AGI/transformative",
+     "copyright",
+     "national security"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9811fd9baed661fe42b34103501680adacf614e10fdf174ad3c703973a6ae3d4",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:44:54.549918+00:00",
+     "generation_id": "gen-1794206682-xJkUhdSLgmnXtpUPjVj7"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "copyright",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:16.995764+00:00",
+      "generation_id": "gen-1794192350-iemVWVMzWCybngrFOi5q"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "copyright",
+       "national security",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:43.505316+00:00",
+      "generation_id": "gen-1794193051-sGkEO42nWfEIAVN2PKql"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "copyright",
+       "national security",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:29.088482+00:00",
+      "generation_id": "gen-1794193744-zFu1Mk44lFCg20Pv5LjW"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9811fd9baed661fe42b34103501680adacf614e10fdf174ad3c703973a6ae3d4",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:44:54.549918+00:00",
+      "generation_id": "gen-1794206682-xJkUhdSLgmnXtpUPjVj7"
+     }
+    }
    }
   },
   {
@@ -444,14 +964,105 @@
     "note": "Agent checked the complete seven-word quotation, named attribution, and source date against retrieved text."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "ai_overall": 4
+    },
+    "b": {
+     "ai_overall": 4
+    },
+    "topics": [
+     "other"
+    ],
+    "confidence": {
+     "ai_overall": 5
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9811fd9baed661fe42b34103501680adacf614e10fdf174ad3c703973a6ae3d4",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 4
+     },
+     "confidence": {
+      "ai_overall": 5
+     },
+     "review_confidence": 5,
+     "reason": "Blanche explicitly describes AI's overall societal effects as extraordinarily beneficial. The supplied context reinforces this enthusiastic stance: he praises AI's work and characterizes the timing of public fears as politically motivated.",
+     "supporting_quote": "AI is extraordinarily beneficial to our society",
+     "support_basis": "excerpt",
+     "accepted": true,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:44:54.549918+00:00",
+     "generation_id": "gen-1794206682-xJkUhdSLgmnXtpUPjVj7"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:37:21.670981+00:00",
+      "generation_id": "gen-1794206239-i8SWbiCOsCIoVehnWLl8"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 5
+      },
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:37:50.012772+00:00",
+      "generation_id": "gen-1794206267-L8okHTbvPY9YqFHrt5Lm"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:38:44.727627+00:00",
+      "generation_id": "gen-1794206323-UTcfWKYOd6u9nhtun6ad"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9811fd9baed661fe42b34103501680adacf614e10fdf174ad3c703973a6ae3d4",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 5
+      },
+      "review_confidence": 5,
+      "reason": "Blanche explicitly describes AI's overall societal effects as extraordinarily beneficial. The supplied context reinforces this enthusiastic stance: he praises AI's work and characterizes the timing of public fears as politically motivated.",
+      "supporting_quote": "AI is extraordinarily beneficial to our society",
+      "support_basis": "excerpt",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:44:54.549918+00:00",
+      "generation_id": "gen-1794206682-xJkUhdSLgmnXtpUPjVj7"
+     }
+    }
    }
   }
  ],
@@ -1038,7 +1649,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1051,7 +1662,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {

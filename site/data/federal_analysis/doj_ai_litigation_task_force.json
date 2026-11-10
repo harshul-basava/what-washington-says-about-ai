@@ -8,7 +8,7 @@
   "party": null,
   "state": "",
   "chamber": "",
-  "status": "partial",
+  "status": "complete",
   "entity_type": "institution",
   "branch": "executive",
   "organization_id": "doj_ai_litigation_task_force",
@@ -31,7 +31,7 @@
    "reason": "current_government_institution"
   },
   "n_statements": 2,
-  "n_labeled": 0,
+  "n_labeled": 2,
   "scores": {
    "ai_overall": null,
    "agi_pilled": null,
@@ -42,36 +42,36 @@
   "score_details": {
    "ai_overall": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "insufficient_evidence",
+    "reason_b": "insufficient_evidence",
     "sids": [],
     "label_count": 0
    },
    "agi_pilled": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "insufficient_evidence",
+    "reason_b": "insufficient_evidence",
     "sids": [],
     "label_count": 0
    },
    "x_risk": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "insufficient_evidence",
+    "reason_b": "insufficient_evidence",
     "sids": [],
     "label_count": 0
    },
    "china_race": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "insufficient_evidence",
+    "reason_b": "insufficient_evidence",
     "sids": [],
     "label_count": 0
    },
    "regulation": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "insufficient_evidence",
+    "reason_b": "insufficient_evidence",
     "sids": [],
     "label_count": 0
    }
@@ -98,7 +98,10 @@
     }
    ]
   },
-  "topics": {},
+  "topics": {
+   "regulation": 1.0,
+   "other": 1.0
+  },
   "regulation": {
    "status": "complete",
    "areas": {
@@ -238,14 +241,67 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "regulation": 0
+    },
+    "b": {
+     "regulation": 0
+    },
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 3.67
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 0
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:49:36.028228+00:00",
+      "generation_id": "gen-1794192574-hMjSiPvMirIHRpYyJr8l"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 0
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:01:02.118203+00:00",
+      "generation_id": "gen-1794193261-nVdOmMXvcbAij5SsX1EO"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 0
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:12:40.244973+00:00",
+      "generation_id": "gen-1794193958-dEPmRl3qQatekRHpNbCV"
+     }
+    }
    }
   },
   {
@@ -262,14 +318,49 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:49:36.028228+00:00",
+      "generation_id": "gen-1794192574-hMjSiPvMirIHRpYyJr8l"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:01:02.118203+00:00",
+      "generation_id": "gen-1794193261-nVdOmMXvcbAij5SsX1EO"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:12:40.244973+00:00",
+      "generation_id": "gen-1794193958-dEPmRl3qQatekRHpNbCV"
+     }
+    }
    }
   }
  ],
@@ -752,7 +843,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -765,7 +856,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -778,7 +869,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -791,7 +882,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -804,7 +895,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -817,7 +908,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -830,7 +921,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -843,7 +934,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -856,7 +947,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -869,7 +960,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {

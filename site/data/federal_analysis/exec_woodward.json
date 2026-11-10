@@ -8,7 +8,7 @@
   "party": null,
   "state": "",
   "chamber": "",
-  "status": "partial",
+  "status": "complete",
   "entity_type": "person",
   "branch": "executive",
   "organization_id": "justice",
@@ -54,47 +54,55 @@
    "reason": "current_government_official"
   },
   "n_statements": 8,
-  "n_labeled": 0,
+  "n_labeled": 8,
   "scores": {
-   "ai_overall": null,
-   "agi_pilled": null,
+   "ai_overall": 3.0,
+   "agi_pilled": 3.0,
    "x_risk": null,
-   "china_race": null,
+   "china_race": 1.5,
    "regulation": null
   },
   "score_details": {
    "ai_overall": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 3.0,
+    "reason_a": "median_of_1",
+    "reason_b": "median_of_1",
+    "sids": [
+     "s3"
+    ],
+    "label_count": 1
    },
    "agi_pilled": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 3.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s6",
+     "s1",
+     "s5"
+    ],
+    "label_count": 3
    },
    "x_risk": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "china_race": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 1.5,
+    "reason_a": "consistent",
+    "reason_b": "silent",
+    "sids": [
+     "s3"
+    ],
+    "label_count": 1
    },
    "regulation": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "no_statements",
+    "reason_b": "no_statements",
     "sids": [],
     "label_count": 0
    }
@@ -139,7 +147,17 @@
     }
    ]
   },
-  "topics": {},
+  "topics": {
+   "AGI/transformative": 1.333,
+   "regulation": 2.167,
+   "national security": 1.0,
+   "energy/data centers": 0.333,
+   "China/competition": 0.333,
+   "jobs/economy": 0.833,
+   "kids/online safety": 0.5,
+   "other": 0.5,
+   "copyright": 1.0
+  },
   "regulation": {
    "status": "complete",
    "areas": {
@@ -280,14 +298,87 @@
     "role": "Associate Attorney General"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "agi_pilled": 3
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "AGI/transformative",
+     "regulation",
+     "national security"
+    ],
+    "confidence": {
+     "agi_pilled": 3.0
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "x-risk/loss of control",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:04.994031+00:00",
+      "generation_id": "gen-1794192353-7PJYrXmyj26aNUBicXTw"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:56.334890+00:00",
+      "generation_id": "gen-1794193051-gmbMAz6FGrKcBTz5OjQw"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:38.711287+00:00",
+      "generation_id": "gen-1794193745-iGArNGflwE2GWFMKwzXc"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:09.486883+00:00",
+      "generation_id": "gen-1794194044-DTPTlBNeUoJCaWdJ4RdV"
+     }
+    }
    }
   },
   {
@@ -305,14 +396,55 @@
     "role": "Associate Attorney General"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security",
+     "energy/data centers",
+     "regulation"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:04.994031+00:00",
+      "generation_id": "gen-1794192353-7PJYrXmyj26aNUBicXTw"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:56.334890+00:00",
+      "generation_id": "gen-1794193051-gmbMAz6FGrKcBTz5OjQw"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "energy/data centers",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:38.711287+00:00",
+      "generation_id": "gen-1794193745-iGArNGflwE2GWFMKwzXc"
+     }
+    }
    }
   },
   {
@@ -329,14 +461,99 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 3,
+     "china_race": 3
+    },
+    "b": {
+     "ai_overall": 3
+    },
+    "topics": [
+     "China/competition",
+     "national security",
+     "jobs/economy"
+    ],
+    "confidence": {
+     "ai_overall": 3.33,
+     "china_race": 3.0
+    },
+    "escalated": [
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "China/competition",
+       "national security",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:04.994031+00:00",
+      "generation_id": "gen-1794192353-7PJYrXmyj26aNUBicXTw"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 3,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "china_race": 3,
+       "ai_overall": 4
+      },
+      "topics": [
+       "China/competition",
+       "national security",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:56.334890+00:00",
+      "generation_id": "gen-1794193051-gmbMAz6FGrKcBTz5OjQw"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "china_race": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "China/competition",
+       "national security",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:38.711287+00:00",
+      "generation_id": "gen-1794193745-iGArNGflwE2GWFMKwzXc"
+     },
+     "sol": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "national security",
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:09.486883+00:00",
+      "generation_id": "gen-1794194044-DTPTlBNeUoJCaWdJ4RdV"
+     }
+    }
    }
   },
   {
@@ -353,14 +570,50 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "regulation"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:04.994031+00:00",
+      "generation_id": "gen-1794192353-7PJYrXmyj26aNUBicXTw"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:56.334890+00:00",
+      "generation_id": "gen-1794193051-gmbMAz6FGrKcBTz5OjQw"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:38.711287+00:00",
+      "generation_id": "gen-1794193745-iGArNGflwE2GWFMKwzXc"
+     }
+    }
    }
   },
   {
@@ -378,14 +631,89 @@
     "role": "Associate Attorney General"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "agi_pilled": 3
+    },
+    "b": {
+     "agi_pilled": 3
+    },
+    "topics": [
+     "AGI/transformative",
+     "kids/online safety"
+    ],
+    "confidence": {
+     "agi_pilled": 3.33
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "kids/online safety"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:04.994031+00:00",
+      "generation_id": "gen-1794192353-7PJYrXmyj26aNUBicXTw"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "kids/online safety"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:56.334890+00:00",
+      "generation_id": "gen-1794193051-gmbMAz6FGrKcBTz5OjQw"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "kids/online safety",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:38.711287+00:00",
+      "generation_id": "gen-1794193745-iGArNGflwE2GWFMKwzXc"
+     },
+     "sol": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "kids/online safety"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:09.486883+00:00",
+      "generation_id": "gen-1794194044-DTPTlBNeUoJCaWdJ4RdV"
+     }
+    }
    }
   },
   {
@@ -403,14 +731,83 @@
     "role": "Associate Attorney General"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "agi_pilled": 3
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "AGI/transformative",
+     "regulation"
+    ],
+    "confidence": {
+     "agi_pilled": 3.0
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "x-risk/loss of control",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:04.994031+00:00",
+      "generation_id": "gen-1794192353-7PJYrXmyj26aNUBicXTw"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:56.334890+00:00",
+      "generation_id": "gen-1794193051-gmbMAz6FGrKcBTz5OjQw"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:38.711287+00:00",
+      "generation_id": "gen-1794193745-iGArNGflwE2GWFMKwzXc"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:09.486883+00:00",
+      "generation_id": "gen-1794194044-DTPTlBNeUoJCaWdJ4RdV"
+     }
+    }
    }
   },
   {
@@ -429,14 +826,53 @@
     "role": "Associate Attorney General"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:04.994031+00:00",
+      "generation_id": "gen-1794192353-7PJYrXmyj26aNUBicXTw"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:56.334890+00:00",
+      "generation_id": "gen-1794193051-gmbMAz6FGrKcBTz5OjQw"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:38.711287+00:00",
+      "generation_id": "gen-1794193745-iGArNGflwE2GWFMKwzXc"
+     }
+    }
    }
   },
   {
@@ -455,14 +891,66 @@
     "role": "Associate Attorney General"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "copyright"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "copyright"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:04.994031+00:00",
+      "generation_id": "gen-1794192353-7PJYrXmyj26aNUBicXTw"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "copyright"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:57:56.334890+00:00",
+      "generation_id": "gen-1794193051-gmbMAz6FGrKcBTz5OjQw"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 0
+      },
+      "confidence": {
+       "regulation": 2
+      },
+      "topics": [
+       "copyright"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:38.711287+00:00",
+      "generation_id": "gen-1794193745-iGArNGflwE2GWFMKwzXc"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "copyright"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:09.486883+00:00",
+      "generation_id": "gen-1794194044-DTPTlBNeUoJCaWdJ4RdV"
+     }
+    }
    }
   }
  ],
@@ -1010,7 +1498,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1023,7 +1511,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1036,33 +1524,33 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-09-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 1.5,
     "regulation": null
    },
    "n_statements": 4,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-10-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 3.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 1.5,
     "regulation": null
    },
    "n_statements": 5,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {

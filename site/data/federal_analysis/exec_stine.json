@@ -8,7 +8,7 @@
   "party": null,
   "state": "",
   "chamber": "",
-  "status": "partial",
+  "status": "complete",
   "entity_type": "person",
   "branch": "executive",
   "organization_id": "nist_itl",
@@ -43,7 +43,7 @@
    "reason": "current_government_official"
   },
   "n_statements": 1,
-  "n_labeled": 0,
+  "n_labeled": 1,
   "scores": {
    "ai_overall": null,
    "agi_pilled": null,
@@ -54,36 +54,36 @@
   "score_details": {
    "ai_overall": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "insufficient_evidence",
+    "reason_b": "insufficient_evidence",
     "sids": [],
     "label_count": 0
    },
    "agi_pilled": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "insufficient_evidence",
+    "reason_b": "insufficient_evidence",
     "sids": [],
     "label_count": 0
    },
    "x_risk": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "insufficient_evidence",
+    "reason_b": "insufficient_evidence",
     "sids": [],
     "label_count": 0
    },
    "china_race": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "insufficient_evidence",
+    "reason_b": "insufficient_evidence",
     "sids": [],
     "label_count": 0
    },
    "regulation": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "insufficient_evidence",
+    "reason_b": "insufficient_evidence",
     "sids": [],
     "label_count": 0
    }
@@ -103,7 +103,10 @@
     }
    ]
   },
-  "topics": {},
+  "topics": {
+   "AGI/transformative": 0.5,
+   "regulation": 0.5
+  },
   "regulation": {
    "status": "complete",
    "areas": {
@@ -242,14 +245,90 @@
     "role": "Director, Information Technology Laboratory"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "agi_pilled": 3,
+     "regulation": 1
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "AGI/transformative",
+     "regulation"
+    ],
+    "confidence": {
+     "agi_pilled": 2.0,
+     "regulation": 2.0
+    },
+    "escalated": [
+     "agi_pilled",
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:07.937473+00:00",
+      "generation_id": "gen-1794192235-K4rwGaiKdOmEDtpJcfPq"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3,
+       "regulation": 2
+      },
+      "confidence": {
+       "agi_pilled": 2,
+       "regulation": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:41.057053+00:00",
+      "generation_id": "gen-1794192924-n4z2VHPaTApE71E92G4g"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 3,
+       "regulation": 1
+      },
+      "confidence": {
+       "agi_pilled": 2,
+       "regulation": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:32.910054+00:00",
+      "generation_id": "gen-1794193632-wvkSGQAwURBBGvBBewCs"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:13:55.068512+00:00",
+      "generation_id": "gen-1794194030-vX3F1DHj57Dzfsr0ADJi"
+     }
+    }
    }
   }
  ],
@@ -849,7 +928,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {

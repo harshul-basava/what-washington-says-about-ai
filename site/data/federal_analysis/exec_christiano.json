@@ -8,7 +8,7 @@
   "party": null,
   "state": "",
   "chamber": "",
-  "status": "partial",
+  "status": "complete",
   "entity_type": "person",
   "branch": "executive",
   "organization_id": "caissi",
@@ -52,47 +52,54 @@
    "reason": "current_government_official"
   },
   "n_statements": 5,
-  "n_labeled": 0,
+  "n_labeled": 5,
   "scores": {
-   "ai_overall": null,
-   "agi_pilled": null,
-   "x_risk": null,
+   "ai_overall": 1.0,
+   "agi_pilled": 3.0,
+   "x_risk": 2.5,
    "china_race": null,
    "regulation": null
   },
   "score_details": {
    "ai_overall": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 1.0,
+    "reason_a": "median_of_1",
+    "reason_b": "median_of_1",
+    "sids": [
+     "s5"
+    ],
+    "label_count": 1
    },
    "agi_pilled": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 3.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s1"
+    ],
+    "label_count": 1
    },
    "x_risk": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 2.5,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s1",
+     "s2"
+    ],
+    "label_count": 3
    },
    "china_race": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "regulation": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "no_statements",
+    "reason_b": "no_statements",
     "sids": [],
     "label_count": 0
    }
@@ -119,7 +126,12 @@
     }
    ]
   },
-  "topics": {},
+  "topics": {
+   "x-risk/loss of control": 3.0,
+   "AGI/transformative": 0.5,
+   "national security": 0.5,
+   "other": 1.0
+  },
   "regulation": {
    "status": "complete",
    "areas": {
@@ -273,14 +285,125 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "agi_pilled": 3,
+     "x_risk": 3
+    },
+    "b": {
+     "agi_pilled": 3,
+     "x_risk": 2
+    },
+    "topics": [
+     "x-risk/loss of control",
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "agi_pilled": 3.0,
+     "x_risk": 4.33
+    },
+    "escalated": [
+     "agi_pilled",
+     "x_risk"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+     "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "x_risk": 3,
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "x_risk": 4,
+       "agi_pilled": 3
+      },
+      "topics": [
+       "x-risk/loss of control",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:15.257382+00:00",
+      "generation_id": "gen-1794192240-cpman53G1dMCNOIBOiKb"
+     },
+     "ds_1": {
+      "labels": {
+       "x_risk": 3,
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "x_risk": 5,
+       "agi_pilled": 3
+      },
+      "topics": [
+       "x-risk/loss of control",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:41.313132+00:00",
+      "generation_id": "gen-1794192929-gpFUHHP5Z99xpk0jW2u6"
+     },
+     "ds_2": {
+      "labels": {
+       "x_risk": 2
+      },
+      "confidence": {
+       "x_risk": 4
+      },
+      "topics": [
+       "x-risk/loss of control",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:28.383015+00:00",
+      "generation_id": "gen-1794193634-PbJLnc5iKyY8OZvRtxzq"
+     },
+     "sol": {
+      "labels": {
+       "x_risk": 2,
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "x_risk": 5,
+       "agi_pilled": 3
+      },
+      "topics": [
+       "x-risk/loss of control",
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:13:58.196874+00:00",
+      "generation_id": "gen-1794194033-awbIA8BZNptnKhTDEkYY"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+      "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
+     }
+    }
    }
   },
   {
@@ -297,14 +420,93 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "x_risk": 2
+    },
+    "b": {
+     "x_risk": 2
+    },
+    "topics": [
+     "x-risk/loss of control"
+    ],
+    "confidence": {
+     "x_risk": 4.33
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+     "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "x_risk": 2
+      },
+      "confidence": {
+       "x_risk": 4
+      },
+      "topics": [
+       "x-risk/loss of control"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:15.257382+00:00",
+      "generation_id": "gen-1794192240-cpman53G1dMCNOIBOiKb"
+     },
+     "ds_1": {
+      "labels": {
+       "x_risk": 2
+      },
+      "confidence": {
+       "x_risk": 5
+      },
+      "topics": [
+       "x-risk/loss of control"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:41.313132+00:00",
+      "generation_id": "gen-1794192929-gpFUHHP5Z99xpk0jW2u6"
+     },
+     "ds_2": {
+      "labels": {
+       "x_risk": 2
+      },
+      "confidence": {
+       "x_risk": 4
+      },
+      "topics": [
+       "x-risk/loss of control"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:28.383015+00:00",
+      "generation_id": "gen-1794193634-PbJLnc5iKyY8OZvRtxzq"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+      "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
+     }
+    }
    }
   },
   {
@@ -321,14 +523,110 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "x_risk": 1
+    },
+    "b": {
+     "x_risk": 1
+    },
+    "topics": [
+     "x-risk/loss of control"
+    ],
+    "confidence": {
+     "x_risk": 2.67
+    },
+    "escalated": [
+     "x_risk"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+     "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "x_risk": 1
+      },
+      "confidence": {
+       "x_risk": 3
+      },
+      "topics": [
+       "x-risk/loss of control"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:15.257382+00:00",
+      "generation_id": "gen-1794192240-cpman53G1dMCNOIBOiKb"
+     },
+     "ds_1": {
+      "labels": {
+       "x_risk": 1
+      },
+      "confidence": {
+       "x_risk": 3
+      },
+      "topics": [
+       "x-risk/loss of control"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:41.313132+00:00",
+      "generation_id": "gen-1794192929-gpFUHHP5Z99xpk0jW2u6"
+     },
+     "ds_2": {
+      "labels": {
+       "x_risk": 1
+      },
+      "confidence": {
+       "x_risk": 2
+      },
+      "topics": [
+       "x-risk/loss of control"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:28.383015+00:00",
+      "generation_id": "gen-1794193634-PbJLnc5iKyY8OZvRtxzq"
+     },
+     "sol": {
+      "labels": {
+       "x_risk": 1
+      },
+      "confidence": {
+       "x_risk": 2
+      },
+      "topics": [
+       "x-risk/loss of control"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:13:58.196874+00:00",
+      "generation_id": "gen-1794194033-awbIA8BZNptnKhTDEkYY"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+      "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
+     }
+    }
    }
   },
   {
@@ -345,14 +643,79 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security",
+     "x-risk/loss of control"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+     "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "x-risk/loss of control"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:15.257382+00:00",
+      "generation_id": "gen-1794192240-cpman53G1dMCNOIBOiKb"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "x-risk/loss of control"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:41.313132+00:00",
+      "generation_id": "gen-1794192929-gpFUHHP5Z99xpk0jW2u6"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "x-risk/loss of control"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:28.383015+00:00",
+      "generation_id": "gen-1794193634-PbJLnc5iKyY8OZvRtxzq"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+      "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
+     }
+    }
    }
   },
   {
@@ -369,14 +732,121 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "ai_overall": 1
+    },
+    "b": {
+     "ai_overall": 1
+    },
+    "topics": [
+     "other"
+    ],
+    "confidence": {
+     "ai_overall": 3
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 1
+     },
+     "confidence": {
+      "ai_overall": 3
+     },
+     "review_confidence": 4,
+     "reason": "In this personal essay originally published August 23, 2014, Christiano anticipates significant welfare gains from growth and automation but assigns greater long-run humanitarian importance to the potentially negative displacement of human values. This supports a qualified harms-dominant assessment, although he describes that risk as speculative and potentially preventable.",
+     "supporting_quote": "and also I think more important on a long-run humanitarian perspective.",
+     "support_basis": "context",
+     "source_context": {
+      "url": "https://paulfchristiano.medium.com/three-impacts-of-machine-intelligence-6285c8d85376",
+      "text_hash": "e5e5b86772717370fa432dd58b57d9598f02fa93dd5598d74801951702becb5b",
+      "retrieval": "exact_normalized_exa_fetch",
+      "quote": "and also I think more important on a long-run humanitarian perspective.",
+      "attribution_quote": "Author: Paul Christiano",
+      "original_date": "2014-08-23"
+     },
+     "accepted": true,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+     "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:37:18.180309+00:00",
+      "generation_id": "gen-1794206232-rD6EKJovYi4iVmGUOlEN"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:37:47.627866+00:00",
+      "generation_id": "gen-1794206264-NZgWrpEkgNjfJEHG95wL"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:38:42.701076+00:00",
+      "generation_id": "gen-1794206317-ky4HFsbi9WBHafm5seFl"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "5629a019153ba5fc5fb62fd7090e9d651a42a3b0a6c2a597047ebd92ce99cbb4",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 1
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "review_confidence": 4,
+      "reason": "In this personal essay originally published August 23, 2014, Christiano anticipates significant welfare gains from growth and automation but assigns greater long-run humanitarian importance to the potentially negative displacement of human values. This supports a qualified harms-dominant assessment, although he describes that risk as speculative and potentially preventable.",
+      "supporting_quote": "and also I think more important on a long-run humanitarian perspective.",
+      "support_basis": "context",
+      "source_context": {
+       "url": "https://paulfchristiano.medium.com/three-impacts-of-machine-intelligence-6285c8d85376",
+       "text_hash": "e5e5b86772717370fa432dd58b57d9598f02fa93dd5598d74801951702becb5b",
+       "retrieval": "exact_normalized_exa_fetch",
+       "quote": "and also I think more important on a long-run humanitarian perspective.",
+       "attribution_quote": "Author: Paul Christiano",
+       "original_date": "2014-08-23"
+      },
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:44:19.444297+00:00",
+      "generation_id": "gen-1794206643-ZCmnhm8JBa1XepStctOG"
+     }
+    }
    }
   }
  ],
@@ -391,7 +861,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -404,7 +874,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -417,7 +887,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -430,7 +900,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -443,7 +913,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -456,7 +926,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -469,7 +939,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -482,7 +952,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -495,7 +965,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -508,7 +978,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -521,7 +991,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -534,7 +1004,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -547,7 +1017,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -560,7 +1030,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -573,7 +1043,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -586,7 +1056,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -599,7 +1069,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -612,7 +1082,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -625,7 +1095,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -638,7 +1108,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -651,7 +1121,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -664,7 +1134,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -677,7 +1147,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -690,7 +1160,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -703,7 +1173,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -716,7 +1186,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -729,7 +1199,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -742,7 +1212,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -755,7 +1225,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -768,7 +1238,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -781,7 +1251,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -794,7 +1264,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -807,7 +1277,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -820,7 +1290,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -833,7 +1303,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -846,7 +1316,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -859,7 +1329,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -872,7 +1342,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -885,7 +1355,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -898,7 +1368,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -911,7 +1381,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -924,7 +1394,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -937,7 +1407,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -950,7 +1420,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -963,7 +1433,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -976,7 +1446,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {

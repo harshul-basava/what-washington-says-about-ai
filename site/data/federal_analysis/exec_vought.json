@@ -8,7 +8,7 @@
   "party": null,
   "state": "",
   "chamber": "",
-  "status": "partial",
+  "status": "complete",
   "entity_type": "person",
   "branch": "executive",
   "organization_id": "omb",
@@ -43,7 +43,7 @@
    "reason": "current_federal_official"
   },
   "n_statements": 2,
-  "n_labeled": 0,
+  "n_labeled": 2,
   "scores": {
    "ai_overall": null,
    "agi_pilled": null,
@@ -54,36 +54,36 @@
   "score_details": {
    "ai_overall": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "insufficient_evidence",
+    "reason_b": "insufficient_evidence",
     "sids": [],
     "label_count": 0
    },
    "agi_pilled": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "insufficient_evidence",
+    "reason_b": "insufficient_evidence",
     "sids": [],
     "label_count": 0
    },
    "x_risk": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "insufficient_evidence",
+    "reason_b": "insufficient_evidence",
     "sids": [],
     "label_count": 0
    },
    "china_race": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "insufficient_evidence",
+    "reason_b": "insufficient_evidence",
     "sids": [],
     "label_count": 0
    },
    "regulation": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "insufficient_evidence",
+    "reason_b": "insufficient_evidence",
     "sids": [],
     "label_count": 0
    }
@@ -110,7 +110,11 @@
     }
    ]
   },
-  "topics": {},
+  "topics": {
+   "regulation": 0.5,
+   "national security": 0.5,
+   "other": 1.0
+  },
   "regulation": {
    "status": "complete",
    "areas": {
@@ -248,14 +252,53 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "regulation",
+     "national security"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:43:00.958380+00:00",
+      "generation_id": "gen-1794192177-yHrXzHtPbngjWqVQQfcR"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:54:45.566935+00:00",
+      "generation_id": "gen-1794192881-ZixfaWyjKeQlQe87rOiD"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:06:23.455759+00:00",
+      "generation_id": "gen-1794193580-CWs3m8PuFmGaKukwlGqa"
+     }
+    }
    }
   },
   {
@@ -272,14 +315,49 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:43:00.958380+00:00",
+      "generation_id": "gen-1794192177-yHrXzHtPbngjWqVQQfcR"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:54:45.566935+00:00",
+      "generation_id": "gen-1794192881-ZixfaWyjKeQlQe87rOiD"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:06:23.455759+00:00",
+      "generation_id": "gen-1794193580-CWs3m8PuFmGaKukwlGqa"
+     }
+    }
    }
   }
  ],

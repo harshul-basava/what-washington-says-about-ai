@@ -41,47 +41,60 @@
    "reason": "current_government_official"
   },
   "n_statements": 124,
-  "n_labeled": 0,
+  "n_labeled": 124,
   "scores": {
-   "ai_overall": null,
-   "agi_pilled": null,
+   "ai_overall": 3.0,
+   "agi_pilled": 2.5,
    "x_risk": null,
-   "china_race": null,
+   "china_race": 3.0,
    "regulation": null
   },
   "score_details": {
    "ai_overall": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 3.0,
+    "reason_a": "median_of_1",
+    "reason_b": "median_of_1",
+    "sids": [
+     "s2"
+    ],
+    "label_count": 1
    },
    "agi_pilled": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 2.5,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s30",
+     "s123",
+     "s31",
+     "s21",
+     "s20",
+     "s19",
+     "s17"
+    ],
+    "label_count": 8
    },
    "x_risk": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "china_race": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 3.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s9",
+     "s1"
+    ],
+    "label_count": 6
    },
    "regulation": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "no_statements",
+    "reason_b": "no_statements",
     "sids": [],
     "label_count": 0
    }
@@ -91,7 +104,14 @@
    "text": "",
    "sids": []
   },
-  "topics": {},
+  "topics": {
+   "China/competition": 4.833,
+   "other": 81.333,
+   "jobs/economy": 5.667,
+   "AGI/transformative": 11.333,
+   "national security": 7.5,
+   "energy/data centers": 13.333
+  },
   "regulation": {
    "status": "pending",
    "areas": {},
@@ -116,14 +136,68 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "china_race": 3
+    },
+    "b": {
+     "china_race": 3
+    },
+    "topics": [
+     "China/competition"
+    ],
+    "confidence": {
+     "china_race": 4.0
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:17.368478+00:00",
+      "generation_id": "gen-1794192370-ecVvMsiahRE2ymCZss2g"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:19.677440+00:00",
+      "generation_id": "gen-1794193073-3gvtGY9KZ9GlNSHwHhZP"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:53.413930+00:00",
+      "generation_id": "gen-1794193769-9mlo4D4y01MYzHmZAydA"
+     }
+    }
    }
   },
   {
@@ -140,14 +214,83 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 3
+    },
+    "b": {
+     "ai_overall": 3
+    },
+    "topics": [
+     "other",
+     "jobs/economy"
+    ],
+    "confidence": {
+     "ai_overall": 3.0
+    },
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:17.368478+00:00",
+      "generation_id": "gen-1794192370-ecVvMsiahRE2ymCZss2g"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:19.677440+00:00",
+      "generation_id": "gen-1794193073-3gvtGY9KZ9GlNSHwHhZP"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:53.413930+00:00",
+      "generation_id": "gen-1794193769-9mlo4D4y01MYzHmZAydA"
+     },
+     "sol": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:15.439130+00:00",
+      "generation_id": "gen-1794194049-htvSbP1oAunmf0rl8XpA"
+     }
+    }
    }
   },
   {
@@ -164,14 +307,67 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "AGI/transformative"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 4
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:17.368478+00:00",
+      "generation_id": "gen-1794192370-ecVvMsiahRE2ymCZss2g"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:19.677440+00:00",
+      "generation_id": "gen-1794193073-3gvtGY9KZ9GlNSHwHhZP"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:53.413930+00:00",
+      "generation_id": "gen-1794193769-9mlo4D4y01MYzHmZAydA"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:15.439130+00:00",
+      "generation_id": "gen-1794194049-htvSbP1oAunmf0rl8XpA"
+     }
+    }
    }
   },
   {
@@ -188,14 +384,50 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:17.368478+00:00",
+      "generation_id": "gen-1794192370-ecVvMsiahRE2ymCZss2g"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:19.677440+00:00",
+      "generation_id": "gen-1794193073-3gvtGY9KZ9GlNSHwHhZP"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:53.413930+00:00",
+      "generation_id": "gen-1794193769-9mlo4D4y01MYzHmZAydA"
+     }
+    }
    }
   },
   {
@@ -212,14 +444,74 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security",
+     "AGI/transformative",
+     "energy/data centers"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:17.368478+00:00",
+      "generation_id": "gen-1794192370-ecVvMsiahRE2ymCZss2g"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "national security",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:19.677440+00:00",
+      "generation_id": "gen-1794193073-3gvtGY9KZ9GlNSHwHhZP"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:53.413930+00:00",
+      "generation_id": "gen-1794193769-9mlo4D4y01MYzHmZAydA"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "energy/data centers",
+       "national security"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:15.439130+00:00",
+      "generation_id": "gen-1794194049-htvSbP1oAunmf0rl8XpA"
+     }
+    }
    }
   },
   {
@@ -236,14 +528,49 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:17.368478+00:00",
+      "generation_id": "gen-1794192370-ecVvMsiahRE2ymCZss2g"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:19.677440+00:00",
+      "generation_id": "gen-1794193073-3gvtGY9KZ9GlNSHwHhZP"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:53.413930+00:00",
+      "generation_id": "gen-1794193769-9mlo4D4y01MYzHmZAydA"
+     }
+    }
    }
   },
   {
@@ -260,14 +587,51 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other",
+     "jobs/economy"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:17.368478+00:00",
+      "generation_id": "gen-1794192370-ecVvMsiahRE2ymCZss2g"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:19.677440+00:00",
+      "generation_id": "gen-1794193073-3gvtGY9KZ9GlNSHwHhZP"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:53.413930+00:00",
+      "generation_id": "gen-1794193769-9mlo4D4y01MYzHmZAydA"
+     }
+    }
    }
   },
   {
@@ -284,14 +648,87 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "china_race": 2
+    },
+    "b": {
+     "china_race": 1
+    },
+    "topics": [
+     "China/competition",
+     "national security"
+    ],
+    "confidence": {
+     "china_race": 4.33
+    },
+    "escalated": [
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:17.368478+00:00",
+      "generation_id": "gen-1794192370-ecVvMsiahRE2ymCZss2g"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 5
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:19.677440+00:00",
+      "generation_id": "gen-1794193073-3gvtGY9KZ9GlNSHwHhZP"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:53.413930+00:00",
+      "generation_id": "gen-1794193769-9mlo4D4y01MYzHmZAydA"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:15.439130+00:00",
+      "generation_id": "gen-1794194049-htvSbP1oAunmf0rl8XpA"
+     }
+    }
    }
   },
   {
@@ -308,14 +745,91 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "china_race": 3
+    },
+    "b": {
+     "china_race": 3
+    },
+    "topics": [
+     "China/competition",
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "china_race": 4.0
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2,
+       "china_race": 3
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:17.368478+00:00",
+      "generation_id": "gen-1794192370-ecVvMsiahRE2ymCZss2g"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:19.677440+00:00",
+      "generation_id": "gen-1794193073-3gvtGY9KZ9GlNSHwHhZP"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:53.413930+00:00",
+      "generation_id": "gen-1794193769-9mlo4D4y01MYzHmZAydA"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:15.439130+00:00",
+      "generation_id": "gen-1794194049-htvSbP1oAunmf0rl8XpA"
+     }
+    }
    }
   },
   {
@@ -332,14 +846,49 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:17.368478+00:00",
+      "generation_id": "gen-1794192370-ecVvMsiahRE2ymCZss2g"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:19.677440+00:00",
+      "generation_id": "gen-1794193073-3gvtGY9KZ9GlNSHwHhZP"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:53.413930+00:00",
+      "generation_id": "gen-1794193769-9mlo4D4y01MYzHmZAydA"
+     }
+    }
    }
   },
   {
@@ -356,14 +905,49 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:17.368478+00:00",
+      "generation_id": "gen-1794192370-ecVvMsiahRE2ymCZss2g"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:19.677440+00:00",
+      "generation_id": "gen-1794193073-3gvtGY9KZ9GlNSHwHhZP"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:53.413930+00:00",
+      "generation_id": "gen-1794193769-9mlo4D4y01MYzHmZAydA"
+     }
+    }
    }
   },
   {
@@ -380,14 +964,68 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "AGI/transformative",
+     "other"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:17.368478+00:00",
+      "generation_id": "gen-1794192370-ecVvMsiahRE2ymCZss2g"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:19.677440+00:00",
+      "generation_id": "gen-1794193073-3gvtGY9KZ9GlNSHwHhZP"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:53.413930+00:00",
+      "generation_id": "gen-1794193769-9mlo4D4y01MYzHmZAydA"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:15.439130+00:00",
+      "generation_id": "gen-1794194049-htvSbP1oAunmf0rl8XpA"
+     }
+    }
    }
   },
   {
@@ -405,14 +1043,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:17.368478+00:00",
+      "generation_id": "gen-1794192370-ecVvMsiahRE2ymCZss2g"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:19.677440+00:00",
+      "generation_id": "gen-1794193073-3gvtGY9KZ9GlNSHwHhZP"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:53.413930+00:00",
+      "generation_id": "gen-1794193769-9mlo4D4y01MYzHmZAydA"
+     }
+    }
    }
   },
   {
@@ -430,14 +1103,51 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other",
+     "jobs/economy"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:17.368478+00:00",
+      "generation_id": "gen-1794192370-ecVvMsiahRE2ymCZss2g"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:19.677440+00:00",
+      "generation_id": "gen-1794193073-3gvtGY9KZ9GlNSHwHhZP"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:53.413930+00:00",
+      "generation_id": "gen-1794193769-9mlo4D4y01MYzHmZAydA"
+     }
+    }
    }
   },
   {
@@ -455,14 +1165,50 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:17.368478+00:00",
+      "generation_id": "gen-1794192370-ecVvMsiahRE2ymCZss2g"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:19.677440+00:00",
+      "generation_id": "gen-1794193073-3gvtGY9KZ9GlNSHwHhZP"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:53.413930+00:00",
+      "generation_id": "gen-1794193769-9mlo4D4y01MYzHmZAydA"
+     }
+    }
    }
   },
   {
@@ -480,14 +1226,82 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "agi_pilled": 3
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "AGI/transformative",
+     "jobs/economy"
+    ],
+    "confidence": {
+     "agi_pilled": 3.0
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:17.368478+00:00",
+      "generation_id": "gen-1794192370-ecVvMsiahRE2ymCZss2g"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:19.677440+00:00",
+      "generation_id": "gen-1794193073-3gvtGY9KZ9GlNSHwHhZP"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:53.413930+00:00",
+      "generation_id": "gen-1794193769-9mlo4D4y01MYzHmZAydA"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:15.439130+00:00",
+      "generation_id": "gen-1794194049-htvSbP1oAunmf0rl8XpA"
+     }
+    }
    }
   },
   {
@@ -504,14 +1318,85 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "agi_pilled": 2
+    },
+    "b": {
+     "agi_pilled": 2
+    },
+    "topics": [
+     "AGI/transformative",
+     "national security"
+    ],
+    "confidence": {
+     "agi_pilled": 4.0
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:17.368478+00:00",
+      "generation_id": "gen-1794192370-ecVvMsiahRE2ymCZss2g"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:19.677440+00:00",
+      "generation_id": "gen-1794193073-3gvtGY9KZ9GlNSHwHhZP"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:53.413930+00:00",
+      "generation_id": "gen-1794193769-9mlo4D4y01MYzHmZAydA"
+     },
+     "sol": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:15.439130+00:00",
+      "generation_id": "gen-1794194049-htvSbP1oAunmf0rl8XpA"
+     }
+    }
    }
   },
   {
@@ -529,14 +1414,53 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy",
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:17.368478+00:00",
+      "generation_id": "gen-1794192370-ecVvMsiahRE2ymCZss2g"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "energy/data centers",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:19.677440+00:00",
+      "generation_id": "gen-1794193073-3gvtGY9KZ9GlNSHwHhZP"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:53.413930+00:00",
+      "generation_id": "gen-1794193769-9mlo4D4y01MYzHmZAydA"
+     }
+    }
    }
   },
   {
@@ -554,14 +1478,78 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "agi_pilled": 3
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "agi_pilled": 3.33
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:17.368478+00:00",
+      "generation_id": "gen-1794192370-ecVvMsiahRE2ymCZss2g"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:19.677440+00:00",
+      "generation_id": "gen-1794193073-3gvtGY9KZ9GlNSHwHhZP"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 4
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:53.413930+00:00",
+      "generation_id": "gen-1794193769-9mlo4D4y01MYzHmZAydA"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:15.439130+00:00",
+      "generation_id": "gen-1794194049-htvSbP1oAunmf0rl8XpA"
+     }
+    }
    }
   },
   {
@@ -579,14 +1567,79 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "agi_pilled": 3
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "agi_pilled": 3.0
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:17.368478+00:00",
+      "generation_id": "gen-1794192370-ecVvMsiahRE2ymCZss2g"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:19.677440+00:00",
+      "generation_id": "gen-1794193073-3gvtGY9KZ9GlNSHwHhZP"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:53.413930+00:00",
+      "generation_id": "gen-1794193769-9mlo4D4y01MYzHmZAydA"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:15.439130+00:00",
+      "generation_id": "gen-1794194049-htvSbP1oAunmf0rl8XpA"
+     }
+    }
    }
   },
   {
@@ -604,14 +1657,82 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "agi_pilled": 3
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "AGI/transformative",
+     "other"
+    ],
+    "confidence": {
+     "agi_pilled": 3.33
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:47:21.648148+00:00",
+      "generation_id": "gen-1794192377-wAsvKqoMSfMcgFfVXu9D"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:05.360709+00:00",
+      "generation_id": "gen-1794193075-35l5AYYeOLLxAWpqphau"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:07.558881+00:00",
+      "generation_id": "gen-1794193779-ErTQNJJdYm79By9PuMNw"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:15.439130+00:00",
+      "generation_id": "gen-1794194049-htvSbP1oAunmf0rl8XpA"
+     }
+    }
    }
   },
   {
@@ -629,14 +1750,75 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "china_race": 2
+    },
+    "b": {
+     "china_race": 2
+    },
+    "topics": [
+     "China/competition",
+     "national security",
+     "energy/data centers"
+    ],
+    "confidence": {
+     "china_race": 3.33
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "national security",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:47:21.648148+00:00",
+      "generation_id": "gen-1794192377-wAsvKqoMSfMcgFfVXu9D"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "national security",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:05.360709+00:00",
+      "generation_id": "gen-1794193075-35l5AYYeOLLxAWpqphau"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "national security",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:07.558881+00:00",
+      "generation_id": "gen-1794193779-ErTQNJJdYm79By9PuMNw"
+     }
+    }
    }
   },
   {
@@ -654,14 +1836,72 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "AGI/transformative",
+     "other"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:47:21.648148+00:00",
+      "generation_id": "gen-1794192377-wAsvKqoMSfMcgFfVXu9D"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:05.360709+00:00",
+      "generation_id": "gen-1794193075-35l5AYYeOLLxAWpqphau"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:07.558881+00:00",
+      "generation_id": "gen-1794193779-ErTQNJJdYm79By9PuMNw"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "energy/data centers"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:15.439130+00:00",
+      "generation_id": "gen-1794194049-htvSbP1oAunmf0rl8XpA"
+     }
+    }
    }
   },
   {
@@ -679,14 +1919,70 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other",
+     "AGI/transformative"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:47:21.648148+00:00",
+      "generation_id": "gen-1794192377-wAsvKqoMSfMcgFfVXu9D"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:05.360709+00:00",
+      "generation_id": "gen-1794193075-35l5AYYeOLLxAWpqphau"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:07.558881+00:00",
+      "generation_id": "gen-1794193779-ErTQNJJdYm79By9PuMNw"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:15.439130+00:00",
+      "generation_id": "gen-1794194049-htvSbP1oAunmf0rl8XpA"
+     }
+    }
    }
   },
   {
@@ -704,14 +2000,52 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other",
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:47:21.648148+00:00",
+      "generation_id": "gen-1794192377-wAsvKqoMSfMcgFfVXu9D"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:05.360709+00:00",
+      "generation_id": "gen-1794193075-35l5AYYeOLLxAWpqphau"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:07.558881+00:00",
+      "generation_id": "gen-1794193779-ErTQNJJdYm79By9PuMNw"
+     }
+    }
    }
   },
   {
@@ -729,14 +2063,70 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "AGI/transformative",
+     "other"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:47:21.648148+00:00",
+      "generation_id": "gen-1794192377-wAsvKqoMSfMcgFfVXu9D"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:05.360709+00:00",
+      "generation_id": "gen-1794193075-35l5AYYeOLLxAWpqphau"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:07.558881+00:00",
+      "generation_id": "gen-1794193779-ErTQNJJdYm79By9PuMNw"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:15.439130+00:00",
+      "generation_id": "gen-1794194049-htvSbP1oAunmf0rl8XpA"
+     }
+    }
    }
   },
   {
@@ -754,14 +2144,72 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other",
+     "national security"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:47:21.648148+00:00",
+      "generation_id": "gen-1794192377-wAsvKqoMSfMcgFfVXu9D"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:05.360709+00:00",
+      "generation_id": "gen-1794193075-35l5AYYeOLLxAWpqphau"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:07.558881+00:00",
+      "generation_id": "gen-1794193779-ErTQNJJdYm79By9PuMNw"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "energy/data centers"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:15.439130+00:00",
+      "generation_id": "gen-1794194049-htvSbP1oAunmf0rl8XpA"
+     }
+    }
    }
   },
   {
@@ -779,14 +2227,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:47:21.648148+00:00",
+      "generation_id": "gen-1794192377-wAsvKqoMSfMcgFfVXu9D"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:05.360709+00:00",
+      "generation_id": "gen-1794193075-35l5AYYeOLLxAWpqphau"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:07.558881+00:00",
+      "generation_id": "gen-1794193779-ErTQNJJdYm79By9PuMNw"
+     }
+    }
    }
   },
   {
@@ -804,14 +2287,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:47:21.648148+00:00",
+      "generation_id": "gen-1794192377-wAsvKqoMSfMcgFfVXu9D"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:05.360709+00:00",
+      "generation_id": "gen-1794193075-35l5AYYeOLLxAWpqphau"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:07.558881+00:00",
+      "generation_id": "gen-1794193779-ErTQNJJdYm79By9PuMNw"
+     }
+    }
    }
   },
   {
@@ -830,14 +2348,82 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "agi_pilled": 3
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "AGI/transformative",
+     "other"
+    ],
+    "confidence": {
+     "agi_pilled": 3.67
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:47:21.648148+00:00",
+      "generation_id": "gen-1794192377-wAsvKqoMSfMcgFfVXu9D"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:05.360709+00:00",
+      "generation_id": "gen-1794193075-35l5AYYeOLLxAWpqphau"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:07.558881+00:00",
+      "generation_id": "gen-1794193779-ErTQNJJdYm79By9PuMNw"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:15.439130+00:00",
+      "generation_id": "gen-1794194049-htvSbP1oAunmf0rl8XpA"
+     }
+    }
    }
   },
   {
@@ -856,14 +2442,83 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "agi_pilled": 3
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "AGI/transformative",
+     "other"
+    ],
+    "confidence": {
+     "agi_pilled": 3.33
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:47:21.648148+00:00",
+      "generation_id": "gen-1794192377-wAsvKqoMSfMcgFfVXu9D"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:05.360709+00:00",
+      "generation_id": "gen-1794193075-35l5AYYeOLLxAWpqphau"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:07.558881+00:00",
+      "generation_id": "gen-1794193779-ErTQNJJdYm79By9PuMNw"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:15.439130+00:00",
+      "generation_id": "gen-1794194049-htvSbP1oAunmf0rl8XpA"
+     }
+    }
    }
   },
   {
@@ -882,14 +2537,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:47:21.648148+00:00",
+      "generation_id": "gen-1794192377-wAsvKqoMSfMcgFfVXu9D"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:05.360709+00:00",
+      "generation_id": "gen-1794193075-35l5AYYeOLLxAWpqphau"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:07.558881+00:00",
+      "generation_id": "gen-1794193779-ErTQNJJdYm79By9PuMNw"
+     }
+    }
    }
   },
   {
@@ -908,14 +2598,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:47:21.648148+00:00",
+      "generation_id": "gen-1794192377-wAsvKqoMSfMcgFfVXu9D"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:05.360709+00:00",
+      "generation_id": "gen-1794193075-35l5AYYeOLLxAWpqphau"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:07.558881+00:00",
+      "generation_id": "gen-1794193779-ErTQNJJdYm79By9PuMNw"
+     }
+    }
    }
   },
   {
@@ -934,14 +2659,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:47:21.648148+00:00",
+      "generation_id": "gen-1794192377-wAsvKqoMSfMcgFfVXu9D"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:05.360709+00:00",
+      "generation_id": "gen-1794193075-35l5AYYeOLLxAWpqphau"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:07.558881+00:00",
+      "generation_id": "gen-1794193779-ErTQNJJdYm79By9PuMNw"
+     }
+    }
    }
   },
   {
@@ -960,14 +2720,50 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:47:21.648148+00:00",
+      "generation_id": "gen-1794192377-wAsvKqoMSfMcgFfVXu9D"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:05.360709+00:00",
+      "generation_id": "gen-1794193075-35l5AYYeOLLxAWpqphau"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:07.558881+00:00",
+      "generation_id": "gen-1794193779-ErTQNJJdYm79By9PuMNw"
+     }
+    }
    }
   },
   {
@@ -986,14 +2782,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:47:21.648148+00:00",
+      "generation_id": "gen-1794192377-wAsvKqoMSfMcgFfVXu9D"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:05.360709+00:00",
+      "generation_id": "gen-1794193075-35l5AYYeOLLxAWpqphau"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:07.558881+00:00",
+      "generation_id": "gen-1794193779-ErTQNJJdYm79By9PuMNw"
+     }
+    }
    }
   },
   {
@@ -1012,14 +2843,50 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:47:21.648148+00:00",
+      "generation_id": "gen-1794192377-wAsvKqoMSfMcgFfVXu9D"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:05.360709+00:00",
+      "generation_id": "gen-1794193075-35l5AYYeOLLxAWpqphau"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:07.558881+00:00",
+      "generation_id": "gen-1794193779-ErTQNJJdYm79By9PuMNw"
+     }
+    }
    }
   },
   {
@@ -1038,14 +2905,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:47:21.648148+00:00",
+      "generation_id": "gen-1794192377-wAsvKqoMSfMcgFfVXu9D"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:05.360709+00:00",
+      "generation_id": "gen-1794193075-35l5AYYeOLLxAWpqphau"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:07.558881+00:00",
+      "generation_id": "gen-1794193779-ErTQNJJdYm79By9PuMNw"
+     }
+    }
    }
   },
   {
@@ -1064,14 +2966,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:47:21.648148+00:00",
+      "generation_id": "gen-1794192377-wAsvKqoMSfMcgFfVXu9D"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:05.360709+00:00",
+      "generation_id": "gen-1794193075-35l5AYYeOLLxAWpqphau"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:07.558881+00:00",
+      "generation_id": "gen-1794193779-ErTQNJJdYm79By9PuMNw"
+     }
+    }
    }
   },
   {
@@ -1090,14 +3027,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:47:21.648148+00:00",
+      "generation_id": "gen-1794192377-wAsvKqoMSfMcgFfVXu9D"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:05.360709+00:00",
+      "generation_id": "gen-1794193075-35l5AYYeOLLxAWpqphau"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:07.558881+00:00",
+      "generation_id": "gen-1794193779-ErTQNJJdYm79By9PuMNw"
+     }
+    }
    }
   },
   {
@@ -1116,14 +3088,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:29.413807+00:00",
+      "generation_id": "gen-1794192377-Ht8V0FFFpT9f3E5lo2Gl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:12.040981+00:00",
+      "generation_id": "gen-1794193076-YVNz6P6w2uIkWoaAtMtT"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.371736+00:00",
+      "generation_id": "gen-1794193787-G2CGdjttlFfe00T9L29L"
+     }
+    }
    }
   },
   {
@@ -1142,14 +3149,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:29.413807+00:00",
+      "generation_id": "gen-1794192377-Ht8V0FFFpT9f3E5lo2Gl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:12.040981+00:00",
+      "generation_id": "gen-1794193076-YVNz6P6w2uIkWoaAtMtT"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.371736+00:00",
+      "generation_id": "gen-1794193787-G2CGdjttlFfe00T9L29L"
+     }
+    }
    }
   },
   {
@@ -1168,14 +3210,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:29.413807+00:00",
+      "generation_id": "gen-1794192377-Ht8V0FFFpT9f3E5lo2Gl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:12.040981+00:00",
+      "generation_id": "gen-1794193076-YVNz6P6w2uIkWoaAtMtT"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.371736+00:00",
+      "generation_id": "gen-1794193787-G2CGdjttlFfe00T9L29L"
+     }
+    }
    }
   },
   {
@@ -1194,14 +3271,53 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:29.413807+00:00",
+      "generation_id": "gen-1794192377-Ht8V0FFFpT9f3E5lo2Gl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:12.040981+00:00",
+      "generation_id": "gen-1794193076-YVNz6P6w2uIkWoaAtMtT"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.371736+00:00",
+      "generation_id": "gen-1794193787-G2CGdjttlFfe00T9L29L"
+     }
+    }
    }
   },
   {
@@ -1220,14 +3336,57 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "national security",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:29.413807+00:00",
+      "generation_id": "gen-1794192377-Ht8V0FFFpT9f3E5lo2Gl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:12.040981+00:00",
+      "generation_id": "gen-1794193076-YVNz6P6w2uIkWoaAtMtT"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.371736+00:00",
+      "generation_id": "gen-1794193787-G2CGdjttlFfe00T9L29L"
+     }
+    }
    }
   },
   {
@@ -1246,14 +3405,51 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other",
+     "AGI/transformative"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:29.413807+00:00",
+      "generation_id": "gen-1794192377-Ht8V0FFFpT9f3E5lo2Gl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:12.040981+00:00",
+      "generation_id": "gen-1794193076-YVNz6P6w2uIkWoaAtMtT"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.371736+00:00",
+      "generation_id": "gen-1794193787-G2CGdjttlFfe00T9L29L"
+     }
+    }
    }
   },
   {
@@ -1272,14 +3468,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:29.413807+00:00",
+      "generation_id": "gen-1794192377-Ht8V0FFFpT9f3E5lo2Gl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:12.040981+00:00",
+      "generation_id": "gen-1794193076-YVNz6P6w2uIkWoaAtMtT"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.371736+00:00",
+      "generation_id": "gen-1794193787-G2CGdjttlFfe00T9L29L"
+     }
+    }
    }
   },
   {
@@ -1298,14 +3529,53 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:29.413807+00:00",
+      "generation_id": "gen-1794192377-Ht8V0FFFpT9f3E5lo2Gl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:12.040981+00:00",
+      "generation_id": "gen-1794193076-YVNz6P6w2uIkWoaAtMtT"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.371736+00:00",
+      "generation_id": "gen-1794193787-G2CGdjttlFfe00T9L29L"
+     }
+    }
    }
   },
   {
@@ -1324,14 +3594,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:29.413807+00:00",
+      "generation_id": "gen-1794192377-Ht8V0FFFpT9f3E5lo2Gl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:12.040981+00:00",
+      "generation_id": "gen-1794193076-YVNz6P6w2uIkWoaAtMtT"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.371736+00:00",
+      "generation_id": "gen-1794193787-G2CGdjttlFfe00T9L29L"
+     }
+    }
    }
   },
   {
@@ -1350,14 +3655,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:29.413807+00:00",
+      "generation_id": "gen-1794192377-Ht8V0FFFpT9f3E5lo2Gl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:12.040981+00:00",
+      "generation_id": "gen-1794193076-YVNz6P6w2uIkWoaAtMtT"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.371736+00:00",
+      "generation_id": "gen-1794193787-G2CGdjttlFfe00T9L29L"
+     }
+    }
    }
   },
   {
@@ -1376,14 +3716,50 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:29.413807+00:00",
+      "generation_id": "gen-1794192377-Ht8V0FFFpT9f3E5lo2Gl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:12.040981+00:00",
+      "generation_id": "gen-1794193076-YVNz6P6w2uIkWoaAtMtT"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.371736+00:00",
+      "generation_id": "gen-1794193787-G2CGdjttlFfe00T9L29L"
+     }
+    }
    }
   },
   {
@@ -1402,14 +3778,57 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "national security",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:29.413807+00:00",
+      "generation_id": "gen-1794192377-Ht8V0FFFpT9f3E5lo2Gl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:12.040981+00:00",
+      "generation_id": "gen-1794193076-YVNz6P6w2uIkWoaAtMtT"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.371736+00:00",
+      "generation_id": "gen-1794193787-G2CGdjttlFfe00T9L29L"
+     }
+    }
    }
   },
   {
@@ -1428,14 +3847,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:29.413807+00:00",
+      "generation_id": "gen-1794192377-Ht8V0FFFpT9f3E5lo2Gl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:12.040981+00:00",
+      "generation_id": "gen-1794193076-YVNz6P6w2uIkWoaAtMtT"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.371736+00:00",
+      "generation_id": "gen-1794193787-G2CGdjttlFfe00T9L29L"
+     }
+    }
    }
   },
   {
@@ -1454,14 +3908,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:29.413807+00:00",
+      "generation_id": "gen-1794192377-Ht8V0FFFpT9f3E5lo2Gl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:12.040981+00:00",
+      "generation_id": "gen-1794193076-YVNz6P6w2uIkWoaAtMtT"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.371736+00:00",
+      "generation_id": "gen-1794193787-G2CGdjttlFfe00T9L29L"
+     }
+    }
    }
   },
   {
@@ -1480,14 +3969,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:29.413807+00:00",
+      "generation_id": "gen-1794192377-Ht8V0FFFpT9f3E5lo2Gl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:12.040981+00:00",
+      "generation_id": "gen-1794193076-YVNz6P6w2uIkWoaAtMtT"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.371736+00:00",
+      "generation_id": "gen-1794193787-G2CGdjttlFfe00T9L29L"
+     }
+    }
    }
   },
   {
@@ -1506,14 +4030,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:29.413807+00:00",
+      "generation_id": "gen-1794192377-Ht8V0FFFpT9f3E5lo2Gl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:12.040981+00:00",
+      "generation_id": "gen-1794193076-YVNz6P6w2uIkWoaAtMtT"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.371736+00:00",
+      "generation_id": "gen-1794193787-G2CGdjttlFfe00T9L29L"
+     }
+    }
    }
   },
   {
@@ -1532,14 +4091,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:29.413807+00:00",
+      "generation_id": "gen-1794192377-Ht8V0FFFpT9f3E5lo2Gl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:12.040981+00:00",
+      "generation_id": "gen-1794193076-YVNz6P6w2uIkWoaAtMtT"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.371736+00:00",
+      "generation_id": "gen-1794193787-G2CGdjttlFfe00T9L29L"
+     }
+    }
    }
   },
   {
@@ -1558,14 +4152,57 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "national security",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:29.413807+00:00",
+      "generation_id": "gen-1794192377-Ht8V0FFFpT9f3E5lo2Gl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:12.040981+00:00",
+      "generation_id": "gen-1794193076-YVNz6P6w2uIkWoaAtMtT"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.371736+00:00",
+      "generation_id": "gen-1794193787-G2CGdjttlFfe00T9L29L"
+     }
+    }
    }
   },
   {
@@ -1584,14 +4221,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:29.413807+00:00",
+      "generation_id": "gen-1794192377-Ht8V0FFFpT9f3E5lo2Gl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:12.040981+00:00",
+      "generation_id": "gen-1794193076-YVNz6P6w2uIkWoaAtMtT"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.371736+00:00",
+      "generation_id": "gen-1794193787-G2CGdjttlFfe00T9L29L"
+     }
+    }
    }
   },
   {
@@ -1610,14 +4282,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:29.413807+00:00",
+      "generation_id": "gen-1794192377-Ht8V0FFFpT9f3E5lo2Gl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:12.040981+00:00",
+      "generation_id": "gen-1794193076-YVNz6P6w2uIkWoaAtMtT"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.371736+00:00",
+      "generation_id": "gen-1794193787-G2CGdjttlFfe00T9L29L"
+     }
+    }
    }
   },
   {
@@ -1636,14 +4343,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:33.884640+00:00",
+      "generation_id": "gen-1794192381-MOGQRJO83SWXtTywpNID"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:03.593675+00:00",
+      "generation_id": "gen-1794193079-gnjhegEAaZ7y3SlWmbKn"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.880079+00:00",
+      "generation_id": "gen-1794193790-tZWWfXglUBycznibKqn7"
+     }
+    }
    }
   },
   {
@@ -1662,14 +4404,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:33.884640+00:00",
+      "generation_id": "gen-1794192381-MOGQRJO83SWXtTywpNID"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:03.593675+00:00",
+      "generation_id": "gen-1794193079-gnjhegEAaZ7y3SlWmbKn"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.880079+00:00",
+      "generation_id": "gen-1794193790-tZWWfXglUBycznibKqn7"
+     }
+    }
    }
   },
   {
@@ -1688,14 +4465,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:33.884640+00:00",
+      "generation_id": "gen-1794192381-MOGQRJO83SWXtTywpNID"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:03.593675+00:00",
+      "generation_id": "gen-1794193079-gnjhegEAaZ7y3SlWmbKn"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.880079+00:00",
+      "generation_id": "gen-1794193790-tZWWfXglUBycznibKqn7"
+     }
+    }
    }
   },
   {
@@ -1714,14 +4526,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:33.884640+00:00",
+      "generation_id": "gen-1794192381-MOGQRJO83SWXtTywpNID"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:03.593675+00:00",
+      "generation_id": "gen-1794193079-gnjhegEAaZ7y3SlWmbKn"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.880079+00:00",
+      "generation_id": "gen-1794193790-tZWWfXglUBycznibKqn7"
+     }
+    }
    }
   },
   {
@@ -1740,14 +4587,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:33.884640+00:00",
+      "generation_id": "gen-1794192381-MOGQRJO83SWXtTywpNID"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:03.593675+00:00",
+      "generation_id": "gen-1794193079-gnjhegEAaZ7y3SlWmbKn"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.880079+00:00",
+      "generation_id": "gen-1794193790-tZWWfXglUBycznibKqn7"
+     }
+    }
    }
   },
   {
@@ -1766,14 +4648,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:33.884640+00:00",
+      "generation_id": "gen-1794192381-MOGQRJO83SWXtTywpNID"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:03.593675+00:00",
+      "generation_id": "gen-1794193079-gnjhegEAaZ7y3SlWmbKn"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.880079+00:00",
+      "generation_id": "gen-1794193790-tZWWfXglUBycznibKqn7"
+     }
+    }
    }
   },
   {
@@ -1792,14 +4709,50 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:33.884640+00:00",
+      "generation_id": "gen-1794192381-MOGQRJO83SWXtTywpNID"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:03.593675+00:00",
+      "generation_id": "gen-1794193079-gnjhegEAaZ7y3SlWmbKn"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.880079+00:00",
+      "generation_id": "gen-1794193790-tZWWfXglUBycznibKqn7"
+     }
+    }
    }
   },
   {
@@ -1818,14 +4771,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:33.884640+00:00",
+      "generation_id": "gen-1794192381-MOGQRJO83SWXtTywpNID"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:03.593675+00:00",
+      "generation_id": "gen-1794193079-gnjhegEAaZ7y3SlWmbKn"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.880079+00:00",
+      "generation_id": "gen-1794193790-tZWWfXglUBycznibKqn7"
+     }
+    }
    }
   },
   {
@@ -1844,14 +4832,50 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:33.884640+00:00",
+      "generation_id": "gen-1794192381-MOGQRJO83SWXtTywpNID"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:03.593675+00:00",
+      "generation_id": "gen-1794193079-gnjhegEAaZ7y3SlWmbKn"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.880079+00:00",
+      "generation_id": "gen-1794193790-tZWWfXglUBycznibKqn7"
+     }
+    }
    }
   },
   {
@@ -1870,14 +4894,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:33.884640+00:00",
+      "generation_id": "gen-1794192381-MOGQRJO83SWXtTywpNID"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:03.593675+00:00",
+      "generation_id": "gen-1794193079-gnjhegEAaZ7y3SlWmbKn"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.880079+00:00",
+      "generation_id": "gen-1794193790-tZWWfXglUBycznibKqn7"
+     }
+    }
    }
   },
   {
@@ -1896,14 +4955,50 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:33.884640+00:00",
+      "generation_id": "gen-1794192381-MOGQRJO83SWXtTywpNID"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:03.593675+00:00",
+      "generation_id": "gen-1794193079-gnjhegEAaZ7y3SlWmbKn"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.880079+00:00",
+      "generation_id": "gen-1794193790-tZWWfXglUBycznibKqn7"
+     }
+    }
    }
   },
   {
@@ -1922,14 +5017,50 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:33.884640+00:00",
+      "generation_id": "gen-1794192381-MOGQRJO83SWXtTywpNID"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:03.593675+00:00",
+      "generation_id": "gen-1794193079-gnjhegEAaZ7y3SlWmbKn"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.880079+00:00",
+      "generation_id": "gen-1794193790-tZWWfXglUBycznibKqn7"
+     }
+    }
    }
   },
   {
@@ -1948,14 +5079,56 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "jobs/economy",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:33.884640+00:00",
+      "generation_id": "gen-1794192381-MOGQRJO83SWXtTywpNID"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:03.593675+00:00",
+      "generation_id": "gen-1794193079-gnjhegEAaZ7y3SlWmbKn"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.880079+00:00",
+      "generation_id": "gen-1794193790-tZWWfXglUBycznibKqn7"
+     }
+    }
    }
   },
   {
@@ -1974,14 +5147,50 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:33.884640+00:00",
+      "generation_id": "gen-1794192381-MOGQRJO83SWXtTywpNID"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:03.593675+00:00",
+      "generation_id": "gen-1794193079-gnjhegEAaZ7y3SlWmbKn"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.880079+00:00",
+      "generation_id": "gen-1794193790-tZWWfXglUBycznibKqn7"
+     }
+    }
    }
   },
   {
@@ -2000,14 +5209,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:33.884640+00:00",
+      "generation_id": "gen-1794192381-MOGQRJO83SWXtTywpNID"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:03.593675+00:00",
+      "generation_id": "gen-1794193079-gnjhegEAaZ7y3SlWmbKn"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.880079+00:00",
+      "generation_id": "gen-1794193790-tZWWfXglUBycznibKqn7"
+     }
+    }
    }
   },
   {
@@ -2026,14 +5270,50 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:33.884640+00:00",
+      "generation_id": "gen-1794192381-MOGQRJO83SWXtTywpNID"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:03.593675+00:00",
+      "generation_id": "gen-1794193079-gnjhegEAaZ7y3SlWmbKn"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.880079+00:00",
+      "generation_id": "gen-1794193790-tZWWfXglUBycznibKqn7"
+     }
+    }
    }
   },
   {
@@ -2052,14 +5332,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:33.884640+00:00",
+      "generation_id": "gen-1794192381-MOGQRJO83SWXtTywpNID"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:03.593675+00:00",
+      "generation_id": "gen-1794193079-gnjhegEAaZ7y3SlWmbKn"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.880079+00:00",
+      "generation_id": "gen-1794193790-tZWWfXglUBycznibKqn7"
+     }
+    }
    }
   },
   {
@@ -2078,14 +5393,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:33.884640+00:00",
+      "generation_id": "gen-1794192381-MOGQRJO83SWXtTywpNID"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:03.593675+00:00",
+      "generation_id": "gen-1794193079-gnjhegEAaZ7y3SlWmbKn"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.880079+00:00",
+      "generation_id": "gen-1794193790-tZWWfXglUBycznibKqn7"
+     }
+    }
    }
   },
   {
@@ -2104,14 +5454,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:33.884640+00:00",
+      "generation_id": "gen-1794192381-MOGQRJO83SWXtTywpNID"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:03.593675+00:00",
+      "generation_id": "gen-1794193079-gnjhegEAaZ7y3SlWmbKn"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.880079+00:00",
+      "generation_id": "gen-1794193790-tZWWfXglUBycznibKqn7"
+     }
+    }
    }
   },
   {
@@ -2130,14 +5515,53 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other",
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:33.884640+00:00",
+      "generation_id": "gen-1794192381-MOGQRJO83SWXtTywpNID"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:03.593675+00:00",
+      "generation_id": "gen-1794193079-gnjhegEAaZ7y3SlWmbKn"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:59.880079+00:00",
+      "generation_id": "gen-1794193790-tZWWfXglUBycznibKqn7"
+     }
+    }
    }
   },
   {
@@ -2156,14 +5580,50 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:50.190116+00:00",
+      "generation_id": "gen-1794192388-XchgNoAqlckBKfkNE3JS"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:10.371044+00:00",
+      "generation_id": "gen-1794193080-5T79WGEaCWxyRRUXKAxk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.045045+00:00",
+      "generation_id": "gen-1794193793-CATz9BKDAWUswmGBkGFK"
+     }
+    }
    }
   },
   {
@@ -2182,14 +5642,53 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:50.190116+00:00",
+      "generation_id": "gen-1794192388-XchgNoAqlckBKfkNE3JS"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:10.371044+00:00",
+      "generation_id": "gen-1794193080-5T79WGEaCWxyRRUXKAxk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.045045+00:00",
+      "generation_id": "gen-1794193793-CATz9BKDAWUswmGBkGFK"
+     }
+    }
    }
   },
   {
@@ -2208,14 +5707,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:50.190116+00:00",
+      "generation_id": "gen-1794192388-XchgNoAqlckBKfkNE3JS"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:10.371044+00:00",
+      "generation_id": "gen-1794193080-5T79WGEaCWxyRRUXKAxk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.045045+00:00",
+      "generation_id": "gen-1794193793-CATz9BKDAWUswmGBkGFK"
+     }
+    }
    }
   },
   {
@@ -2234,14 +5768,53 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:50.190116+00:00",
+      "generation_id": "gen-1794192388-XchgNoAqlckBKfkNE3JS"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:10.371044+00:00",
+      "generation_id": "gen-1794193080-5T79WGEaCWxyRRUXKAxk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.045045+00:00",
+      "generation_id": "gen-1794193793-CATz9BKDAWUswmGBkGFK"
+     }
+    }
    }
   },
   {
@@ -2260,14 +5833,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:50.190116+00:00",
+      "generation_id": "gen-1794192388-XchgNoAqlckBKfkNE3JS"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:10.371044+00:00",
+      "generation_id": "gen-1794193080-5T79WGEaCWxyRRUXKAxk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.045045+00:00",
+      "generation_id": "gen-1794193793-CATz9BKDAWUswmGBkGFK"
+     }
+    }
    }
   },
   {
@@ -2286,14 +5894,50 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:50.190116+00:00",
+      "generation_id": "gen-1794192388-XchgNoAqlckBKfkNE3JS"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:10.371044+00:00",
+      "generation_id": "gen-1794193080-5T79WGEaCWxyRRUXKAxk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.045045+00:00",
+      "generation_id": "gen-1794193793-CATz9BKDAWUswmGBkGFK"
+     }
+    }
    }
   },
   {
@@ -2312,14 +5956,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:50.190116+00:00",
+      "generation_id": "gen-1794192388-XchgNoAqlckBKfkNE3JS"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:10.371044+00:00",
+      "generation_id": "gen-1794193080-5T79WGEaCWxyRRUXKAxk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.045045+00:00",
+      "generation_id": "gen-1794193793-CATz9BKDAWUswmGBkGFK"
+     }
+    }
    }
   },
   {
@@ -2338,14 +6017,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:50.190116+00:00",
+      "generation_id": "gen-1794192388-XchgNoAqlckBKfkNE3JS"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:10.371044+00:00",
+      "generation_id": "gen-1794193080-5T79WGEaCWxyRRUXKAxk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.045045+00:00",
+      "generation_id": "gen-1794193793-CATz9BKDAWUswmGBkGFK"
+     }
+    }
    }
   },
   {
@@ -2364,14 +6078,52 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:50.190116+00:00",
+      "generation_id": "gen-1794192388-XchgNoAqlckBKfkNE3JS"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:10.371044+00:00",
+      "generation_id": "gen-1794193080-5T79WGEaCWxyRRUXKAxk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.045045+00:00",
+      "generation_id": "gen-1794193793-CATz9BKDAWUswmGBkGFK"
+     }
+    }
    }
   },
   {
@@ -2390,14 +6142,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:50.190116+00:00",
+      "generation_id": "gen-1794192388-XchgNoAqlckBKfkNE3JS"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:10.371044+00:00",
+      "generation_id": "gen-1794193080-5T79WGEaCWxyRRUXKAxk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.045045+00:00",
+      "generation_id": "gen-1794193793-CATz9BKDAWUswmGBkGFK"
+     }
+    }
    }
   },
   {
@@ -2416,14 +6203,52 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:50.190116+00:00",
+      "generation_id": "gen-1794192388-XchgNoAqlckBKfkNE3JS"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:10.371044+00:00",
+      "generation_id": "gen-1794193080-5T79WGEaCWxyRRUXKAxk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.045045+00:00",
+      "generation_id": "gen-1794193793-CATz9BKDAWUswmGBkGFK"
+     }
+    }
    }
   },
   {
@@ -2442,14 +6267,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:50.190116+00:00",
+      "generation_id": "gen-1794192388-XchgNoAqlckBKfkNE3JS"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:10.371044+00:00",
+      "generation_id": "gen-1794193080-5T79WGEaCWxyRRUXKAxk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.045045+00:00",
+      "generation_id": "gen-1794193793-CATz9BKDAWUswmGBkGFK"
+     }
+    }
    }
   },
   {
@@ -2468,14 +6328,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:50.190116+00:00",
+      "generation_id": "gen-1794192388-XchgNoAqlckBKfkNE3JS"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:10.371044+00:00",
+      "generation_id": "gen-1794193080-5T79WGEaCWxyRRUXKAxk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.045045+00:00",
+      "generation_id": "gen-1794193793-CATz9BKDAWUswmGBkGFK"
+     }
+    }
    }
   },
   {
@@ -2494,14 +6389,57 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy",
+     "national security",
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "national security",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:50.190116+00:00",
+      "generation_id": "gen-1794192388-XchgNoAqlckBKfkNE3JS"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:10.371044+00:00",
+      "generation_id": "gen-1794193080-5T79WGEaCWxyRRUXKAxk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "national security",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.045045+00:00",
+      "generation_id": "gen-1794193793-CATz9BKDAWUswmGBkGFK"
+     }
+    }
    }
   },
   {
@@ -2520,14 +6458,52 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other",
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:50.190116+00:00",
+      "generation_id": "gen-1794192388-XchgNoAqlckBKfkNE3JS"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:10.371044+00:00",
+      "generation_id": "gen-1794193080-5T79WGEaCWxyRRUXKAxk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.045045+00:00",
+      "generation_id": "gen-1794193793-CATz9BKDAWUswmGBkGFK"
+     }
+    }
    }
   },
   {
@@ -2546,14 +6522,52 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:50.190116+00:00",
+      "generation_id": "gen-1794192388-XchgNoAqlckBKfkNE3JS"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:10.371044+00:00",
+      "generation_id": "gen-1794193080-5T79WGEaCWxyRRUXKAxk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.045045+00:00",
+      "generation_id": "gen-1794193793-CATz9BKDAWUswmGBkGFK"
+     }
+    }
    }
   },
   {
@@ -2572,14 +6586,53 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:50.190116+00:00",
+      "generation_id": "gen-1794192388-XchgNoAqlckBKfkNE3JS"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:10.371044+00:00",
+      "generation_id": "gen-1794193080-5T79WGEaCWxyRRUXKAxk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.045045+00:00",
+      "generation_id": "gen-1794193793-CATz9BKDAWUswmGBkGFK"
+     }
+    }
    }
   },
   {
@@ -2598,14 +6651,53 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:50.190116+00:00",
+      "generation_id": "gen-1794192388-XchgNoAqlckBKfkNE3JS"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:10.371044+00:00",
+      "generation_id": "gen-1794193080-5T79WGEaCWxyRRUXKAxk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.045045+00:00",
+      "generation_id": "gen-1794193793-CATz9BKDAWUswmGBkGFK"
+     }
+    }
    }
   },
   {
@@ -2624,14 +6716,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:50.190116+00:00",
+      "generation_id": "gen-1794192388-XchgNoAqlckBKfkNE3JS"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:10.371044+00:00",
+      "generation_id": "gen-1794193080-5T79WGEaCWxyRRUXKAxk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.045045+00:00",
+      "generation_id": "gen-1794193793-CATz9BKDAWUswmGBkGFK"
+     }
+    }
    }
   },
   {
@@ -2650,14 +6777,56 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "national security",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:50.190116+00:00",
+      "generation_id": "gen-1794192388-XchgNoAqlckBKfkNE3JS"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:10.371044+00:00",
+      "generation_id": "gen-1794193080-5T79WGEaCWxyRRUXKAxk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:00.045045+00:00",
+      "generation_id": "gen-1794193793-CATz9BKDAWUswmGBkGFK"
+     }
+    }
    }
   },
   {
@@ -2676,14 +6845,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:41.243520+00:00",
+      "generation_id": "gen-1794192389-K5SY3ioUJvXrLcXPGUCX"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:59.847592+00:00",
+      "generation_id": "gen-1794193083-kNJ7RfMnByUhYKVjmsJ6"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:11.733988+00:00",
+      "generation_id": "gen-1794193793-tKmaX5dk2idSu3I9scYY"
+     }
+    }
    }
   },
   {
@@ -2702,14 +6906,71 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "other"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:41.243520+00:00",
+      "generation_id": "gen-1794192389-K5SY3ioUJvXrLcXPGUCX"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:59.847592+00:00",
+      "generation_id": "gen-1794193083-kNJ7RfMnByUhYKVjmsJ6"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:11.733988+00:00",
+      "generation_id": "gen-1794193793-tKmaX5dk2idSu3I9scYY"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:15.439130+00:00",
+      "generation_id": "gen-1794194049-htvSbP1oAunmf0rl8XpA"
+     }
+    }
    }
   },
   {
@@ -2728,14 +6989,87 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "china_race": 2
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "China/competition",
+     "other"
+    ],
+    "confidence": {
+     "china_race": 2.0
+    },
+    "escalated": [
+     "ai_overall",
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:41.243520+00:00",
+      "generation_id": "gen-1794192389-K5SY3ioUJvXrLcXPGUCX"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3,
+       "china_race": 2
+      },
+      "confidence": {
+       "ai_overall": 3,
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:59.847592+00:00",
+      "generation_id": "gen-1794193083-kNJ7RfMnByUhYKVjmsJ6"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:11.733988+00:00",
+      "generation_id": "gen-1794193793-tKmaX5dk2idSu3I9scYY"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:15.439130+00:00",
+      "generation_id": "gen-1794194049-htvSbP1oAunmf0rl8XpA"
+     }
+    }
    }
   },
   {
@@ -2754,14 +7088,69 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other",
+     "AGI/transformative"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:41.243520+00:00",
+      "generation_id": "gen-1794192389-K5SY3ioUJvXrLcXPGUCX"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:59.847592+00:00",
+      "generation_id": "gen-1794193083-kNJ7RfMnByUhYKVjmsJ6"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:11.733988+00:00",
+      "generation_id": "gen-1794193793-tKmaX5dk2idSu3I9scYY"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:15.439130+00:00",
+      "generation_id": "gen-1794194049-htvSbP1oAunmf0rl8XpA"
+     }
+    }
    }
   },
   {
@@ -2780,14 +7169,50 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:41.243520+00:00",
+      "generation_id": "gen-1794192389-K5SY3ioUJvXrLcXPGUCX"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:59.847592+00:00",
+      "generation_id": "gen-1794193083-kNJ7RfMnByUhYKVjmsJ6"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:11.733988+00:00",
+      "generation_id": "gen-1794193793-tKmaX5dk2idSu3I9scYY"
+     }
+    }
    }
   },
   {
@@ -2806,14 +7231,53 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:41.243520+00:00",
+      "generation_id": "gen-1794192389-K5SY3ioUJvXrLcXPGUCX"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:59.847592+00:00",
+      "generation_id": "gen-1794193083-kNJ7RfMnByUhYKVjmsJ6"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:11.733988+00:00",
+      "generation_id": "gen-1794193793-tKmaX5dk2idSu3I9scYY"
+     }
+    }
    }
   },
   {
@@ -2832,14 +7296,67 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:41.243520+00:00",
+      "generation_id": "gen-1794192389-K5SY3ioUJvXrLcXPGUCX"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:59.847592+00:00",
+      "generation_id": "gen-1794193083-kNJ7RfMnByUhYKVjmsJ6"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:11.733988+00:00",
+      "generation_id": "gen-1794193793-tKmaX5dk2idSu3I9scYY"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:13.941471+00:00",
+      "generation_id": "gen-1794194049-ptQw5uKfQKYjXM7q4VV8"
+     }
+    }
    }
   },
   {
@@ -2858,14 +7375,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:41.243520+00:00",
+      "generation_id": "gen-1794192389-K5SY3ioUJvXrLcXPGUCX"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:59.847592+00:00",
+      "generation_id": "gen-1794193083-kNJ7RfMnByUhYKVjmsJ6"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:11.733988+00:00",
+      "generation_id": "gen-1794193793-tKmaX5dk2idSu3I9scYY"
+     }
+    }
    }
   },
   {
@@ -2884,14 +7436,76 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "national security",
+     "other"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:41.243520+00:00",
+      "generation_id": "gen-1794192389-K5SY3ioUJvXrLcXPGUCX"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "energy/data centers",
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:59.847592+00:00",
+      "generation_id": "gen-1794193083-kNJ7RfMnByUhYKVjmsJ6"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:11.733988+00:00",
+      "generation_id": "gen-1794193793-tKmaX5dk2idSu3I9scYY"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security",
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:13.941471+00:00",
+      "generation_id": "gen-1794194049-ptQw5uKfQKYjXM7q4VV8"
+     }
+    }
    }
   },
   {
@@ -2910,14 +7524,72 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other",
+     "China/competition"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "ai_overall",
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:41.243520+00:00",
+      "generation_id": "gen-1794192389-K5SY3ioUJvXrLcXPGUCX"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3,
+       "china_race": 2
+      },
+      "confidence": {
+       "ai_overall": 2,
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:59.847592+00:00",
+      "generation_id": "gen-1794193083-kNJ7RfMnByUhYKVjmsJ6"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:11.733988+00:00",
+      "generation_id": "gen-1794193793-tKmaX5dk2idSu3I9scYY"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:13.941471+00:00",
+      "generation_id": "gen-1794194049-ptQw5uKfQKYjXM7q4VV8"
+     }
+    }
    }
   },
   {
@@ -2936,14 +7608,72 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other",
+     "China/competition"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "ai_overall",
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:41.243520+00:00",
+      "generation_id": "gen-1794192389-K5SY3ioUJvXrLcXPGUCX"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3,
+       "china_race": 2
+      },
+      "confidence": {
+       "ai_overall": 3,
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:59.847592+00:00",
+      "generation_id": "gen-1794193083-kNJ7RfMnByUhYKVjmsJ6"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:11.733988+00:00",
+      "generation_id": "gen-1794193793-tKmaX5dk2idSu3I9scYY"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:13.941471+00:00",
+      "generation_id": "gen-1794194049-ptQw5uKfQKYjXM7q4VV8"
+     }
+    }
    }
   },
   {
@@ -2962,14 +7692,87 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "china_race": 2
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "China/competition",
+     "other"
+    ],
+    "confidence": {
+     "china_race": 2.0
+    },
+    "escalated": [
+     "ai_overall",
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:41.243520+00:00",
+      "generation_id": "gen-1794192389-K5SY3ioUJvXrLcXPGUCX"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3,
+       "china_race": 2
+      },
+      "confidence": {
+       "ai_overall": 3,
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:59.847592+00:00",
+      "generation_id": "gen-1794193083-kNJ7RfMnByUhYKVjmsJ6"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:11.733988+00:00",
+      "generation_id": "gen-1794193793-tKmaX5dk2idSu3I9scYY"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition",
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:13.941471+00:00",
+      "generation_id": "gen-1794194049-ptQw5uKfQKYjXM7q4VV8"
+     }
+    }
    }
   },
   {
@@ -2988,14 +7791,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:41.243520+00:00",
+      "generation_id": "gen-1794192389-K5SY3ioUJvXrLcXPGUCX"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:59.847592+00:00",
+      "generation_id": "gen-1794193083-kNJ7RfMnByUhYKVjmsJ6"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:11.733988+00:00",
+      "generation_id": "gen-1794193793-tKmaX5dk2idSu3I9scYY"
+     }
+    }
    }
   },
   {
@@ -3014,14 +7852,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:41.243520+00:00",
+      "generation_id": "gen-1794192389-K5SY3ioUJvXrLcXPGUCX"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:59.847592+00:00",
+      "generation_id": "gen-1794193083-kNJ7RfMnByUhYKVjmsJ6"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:11.733988+00:00",
+      "generation_id": "gen-1794193793-tKmaX5dk2idSu3I9scYY"
+     }
+    }
    }
   },
   {
@@ -3040,14 +7913,76 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "national security",
+     "other"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:41.243520+00:00",
+      "generation_id": "gen-1794192389-K5SY3ioUJvXrLcXPGUCX"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "energy/data centers",
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:59.847592+00:00",
+      "generation_id": "gen-1794193083-kNJ7RfMnByUhYKVjmsJ6"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:11.733988+00:00",
+      "generation_id": "gen-1794193793-tKmaX5dk2idSu3I9scYY"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security",
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:13.941471+00:00",
+      "generation_id": "gen-1794194049-ptQw5uKfQKYjXM7q4VV8"
+     }
+    }
    }
   },
   {
@@ -3066,14 +8001,50 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:41.243520+00:00",
+      "generation_id": "gen-1794192389-K5SY3ioUJvXrLcXPGUCX"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:59.847592+00:00",
+      "generation_id": "gen-1794193083-kNJ7RfMnByUhYKVjmsJ6"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:11.733988+00:00",
+      "generation_id": "gen-1794193793-tKmaX5dk2idSu3I9scYY"
+     }
+    }
    }
   },
   {
@@ -3092,14 +8063,73 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other",
+     "China/competition"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "ai_overall",
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:41.243520+00:00",
+      "generation_id": "gen-1794192389-K5SY3ioUJvXrLcXPGUCX"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3,
+       "china_race": 2
+      },
+      "confidence": {
+       "ai_overall": 3,
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:59.847592+00:00",
+      "generation_id": "gen-1794193083-kNJ7RfMnByUhYKVjmsJ6"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:11.733988+00:00",
+      "generation_id": "gen-1794193793-tKmaX5dk2idSu3I9scYY"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:13.941471+00:00",
+      "generation_id": "gen-1794194049-ptQw5uKfQKYjXM7q4VV8"
+     }
+    }
    }
   },
   {
@@ -3118,14 +8148,50 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:41.243520+00:00",
+      "generation_id": "gen-1794192389-K5SY3ioUJvXrLcXPGUCX"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:59.847592+00:00",
+      "generation_id": "gen-1794193083-kNJ7RfMnByUhYKVjmsJ6"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:11.733988+00:00",
+      "generation_id": "gen-1794193793-tKmaX5dk2idSu3I9scYY"
+     }
+    }
    }
   },
   {
@@ -3144,14 +8210,50 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:41.243520+00:00",
+      "generation_id": "gen-1794192389-K5SY3ioUJvXrLcXPGUCX"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:59.847592+00:00",
+      "generation_id": "gen-1794193083-kNJ7RfMnByUhYKVjmsJ6"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:11.733988+00:00",
+      "generation_id": "gen-1794193793-tKmaX5dk2idSu3I9scYY"
+     }
+    }
    }
   },
   {
@@ -3170,14 +8272,69 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other",
+     "AGI/transformative"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:41.243520+00:00",
+      "generation_id": "gen-1794192389-K5SY3ioUJvXrLcXPGUCX"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:59.847592+00:00",
+      "generation_id": "gen-1794193083-kNJ7RfMnByUhYKVjmsJ6"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:10:11.733988+00:00",
+      "generation_id": "gen-1794193793-tKmaX5dk2idSu3I9scYY"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:13.941471+00:00",
+      "generation_id": "gen-1794194049-ptQw5uKfQKYjXM7q4VV8"
+     }
+    }
    }
   },
   {
@@ -3196,14 +8353,50 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:46:32.746636+00:00",
+      "generation_id": "gen-1794192391-i5keXabfe0BVtcFDZzCy"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:58:08.135718+00:00",
+      "generation_id": "gen-1794193085-5bMpeAEeAX02bc8Y230O"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:09:58.608816+00:00",
+      "generation_id": "gen-1794193796-XBTihyScyIRUx5X1WsDL"
+     }
+    }
    }
   },
   {
@@ -3221,14 +8414,49 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:56:17.661603+00:00",
+      "generation_id": "gen-1794336961-SyrFMcQL7aGuoUh1ympI"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:57:21.070058+00:00",
+      "generation_id": "gen-1794337036-QtrduzeOPm4tiMhrTw7x"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:58:45.134770+00:00",
+      "generation_id": "gen-1794337120-hXgTgHcAuekkGj617tHC"
+     }
+    }
    }
   },
   {
@@ -3245,14 +8473,83 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "agi_pilled": 3
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "AGI/transformative",
+     "other"
+    ],
+    "confidence": {
+     "agi_pilled": 3.0
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:56:17.661603+00:00",
+      "generation_id": "gen-1794336961-SyrFMcQL7aGuoUh1ympI"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:57:21.070058+00:00",
+      "generation_id": "gen-1794337036-QtrduzeOPm4tiMhrTw7x"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:58:45.134770+00:00",
+      "generation_id": "gen-1794337120-hXgTgHcAuekkGj617tHC"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-10T18:59:45.141398+00:00",
+      "generation_id": "gen-1794337180-469ooSOB7HH5vVW332w8"
+     }
+    }
    }
   },
   {
@@ -3271,14 +8568,50 @@
     "role": "Under Secretary for Science"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "AGI/transformative"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:56:17.661603+00:00",
+      "generation_id": "gen-1794336961-SyrFMcQL7aGuoUh1ympI"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:57:21.070058+00:00",
+      "generation_id": "gen-1794337036-QtrduzeOPm4tiMhrTw7x"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:58:45.134770+00:00",
+      "generation_id": "gen-1794337120-hXgTgHcAuekkGj617tHC"
+     }
+    }
    }
   }
  ],
@@ -3475,7 +8808,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -3488,7 +8821,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -3501,7 +8834,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -3514,7 +8847,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -3527,7 +8860,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -3540,7 +8873,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -3553,7 +8886,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -3566,7 +8899,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -3579,7 +8912,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -3592,7 +8925,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -3605,7 +8938,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -3618,7 +8951,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -3631,7 +8964,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -3644,7 +8977,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -3657,7 +8990,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -3670,7 +9003,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -3683,7 +9016,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -3696,7 +9029,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -3709,7 +9042,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -3722,163 +9055,163 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-11-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-12-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
    "n_statements": 22,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-01-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
    "n_statements": 27,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-02-28",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 2.5,
     "regulation": null
    },
    "n_statements": 34,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-03-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 2.5,
     "regulation": null
    },
    "n_statements": 41,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-04-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 2.5,
     "regulation": null
    },
    "n_statements": 52,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-05-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 2.5,
     "regulation": null
    },
    "n_statements": 63,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-06-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 2.5,
     "regulation": null
    },
    "n_statements": 75,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-07-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 2.5,
     "regulation": null
    },
    "n_statements": 94,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-08-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 2.5,
     "regulation": null
    },
    "n_statements": 103,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-09-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
    "n_statements": 116,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-10-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.5,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
    "n_statements": 123,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {

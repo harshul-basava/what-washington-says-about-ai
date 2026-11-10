@@ -33,49 +33,62 @@
    "reason": "current_government_institution"
   },
   "n_statements": 22,
-  "n_labeled": 0,
+  "n_labeled": 22,
   "scores": {
-   "ai_overall": null,
-   "agi_pilled": null,
+   "ai_overall": 2.0,
+   "agi_pilled": 3.0,
    "x_risk": null,
-   "china_race": null,
-   "regulation": null
+   "china_race": 0.5,
+   "regulation": 1.0
   },
   "score_details": {
    "ai_overall": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 2.0,
+    "reason_a": "median_of_2",
+    "reason_b": "median_of_1",
+    "sids": [
+     "s18",
+     "s1"
+    ],
+    "label_count": 2
    },
    "agi_pilled": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 3.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s18",
+     "s1"
+    ],
+    "label_count": 2
    },
    "x_risk": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "china_race": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 0.5,
+    "reason_a": "consistent",
+    "reason_b": "silent",
+    "sids": [
+     "s9"
+    ],
+    "label_count": 1
    },
    "regulation": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 1.0,
+    "reason_a": "consistent",
+    "reason_b": "no_statements",
+    "sids": [
+     "s6",
+     "s5",
+     "s16",
+     "s11"
+    ],
+    "label_count": 4
    }
   },
   "summary": {
@@ -83,7 +96,13 @@
    "text": "",
    "sids": []
   },
-  "topics": {},
+  "topics": {
+   "AGI/transformative": 2.667,
+   "national security": 10.167,
+   "regulation": 6.167,
+   "China/competition": 0.5,
+   "other": 2.5
+  },
   "regulation": {
    "status": "complete",
    "areas": {
@@ -220,14 +239,99 @@
     "note": ""
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 2,
+     "agi_pilled": 3
+    },
+    "b": {
+     "agi_pilled": 3
+    },
+    "topics": [
+     "AGI/transformative",
+     "national security"
+    ],
+    "confidence": {
+     "ai_overall": 2.67,
+     "agi_pilled": 3.33
+    },
+    "escalated": [
+     "ai_overall",
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 3,
+       "ai_overall": 2
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:23.399940+00:00",
+      "generation_id": "gen-1794191766-HRFYpVafItQWwPnWIp2n"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3,
+       "ai_overall": 2
+      },
+      "confidence": {
+       "agi_pilled": 4,
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:53.107256+00:00",
+      "generation_id": "gen-1794191786-G8oxCOKMuXR6rXH1eQeO"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 3,
+       "ai_overall": 2
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:37:35.889020+00:00",
+      "generation_id": "gen-1794191813-dGTK9NxIpZj5SMFYQkIB"
+     },
+     "sol": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security",
+       "misuse (bio/cyber)"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T02:37:43.335668+00:00",
+      "generation_id": "gen-1794191856-v6er8yyowCRknKMQgSAS"
+     }
+    }
    }
   },
   {
@@ -243,14 +347,70 @@
     "note": "Automated extraction; exact quote and local attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "regulation",
+     "national security"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:23.399940+00:00",
+      "generation_id": "gen-1794191766-HRFYpVafItQWwPnWIp2n"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:53.107256+00:00",
+      "generation_id": "gen-1794191786-G8oxCOKMuXR6rXH1eQeO"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:37:35.889020+00:00",
+      "generation_id": "gen-1794191813-dGTK9NxIpZj5SMFYQkIB"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "misuse (bio/cyber)"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T02:37:43.335668+00:00",
+      "generation_id": "gen-1794191856-v6er8yyowCRknKMQgSAS"
+     }
+    }
    }
   },
   {
@@ -267,14 +427,53 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security",
+     "regulation"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:23.399940+00:00",
+      "generation_id": "gen-1794191766-HRFYpVafItQWwPnWIp2n"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:53.107256+00:00",
+      "generation_id": "gen-1794191786-G8oxCOKMuXR6rXH1eQeO"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:37:35.889020+00:00",
+      "generation_id": "gen-1794191813-dGTK9NxIpZj5SMFYQkIB"
+     }
+    }
    }
   },
   {
@@ -291,14 +490,70 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security",
+     "regulation"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:23.399940+00:00",
+      "generation_id": "gen-1794191766-HRFYpVafItQWwPnWIp2n"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:53.107256+00:00",
+      "generation_id": "gen-1794191786-G8oxCOKMuXR6rXH1eQeO"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:37:35.889020+00:00",
+      "generation_id": "gen-1794191813-dGTK9NxIpZj5SMFYQkIB"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "misuse (bio/cyber)"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T02:37:43.335668+00:00",
+      "generation_id": "gen-1794191856-v6er8yyowCRknKMQgSAS"
+     }
+    }
    }
   },
   {
@@ -315,14 +570,78 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "regulation",
+     "national security"
+    ],
+    "confidence": {
+     "regulation": 3.0
+    },
+    "escalated": [
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:23.399940+00:00",
+      "generation_id": "gen-1794191766-HRFYpVafItQWwPnWIp2n"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:53.107256+00:00",
+      "generation_id": "gen-1794191786-G8oxCOKMuXR6rXH1eQeO"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:37:35.889020+00:00",
+      "generation_id": "gen-1794191813-dGTK9NxIpZj5SMFYQkIB"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "misuse (bio/cyber)"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T02:37:43.335668+00:00",
+      "generation_id": "gen-1794191856-v6er8yyowCRknKMQgSAS"
+     }
+    }
    }
   },
   {
@@ -339,14 +658,78 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "regulation",
+     "national security"
+    ],
+    "confidence": {
+     "regulation": 2.5
+    },
+    "escalated": [
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:23.399940+00:00",
+      "generation_id": "gen-1794191766-HRFYpVafItQWwPnWIp2n"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:53.107256+00:00",
+      "generation_id": "gen-1794191786-G8oxCOKMuXR6rXH1eQeO"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 2
+      },
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:37:35.889020+00:00",
+      "generation_id": "gen-1794191813-dGTK9NxIpZj5SMFYQkIB"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T02:37:43.335668+00:00",
+      "generation_id": "gen-1794191856-v6er8yyowCRknKMQgSAS"
+     }
+    }
    }
   },
   {
@@ -363,14 +746,53 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security",
+     "regulation"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:23.399940+00:00",
+      "generation_id": "gen-1794191766-HRFYpVafItQWwPnWIp2n"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:53.107256+00:00",
+      "generation_id": "gen-1794191786-G8oxCOKMuXR6rXH1eQeO"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:37:35.889020+00:00",
+      "generation_id": "gen-1794191813-dGTK9NxIpZj5SMFYQkIB"
+     }
+    }
    }
   },
   {
@@ -387,14 +809,53 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security",
+     "regulation"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:23.399940+00:00",
+      "generation_id": "gen-1794191766-HRFYpVafItQWwPnWIp2n"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:53.107256+00:00",
+      "generation_id": "gen-1794191786-G8oxCOKMuXR6rXH1eQeO"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:37:35.889020+00:00",
+      "generation_id": "gen-1794191813-dGTK9NxIpZj5SMFYQkIB"
+     }
+    }
    }
   },
   {
@@ -411,14 +872,79 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "china_race": 1
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "national security",
+     "China/competition"
+    ],
+    "confidence": {
+     "china_race": 2.0
+    },
+    "escalated": [
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:23.399940+00:00",
+      "generation_id": "gen-1794191766-HRFYpVafItQWwPnWIp2n"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:53.107256+00:00",
+      "generation_id": "gen-1794191786-G8oxCOKMuXR6rXH1eQeO"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:37:35.889020+00:00",
+      "generation_id": "gen-1794191813-dGTK9NxIpZj5SMFYQkIB"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "misuse (bio/cyber)"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T02:37:43.335668+00:00",
+      "generation_id": "gen-1794191856-v6er8yyowCRknKMQgSAS"
+     }
+    }
    }
   },
   {
@@ -435,14 +961,53 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security",
+     "regulation"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:23.399940+00:00",
+      "generation_id": "gen-1794191766-HRFYpVafItQWwPnWIp2n"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:53.107256+00:00",
+      "generation_id": "gen-1794191786-G8oxCOKMuXR6rXH1eQeO"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:37:35.889020+00:00",
+      "generation_id": "gen-1794191813-dGTK9NxIpZj5SMFYQkIB"
+     }
+    }
    }
   },
   {
@@ -459,14 +1024,85 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "national security",
+     "regulation",
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "regulation": 3.0
+    },
+    "escalated": [
+     "agi_pilled",
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:23.399940+00:00",
+      "generation_id": "gen-1794191766-HRFYpVafItQWwPnWIp2n"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3,
+       "regulation": 1
+      },
+      "confidence": {
+       "agi_pilled": 4,
+       "regulation": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:53.107256+00:00",
+      "generation_id": "gen-1794191786-G8oxCOKMuXR6rXH1eQeO"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:37:35.889020+00:00",
+      "generation_id": "gen-1794191813-dGTK9NxIpZj5SMFYQkIB"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "misuse (bio/cyber)"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T02:37:43.335668+00:00",
+      "generation_id": "gen-1794191856-v6er8yyowCRknKMQgSAS"
+     }
+    }
    }
   },
   {
@@ -483,14 +1119,71 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "AGI/transformative",
+     "national security"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:23.399940+00:00",
+      "generation_id": "gen-1794191766-HRFYpVafItQWwPnWIp2n"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:53.107256+00:00",
+      "generation_id": "gen-1794191786-G8oxCOKMuXR6rXH1eQeO"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:37:35.889020+00:00",
+      "generation_id": "gen-1794191813-dGTK9NxIpZj5SMFYQkIB"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "misuse (bio/cyber)"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T02:37:43.335668+00:00",
+      "generation_id": "gen-1794191856-v6er8yyowCRknKMQgSAS"
+     }
+    }
    }
   },
   {
@@ -507,14 +1200,70 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security",
+     "regulation"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:23.399940+00:00",
+      "generation_id": "gen-1794191766-HRFYpVafItQWwPnWIp2n"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:53.107256+00:00",
+      "generation_id": "gen-1794191786-G8oxCOKMuXR6rXH1eQeO"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:37:35.889020+00:00",
+      "generation_id": "gen-1794191813-dGTK9NxIpZj5SMFYQkIB"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "misuse (bio/cyber)"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T02:37:43.335668+00:00",
+      "generation_id": "gen-1794191856-v6er8yyowCRknKMQgSAS"
+     }
+    }
    }
   },
   {
@@ -531,14 +1280,71 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "AGI/transformative",
+     "national security"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:23.399940+00:00",
+      "generation_id": "gen-1794191766-HRFYpVafItQWwPnWIp2n"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:53.107256+00:00",
+      "generation_id": "gen-1794191786-G8oxCOKMuXR6rXH1eQeO"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:37:35.889020+00:00",
+      "generation_id": "gen-1794191813-dGTK9NxIpZj5SMFYQkIB"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "misuse (bio/cyber)"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T02:37:43.335668+00:00",
+      "generation_id": "gen-1794191856-v6er8yyowCRknKMQgSAS"
+     }
+    }
    }
   },
   {
@@ -555,14 +1361,70 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "regulation",
+     "national security"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:23.399940+00:00",
+      "generation_id": "gen-1794191766-HRFYpVafItQWwPnWIp2n"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:53.107256+00:00",
+      "generation_id": "gen-1794191786-G8oxCOKMuXR6rXH1eQeO"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:37:35.889020+00:00",
+      "generation_id": "gen-1794191813-dGTK9NxIpZj5SMFYQkIB"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "misuse (bio/cyber)"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T02:37:43.335668+00:00",
+      "generation_id": "gen-1794191856-v6er8yyowCRknKMQgSAS"
+     }
+    }
    }
   },
   {
@@ -579,14 +1441,85 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "national security",
+     "regulation",
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "regulation": 3.0
+    },
+    "escalated": [
+     "agi_pilled",
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:23.399940+00:00",
+      "generation_id": "gen-1794191766-HRFYpVafItQWwPnWIp2n"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3,
+       "regulation": 1
+      },
+      "confidence": {
+       "agi_pilled": 4,
+       "regulation": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:53.107256+00:00",
+      "generation_id": "gen-1794191786-G8oxCOKMuXR6rXH1eQeO"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:37:35.889020+00:00",
+      "generation_id": "gen-1794191813-dGTK9NxIpZj5SMFYQkIB"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "misuse (bio/cyber)"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T02:37:43.335668+00:00",
+      "generation_id": "gen-1794191856-v6er8yyowCRknKMQgSAS"
+     }
+    }
    }
   },
   {
@@ -603,14 +1536,53 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security",
+     "regulation"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:23.399940+00:00",
+      "generation_id": "gen-1794191766-HRFYpVafItQWwPnWIp2n"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:53.107256+00:00",
+      "generation_id": "gen-1794191786-G8oxCOKMuXR6rXH1eQeO"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:37:35.889020+00:00",
+      "generation_id": "gen-1794191813-dGTK9NxIpZj5SMFYQkIB"
+     }
+    }
    }
   },
   {
@@ -627,14 +1599,99 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 2,
+     "agi_pilled": 3
+    },
+    "b": {
+     "ai_overall": 2,
+     "agi_pilled": 3
+    },
+    "topics": [
+     "AGI/transformative",
+     "national security"
+    ],
+    "confidence": {
+     "ai_overall": 3.33,
+     "agi_pilled": 3.33
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 3,
+       "ai_overall": 2
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:23.399940+00:00",
+      "generation_id": "gen-1794191766-HRFYpVafItQWwPnWIp2n"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3,
+       "ai_overall": 2
+      },
+      "confidence": {
+       "agi_pilled": 4,
+       "ai_overall": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:36:53.107256+00:00",
+      "generation_id": "gen-1794191786-G8oxCOKMuXR6rXH1eQeO"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 3,
+       "ai_overall": 2
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:37:35.889020+00:00",
+      "generation_id": "gen-1794191813-dGTK9NxIpZj5SMFYQkIB"
+     },
+     "sol": {
+      "labels": {
+       "agi_pilled": 3,
+       "ai_overall": 2
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T02:37:43.335668+00:00",
+      "generation_id": "gen-1794191856-v6er8yyowCRknKMQgSAS"
+     }
+    }
    }
   },
   {
@@ -651,14 +1708,50 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T21:50:46.103662+00:00",
+      "generation_id": "gen-1794261042-HGDc4SvPmmzoWDX8o8ZP"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T21:52:10.808434+00:00",
+      "generation_id": "gen-1794261129-oX8ZsnULJYSjXYh7A0zq"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T21:54:17.188214+00:00",
+      "generation_id": "gen-1794261255-fB45sAlBKwrLQGbadvvP"
+     }
+    }
    }
   },
   {
@@ -675,14 +1768,52 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other",
+     "national security"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:55:52.509499+00:00",
+      "generation_id": "gen-1794336951-8Prjko5d4JCY36eIlnFn"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:57:03.780076+00:00",
+      "generation_id": "gen-1794337021-rWbUE1e4Psc4lMq8he9L"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:58:21.940720+00:00",
+      "generation_id": "gen-1794337095-W3TANB2XAbUtbTNNYlHE"
+     }
+    }
    }
   },
   {
@@ -699,14 +1830,50 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:55:52.509499+00:00",
+      "generation_id": "gen-1794336951-8Prjko5d4JCY36eIlnFn"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:57:03.780076+00:00",
+      "generation_id": "gen-1794337021-rWbUE1e4Psc4lMq8he9L"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:58:21.940720+00:00",
+      "generation_id": "gen-1794337095-W3TANB2XAbUtbTNNYlHE"
+     }
+    }
    }
   },
   {
@@ -723,14 +1890,50 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:55:52.509499+00:00",
+      "generation_id": "gen-1794336951-8Prjko5d4JCY36eIlnFn"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:57:03.780076+00:00",
+      "generation_id": "gen-1794337021-rWbUE1e4Psc4lMq8he9L"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:58:21.940720+00:00",
+      "generation_id": "gen-1794337095-W3TANB2XAbUtbTNNYlHE"
+     }
+    }
    }
   }
  ],
@@ -937,10 +2140,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -950,10 +2153,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -963,10 +2166,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -976,10 +2179,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -989,10 +2192,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1002,10 +2205,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1015,10 +2218,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1028,10 +2231,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1041,10 +2244,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1054,10 +2257,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1067,10 +2270,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1080,10 +2283,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1093,10 +2296,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1106,10 +2309,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 9,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1119,10 +2322,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 9,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1132,10 +2335,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 9,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1145,10 +2348,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 9,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1158,10 +2361,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 9,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1171,10 +2374,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 9,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1184,10 +2387,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 9,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1197,10 +2400,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 9,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1210,10 +2413,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 9,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1223,10 +2426,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 9,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1236,10 +2439,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 9,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1249,10 +2452,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 9,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1262,10 +2465,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 12,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1275,10 +2478,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 12,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1288,10 +2491,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 12,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1301,10 +2504,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 12,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1314,10 +2517,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 12,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1327,10 +2530,10 @@
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 13,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {

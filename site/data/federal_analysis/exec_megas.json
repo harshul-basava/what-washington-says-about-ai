@@ -8,7 +8,7 @@
   "party": null,
   "state": "",
   "chamber": "",
-  "status": "partial",
+  "status": "complete",
   "entity_type": "person",
   "branch": "executive",
   "organization_id": "nist_si_accelerator",
@@ -41,47 +41,51 @@
    "reason": "current_government_official"
   },
   "n_statements": 7,
-  "n_labeled": 0,
+  "n_labeled": 7,
   "scores": {
-   "ai_overall": null,
-   "agi_pilled": null,
+   "ai_overall": 2.0,
+   "agi_pilled": 1.5,
    "x_risk": null,
    "china_race": null,
    "regulation": null
   },
   "score_details": {
    "ai_overall": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 2.0,
+    "reason_a": "median_of_1",
+    "reason_b": "median_of_1",
+    "sids": [
+     "s3"
+    ],
+    "label_count": 1
    },
    "agi_pilled": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 1.5,
+    "reason_a": "consistent",
+    "reason_b": "silent",
+    "sids": [
+     "s4"
+    ],
+    "label_count": 1
    },
    "x_risk": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "china_race": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "regulation": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "no_statements",
+    "reason_b": "no_statements",
     "sids": [],
     "label_count": 0
    }
@@ -126,7 +130,14 @@
     }
    ]
   },
-  "topics": {},
+  "topics": {
+   "national security": 1.833,
+   "other": 2.5,
+   "regulation": 1.5,
+   "AGI/transformative": 0.333,
+   "jobs/economy": 0.333,
+   "misuse (bio/cyber)": 0.5
+  },
   "regulation": {
    "status": "complete",
    "areas": {
@@ -264,14 +275,49 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:15.594229+00:00",
+      "generation_id": "gen-1794192239-SbKDhfLn41pX9eaVux8D"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:48.317249+00:00",
+      "generation_id": "gen-1794192928-f6UVpgpVG9xXM4BNMJ2s"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:21.823254+00:00",
+      "generation_id": "gen-1794193632-fTuZoap1UoL0SdC3Zokz"
+     }
+    }
    }
   },
   {
@@ -288,14 +334,49 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:15.594229+00:00",
+      "generation_id": "gen-1794192239-SbKDhfLn41pX9eaVux8D"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:48.317249+00:00",
+      "generation_id": "gen-1794192928-f6UVpgpVG9xXM4BNMJ2s"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:21.823254+00:00",
+      "generation_id": "gen-1794193632-fTuZoap1UoL0SdC3Zokz"
+     }
+    }
    }
   },
   {
@@ -312,14 +393,71 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "ai_overall": 2
+    },
+    "b": {
+     "ai_overall": 2
+    },
+    "topics": [
+     "regulation",
+     "other"
+    ],
+    "confidence": {
+     "ai_overall": 3.33
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 2
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:15.594229+00:00",
+      "generation_id": "gen-1794192239-SbKDhfLn41pX9eaVux8D"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 2
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:48.317249+00:00",
+      "generation_id": "gen-1794192928-f6UVpgpVG9xXM4BNMJ2s"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 2
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:21.823254+00:00",
+      "generation_id": "gen-1794193632-fTuZoap1UoL0SdC3Zokz"
+     }
+    }
    }
   },
   {
@@ -337,14 +475,83 @@
     "role": "Director, NIST Super Intelligence Accelerator"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "agi_pilled": 3
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "AGI/transformative",
+     "national security",
+     "jobs/economy"
+    ],
+    "confidence": {
+     "agi_pilled": 3.5
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "national security",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:15.594229+00:00",
+      "generation_id": "gen-1794192239-SbKDhfLn41pX9eaVux8D"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:48.317249+00:00",
+      "generation_id": "gen-1794192928-f6UVpgpVG9xXM4BNMJ2s"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:21.823254+00:00",
+      "generation_id": "gen-1794193632-fTuZoap1UoL0SdC3Zokz"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "misuse (bio/cyber)"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:13:53.094667+00:00",
+      "generation_id": "gen-1794194030-B4Pj83dboO0oFUuPaXrB"
+     }
+    }
    }
   },
   {
@@ -361,14 +568,50 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "regulation"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:15.594229+00:00",
+      "generation_id": "gen-1794192239-SbKDhfLn41pX9eaVux8D"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:48.317249+00:00",
+      "generation_id": "gen-1794192928-f6UVpgpVG9xXM4BNMJ2s"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:21.823254+00:00",
+      "generation_id": "gen-1794193632-fTuZoap1UoL0SdC3Zokz"
+     }
+    }
    }
   },
   {
@@ -385,14 +628,53 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security",
+     "misuse (bio/cyber)"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:15.594229+00:00",
+      "generation_id": "gen-1794192239-SbKDhfLn41pX9eaVux8D"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:48.317249+00:00",
+      "generation_id": "gen-1794192928-f6UVpgpVG9xXM4BNMJ2s"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "misuse (bio/cyber)",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:21.823254+00:00",
+      "generation_id": "gen-1794193632-fTuZoap1UoL0SdC3Zokz"
+     }
+    }
    }
   },
   {
@@ -409,14 +691,49 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:15.594229+00:00",
+      "generation_id": "gen-1794192239-SbKDhfLn41pX9eaVux8D"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:48.317249+00:00",
+      "generation_id": "gen-1794192928-f6UVpgpVG9xXM4BNMJ2s"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:21.823254+00:00",
+      "generation_id": "gen-1794193632-fTuZoap1UoL0SdC3Zokz"
+     }
+    }
    }
   }
  ],
@@ -691,7 +1008,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -704,7 +1021,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -717,7 +1034,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -730,7 +1047,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -743,7 +1060,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -756,7 +1073,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -769,7 +1086,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -782,7 +1099,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -795,7 +1112,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -808,7 +1125,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -821,7 +1138,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -834,7 +1151,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -847,7 +1164,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -860,7 +1177,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -873,7 +1190,7 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -886,137 +1203,137 @@
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-01-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
    "n_statements": 4,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-02-28",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
    "n_statements": 4,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-03-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
    "n_statements": 4,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-04-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
    "n_statements": 4,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-05-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
    "n_statements": 4,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-06-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
    "n_statements": 4,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-07-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
    "n_statements": 4,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-08-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
    "n_statements": 4,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-09-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
    "n_statements": 4,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-10-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 2.0,
+    "agi_pilled": 1.5,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
    "n_statements": 5,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {

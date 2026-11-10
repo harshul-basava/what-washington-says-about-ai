@@ -54,49 +54,71 @@
    "reason": "current_government_official"
   },
   "n_statements": 37,
-  "n_labeled": 0,
+  "n_labeled": 37,
   "scores": {
-   "ai_overall": null,
-   "agi_pilled": null,
+   "ai_overall": 3.0,
+   "agi_pilled": 2.0,
    "x_risk": null,
-   "china_race": null,
-   "regulation": null
+   "china_race": 2.0,
+   "regulation": 1.0
   },
   "score_details": {
    "ai_overall": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 3.0,
+    "reason_a": "median_of_8",
+    "reason_b": "median_of_8",
+    "sids": [
+     "s9",
+     "s2",
+     "s11",
+     "s1",
+     "s19",
+     "s23",
+     "s37"
+    ],
+    "label_count": 9
    },
    "agi_pilled": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 2.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s9",
+     "s2",
+     "s19"
+    ],
+    "label_count": 3
    },
    "x_risk": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "china_race": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 2.0,
+    "reason_a": "consistent",
+    "reason_b": "one_off_capped",
+    "sids": [
+     "s14",
+     "s9",
+     "s2",
+     "s13"
+    ],
+    "label_count": 5
    },
    "regulation": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 1.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s9",
+     "s11",
+     "s1",
+     "s26"
+    ],
+    "label_count": 5
    }
   },
   "summary": {
@@ -104,7 +126,17 @@
    "text": "",
    "sids": []
   },
-  "topics": {},
+  "topics": {
+   "regulation": 3.833,
+   "jobs/economy": 11.333,
+   "AGI/transformative": 1.167,
+   "China/competition": 7.167,
+   "other": 6.0,
+   "copyright": 1.0,
+   "energy/data centers": 2.5,
+   "national security": 3.5,
+   "misuse (bio/cyber)": 0.5
+  },
   "regulation": {
    "status": "complete",
    "areas": {
@@ -244,14 +276,80 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "ai_overall": 3,
+     "regulation": 1
+    },
+    "b": {
+     "ai_overall": 3,
+     "regulation": 1
+    },
+    "topics": [
+     "regulation",
+     "jobs/economy"
+    ],
+    "confidence": {
+     "ai_overall": 3.0,
+     "regulation": 3.33
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 1,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "regulation": 4,
+       "ai_overall": 3
+      },
+      "topics": [
+       "regulation",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:13.079578+00:00",
+      "generation_id": "gen-1794192245-9wwwJXMEiHeBvFtv66Tl"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "regulation": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:56:25.805026+00:00",
+      "generation_id": "gen-1794192939-UbImGqyAPAMV2DHgn2SW"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3,
+       "regulation": 1
+      },
+      "confidence": {
+       "ai_overall": 3,
+       "regulation": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:22.554642+00:00",
+      "generation_id": "gen-1794193634-jmSABbpllRjNIuuMwORw"
+     }
+    }
    }
   },
   {
@@ -268,14 +366,113 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 3,
+     "agi_pilled": 2,
+     "china_race": 2
+    },
+    "b": {
+     "ai_overall": 3,
+     "agi_pilled": 2,
+     "china_race": 2
+    },
+    "topics": [
+     "AGI/transformative",
+     "jobs/economy",
+     "China/competition"
+    ],
+    "confidence": {
+     "ai_overall": 3.33,
+     "agi_pilled": 3.0,
+     "china_race": 2.0
+    },
+    "escalated": [
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2,
+       "china_race": 2,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "china_race": 2,
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "China/competition",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:13.079578+00:00",
+      "generation_id": "gen-1794192245-9wwwJXMEiHeBvFtv66Tl"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "agi_pilled": 4,
+       "ai_overall": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:56:25.805026+00:00",
+      "generation_id": "gen-1794192939-UbImGqyAPAMV2DHgn2SW"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2,
+       "china_race": 2,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "agi_pilled": 2,
+       "china_race": 2,
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "China/competition",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:22.554642+00:00",
+      "generation_id": "gen-1794193634-jmSABbpllRjNIuuMwORw"
+     },
+     "sol": {
+      "labels": {
+       "agi_pilled": 2,
+       "china_race": 2,
+       "ai_overall": 4
+      },
+      "confidence": {
+       "agi_pilled": 5,
+       "china_race": 4,
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy",
+       "China/competition",
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:02.091914+00:00",
+      "generation_id": "gen-1794194034-0Pgr1W8a3XGrvBpIBqhg"
+     }
+    }
    }
   },
   {
@@ -292,14 +489,68 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:13.079578+00:00",
+      "generation_id": "gen-1794192245-9wwwJXMEiHeBvFtv66Tl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:56:25.805026+00:00",
+      "generation_id": "gen-1794192939-UbImGqyAPAMV2DHgn2SW"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 2
+      },
+      "topics": [
+       "jobs/economy",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:22.554642+00:00",
+      "generation_id": "gen-1794193634-jmSABbpllRjNIuuMwORw"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:02.091914+00:00",
+      "generation_id": "gen-1794194034-0Pgr1W8a3XGrvBpIBqhg"
+     }
+    }
    }
   },
   {
@@ -316,14 +567,49 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:13.079578+00:00",
+      "generation_id": "gen-1794192245-9wwwJXMEiHeBvFtv66Tl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:56:25.805026+00:00",
+      "generation_id": "gen-1794192939-UbImGqyAPAMV2DHgn2SW"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:22.554642+00:00",
+      "generation_id": "gen-1794193634-jmSABbpllRjNIuuMwORw"
+     }
+    }
    }
   },
   {
@@ -340,14 +626,67 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "regulation": 3
+    },
+    "b": {
+     "regulation": 3
+    },
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 3.67
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 3
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:13.079578+00:00",
+      "generation_id": "gen-1794192245-9wwwJXMEiHeBvFtv66Tl"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 3
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:56:25.805026+00:00",
+      "generation_id": "gen-1794192939-UbImGqyAPAMV2DHgn2SW"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 3
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:22.554642+00:00",
+      "generation_id": "gen-1794193634-jmSABbpllRjNIuuMwORw"
+     }
+    }
    }
   },
   {
@@ -364,14 +703,52 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "copyright",
+     "China/competition"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "copyright",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:13.079578+00:00",
+      "generation_id": "gen-1794192245-9wwwJXMEiHeBvFtv66Tl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "copyright"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:56:25.805026+00:00",
+      "generation_id": "gen-1794192939-UbImGqyAPAMV2DHgn2SW"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "copyright",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:22.554642+00:00",
+      "generation_id": "gen-1794193634-jmSABbpllRjNIuuMwORw"
+     }
+    }
    }
   },
   {
@@ -388,14 +765,52 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers",
+     "jobs/economy"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:13.079578+00:00",
+      "generation_id": "gen-1794192245-9wwwJXMEiHeBvFtv66Tl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:56:25.805026+00:00",
+      "generation_id": "gen-1794192939-UbImGqyAPAMV2DHgn2SW"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:22.554642+00:00",
+      "generation_id": "gen-1794193634-jmSABbpllRjNIuuMwORw"
+     }
+    }
    }
   },
   {
@@ -412,14 +827,49 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:13.079578+00:00",
+      "generation_id": "gen-1794192245-9wwwJXMEiHeBvFtv66Tl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:56:25.805026+00:00",
+      "generation_id": "gen-1794192939-UbImGqyAPAMV2DHgn2SW"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:22.554642+00:00",
+      "generation_id": "gen-1794193634-jmSABbpllRjNIuuMwORw"
+     }
+    }
    }
   },
   {
@@ -436,14 +886,119 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 3,
+     "agi_pilled": 2,
+     "china_race": 2,
+     "regulation": 1
+    },
+    "b": {
+     "ai_overall": 3,
+     "agi_pilled": 2,
+     "china_race": 2
+    },
+    "topics": [
+     "AGI/transformative",
+     "regulation",
+     "China/competition"
+    ],
+    "confidence": {
+     "ai_overall": 3.33,
+     "agi_pilled": 3.0,
+     "china_race": 2.0,
+     "regulation": 2.33
+    },
+    "escalated": [
+     "china_race",
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2,
+       "china_race": 2,
+       "regulation": 1,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "china_race": 2,
+       "regulation": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "regulation",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:13.079578+00:00",
+      "generation_id": "gen-1794192245-9wwwJXMEiHeBvFtv66Tl"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 3,
+       "regulation": 1
+      },
+      "confidence": {
+       "agi_pilled": 4,
+       "ai_overall": 4,
+       "regulation": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:56:25.805026+00:00",
+      "generation_id": "gen-1794192939-UbImGqyAPAMV2DHgn2SW"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2,
+       "china_race": 2,
+       "ai_overall": 3,
+       "regulation": 1
+      },
+      "confidence": {
+       "agi_pilled": 2,
+       "china_race": 2,
+       "ai_overall": 3,
+       "regulation": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "China/competition",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:22.554642+00:00",
+      "generation_id": "gen-1794193634-jmSABbpllRjNIuuMwORw"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "jobs/economy",
+       "China/competition",
+       "regulation"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:02.091914+00:00",
+      "generation_id": "gen-1794194034-0Pgr1W8a3XGrvBpIBqhg"
+     }
+    }
    }
   },
   {
@@ -460,14 +1015,71 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security",
+     "China/competition"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:13.079578+00:00",
+      "generation_id": "gen-1794192245-9wwwJXMEiHeBvFtv66Tl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:56:25.805026+00:00",
+      "generation_id": "gen-1794192939-UbImGqyAPAMV2DHgn2SW"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:22.554642+00:00",
+      "generation_id": "gen-1794193634-jmSABbpllRjNIuuMwORw"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:02.091914+00:00",
+      "generation_id": "gen-1794194034-0Pgr1W8a3XGrvBpIBqhg"
+     }
+    }
    }
   },
   {
@@ -484,14 +1096,81 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "ai_overall": 3,
+     "regulation": 1
+    },
+    "b": {
+     "ai_overall": 3,
+     "regulation": 1
+    },
+    "topics": [
+     "regulation",
+     "jobs/economy"
+    ],
+    "confidence": {
+     "ai_overall": 3.33,
+     "regulation": 3.67
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 1,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "regulation": 4,
+       "ai_overall": 3
+      },
+      "topics": [
+       "regulation",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:13.079578+00:00",
+      "generation_id": "gen-1794192245-9wwwJXMEiHeBvFtv66Tl"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "regulation": 4,
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy",
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:56:25.805026+00:00",
+      "generation_id": "gen-1794192939-UbImGqyAPAMV2DHgn2SW"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3,
+       "regulation": 1
+      },
+      "confidence": {
+       "ai_overall": 3,
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:22.554642+00:00",
+      "generation_id": "gen-1794193634-jmSABbpllRjNIuuMwORw"
+     }
+    }
    }
   },
   {
@@ -510,14 +1189,50 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:13.079578+00:00",
+      "generation_id": "gen-1794192245-9wwwJXMEiHeBvFtv66Tl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:56:25.805026+00:00",
+      "generation_id": "gen-1794192939-UbImGqyAPAMV2DHgn2SW"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:22.554642+00:00",
+      "generation_id": "gen-1794193634-jmSABbpllRjNIuuMwORw"
+     }
+    }
    }
   },
   {
@@ -536,14 +1251,78 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
-    "b": {},
-    "topics": [],
+    "b": {
+     "china_race": 3
+    },
+    "topics": [
+     "China/competition"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "ai_overall",
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:13.079578+00:00",
+      "generation_id": "gen-1794192245-9wwwJXMEiHeBvFtv66Tl"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:56:25.805026+00:00",
+      "generation_id": "gen-1794192939-UbImGqyAPAMV2DHgn2SW"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:22.554642+00:00",
+      "generation_id": "gen-1794193634-jmSABbpllRjNIuuMwORw"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:02.091914+00:00",
+      "generation_id": "gen-1794194034-0Pgr1W8a3XGrvBpIBqhg"
+     }
+    }
    }
   },
   {
@@ -562,14 +1341,85 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "china_race": 2
+    },
+    "b": {
+     "china_race": 2
+    },
+    "topics": [
+     "copyright",
+     "China/competition"
+    ],
+    "confidence": {
+     "china_race": 2.5
+    },
+    "escalated": [
+     "china_race"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 2
+      },
+      "topics": [
+       "copyright",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:13.079578+00:00",
+      "generation_id": "gen-1794192245-9wwwJXMEiHeBvFtv66Tl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "copyright",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:56:25.805026+00:00",
+      "generation_id": "gen-1794192939-UbImGqyAPAMV2DHgn2SW"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "copyright"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:22.554642+00:00",
+      "generation_id": "gen-1794193634-jmSABbpllRjNIuuMwORw"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "copyright"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:02.091914+00:00",
+      "generation_id": "gen-1794194034-0Pgr1W8a3XGrvBpIBqhg"
+     }
+    }
    }
   },
   {
@@ -588,14 +1438,49 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:13.079578+00:00",
+      "generation_id": "gen-1794192245-9wwwJXMEiHeBvFtv66Tl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:56:25.805026+00:00",
+      "generation_id": "gen-1794192939-UbImGqyAPAMV2DHgn2SW"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:22.554642+00:00",
+      "generation_id": "gen-1794193634-jmSABbpllRjNIuuMwORw"
+     }
+    }
    }
   },
   {
@@ -614,14 +1499,49 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:13.079578+00:00",
+      "generation_id": "gen-1794192245-9wwwJXMEiHeBvFtv66Tl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:56:25.805026+00:00",
+      "generation_id": "gen-1794192939-UbImGqyAPAMV2DHgn2SW"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:22.554642+00:00",
+      "generation_id": "gen-1794193634-jmSABbpllRjNIuuMwORw"
+     }
+    }
    }
   },
   {
@@ -640,14 +1560,49 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:13.079578+00:00",
+      "generation_id": "gen-1794192245-9wwwJXMEiHeBvFtv66Tl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:56:25.805026+00:00",
+      "generation_id": "gen-1794192939-UbImGqyAPAMV2DHgn2SW"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:22.554642+00:00",
+      "generation_id": "gen-1794193634-jmSABbpllRjNIuuMwORw"
+     }
+    }
    }
   },
   {
@@ -666,14 +1621,49 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:13.079578+00:00",
+      "generation_id": "gen-1794192245-9wwwJXMEiHeBvFtv66Tl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:56:25.805026+00:00",
+      "generation_id": "gen-1794192939-UbImGqyAPAMV2DHgn2SW"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:22.554642+00:00",
+      "generation_id": "gen-1794193634-jmSABbpllRjNIuuMwORw"
+     }
+    }
    }
   },
   {
@@ -692,14 +1682,98 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 3,
+     "agi_pilled": 2
+    },
+    "b": {
+     "ai_overall": 3,
+     "agi_pilled": 2
+    },
+    "topics": [
+     "jobs/economy",
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "ai_overall": 3.0,
+     "agi_pilled": 2.33
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "agi_pilled": 2,
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:13.079578+00:00",
+      "generation_id": "gen-1794192245-9wwwJXMEiHeBvFtv66Tl"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:56:25.805026+00:00",
+      "generation_id": "gen-1794192939-UbImGqyAPAMV2DHgn2SW"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "agi_pilled": 2,
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:22.554642+00:00",
+      "generation_id": "gen-1794193634-jmSABbpllRjNIuuMwORw"
+     },
+     "sol": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:02.091914+00:00",
+      "generation_id": "gen-1794194034-0Pgr1W8a3XGrvBpIBqhg"
+     }
+    }
    }
   },
   {
@@ -718,14 +1792,52 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "China/competition",
+     "national security"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:13.079578+00:00",
+      "generation_id": "gen-1794192245-9wwwJXMEiHeBvFtv66Tl"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:56:25.805026+00:00",
+      "generation_id": "gen-1794192939-UbImGqyAPAMV2DHgn2SW"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:22.554642+00:00",
+      "generation_id": "gen-1794193634-jmSABbpllRjNIuuMwORw"
+     }
+    }
    }
   },
   {
@@ -744,14 +1856,49 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "China/competition"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:23.150905+00:00",
+      "generation_id": "gen-1794192245-X82z72Su6tP1L7TP5LRu"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:54.298607+00:00",
+      "generation_id": "gen-1794192941-oUYOdEIdSrUZkNL86Azr"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:56.669212+00:00",
+      "generation_id": "gen-1794193635-YQxxXh91OzDWHfMp7Mld"
+     }
+    }
    }
   },
   {
@@ -770,14 +1917,49 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "China/competition"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:23.150905+00:00",
+      "generation_id": "gen-1794192245-X82z72Su6tP1L7TP5LRu"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:54.298607+00:00",
+      "generation_id": "gen-1794192941-oUYOdEIdSrUZkNL86Azr"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:56.669212+00:00",
+      "generation_id": "gen-1794193635-YQxxXh91OzDWHfMp7Mld"
+     }
+    }
    }
   },
   {
@@ -796,14 +1978,68 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "ai_overall": 3
+    },
+    "b": {
+     "ai_overall": 3
+    },
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {
+     "ai_overall": 3.0
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:23.150905+00:00",
+      "generation_id": "gen-1794192245-X82z72Su6tP1L7TP5LRu"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:54.298607+00:00",
+      "generation_id": "gen-1794192941-oUYOdEIdSrUZkNL86Azr"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:56.669212+00:00",
+      "generation_id": "gen-1794193635-YQxxXh91OzDWHfMp7Mld"
+     }
+    }
    }
   },
   {
@@ -822,14 +2058,49 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "China/competition"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:23.150905+00:00",
+      "generation_id": "gen-1794192245-X82z72Su6tP1L7TP5LRu"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:54.298607+00:00",
+      "generation_id": "gen-1794192941-oUYOdEIdSrUZkNL86Azr"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:56.669212+00:00",
+      "generation_id": "gen-1794193635-YQxxXh91OzDWHfMp7Mld"
+     }
+    }
    }
   },
   {
@@ -848,14 +2119,85 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 3
+    },
+    "b": {
+     "ai_overall": 4
+    },
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {
+     "ai_overall": 2.67
+    },
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:23.150905+00:00",
+      "generation_id": "gen-1794192245-X82z72Su6tP1L7TP5LRu"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:54.298607+00:00",
+      "generation_id": "gen-1794192941-oUYOdEIdSrUZkNL86Azr"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:56.669212+00:00",
+      "generation_id": "gen-1794193635-YQxxXh91OzDWHfMp7Mld"
+     },
+     "sol": {
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:02.091914+00:00",
+      "generation_id": "gen-1794194034-0Pgr1W8a3XGrvBpIBqhg"
+     }
+    }
    }
   },
   {
@@ -874,14 +2216,91 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
+    "b": {
+     "regulation": 0
+    },
+    "topics": [
+     "regulation",
+     "jobs/economy"
+    ],
+    "confidence": {
+     "regulation": 2.33
+    },
+    "escalated": [
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 0
+      },
+      "confidence": {
+       "regulation": 2
+      },
+      "topics": [
+       "regulation",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:23.150905+00:00",
+      "generation_id": "gen-1794192245-X82z72Su6tP1L7TP5LRu"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:54.298607+00:00",
+      "generation_id": "gen-1794192941-oUYOdEIdSrUZkNL86Azr"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 2
+      },
+      "topics": [
+       "regulation",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:56.669212+00:00",
+      "generation_id": "gen-1794193635-YQxxXh91OzDWHfMp7Mld"
+     },
+     "sol": {
+      "labels": {
+       "regulation": 0
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:02.091914+00:00",
+      "generation_id": "gen-1794194034-0Pgr1W8a3XGrvBpIBqhg"
+     }
+    }
    }
   },
   {
@@ -900,14 +2319,50 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:23.150905+00:00",
+      "generation_id": "gen-1794192245-X82z72Su6tP1L7TP5LRu"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:54.298607+00:00",
+      "generation_id": "gen-1794192941-oUYOdEIdSrUZkNL86Azr"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:56.669212+00:00",
+      "generation_id": "gen-1794193635-YQxxXh91OzDWHfMp7Mld"
+     }
+    }
    }
   },
   {
@@ -926,14 +2381,53 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy",
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:23.150905+00:00",
+      "generation_id": "gen-1794192245-X82z72Su6tP1L7TP5LRu"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:54.298607+00:00",
+      "generation_id": "gen-1794192941-oUYOdEIdSrUZkNL86Azr"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:56.669212+00:00",
+      "generation_id": "gen-1794193635-YQxxXh91OzDWHfMp7Mld"
+     }
+    }
    }
   },
   {
@@ -952,14 +2446,74 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "ai_overall": 3
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {
+     "ai_overall": 2.5
+    },
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:23.150905+00:00",
+      "generation_id": "gen-1794192245-X82z72Su6tP1L7TP5LRu"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:54.298607+00:00",
+      "generation_id": "gen-1794192941-oUYOdEIdSrUZkNL86Azr"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:56.669212+00:00",
+      "generation_id": "gen-1794193635-YQxxXh91OzDWHfMp7Mld"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:02.091914+00:00",
+      "generation_id": "gen-1794194034-0Pgr1W8a3XGrvBpIBqhg"
+     }
+    }
    }
   },
   {
@@ -978,14 +2532,70 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy",
+     "regulation"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:23.150905+00:00",
+      "generation_id": "gen-1794192245-X82z72Su6tP1L7TP5LRu"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:54.298607+00:00",
+      "generation_id": "gen-1794192941-oUYOdEIdSrUZkNL86Azr"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:56.669212+00:00",
+      "generation_id": "gen-1794193635-YQxxXh91OzDWHfMp7Mld"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "regulation"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:14:02.091914+00:00",
+      "generation_id": "gen-1794194034-0Pgr1W8a3XGrvBpIBqhg"
+     }
+    }
    }
   },
   {
@@ -1002,14 +2612,49 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "other"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:23.150905+00:00",
+      "generation_id": "gen-1794192245-X82z72Su6tP1L7TP5LRu"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:54.298607+00:00",
+      "generation_id": "gen-1794192941-oUYOdEIdSrUZkNL86Azr"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:56.669212+00:00",
+      "generation_id": "gen-1794193635-YQxxXh91OzDWHfMp7Mld"
+     }
+    }
    }
   },
   {
@@ -1026,14 +2671,53 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "regulation",
+     "national security"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:23.150905+00:00",
+      "generation_id": "gen-1794192245-X82z72Su6tP1L7TP5LRu"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:54.298607+00:00",
+      "generation_id": "gen-1794192941-oUYOdEIdSrUZkNL86Azr"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:56.669212+00:00",
+      "generation_id": "gen-1794193635-YQxxXh91OzDWHfMp7Mld"
+     }
+    }
    }
   },
   {
@@ -1051,14 +2735,53 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "national security",
+     "misuse (bio/cyber)"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:23.150905+00:00",
+      "generation_id": "gen-1794192245-X82z72Su6tP1L7TP5LRu"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:54.298607+00:00",
+      "generation_id": "gen-1794192941-oUYOdEIdSrUZkNL86Azr"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:56.669212+00:00",
+      "generation_id": "gen-1794193635-YQxxXh91OzDWHfMp7Mld"
+     }
+    }
    }
   },
   {
@@ -1075,14 +2798,71 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
+    "status": "complete",
+    "a": {
+     "china_race": 4
+    },
+    "b": {
+     "china_race": 4
+    },
+    "topics": [
+     "China/competition",
+     "national security"
+    ],
+    "confidence": {
+     "china_race": 3.0
+    },
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 4
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:23.150905+00:00",
+      "generation_id": "gen-1794192245-X82z72Su6tP1L7TP5LRu"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 4
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:54.298607+00:00",
+      "generation_id": "gen-1794192941-oUYOdEIdSrUZkNL86Azr"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 4
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:56.669212+00:00",
+      "generation_id": "gen-1794193635-YQxxXh91OzDWHfMp7Mld"
+     }
+    }
    }
   },
   {
@@ -1101,14 +2881,53 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy",
+     "energy/data centers"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:44:23.150905+00:00",
+      "generation_id": "gen-1794192245-X82z72Su6tP1L7TP5LRu"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:54.298607+00:00",
+      "generation_id": "gen-1794192941-oUYOdEIdSrUZkNL86Azr"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:07:56.669212+00:00",
+      "generation_id": "gen-1794193635-YQxxXh91OzDWHfMp7Mld"
+     }
+    }
    }
   },
   {
@@ -1126,14 +2945,50 @@
     "role": "Secretary of the Treasury"
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy"
+    ],
     "confidence": {},
     "escalated": [],
-    "models": {},
-    "assessments": {}
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:56:03.132468+00:00",
+      "generation_id": "gen-1794336956-mC0o6bexea7otRvwq9fN"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:57:22.169307+00:00",
+      "generation_id": "gen-1794337026-voh0E0bFHDjvTdhRITE0"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:58:44.497087+00:00",
+      "generation_id": "gen-1794337104-mSylqvjA1d7OZ4Q1SDuD"
+     }
+    }
    }
   },
   {
@@ -1150,14 +3005,74 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
-    "b": {},
-    "topics": [],
+    "b": {
+     "ai_overall": 3
+    },
+    "topics": [
+     "jobs/economy"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:56:03.132468+00:00",
+      "generation_id": "gen-1794336956-mC0o6bexea7otRvwq9fN"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:57:22.169307+00:00",
+      "generation_id": "gen-1794337026-voh0E0bFHDjvTdhRITE0"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-10T18:58:44.497087+00:00",
+      "generation_id": "gen-1794337104-mSylqvjA1d7OZ4Q1SDuD"
+     },
+     "sol": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "national security"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-10T18:59:41.313616+00:00",
+      "generation_id": "gen-1794337175-w2yVaXkhWzJannMgZuGY"
+     }
+    }
    }
   }
  ],
@@ -1555,209 +3470,209 @@
   {
    "date": "2025-07-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
    "n_statements": 3,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-08-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
    "n_statements": 6,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-09-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.5,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 0.5
    },
    "n_statements": 8,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-10-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 0.5
    },
    "n_statements": 13,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-11-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 0.5
    },
    "n_statements": 13,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-12-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 0.5
    },
    "n_statements": 14,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-01-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 0.5
    },
    "n_statements": 14,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-02-28",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 0.5
    },
    "n_statements": 17,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-03-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 21,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-04-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 23,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-05-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "n_statements": 23,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-06-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.0
    },
    "n_statements": 25,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-07-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.0
    },
    "n_statements": 27,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-08-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.0
    },
    "n_statements": 28,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-09-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.0
    },
    "n_statements": 30,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-10-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.0
    },
    "n_statements": 31,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {

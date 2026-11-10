@@ -24,6 +24,11 @@ REGULATION_AREAS = [{'id': k,'title':title.strip(),'group':'frontier' if REG_TEX
 AREA_IDS = [a['id'] for a in REGULATION_AREAS]
 LABEL_PATH = 'data/federal_analysis_labels.json'
 PROFILE_PATH = 'data/federal_analysis_profiles.json'
+# The 2026-11-10 edit changed only the deterministic aggregation instructions.
+# Preserve the exact previous rubric for narrowly checked cache compatibility.
+LEGACY_RUBRIC_PATH = ROOT / 'config/federal_analysis_legacy_rubric.md'
+LEGACY_RUBRIC = LEGACY_RUBRIC_PATH.read_text() if LEGACY_RUBRIC_PATH.exists() else None
+AGGREGATION_MARKER = '## How labels become a score (fixed formula, not the model)'
 
 def read(path, default=None):
     return json.loads(Path(path).read_text()) if Path(path).exists() else default
@@ -198,6 +203,12 @@ def valid_entry(saved,subject,statements,stage,config):
     if stage=='labels':entry=entry.get(statements[0]['sid'],{})
     # Accept initial-run hashes only when the entire original configuration still matches.
     hashes={fingerprint(subject,statements,stage,config),fingerprint(subject,statements,stage,config,legacy=True)}
+    rubric=config.get('rubric','')
+    if (LEGACY_RUBRIC and AGGREGATION_MARKER in rubric
+            and rubric.split(AGGREGATION_MARKER)[0] == LEGACY_RUBRIC.split(AGGREGATION_MARKER)[0]):
+        previous={**config,'rubric':LEGACY_RUBRIC}
+        hashes.update((fingerprint(subject,statements,stage,previous),
+                       fingerprint(subject,statements,stage,previous,legacy=True)))
     return entry if entry.get('input_hash') in hashes else {}
 
 def state(root):

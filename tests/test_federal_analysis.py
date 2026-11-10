@@ -9,6 +9,19 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class FederalAnalysisTests(unittest.TestCase):
+    def test_fixed_formula_edit_preserves_labels_but_label_rule_edit_invalidates(self):
+        a=self.a; config=a.configuration(ROOT)
+        old={**config,'rubric':(ROOT/'config/federal_analysis_legacy_rubric.md').read_text()}
+        subject={'id':'example','name':'Example','entity_type':'person','organization_id':'agency','roles':[]}
+        statements=[{'sid':'s1','text':'AI will benefit Americans.', 'date':'2026-01-01','url':'https://example.gov/speech'}]
+        entry={'input_hash':a.fingerprint(subject,statements,'labels',old),'assessments':{'ds_0':{'value':{}}}}
+        saved={'profiles':{'example':{'s1':entry}}}
+        self.assertIs(a.valid_entry(saved,subject,statements,'labels',config),entry)
+        changed={**config,'rubric':config['rubric'].replace('## 1. `x_risk`','## 1. Changed label instructions')}
+        self.assertEqual(a.valid_entry(saved,subject,statements,'labels',changed),{})
+        edited=[{**statements[0],'text':'AI harms Americans.'}]
+        self.assertEqual(a.valid_entry(saved,subject,edited,'labels',config),{})
+
     @classmethod
     def setUpClass(cls):
         assert (ROOT / 'federal_analysis.py').exists(), 'Federal broad analysis implementation is missing'

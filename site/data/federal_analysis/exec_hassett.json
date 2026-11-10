@@ -8,7 +8,7 @@
   "party": null,
   "state": "",
   "chamber": "",
-  "status": "partial",
+  "status": "complete",
   "entity_type": "person",
   "branch": "executive",
   "organization_id": "nec",
@@ -42,49 +42,56 @@
    "reason": "current_federal_official"
   },
   "n_statements": 7,
-  "n_labeled": 0,
+  "n_labeled": 7,
   "scores": {
-   "ai_overall": null,
-   "agi_pilled": null,
+   "ai_overall": 4.0,
+   "agi_pilled": 2.0,
    "x_risk": null,
    "china_race": null,
-   "regulation": null
+   "regulation": 2.0
   },
   "score_details": {
    "ai_overall": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 4.0,
+    "reason_a": "median_of_2",
+    "reason_b": "median_of_2",
+    "sids": [
+     "s7",
+     "s6"
+    ],
+    "label_count": 2
    },
    "agi_pilled": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 2.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s6"
+    ],
+    "label_count": 1
    },
    "x_risk": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "china_race": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "regulation": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 2.0,
+    "reason_a": "consistent",
+    "reason_b": "no_statements",
+    "sids": [
+     "s5"
+    ],
+    "label_count": 2
    }
   },
   "summary": {
@@ -123,7 +130,11 @@
     }
    ]
   },
-  "topics": {},
+  "topics": {
+   "jobs/economy": 4.0,
+   "regulation": 2.0,
+   "AGI/transformative": 1.0
+  },
   "regulation": {
    "status": "complete",
    "areas": {
@@ -278,14 +289,96 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "ai_overall",
+     "regulation"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+     "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:43:10.129607+00:00",
+      "generation_id": "gen-1794192179-FF8VTOgU2A6p2Xg1WACh"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:08.583330+00:00",
+      "generation_id": "gen-1794192885-3bfwIIXGr5iZhJHfsMgG"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 4,
+       "regulation": 2
+      },
+      "confidence": {
+       "ai_overall": 5,
+       "regulation": 5
+      },
+      "topics": [
+       "jobs/economy",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:06:32.595916+00:00",
+      "generation_id": "gen-1794193583-5Umz51OsZpOPROAfOlFB"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:13:50.193198+00:00",
+      "generation_id": "gen-1794194026-NaeuOmbPtJdQ4dbKhVpZ"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+      "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
+     }
+    }
    }
   },
   {
@@ -302,14 +395,92 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "ai_overall"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+     "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:43:10.129607+00:00",
+      "generation_id": "gen-1794192179-FF8VTOgU2A6p2Xg1WACh"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:08.583330+00:00",
+      "generation_id": "gen-1794192885-3bfwIIXGr5iZhJHfsMgG"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 5
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:06:32.595916+00:00",
+      "generation_id": "gen-1794193583-5Umz51OsZpOPROAfOlFB"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:13:50.193198+00:00",
+      "generation_id": "gen-1794194026-NaeuOmbPtJdQ4dbKhVpZ"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+      "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
+     }
+    }
    }
   },
   {
@@ -326,14 +497,92 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "jobs/economy"
+    ],
     "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "escalated": [
+     "ai_overall"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+     "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:43:10.129607+00:00",
+      "generation_id": "gen-1794192179-FF8VTOgU2A6p2Xg1WACh"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:08.583330+00:00",
+      "generation_id": "gen-1794192885-3bfwIIXGr5iZhJHfsMgG"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 5
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:06:32.595916+00:00",
+      "generation_id": "gen-1794193583-5Umz51OsZpOPROAfOlFB"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:13:50.193198+00:00",
+      "generation_id": "gen-1794194026-NaeuOmbPtJdQ4dbKhVpZ"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+      "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
+     }
+    }
    }
   },
   {
@@ -350,14 +599,111 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "regulation": 0
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 3.67
+    },
+    "escalated": [
+     "ai_overall",
+     "x_risk",
+     "regulation"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+     "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 0
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:43:10.129607+00:00",
+      "generation_id": "gen-1794192179-FF8VTOgU2A6p2Xg1WACh"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:08.583330+00:00",
+      "generation_id": "gen-1794192885-3bfwIIXGr5iZhJHfsMgG"
+     },
+     "ds_2": {
+      "labels": {
+       "x_risk": 1,
+       "regulation": 0,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "x_risk": 5,
+       "regulation": 5,
+       "ai_overall": 5
+      },
+      "topics": [
+       "regulation",
+       "x-risk/loss of control"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:06:32.595916+00:00",
+      "generation_id": "gen-1794193583-5Umz51OsZpOPROAfOlFB"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:13:50.193198+00:00",
+      "generation_id": "gen-1794194026-NaeuOmbPtJdQ4dbKhVpZ"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+      "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
+     }
+    }
    }
   },
   {
@@ -374,14 +720,104 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
+    "status": "complete",
+    "a": {
+     "regulation": 2
+    },
     "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 3.5
+    },
+    "escalated": [
+     "x_risk",
+     "regulation"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+     "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 2
+      },
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:43:10.129607+00:00",
+      "generation_id": "gen-1794192179-FF8VTOgU2A6p2Xg1WACh"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T02:55:08.583330+00:00",
+      "generation_id": "gen-1794192885-3bfwIIXGr5iZhJHfsMgG"
+     },
+     "ds_2": {
+      "labels": {
+       "x_risk": 2,
+       "regulation": 2
+      },
+      "confidence": {
+       "x_risk": 5,
+       "regulation": 5
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T03:06:32.595916+00:00",
+      "generation_id": "gen-1794193583-5Umz51OsZpOPROAfOlFB"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T03:13:50.193198+00:00",
+      "generation_id": "gen-1794194026-NaeuOmbPtJdQ4dbKhVpZ"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+      "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
+     }
+    }
    }
   },
   {
@@ -398,14 +834,135 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 4,
+     "agi_pilled": 2
+    },
+    "b": {
+     "ai_overall": 4,
+     "agi_pilled": 2
+    },
+    "topics": [
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "ai_overall": 5,
+     "agi_pilled": 3.0
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 4
+     },
+     "confidence": {
+      "ai_overall": 5
+     },
+     "review_confidence": 4,
+     "reason": "Hassett explicitly expects AI-driven societal changes to be entirely beneficial, connecting productivity and wealth to higher wages and more leisure.",
+     "supporting_quote": "there'll be fundamental societal changes, but they'll be all—so I'm an optimist—they'll be all for the good",
+     "support_basis": "excerpt",
+     "accepted": true,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+     "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 4
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 4
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:37:19.654406+00:00",
+      "generation_id": "gen-1794206230-8V05NEZSqxAQzhBoUVSp"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 4
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:37:44.497656+00:00",
+      "generation_id": "gen-1794206259-rDK82OL184ytSTf3joZz"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 4
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:38:37.822238+00:00",
+      "generation_id": "gen-1794206314-YoWVSfw02zFfSwnZAufh"
+     },
+     "sol": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 4
+      },
+      "confidence": {
+       "agi_pilled": 5,
+       "ai_overall": 5
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T06:39:07.144497+00:00",
+      "generation_id": "gen-1794206342-Bpq1X0x6EmXc48FkuKzn"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 5
+      },
+      "review_confidence": 4,
+      "reason": "Hassett explicitly expects AI-driven societal changes to be entirely beneficial, connecting productivity and wealth to higher wages and more leisure.",
+      "supporting_quote": "there'll be fundamental societal changes, but they'll be all—so I'm an optimist—they'll be all for the good",
+      "support_basis": "excerpt",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+      "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
+     }
+    }
    }
   },
   {
@@ -422,14 +979,114 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
-    "a": {},
-    "b": {},
-    "topics": [],
-    "confidence": {},
-    "escalated": [],
-    "models": {},
-    "assessments": {}
+    "status": "complete",
+    "a": {
+     "ai_overall": 4
+    },
+    "b": {
+     "ai_overall": 4
+    },
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {
+     "ai_overall": 4
+    },
+    "escalated": [
+     "ai_overall"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 4
+     },
+     "confidence": {
+      "ai_overall": 4
+     },
+     "review_confidence": 4,
+     "reason": "The supplied context establishes enthusiastic, economy-wide optimism about AI-driven growth, employment and wages. He minimizes current labor-market stress and principally attributes it to firms not adopting AI.",
+     "supporting_quote": "The growth benefit of it is way bigger than you may think,",
+     "support_basis": "excerpt",
+     "accepted": true,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+     "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:37:19.654406+00:00",
+      "generation_id": "gen-1794206230-8V05NEZSqxAQzhBoUVSp"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:37:44.497656+00:00",
+      "generation_id": "gen-1794206259-rDK82OL184ytSTf3joZz"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-09T06:38:37.822238+00:00",
+      "generation_id": "gen-1794206314-YoWVSfw02zFfSwnZAufh"
+     },
+     "sol": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-09T06:39:07.144497+00:00",
+      "generation_id": "gen-1794206342-Bpq1X0x6EmXc48FkuKzn"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "456c52a100520849887633573d3bacaf7e9b36fa89e96b66adc8ef287b0a91d4",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "review_confidence": 4,
+      "reason": "The supplied context establishes enthusiastic, economy-wide optimism about AI-driven growth, employment and wages. He minimizes current labor-market stress and principally attributes it to firms not adopting AI.",
+      "supporting_quote": "The growth benefit of it is way bigger than you may think,",
+      "support_basis": "excerpt",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-09T06:46:25.563489+00:00",
+      "generation_id": "gen-1794206768-Nilr5Gx4uVtMpwyzEU4x"
+     }
+    }
    }
   }
  ],
@@ -964,7 +1621,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -977,7 +1634,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -990,7 +1647,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1003,7 +1660,7 @@
     "regulation": null
    },
    "n_statements": 1,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1016,7 +1673,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1029,7 +1686,7 @@
     "regulation": null
    },
    "n_statements": 2,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
