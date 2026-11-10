@@ -12,7 +12,7 @@ import policy_subjects
 
 INVENTORY = 'config/federal_roster_inventory.json'
 CHECKS = 'data/federal_role_checks.json'
-STATES = ('included', 'candidate', 'unresolved', 'vacant', 'not_public', 'out_of_scope')
+STATES = ('included', 'candidate', 'unresolved', 'vacant', 'not_public', 'out_of_scope', 'not_selected')
 
 
 def _read(path, default=None):
@@ -71,7 +71,7 @@ def load_inventory(root: Path) -> dict:
             raise ValueError('Invalid role source URL')
         if role['status'] == 'included' and role.get('subject_id') not in eligible:
             raise ValueError('Included role must reference an eligible current person')
-        if role['status'] in ('included', 'vacant', 'not_public', 'out_of_scope') and not role.get('current_service_evidence'):
+        if role['status'] in ('included', 'vacant', 'not_public', 'out_of_scope', 'not_selected') and not role.get('current_service_evidence'):
             raise ValueError('Role disposition requires positive source evidence')
     return inventory
 
@@ -113,6 +113,7 @@ def coverage_report(root: Path) -> dict:
             'included_roles': counts['included'], 'candidate_roles': counts['candidate'],
             'unresolved_roles': counts['unresolved'], 'vacant_roles': counts['vacant'],
             'not_public_roles': counts['not_public'], 'out_of_scope_roles': counts['out_of_scope'],
+            'not_selected_roles': counts['not_selected'],
             'pending_role_reviews': sum(bool(s.get('needs_review')) for s in checks.values())}}
 
 

@@ -179,3 +179,80 @@ test('history separates reconstructed and observed records and leaves gaps for u
   assert.equal(view.dateLabel(null),'Date unknown');
   assert.equal(view.dateLabel('2025-02-30'),'Date unknown');
 });
+
+test('empty profiles distinguish pending web research from a completed search', () => {
+  const empty=member({status:'no_evidence',n_statements:0,n_labeled:0,scores:{ai_overall:null}});
+  const unsearched={...empty,research:{research_status:'not_started'}};
+  const partial={...empty,research:{research_status:'in_progress',completed_passes:2}};
+  const searched={...empty,research:{research_status:'searched',completed_passes:8}};
+  assert.equal(view.scoreState(unsearched,'ai_overall').kind,'research_pending');
+  assert.equal(view.scoreState(partial,'ai_overall').value,null);
+  assert.equal(view.scoreState(searched,'ai_overall').kind,'searched_empty');
+  assert.equal(view.scoreState(empty,'ai_overall').kind,'no_evidence');
+  const result=view.scoreDistribution([unsearched,partial,searched,empty],'ai_overall');
+  assert.equal(result.research_pending,2);
+  assert.equal(result.searched_empty,1);
+  assert.equal(result.bins[0].count,0);
+});
+
+test('profile status separates model progress, a narrow record, and daily check dates', () => {
+  const narrow=member({scores:{ai_overall:null,regulation:2},score_details:{ai_overall:{reason_a:'no_statements',reason_b:'no_statements'}},
+    research:{research_status:'searched',completed_passes:8,official_leads_pending:2,daily:{web:{named_query:'Official',pending_named_queries:1,last_success_on:'2026-11-08'},
+      x:{last_successful_cutoff:'2026-11-09T18:17:32Z',pending_windows:2}}}});
+  const html=view.renderProfileCoverage(narrow);
+  assert.match(html,/Assessment complete/);
+  assert.match(html,/No qualifying AI overall stance/);
+  assert.match(html,/Historical web passes complete/);
+  assert.match(html,/2 official source leads pending/);
+  assert.match(html,/Daily named web query queued/);
+  assert.match(html,/Last successful web check: 2026-11-08/);
+  assert.match(html,/2026-11-09 18:17 UTC/);
+  assert.match(html,/2 X windows pending/);
+  assert.equal(view.scoreState(narrow,'ai_overall').value,null);
+  assert.equal(view.scoreState(narrow,'regulation').value,2);
+  const pending=member({...narrow,n_labeled:1,status:'partial'});
+  const pendingHTML=view.renderProfileCoverage(pending);
+  assert.match(pendingHTML,/Assessments pending/);
+  assert.doesNotMatch(pendingHTML,/No qualifying AI overall stance/);
+});
+
+test('coverage overview reports pending research and distinguishes the shared queue from successful checks', () => {
+  const profiles=[member({n_statements:0,n_labeled:0,research:{research_status:'not_started'}}),
+    member({n_statements:0,n_labeled:0,research:{research_status:'searched'}}),member({status:'partial',n_labeled:2})];
+  const coverage={daily:{web:{pending_named_queries:9,pending_pages:12,last_named_success_on:'2026-11-08',
+    oldest_known_pending_on:null},x:{pending_windows:3}}};
+  const html=view.renderResearchCoverage(coverage,profiles);
+  assert.match(html,/1 web research pending/);
+  assert.match(html,/1 searched with no verified evidence/);
+  assert.match(html,/1 with assessments pending/);
+  assert.match(html,/9 named web queries due/);
+  assert.match(html,/12 pages queued/);
+  assert.match(html,/Last successful named web check: 2026-11-08/);
+  assert.match(html,/Oldest queue date unknown/);
+  assert.match(html,/Collection limits can leave profiles pending across days/);
+});
+
+test('reported roles expose escaped title notes and safe additional sources', () => {
+  const html=view.renderRoles({roles:[{title:'Acting Director <example>',status:'historical',source_type:'reporting',
+    title_note:'The organization chart says <Acting>.',source_url:'https://example.gov/chart?a=1&b=2',
+    additional_source_urls:['javascript:alert(1)','https://example.gov/bio?one=1&two=2','data:text/html,bad']}]});
+  assert.match(html,/Acting Director &lt;example&gt;/);
+  assert.match(html,/historical role/);
+  assert.match(html,/reported role/);
+  assert.match(html,/says &lt;Acting&gt;/);
+  assert.match(html,/href="https:\/\/example.gov\/chart\?a=1&amp;b=2"/);
+  assert.match(html,/href="https:\/\/example.gov\/bio\?one=1&amp;two=2"/);
+  assert.doesNotMatch(html,/javascript:|data:text\/html|<Acting>/);
+});
+
+
+test('new X mappings show a daily check due before any window enters the saved queue', () => {
+  const x={accounts_due_for_daily_check:1,pending_windows:0,last_successful_cutoff:null};
+  const profile=member({research:{research_status:'not_started',daily:{x}}});
+  const detail=view.renderProfileCoverage(profile);
+  assert.match(detail,/Daily X check due/);
+  assert.match(detail,/Last successful X cutoff: Unknown/);
+  const overview=view.renderResearchCoverage({daily:{x}},[profile]);
+  assert.match(overview,/1 X account due for a daily check/);
+  assert.match(overview,/0 saved X windows pending/);
+});

@@ -1,5 +1,7 @@
 # Federal Roster Expansion Implementation Plan
 
+**Execution update, November 10, 2026:** The user reduced the active roster to **500 current federal people total**, including existing profiles. Institutions remain separate. Preserve other discovered roles in the inventory without active collection. The original eight-pass research and Astra method remains in use. The current authorized OpenRouter lifetime cap is $500, and the federal daily model allowance is $4; these upstream approvals supersede the older values below. No increase to $800 was approved. The pilot and daily scheduler are complete. See [the execution record](../../federal-roster-expansion-progress.md) for verified costs and remaining work.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Cover influential current officials across all executive departments, White House offices, intelligence and cyber agencies, independent agencies, and their substantive offices.
@@ -59,9 +61,9 @@ The first deliverable is a table of covered and missing offices with proposed in
 
 - [ ] Inventory all 15 departments, all Executive Office units, the intelligence-community directory, and all executive/independent agencies in the federal directory. Follow component directories recursively; record visited pages and unresolved links.
 - [ ] For every organization, review leadership and substantive offices using the two inclusion rules in the spec. Record current incumbents, vacant roles, nonpublic incumbents, and out-of-scope results with sources. Include all qualifying leaders, whether or not they discuss AI.
-- [ ] Write tests asserting that an `included` role without eligible person scope fails validation, one person in two roles counts once, and a pending component prevents an organization-complete claim. Assert that a page-fetch error cannot produce a `vacant` state and that a renamed organization retains its stable key.
+- [x] Write tests asserting that an `included` role without eligible person scope fails validation, one person in two roles counts once, and a pending component prevents an organization-complete claim. Assert that a page-fetch error cannot produce a `vacant` state and that a renamed organization retains its stable key.
 - [ ] Run `uv run --no-dev python -m unittest discover -s tests -p 'test_federal_roster.py' -v`; confirm the new behavior fails before implementation.
-- [ ] Implement the validator and report. Require unique role IDs, valid source URLs/check dates, resolved parent links, and explicit review reasons. Do not infer that a directory contains every influential person.
+- [x] Implement the validator and report. Require unique role IDs, valid source URLs/check dates, resolved parent links, and explicit review reasons. Do not infer that a directory contains every influential person.
 - [ ] Run the focused tests and `uv run --no-dev python federal_roster.py report`. Publish counts by agency, seniority, existing/new person, and unresolved reason. Mark incomplete discovery clearly.
 - [ ] Commit the inventory, validator, tests, and sourced gap report together.
 
@@ -74,9 +76,9 @@ The first deliverable is a table of covered and missing offices with proposed in
 - [ ] Verify current service immediately before adding each person. Prefer current official directories; independently corroborate ambiguous advisory roles and stale appointment announcements. Preserve the source's exact current title and historical aliases.
 - [ ] Write regression cases for an eligible official with zero excerpts, an acting official, an outside adviser, and one official with a second role. Assert that only eligible people reach both collectors and public exports, and that a second role preserves evidence/history under one ID.
 - [ ] Run `uv run --no-dev python -m unittest discover -s tests -p 'test_policy_subjects.py' -v`; confirm any new behavior fails before changing shared validation.
-- [ ] Add verified officials, organizations, parent relationships, role sources, and explicit empty evidence files. Record unresolved people in the inventory only. Recheck existing uncertain advisers under the same rule.
-- [ ] Freeze five pilot IDs: one White House official, one Commerce official, one intelligence/cyber official, one official from a missing department, and one independent-agency official. If a category has no verified addition, record the reason and select another undercovered category.
-- [ ] Assign remaining verified additions to cohorts of 10–20. Include empty profiles in the roster; do not treat cohort membership as completed research. Store current inventory counts and updated ledger baselines.
+- [x] Add verified officials, organizations, parent relationships, role sources, and explicit empty evidence files. Record unresolved people in the inventory only. Recheck existing uncertain advisers under the same rule.
+- [x] Freeze five pilot IDs: one White House official, one Commerce official, one intelligence/cyber official, one official from a missing department, and one independent-agency official. If a category has no verified addition, record the reason and select another undercovered category.
+- [x] Assign remaining verified additions to cohorts of 10–20. Include empty profiles in the roster; do not treat cohort membership as completed research. Store current inventory counts and updated ledger baselines.
 - [ ] Run eligibility tests and the inventory report. Commit each coherent agency cohort with its scope evidence.
 
 ### Task 3: Run bounded historical web and X research
@@ -85,20 +87,20 @@ The first deliverable is a table of covered and missing offices with proposed in
 
 **Interfaces:** Reuse `scripts/federal_research.py ... --ids`. Add optional `--until YYYY-MM-DD` to X `plan` and `collect`: an exclusive UTC archive bound, historical mode only. It overrides the cutoff only for selected IDs. Add `subject_ids` and `historical_until` workflow inputs with validation and safe environment-variable quoting. Defaults preserve current behavior. Do not reset existing archive progress.
 
-- [ ] Write tests for cohort-specific cutoffs, pagination resume, unchanged existing jobs, moved account ownership, and mismatched numeric authors. Assert that daily mode rejects a historical-only cutoff. Run the focused X tests and confirm failures for the new interface.
-- [ ] Implement the cutoff through planning, request parameters, persisted job identity, status, and coverage reporting. Keep unrelated jobs valid. Implement workflow subject filtering without interpolating untrusted input into shell code.
-- [ ] Source account mappings from government links or corroborated account identity. Preserve ownership dates and numeric author checks. Record `no_verified_account` separately from `not_searched`.
-- [ ] Run offline plans for the pilot:
+- [x] Write tests for cohort-specific cutoffs, pagination resume, unchanged existing jobs, moved account ownership, and mismatched numeric authors. Assert that daily mode rejects a historical-only cutoff. Run the focused X tests and confirm failures for the new interface.
+- [x] Implement the cutoff through planning, request parameters, persisted job identity, status, and coverage reporting. Keep unrelated jobs valid. Implement workflow subject filtering without interpolating untrusted input into shell code.
+- [x] Source account mappings from government links or corroborated account identity. Preserve ownership dates and numeric author checks. Record `no_verified_account` separately from `not_searched`.
+- [x] Run offline plans for the pilot:
 
 ```bash
 uv run --no-dev python scripts/federal_research.py plan --ids "$COHORT_IDS" --rounds 8
 uv run --no-dev python scripts/federal_x.py plan --mode historical --ids "$COHORT_IDS" --until "$COHORT_UNTIL"
 ```
 
-- [ ] Refresh shared ledgers and confirm remaining pilot allowance. Run eight web passes and targeted official sources with `research` and `seeds`; set each command's `--max-cost` to the remaining aggregate allowance, rather than granting a fresh pilot allowance each time.
+- [x] Refresh shared ledgers and confirm remaining pilot allowance. Run eight web passes and targeted official sources with `research` and `seeds`; set each command's `--max-cost` to the remaining aggregate allowance, rather than granting a fresh pilot allowance each time.
 - [ ] Dispatch bounded X collection on the original repository using its existing secret. Preserve the shared `daily-update` concurrency group. Pull completed evidence/cost changes before another local paid run. Historical posts start at 2023-01-01, clipped to account ownership; relevant older sources may enter through web research.
 - [ ] Resolve verification failures and retrieve full speeches/transcripts for promising leads. Record contrary evidence, source access gaps, archive limits, and zero-result searches. Preserve stable statement IDs and explicit personal/official/institutional attribution.
-- [ ] Run focused tests and publish the pilot's evidence, search coverage, elapsed time, and actual costs. Forecast remaining work before expanding. Commit progress, including incomplete stages, without calling a bounded batch a complete search.
+- [x] Run focused tests and publish the pilot's evidence, search coverage, elapsed time, and actual costs. Forecast remaining work before expanding. Commit progress, including incomplete stages, without calling a bounded batch a complete search.
 
 ### Task 4: Complete shared analysis and Astra review
 
@@ -106,8 +108,8 @@ uv run --no-dev python scripts/federal_x.py plan --mode historical --ids "$COHOR
 
 **Interfaces:** Add optional `--ids` to named-policy `plan` and `label` to filter subject IDs before candidate selection. Keep `--targets` reserved for policy IDs. Unknown IDs fail clearly. Forward the X workflow's subject selection to both analysis stages. The existing `federal_stance_review.py --audit` interface consumes a frozen manifest in `data/`; never overwrite the earlier 33-case or 32-case audits. Add an optional `audit_path` input to the context workflow, restricted to existing JSON files directly in `data/`, with the existing audit as its default.
 
-- [ ] Test policy subject filtering, zero-evidence profiles, incomplete model responses, and exhaustion of a shared model allowance. Assert that pending work never becomes a silence score or accepted stance.
-- [ ] Implement the subject filter and rerun focused tests. Keep the five-score, regulation, summary, topic, and named-policy prompts unchanged.
+- [x] Test policy subject filtering, zero-evidence profiles, incomplete model responses, and exhaustion of a shared model allowance. Assert that pending work never becomes a silence score or accepted stance.
+- [x] Implement the subject filter and rerun focused tests. Keep the five-score, regulation, summary, topic, and named-policy prompts unchanged.
 - [ ] Run offline broad-analysis and named-policy plans for each cohort. Run resumable labels within the remaining aggregate model allowance; use `--budget-baseline` where supported and remaining allowance elsewhere.
 - [ ] Complete base analysis before the final review. Create the expansion audit explicitly with only new evidence-bearing IDs; do not let its default missing-file behavior select all existing no-stance profiles.
 - [ ] Run Astra `review` against the separate audit. Retrieve any requested web or X context, then review again as needed. Pass the expansion audit to the original-repository context workflow for secret-dependent X calls. Import returned context and cost artifacts before the next paid call. Apply only valid, current-input results; preserve unresolved and no-stance decisions.
@@ -121,10 +123,10 @@ uv run --no-dev python scripts/federal_x.py plan --mode historical --ids "$COHOR
 **Interfaces:** Every eligible profile receives a named query and organization-source assignment. Extend `coverage_report(root)` with last role check and pending role-review counts. A weekly check inside the existing daily workflow retrieves known directory URLs and records `unchanged`, `review_needed`, or `unavailable`. It never edits scope decisions automatically. Use content hashes of relevant directory text; preserve the last successful check on failure.
 
 - [ ] Test a new department, a linked office, a new verified account, and a newly eligible person with no evidence. Assert that each receives the required daily assignment exactly once.
-- [ ] Test repeated small budgets with a fake client: oldest pending collection and judgment work must advance across agencies and analysis stages. Extend scheduling only if the current logic starves a group or stage.
+- [x] Test repeated small budgets with a fake client: oldest pending collection and judgment work must advance across agencies and analysis stages. Extend scheduling only if the current logic starves a group or stage.
 - [ ] Add source domains, queries, institutional sources, and verified active X mappings. Add last-success, pending-stage, and oldest-pending metrics without changing spending caps.
-- [ ] Test directory content changes, temporary 403 responses, and role renames. Confirm these create review records without automatic exclusion or duplicate people.
-- [ ] Implement the weekly check in the existing workflow with a timeout and cached source records. Include the new review file in normal progress commits. Keep the fork's duplicate schedule paused.
+- [x] Test directory content changes, temporary 403 responses, and role renames. Confirm these create review records without automatic exclusion or duplicate people.
+- [x] Implement the weekly check in the existing workflow with a timeout and cached source records. Include the new review file in normal progress commits. Keep the fork's duplicate schedule paused.
 - [ ] Run `uv run --no-dev python scripts/daily/run.py --sources federal --dry-run`. Confirm every cohort ID has routing. Then observe one authorized bounded live run and report completed work, backlog age, and estimated full rotation time.
 - [ ] If capacity cannot support daily collection for every profile, retain the explicit queue and report the limit. Request a concrete budget or frequency decision only after measuring it. Commit routing, tests, and coverage reports.
 
@@ -134,10 +136,10 @@ uv run --no-dev python scripts/federal_x.py plan --mode historical --ids "$COHOR
 
 **Interfaces:** Add an additive `roster_coverage` object to the existing federal export, from `coverage_report(root)`. It lists organization discovery status, unique included people, role states, and last verification. Keep existing score/history fields and matching export revisions. Expose only role facts and source links, not internal candidate speculation.
 
-- [ ] Test department totals, office filters, dual appointments, empty profiles, and people/institution separation. Assert that all eligible people contribute to coverage bars, including unscored people.
-- [ ] Test that unresolved candidates never become profiles and that missing inventory data produces an unavailable coverage notice rather than a false zero.
-- [ ] Add office navigation, sourced role details, and an agency coverage table. Distinguish roster gaps, research gaps, no stance, and pending analysis. Keep Congress-style visuals and the same question labels.
-- [ ] Build with `make site PY='uv run --no-dev python'`. Verify congressional evidence, scores, histories, and substantive exports remain unchanged. Prevent a federal-only build from advancing a congressional update date without new congressional data.
+- [x] Test department totals, office filters, dual appointments, empty profiles, and people/institution separation. Assert that all eligible people contribute to coverage bars, including unscored people.
+- [x] Test that unresolved candidates never become profiles and that missing inventory data produces an unavailable coverage notice rather than a false zero.
+- [x] Add office navigation, sourced role details, and an agency coverage table. Distinguish roster gaps, research gaps, no stance, and pending analysis. Keep Congress-style visuals and the same question labels.
+- [x] Build with `make site PY='uv run --no-dev python'`. Verify congressional evidence, scores, histories, and substantive exports remain unchanged. Prevent a federal-only build from advancing a congressional update date without new congressional data.
 - [ ] Run `make test PY='uv run --no-dev python'` and `git diff --check`. Inspect desktop and narrow-screen views for each major agency category, one multiple-role official, one no-evidence official, and an Astra-reviewed profile.
 - [ ] Commit and publish each verified cohort through the existing GitHub and deployment path. Verify deployed roster counts, source links, office filters, and daily workflow status against the committed revision.
 

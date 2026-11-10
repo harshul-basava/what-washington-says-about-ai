@@ -19,7 +19,8 @@
   const STATUS = {complete:'Assessment complete',partial:'Some assessments pending',pending:'Assessment pending',no_evidence:'No evidence'};
   const number = value => typeof value === 'number' && Number.isFinite(value);
   const score = value => number(value) && value >= 0 && value <= 4;
-  const count = value => Number.isInteger(value) && value >= 0 ? value : 0;
+  const knownCount = value => Number.isInteger(value) && value >= 0;
+  const count = value => knownCount(value) ? value : 0;
   const quoteID = sid => 'quote-' + encodeURIComponent(sid);
 
   function safeURL(value) {
@@ -70,33 +71,60 @@
     const table=items=>`<div class="fa-table-scroll"><table><thead><tr><th scope="col">Agency or office</th><th scope="col">Unique officials</th><th scope="col">Unresolved roles</th><th scope="col">Vacant roles</th><th scope="col">Office review</th><th scope="col">Last role review</th></tr></thead><tbody>${items.map(row=>`<tr><th scope="row">${row.registry_id ? `<a href="?organization=${encodeURIComponent(row.registry_id)}#fa-roster-coverage">${esc(row.name)}</a>` : esc(row.name)}</th><td>${count(row.included_people)}</td><td>${count(row.unresolved_roles)}</td><td>${count(row.role_counts?.vacant)}</td><td>${row.discovery_complete ? 'Public offices reviewed' : 'Review incomplete'}${row.pending_role_reviews ? ' · role changes need review' : ''}${row.unavailable_sources ? ' · source unavailable' : ''}</td><td>${esc(row.checked_on || 'Unknown')}</td></tr>`).join('')}</tbody></table></div>`;
     const main=organization==='all' ? rows.filter(row=>!row.parent_id) : rows;
     const offices=organization==='all' ? rows.filter(row=>row.parent_id) : [];
-    return `<p>These counts describe tracked current officials. One official can hold several roles. Agency totals include their offices and count each official once.</p><p>Office discovery, source evidence, and completed judgments are separate measures. An empty profile remains in the roster.</p>${main.length ? table(main) : '<p>No reviewed inventory for this selection.</p>'}${offices.length ? `<details><summary>Component offices (${offices.length})</summary>${table(offices)}</details>` : ''}`;
+    const outside=rows.reduce((total,row)=>total+(row.parent_id ? 0 : count(row.role_counts?.not_selected)),0);
+    return `<p>These counts describe tracked current officials. One official can hold several roles. Agency totals include their offices and count each official once.</p><p>Office discovery, source evidence, and completed judgments are separate measures. An empty profile remains in the roster.${outside ? ` The inventory also records ${outside} verified roles outside the selected roster.` : ''}</p>${main.length ? table(main) : '<p>No reviewed inventory for this selection.</p>'}${offices.length ? `<details><summary>Component offices (${offices.length})</summary>${table(offices)}</details>` : ''}`;
   }
   function renderRoles(member) {
     const scope=member.government_scope || {}, source=safeURL(scope.source_url);
     return `<section class="fa-role-details"><h4>Government roles</h4>${scope.checked_on ? `<p>Current service checked ${esc(dateLabel(scope.checked_on))}${source ? ` · <a href="${esc(source)}" target="_blank" rel="noopener noreferrer">Role source</a>` : ''}</p>` : ''}${(member.roles || []).map(role=>{
       const url=safeURL(role.source_url), dates=[role.start_date,role.end_date].filter(Boolean).map(dateLabel).join(' to ');
-      return `<p>${esc(role.title)}${dates ? ` · ${esc(dates)}` : ''}${role.end_date || role.status === 'historical' ? ' · historical role' : ''}${url ? ` · <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">Source</a>` : ''}</p>`;
+      const additional=Array.isArray(role.additional_source_urls) ? role.additional_source_urls : [];
+      const sources=[...new Set(additional.map(safeURL).filter(link=>link && link!==url))];
+      const links=sources.map(link=>` · <a href="${esc(link)}" target="_blank" rel="noopener noreferrer">Additional source</a>`).join('');
+      return `<p>${esc(role.title)}${dates ? ` · ${esc(dates)}` : ''}${role.end_date || role.status === 'historical' ? ' · historical role' : ''}${role.source_type === 'reporting' ? ' · reported role' : ''}${url ? ` · <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">Source</a>` : ''}${links}</p>${role.title_note ? `<p class="fa-note">${esc(role.title_note)}</p>` : ''}`;
     }).join('')}</section>`;
+  }
+  function pendingResearch(status) {
+    return ['not_started','in_progress','needs_retry'].includes(status);
+  }
+  function webResearchLabel(status) {
+    if (status === 'in_progress') return 'Web research in progress';
+    if (status === 'needs_retry') return 'Web research needs retry';
+    return 'Web research pending';
+  }
+  function assessmentsPending(member) {
+    return member.n_statements > 0 && (member.n_labeled < member.n_statements || ['pending','partial'].includes(member.status));
   }
   function scoreState(member, dimension) {
     const detail = member.score_details?.[dimension] || {};
-    if (member.status === 'no_evidence' || member.n_statements === 0) return {kind:'no_evidence',value:null,label:'No evidence'};
+    if (member.status === 'no_evidence' || member.n_statements === 0) {
+      const research=member.research?.research_status;
+      if (pendingResearch(research)) return {kind:'research_pending',value:null,label:webResearchLabel(research)};
+      if (research === 'searched') return {kind:'searched_empty',value:null,label:'Searched · no verified evidence'};
+      return {kind:'no_evidence',value:null,label:'No evidence'};
+    }
     if (member.n_labeled < member.n_statements || detail.reason_a === 'pending' || detail.reason_b === 'pending') {
       return {kind:'pending',value:null,label:'Assessment pending'};
     }
     const value = member.scores?.[dimension];
     const reasons = [detail.reason_a,detail.reason_b];
-    if (!score(value)) return {kind:'unavailable',value:null,label:
-      member.n_statements < 3 || detail.reason_a === 'insufficient_evidence' ? 'Insufficient evidence' :
-        reasons.every(reason=>['silent','no_statements'].includes(reason)) ? 'Not enough evidence: no statements on this question' : 'Score unavailable'};
+    if (!score(value)) {
+      if (member.n_statements < 3 || reasons.includes('insufficient_evidence')) {
+        return {kind:'unavailable',reason:'insufficient_evidence',value:null,label:'Insufficient evidence'};
+      }
+      if (reasons.every(reason=>['silent','no_statements'].includes(reason))) {
+        const label=dimension==='ai_overall' ? 'No qualifying AI overall stance' : 'Not enough evidence: no statements on this question';
+        return {kind:'unavailable',reason:'no_stance',value:null,label};
+      }
+      return {kind:'unavailable',reason:'unavailable',value:null,label:'Score unavailable'};
+    }
     const silent = reasons.every(reason => ['silent','no_statements'].includes(reason));
     const meaning = value === 0 && silent ? 'No discussion' : value === 0 && reasons.some(reason=>!reason || ['silent','no_statements'].includes(reason)) ? null :
       Number.isInteger(value) ? LEVELS[dimension]?.[value] : null;
     return {kind:'scored',value,label:fmt(value) + (meaning ? ' · ' + meaning : ''),silent:value === 0 && silent};
   }
   function scoreDistribution(members, dimension) {
-    const result = {total:members.length,scored:0,pending:0,no_evidence:0,unavailable:0,
+    const result = {total:members.length,scored:0,pending:0,no_evidence:0,research_pending:0,searched_empty:0,unavailable:0,
       bins:[0,1,2,3,4].map(value => ({score:value,label:String(value),count:0}))};
     for (const member of members) {
       const value = scoreState(member,dimension);
@@ -104,6 +132,62 @@
       if (value.kind === 'scored') result.bins[Math.round(value.value)].count++;
     }
     return result;
+  }
+  function cutoffLabel(value) {
+    if (typeof value !== 'string' || !value.endsWith('Z') || !Number.isFinite(Date.parse(value))) return 'Unknown';
+    return new Date(value).toISOString().slice(0,16).replace('T',' ') + ' UTC';
+  }
+  function profileStatus(member) {
+    const overall=scoreState(member,'ai_overall');
+    if (member.n_statements === 0 || member.status === 'no_evidence') return overall.label;
+    if (assessmentsPending(member) || overall.kind === 'pending') return 'Assessments pending';
+    if (overall.reason==='no_stance' && member.status==='complete') return `Assessment complete · ${overall.label}`;
+    return STATUS[member.status] || 'Assessment status unknown';
+  }
+  function renderProfileCoverage(member) {
+    const research=member.research, historical=[];
+    if (member.n_statements > 0 && pendingResearch(research?.research_status)) {
+      historical.push(webResearchLabel(research.research_status));
+    } else if (research?.research_status === 'searched' && member.n_statements > 0) {
+      historical.push('Historical web passes complete');
+    }
+    if (count(research?.official_leads_pending)) historical.push(`${research.official_leads_pending} official source leads pending`);
+    const web=research?.daily?.web, x=research?.daily?.x;
+    const freshness=[];
+    if (web?.named_query) {
+      const queued=knownCount(web.pending_named_queries) ? web.pending_named_queries ? 'queued' : 'check recorded' : 'queue status unknown';
+      freshness.push(`Daily named web query ${queued}`, `Last successful web check: ${dateLabel(web.last_success_on)}`);
+    }
+    const xDue=count(x?.accounts_due_for_daily_check), xPending=count(x?.pending_windows);
+    if (xDue) freshness.push(xDue===1 ? 'Daily X check due' : `Daily X checks due for ${xDue} accounts`);
+    if (x?.last_successful_cutoff || xDue || xPending) {
+      freshness.push(`Last successful X cutoff: ${cutoffLabel(x.last_successful_cutoff)}`);
+      if (xPending) freshness.push(`${xPending} X windows pending in the saved queue`);
+    }
+    return `<p class="fa-note"><strong>${esc(profileStatus(member))}</strong>${historical.length ? ' · ' + esc(historical.join(' · ')) : ''}</p>${freshness.length ? `<p class="fa-note">${esc(freshness.join(' · '))}</p>` : ''}`;
+  }
+  function renderResearchCoverage(coverage, members) {
+    if (!coverage) return '';
+    const pendingWeb=members.filter(member=>pendingResearch(member.research?.research_status)).length;
+    const empty=members.filter(member=>scoreState(member,'ai_overall').kind==='searched_empty').length;
+    const pendingAssessments=members.filter(assessmentsPending).length;
+    const pendingLeads=members.reduce((total,member)=>total+count(member.research?.official_leads_pending),0);
+    const web=coverage.daily?.web, x=coverage.daily?.x;
+    const queue=[];
+    if (knownCount(web?.pending_named_queries)) queue.push(`${web.pending_named_queries} named web queries due`);
+    if (knownCount(web?.pending_pages)) queue.push(`${web.pending_pages} pages queued`);
+    if (knownCount(x?.accounts_due_for_daily_check)) {
+      const due=x.accounts_due_for_daily_check;
+      queue.push(`${due} X account${due===1 ? '' : 's'} due for a daily check`);
+    }
+    if (knownCount(x?.pending_windows)) queue.push(`${x.pending_windows} saved X windows pending`);
+    const checks=[];
+    if (web) checks.push(`Last successful named web check: ${dateLabel(web.last_named_success_on)}`);
+    if (x) checks.push(`Last successful X cutoff: ${cutoffLabel(x.last_successful_cutoff)}`);
+    if (count(web?.pending_pages)) checks.push(web.oldest_known_pending_on ? `Oldest known queue date: ${dateLabel(web.oldest_known_pending_on)}` : 'Oldest queue date unknown');
+    return `<div class="fa-research-coverage"><p>Selected profiles · ${pendingWeb} web research pending · ${empty} searched with no verified evidence · ${pendingAssessments} with assessments pending${pendingLeads ? ` · ${pendingLeads} official source leads pending` : ''}</p>
+      ${queue.length ? `<p>Daily work across all profiles · ${esc(queue.join(' · '))}</p>` : ''}
+      ${checks.length ? `<p class="fa-note">${esc(checks.join(' · '))}. Collection limits can leave profiles pending across days.</p>` : ''}</div>`;
   }
   function validateDetail(detail, member, data) {
     if (detail?.schema_version !== 1 || !data.revision || detail.revision !== data.revision || detail.id !== member.id ||
@@ -241,7 +325,7 @@
         <svg viewBox="0 0 200 140" role="img" aria-label="${esc(title)}"><line class="fa-grid" x1="10" y1="112" x2="194" y2="112"/>
           ${result.bins.map((bin,i) => { const h=bin.count / max * 82, x=13+i*37; return `<rect class="fa-bin-${i}" x="${x}" y="${112-h}" width="27" height="${h}"><title>${esc(bin.label)}: ${bin.count} profiles</title></rect><text x="${x+13.5}" y="${Math.min(105,105-h)}" text-anchor="middle">${bin.count}</text><text class="fa-axis-label" x="${x+13.5}" y="132" text-anchor="middle">${esc(bin.label)}</text>`; }).join('')}</svg>
         <p class="fa-denominator"><strong>${result.scored}</strong> of ${result.total} profiles have scores</p>
-        <p class="fa-note">${result.pending} pending · ${result.no_evidence} no evidence · ${result.unavailable} other unscored</p>
+        <p class="fa-note">${result.pending} assessments pending · ${result.research_pending} web research pending · ${result.searched_empty} searched with no evidence · ${result.no_evidence} no evidence · ${result.unavailable} other unscored</p>
         <details><summary>Exact counts and scale</summary><table><thead><tr><th scope="col">Score band</th><th scope="col">Profiles</th></tr></thead><tbody>${result.bins.map(b=>`<tr><td>${esc(b.label)}</td><td>${b.count}</td></tr>`).join('')}</tbody></table><p class="fa-note">${(LEVELS[d.id] || []).map((label,i)=>`${i}: ${esc(label)}`).join('. ')}. No discussion can also score zero.</p></details></section>`;
     }).join('')}</div>`;
   }
@@ -298,7 +382,7 @@
       <section class="fc-section" id="fc-members-section"><h2>All profiles</h2><div class="fa-listbar"><input id="fa-search" type="search" placeholder="Search name or agency…" autocomplete="off" aria-label="Search profiles"></div><div id="fc-members"></div></section>`;
     const get = id => root.querySelector('#' + id);
     const selectedMembers=()=>filterMembers(data.members,{...state,search:''},data.organizations || []).sort((a,b)=>a.name.localeCompare(b.name));
-    const levelText=(id,v)=>v===null||v===undefined?'Not enough evidence':Number.isInteger(v)?(LEVELS[id]||[])[v]:`Between “${LEVELS[id][Math.floor(v)]}” and “${LEVELS[id][Math.floor(v)+1]}”`;
+    const levelText=(id,v)=>Number.isInteger(v)?(LEVELS[id]||[])[v]:`Between “${LEVELS[id][Math.floor(v)]}” and “${LEVELS[id][Math.floor(v)+1]}”`;
     function renderCharts() {
       const members=selectedMembers(),dim=data.dimensions.find(d=>d.id===state.chartDimension),profiles=chartData?.profiles,topic=TOPIC_OF[state.chartDimension];
       get('fc-cohort-title').textContent=`${who()} by ${dim.title} score`;
@@ -370,11 +454,12 @@
     function renderProfile(member, detail) {
       panel().innerHTML = `<h3 id="fa-profile-name" tabindex="-1">${esc(member.name)}</h3>
         <p class="fa-muted fa-profile-meta">${esc(member.organization_name || '')}${member.entity_type === 'institution' ? ' · Institution' : ''} · ${count(member.n_statements)} verified statement${count(member.n_statements)===1?'':'s'}</p>
+        ${renderProfileCoverage(member)}
         ${member.summary?.status==='complete' && member.summary.text ? renderSummary(member.summary,detail.statements) : ''}
         ${rulesHTML(member)}
         ${member.entity_type === 'person' ? `<details><summary>Government roles and sources</summary>${renderRoles(member)}</details>` : ''}
         ${renderStanceReview(member.stance_review,detail.statements)}
-        <div class="fa-dims">${data.dimensions.map(d=>{const v=scoreState(member,d.id).value;return `<div class="fa-dim"><b>${esc(d.title)}</b>${esc(levelText(d.id,v))}</div>`;}).join('')}</div>
+        <div class="fa-dims">${data.dimensions.map(d=>{const state=scoreState(member,d.id);return `<div class="fa-dim"><b>${esc(d.title)}</b>${esc(state.value===null ? state.label : state.silent ? 'No discussion' : levelText(d.id,state.value))}</div>`;}).join('')}</div>
         <div id="fa-sources"></div><div id="fa-source-pages" class="fa-pages"></div>`;
       renderSources();
     }
@@ -410,7 +495,7 @@
       get('fc-members-section').scrollIntoView({block:'start',behavior:smooth?'smooth':'instant'});
     }
     function render() {
-      get('fa-roster-table').innerHTML=renderRosterCoverage(data.roster_coverage,state.organization);
+      get('fa-roster-table').innerHTML=renderResearchCoverage(data.research_coverage,selectedMembers())+renderRosterCoverage(data.roster_coverage,state.organization);
       root.querySelectorAll('[data-scope]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.scope===state.scope)));
       renderCharts();
       if (state.selected && selectedMembers().some(m=>m.id===state.selected)) select(state.selected,false);
@@ -468,7 +553,7 @@
     if (hero && toc && 'IntersectionObserver' in global) new IntersectionObserver(entries=>{toc.style.visibility=entries[0].isIntersecting?'hidden':'visible';},{rootMargin:'-56px 0px 0px 0px'}).observe(hero);
     if (initial) global.requestAnimationFrame(()=>showProfile(initial.id,false));
   }
-  const api = {renderRosterCoverage,renderRoles,safeURL,dateLabel,filterMembers,scoreState,scoreDistribution,validateDetail,renderSummary,renderStanceReview,renderRegulation,
+  const api = {renderRosterCoverage,profileStatus,renderProfileCoverage,renderResearchCoverage,renderRoles,safeURL,dateLabel,filterMembers,scoreState,scoreDistribution,validateDetail,renderSummary,renderStanceReview,renderRegulation,
     renderStatement,renderTopics,historySeries,renderHistory,renderDistribution,mount};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else {

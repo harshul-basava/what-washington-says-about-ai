@@ -10,6 +10,7 @@ from pathlib import Path
 from types import SimpleNamespace
 
 from common import ROOT, today
+from federal_coverage import query_key, search_groups
 import federal_sources as sources
 import policy_subjects
 
@@ -209,30 +210,6 @@ def append_evidence(root, subject_id, statements):
     return added
 
 
-def search_groups(config, subjects):
-    """Expand agency assignments into named searches for the eligible federal roster."""
-    groups = [{**g, 'queries': list(g['queries']), 'subject_ids': []} for g in config['groups']]
-    if not config.get('named_searches'):
-        return groups
-    by_org = {}
-    for group in groups:
-        for oid in group['organization_ids']:
-            if oid in by_org:
-                raise ValueError('Organization assigned to multiple daily groups: ' + oid)
-            by_org[oid] = group
-    for subject in subjects:
-        group = by_org.get(subject['organization_id'])
-        if not group:
-            raise ValueError('Federal profile has no daily group: ' + subject['id'])
-        group['subject_ids'].append(subject['id'])
-    by_id = {s['id']: s for s in subjects}
-    for group in groups:
-        for offset in range(0, len(group['subject_ids']), 2):
-            names = [by_id[sid]['name'] for sid in group['subject_ids'][offset:offset + 2]]
-            group['queries'].append('(' + ' OR '.join('"' + n + '"' for n in names) + ') AI artificial intelligence superintelligence policy statements')
-    return groups
-
-
 def fair_groups(groups, state):
     return sorted(groups, key=lambda g: state.get('groups', {}).get(g['id'], {}).get('since', '0001-01-01'))
 
@@ -278,19 +255,17 @@ def collect(root, config, since=None, dry=False):
                 continue
             if len(page.get('text') or '') > len(in_memory.get(url, {}).get('text') or '') or url not in in_memory:
                 in_memory[url] = page
-            state['pending'].setdefault(url, {k: page.get(k) for k in ('url', 'title', 'publishedDate')})
+            state['pending'].setdefault(url, {**{k: page.get(k) for k in ('url', 'title', 'publishedDate')}, 'queued_on': now})
             state['pending'][url].setdefault('group', group['id'])
             state['pending'][url]['discovery_hash'] = discovery_hash
     for group in groups:
         gid = group['id']; info = report['groups'][gid]
         ok = True
         enqueue([{'url': u, 'title': '', 'publishedDate': None} for u in group['watch_urls']], group)
-        def query_key(query):
-            return sources.digest(json.dumps([gid, query, group['domains']], sort_keys=True))
-        queries = sorted(group['queries'], key=lambda q: state['queries'].get(query_key(q), {}).get('since', '0001-01-01'))
+        queries = sorted(group['queries'], key=lambda q: state['queries'].get(query_key(group, q), {}).get('since', '0001-01-01'))
         requests = []
         for number, query in enumerate(queries, 1):
-            key = query_key(query)
+            key = query_key(group, query)
             previous_query = state['queries'].get(key, {}).get('since')
             if previous_query == now and not since:
                 continue
@@ -311,7 +286,7 @@ def collect(root, config, since=None, dry=False):
                 except Exception as exc:
                     ok = False
                     report['errors'].append({'group': gid, 'stage': 'search', 'error': type(exc).__name__})
-        if ok or all(state['queries'].get(query_key(q), {}).get('since') == now for q in group['queries']):
+        if ok or all(state['queries'].get(query_key(group, q), {}).get('since') == now for q in group['queries']):
             state['groups'][gid] = {'since': now}
         # Persist discovery before extracting; never save full source pages in the public repository.
         write(state_path, state)

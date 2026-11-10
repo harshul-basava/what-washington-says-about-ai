@@ -23,10 +23,11 @@ from federal_sources import digest
 from federal_x_config import KEYWORDS, PROBLEM_TYPES, fingerprint, current_job, provider as configured_provider, state_file
 
 AI=re.compile(r'\b(?:AI|AGI|artificial intelligence|superintelligence|super intelligence|OpenAI|Anthropic|export controls?|frontier act|kill switch act|stop stealing our chips|independent verification)\b',re.I)
-ERRORS={'missing_auth_token','missing_bearer_token','authentication_failed','rate_limited','timeout','request_failed','malformed_response','budget_exceeded','credits_exhausted','account_identity_changed','account_unavailable','window_not_ready'}
+ERRORS={'missing_auth_token','missing_bearer_token','authentication_failed','rate_limited','timeout','request_failed','malformed_response','budget_exceeded','credits_exhausted','account_identity_changed','account_unavailable','ownership_anchor_unavailable','window_not_ready'}
 DIAGNOSTICS={'lookup_response_errors','search_response_errors','response_count_invalid','lookup_identity_invalid',
     'search_metadata_invalid','search_cursor_invalid','post_identity_invalid','post_text_invalid','post_date_invalid',
-    'post_references_invalid','lookup_fields_invalid','search_fields_invalid','post_fields_invalid'}
+    'post_references_invalid','lookup_fields_invalid','search_fields_invalid','post_fields_invalid',
+    'ownership_anchor_id_invalid','ownership_anchor_identity_invalid','ownership_anchor_author_mismatch','ownership_anchor_response_errors'}
 
 def read(path, default):
     return json.loads(path.read_text()) if path.exists() else default
@@ -57,7 +58,7 @@ def windows(start, end):
 
 def registry(root):
     config=read(root/'config/federal_x.json',{'version':1,'enabled':False,'accounts':[]})
-    configured_provider(config)
+    provider=configured_provider(config)
     cost=config.get('api_max_cost',2)
     if isinstance(cost,bool) or not isinstance(cost,(int,float)) or not math.isfinite(cost) or cost<0:
         raise ValueError('Invalid X API cost limit')
@@ -75,6 +76,11 @@ def registry(root):
         if (not p or not re.fullmatch(r'[A-Za-z0-9_]{1,15}',handle) or not re.fullmatch(r'[a-z0-9_]+',a.get('id','')) or a['id'] in ids):
             raise ValueError('Invalid or duplicate federal X account')
         ids.add(a['id'])
+        if 'ownership_anchor_post_id' in a:
+            anchor=a['ownership_anchor_post_id']
+            if provider!='x_api':raise ValueError('X ownership anchors require the official API provider')
+            if not isinstance(anchor,str) or not re.fullmatch(r'[1-9][0-9]{0,19}',anchor):
+                raise ValueError('Invalid X ownership anchor post ID')
         source=urlsplit(a.get('source_url',''))
         if source.scheme!='https' or not source.hostname or not a.get('verified_on'):
             raise ValueError('X account needs a checked source')
@@ -265,6 +271,8 @@ def collect(root, mode='daily', since=None, dry=False, client=None, now=None, id
                 start_time=job['start']+'T00:00:00Z'
                 if job['query_end_time']<=start_time:raise ValueError('window_not_ready')
                 request.update(query=f"from:{a['handle']} {KEYWORDS} -is:retweet",start_time=start_time,end_time=job['query_end_time'])
+                if 'ownership_anchor_post_id' in a:
+                    request['ownership_anchor_post_id']=a['ownership_anchor_post_id']
                 write(state_path,state)  # Freeze query dates before the first paid request.
             result=transport(request);report['pages']+=1
             if not isinstance(result,dict):raise ValueError('malformed_response')

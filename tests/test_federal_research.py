@@ -263,5 +263,164 @@ class HistoricalTests(unittest.TestCase):
             self.assertEqual(len(client.chat.call_args.args), 3)  # No web tool supplied.
 
 
+
+
+class DailyCoverageTests(unittest.TestCase):
+    def snapshot(self, root, subjects):
+        from datetime import datetime, timezone
+        import federal_coverage
+        with patch.object(federal_coverage, 'datetime', wraps=datetime) as clock:
+            clock.now.return_value = datetime(2026, 11, 10, tzinfo=timezone.utc)
+            result = federal_coverage.coverage(root, subjects, {})
+        self.assertIn('daily', result)
+        return result
+
+    def test_named_query_uses_its_exact_checkpoint_and_page_queue_date(self):
+        import hashlib
+        import json
+        from test_policy_subjects import INSTITUTION
+        agency = {**INSTITUTION, 'id': 'new_agency', 'name': 'New Agency', 'organization_id': 'new_agency'}
+        unrouted = {**agency, 'id': 'unrouted', 'name': 'Unrouted Agency', 'organization_id': 'unrouted'}
+        groups = [
+            {'id': 'commerce', 'organization_ids': ['commerce'], 'domains': ['commerce.gov'], 'queries': ['Commerce AI']},
+            {'id': 'new', 'organization_ids': ['new_agency'], 'domains': ['agency.gov'], 'queries': ['Agency AI']},
+        ]
+        commerce_query = '("Official A" OR "Commerce") AI artificial intelligence superintelligence policy statements'
+        agency_query = '("New Agency") AI artificial intelligence superintelligence policy statements'
+        def query_key(group, query, domains):
+            return hashlib.sha256(json.dumps([group, query, domains], sort_keys=True).encode()).hexdigest()
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            federal.write(root / 'config/federal_sources.json', {'named_searches': True, 'groups': groups})
+            federal.write(root / 'data/federal_state.json', {
+                'groups': {'new': {'since': '2026-11-10'}},
+                'queries': {
+                    query_key('commerce', commerce_query, ['commerce.gov']): {'group': 'commerce', 'since': '2026-11-07'},
+                    query_key('commerce', 'Commerce AI', ['commerce.gov']): {'group': 'commerce', 'since': '2026-11-10'},
+                    query_key('new', agency_query, ['previous-agency.gov']): {'group': 'new', 'since': '2026-11-10'},
+                },
+                'pending': {
+                    'https://commerce.gov/dated': {'group': 'commerce', 'queued_on': '2026-11-08', 'publishedDate': '2025-01-01'},
+                    'https://commerce.gov/legacy': {'group': 'commerce', 'publishedDate': '2024-01-01'},
+                    'https://agency.gov/new': {'group': 'new', 'queued_on': '2026-11-09'},
+                },
+            })
+            result = self.snapshot(root, [PERSON, INSTITUTION, agency, unrouted])
+            official = result['profiles'][PERSON['id']]['daily']['web']
+            self.assertEqual(official, {
+                'group': 'commerce', 'named_query': commerce_query, 'last_success_on': '2026-11-07',
+                'age_days': 3, 'pending_named_queries': 1, 'group_pending_pages': 2,
+            })
+            self.assertEqual(result['profiles'][INSTITUTION['id']]['daily']['web'], official)
+            new = result['profiles']['new_agency']['daily']['web']
+            self.assertEqual(new['named_query'], agency_query)
+            self.assertIsNone(new['last_success_on'])
+            self.assertIsNone(new['age_days'])
+            self.assertEqual(new['pending_named_queries'], 1)
+            self.assertEqual(new['group_pending_pages'], 1)
+            self.assertTrue(all(value is None for value in result['profiles']['unrouted']['daily']['web'].values()))
+            web = result['daily']['web']
+            self.assertEqual(web['pending_named_queries'], 2)
+            self.assertEqual(web['last_success_on'], '2026-11-10')
+            self.assertEqual(web['last_named_success_on'], '2026-11-07')
+            self.assertEqual(web['pending_pages'], 3)
+            self.assertEqual(web['pending_pages_without_queue_date'], 1)
+            self.assertEqual(web['oldest_known_pending_on'], '2026-11-08')
+            self.assertEqual(web['oldest_known_pending_age_days'], 2)
+
+    def test_daily_x_cutoff_only_uses_current_completed_daily_jobs(self):
+        from federal_x_config import fingerprint
+        account = {'id': 'current', 'subject_id': PERSON['id'], 'handle': 'OfficialA',
+                   'valid_from': '2023-01-01', 'valid_until': None}
+        config = {'enabled': True, 'provider': 'x_api', 'since': '2023-01-01', 'historical_window': 'account',
+                  'historical_until': '2026-11-08', 'accounts': [account]}
+        base = {'account_id': account['id'], 'fingerprint': fingerprint(account), 'status': 'searched',
+                'mode': 'daily', 'start': '2026-11-07', 'end': '2026-11-11'}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            federal.write(root / 'config/federal_x.json', config)
+            federal.write(root / 'data/federal_x_api_state.json', {'jobs': {
+                'success': {**base, 'query_end_time': '2026-11-10T18:00:00Z'},
+                'nominal_only': {**base, 'end': '2026-11-12'},
+                'pending': {**base, 'status': 'pending', 'query_end_time': '2026-11-10T20:00:00Z'},
+                'stale': {**base, 'fingerprint': 'old', 'query_end_time': '2026-11-10T22:00:00Z'},
+                'cohort': {**base, 'mode': 'historical', 'window': 'account', 'start': '2023-01-01',
+                           'end': '2026-11-10', 'historical_until': '2026-11-10'},
+            }})
+            federal.write(root / 'data/federal_x_state.json', {'jobs': {
+                'other_provider': {**base, 'query_end_time': '2026-11-10T23:00:00Z'},
+            }})
+            result = self.snapshot(root, [PERSON])
+            profile = result['profiles'][PERSON['id']]
+            self.assertEqual(profile['x_windows_searched'], 3)  # includes explicit cohort cutoff
+            self.assertEqual(profile['daily']['x'], {
+                'last_successful_cutoff': '2026-11-10T18:00:00Z', 'pending_windows': 1,
+                'accounts_due_for_daily_check': 0,
+            })
+            self.assertEqual(result['daily']['x'], profile['daily']['x'])
+
+    def test_daily_x_due_accounts_include_new_and_stale_mappings_without_counting_retired_accounts(self):
+        from federal_x_config import fingerprint
+        states = ['new', 'done', 'retired', 'stale', 'queued']
+        subjects = [{**PERSON, 'id': state} for state in states]
+        accounts = {state: {'id': state, 'subject_id': state, 'handle': state, 'valid_from': '2023-01-01',
+                            'valid_until': '2026-11-10' if state == 'retired' else None} for state in states}
+        config = {'enabled': True, 'provider': 'x_api', 'accounts': list(accounts.values())}
+        def job(state, **changes):
+            return {'account_id': state, 'fingerprint': fingerprint(accounts[state]), 'mode': 'daily',
+                    'status': 'searched', 'start': '2026-11-07', 'end': '2026-11-11',
+                    'query_end_time': '2026-11-10T18:00:00Z', **changes}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            federal.write(root / 'config/federal_x.json', config)
+            new = self.snapshot(root, subjects[:1])['profiles']['new']['daily']['x']
+            self.assertEqual(new.get('accounts_due_for_daily_check'), 1)
+            self.assertIsNone(new['pending_windows'])
+            self.assertIsNone(new['last_successful_cutoff'])
+            federal.write(root / 'data/federal_x_api_state.json', {'jobs': {
+                'done': job('done'),
+                'retired': job('retired', end='2026-11-10', query_end_time='2026-11-09T18:00:00Z'),
+                'stale': job('stale', fingerprint='old'),
+                'queued': job('queued', status='pending'),
+            }})
+            result = self.snapshot(root, subjects)
+            daily = {pid: row['daily']['x'] for pid,row in result['profiles'].items()}
+            self.assertEqual({pid: row['accounts_due_for_daily_check'] for pid,row in daily.items()},
+                             {'new':1, 'done':0, 'retired':0, 'stale':1, 'queued':1})
+            self.assertIsNone(daily['stale']['last_successful_cutoff'])
+            self.assertEqual(result['daily']['x']['accounts_due_for_daily_check'], 3)
+            self.assertEqual(result['daily']['x']['pending_windows'], 1)
+
+    def test_missing_checkpoint_files_keep_freshness_and_queue_age_unknown(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            result = self.snapshot(Path(tmp), [PERSON])
+            profile = result['profiles'][PERSON['id']]['daily']
+            self.assertTrue(all(value is None for value in profile['web'].values()))
+            self.assertTrue(all(value is None for value in profile['x'].values()))
+            self.assertIsNone(result['daily']['web']['pending_pages'])
+            self.assertIsNone(result['daily']['web']['oldest_known_pending_age_days'])
+
+    def test_first_queue_date_survives_retries_and_leaves_legacy_pages_unknown(self):
+        import federal_sources
+        from test_federal_daily import CONFIG, FederalTests
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            FederalTests().fixture(root)
+            legacy = {**PAGE, 'url': PAGE['url'] + '-legacy'}
+            state_path = root / 'data/federal_state.json'
+            federal.write(state_path, {'groups': {}, 'queries': {}, 'processed': {}, 'pending': {
+                legacy['url']: {'url': legacy['url'], 'group': 'commerce'},
+            }})
+            client = Mock()
+            client.search.return_value = [legacy, PAGE]
+            client.page.side_effect = RuntimeError('temporary failure')
+            with patch.object(federal_sources, 'Client', return_value=client), patch.object(federal, 'today', side_effect=['2026-11-08', '2026-11-10']):
+                federal.collect(root, CONFIG)
+                federal.collect(root, CONFIG)
+            queue = federal.read(state_path, {})['pending']
+            self.assertEqual(queue[PAGE['url']].get('queued_on'), '2026-11-08')
+            self.assertNotIn('queued_on', queue[legacy['url']])
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -170,7 +170,8 @@ def collect_x(root,max_cost=2,max_pages=100):
                 if saved.get('cursor'):params['next_token']=saved['cursor']
                 try:
                     if job['kind']=='account':
-                        owner=client.owner(job['account']['handle'])
+                        owner=client.owner(job['account']['handle'],
+                            ownership_anchor_post_id=job['account'].get('ownership_anchor_post_id'))
                         saved['owner']=owner
                     else:owner=None
                     result=client.request('tweets/search/all',params,20,POST_COST)

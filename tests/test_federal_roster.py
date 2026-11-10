@@ -78,6 +78,18 @@ class FederalRosterTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'evidence'):
                 roster.load_inventory(root)
 
+    def test_verified_roles_outside_selected_roster_are_not_unresolved(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); self.fixture(root)
+            self.inventory['roles'].append({**self.inventory['roles'][0], 'id': 'outside_selection',
+                'status': 'not_selected', 'subject_id': None, 'candidate_name': 'Another Official'})
+            self.write(root / roster.INVENTORY, self.inventory)
+            report = roster.coverage_report(root)
+            self.assertEqual(report['summary']['included_people'], 1)
+            self.assertEqual(report['summary']['not_selected_roles'], 1)
+            self.assertEqual(report['summary']['unresolved_roles'], 0)
+            self.assertEqual(report['summary']['candidate_roles'], 0)
+
     def test_directory_change_and_failure_preserve_scope_and_last_success(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp); self.fixture(root)

@@ -46,7 +46,8 @@ class Client:
         llm._log('x',cost,tag,{'path':path,**metadata})
         self.spent+=cost
 
-    def request(self,path,params,maximum,unit):
+    def request(self,path,params,maximum,unit,*,stage=None):
+        stage=stage or ('search' if path=='tweets/search/all' else 'lookup')
         if self.available()+1e-9<maximum*unit:raise APIError('budget_exceeded')
         if self.state.get('retry_after',0)>time.time():raise APIError('rate_limited')
         wait=max(0,self.state.get('api_next_request_at',0)-time.time())
@@ -73,6 +74,9 @@ class Client:
             if not math.isfinite(reset):reset=time.time()+900
             self.state['retry_after']=max(time.time()+1,reset)
             self.checkpoint()
+        if stage=='ownership_anchor' and response.status_code in (403,404,410):
+            reconcile(0)
+            raise APIError('ownership_anchor_unavailable')
         if response.status_code in (401,403,402,429):reconcile(0)
         if response.status_code in (401,403):raise APIError('authentication_failed')
         if response.status_code==402:raise APIError('credits_exhausted')
@@ -91,7 +95,6 @@ class Client:
         except (ValueError,TypeError):
             raise APIError('malformed_response') from None
         reconcile(count)
-        stage='search' if path=='tweets/search/all' else 'lookup'
         if data.get('errors'):
             allowed={prefix+kind:kind for prefix in ('https://api.x.com/2/problems/',
                 'https://api.twitter.com/2/problems/') for kind in PROBLEM_TYPES}
@@ -102,19 +105,46 @@ class Client:
         if count>maximum:raise APIError('malformed_response','response_count_invalid')
         return data
 
-    def owner(self,handle):
-        if handle.lower() in self.accounts:return self.accounts[handle.lower()]
-        if self.available()+1e-9<USER_COST+10*POST_COST:raise APIError('budget_exceeded')
-        owner=self.request('users/by/username/'+handle,{'user.fields':'protected,withheld'},1,USER_COST).get('data')
-        if (not isinstance(owner,dict) or not isinstance(owner.get('id'),str) or not re.fullmatch(r'\d+',owner['id'])
-                or not isinstance(owner.get('username'),str) or owner['username'].lower()!=handle.lower()):
-            raise APIError('malformed_response','lookup_identity_invalid')
-        if owner.get('protected') is not False or owner.get('withheld'):raise APIError('account_unavailable')
-        pinned=[a['user_id'] for a in self.state.get('accounts',{}).values()
-                if a.get('handle','').lower()==handle.lower() and a.get('user_id')]
-        if any(uid!=owner['id'] for uid in pinned):raise APIError('account_identity_changed')
-        self.accounts[handle.lower()]={'id':owner['id'],'username':owner['username']}
-        return self.accounts[handle.lower()]
+    def owner(self,handle,*,ownership_anchor_post_id=None):
+        anchor=ownership_anchor_post_id
+        if anchor is not None and (not isinstance(anchor,str) or not re.fullmatch(r'[1-9][0-9]{0,19}',anchor)):
+            raise APIError('malformed_response','ownership_anchor_id_invalid')
+        key=handle.lower()
+        owner=self.accounts.get(key)
+        cached=self.state.get('ownership_anchors',{}).get(key,{})
+        cached_author=cached.get('user_id') if anchor is not None and cached.get('post_id')==anchor else None
+        lookup_cost=USER_COST if owner is None else 0
+        anchor_cost=POST_COST if anchor is not None and cached_author is None else 0
+        if (lookup_cost or anchor_cost) and self.available()+1e-9<lookup_cost+anchor_cost+10*POST_COST:
+            raise APIError('budget_exceeded')
+        if owner is None:
+            user=self.request('users/by/username/'+handle,{'user.fields':'protected,withheld'},1,USER_COST).get('data')
+            if (not isinstance(user,dict) or not isinstance(user.get('id'),str) or not re.fullmatch(r'\d+',user['id'])
+                    or not isinstance(user.get('username'),str) or user['username'].lower()!=key):
+                raise APIError('malformed_response','lookup_identity_invalid')
+            if user.get('protected') is not False or user.get('withheld'):raise APIError('account_unavailable')
+            pinned=[a['user_id'] for a in self.state.get('accounts',{}).values()
+                    if a.get('handle','').lower()==key and a.get('user_id')]
+            if any(uid!=user['id'] for uid in pinned):raise APIError('account_identity_changed')
+            owner=self.accounts[key]={'id':user['id'],'username':user['username']}
+        if anchor is not None:
+            self.verify_ownership_anchor(key,anchor,owner['id'],cached_author)
+        return owner
+
+    def verify_ownership_anchor(self,handle,anchor,user_id,cached_author):
+        if cached_author is None:
+            post=self.request('tweets/'+anchor,{'tweet.fields':'author_id,withheld'},1,POST_COST,
+                              stage='ownership_anchor').get('data')
+            if post is None or post.get('withheld'):raise APIError('ownership_anchor_unavailable')
+            author=post.get('author_id')
+            if post.get('id')!=anchor or not isinstance(author,str) or not re.fullmatch(r'[0-9]+',author):
+                raise APIError('malformed_response','ownership_anchor_identity_invalid')
+        else:
+            author=cached_author
+        if author!=user_id:raise APIError('account_identity_changed','ownership_anchor_author_mismatch')
+        if cached_author is None:
+            self.state.setdefault('ownership_anchors',{})[handle]={'post_id':anchor,'user_id':user_id}
+            self.checkpoint()
 
     def __call__(self,request):
         stage='lookup'
@@ -122,7 +152,10 @@ class Client:
             handle=request['handle']
             if not isinstance(handle,str) or not re.fullmatch(r'[A-Za-z0-9_]{1,15}',handle):raise APIError('malformed_response')
             if self.state.get('retry_after',0)>time.time():raise APIError('rate_limited')
-            owner=self.owner(handle)
+            anchor=request.get('ownership_anchor_post_id')
+            if 'ownership_anchor_post_id' in request and anchor is None:
+                raise APIError('malformed_response','ownership_anchor_id_invalid')
+            owner=self.owner(handle,ownership_anchor_post_id=anchor)
             stage='search'
             # Keep archive payloads small when X cannot hydrate fields on large pages.
             maximum=min(100,math.floor((self.available()+1e-9)/POST_COST))

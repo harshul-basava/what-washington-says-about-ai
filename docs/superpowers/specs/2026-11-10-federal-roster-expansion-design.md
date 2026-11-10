@@ -2,7 +2,7 @@
 
 Date: 2026-11-10
 
-Status: Proposed design for the requested plan. No roster expansion or paid research has run under this design.
+Status: Implementation in progress. The five-person pilot is complete. On November 10, the user limited the active roster to 500 current federal people total. Institutions remain separate. Discovered roles outside that selection remain in the inventory. The authorized OpenRouter lifetime cap is now $500 and the federal daily model allowance is $4, superseding the older values retained below.
 
 ## Intent
 

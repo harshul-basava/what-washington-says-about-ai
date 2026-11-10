@@ -255,9 +255,19 @@ def chart_topics(statements,resolved):
 
 def build(root,asof=None,record=False):
     root=Path(root);asof=asof or today();config=configuration(root);subjects,evidence=inputs(root);labels,profiles=state(root)
+    from federal_coverage import coverage as research_coverage
     from federal_roster import coverage_report
-    roster_coverage=coverage_report(root)
-    revision=digest([config,[(subject_context(s),evidence[s['id']],labels.get('profiles',{}).get(s['id']),profiles.get('profiles',{}).get(s['id'])) for s in subjects],asof,roster_coverage])
+    roster_coverage = coverage_report(root)
+    research = research_coverage(root, subjects, read(root / 'data/federal_research.json', {}))
+    research_fields = ('research_status', 'completed_passes', 'official_leads_checked', 'official_leads_pending', 'daily')
+    research_profiles = {pid: {field: row[field] for field in research_fields}
+                         for pid, row in research['profiles'].items()}
+    research_overview = {key: research[key] for key in ('updated_on', 'summary', 'daily')}
+    public_profiles = {subject['id']: policy_subjects.public_profile(subject) for subject in subjects}
+    revision = digest([config, [
+        (public_profiles[pid], evidence[pid], labels.get('profiles', {}).get(pid),
+         profiles.get('profiles', {}).get(pid), research_profiles[pid]) for pid in public_profiles
+    ], asof, roster_coverage, research_overview])
     output=root/'site/data/federal_analysis';output.mkdir(parents=True,exist_ok=True);ids={s['id'] for s in subjects}
     for path in output.glob('*.json'):
         if path.stem not in ids:path.unlink()
@@ -279,7 +289,7 @@ def build(root,asof=None,record=False):
         for r in resolved.values():
             if r['status']=='complete':
                 for t in r['topics']:topics[t]+=1/len(r['topics'])
-        member={**policy_subjects.public_profile(subject),'n_statements':len(ss),'n_labeled':complete,'status':status,
+        member={**public_profiles[pid],'research':research_profiles[pid],'n_statements':len(ss),'n_labeled':complete,'status':status,
             'scores':scores,'score_details':details,'summary':summary,'topics':{k:round(v,3) for k,v in topics.items()},'regulation':regulation}
         review=entry.get('assessments',{}).get('stance_review')
         if review:
@@ -327,7 +337,7 @@ def build(root,asof=None,record=False):
     coverage=plan(root)
     result={'schema_version':1,'built_on':asof,'revision':revision,'dimensions':DIMENSIONS,'regulation_areas':REGULATION_AREAS,'topics':TOPICS,
         'methodology':{'models':config['settings']['models'],'text':"Five scores use the congressional rubric and fixed formula. Three DeepSeek passes trigger independent Sol/Astra review. Regulation uses DeepSeek and Sol with Astra for direction disagreements. Histories reconstruct dated evidence for today's eligible roster; they do not track historical office membership. A profile that never addresses a question gets no score on it, not a zero. Profiles with a targeted Astra stance review show its reason, confidence, and source context. Accepted corrections use Astra for both AI overall label columns; the original assessments remain available."},
-        'coverage':coverage,'roster_coverage':roster_coverage,'organizations':policy_subjects.load_registry(root)['organizations'],'members':members}
+        'coverage':coverage,'roster_coverage':roster_coverage,'research_coverage':research_overview,'organizations':policy_subjects.load_registry(root)['organizations'],'members':members}
     write(root/'site/data/federal_analysis.json',result)
     write(root/'site/data/federal_charts.json',{'schema_version':1,'revision':revision,'profiles':chart_profiles})
     if record:

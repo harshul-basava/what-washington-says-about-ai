@@ -90,3 +90,23 @@ test('recent changes list only moves of more than 1 point between two scores',()
   assert.match(html,/1 → 3/);
   assert.doesNotMatch(html,/small/);
 });
+
+test('unsearched, searched empty, and narrow completed profiles stay outside score bins',()=>{
+  const empty={n_statements:0,n_labeled:0,status:'no_evidence',scores:{ai_overall:null}};
+  const members=[person('unsearched',{...empty,research:{research_status:'not_started'}}),
+    person('searched',{...empty,research:{research_status:'searched'}}),
+    person('narrow',{scores:{ai_overall:null,regulation:2},research:{research_status:'searched'},score_details:{ai_overall:{reason_a:'silent',reason_b:'no_statements'}}})];
+  const result=charts.scoreAvailability(members,'ai_overall');
+  assert.equal(result.scored,0);
+  assert.deepEqual(Object.fromEntries(result.groups.map(g=>[g.id,g.members.map(m=>m.id)])),{
+    research_pending:['unsearched'],searched_empty:['searched'],no_stance:['narrow']
+  });
+  const distribution=charts.agencyDistribution(members,'ai_overall',organizations)[0];
+  assert.equal(distribution.missing,3);
+  assert.deepEqual(distribution.bins,[0,0,0,0,0]);
+  const table=charts.renderMembers(members,[{id:'ai_overall',title:'AI overall'}]);
+  assert.match(table,/Web research pending/);
+  assert.match(table,/Searched · no verified evidence/);
+  assert.match(table,/No qualifying AI overall stance/);
+  assert.equal((table.match(/fc-score-chip fc-missing/g)||[]).length,3);
+});

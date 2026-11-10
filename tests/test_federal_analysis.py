@@ -239,6 +239,52 @@ class FederalAnalysisTests(unittest.TestCase):
             detail=a.read(root/'site/data/federal_analysis/commerce.json')
             self.assertEqual(charts['profiles']['commerce']['history'],detail['history'])
 
+    def test_research_coverage_changes_revision_without_invalidating_labels(self):
+        from federal_coverage import query_key, search_groups
+        a = self.a
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            person, institution = self.fixture(root)
+            statement = {'sid':'s1','date':'2026-01-01','text':'We support AI oversight.',
+                         'url':'https://example.gov/ai','source_type':'web','verified':True,
+                         'attribution':{'kind':'personal','speaker':person['name']}}
+            a.write(root/'evidence/executive_a.json', {'statements':[statement]})
+            config = a.configuration(root)
+            input_hash = a.fingerprint(person,[statement],'labels',config)
+            entry = {'input_hash':input_hash,'assessments':{'ds_0':{
+                'value':self.assessment({'regulation':2}),'model':config['settings']['models']['deepseek']}}}
+            labels_path = root/a.LABEL_PATH
+            a.write(labels_path, {'profiles':{person['id']:{'s1':entry}}})
+            label_bytes = labels_path.read_bytes()
+            web_config = {'named_searches':True,'groups':[
+                {'id':'commerce','organization_ids':['commerce'],'domains':['commerce.gov'],'queries':[]}]}
+            a.write(root/'config/federal_sources.json', web_config)
+            before = a.build(root, asof='2026-11-10')
+            original = next(member for member in before['members'] if member['id']==institution['id'])
+            self.assertEqual(original.get('research',{}).get('research_status'),'not_started')
+            group = search_groups(web_config,[person,institution])[0]
+            query = group['queries'][0]
+            a.write(root/'data/federal_state.json', {'pending':{},'queries':{
+                query_key(group,query):{'group':'commerce','since':'2026-11-09'}}})
+            refreshed = a.build(root, asof='2026-11-10')
+            self.assertNotEqual(refreshed['revision'],before['revision'])
+            a.write(root/'data/federal_research.json', {'profiles':{institution['id']:{'passes':{
+                str(i):{'status':'completed'} for i in range(1,9)}}}})
+            after = a.build(root, asof='2026-11-10')
+            member = next(row for row in after['members'] if row['id']==institution['id'])
+            self.assertNotEqual(after['revision'],refreshed['revision'])
+            self.assertEqual(member['research']['research_status'],'searched')
+            self.assertEqual(member['research']['daily']['web']['last_success_on'],'2026-11-09')
+            self.assertEqual(after['research_coverage']['daily']['web']['last_named_success_on'],'2026-11-09')
+            self.assertTrue(all(value is None for value in member['scores'].values()))
+            detail = a.read(root/'site/data/federal_analysis/commerce.json')
+            charts = a.read(root/'site/data/federal_charts.json')
+            self.assertEqual(detail['profile']['research'],member['research'])
+            self.assertEqual(detail['revision'],after['revision'])
+            self.assertEqual(charts['revision'],after['revision'])
+            self.assertEqual(labels_path.read_bytes(),label_bytes)
+            self.assertEqual(a.valid_entry(a.read(labels_path),person,[statement],'labels',config),entry)
+
     def test_chart_topics_use_completed_labels_and_end_of_partial_dates(self):
         a=self.a
         statements=[{'sid':'day','date':'2024-02-01'}, {'sid':'month','date':'2024-02'},

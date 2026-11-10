@@ -21,6 +21,7 @@ POST={'id':'100','author_id':'7','text':'Shortened text','note_tweet':{'text':TE
       'created_at':'2026-11-01T12:00:00Z','referenced_tweets':[{'id':'200','type':'quoted'}]}
 REQUEST={'handle':'OfficialA','query':'from:OfficialA (AI OR "artificial intelligence") -is:retweet',
          'start_time':'2023-01-01T00:00:00Z','end_time':'2026-11-02T00:00:00Z','cursor':None}
+ANCHORED_REQUEST=REQUEST|{'ownership_anchor_post_id':'900'}
 
 
 class OfficialAPITests(unittest.TestCase):
@@ -68,6 +69,71 @@ class OfficialAPITests(unittest.TestCase):
         self.assertEqual(req.headers['authorization'],'Bearer official-test-bearer')
         self.assertAlmostEqual(sum(r['cost'] for r in self.records()),0.015)
         self.assertNotIn('official-test-bearer',json.dumps(result)+json.dumps(self.records()))
+        self.assertEqual([r.url.path for r in self.calls],['/2/users/by/username/OfficialA','/2/tweets/search/all'])
+
+    def anchor_response(self, req, **changes):
+        if '/users/' in req.url.path:return httpx.Response(200,json={'data':USER})
+        if req.url.path=='/2/tweets/search/all':
+            return httpx.Response(200,json={'data':[POST],'meta':{'result_count':1}})
+        return httpx.Response(200,json={'data':{'id':req.url.path.rsplit('/',1)[-1],'author_id':'7'}|changes})
+
+    def test_matching_ownership_anchor_is_checked_before_archive_search(self):
+        result=self.client(self.anchor_response)(ANCHORED_REQUEST)
+        self.assertEqual([req.url.path for req in self.calls],
+            ['/2/users/by/username/OfficialA','/2/tweets/900','/2/tweets/search/all'])
+        self.assertIn('author_id',self.calls[1].url.params['tweet.fields'])
+        self.assertEqual([p['id'] for p in result['posts']],['100'])
+        self.assertAlmostEqual(sum(r['cost'] for r in self.records()),0.020)
+
+    def test_ownership_anchor_mismatch_cannot_search_or_replace_a_pin(self):
+        pin={'handle':'OfficialA','user_id':'7'}
+        self.state['accounts']['official_a']=pin.copy()
+        result=self.client(lambda req:self.anchor_response(req,author_id='8'))(ANCHORED_REQUEST)
+        self.assertEqual(result,{'error':'account_identity_changed','diagnostic':'ownership_anchor_author_mismatch'})
+        self.assertEqual([r.url.path for r in self.calls],['/2/users/by/username/OfficialA','/2/tweets/900'])
+        self.assertEqual(self.state['accounts']['official_a'],pin)
+        self.assertNotIn('ownership_anchors',self.state)
+
+    def test_unavailable_ownership_anchor_leaves_collection_pending(self):
+        for status,payload in [(404,{'detail':'private-provider-body'}),(200,{})]:
+            with self.subTest(status=status):
+                self.calls.clear()
+                def send(req):
+                    if req.url.path=='/2/tweets/900':return httpx.Response(status,json=payload)
+                    return self.anchor_response(req)
+                result=self.client(send)(ANCHORED_REQUEST)
+                self.assertEqual(result,{'error':'ownership_anchor_unavailable'})
+                self.assertEqual([r.url.path for r in self.calls],['/2/users/by/username/OfficialA','/2/tweets/900'])
+                self.assertNotIn('ownership_anchors',self.state)
+
+    def test_ownership_anchor_response_must_identify_the_requested_post(self):
+        result=self.client(lambda req:self.anchor_response(req,id='901'))(ANCHORED_REQUEST)
+        self.assertEqual(result,{'error':'malformed_response','diagnostic':'ownership_anchor_identity_invalid'})
+        self.assertEqual(len(self.calls),2)
+
+    def test_ownership_anchor_cache_survives_restart_and_rechecks_changed_post(self):
+        saved=[]
+        first=self.client(self.anchor_response,checkpoint=lambda:saved.append(copy.deepcopy(self.state)))
+        self.assertEqual(first(ANCHORED_REQUEST)['posts'][0]['id'],'100')
+        self.state=saved[-1]
+        second=self.client(self.anchor_response)
+        self.assertEqual(second(ANCHORED_REQUEST)['posts'][0]['id'],'100')
+        self.assertEqual(second(ANCHORED_REQUEST|{'ownership_anchor_post_id':'901'})['posts'][0]['id'],'100')
+        self.assertEqual([req.url.path for req in self.calls],['/2/users/by/username/OfficialA',
+            '/2/tweets/900','/2/tweets/search/all','/2/users/by/username/OfficialA',
+            '/2/tweets/search/all','/2/tweets/901','/2/tweets/search/all'])
+
+    def test_ownership_anchor_and_search_reservation_fit_before_contact(self):
+        result=self.client(self.anchor_response,max_cost=0.064)(ANCHORED_REQUEST)
+        self.assertEqual(result,{'error':'budget_exceeded'})
+        self.assertEqual(self.calls,[])
+
+    def test_invalid_ownership_anchor_is_rejected_without_a_request(self):
+        for bad in (None,900,'','0','/900','９００'):
+            with self.subTest(anchor=bad):
+                result=self.client()(REQUEST|{'ownership_anchor_post_id':bad})
+                self.assertEqual(result,{'error':'malformed_response','diagnostic':'ownership_anchor_id_invalid'})
+        self.assertEqual(self.calls,[])
 
     def test_resume_reuses_verified_lookup_and_forwards_next_token(self):
         client=self.client();client(REQUEST);client(REQUEST|{'cursor':'opaque-next'})

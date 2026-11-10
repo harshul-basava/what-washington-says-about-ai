@@ -30,9 +30,17 @@ The [expansion manifest](../data/federal_roster_expansion.json) records the pilo
 
 ## Roster selection and remaining work
 
-Discovery produced 1,084 role records before the final identity and authority review. A role record describes a position and its named holder, with a source and check date. Several roles can belong to one person. These records do not establish 1,084 eligible people.
+Discovery produced 1,089 role records, including five supplemental department principals, before the final identity and authority review. A role record describes a position and its named holder, with a source and check date. Several roles can belong to one person. These records do not establish 1,089 eligible people.
 
-The selected roster will prioritize documented senior authority and responsibility for AI, security, export controls, research, procurement, and regulation. The review preserves all departments and the specified White House, intelligence, cyber, and independent-agency coverage. Source gaps and candidates outside the selected 500 will remain in the office inventory. They will not enter collection or public profile counts.
+The selected roster contains 500 current people and 35 separate institutions. It adds 433 people to the 67 officials present after the pilot. Selection prioritizes documented senior authority and responsibility for AI, security, export controls, research, procurement, and regulation. The review preserves all departments and the specified White House, intelligence, cyber, and independent-agency coverage. Source gaps and candidates outside the selected 500 remain in the office inventory. They do not enter collection or public profile counts. Later eligibility corrections preserve the initial selection in dated amendments.
+
+The first expansion cohort completed all 160 historical web passes for 20 officials. Full-source checks brought this cohort to 68 verified web excerpts. Two source URLs still need a retry. This stage cost $5.840603 through OpenRouter. The cohort's judgments and final Astra review remain pending. The remaining 413 additions still need historical web research. The five-person pilot is the only completed expansion cohort.
+
+The repository permits another $185.546279 of OpenRouter spending under its unchanged lifetime cap. The actual provider account has much less prepaid credit. Later bulk model research awaits a funding decision. No credit purchase or cap increase has occurred. The site distinguishes research that has not started, completed searches with no verified excerpts, and pending judgments.
+
+Public account searches covered all 433 additions. They found source-supported mappings for 45 people; four other leads need more account evidence. The bounded search found no verified account for 384 people. Across the new and retained people, this work adds 51 account intervals for 46 people. These mappings require official API identity checks before collection. Thirteen mappings also require an original post to confirm the numeric author. The search does not establish that the other people have no public account.
+
+The account review also found a stale Treasury biography. A November 6 employer announcement confirms Jonathan McKernan returned to private practice. His replacement is Jennifer Murphy. Conflicting sources leave Michael J. Rigas’s current service unresolved; Jennifer Schoen fills that slot. Dated amendments preserve both original selection decisions. William K. Marshall III remains eligible after a fresh Bureau of Prisons biography check.
 
 The larger roster, historical backfills, and final Astra reviews remain in progress. Pilot completion does not establish completion of that work. Source access failures, uncertain current roles, and missing account ownership remain explicit limits.
 

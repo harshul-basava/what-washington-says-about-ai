@@ -101,17 +101,17 @@
     const groups=[
       {id:'no_stance',title:'No qualifying stance',description:'The verified excerpts do not establish a stance on this question.'},
       {id:'insufficient_evidence',title:'Fewer than three verified excerpts',description:'The Congress rubric requires at least three verified excerpts before a profile can receive a score.'},
+      {id:'research_pending',title:'Web research pending',description:'The historical web passes still need to finish for these profiles.'},
+      {id:'searched_empty',title:'Searched with no verified evidence',description:'Completed web passes found no verified excerpts in the current corpus.'},
       {id:'no_evidence',title:'No verified excerpts',description:'The current corpus has no verified excerpts for these profiles.'},
       {id:'pending',title:'Assessment pending',description:'Some model assessments still need to finish.'},
       {id:'unavailable',title:'Score unavailable',description:'The export does not provide a score or a specific reason.'}
     ].map(g=>({...g,members:[]}));
     let scored=0;
     for (const m of members) {
-      const state=view().scoreState(m,dimension),detail=m.score_details?.[dimension] || {};
+      const state=view().scoreState(m,dimension);
       if (state.kind==='scored') {scored++;continue;}
-      const reason=state.kind==='no_evidence' || state.kind==='pending' ? state.kind :
-        m.n_statements<3 || [detail.reason_a,detail.reason_b].includes('insufficient_evidence') ? 'insufficient_evidence' :
-        [detail.reason_a,detail.reason_b].every(r=>r==='no_statements') ? 'no_stance' : 'unavailable';
+      const reason=state.reason || state.kind;
       groups.find(g=>g.id===reason).members.push(m);
     }
     return {total:members.length,scored,groups:groups.filter(g=>g.members.length)};
@@ -203,7 +203,16 @@
     return rows.length ? `<div class="fc-voices">${rows.map(m=>profileLink(m,`<span>${esc(m.name)}</span><span class="fc-voice-track"><i style="width:${m.topics[topic]/max*100}%"></i></span><strong>${fmt(m.topics[topic])}</strong>`,`class="fc-voice"`)).join('')}</div>` : '<p class="fa-empty">No assessed statements address this topic in the selected profiles.</p>';
   }
   function renderMembers(members,dimensions) {
-    return `<div class="fa-table-scroll fc-member-table"><table><caption class="fa-sr-only">All selected profiles and their five scores</caption><thead><tr><th>Profile</th>${dimensions.map(d=>`<th>${esc(d.title)}</th>`).join('')}<th>Quotes</th></tr></thead><tbody>${members.map(m=>`<tr><th>${profileLink(m,esc(m.name))}<small>${esc(m.organization_name||'')}</small></th>${dimensions.map(d=>{const state=view().scoreState(m,d.id);return `<td><span class="fc-score-chip ${state.value===null?'fc-missing':''}" style="--score:${color(state.value)}" title="${esc(state.label)}">${state.value===null?'—':fmt(state.value)}</span></td>`;}).join('')}<td>${m.n_statements}</td></tr>`).join('')}</tbody></table></div>`;
+    const rows=members.map(m=>{
+      const status=m.research ? view().profileStatus(m) : '';
+      const metadata=[m.organization_name,status==='Assessment complete' ? '' : status].filter(Boolean).join(' · ');
+      const scores=dimensions.map(d=>{
+        const state=view().scoreState(m,d.id);
+        return `<td><span class="fc-score-chip ${state.value===null?'fc-missing':''}" style="--score:${color(state.value)}" title="${esc(state.label)}">${state.value===null?'—':fmt(state.value)}</span></td>`;
+      }).join('');
+      return `<tr><th>${profileLink(m,esc(m.name))}<small>${esc(metadata)}</small></th>${scores}<td>${m.n_statements}</td></tr>`;
+    }).join('');
+    return `<div class="fa-table-scroll fc-member-table"><table><caption class="fa-sr-only">All selected profiles and their five scores</caption><thead><tr><th>Profile</th>${dimensions.map(d=>`<th>${esc(d.title)}</th>`).join('')}<th>Quotes</th></tr></thead><tbody>${rows}</tbody></table></div>`;
   }
   function renderRecent(members,profiles,dimension,end) {
     const rows=members.flatMap(m=>(profiles[m.id]?.changes||[]).filter(c=>c.dimension===dimension && c.date<=end && date(c.date)>=date(end)-60*DAY && c.old!==null && c.new!==null && Math.abs(c.new-c.old)>1).map(c=>({...c,member:m}))).sort((a,b)=>b.date.localeCompare(a.date));
