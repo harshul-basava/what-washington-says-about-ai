@@ -124,7 +124,7 @@
     </div><div id="policy-chart-overview" class="pc-root"></div>
     <div id="policy-detail" hidden><h3 id="policy-detail-title"></h3><p id="policy-description"></p><p class="note" id="policy-source"></p>
     <div id="policy-chart-detail" class="pc-root"></div></div><h3 id="policy-profiles-title" tabindex="-1">Profiles and source quotes: <span id="policy-profiles-name"></span></h3>
-    <div id="policy-counts" class="policy-counts" aria-live="polite"></div>
+    <div id="policy-counts" class="policy-counts" aria-live="polite" hidden></div>
     <div id="policy-results"></div><div class="policy-pages"><button id="policy-prev">Previous</button><span id="policy-page" aria-live="polite"></span><button id="policy-next">Next</button></div>
     <p class="note"><a href="data/policies.csv" download>Download policy summaries (CSV)</a> ·
     <a href="data/policies.json" download>Download policy data (JSON)</a> · Export built ${esc(data.built_on)}</p>`;
