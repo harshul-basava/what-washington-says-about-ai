@@ -1,24 +1,28 @@
 const DIMS = [
-  ["ai_overall","AI overall","0 = mainly a threat · 4 = enthusiastic","are mostly optimistic about AI"],
-  ["agi_pilled","AGI-pilled","0 = doesn't discuss or dismisses · 4 = AGI is near","see AGI as a real possibility"],
-  ["x_risk","AI x-risk","0 = doesn't discuss or dismisses · 4 = a top priority","want action on catastrophic AI risk"],
-  ["china_race","China race","0 = doesn't raise it or rejects the race · 4 = outweighs everything","make the China race a main reason for their AI positions"],
-  ["regulation","Regulation","0 = opposes rules · 4 = comprehensive regulation","back substantial rules on AI companies"],
+  ["ai_overall","AI overall","from a threat to enthusiastic","are mostly optimistic about AI"],
+  ["agi_pilled","AGI-pilled","from dismisses AGI to thinks AGI is near","see AGI as a real possibility"],
+  ["x_risk","AI x-risk","from dismisses AI x-risk to a top priority","want action on catastrophic AI risk"],
+  ["china_race","China race","from rejects the race to outweighs all else","make the China race a main reason for their AI positions"],
+  ["regulation","Regulation","from opposes AI rules to comprehensive rules","back substantial rules on AI companies"],
 ];
 const TOPICS = ["jobs/economy","China/competition","national security","kids/online safety","deepfakes/elections","copyright","energy/data centers","regulation","AGI/transformative","x-risk/loss of control","misuse (bio/cyber)","other"];
+// each level says what the member does, so it reads on its own without the 0-4 number
 const LEVELS = {
-  ai_overall:["Mainly a threat","Harms dominate","Balanced","Mainly an opportunity","Enthusiastic"],
-  agi_pilled:["Doesn't discuss or dismisses","Ordinary technology","Very large change","AGI is possible","AGI is near"],
-  x_risk:["Doesn't discuss or dismisses","Raises it, plays it down","A real risk","Wants action on it","A top priority"],
-  china_race:["Doesn't raise it or rejects it","Mentions it","One reason among several","The main reason","Outweighs everything"],
-  regulation:["Opposes rules","Light-touch","Targeted rules","Substantial rules","Comprehensive rules"],
+  ai_overall:["Sees AI mainly as a threat","Sees more harm than good","Weighs harm and good equally","Sees AI mainly as an opportunity","Enthusiastic about AI"],
+  agi_pilled:["Dismisses AGI","Sees AI as ordinary technology","Expects very large change","Thinks AGI is possible","Thinks AGI is near"],
+  x_risk:["Dismisses AI x-risk","Mentions x-risk, plays it down","Calls x-risk a real risk","Wants action on x-risk","Calls x-risk a top priority"],
+  china_race:["Rejects the China race","Mentions the China race","China race is one reason","China race is the main reason","China race outweighs all else"],
+  regulation:["Opposes AI rules","Wants light-touch rules","Wants targeted rules","Wants substantial rules","Wants comprehensive rules"],
 };
+// a half score means the two models were one level apart
+function levelText(k, v){ if (v==null) return "Not enough evidence"; if (v===Math.floor(v)) return LEVELS[k][v];
+  const lo=Math.floor(v); return `Between “${LEVELS[k][lo]}” and “${LEVELS[k][lo+1]}”`; }
 const PNAME = {D:"Democrats",R:"Republicans",I:"Independents"};
 const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const PC = p => css(p==="D"?"--pD":p==="R"?"--pR":"--pI");
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let M = [], TL = [], COMM = {}, UPDATED = "", DAILY = null, HISTORY = null, CHANGES = null, RF = null, rfSel = null;
-const S = {cong:"119", party:"all", dim:"x_risk", preset:null, range:"365", events:false};
+const S = {cong:"119", party:"all", dim:"x_risk", preset:null, range:"365", events:false};   // range: topic chart window in days
 let sortKey = "n", sortDir = -1, open = null;
 
 /* ---------- helpers ---------- */
@@ -38,7 +42,7 @@ function widthOf(el){ return Math.max(300, el.clientWidth-24); }
 const tip = document.getElementById("tip");
 function showTip(e, html){ tip.style.display="block"; tip.innerHTML=html; const w=tip.offsetWidth; tip.style.left=Math.min(e.clientX+14, innerWidth-w-8)+"px"; tip.style.top=Math.min(e.clientY+14, innerHeight-tip.offsetHeight-8)+"px"; }
 function hideTip(){ tip.style.display="none"; }
-function memberTip(m, k=S.dim){ return `<b class="p${m.party}">${esc(m.name)}</b> (${m.party}-${seat(m)})${m.status==="member_elect"?' · <i>new member</i>':m.next==="departing"?' · <i>leaving</i>':""}<br>${dimLabel(k)}: <b>${m.scores[k]==null?"not enough evidence":esc(LEVELS[k][Math.round(m.scores[k])])}</b> (${fmt(m.scores[k])}) · ${m.n} statements<br><span class="note">${esc((m.summary||"Not enough public statements about AI to summarize.").slice(0,260))}${(m.summary||"").length>260?"…":""}</span>`; }
+function memberTip(m, k=S.dim){ return `<b class="p${m.party}">${esc(m.name)}</b> (${m.party}-${seat(m)})${m.status==="member_elect"?' · <i>new member</i>':m.next==="departing"?' · <i>leaving</i>':""}<br>${dimLabel(k)}: <b>${esc(levelText(k, m.scores[k]))}</b> · ${m.n} statements<br><span class="note">${esc((m.summary||"Not enough public statements about AI to summarize.").slice(0,260))}${(m.summary||"").length>260?"…":""}</span>`; }
 function setTitle(id, t){ const h=document.getElementById(id); if (h.firstChild && h.firstChild.nodeType===3) h.firstChild.nodeValue=t; else h.prepend(t); }  // keeps the Cite button
 function goMember(m){ if (!$("tbl")) { location.href = "index.html#member-" + m.id; return; } document.getElementById("q").value=m.name; document.getElementById("fst").value=""; renderTable(); openRow(m.id); document.getElementById("members").scrollIntoView({behavior:"smooth"}); }
 function bindHover(nodes, data, html, click){
@@ -56,20 +60,15 @@ async function init(){
   M = mj.members; TL = tl; COMM = cm; UPDATED = mj.updated;
   const opt = f => fetch(`data/${f}.json`).then(r=>r.ok?r.json():null).catch(()=>null);
   [DAILY, HISTORY, CHANGES, RF] = await Promise.all([opt("daily"), opt("history"), opt("changes"), opt("regfocus")]);
-  document.querySelectorAll("[data-range]").forEach(b=>b.onclick=()=>{ S.range=b.dataset.range;
-    document.querySelectorAll("[data-range]").forEach(x=>x.setAttribute("aria-checked", x.dataset.range===S.range)); drawFocus(); });
   if ($("updated")) $("updated").textContent = mj.updated;
   if ($("nmembers")) $("nmembers").textContent = M.length.toLocaleString();
   if ($("nquotes")) $("nquotes").textContent = M.reduce((a,m)=>a+m.n,0).toLocaleString();
   if ($("dimsel")){ dimsel.innerHTML = DIMS.map(([k,l])=>`<option value="${k}">${l}</option>`).join(""); dimsel.value = S.dim;
     dimsel.onchange = ()=>{ S.dim = dimsel.value; drawAll(); }; }
   const evt = $("evtoggle");
-  if (evt) evt.onclick = ()=>{ S.events = !S.events; evt.setAttribute("aria-checked", S.events); drawTrend(); drawFocus(); };
+  if (evt) evt.onclick = ()=>{ S.events = !S.events; evt.setAttribute("aria-checked", S.events); keepPlace(()=>{ drawTrend(); drawFocus(); }); };
   document.querySelectorAll("[data-cong]").forEach(b=>b.onclick=()=>{ S.cong=b.dataset.cong;
     document.querySelectorAll("[data-cong]").forEach(x=>x.setAttribute("aria-checked", x.dataset.cong===S.cong)); drawAll(); });
-  const topicOpts = TOPICS.map(t=>`<option>${t}</option>`).join("");
-  if ($("focustopic")){ focustopic.innerHTML = topicOpts; focustopic.value="x-risk/loss of control"; focustopic.onchange=drawFocus; }
-  if ($("voicetopic")){ voicetopic.innerHTML = `<option value="__all">All AI statements</option>`+topicOpts; voicetopic.value="x-risk/loss of control"; voicetopic.onchange=drawVoices; }
   if ($("tbl")){ ["q","fch","fpa","fst","fev"].forEach(id=>$(id).oninput=renderTable); renderHead(); renderTable(); }
   if ($("presets")) drawPresets();
   drawAll();
@@ -84,7 +83,16 @@ function alignEvToggle(){
   if (pie && innerWidth > 720) target = Math.min(target, pie.getBoundingClientRect().right);   // narrow screens: pies wrap into a centered row
   t.style.marginRight = Math.max(0, Math.round(edge - target - 4)) + "px";   // 4px = button padding
 }
-function drawAll(){
+// keep the reader's place: remember where the heading nearest the top of the view sits, redraw, then scroll back
+function keepPlace(fn){
+  const hs = [...document.querySelectorAll("main h2[id], main h3[id]")];
+  const anchor = hs.filter(h=>h.getBoundingClientRect().top <= innerHeight*0.4).pop();
+  const before = anchor && anchor.getBoundingClientRect().top;
+  fn();
+  if (anchor) { const d = anchor.getBoundingClientRect().top - before; if (Math.abs(d) > 1) scrollBy({top:d, behavior:"instant"}); }
+}
+function drawAll(){ keepPlace(drawCharts); }
+function drawCharts(){
   const d = DIMS.find(x=>x[0]===S.dim);
   document.querySelectorAll(".dimname").forEach(e=>e.textContent=d[1]);
   // each page has only some of the charts; draw the ones whose container is on this page
@@ -318,8 +326,12 @@ function eventMarks(lo, hi, W, ml, mr, numbered=true){   // numbers with a key; 
 
 /* ---------- topics ---------- */
 function quarters(){ return [...new Set(TL.map(r=>r.q))].sort(); }
+// the topic charts follow the question picked in the top bar
+const TOPIC_OF = {ai_overall:"jobs/economy", agi_pilled:"AGI/transformative", x_risk:"x-risk/loss of control", china_race:"China/competition", regulation:"regulation"};
+const TOPIC_NAME = {"jobs/economy":"jobs and the economy", "AGI/transformative":"AGI and transformative AI", "x-risk/loss of control":"x-risk and loss of control", "China/competition":"China and competition", "regulation":"AI rules"};
 function drawFocus(){
-  const t=focustopic.value, el=document.getElementById("focuschart"); el.innerHTML="";
+  const t=TOPIC_OF[S.dim], el=document.getElementById("focuschart"); el.innerHTML="";
+  setTitle("topicshare", `Share of AI statements about ${TOPIC_NAME[t]}, by party`);
   if (!DAILY){ el.innerHTML='<p class="note">No daily data yet.</p>'; return; }
   const ti = DAILY.topics.indexOf(t), gs = GROUPS_IN(S.cong), WIN = 30;
   const end = new Date(UPDATED+"T00:00:00Z"), day = 864e5;
@@ -375,13 +387,16 @@ function drawChanges(){
   const box=document.getElementById("changelist");
   const xs = (CHANGES||[]).filter(c=>(S.party==="all"||c.party===S.party) && c.old!=null && c.new!=null && Math.abs(c.new-c.old)>1);
   if (!xs.length){ box.innerHTML = `<p class="note">No score has moved by more than 1 point in the last 60 days.</p>`; return; }
-  const f = v => v==null ? "n/a" : fmt(v), lv = (c,v) => v==null ? "" : ` title="${esc(LEVELS[c.dim][Math.round(v)])}"`;
-  box.innerHTML = `<table class="changes"><thead><tr><th>Date</th><th>Member</th><th>Question</th><th class="num">Old</th><th class="num">New</th><th>Cause</th></tr></thead><tbody>${
-    xs.slice(0,25).map(c=>`<tr class="row" data-id="${esc(c.id)}"><td>${esc(c.date)}</td><td><span class="p${esc(c.party)}">●</span> ${esc(c.name)} <span class="note">${esc(c.party)}-${esc(c.state)}</span></td><td>${esc(dimLabel(c.dim))}</td><td class="num"><span class="sc" style="${shade(c.old)}"${lv(c,c.old)}>${f(c.old)}</span> <span class="note">${c.old==null?"":esc(LEVELS[c.dim][Math.round(c.old)])}</span></td><td class="num"><span class="sc" style="${shade(c.new)}"${lv(c,c.new)}>${f(c.new)}</span> <span class="note">${c.new==null?"":esc(LEVELS[c.dim][Math.round(c.new)])}</span></td><td class="note">${esc(c.cause)}</td></tr>`).join("")}</tbody></table>`;
+  const f = v => v==null ? "–" : fmt(v);
+  box.innerHTML = `<table class="changes"><thead><tr><th>Date</th><th>Member</th><th>Question</th><th>Change</th><th>Now</th><th>Cause</th></tr></thead><tbody>${
+    xs.slice(0,25).map(c=>`<tr class="row" data-id="${esc(c.id)}"><td>${esc(c.date)}</td><td><span class="p${esc(c.party)}">●</span> ${esc(c.name)} <span class="note">${esc(c.party)}-${esc(c.state)}</span></td><td>${esc(dimLabel(c.dim))}</td>`+
+      `<td class="chg"><span class="sc" style="${shade(c.old)}" title="${esc(levelText(c.dim,c.old))}">${f(c.old)}</span><span class="arr">→</span><span class="sc" style="${shade(c.new)}" title="${esc(levelText(c.dim,c.new))}">${f(c.new)}</span></td>`+
+      `<td>${esc(levelText(c.dim,c.new))}</td><td class="note">${esc(c.cause)}</td></tr>`).join("")}</tbody></table>`;
   box.querySelectorAll("tr.row").forEach(tr=>tr.onclick=()=>openRow(tr.dataset.id, tr));   // open the member right under the row, no scrolling
 }
 function drawVoices(){
-  const t=voicetopic.value, el=document.getElementById("voices"); el.innerHTML="";
+  const t=S.dim==="ai_overall" ? "__all" : TOPIC_OF[S.dim], el=document.getElementById("voices"); el.innerHTML="";
+  setTitle("voices-title", t==="__all" ? "Members with the most AI statements" : `Members who talk most about ${TOPIC_NAME[t]}`);
   const xs = M.filter(m=>inCong(m) && partyOk(m)).map(m=>({m, v: t==="__all" ? m.n : (m.topics?.[t]||0)})).filter(d=>d.v>0).sort((a,b)=>b.v-a.v).slice(0,15);
   if (!xs.length){ el.innerHTML='<p class="note">Nobody in this selection has statements on this topic.</p>'; return; }
   const data = xs.map(d=>({name:`${d.m.name} (${d.m.party}-${seat(d.m)})`, v:Math.round(d.v), m:d.m}));

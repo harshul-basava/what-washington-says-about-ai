@@ -5,11 +5,11 @@
   const fmt = value => Number.isInteger(value) ? String(value) : String(Math.round(value * 100) / 100);
   const STANCES = {'-2':'Explicit opposition','-1':'Implied opposition','0':'No stated position','1':'Implied support','2':'Explicit support'};
   const LEVELS = {
-    ai_overall:['Mainly a threat','Harms dominate','Balanced','Mainly an opportunity','Enthusiastic'],
-    agi_pilled:['Dismisses human-level AI','Ordinary technology','Very large change','Human-level AI is possible','Human-level AI is near'],
-    x_risk:['Dismisses the risk','Raises it, plays it down','A real risk','Wants action','A top priority'],
-    china_race:['Rejects the race','Mentions the race','One reason among several','The main reason','Outweighs other concerns'],
-    regulation:['Opposes rules','Light-touch rules','Targeted rules','Substantial rules','Comprehensive rules']
+    ai_overall:['Sees AI mainly as a threat','Sees more harm than good','Weighs harm and good equally','Sees AI mainly as an opportunity','Enthusiastic about AI'],
+    agi_pilled:['Dismisses AGI','Sees AI as ordinary technology','Expects very large change','Thinks AGI is possible','Thinks AGI is near'],
+    x_risk:['Dismisses AI x-risk','Mentions x-risk, plays it down','Calls x-risk a real risk','Wants action on x-risk','Calls x-risk a top priority'],
+    china_race:['Rejects the China race','Mentions the China race','China race is one reason','China race is the main reason','China race outweighs all else'],
+    regulation:['Opposes AI rules','Wants light-touch rules','Wants targeted rules','Wants substantial rules','Wants comprehensive rules']
   };
   const QUESTION_TEXT = {
     ai_overall:'Does AI offer benefits or harms?', agi_pilled:'Will AI reach human-level intelligence?',
@@ -69,7 +69,7 @@
     const reasons = [detail.reason_a,detail.reason_b];
     if (!score(value)) return {kind:'unavailable',value:null,label:
       member.n_statements < 3 || detail.reason_a === 'insufficient_evidence' ? 'Insufficient evidence' :
-        reasons.every(reason=>reason === 'no_statements') ? 'No discussion' : 'Score unavailable'};
+        reasons.every(reason=>['silent','no_statements'].includes(reason)) ? 'Not enough evidence: no statements on this question' : 'Score unavailable'};
     const silent = reasons.every(reason => ['silent','no_statements'].includes(reason));
     const meaning = value === 0 && silent ? 'No discussion' : value === 0 && reasons.some(reason=>!reason || ['silent','no_statements'].includes(reason)) ? null :
       Number.isInteger(value) ? LEVELS[dimension]?.[value] : null;
@@ -282,8 +282,8 @@
       <section id="fa-profiles" class="fa-profile-section" aria-labelledby="fa-profile-section-title"><div class="fa-section-heading"><div><p class="fa-eyebrow">Evidence behind the scores</p><h2 id="fa-profile-section-title">Explore a profile</h2></div></div>
       <div class="fa-explorer"><aside class="fa-profile-picker"><label for="fa-profile-choice">Choose a profile</label><select id="fa-profile-choice"></select><p id="fa-profile-count" class="fa-note"></p><div id="fa-profile-list" class="fa-profile-list" aria-label="Profiles"></div></aside><div id="fa-profile-panel" class="fa-profile-panel" aria-live="polite"></div></div></section>
       <section class="fa-method" id="method"><p class="fa-eyebrow">How to read this page</p><h2>Sources, scores, and limits</h2><p>${esc(data.methodology?.text || 'The analysis uses verified public statements, model labels, and a fixed score formula.')}</p>
-      <p><b>Reading the charts.</b> Agency filters include subagencies and linked roles; each profile counts once, and officials and institutions have separate totals. Colors round scores to the nearest whole number, as on the Congress page; a zero can mean no discussion, and gray means unscored. AI overall and Regulation need a qualifying stance; for AGI-pilled, AI x-risk and China race, silence scores 0 once a profile has three excerpts. In "Scores by agency", each profile's primary affiliation sets its group, subagencies roll up to their parent, and linked roles do not add a second count. "Profiles scoring 3 or more over time" uses all selected profiles, including those without scores; the monthly reconstruction applies today's labels to dated evidence for today's roster, does not track who held office then, and keeps observed snapshots separate, and earlier coverage is often thinner. In the policy chart, each side uses the same scale, and no stated position does not mean opposition. Topic shares use a rolling 30-day window, and each statement splits its weight equally among its topics; partial dates count at the end of their month or year, and undated or unfinished statements are left out. The top voices are the 15 profiles with the largest share of statements on the topic. Low scores can reflect silence, so open each profile to check the explanation and sources. Bars in "Five questions about AI" count profiles by the nearest whole score; missing evidence and unfinished labels are left out.</p>
-      <p>A profile needs at least three statements for a score. A zero can mean no discussion or the lowest rubric position. Score details explain the result.</p>
+      <p><b>Reading the charts.</b> Agency filters include subagencies and linked roles; each profile counts once, and officials and institutions have separate totals. Colors round scores to the nearest whole number, as on the Congress page; gray means not enough evidence. A profile that never addresses a question has not enough evidence on it; a 0 means the profile dismisses the idea or opposes AI rules. In "Scores by agency", each profile's primary affiliation sets its group, subagencies roll up to their parent, and linked roles do not add a second count. "Profiles scoring 3 or more over time" uses all selected profiles, including those without scores; the monthly reconstruction applies today's labels to dated evidence for today's roster, does not track who held office then, and keeps observed snapshots separate, and earlier coverage is often thinner. In the policy chart, each side uses the same scale, and no stated position does not mean opposition. Topic shares use a rolling 30-day window, and each statement splits its weight equally among its topics; partial dates count at the end of their month or year, and undated or unfinished statements are left out. The top voices are the 15 profiles with the largest share of statements on the topic. Low scores can reflect silence, so open each profile to check the explanation and sources. Bars in "Five questions about AI" count profiles by the nearest whole score; missing evidence and unfinished labels are left out.</p>
+      <p>A profile needs at least three statements for a score. A profile that never addresses a question gets no score on it; a 0 is the lowest position on the rubric. Score details explain the result.</p>
       <p>Institutional statements describe the institution. They do not establish an official's personal views. Officials' views do not establish institutional positions.</p>
       <p>These records cover today's eligible federal roster. Search completion does not establish complete evidence or equal evidence depth.</p>
       <p class="fa-models">${esc(Object.entries(data.methodology?.models || {}).map(([key,value])=>`${key}: ${value}`).join(' · '))}</p>

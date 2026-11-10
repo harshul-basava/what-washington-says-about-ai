@@ -11,7 +11,7 @@
 <script>try{if(localStorage.getItem("theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=2">
+<link rel="stylesheet" href="site.css?v=3">
 <link rel="stylesheet" href="chrome.css?v=2">
 </head>
 <body data-page="congress">
@@ -28,7 +28,7 @@
 </header>
 <main>
 <header>
-  <h1>What does Washington say about AI?</h1>
+  <h1>What does Congress say about AI?</h1>
   <p class="lede">Explore what each member of Congress and each newly elected member says in public about AI. Every score links to the quotes behind it.</p>
   <p class="meta">Congress last updated <span id="updated">…</span> · <span id="nmembers">…</span> congressional profiles · <span id="nquotes">…</span> verified congressional statements</p>
   <p class="herolinks"><a href="policies.html">See which AI policies members support</a> · <a href="federal.html">See officials and agencies in the executive branch</a></p>
@@ -85,14 +85,10 @@
 <div id="changelist"></div>
 
 <h2 id="topics">Topics</h2>
-<h3 id="topicshare">Topic share by party, day by day</h3>
-<div class="controls"><select id="focustopic" aria-label="Topic"></select>
-  <span class="segmented" role="radiogroup" aria-label="Time range"><button type="button" role="radio" data-range="90" aria-checked="false">3 months</button><button type="button" role="radio" data-range="365" aria-checked="true">12 months</button><button type="button" role="radio" data-range="all" aria-checked="false">All</button></span></div>
+<h3 id="topicshare">Topic share by party</h3>
 <div class="chart" id="focuschart"></div>
 
 <h3 id="voices-title">Members with the most statements</h3>
-<p class="sub">The 15 members with the most statements on the selected topic.</p>
-<div class="controls"><select id="voicetopic" aria-label="Topic"></select></div>
 <div class="chart" id="voices"></div>
 
 <h2 id="committees">Scores on AI committees</h2>
@@ -122,7 +118,7 @@
   <li><b>Official records:</b> AI-related quotes from the Congressional Record and hearings, from <a href="https://cesia.org/en/data/attention/">CeSIA's Politicians on AI</a> dataset (CC BY 4.0). Only the quote text, date and source are used. CeSIA's own labels are not.</li>
   <li><b>X:</b> each person's posts since January 2023 that match AI keywords (retweets excluded), from X's full-archive search. For the first 132 people we used X's web search instead, which found about 94% as many posts in a side-by-side check.</li>
   <li><b>Web:</b> a language model (Claude Sonnet 5.5) with web search looked for every substantive public statement about AI and was told explicitly that finding nothing is fine. We fetched every source page and kept a quote only if it appears there with a fuzzy match of at least 90%. When a site blocks automated access, we checked against the page text the search engine had retrieved.</li>
-  <li><b>Scoring:</b> each question is a claim (for example, "advanced AI could cause a catastrophe for humanity, and this deserves serious policy attention"), scored 0–4 by how strongly the member backs it in their own words. Two models from different companies, Claude Sonnet 5.5 and GPT-6.1 Sol, each read every statement and label the level it shows, using written tests for each level (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/master/config/rubric.md">rubric</a>). Quoting someone else's warning doesn't count unless the member adopts it. A fixed formula then turns the labels into a score. For "how strongly" questions (AGI, x-risk, China), the score is the highest level reached by at least two statements, and members who never discuss the topic get 0. For regulation, the score is the strongest position that the member takes more than one time. For AI overall, the score is the median label. The published score is the average of the two models' scores.</li>
+  <li><b>Scoring:</b> each question is a claim (for example, "advanced AI could cause a catastrophe for humanity, and this deserves serious policy attention"), scored 0–4 by how strongly the member backs it in their own words. Two models from different companies, Claude Sonnet 5.5 and GPT-6.1 Sol, each read every statement and label the level it shows, using written tests for each level (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/master/config/rubric.md">rubric</a>). Quoting someone else's warning doesn't count unless the member adopts it. A fixed formula then turns the labels into a score. For "how strongly" questions (AGI, x-risk, China), the score is the highest level reached by at least two statements, and members who never discuss the topic get no score on it ("not enough evidence"): saying nothing is not the same as dismissing the idea. A 0 means that the member dismisses it. For regulation, the score is the strongest position that the member takes more than one time. For AI overall, the score is the median label. The published score is the average of the two models' scores.</li>
   <li><b>Review:</b> a person will check the scores where the two models are 2 or more apart, the highest scores on AGI and x-risk, and a random sample. This review is not complete yet. A "human-reviewed" tag shows each member that a person checked.</li>
   <li><b>Daily updates:</b> each day the site gets new posts on X, the Congressional Record, hearings and news since the day before. DeepSeek V4.1 Flash labels each new statement three times. When the three labels do not agree, when the label is 3 or more on x-risk or AGI, or when the label is far from the member's current score, GPT-6.1 Sol labels the statement too. GPT-6 Astra decides when the two are 2 or more levels apart. The same formula then makes the new scores. A check on 455 statements found that this agrees with the original two models as often as they agree with each other (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/master/review/cascade_calibration.md">details</a>).</li>
   <li><b>Charts:</b> the seat chart puts each seat of the selected Congress in order from the lowest score on the left to the highest on the right, with the Senate at the top and the House (with the delegates) at the bottom. Each score is the average of the scores from the two models, rounded to the nearest whole number. The 120th Congress view leaves out seats whose 2026 result is not known yet. Ideology is the GovTrack score, from 0 (progressive) to 1 (conservative), from the bills that each member cosponsored in the 119th Congress; new members have no ideology score, so the ideology chart leaves them out, and each dot moves up or down by a small random amount so that dots do not cover each other. "Not enough evidence" means that the member did not make enough public statements to get a score. In "Scores over time", each point before the daily updates is the score at the end of a month, made with the same formula from the statements of that time; the early months show fewer high scores partly because the original collection found more recent statements than old ones. "Recent changes" lists scores that moved by more than 1 point. "Topic share" is the percent of each party's AI statements in the 30 days before each day that are about the topic. The committee chart uses today's committee seats, because Congress does not assign the seats for the 120th Congress until January. In the members table, a dash means that there is not enough evidence. Put the pointer on any dot, bar or name to see the member, and click it to read their quotes.</li>
@@ -154,6 +150,6 @@
 <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.16/dist/plot.umd.min.js"></script>
 <script src="common.js?v=1"></script>
-<script src="app.js?v=2"></script>
+<script src="app.js?v=3"></script>
 </body>
 </html>

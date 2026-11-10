@@ -87,11 +87,11 @@
   }
   // plain words for each score level and for "3 or more", matching the Congress page
   const LEVEL_NAMES = {
-    ai_overall:['Mainly a threat','Harms dominate','Balanced','Mainly an opportunity','Enthusiastic'],
-    agi_pilled:['Dismisses human-level AI','Ordinary technology','Very large change','Human-level AI is possible','Human-level AI is near'],
-    x_risk:['Dismisses the risk','Raises it, plays it down','A real risk','Wants action','A top priority'],
-    china_race:['Rejects the race','Mentions the race','One reason among several','The main reason','Outweighs other concerns'],
-    regulation:['Opposes rules','Light-touch rules','Targeted rules','Substantial rules','Comprehensive rules']};
+    ai_overall:['Sees AI mainly as a threat','Sees more harm than good','Weighs harm and good equally','Sees AI mainly as an opportunity','Enthusiastic about AI'],
+    agi_pilled:['Dismisses AGI','Sees AI as ordinary technology','Expects very large change','Thinks AGI is possible','Thinks AGI is near'],
+    x_risk:['Dismisses AI x-risk','Mentions x-risk, plays it down','Calls x-risk a real risk','Wants action on x-risk','Calls x-risk a top priority'],
+    china_race:['Rejects the China race','Mentions the China race','China race is one reason','China race is the main reason','China race outweighs all else'],
+    regulation:['Opposes AI rules','Wants light-touch rules','Wants targeted rules','Wants substantial rules','Wants comprehensive rules']};
   const HIGH = {ai_overall:'optimistic about AI',agi_pilled:'expect AGI',x_risk:'want action on AI x-risk',china_race:'say the China race drives their AI views',regulation:'want substantial AI rules'};
   const levelName = (dimension,n) => (LEVEL_NAMES[dimension]||[])[n] || `Score ${n}`;
   function scoreLegend(dimension) {

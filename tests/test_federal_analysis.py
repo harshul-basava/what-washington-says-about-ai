@@ -144,7 +144,7 @@ class FederalAnalysisTests(unittest.TestCase):
         resolved={s['sid']:a.resolve_labels(self.entry({'regulation':2})) for s in statements}
         scores,details=a.score(statements,resolved,'2026-01-01')
         self.assertEqual(scores['regulation'],2)
-        self.assertEqual(scores['x_risk'],0)
+        self.assertIsNone(scores['x_risk'])   # silence is not enough evidence, not a 0
         self.assertEqual(details['x_risk']['reason_a'],'silent')
         resolved['s1']={'status':'pending'}
         self.assertTrue(all(v is None for v in a.score(statements,resolved,'2026-01-01')[0].values()))

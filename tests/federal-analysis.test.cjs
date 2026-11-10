@@ -40,10 +40,10 @@ test('silence zeros are explicit and incomplete evidence cannot become silence',
   assert.equal(view.scoreState(member(), 'x_risk').label,'0 · No discussion');
   assert.equal(view.scoreState(member({status:'partial',n_labeled:1}), 'x_risk').kind,'pending');
   assert.equal(view.scoreState(member({status:'no_evidence',n_statements:0,n_labeled:0}), 'x_risk').label,'No evidence');
-  assert.equal(view.scoreState(member({scores:{}}), 'x_risk').label,'Score unavailable');
+  assert.equal(view.scoreState(member({scores:{}}), 'x_risk').label,'Not enough evidence: no statements on this question');
   assert.equal(view.scoreState(member({status:'partial'}), 'x_risk').label,'0 · No discussion');
-  assert.equal(view.scoreState(member({scores:{regulation:0},score_details:{regulation:{reason_a:'consistent',reason_b:'consistent'}}}), 'regulation').label,'0 · Opposes rules');
-  assert.equal(view.scoreState(member({scores:{regulation:null},score_details:{regulation:{reason_a:'no_statements',reason_b:'no_statements'}}}), 'regulation').label,'No discussion');
+  assert.equal(view.scoreState(member({scores:{regulation:0},score_details:{regulation:{reason_a:'consistent',reason_b:'consistent'}}}), 'regulation').label,'0 · Opposes AI rules');
+  assert.equal(view.scoreState(member({scores:{regulation:null},score_details:{regulation:{reason_a:'no_statements',reason_b:'no_statements'}}}), 'regulation').label,'Not enough evidence: no statements on this question');
   assert.equal(view.scoreState(member({scores:{x_risk:0},score_details:{}}), 'x_risk').label,'0');
 });
 
