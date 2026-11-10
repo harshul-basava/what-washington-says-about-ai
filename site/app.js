@@ -554,7 +554,7 @@ function addCiteButtons(){
 }
 // links: #method opens the collapsed Method section; #member-ID opens that member
 function openHash(){
-  if (location.hash==="#method") document.getElementById("method").open = true;
+  if (location.hash==="#method") { location.replace("method.html"); return; }   // old links
   const m = location.hash.startsWith("#member-") && M.find(x=>x.id===location.hash.slice(8));
   if (m) goMember(m);
 }
