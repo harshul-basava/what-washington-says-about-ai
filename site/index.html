@@ -11,7 +11,7 @@
 <script>try{if(localStorage.getItem("theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=5">
+<link rel="stylesheet" href="site.css?v=6">
 <link rel="stylesheet" href="chrome.css?v=3">
 </head>
 <body data-page="congress">
@@ -20,9 +20,9 @@
     <a class="brand" href="index.html" id="brand"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><g fill="currentColor"><rect x="11.4" y="1.5" width="1.2" height="3" rx=".4"/><path d="M7.2 9.6a4.8 4.8 0 0 1 9.6 0z"/><rect x="6.4" y="9.6" width="11.2" height="1.6" rx=".3"/><rect x="2.8" y="11.6" width="18.4" height="1.6" rx=".3"/><rect x="4.2" y="13.6" width="1.6" height="5.2"/><rect x="8.1" y="13.6" width="1.6" height="5.2"/><rect x="11.2" y="13.6" width="1.6" height="5.2"/><rect x="14.3" y="13.6" width="1.6" height="5.2"/><rect x="18.2" y="13.6" width="1.6" height="5.2"/><rect x="2" y="19.2" width="20" height="2" rx=".4"/></g></svg><span>DC on AI</span></a>
     <nav aria-label="Sections">
       <a href="index.html" aria-current="page">Congress</a><a href="federal.html">Federal analysis</a><a href="policies.html">Policies</a><div class="navmenu">
-        <a href="#method" class="navmenu-btn" aria-haspopup="true">About<svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="method.html" class="navmenu-btn" aria-haspopup="true">About<svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <div class="navmenu-list" role="menu">
-          <a href="#method" role="menuitem">Method</a>
+          <a href="method.html" role="menuitem">Method</a>
           <button type="button" role="menuitem" data-cite="page">Cite this page</button>
           <a href="https://github.com/harshul-basava/what-washington-says-about-ai" role="menuitem">GitHub</a>
         </div>
@@ -90,6 +90,7 @@
 
 <h2 id="topics">Topics</h2>
 <h3 id="topicshare">Topic share by party</h3>
+<div class="controls"><span class="segmented" role="radiogroup" aria-label="Time range"><button type="button" role="radio" data-range="90" aria-checked="false">3 months</button><button type="button" role="radio" data-range="365" aria-checked="true">12 months</button><button type="button" role="radio" data-range="all" aria-checked="false">All</button></span></div>
 <div class="chart" id="focuschart"></div>
 
 <h3 id="voices-title">Members with the most statements</h3>
@@ -115,23 +116,6 @@
 
 </div>
 
-<details id="method" class="method">
-<summary><h2>Method</h2><span class="note">How we collected, scored and checked the data</span></summary>
-<ol>
-  <li><b>Who:</b> all 539 current members (senators, representatives and delegates) from the <a href="https://github.com/unitedstates/congress-legislators">unitedstates/congress-legislators</a> project, plus winners of the November 2026 elections who aren't already in Congress, taken from called races only. The 120th Congress view combines continuing members with members-elect. A senator stays unless their seat was up in 2026 and someone else won it; a member who won a 2026 race stays, in the chamber they won.</li>
-  <li><b>Official records:</b> AI-related quotes from the Congressional Record and hearings, from <a href="https://cesia.org/en/data/attention/">CeSIA's Politicians on AI</a> dataset (CC BY 4.0). Only the quote text, date and source are used. CeSIA's own labels are not.</li>
-  <li><b>X:</b> each person's posts since January 2023 that match AI keywords (retweets excluded), from X's full-archive search. For the first 132 people we used X's web search instead, which found about 94% as many posts in a side-by-side check.</li>
-  <li><b>Web:</b> a language model (Claude Sonnet 5.5) with web search looked for every substantive public statement about AI and was told explicitly that finding nothing is fine. We fetched every source page and kept a quote only if it appears there with a fuzzy match of at least 90%. When a site blocks automated access, we checked against the page text the search engine had retrieved.</li>
-  <li><b>Scoring:</b> each question is a claim (for example, "advanced AI could cause a catastrophe for humanity, and this deserves serious policy attention"), scored 0–4 by how strongly the member backs it in their own words. Two models from different companies, Claude Sonnet 5.5 and GPT-6.1 Sol, each read every statement and label the level it shows, using written tests for each level (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/master/config/rubric.md">rubric</a>). Quoting someone else's warning doesn't count unless the member adopts it. A fixed formula then turns the labels into a score. For "how strongly" questions (AGI, x-risk, China), the score is the highest level reached by at least two statements, and members who never discuss the topic get no score on it ("not enough evidence"): saying nothing is not the same as dismissing the idea. A 0 means that the member dismisses it. For regulation, the score is the strongest position that the member takes more than one time. For AI overall, the score is the median label. The published score is the average of the two models' scores.</li>
-  <li><b>Review:</b> a person will check the scores where the two models are 2 or more apart, the highest scores on AGI and x-risk, and a random sample. This review is not complete yet. A "human-reviewed" tag shows each member that a person checked.</li>
-  <li><b>Daily updates:</b> each day the site gets new posts on X, the Congressional Record, hearings and news since the day before. DeepSeek V4.1 Flash labels each new statement three times. When the three labels do not agree, when the label is 3 or more on x-risk or AGI, or when the label is far from the member's current score, GPT-6.1 Sol labels the statement too. GPT-6 Astra decides when the two are 2 or more levels apart. The same formula then makes the new scores. A check on 455 statements found that this agrees with the original two models as often as they agree with each other (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/master/review/cascade_calibration.md">details</a>).</li>
-  <li><b>Charts:</b> the seat chart puts each seat of the selected Congress in order from the lowest score on the left to the highest on the right, with the Senate at the top and the House (with the delegates) at the bottom. Each score is the average of the scores from the two models, rounded to the nearest whole number. The 120th Congress view leaves out seats whose 2026 result is not known yet. Ideology is the GovTrack score, from 0 (progressive) to 1 (conservative), from the bills that each member cosponsored in the 119th Congress; new members have no ideology score, so the ideology chart leaves them out, and each dot moves up or down by a small random amount so that dots do not cover each other. "Not enough evidence" means that the member did not make enough public statements to get a score. In "Scores over time", each point before the daily updates is the score at the end of a month, made with the same formula from the statements of that time; the early months show fewer high scores partly because the original collection found more recent statements than old ones. "Recent changes" lists scores that moved by more than 1 point. "Topic share" is the percent of each party's AI statements in the 30 days before each day that are about the topic. The committee chart uses today's committee seats, because Congress does not assign the seats for the 120th Congress until January. In the members table, a dash means that there is not enough evidence. Put the pointer on any dot, bar or name to see the member, and click it to read their quotes.</li>
-  <li><b>Policies:</b> the <a href="policies.html#method">Policies page</a> explains how we label support for specific AI policies.</li>
-  <li><b>Committees:</b> current full-committee rosters from the @unitedstates project.</li>
-</ol>
-<p><b>Caveats.</b> What people say in public is not the same as what they believe or how they vote. Scores are produced by language models and only spot-checked. Official records lag by months. X coverage depends on knowing the right accounts, and some members barely post. Members who rarely talk about AI will have little or no evidence. That doesn't mean they hold no views.</p>
-<p class="note">Thanks to <a href="https://cesia.org/en/data/attention/">CeSIA</a>, the <a href="https://github.com/unitedstates/congress-legislators">@unitedstates project</a>, <a href="https://www.govtrack.us/">GovTrack</a>, and Zephy's earlier <a href="https://www.lesswrong.com/">"What Washington Says About AGI"</a>, which this project builds on.</p>
-</details>
 
 <footer class="sitefoot">
   <span>What Washington Says About AI</span>
@@ -153,7 +137,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.16/dist/plot.umd.min.js"></script>
-<script src="common.js?v=2"></script>
-<script src="app.js?v=3"></script>
+<script src="common.js?v=3"></script>
+<script src="app.js?v=7"></script>
 </body>
 </html>

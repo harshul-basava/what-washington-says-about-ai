@@ -69,6 +69,8 @@ async function init(){
   if ($("updated")) $("updated").textContent = mj.updated;
   if ($("nmembers")) $("nmembers").textContent = M.length.toLocaleString();
   if ($("nquotes")) $("nquotes").textContent = M.reduce((a,m)=>a+m.n,0).toLocaleString();
+  document.querySelectorAll("[data-range]").forEach(b=>b.onclick=()=>{ S.range=b.dataset.range;
+    document.querySelectorAll("[data-range]").forEach(x=>x.setAttribute("aria-checked", x.dataset.range===S.range)); keepPlace(drawFocus); });
   if ($("dimsel")){ dimsel.innerHTML = DIMS.map(([k,l])=>`<option value="${k}">${l}</option>`).join(""); dimsel.value = S.dim;
     dimsel.onchange = ()=>{ S.dim = dimsel.value; drawAll(); }; }
   const evt = $("evtoggle");
@@ -552,7 +554,7 @@ function addCiteButtons(){
 }
 // links: #method opens the collapsed Method section; #member-ID opens that member
 function openHash(){
-  if (location.hash==="#method") document.getElementById("method").open = true;
+  if (location.hash==="#method") { location.replace("method.html"); return; }   // old links
   const m = location.hash.startsWith("#member-") && M.find(x=>x.id===location.hash.slice(8));
   if (m) goMember(m);
 }

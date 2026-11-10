@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Method · What Washington Says About AI</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="description" content="How What Washington Says About AI collects, scores and checks statements by Congress, executive officials and federal institutions.">
+<script>try{if(localStorage.getItem("theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css?v=6">
+<link rel="stylesheet" href="chrome.css?v=3">
+</head>
+<body data-page="method">
+<header class="topbar">
+  <div class="topin">
+    <a class="brand" href="index.html" id="brand"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><g fill="currentColor"><rect x="11.4" y="1.5" width="1.2" height="3" rx=".4"/><path d="M7.2 9.6a4.8 4.8 0 0 1 9.6 0z"/><rect x="6.4" y="9.6" width="11.2" height="1.6" rx=".3"/><rect x="2.8" y="11.6" width="18.4" height="1.6" rx=".3"/><rect x="4.2" y="13.6" width="1.6" height="5.2"/><rect x="8.1" y="13.6" width="1.6" height="5.2"/><rect x="11.2" y="13.6" width="1.6" height="5.2"/><rect x="14.3" y="13.6" width="1.6" height="5.2"/><rect x="18.2" y="13.6" width="1.6" height="5.2"/><rect x="2" y="19.2" width="20" height="2" rx=".4"/></g></svg><span>DC on AI</span></a>
+    <nav aria-label="Sections">
+      <a href="index.html">Congress</a><a href="federal.html">Federal analysis</a><a href="policies.html">Policies</a><div class="navmenu">
+        <a href="method.html" class="navmenu-btn" aria-current="page" aria-haspopup="true">About<svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="navmenu-list" role="menu">
+          <a href="method.html" role="menuitem">Method</a>
+          <button type="button" role="menuitem" data-cite="page">Cite this page</button>
+          <a href="https://github.com/harshul-basava/what-washington-says-about-ai" role="menuitem">GitHub</a>
+        </div>
+      </div>
+    </nav>
+    <button id="theme" class="themebtn" type="button" aria-label="Switch to dark mode" title="Switch theme"><svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+  </div>
+</header>
+<main>
+<header>
+  <h1>Method</h1>
+  <p class="lede">How we collect, score and check what Congress, executive officials and federal institutions say about AI.</p>
+</header>
+<div class="withtoc">
+<nav class="toc" aria-label="Contents"><div class="tocin"><ol>
+    <li><a href="#congress">Congress</a></li>
+    <li><a href="#policies">Policies</a></li>
+    <li><a href="#federal">Federal officials and institutions</a></li>
+  </ol></div></nav>
+<section class="msec"><h2 id="congress">Congress</h2>
+<ol>
+  <li><b>Who:</b> all 539 current members (senators, representatives and delegates) from the <a href="https://github.com/unitedstates/congress-legislators">unitedstates/congress-legislators</a> project, plus winners of the November 2026 elections who aren't already in Congress, taken from called races only. The 120th Congress view combines continuing members with members-elect. A senator stays unless their seat was up in 2026 and someone else won it; a member who won a 2026 race stays, in the chamber they won.</li>
+  <li><b>Official records:</b> AI-related quotes from the Congressional Record and hearings, from <a href="https://cesia.org/en/data/attention/">CeSIA's Politicians on AI</a> dataset (CC BY 4.0). Only the quote text, date and source are used. CeSIA's own labels are not.</li>
+  <li><b>X:</b> each person's posts since January 2023 that match AI keywords (retweets excluded), from X's full-archive search. For the first 132 people we used X's web search instead, which found about 94% as many posts in a side-by-side check.</li>
+  <li><b>Web:</b> a language model (Claude Sonnet 5.5) with web search looked for every substantive public statement about AI and was told explicitly that finding nothing is fine. We fetched every source page and kept a quote only if it appears there with a fuzzy match of at least 90%. When a site blocks automated access, we checked against the page text the search engine had retrieved.</li>
+  <li><b>Scoring:</b> each question is a claim (for example, "advanced AI could cause a catastrophe for humanity, and this deserves serious policy attention"), scored 0–4 by how strongly the member backs it in their own words. Two models from different companies, Claude Sonnet 5.5 and GPT-6.1 Sol, each read every statement and label the level it shows, using written tests for each level (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/master/config/rubric.md">rubric</a>). Quoting someone else's warning doesn't count unless the member adopts it. A fixed formula then turns the labels into a score. For "how strongly" questions (AGI, x-risk, China), the score is the highest level reached by at least two statements, and members who never discuss the topic get no score on it ("not enough evidence"): saying nothing is not the same as dismissing the idea. A 0 means that the member dismisses it. For regulation, the score is the strongest position that the member takes more than one time. For AI overall, the score is the median label. The published score is the average of the two models' scores.</li>
+  <li><b>Review:</b> a person will check the scores where the two models are 2 or more apart, the highest scores on AGI and x-risk, and a random sample. This review is not complete yet. A "human-reviewed" tag shows each member that a person checked.</li>
+  <li><b>Daily updates:</b> each day the site gets new posts on X, the Congressional Record, hearings and news since the day before. DeepSeek V4.1 Flash labels each new statement three times. When the three labels do not agree, when the label is 3 or more on x-risk or AGI, or when the label is far from the member's current score, GPT-6.1 Sol labels the statement too. GPT-6 Astra decides when the two are 2 or more levels apart. The same formula then makes the new scores. A check on 455 statements found that this agrees with the original two models as often as they agree with each other (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/master/review/cascade_calibration.md">details</a>).</li>
+  <li><b>Charts:</b> the seat chart puts each seat of the selected Congress in order from the lowest score on the left to the highest on the right, with the Senate at the top and the House (with the delegates) at the bottom. Each score is the average of the scores from the two models, rounded to the nearest whole number. The 120th Congress view leaves out seats whose 2026 result is not known yet. Ideology is the GovTrack score, from 0 (progressive) to 1 (conservative), from the bills that each member cosponsored in the 119th Congress; new members have no ideology score, so the ideology chart leaves them out, and each dot moves up or down by a small random amount so that dots do not cover each other. "Not enough evidence" means that the member did not make enough public statements to get a score. In "Scores over time", each point before the daily updates is the score at the end of a month, made with the same formula from the statements of that time; the early months show fewer high scores partly because the original collection found more recent statements than old ones. "Recent changes" lists scores that moved by more than 1 point. "Topic share" is the percent of each party's AI statements in the 30 days before each day that are about the topic. The committee chart uses today's committee seats, because Congress does not assign the seats for the 120th Congress until January. In the members table, a dash means that there is not enough evidence. Put the pointer on any dot, bar or name to see the member, and click it to read their quotes.</li>
+  <li><b>Committees:</b> current full-committee rosters from the @unitedstates project.</li>
+</ol>
+<p><b>Caveats.</b> What people say in public is not the same as what they believe or how they vote. Scores are produced by language models and only spot-checked. Official records lag by months. X coverage depends on knowing the right accounts, and some members barely post. Members who rarely talk about AI will have little or no evidence. That doesn't mean they hold no views.</p>
+<p class="note">Thanks to <a href="https://cesia.org/en/data/attention/">CeSIA</a>, the <a href="https://github.com/unitedstates/congress-legislators">@unitedstates project</a>, <a href="https://www.govtrack.us/">GovTrack</a>, and Zephy's earlier <a href="https://www.lesswrong.com/">"What Washington Says About AGI"</a>, which this project builds on.</p>
+</section>
+<section class="msec"><h2 id="policies">Policies</h2>
+<ol>
+  <li><b>Policies they support:</b> a second rubric (<a href="https://github.com/harshul-basava/what-washington-says-about-ai/blob/main/config/reg_focus.md">config/reg_focus.md</a>) lists 23 concrete AI policies, from limits on AI chatbots for minors and data center moratoriums to a ban on superintelligence. DeepSeek V4.1 Flash and GPT-6.1 Sol each read all of a member's statements and mark each policy as explicit or implied support, explicit or implied opposition, or no stance, with the quotes that show it. A harm alone is not support: the member must ask for that specific policy, or back a bill that makes it. A general call to "protect workers" or "protect kids" does not count. When the two models point in different directions, GPT-6 Astra reads the cited quotes and decides. When they agree, the weaker of the two strengths is kept. The daily job checks a member again when their new statements talk about AI rules.</li>
+  <li><b>Policy judgments:</b> keyword searches identify candidate statements in the existing corpus. DeepSeek V4.1 Flash 1017 assesses each candidate with a confidence score. Astra independently reviews confidence below the configured threshold. Cases that remain uncertain require human review. The policy view preserves both assessments and separates no matching evidence from incomplete assessment. Confidence scores are model estimates that require calibration. Each framework has its own dated registry entry. New entries require a manual refresh. These labels have not received a human validation study.</li>
+  <li><b>Executive and institutional coverage:</b> the policy explorer adds a curated set of federal officials and institutions. Profiles show sourced roles and memberships. Each quote distinguishes a personal statement, a statement in an official role, or an institutional statement. Membership does not establish endorsement. Agency filters include subagencies and linked roles. Each official counts once; charts use the primary organization. Some roles and statement dates remain unknown. The daily job searches configured federal sources, verifies excerpts, and updates policy judgments. The site shows partial updates and work that awaits retry. Roles and memberships still need manual review.</li>
+  <li><b>Reading the charts:</b> in the first chart, the percent uses everyone in the selected group, including those with no statements. For Congress, it uses all members of the selected Congress. For executive officials and institutions, it uses the same 23 policies and the same two-model method, applied to the federal statements on the <a href="federal.html">Federal page</a> (see <a href="#federal">below</a>). Most members have said nothing about most policies, so the two bars do not add up to 100%. "Explicit" means that the member names the policy or a bill that makes it; "implied" means that the member clearly asks for the policy but does not name it or a bill. In "Positions on specific AI policies", each bar covers every profile in the view. "No evidence" means that the profile has no relevant statement, or that its assessment is not finished yet. "Mixed or unclear" combines mixed positions, statements that only describe the policy, and unclear statements. For executive officials, each official counts once and the bars use each official's primary organization; agency filters include linked roles. An institution's statements do not show its officials' personal views. Coverage includes the White House, Commerce, the National Security Agency and the Superintelligence Task Force. DeepSeek V4.1 Flash 1017 assesses each statement with a confidence score, and Astra reviews each assessment below the confidence threshold. Confidence scores are model estimates, not calibrated accuracy. In "Profiles and source quotes", each position summarizes the available statement history, not a current position, and no matching evidence does not mean opposition.</li>
+</ol>
+<p><b>Caveats.</b> What people say in public is not the same as what they believe or how they vote. Language models make these labels, and people check only some of them. Members who rarely talk about AI have little or no evidence. That does not mean they have no views. The <a href="#congress">Congress method</a> explains how we collect the statements.</p>
+</section>
+<section class="msec"><h2 id="federal">Federal officials and institutions</h2>
+<p id="fed-text">The analysis uses verified public statements, model labels, and a fixed score formula.</p>
+<p><b>Reading the charts.</b> Each profile counts once, and officials and institutions have separate totals. Colors round scores to the nearest whole number, as on the Congress page; gray means not enough evidence. A profile that never addresses a question has not enough evidence on it; a 0 means the profile dismisses the idea or opposes AI rules. In "Scores by agency", each profile's primary affiliation sets its group, and subagencies roll up to their parent. The chart over time applies today's labels to dated evidence for today's roster, month by month; it does not track who held office then, and earlier coverage is often thinner. Topic shares use a rolling 30-day window, and each statement splits its weight equally among its topics. Low scores can reflect silence, so open each profile to check the summary and sources.</p>
+<p>A profile needs at least three statements for a score. Institutional statements describe the institution. They do not establish an official's personal views. Officials' views do not establish institutional positions. These records cover today's federal roster.</p>
+<p class="note" id="fed-models"></p>
+</section>
+</div>
+<footer class="sitefoot">
+  <span>What Washington Says About AI</span>
+  <a href="https://github.com/harshul-basava/what-washington-says-about-ai">GitHub</a>
+  <a href="https://github.com/harshul-basava/what-washington-says-about-ai/issues">Contact / corrections (GitHub issues)</a>
+</footer>
+</main>
+<div class="tip" id="tip" role="tooltip"></div>
+<dialog class="cite" id="citedlg" aria-labelledby="citehead">
+  <form method="dialog"><button class="xclose" aria-label="Close" title="Close"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></form>
+  <h3 id="citehead">Cite this page</h3>
+  <p class="note" id="citewhat" style="margin:0"></p>
+  <div class="fmt"><div class="fmthead"><b>Text</b><button type="button" class="copyic" data-copy="cite-text" aria-label="Copy text" title="Copy"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 15V6a2 2 0 0 1 2-2h9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div><pre id="cite-text"></pre></div>
+  <div class="fmt"><div class="fmthead"><b>BibTeX</b><button type="button" class="copyic" data-copy="cite-bib" aria-label="Copy bibtex" title="Copy"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 15V6a2 2 0 0 1 2-2h9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div><pre id="cite-bib"></pre></div>
+  <div class="fmt"><div class="fmthead"><b>Link</b><button type="button" class="copyic" data-copy="cite-url" aria-label="Copy link" title="Copy"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 15V6a2 2 0 0 1 2-2h9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div><pre id="cite-url"></pre></div>
+</dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="common.js?v=3"></script>
+<script>
+// the federal method text and model list come from the federal export, as on the Federal page before
+fetch("data/federal_analysis.json").then(r=>r.ok?r.json():null).then(d=>{ if(!d) return;
+  if (d.methodology?.text) document.getElementById("fed-text").textContent = d.methodology.text;
+  const m = Object.entries(d.methodology?.models||{}).map(([k,v])=>`${k}: ${v}`).join(" · ");
+  document.getElementById("fed-models").textContent = (m ? m + ". " : "") + (d.built_on ? `Export built ${d.built_on.slice(0,10)}.` : "");
+}).catch(()=>{});
+// contents: mark the section in view
+const TOCL=[...document.querySelectorAll(".toc a")];
+function tocActive(){ let cur=null; for (const a of TOCL){ const el=document.getElementById(a.getAttribute("href").slice(1)); if (el && el.getBoundingClientRect().top<170) cur=a; } TOCL.forEach(a=>a.classList.toggle("active",a===cur)); }
+addEventListener("scroll",()=>requestAnimationFrame(tocActive),{passive:true}); tocActive();
+</script>
+</body>
+</html>
