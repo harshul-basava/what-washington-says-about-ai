@@ -2,6 +2,17 @@ import unittest
 
 
 class PriorityFollowupTests(unittest.TestCase):
+    def test_overlapping_daily_x_cost_reduces_total_but_not_dedicated_search_cap(self):
+        from scripts.federal_priority_followup import allowances
+        budget = {'openrouter_baseline': 100, 'x_baseline': 20, 'combined_limit': 18.90,
+                  'x_search_limit': 2, 'astra_x_context_reserve': 1.50,
+                  'other_x_reserved': 1.2}
+        result = allowances(budget, 105, 21.935)
+        self.assertAlmostEqual(result['remaining'], 11.965)
+        self.assertAlmostEqual(result['x_search'], 1.265)
+        with self.assertRaises(ValueError):
+            allowances(budget, 100, 20.5)
+
     def test_retry_allowance_counts_both_providers_and_keeps_context_reserve(self):
         from scripts.federal_priority_followup import allowances
         budget = {'openrouter_baseline': 100, 'x_baseline': 20, 'combined_limit': 18.90,

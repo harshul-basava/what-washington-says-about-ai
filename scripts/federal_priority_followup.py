@@ -19,9 +19,15 @@ def allowances(budget, model_spend, x_spend):
     if min(model_delta, x_delta) < -0.000001:
         raise ValueError('Cost ledger predates the fixed baseline')
     model_delta, x_delta = max(0, model_delta), max(0, x_delta)
+    # A separately documented daily-run reservation still counts against the
+    # combined limit, but is not a request from this dedicated X search.
+    other_x = budget.get('other_x_reserved', 0)
+    if other_x > x_delta + 0.000001:
+        raise ValueError('Unbacked other-X reservation')
+    search_delta = max(0, x_delta - other_x)
     remaining = max(0, budget['combined_limit'] - model_delta - x_delta)
     return {'spent': model_delta + x_delta, 'remaining': remaining,
-            'x_search': max(0, min(remaining, budget['x_search_limit'] - x_delta)),
+            'x_search': max(0, min(remaining, budget['x_search_limit'] - search_delta)),
             # The existing Astra runner permits three context fetches of at most $0.50.
             'models': max(0, remaining - budget['astra_x_context_reserve'])}
 
