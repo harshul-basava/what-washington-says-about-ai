@@ -21,19 +21,80 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement discusses onshoring and mining for AI data centers and semiconductors, not restricting or enforcing overseas AI chip access.",
+      "facets": [],
+      "confidence": 0.96,
+      "confidence_reason": "There is no reference to export controls or overseas access restrictions.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:16.961532+00:00",
+      "generation_id": "gen-1794372483-LajDilPh1ZudfJL6oHN7"
+     }
+    },
+    "confidence": 0.96,
+    "final_judge": "deepseek",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    }
   ],
   "china_race_dynamics": [
+   {
+    "sid": "s53",
+    "text": "From mapping critical mineral resources and improving water forecasting to advancing AI-enabled geologic research and biological science, our world-class scientists and data systems are helping ensure the United States has the knowledge, resources and infrastructure needed to win the global race for AI while strengthening our energy security and economic prosperity.",
+    "date": null,
+    "context": "e, scientific innovation and energy production,\" said Secretary of the Interior Doug Burgum . \"The Department of the Interior is providing the scientific foundation that makes that leadership possible. From mapping critical mineral resources and improving water forecasting to advancing AI-enabled geologic research and biological science, our world-class scientists and data systems are helping ensure the United States has the knowledge, resources and infrastructure needed to win the global race for AI while strengthening our energy security and economic prosperity.\" Interior's contributions align with four National Science and Technology Chall",
+    "url": "https://www.doi.gov/pressreleases/interior-highlights-scientific-leadership-supporting-genesis-mission",
+    "source_type": "official_statement",
+    "verified_via": "exact_normalized_page_text",
+    "attribution": {
+     "kind": "personal",
+     "speaker": "Doug Burgum",
+     "organization_id": "interior",
+     "basis": "local_span",
+     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+    },
+    "strategy": "confidence_cascade",
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker calls for winning the global AI race, endorsing AI competition as a priority.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.55,
+      "confidence_reason": "The race framing is explicit, but China is not named and the statement is institutional.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:35.335055+00:00",
+      "generation_id": "gen-1794372487-VU0HFamx8EOWq0W3jzrz"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "Burgum promotes US leadership in a global AI race without identifying competition with China.",
+      "facets": [],
+      "confidence": 0.94,
+      "confidence_reason": "General global AI leadership does not establish a China-specific policy position.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T04:49:01.935373+00:00",
+      "generation_id": "gen-1794372529-DmJ9SrR4ywS49paH5hzJ"
+     }
+    },
+    "confidence": 0.94,
+    "final_judge": "astra",
+    "facets_final": [],
+    "facet_disagreement": true,
+    "model_disagreement": true,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.55 is below 0.8."
+   },
    {
     "sid": "s3",
     "text": "History will show that the reason America won the AI Arms Race is because of @POTUS’ American Energy Dominance Agenda! https://t.co/mfC7E7IJlp",
@@ -53,16 +114,39 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker frames AI as an arms race America won and credits an energy dominance agenda, endorsing competition priority.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.78,
+      "confidence_reason": "The race framing is explicit, but China is not named in the statement.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:06.914312+00:00",
+      "generation_id": "gen-1794372476-PMI5yK4yL265cG8xcx4B"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "Burgum celebrates winning an AI arms race through energy policy but does not identify China as the competitor.",
+      "facets": [],
+      "confidence": 0.94,
+      "confidence_reason": "Neither the statement nor its context links the AI arms race to China.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T04:48:57.550690+00:00",
+      "generation_id": "gen-1794372529-IllMfzF9UqJZJBStUjJX"
+     }
+    },
+    "confidence": 0.94,
+    "final_judge": "astra",
     "facets_final": [],
-    "facet_disagreement": false,
-    "model_disagreement": false,
+    "facet_disagreement": true,
+    "model_disagreement": true,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.78 is below 0.8."
    },
    {
     "sid": "s7",
@@ -83,16 +167,31 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
-    "facets_final": [],
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker says America needs both technology and energy leadership to win the AI Arms Race, endorsing competition priority.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.85,
+      "confidence_reason": "The statement explicitly calls for winning the AI Arms Race, though China is not named.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:06.914406+00:00",
+      "generation_id": "gen-1794372476-PMI5yK4yL265cG8xcx4B"
+     }
+    },
+    "confidence": 0.85,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
     "sid": "s8",
@@ -113,16 +212,31 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
-    "facets_final": [],
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker calls for mineral independence to 'win the AI Arms Race,' endorsing competition as a policy priority.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.84,
+      "confidence_reason": "The statement explicitly frames AI policy as a race to win, though it does not name China directly.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:02.926347+00:00",
+      "generation_id": "gen-1794372477-HRdZiLmn2LHzVqq0fa9f"
+     }
+    },
+    "confidence": 0.84,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
     "sid": "s10",
@@ -143,16 +257,31 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
-    "facets_final": [],
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker says America is 'losing the AI Arms Race' and will lead in technology innovation, endorsing race competition.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.84,
+      "confidence_reason": "The statement explicitly uses AI race framing and calls for leadership, but does not name China.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:02.926512+00:00",
+      "generation_id": "gen-1794372477-HRdZiLmn2LHzVqq0fa9f"
+     }
+    },
+    "confidence": 0.84,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
     "sid": "s13",
@@ -173,16 +302,31 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
-    "facets_final": [],
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker urges energy production to 'win the AI Arms Race,' endorsing competition as a priority.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.85,
+      "confidence_reason": "The statement explicitly calls for winning the AI race, though China is not named.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:02.926608+00:00",
+      "generation_id": "gen-1794372477-HRdZiLmn2LHzVqq0fa9f"
+     }
+    },
+    "confidence": 0.85,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
     "sid": "s14",
@@ -203,16 +347,31 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
-    "facets_final": [],
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker warns against falling behind in the 'AI Arms Race' and says the president is fighting to keep America competitive.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.86,
+      "confidence_reason": "The statement explicitly endorses competitive race framing, though it refers to foreign adversaries rather than China by name.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:02.926681+00:00",
+      "generation_id": "gen-1794372477-HRdZiLmn2LHzVqq0fa9f"
+     }
+    },
+    "confidence": 0.86,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
     "sid": "s15",
@@ -233,16 +392,37 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement mentions competing in the AI Arms Race but does not identify China or a China-competition policy priority.",
+      "facets": [],
+      "confidence": 0.78,
+      "confidence_reason": "China is not mentioned, and the fragment does not clearly tie the AI race to China policy.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:20.512921+00:00",
+      "generation_id": "gen-1794372477-ynWuiNXE54DqIp42a5OF"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "Burgum urges ending the shutdown to advance energy policy and AI competition without identifying competition with China.",
+      "facets": [],
+      "confidence": 0.92,
+      "confidence_reason": "The excerpt is incomplete, but the supplied evidence contains no China-specific connection.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T04:48:57.550784+00:00",
+      "generation_id": "gen-1794372529-IllMfzF9UqJZJBStUjJX"
+     }
+    },
+    "confidence": 0.92,
+    "final_judge": "astra",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.78 is below 0.8."
    },
    {
     "sid": "s17",
@@ -263,16 +443,31 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
-    "facets_final": [],
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker says the US is losing the AI Arms Race to China and cites expanding electricity production as the response.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.95,
+      "confidence_reason": "The statement explicitly frames China as the AI race competitor and endorses action to address it.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:20.513015+00:00",
+      "generation_id": "gen-1794372477-ynWuiNXE54DqIp42a5OF"
+     }
+    },
+    "confidence": 0.95,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
     "sid": "s19",
@@ -293,16 +488,37 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement endorses winning the AI Arms Race through natural gas but does not mention China or China competition.",
+      "facets": [],
+      "confidence": 0.74,
+      "confidence_reason": "The AI race framing is present, but the China-specific target is not explicitly addressed.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:20.513087+00:00",
+      "generation_id": "gen-1794372477-ynWuiNXE54DqIp42a5OF"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "Burgum promotes natural gas to win an AI arms race without identifying China as the competitor.",
+      "facets": [],
+      "confidence": 0.94,
+      "confidence_reason": "General AI competition does not establish a position on prioritizing competition with China.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T04:48:57.550857+00:00",
+      "generation_id": "gen-1794372529-IllMfzF9UqJZJBStUjJX"
+     }
+    },
+    "confidence": 0.94,
+    "final_judge": "astra",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.74 is below 0.8."
    },
    {
     "sid": "s24",
@@ -323,16 +539,37 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement calls for energy to win the AI arms race and beat enemies but does not identify China or China competition.",
+      "facets": [],
+      "confidence": 0.72,
+      "confidence_reason": "The statement is about AI race and energy dominance generally, without explicit China attribution.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:20.513170+00:00",
+      "generation_id": "gen-1794372477-ynWuiNXE54DqIp42a5OF"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "Burgum promotes energy for AI competition and defeating unnamed enemies without identifying China.",
+      "facets": [],
+      "confidence": 0.93,
+      "confidence_reason": "The references to an AI arms race and enemies do not specify China.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T04:48:57.550946+00:00",
+      "generation_id": "gen-1794372529-IllMfzF9UqJZJBStUjJX"
+     }
+    },
+    "confidence": 0.93,
+    "final_judge": "astra",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.72 is below 0.8."
    },
    {
     "sid": "s25",
@@ -353,16 +590,37 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement endorses winning an AI arms race and beating enemies but does not mention China or make competition with China a priority.",
+      "facets": [],
+      "confidence": 0.72,
+      "confidence_reason": "No explicit China reference; classification depends on whether generic AI race framing counts.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:21.493926+00:00",
+      "generation_id": "gen-1794372477-jiKSpIeDKczhu3VQC9Za"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "Burgum advocates energy for winning an AI arms race but does not identify competition with China.",
+      "facets": [],
+      "confidence": 0.93,
+      "confidence_reason": "Neither the statement nor its context identifies China as the competitor.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T04:48:57.997156+00:00",
+      "generation_id": "gen-1794372529-ttGV3OeWxXk4P4aKo5Bk"
+     }
+    },
+    "confidence": 0.93,
+    "final_judge": "astra",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.72 is below 0.8."
    },
    {
     "sid": "s29",
@@ -383,16 +641,37 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement says America will win the AI Arms Race but does not mention China or make competition with China a priority.",
+      "facets": [],
+      "confidence": 0.72,
+      "confidence_reason": "No explicit China reference; classification depends on whether generic AI race framing counts.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:21.494123+00:00",
+      "generation_id": "gen-1794372477-jiKSpIeDKczhu3VQC9Za"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "Burgum praises leadership and energy investments for winning an AI arms race without identifying China.",
+      "facets": [],
+      "confidence": 0.92,
+      "confidence_reason": "The supplied excerpt supports a general race framing, not specifically competition with China.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T04:48:58.002361+00:00",
+      "generation_id": "gen-1794372529-ttGV3OeWxXk4P4aKo5Bk"
+     }
+    },
+    "confidence": 0.92,
+    "final_judge": "astra",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.72 is below 0.8."
    },
    {
     "sid": "s32",
@@ -413,16 +692,37 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement calls the plan key to winning a global AI race but does not mention China or make competition with China a priority.",
+      "facets": [],
+      "confidence": 0.7,
+      "confidence_reason": "No explicit China reference; classification depends on whether generic global AI race framing counts.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:21.494213+00:00",
+      "generation_id": "gen-1794372477-jiKSpIeDKczhu3VQC9Za"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "Burgum endorses the AI Action Plan for global AI leadership but does not address competition with China.",
+      "facets": [],
+      "confidence": 0.93,
+      "confidence_reason": "A global AI race does not by itself establish the China-specific policy position.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T04:48:58.002495+00:00",
+      "generation_id": "gen-1794372529-ttGV3OeWxXk4P4aKo5Bk"
+     }
+    },
+    "confidence": 0.93,
+    "final_judge": "astra",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.7 is below 0.8."
    },
    {
     "sid": "s33",
@@ -443,16 +743,27 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement mentions an AI race summit but does not address competition with China or endorse a China race priority.",
+      "facets": [],
+      "confidence": 0.88,
+      "confidence_reason": "No explicit China race dynamics stance is present; the AI race mention is only descriptive.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:16.961389+00:00",
+      "generation_id": "gen-1794372483-LajDilPh1ZudfJL6oHN7"
+     }
+    },
+    "confidence": 0.88,
+    "final_judge": "deepseek",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
     "sid": "s43",
@@ -473,16 +784,31 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
-    "facets_final": [],
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker explicitly frames reliable American energy production as needed to win the AI arms race against China.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.98,
+      "confidence_reason": "The statement explicitly names China and endorses winning an AI race against it.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:16.961618+00:00",
+      "generation_id": "gen-1794372483-LajDilPh1ZudfJL6oHN7"
+     }
+    },
+    "confidence": 0.98,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
     "sid": "s44",
@@ -503,16 +829,127 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker says the administration is ensuring America dominates the AI arms race, endorsing competition as a priority.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.8,
+      "confidence_reason": "The race-priority endorsement is explicit, though China is not named in this statement.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:16.961687+00:00",
+      "generation_id": "gen-1794372483-LajDilPh1ZudfJL6oHN7"
+     }
+    },
+    "confidence": 0.8,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   },
+   {
+    "sid": "s57",
+    "text": "Right now, America is in an Artificial Intelligence Arms Race with China. Beijing controls the processing of 85% of critical minerals and is dramatically increasing their coal production and other forms of baseload power.",
+    "date": "2025-05-21",
+    "context": "Statement of Secretary Doug Burgum United States Department of the Interior Before the Subcommittee on Interior, Environment, and Related Agencies Committee on Appropriations United States Senate May 21, 2025",
+    "url": "https://www.doi.gov/sites/default/files/documents/2025-05/20250521-doi-fy26-budget-s-approps-burgum.pdf",
+    "source_type": "official_statement",
+    "verified_via": "exact_normalized_page_text",
+    "attribution": {
+     "kind": "personal",
+     "speaker": "Doug Burgum",
+     "organization_id": "interior",
+     "basis": "document_author",
+     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+    },
+    "strategy": "confidence_cascade",
+    "stance": "neutral",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "The speaker describes an AI arms race with China but does not explicitly call for making competition a policy priority.",
+      "facets": [],
+      "confidence": 0.72,
+      "confidence_reason": "The race framing is clear, but endorsement of a competition priority is not explicit.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:33.979475+00:00",
+      "generation_id": "gen-1794372497-K30iJWDK1Hzcxn6KOYVa"
+     },
+     "astra": {
+      "stance": "neutral",
+      "reason": "Burgum describes an AI arms race with China and its resource advantages without explicitly calling for prioritizing that competition.",
+      "facets": [],
+      "confidence": 0.87,
+      "confidence_reason": "The China-specific competition is explicit, but describing it as an arms race does not clearly endorse a policy priority.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T04:49:01.935479+00:00",
+      "generation_id": "gen-1794372529-DmJ9SrR4ywS49paH5hzJ"
+     }
+    },
+    "confidence": 0.87,
+    "final_judge": "astra",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.72 is below 0.8."
+   },
+   {
+    "sid": "s58",
+    "text": "Communist Party leadership knows that the A.I. Arms Race will be won by the country with the best technology and most electricity.",
+    "date": "2025-05-21",
+    "context": "Statement of Secretary Doug Burgum United States Department of the Interior Before the Subcommittee on Interior, Environment, and Related Agencies Committee on Appropriations United States Senate May 21, 2025",
+    "url": "https://www.doi.gov/sites/default/files/documents/2025-05/20250521-doi-fy26-budget-s-approps-burgum.pdf",
+    "source_type": "official_statement",
+    "verified_via": "exact_normalized_page_text",
+    "attribution": {
+     "kind": "personal",
+     "speaker": "Doug Burgum",
+     "organization_id": "interior",
+     "basis": "document_author",
+     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+    },
+    "strategy": "confidence_cascade",
+    "stance": "review_required",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "The speaker says the AI arms race will be won by the country with the best technology and electricity, without explicitly endorsing a competition priority.",
+      "facets": [],
+      "confidence": 0.7,
+      "confidence_reason": "The statement discusses the race descriptively and lacks an explicit policy endorsement.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:33.979578+00:00",
+      "generation_id": "gen-1794372497-K30iJWDK1Hzcxn6KOYVa"
+     },
+     "astra": {
+      "stance": "neutral",
+      "reason": "Burgum describes technology and electricity as determinants of the AI race recognized by Chinese leadership without endorsing a US policy priority.",
+      "facets": [],
+      "confidence": 0.78,
+      "confidence_reason": "The factual phrasing suggests descriptive discussion, though the attribution to Chinese leadership makes speaker ownership less certain.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T04:49:01.935556+00:00",
+      "generation_id": "gen-1794372529-DmJ9SrR4ywS49paH5hzJ"
+     }
+    },
+    "confidence": 0.78,
+    "final_judge": null,
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": true,
+    "review_status": "human_review_required",
+    "review_reason": "DeepSeek confidence 0.7 is below 0.8. Astra also reports confidence below the threshold; human review is required."
    },
    {
     "sid": "s48",
@@ -533,16 +970,39 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker calls for winning the AI arms race, endorsing AI competition as a priority.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.62,
+      "confidence_reason": "The race framing is explicit, but China is not named.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:35.334778+00:00",
+      "generation_id": "gen-1794372487-VU0HFamx8EOWq0W3jzrz"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "Burgum promotes Interior's efforts to win an AI arms race without identifying China as a rival.",
+      "facets": [],
+      "confidence": 0.92,
+      "confidence_reason": "The excerpt and attribution provide no explicit link to competition with China.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T04:48:58.007691+00:00",
+      "generation_id": "gen-1794372529-ttGV3OeWxXk4P4aKo5Bk"
+     }
+    },
+    "confidence": 0.92,
+    "final_judge": "astra",
     "facets_final": [],
-    "facet_disagreement": false,
-    "model_disagreement": false,
+    "facet_disagreement": true,
+    "model_disagreement": true,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.62 is below 0.8."
    },
    {
     "sid": "s49",
@@ -563,16 +1023,31 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
-    "facets_final": [],
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker frames the US as losing the AI arms race against China, endorsing competition as a priority.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.84,
+      "confidence_reason": "China and the AI race are explicit, though the statement is a brief fragment.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:35.334883+00:00",
+      "generation_id": "gen-1794372487-VU0HFamx8EOWq0W3jzrz"
+     }
+    },
+    "confidence": 0.84,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
     "sid": "s50",
@@ -593,16 +1068,39 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker says winning the AI arms race is essential, endorsing AI competition as a priority.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.6,
+      "confidence_reason": "The race framing is explicit, but China is not named.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:35.334966+00:00",
+      "generation_id": "gen-1794372487-VU0HFamx8EOWq0W3jzrz"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "Burgum endorses winning an AI arms race but does not identify competition with China.",
+      "facets": [],
+      "confidence": 0.94,
+      "confidence_reason": "Neither the statement nor its context identifies China as the competitor.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T04:49:01.935282+00:00",
+      "generation_id": "gen-1794372529-DmJ9SrR4ywS49paH5hzJ"
+     }
+    },
+    "confidence": 0.94,
+    "final_judge": "astra",
     "facets_final": [],
-    "facet_disagreement": false,
-    "model_disagreement": false,
+    "facet_disagreement": true,
+    "model_disagreement": true,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.6 is below 0.8."
    }
   ],
   "ai_action_plan_2025": [
@@ -625,16 +1123,27 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker says the AI Action Plan will supercharge innovation and secure U.S. leadership.",
+      "facets": [],
+      "confidence": 0.97,
+      "confidence_reason": "The statement explicitly names and praises the AI Action Plan.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:21.494028+00:00",
+      "generation_id": "gen-1794372477-jiKSpIeDKczhu3VQC9Za"
+     }
+    },
+    "confidence": 0.97,
+    "final_judge": "deepseek",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
     "sid": "s32",
@@ -655,16 +1164,27 @@
     },
     "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker calls America’s AI Action Plan key to winning the global AI race and accelerating innovation.",
+      "facets": [],
+      "confidence": 0.96,
+      "confidence_reason": "The statement explicitly names and endorses the AI Action Plan.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:48:21.494296+00:00",
+      "generation_id": "gen-1794372477-jiKSpIeDKczhu3VQC9Za"
+     }
+    },
+    "confidence": 0.96,
+    "final_judge": "deepseek",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    }
   ]
  },
@@ -2096,6 +2616,191 @@
    "attribution_span_sha256": "ea36d4acc486f6a81da7f6394dbb5bf901a6a6570f825f603ce8f83112070a03",
    "sid": "s51",
    "added": "2026-11-10"
+  },
+  {
+   "text": "In our lifetime, every job, every company, every industry has been transformed by technology.",
+   "date": "2024-02-24",
+   "context": "Verified direct statement by Doug Burgum. Local verification records retain the source attribution.",
+   "url": "https://www.nga.org/news/press-releases/governors-discuss-artificial-intelligence-risks-and-regulatory-priorities/",
+   "source_type": "reported_statement",
+   "verified": true,
+   "verified_via": "exact_normalized_page_text",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Doug Burgum",
+    "organization_id": "interior",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "retrieved_on": "2026-11-11",
+   "source_text_sha256": "34e244d71673c52f4990b6eabc10fa508dcd5e4a0cff86fcb7906b5b8979c3e3",
+   "origin": "federal_historical",
+   "date_quote": "Feb. 24, 2024",
+   "attribution_span_sha256": "8dea0bf2d06ebbf9f43d264c1ab3246120e0413f5e028e5c7bb9ba08ef925f3b",
+   "research_pass": 2,
+   "sid": "s52",
+   "added": "2026-11-11"
+  },
+  {
+   "text": "From mapping critical mineral resources and improving water forecasting to advancing AI-enabled geologic research and biological science, our world-class scientists and data systems are helping ensure the United States has the knowledge, resources and infrastructure needed to win the global race for AI while strengthening our energy security and economic prosperity.",
+   "date": null,
+   "context": "e, scientific innovation and energy production,\" said Secretary of the Interior Doug Burgum . \"The Department of the Interior is providing the scientific foundation that makes that leadership possible. From mapping critical mineral resources and improving water forecasting to advancing AI-enabled geologic research and biological science, our world-class scientists and data systems are helping ensure the United States has the knowledge, resources and infrastructure needed to win the global race for AI while strengthening our energy security and economic prosperity.\" Interior's contributions align with four National Science and Technology Chall",
+   "url": "https://www.doi.gov/pressreleases/interior-highlights-scientific-leadership-supporting-genesis-mission",
+   "source_type": "official_statement",
+   "verified": true,
+   "verified_via": "exact_normalized_page_text",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Doug Burgum",
+    "organization_id": "interior",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "retrieved_on": "2026-11-11",
+   "source_text_sha256": "2d10b4392440bea7fdd3751c03777a086670a183efabe33056cc0aa6b99033b7",
+   "origin": "federal_historical",
+   "date_quote": null,
+   "research_pass": 4,
+   "sid": "s53",
+   "added": "2026-11-11"
+  },
+  {
+   "text": "these are a place where you manufacture intelligence. We have to manufacture intelligence,",
+   "date": null,
+   "context": "Verified direct statement by Doug Burgum. Local verification records retain the source attribution.",
+   "url": "https://thehill.com/policy/technology/5757345-interior-secretary-slams-sanders/mlite/",
+   "source_type": "reported_statement",
+   "verified": true,
+   "verified_via": "exact_normalized_page_text",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Doug Burgum",
+    "organization_id": "interior",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "retrieved_on": "2026-11-11",
+   "source_text_sha256": "dbfb3f275b7df31aaf3ac92317f842032e0432de5dddf87c336a1caf578f2dea",
+   "origin": "federal_historical",
+   "date_quote": null,
+   "attribution_span_sha256": "3dd30ede0812bd4e1a97e85157b0d73ac23d3de485c4f45febce05ecfa436128",
+   "research_pass": 4,
+   "sid": "s54",
+   "added": "2026-11-11"
+  },
+  {
+   "text": "There’s so much good that can come from AI whether it’s curing cancer, accelerating innovation across agriculture, manufacturing, education and the law",
+   "date": null,
+   "context": "Verified direct statement by Doug Burgum. Local verification records retain the source attribution.",
+   "url": "https://www.am1100theflag.com/news/u-s-interior-secretary-burgum-talks-ai-calling-it-an-opportunity-for-north-dakota/",
+   "source_type": "reported_statement",
+   "verified": true,
+   "verified_via": "exact_normalized_page_text",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Doug Burgum",
+    "organization_id": "interior",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "retrieved_on": "2026-11-11",
+   "source_text_sha256": "afd11cf721627d1fa03cc94de731387fbcdfd5664f4b058ce9080830be76de2a",
+   "origin": "federal_historical",
+   "date_quote": null,
+   "attribution_span_sha256": "126f29c68906dc61395b95dd2d23ac7700b5e72f909b43f0c76cebdb3464bd37",
+   "research_pass": 5,
+   "sid": "s55",
+   "added": "2026-11-11"
+  },
+  {
+   "text": "Whoever controls the manufacture of intelligence is going to control the world. The next five years is going to determine the next 50.",
+   "date": "2025-05-22",
+   "context": "Verified direct statement by Doug Burgum. Local verification records retain the source attribution.",
+   "url": "https://www.realclearpolitics.com/articles/2025/05/22/doug_burgum_warns_whoever_wins_ai_race_controls_the_world_152827.html",
+   "source_type": "reported_statement",
+   "verified": true,
+   "verified_via": "exact_normalized_search_retrieval",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Doug Burgum",
+    "organization_id": "interior",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "retrieved_on": "2026-11-11",
+   "source_text_sha256": "06e5db0840ff121a7abaa6c03c72e0a9fbffdf6d001fef8a2162f3e8d042aa27",
+   "origin": "federal_historical",
+   "date_quote": "May 22, 2025",
+   "attribution_span_sha256": "f94bd4213c5c55c10e305871ecbe0015efc253622ce65088bda0cb89188701cb",
+   "research_pass": 6,
+   "sid": "s56",
+   "added": "2026-11-11"
+  },
+  {
+   "text": "Right now, America is in an Artificial Intelligence Arms Race with China. Beijing controls the processing of 85% of critical minerals and is dramatically increasing their coal production and other forms of baseload power.",
+   "date": "2025-05-21",
+   "context": "Statement of Secretary Doug Burgum United States Department of the Interior Before the Subcommittee on Interior, Environment, and Related Agencies Committee on Appropriations United States Senate May 21, 2025",
+   "url": "https://www.doi.gov/sites/default/files/documents/2025-05/20250521-doi-fy26-budget-s-approps-burgum.pdf",
+   "source_type": "official_statement",
+   "verified": true,
+   "verified_via": "exact_normalized_page_text",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Doug Burgum",
+    "organization_id": "interior",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "retrieved_on": "2026-11-11",
+   "source_text_sha256": "459cc41cd80980dd96d6d511bcb85259105dd1a89559f50681cab6d4563d665a",
+   "origin": "federal_historical_seed",
+   "date_quote": "May 21, 2025",
+   "sid": "s57",
+   "added": "2026-11-11"
+  },
+  {
+   "text": "Communist Party leadership knows that the A.I. Arms Race will be won by the country with the best technology and most electricity.",
+   "date": "2025-05-21",
+   "context": "Statement of Secretary Doug Burgum United States Department of the Interior Before the Subcommittee on Interior, Environment, and Related Agencies Committee on Appropriations United States Senate May 21, 2025",
+   "url": "https://www.doi.gov/sites/default/files/documents/2025-05/20250521-doi-fy26-budget-s-approps-burgum.pdf",
+   "source_type": "official_statement",
+   "verified": true,
+   "verified_via": "exact_normalized_page_text",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Doug Burgum",
+    "organization_id": "interior",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "retrieved_on": "2026-11-11",
+   "source_text_sha256": "459cc41cd80980dd96d6d511bcb85259105dd1a89559f50681cab6d4563d665a",
+   "origin": "federal_historical_seed",
+   "date_quote": "May 21, 2025",
+   "sid": "s58",
+   "added": "2026-11-11"
+  },
+  {
+   "text": "We hold a slight lead in our AI software, but we are now forced to play catch up on baseload power generation due to the Climate Extremist policies of the prior administration that raised prices, lowered reliability, and contributed to our national debt and deficit.",
+   "date": "2025-05-21",
+   "context": "Statement of Secretary Doug Burgum United States Department of the Interior Before the Subcommittee on Interior, Environment, and Related Agencies Committee on Appropriations United States Senate May 21, 2025",
+   "url": "https://www.doi.gov/sites/default/files/documents/2025-05/20250521-doi-fy26-budget-s-approps-burgum.pdf",
+   "source_type": "official_statement",
+   "verified": true,
+   "verified_via": "exact_normalized_page_text",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Doug Burgum",
+    "organization_id": "interior",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "retrieved_on": "2026-11-11",
+   "source_text_sha256": "459cc41cd80980dd96d6d511bcb85259105dd1a89559f50681cab6d4563d665a",
+   "origin": "federal_historical_seed",
+   "date_quote": "May 21, 2025",
+   "sid": "s59",
+   "added": "2026-11-11"
   }
  ]
 }
