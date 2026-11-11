@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_erin_browne",
- "revision": "0fdeaa49d27a2e6fc77261c03ee96421b1ff4a093011bc8a43bca3db9d15ca07",
+ "revision": "a1224341e568b422e6db2d2e828a5e18e6b53de9204cac319bb821ee7de3bd7b",
  "profile": {
   "id": "exec_erin_browne",
   "name": "Erin Browne",
@@ -106,20 +106,20 @@
   },
   "summary": {
    "status": "complete",
-   "text": "On October 15, 2026, Erin Browne described the subject as a driving force behind American and global growth. In the same reported remarks, she said many countries are looking to the United States to set standards.",
+   "text": "On October 15, 2026, Treasury Under Secretary for International Affairs Erin Browne described AI as a driving force for American and global growth. She also linked U.S. leadership in AI standards and development to potential gains in global growth and productivity.",
    "sids": [
     "s1",
     "s2"
    ],
    "sentences": [
     {
-     "text": "On October 15, 2026, Erin Browne described the subject as a driving force behind American and global growth.",
+     "text": "On October 15, 2026, Treasury Under Secretary for International Affairs Erin Browne described AI as a driving force for American and global growth.",
      "sids": [
       "s1"
      ]
     },
     {
-     "text": "In the same reported remarks, she said many countries are looking to the United States to set standards.",
+     "text": "She also linked U.S. leadership in AI standards and development to potential gains in global growth and productivity.",
      "sids": [
       "s2"
      ]
@@ -250,6 +250,23 @@
     }
    },
    "disputed": []
+  },
+  "stance_review": {
+   "review_id": "31d27b5938ecd7b869059bb7cd82d2b6524ffc73c500d421db351a52dba38760",
+   "dimension": "ai_overall",
+   "status": "complete",
+   "reason": "Both statements express an enthusiastic general economic outlook on AI once their supplied context is included. They come from the same October 15, 2026 interview, so they provide a limited rather than longitudinal picture; two statements do not meet the rubric's minimum for an aggregate score.",
+   "confidence": 4,
+   "n_statements": 2,
+   "n_contexts": 2,
+   "accepted_sids": [
+    "s1",
+    "s2"
+   ],
+   "finding_count": 2,
+   "model": "openai/gpt-6-astra",
+   "assessed_at": "2026-11-11T05:54:35.093380+00:00",
+   "generation_id": "gen-1794376460-qgaarqTKqjsTsG2z0XCZ"
   }
  },
  "statements": [
@@ -269,20 +286,40 @@
    "analysis": {
     "status": "complete",
     "a": {
-     "ai_overall": 3
+     "ai_overall": 4
     },
     "b": {
-     "ai_overall": 3
+     "ai_overall": 4
     },
     "topics": [
      "jobs/economy"
     ],
     "confidence": {
-     "ai_overall": 3.0
+     "ai_overall": 4
     },
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "31d27b5938ecd7b869059bb7cd82d2b6524ffc73c500d421db351a52dba38760",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 4
+     },
+     "confidence": {
+      "ai_overall": 4
+     },
+     "review_confidence": 4,
+     "reason": "The supplied context establishes AI as the referent. Browne enthusiastically presents it as a broad engine of American and global economic growth, with benefits central and no concerns expressed.",
+     "supporting_quote": "We see this as a driving force behind American growth and global growth,",
+     "support_basis": "excerpt",
+     "accepted": true,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T05:54:35.093380+00:00",
+     "generation_id": "gen-1794376460-qgaarqTKqjsTsG2z0XCZ"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -326,6 +363,24 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-11T05:26:44.060714+00:00",
       "generation_id": "gen-1794374802-n5eagtXcPFZJKwpd4FPj"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "31d27b5938ecd7b869059bb7cd82d2b6524ffc73c500d421db351a52dba38760",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "review_confidence": 4,
+      "reason": "The supplied context establishes AI as the referent. Browne enthusiastically presents it as a broad engine of American and global economic growth, with benefits central and no concerns expressed.",
+      "supporting_quote": "We see this as a driving force behind American growth and global growth,",
+      "support_basis": "excerpt",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T05:54:35.093380+00:00",
+      "generation_id": "gen-1794376460-qgaarqTKqjsTsG2z0XCZ"
      }
     }
    }
@@ -345,18 +400,52 @@
    },
    "analysis": {
     "status": "complete",
-    "a": {},
-    "b": {},
+    "a": {
+     "ai_overall": 4
+    },
+    "b": {
+     "ai_overall": 4
+    },
     "topics": [
      "regulation"
     ],
-    "confidence": {},
+    "confidence": {
+     "ai_overall": 4
+    },
     "escalated": [
      "regulation"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "31d27b5938ecd7b869059bb7cd82d2b6524ffc73c500d421db351a52dba38760",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 4
+     },
+     "confidence": {
+      "ai_overall": 4
+     },
+     "review_confidence": 4,
+     "reason": "The full sentence goes beyond the excerpt's standards-setting observation: Browne emphasizes AI's capacity to boost growth and productivity globally. This is a broad economic endorsement, not a single application, with no risk qualification.",
+     "supporting_quote": "SI development and how that can really enhance and boost growth and productivity on a global basis.",
+     "support_basis": "context",
+     "source_context": {
+      "url": "https://www.channelnewsasia.com/business/us-treasury-pushes-global-partners-rename-ai-super-intelligence-6462536",
+      "text_hash": "cc7c631ee696debbd54730898ee75cd738d38eae9b2d2a929e2bc56cb6d3c836",
+      "retrieval": "direct_page",
+      "quote": "SI development and how that can really enhance and boost growth and productivity on a global basis.",
+      "attribution_quote": "Treasury Undersecretary for International Affairs Erin Browne said",
+      "original_date": "2026-10-15"
+     },
+     "accepted": true,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T05:54:35.093380+00:00",
+     "generation_id": "gen-1794376460-qgaarqTKqjsTsG2z0XCZ"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -402,6 +491,32 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-11T05:27:58.619612+00:00",
       "generation_id": "gen-1794374876-ES4hKJ7FVRmIBVOB3E3q"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "31d27b5938ecd7b869059bb7cd82d2b6524ffc73c500d421db351a52dba38760",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "review_confidence": 4,
+      "reason": "The full sentence goes beyond the excerpt's standards-setting observation: Browne emphasizes AI's capacity to boost growth and productivity globally. This is a broad economic endorsement, not a single application, with no risk qualification.",
+      "supporting_quote": "SI development and how that can really enhance and boost growth and productivity on a global basis.",
+      "support_basis": "context",
+      "source_context": {
+       "url": "https://www.channelnewsasia.com/business/us-treasury-pushes-global-partners-rename-ai-super-intelligence-6462536",
+       "text_hash": "cc7c631ee696debbd54730898ee75cd738d38eae9b2d2a929e2bc56cb6d3c836",
+       "retrieval": "direct_page",
+       "quote": "SI development and how that can really enhance and boost growth and productivity on a global basis.",
+       "attribution_quote": "Treasury Undersecretary for International Affairs Erin Browne said",
+       "original_date": "2026-10-15"
+      },
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T05:54:35.093380+00:00",
+      "generation_id": "gen-1794376460-qgaarqTKqjsTsG2z0XCZ"
      }
     }
    }

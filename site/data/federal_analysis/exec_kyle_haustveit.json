@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_kyle_haustveit",
- "revision": "0fdeaa49d27a2e6fc77261c03ee96421b1ff4a093011bc8a43bca3db9d15ca07",
+ "revision": "a1224341e568b422e6db2d2e828a5e18e6b53de9204cac319bb821ee7de3bd7b",
  "profile": {
   "id": "exec_kyle_haustveit",
   "name": "Kyle Haustveit",
@@ -242,6 +242,20 @@
     }
    },
    "disputed": []
+  },
+  "stance_review": {
+   "review_id": "2d1d2f47a780b33a1dbc27d8e2944ffe8a9fc75e7e47505925656c62a6879f8d",
+   "dimension": "ai_overall",
+   "status": "complete",
+   "reason": "The supplied excerpt advocates reliable, affordable, secure energy and identifies data centers as a source of demand. It does not express a view of AI's overall effects; no general AI stance can be inferred from this energy position.",
+   "confidence": 5,
+   "n_statements": 1,
+   "n_contexts": 0,
+   "accepted_sids": [],
+   "finding_count": 0,
+   "model": "openai/gpt-6-astra",
+   "assessed_at": "2026-11-11T05:30:06.255989+00:00",
+   "generation_id": "gen-1794375001-C3RS4pfZFdFC4lZJikAR"
   }
  },
  "statements": [
@@ -267,8 +281,22 @@
     ],
     "confidence": {},
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "2d1d2f47a780b33a1dbc27d8e2944ffe8a9fc75e7e47505925656c62a6879f8d",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T05:30:06.255989+00:00",
+     "generation_id": "gen-1794375001-C3RS4pfZFdFC4lZJikAR"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -300,6 +328,18 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-11T05:26:42.836883+00:00",
       "generation_id": "gen-1794374801-9Zfn405fVLgsmvCXP6nm"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "2d1d2f47a780b33a1dbc27d8e2944ffe8a9fc75e7e47505925656c62a6879f8d",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T05:30:06.255989+00:00",
+      "generation_id": "gen-1794375001-C3RS4pfZFdFC4lZJikAR"
      }
     }
    }
