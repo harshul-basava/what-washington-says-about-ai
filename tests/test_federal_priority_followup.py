@@ -21,3 +21,13 @@ class PriorityFollowupTests(unittest.TestCase):
         self.assertEqual(job['kind'], 'mention')
         self.assertNotIn('from:', job['query'])
 
+    def test_priority_queries_search_all_account_ai_posts_and_disambiguate_mentions(self):
+        from federal_stance_search import search_jobs
+        subjects = {'a': {'id': 'a', 'name': 'Official A'}, 'b': {'id': 'b', 'name': 'Common Name'}}
+        accounts = [{'subject_id': 'a', 'handle': 'OfficialA', 'valid_from': '2025-01-01'}]
+        jobs = search_jobs(subjects, accounts, '2026-11-11', broad_accounts=True,
+                           mention_terms={'b': '(NIST OR standards)'})
+        self.assertNotIn('OUTLOOK', jobs[0]['query'])
+        self.assertNotIn('benefits', jobs[0]['query'])
+        self.assertIn('(NIST OR standards)', jobs[-1]['query'])
+

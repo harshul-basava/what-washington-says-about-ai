@@ -117,7 +117,7 @@ Confidence uses 1–5. Return no statements if the source does not establish a g
             print(pid,row['status'],count,'proposed excerpts',row.get('error',''),flush=True)
 
 
-def search_jobs(subjects,accounts,until):
+def search_jobs(subjects,accounts,until,*,broad_accounts=False,mention_terms=None):
     jobs=[];mapped=set()
     for account in accounts:
         pid=account['subject_id']
@@ -125,7 +125,7 @@ def search_jobs(subjects,accounts,until):
         start=max('2023-01-01',account['valid_from']);end=min(until,account.get('valid_until') or until)
         if start>=end:continue
         mapped.add(pid)
-        for terms in (AI+' '+OUTLOOK,ADDITIONAL):
+        for terms in (AI if broad_accounts else AI+' '+OUTLOOK,ADDITIONAL):
             jobs.append({'subject_id':pid,'kind':'account','account':account,
                 'query':f"from:{account['handle']} {terms} -is:retweet",'start':start,'end':end})
     for pid,subject in subjects.items():
@@ -134,7 +134,9 @@ def search_jobs(subjects,accounts,until):
         names=list(dict.fromkeys(n.replace('"','') for n in [subject['name'],*subject.get('aliases',[])]))
         names=' OR '.join(f'"{name}"' for name in names)
         if ' OR ' in names:names='('+names+')'
-        jobs.append({'subject_id':pid,'kind':'mention','query':f'{names} {AI} -is:retweet',
+        context=(mention_terms or {}).get(pid,'')
+        query=' '.join(part for part in [names,AI,context,'-is:retweet'] if part)
+        jobs.append({'subject_id':pid,'kind':'mention','query':query,
                      'start':'2023-01-01','end':until})
     return [{**j,'id':a.digest(j)[:20]} for j in jobs]
 
@@ -147,7 +149,7 @@ def collect_x(root,max_cost=2,max_pages=100,*,manifest_path=MANIFEST,state_path=
     subjects={pid:s for pid,s in subjects.items() if pid in manifest['target_ids']}
     if set(subjects)!=set(manifest['target_ids']):raise ValueError('Search cohort is no longer eligible')
     until=manifest['created_at'][:10]
-    jobs=search_jobs(subjects,config['accounts'],until)
+    jobs=search_jobs(subjects,config['accounts'],until,**manifest.get('x_search',{}))
     state=a.read(root/state_path,{'version':1,'until':until,'jobs':{}})
     raw=root/raw_path/'x';raw.mkdir(parents=True,exist_ok=True)
     # Reuse pinned numeric identities, but retain separate search cursors and time bounds.
