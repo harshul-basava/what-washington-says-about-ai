@@ -50,7 +50,7 @@ def main():
         from federal_stance_search import collect_x
         collect_x(ROOT, max_cost=budget['x_search'], manifest_path=MANIFEST,
                   state_path='data/federal_priority_x_search.json',
-                  raw_path='data/raw/federal_priority_followup', max_pages_per_job=3)
+                  raw_path='data/raw/federal_priority_followup', max_pages_per_job=100)
     elif args.stage == 'models':
         if budget['models'] <= 0:raise ValueError('Model allowance exhausted')
         from scripts.federal_expansion_runner import run
