@@ -10,6 +10,7 @@ import json
 import math
 import os
 import time
+import threading
 from pathlib import Path
 
 import httpx
@@ -19,6 +20,8 @@ from dotenv import load_dotenv
 ROOT = Path(__file__).resolve().parent
 load_dotenv(ROOT / ".env")
 LEDGER = ROOT / "data" / "cost_ledger.jsonl"
+# A read must not capture the prefix of another worker's appended JSON record.
+_LEDGER_LOCK = threading.RLock()
 BUDGETS = yaml.safe_load((ROOT / "budgets.yaml").read_text())
 
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
@@ -51,10 +54,12 @@ class OpenRouterRequestError(RuntimeError):
 
 
 def spent(provider: str) -> float:
-    if not LEDGER.exists():
-        return 0.0
+    with _LEDGER_LOCK:
+        if not LEDGER.exists():
+            return 0.0
+        records = LEDGER.read_text()
     total = 0.0
-    for line in LEDGER.read_text().splitlines():
+    for line in records.splitlines():
         rec = json.loads(line)
         if rec["provider"] == provider:
             total += rec["cost"]
@@ -66,12 +71,14 @@ DAILY_PREFIX = "daily_"   # monthly caps apply only to the daily job's calls (ta
 
 def spent_this_month(provider: str, prefix: str = DAILY_PREFIX) -> float:
     """Daily-job spend for a provider since the first day of the current UTC month."""
-    if not LEDGER.exists():
-        return 0.0
+    with _LEDGER_LOCK:
+        if not LEDGER.exists():
+            return 0.0
+        records = LEDGER.read_text()
     t = time.gmtime()
     start = time.mktime((t.tm_year, t.tm_mon, 1, 0, 0, 0, 0, 0, 0)) - time.timezone
     total = 0.0
-    for line in LEDGER.read_text().splitlines():
+    for line in records.splitlines():
         rec = json.loads(line)
         if rec["provider"] == provider and rec["ts"] >= start and str(rec.get("tag", "")).startswith(prefix):
             total += rec["cost"]
@@ -88,9 +95,10 @@ def _check(provider: str, tag: str = "") -> None:
 
 
 def _log(provider: str, cost: float, tag: str, meta: dict) -> None:
-    LEDGER.parent.mkdir(parents=True, exist_ok=True)
-    with LEDGER.open("a") as f:
-        f.write(json.dumps({"ts": time.time(), "provider": provider, "cost": cost, "tag": tag, **meta}) + "\n")
+    with _LEDGER_LOCK:
+        LEDGER.parent.mkdir(parents=True, exist_ok=True)
+        with LEDGER.open("a") as f:
+            f.write(json.dumps({"ts": time.time(), "provider": provider, "cost": cost, "tag": tag, **meta}) + "\n")
 
 
 def chat(messages: list[dict], *, tag: str, tools: list | None = None, model: str = MODEL,
