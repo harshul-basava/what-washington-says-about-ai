@@ -42,6 +42,15 @@ class StanceReviewTests(unittest.TestCase):
         del payload['findings'][0]['attribution_quote']
         with self.assertRaises(ValueError):review.parse_review(json.dumps(payload),ss,context)
 
+    def test_context_failure_identifies_the_statement_and_failed_checks(self):
+        ss=[{'sid':'s1','text':'An AI chip rule.'},{'sid':'s2','text':'Another rule.'}]
+        payload=self.result()
+        with self.assertRaisesRegex(ValueError, r's1: context_available=False, quote_found=False, attribution_found=False'):
+            review.parse_review(json.dumps(payload),ss,{})
+        context={'s1':{'status':'available','text':'Official A said: AI will benefit our whole economy.'}}
+        with self.assertRaisesRegex(ValueError, r's1: context_available=True, quote_found=True, attribution_found=False'):
+            review.parse_review(json.dumps(payload),ss,context)
+
     def test_x_context_checks_original_author_and_post_id(self):
         statement={'post_id':'123','text':'AI helps','attribution':{'user_id':'7'}}
         post={'id':'123','author_id':'7','text':'AI helps people across our economy.'}

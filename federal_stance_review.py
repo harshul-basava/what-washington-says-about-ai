@@ -48,7 +48,9 @@ def parse_review(text,statements,contexts):
                 bool(context.get('verified_author_id')) and
                 context['verified_author_id']==statement.get('attribution',{}).get('user_id'))
             if context.get('status')!='available' or quote not in source or not (verified_x or attribution and attribution in source):
-                raise ValueError('Context support or attribution is not verified')
+                raise ValueError(f"Context support or attribution is not verified for {row['sid']}: "
+                    f"context_available={context.get('status')=='available'}, quote_found={quote in source}, "
+                    f"attribution_found={bool(verified_x or attribution and attribution in source)}")
             row['support_basis']='context'
     for row in requests:
         if not isinstance(row.get('reason'),str) or not row['reason'].strip():raise ValueError('Missing context reason')
