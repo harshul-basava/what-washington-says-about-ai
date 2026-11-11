@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "cohorts": {
+    "expansion_01": {
+      "started_at": "2026-11-11T03:52:15.269487+00:00",
+      "subject_ids": [
+        "exec_aaron_lukas",
+        "exec_bradley_d_hansell",
+        "exec_darren_turner",
+        "exec_dustin_j_gard_weiss",
+        "exec_john_k_hurley",
+        "exec_mark_paoletta",
+        "exec_michael_p_duffey",
+        "exec_peter_navarro",
+        "exec_timothy_kosiba",
+        "exec_brandon_williams",
+        "exec_anna_gomez",
+        "exec_bradley_r_crowell",
+        "exec_brendan_carr",
+        "exec_christopher_j_waller",
+        "exec_david_a_lacerte",
+        "exec_david_a_wright",
+        "exec_david_rosner",
+        "exec_douglas_w_weaver",
+        "exec_ho_k_nieh",
+        "exec_jerome_h_powell"
+      ],
+      "requested_stages": [
+        "research",
+        "seeds",
+        "analysis",
+        "policies",
+        "astra"
+      ],
+      "model_allowance_usd": 25.0,
+      "model_baseline": 314.4537210994765,
+      "stages": {
+        "research": {
+          "status": "complete",
+          "pending_passes": {},
+          "exit_code": 0
+        },
+        "seeds": {
+          "status": "complete_with_source_gaps",
+          "source_gaps": [
+            {
+              "id": "exec_david_a_lacerte",
+              "url": "https://ferc.gov/commission/commission-members-and-senior-staff",
+              "error": "ValueError",
+              "stage": "source_fetch"
+            },
+            {
+              "id": "exec_david_rosner",
+              "url": "https://ferc.gov/commission/commission-members-and-senior-staff",
+              "error": "ValueError",
+              "stage": "source_fetch"
+            }
+          ],
+          "exit_code": 1
+        },
+        "analysis": {
+          "status": "complete",
+          "coverage": {
+            "profiles": 20,
+            "statements": 108,
+            "labeled_statements": 108,
+            "pending_labels": 0,
+            "pending_regulation": 0,
+            "pending_summaries": 0,
+            "pending_stages": {},
+            "status": "ok"
+          },
+          "exit_code": 0
+        },
+        "policies": {
+          "status": "complete",
+          "pending_requests": 0,
+          "exit_code": 0
+        },
+        "astra": {
+          "status": "complete",
+          "reviewed_profiles": 13,
+          "accepted_findings": 4
+        }
+      },
+      "status": "requested_stages_complete",
+      "previous_attempts": [],
+      "model_cost_usd": 1.432976,
+      "updated_at": "2026-11-11T03:59:33.217735+00:00",
+      "refresh_review_ids": [
+        "exec_aaron_lukas",
+        "exec_anna_gomez",
+        "exec_bradley_d_hansell",
+        "exec_brandon_williams",
+        "exec_brendan_carr",
+        "exec_christopher_j_waller",
+        "exec_darren_turner",
+        "exec_david_a_lacerte",
+        "exec_david_rosner",
+        "exec_ho_k_nieh",
+        "exec_michael_p_duffey",
+        "exec_peter_navarro",
+        "exec_timothy_kosiba"
+      ]
+    }
+  }
+}

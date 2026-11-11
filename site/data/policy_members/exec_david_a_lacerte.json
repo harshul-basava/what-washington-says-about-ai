@@ -19,16 +19,27 @@
      "role": "Commissioner"
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement discusses energy reforms for data centers and chip manufacturing, not restrictions on overseas AI chip or model access.",
+      "facets": [],
+      "confidence": 0.95,
+      "confidence_reason": "No export-control content appears in the statement.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T03:57:52.039479+00:00",
+      "generation_id": "gen-1794369410-rynfgO5Oc6ncJJv59zh8"
+     }
+    },
+    "confidence": 0.95,
+    "final_judge": "deepseek",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    }
   ],
   "china_race_dynamics": [
@@ -49,16 +60,43 @@
      "role": "Commissioner"
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
-    "facets_final": [],
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker calls the AI race a central challenge and says America's power grid is a major battlefield.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.76,
+      "confidence_reason": "The race framing is explicit, but China appears only in surrounding context, not the quoted sentence.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T03:57:05.418400+00:00",
+      "generation_id": "gen-1794369410-HFo5T0nLNejQZkUqKGMV"
+     },
+     "astra": {
+      "stance": "support",
+      "reason": "LaCerte emphasizes winning the AI race and frames the power grid as a battlefield, with context identifying China as the competitor.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.81,
+      "confidence_reason": "The competitive framing is affirmative, although China is identified only in the surrounding context.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T03:58:12.643994+00:00",
+      "generation_id": "gen-1794369472-9Z2Dw74TgUQHwqVlh5Ir"
+     }
+    },
+    "confidence": 0.81,
+    "final_judge": "astra",
+    "facets_final": [
+     "competition_priority"
+    ],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.76 is below 0.8."
    },
    {
     "sid": "s3",
@@ -77,16 +115,39 @@
      "role": "Commissioner"
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "neutral",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker frames China's rapid grid expansion as preparation and says the US is trying to catch up in the AI race.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.78,
+      "confidence_reason": "The statement explicitly contrasts China's preparation with US catch-up in an AI-race section, though it does not name a specific policy.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T03:57:52.039374+00:00",
+      "generation_id": "gen-1794369410-rynfgO5Oc6ncJJv59zh8"
+     },
+     "astra": {
+      "stance": "neutral",
+      "reason": "LaCerte describes China's electricity expansion and US interconnection bottlenecks without explicitly endorsing a competitive policy priority.",
+      "facets": [],
+      "confidence": 0.93,
+      "confidence_reason": "The supplied statement is a descriptive comparison rather than a policy endorsement.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T03:58:12.644097+00:00",
+      "generation_id": "gen-1794369472-9Z2Dw74TgUQHwqVlh5Ir"
+     }
+    },
+    "confidence": 0.93,
+    "final_judge": "astra",
     "facets_final": [],
-    "facet_disagreement": false,
-    "model_disagreement": false,
+    "facet_disagreement": true,
+    "model_disagreement": true,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.78 is below 0.8."
    },
    {
     "sid": "s4",
@@ -105,16 +166,39 @@
      "role": "Commissioner"
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
+    "stance": "review_required",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "In the AI-race section, the speaker calls for FERC reforms to ensure US data centers and chip manufacturing get energy on time.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.65,
+      "confidence_reason": "The statement is a call for domestic energy reforms in an AI-race context, but it does not itself mention China.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T03:57:52.039553+00:00",
+      "generation_id": "gen-1794369410-rynfgO5Oc6ncJJv59zh8"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "LaCerte endorses energy-supply reforms for data centers and chip manufacturing, not explicitly prioritizing competition with China.",
+      "facets": [],
+      "confidence": 0.77,
+      "confidence_reason": "The surrounding race discussion suggests a competitive rationale, but the statement itself endorses only energy reforms.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T03:58:12.644175+00:00",
+      "generation_id": "gen-1794369472-9Z2Dw74TgUQHwqVlh5Ir"
+     }
+    },
+    "confidence": 0.77,
     "final_judge": null,
     "facets_final": [],
-    "facet_disagreement": false,
-    "model_disagreement": false,
-    "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "facet_disagreement": true,
+    "model_disagreement": true,
+    "review_required": true,
+    "review_status": "human_review_required",
+    "review_reason": "DeepSeek confidence 0.65 is below 0.8. Astra also reports confidence below the threshold; human review is required."
    }
   ]
  },

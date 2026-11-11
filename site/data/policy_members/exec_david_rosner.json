@@ -18,16 +18,39 @@
      "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker endorses America winning the AI race while protecting affordability.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.62,
+      "confidence_reason": "The statement explicitly endorses winning the AI race, though it does not name China.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T03:57:52.039605+00:00",
+      "generation_id": "gen-1794369410-rynfgO5Oc6ncJJv59zh8"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "Rosner endorses enabling America to win an AI race without burdening families, but neither the statement nor context identifies China.",
+      "facets": [],
+      "confidence": 0.92,
+      "confidence_reason": "A generic AI race does not establish the China-specific target, and the context supplies no competitor.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T03:58:12.644228+00:00",
+      "generation_id": "gen-1794369472-9Z2Dw74TgUQHwqVlh5Ir"
+     }
+    },
+    "confidence": 0.92,
+    "final_judge": "astra",
     "facets_final": [],
-    "facet_disagreement": false,
-    "model_disagreement": false,
+    "facet_disagreement": true,
+    "model_disagreement": true,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.62 is below 0.8."
    }
   ]
  },
