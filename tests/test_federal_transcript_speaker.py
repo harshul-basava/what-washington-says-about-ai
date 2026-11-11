@@ -11,6 +11,15 @@ import federal
 
 
 class TranscriptSpeakerTests(unittest.TestCase):
+    def test_reviewed_dia_title_and_military_abbreviation_identify_adams_testimony(self):
+        subject = {'name': 'James H. Adams', 'aliases': ['James Adams'], 'roles': [],
+                   'author_title_aliases': ['Director, Defense Intelligence Agency']}
+        header = 'STATEMENT BY DIRECTOR, DEFENSE INTELLIGENCE AGENCY LT. GEN. JAMES ADAMS, USMC'
+        self.assertTrue(federal.explicit_document_author(header, subject))
+        other = header.replace('JAMES ADAMS', 'SOMEONE ELSE') + ', thanking James Adams'
+        self.assertFalse(federal.explicit_document_author(other, subject))
+        self.assertFalse(federal.explicit_document_author('Questions and Answers ' + header, subject))
+
     def setUp(self):
         self.url = 'https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20250618.pdf'
         self.identity = 'https://www.federalreserve.gov/aboutthefed/bios/board/powell.htm'

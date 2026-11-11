@@ -101,7 +101,7 @@ def explicit_document_author(context, subject):
     agencies = {subject.get('organization_id', '').replace('_', ' '),
                 subject.get('organization_name', '').split('(')[0].strip(), 'U.S.', 'US', 'DoD'} - {''}
     agency_pattern = '(?:' + '|'.join(re.escape(a) for a in sorted(agencies, key=len, reverse=True)) + ')'
-    honorific = r'(?:(?:Dr|Mr|Ms|Mrs)\.?\s+|The Honorable\s+|(?:Lieutenant |Major |Brigadier )?General\s+|(?:Vice |Rear )?Admiral\s+){0,2}'
+    honorific = r'(?:(?:Dr|Mr|Ms|Mrs)\.?\s+|The Honorable\s+|(?:Lieutenant |Major |Brigadier )?General\s+|Lt\.?\s+Gen\.?\s+|(?:Vice |Rear )?Admiral\s+){0,2}'
     title = r'(?:(?:U\.S\.|US)\s+)?(?:' + agency_pattern + r'\s+)?' + role_pattern
     author = honorific + '(?:' + title + r'\s+)?' + honorific + who
     if re.search(r'^A Message From\s+' + author + r'(?:\s+[-–—|]\s+' + agency_pattern + r')?$', context, re.I):
