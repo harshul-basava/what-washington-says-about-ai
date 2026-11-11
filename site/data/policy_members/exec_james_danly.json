@@ -19,16 +19,39 @@
     },
     "attribution_span_sha256": "3eb75fa878acf72225e7bea2f04e7e7d61dff562748b83d8cdb70c47d42d4e57",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker calls winning the AI race an imperative, endorsing competition as a priority.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.75,
+      "confidence_reason": "The statement clearly endorses winning the AI race but does not name China.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T05:29:31.098830+00:00",
+      "generation_id": "gen-1794374943-iPVAc5uhDCrn3vcx1mDQ"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "The speaker endorses winning an AI race but does not identify China as the competitor.",
+      "facets": [],
+      "confidence": 0.9,
+      "confidence_reason": "Neither the quote nor its context establishes that the race concerns China.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T05:29:42.601667+00:00",
+      "generation_id": "gen-1794374971-ReKo78Xib9Tq2IiOk92A"
+     }
+    },
+    "confidence": 0.9,
+    "final_judge": "astra",
     "facets_final": [],
-    "facet_disagreement": false,
-    "model_disagreement": false,
+    "facet_disagreement": true,
+    "model_disagreement": true,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.75 is below 0.8."
    }
   ]
  },

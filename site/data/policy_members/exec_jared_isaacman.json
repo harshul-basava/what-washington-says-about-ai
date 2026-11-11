@@ -21,16 +21,27 @@
     },
     "attribution_span_sha256": "b7a3860f9439acd5f3f06c817b92becd3452952dad2a46f574264a94ee8bde6f",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement praises a NASA Independent Verification & Validation facility, not independent verification organizations embedded in AI labs with ongoing internal access.",
+      "facets": [],
+      "confidence": 0.92,
+      "confidence_reason": "The target is a different kind of verification facility and does not mention embedded AI-lab oversight.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T05:29:08.586635+00:00",
+      "generation_id": "gen-1794374943-zAlSwiAw8jhbbtHvMwdY"
+     }
+    },
+    "confidence": 0.92,
+    "final_judge": "deepseek",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    }
   ],
   "china_race_dynamics": [
@@ -51,16 +62,39 @@
     },
     "attribution_span_sha256": "fb0813f1716ecb233629c036d615a006fc11f3a3e622f72d4dba54fef050d7fa",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker describes something as key to winning the AI race, endorsing race competition.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.7,
+      "confidence_reason": "The fragment clearly endorses winning the AI race but lacks full context and does not name China.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T05:29:31.098921+00:00",
+      "generation_id": "gen-1794374943-iPVAc5uhDCrn3vcx1mDQ"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "The fragment mentions winning an AI race and technological risks without identifying competition with China.",
+      "facets": [],
+      "confidence": 0.89,
+      "confidence_reason": "The missing surrounding text prevents linking the generic AI race to China.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T05:29:42.601783+00:00",
+      "generation_id": "gen-1794374971-ReKo78Xib9Tq2IiOk92A"
+     }
+    },
+    "confidence": 0.89,
+    "final_judge": "astra",
     "facets_final": [],
-    "facet_disagreement": false,
-    "model_disagreement": false,
+    "facet_disagreement": true,
+    "model_disagreement": true,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.7 is below 0.8."
    },
    {
     "sid": "s9",
@@ -79,16 +113,39 @@
     },
     "attribution_span_sha256": "fb0813f1716ecb233629c036d615a006fc11f3a3e622f72d4dba54fef050d7fa",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
+    "stance": "review_required",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker welcomes competition with China after noting its advances in AI and other technologies.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.7,
+      "confidence_reason": "The statement explicitly mentions China and calls competition nice, though it does not state a policy priority.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T05:29:31.099001+00:00",
+      "generation_id": "gen-1794374943-iPVAc5uhDCrn3vcx1mDQ"
+     },
+     "astra": {
+      "stance": "unclear",
+      "reason": "The speaker welcomes competition from China across technologies including AI without clearly making it a US policy priority.",
+      "facets": [],
+      "confidence": 0.77,
+      "confidence_reason": "The favorable view of competition is explicit, but its implications for US AI policy priorities are ambiguous.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T05:29:42.601887+00:00",
+      "generation_id": "gen-1794374971-ReKo78Xib9Tq2IiOk92A"
+     }
+    },
+    "confidence": 0.77,
     "final_judge": null,
     "facets_final": [],
-    "facet_disagreement": false,
-    "model_disagreement": false,
-    "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "facet_disagreement": true,
+    "model_disagreement": true,
+    "review_required": true,
+    "review_status": "human_review_required",
+    "review_reason": "DeepSeek confidence 0.7 is below 0.8. Astra also reports confidence below the threshold; human review is required."
    },
    {
     "sid": "s10",
@@ -107,16 +164,37 @@
     },
     "attribution_span_sha256": "fb0813f1716ecb233629c036d615a006fc11f3a3e622f72d4dba54fef050d7fa",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "neutral",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "The statement describes China closing gaps in strategically important technologies but does not explicitly call for making competition with China a policy priority.",
+      "facets": [],
+      "confidence": 0.78,
+      "confidence_reason": "The text clearly addresses China competition dynamics, but the fragment is descriptive and lacks an explicit policy endorsement.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T05:29:08.586487+00:00",
+      "generation_id": "gen-1794374943-zAlSwiAw8jhbbtHvMwdY"
+     },
+     "astra": {
+      "stance": "neutral",
+      "reason": "The speaker describes China's technological gains and risk tolerance without endorsing a competitive policy response.",
+      "facets": [],
+      "confidence": 0.87,
+      "confidence_reason": "The available fragment is descriptive, although its truncation leaves the broader argument unavailable.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T05:29:42.601984+00:00",
+      "generation_id": "gen-1794374971-ReKo78Xib9Tq2IiOk92A"
+     }
+    },
+    "confidence": 0.87,
+    "final_judge": "astra",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.78 is below 0.8."
    }
   ]
  },
