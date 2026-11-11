@@ -1554,6 +1554,101 @@
       "model_cost_usd": 5.678428,
       "updated_at": "2026-11-11T06:49:26.114780+00:00",
       "refresh_review_ids": []
+    },
+    "expansion_11": {
+      "started_at": "2026-11-11T06:50:31.440397+00:00",
+      "subject_ids": [
+        "exec_dawn_zimmer",
+        "exec_dean_evasius",
+        "exec_eric_lin",
+        "exec_eric_r_sanders",
+        "exec_eric_sidle",
+        "exec_g_nagesh_rao",
+        "exec_gretchen_greene",
+        "exec_hannah_brown",
+        "exec_heidi_berg",
+        "exec_helen_c_knudsen",
+        "exec_hunter_deely",
+        "exec_irina_dolinskaya",
+        "exec_james_g_kushmerick",
+        "exec_james_kassemi",
+        "exec_james_m_adams",
+        "exec_jaye_l_hamby",
+        "exec_jennifer_jen_browning",
+        "exec_joannie_chin",
+        "exec_john_krebs",
+        "exec_john_mcdermott"
+      ],
+      "requested_stages": [
+        "research",
+        "seeds",
+        "analysis",
+        "policies",
+        "astra"
+      ],
+      "model_allowance_usd": 25.0,
+      "model_baseline": 378.23923034315175,
+      "stages": {
+        "research": {
+          "status": "complete",
+          "pending_passes": {},
+          "exit_code": 0
+        },
+        "seeds": {
+          "status": "complete_with_source_gaps",
+          "source_gaps": [
+            {
+              "id": "exec_eric_r_sanders",
+              "url": "https://tech.hhs.gov/leadership",
+              "error": "ValueError",
+              "stage": "source_fetch"
+            },
+            {
+              "id": "exec_jennifer_jen_browning",
+              "url": "https://tech.hhs.gov/leadership",
+              "error": "ValueError",
+              "stage": "source_fetch"
+            },
+            {
+              "id": "exec_john_mcdermott",
+              "url": "https://tech.hhs.gov/leadership",
+              "error": "ValueError",
+              "stage": "source_fetch"
+            }
+          ],
+          "exit_code": 1,
+          "cache_reverification_exit_code": 0
+        },
+        "analysis": {
+          "status": "complete",
+          "coverage": {
+            "profiles": 20,
+            "statements": 19,
+            "labeled_statements": 19,
+            "pending_labels": 0,
+            "pending_regulation": 0,
+            "pending_summaries": 0,
+            "pending_stages": {},
+            "status": "ok"
+          },
+          "exit_code": 0
+        },
+        "policies": {
+          "status": "complete",
+          "pending_requests": 0,
+          "exit_code": 0
+        },
+        "astra": {
+          "status": "complete",
+          "reviewed_profiles": 8,
+          "accepted_findings": 1
+        }
+      },
+      "status": "requested_stages_complete",
+      "previous_attempts": [],
+      "model_cost_usd": 5.475727,
+      "updated_at": "2026-11-11T06:55:26.037012+00:00",
+      "refresh_review_ids": []
     }
   }
 }
