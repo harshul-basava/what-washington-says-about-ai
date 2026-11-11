@@ -28,9 +28,15 @@ def write(path, value):
     temp.replace(path)
 
 
-def contains_name(text, subject):
+def contains_name(text, subject, *, source_url=None):
     names = [subject['name'], *subject.get('aliases', [])]
-    return any(re.search(name_pattern(name), text, re.I) for name in names)
+    if any(re.search(name_pattern(name), text, re.I) for name in names):
+        return True
+    if source_url is None:
+        return False
+    url = sources.canonical_url(source_url)
+    return any(url in alias.get('source_urls', []) and alias.get('label') in text
+               for alias in subject.get('source_speaker_aliases', []) if alias.get('label'))
 
 
 def name_pattern(name):
@@ -81,7 +87,7 @@ def exact_date_anchor(anchor, text):
 
 def explicit_document_author(context, subject):
     """Bind a short authorship header to this person, without crossing recipient fields."""
-    if len(context) > 800:
+    if len(context) > 800 or re.search(r'\b(?:press conference|Q\s*&\s*A|questions?\s+and\s+answers?|question[- ]and[- ]answer)\b', context, re.I):
         return False
     who = '(?:' + '|'.join(name_pattern(n) for n in [subject['name'], *subject.get('aliases', [])]) + ')'
     titles = {'President', 'Vice President', 'Secretary', 'Deputy Secretary', 'Under Secretary',
@@ -90,6 +96,7 @@ def explicit_document_author(context, subject):
               'Chairman', 'Chairwoman', 'Commissioner', 'Chief Data & AI Officer (CDAO)'}
     for role in subject.get('roles', []):
         titles.update((role['title'], role['title'].split(',')[0]))
+    titles.update(subject.get('author_title_aliases', []))
     role_pattern = '(?:' + '|'.join(re.escape(sources.normalize(t)) for t in sorted(titles, key=len, reverse=True)) + ')'
     agencies = {subject.get('organization_id', '').replace('_', ' '),
                 subject.get('organization_name', '').split('(')[0].strip(), 'U.S.', 'US', 'DoD'} - {''}
@@ -103,12 +110,57 @@ def explicit_document_author(context, subject):
     if re.search(r'\b' + markers + r'\s+' + author, context, re.I):
         return True
     header = re.sub(r'^(?:[A-Z][a-z]+ \d{1,2}, \d{4}|\d{4}-\d{2}-\d{2})\s+', '', context)
+    if re.search(r'^' + author + r"['’]s\s+(?:remarks|testimony|statement)\b", header, re.I):
+        return True
     # Government releases also use "TITLE NAME Statement on TOPIC" headings.
     if re.search(r'^' + author + r'\s*[,.:–-]?\s+(?:statement|remarks|testimony)\s+(?:on|regarding|before|to|at|for)\b', header, re.I):
         return True
     # After a leading name, permit only a known title before the speech/testimony marker.
     return bool(re.search(r'^' + honorific + who + r'\s*[,.:–-]?\s*(?:' + title +
                           r'\s*[,.:–-]?\s*)?(?:delivers remarks|testimony before|statement before)\b', header, re.I))
+
+
+def transcript_speaker_context(page, quote, subject, day):
+    """Bind reviewed labels to exact official transcripts and one uninterrupted speaker turn."""
+    url = sources.canonical_url(page['url'])
+    aliases = [alias for alias in subject.get('source_speaker_aliases', [])
+               if url in alias.get('source_urls', [])]
+    if not aliases:
+        return None
+    parsed = sources.urlsplit(url)
+    if (subject['entity_type'] != 'person' or parsed.scheme != 'https'
+            or not (parsed.hostname or '').endswith(('.gov', '.mil'))
+            or not day or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', day)):
+        raise ValueError('Transcript identity needs an official source and an exact date')
+    reviewed = {}
+    for alias in aliases:
+        proof = sources.urlsplit(alias.get('source_url', ''))
+        date.fromisoformat(alias['verified_on'])
+        start = date.fromisoformat(alias['valid_from']).isoformat()
+        end = alias['valid_until']
+        if end is not None:
+            end = date.fromisoformat(end).isoformat()
+        if proof.scheme != 'https' or not (proof.hostname or '').endswith(('.gov', '.mil')):
+            raise ValueError('Transcript speaker identity needs reviewed source evidence')
+        if start <= day and (end is None or day < end):
+            reviewed[alias['label']] = alias
+    # The reviewed transcript format labels speakers with uppercase names and a period.
+    # Single-letter questions and explicit reporter labels also end a speaker turn.
+    marker = (r"(?<![\w.])(?:(?:[A-Z][A-Z’'-]+|[A-Z]\.)(?:\s+(?:[A-Z][A-Z’'-]+|[A-Z]\.)){1,5}"
+              r"|(?:MR|MS|MRS|DR)\.\s+[A-Z][A-Z’'-]+|Q|A|QUESTION|ANSWER|REPORTER|MODERATOR)[.:](?=\s)")
+    text = sources.normalize(page['text'])
+    turns = list(re.finditer(marker, text))
+    for index, turn in enumerate(turns):
+        alias = reviewed.get(turn.group())
+        if alias is None:
+            continue
+        stop = turns[index + 1].start() if index + 1 < len(turns) else len(text)
+        at = text.find(quote, turn.end(), stop)
+        if at >= 0 and at + len(quote) - turn.start() <= 3500:
+            return {'context': text[turn.start():at + len(quote)], 'label': turn.group(),
+                    'source_url': alias['source_url'], 'verified_on': alias['verified_on']}
+    # A transcript title identifies the event, but cannot attribute another speaker's words.
+    raise ValueError('Quote lacks a reviewed same-speaker transcript span')
 
 
 def validate_rows(page, rows, subjects, now):
@@ -124,13 +176,25 @@ def validate_rows(page, rows, subjects, now):
             if not 8 <= len(quote.split()) <= 150 or len(context) > 3500:
                 raise ValueError('Invalid excerpt length')
             basis = row.get('attribution_basis', 'local_span')
+            if basis not in ('local_span', 'document_author'):
+                raise ValueError('Unknown attribution basis')
+            date_anchor = exact_date_anchor(row.get('date_quote'), text)
+            day = checked_date(row.get('date'), date_anchor, text, now)
+            transcript = transcript_speaker_context(page, quote, subject, day)
+            if transcript:
+                context = transcript['context']
+                basis = 'local_span'
+            elif ('attribution_basis' not in row and subject['entity_type'] == 'person'
+                  and (sources.urlsplit(page['url']).hostname or '').endswith(('.gov', '.mil'))
+                  and context in text[:6000] and explicit_document_author(context, subject)):
+                basis = 'document_author'
             author = (basis == 'document_author' and subject['entity_type'] == 'person'
                       and (sources.urlsplit(page['url']).hostname or '').endswith(('.gov', '.mil'))
                       and context in text[:6000]
                       and (explicit_document_author(context, subject)
                            or (context in text[:1200] and '-Wstate-' in page['url'])
                            or (context in text[:1200] and '/DCPD-' in page['url'] and 'Administration of ' in context and 'The President.' in text[:1200])))
-            if (quote not in text or context not in text or not contains_name(context, subject)
+            if (quote not in text or context not in text or not (transcript or contains_name(context, subject))
                     or (basis == 'document_author' and not author)
                     or (basis == 'local_span' and quote not in context)
                     or basis not in ('local_span', 'document_author')):
@@ -142,10 +206,11 @@ def validate_rows(page, rows, subjects, now):
                 raise ValueError('Unknown attribution')
             if (kind == 'institutional') != (subject['entity_type'] == 'institution'):
                 raise ValueError('Incorrect subject type')
-            date_anchor = exact_date_anchor(row.get('date_quote'), text)
-            day = checked_date(row.get('date'), date_anchor, text, now)
             attr = {'kind': kind, 'speaker': subject['name'], 'organization_id': subject['organization_id'],
                     'basis': basis, 'note': 'Automated extraction; exact quote and attribution span matched the retrieved source.'}
+            if transcript:
+                attr.update(speaker_label=transcript['label'], speaker_identity_source_url=transcript['source_url'],
+                            speaker_alias_verified_on=transcript['verified_on'])
             if kind == 'institutional':
                 attr['organization_id'] = subject['id']
             if kind == 'official_role':
@@ -310,7 +375,8 @@ def collect(root, config, since=None, dry=False):
                     if index < cursor:
                         continue
                     chunk = {**page, 'text': text[start:start + 26000], 'document_header': text[:6000]}
-                    named = [s for s in subjects if contains_name(chunk['text'], s) or contains_name(text[:6000], s)]
+                    named = [s for s in subjects if contains_name(chunk['text'], s, source_url=page['url'])
+                             or contains_name(text[:6000], s, source_url=page['url'])]
                     rows = client.extract(chunk, named) if named else []
                     valid, invalid = validate_rows(page, rows, named, now)
                     for pid in sorted({pid for pid, _ in valid}):

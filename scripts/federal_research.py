@@ -49,6 +49,11 @@ def source_context(row, page, subject):
     at = text.find(quote)
     if not quote or at < 0:
         return row
+    header = sources.normalize(row.get('attribution_quote', ''))
+    if (subject['entity_type'] == 'person' and official_url(page['url']) and header
+            and row.get('attribution_basis', 'local_span') in ('local_span', 'document_author')
+            and header in text[:6000] and federal.explicit_document_author(header, subject)):
+        return {**row, 'attribution_basis': 'document_author'}
     names = [subject['name'], *subject.get('aliases', [])]
     spans = []
     for name in names:

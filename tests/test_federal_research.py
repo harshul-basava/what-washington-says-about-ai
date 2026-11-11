@@ -57,6 +57,18 @@ class HistoricalTests(unittest.TestCase):
         self.assertIn(fixed['attribution_quote'], page['text'])
         self.assertEqual(federal.validate_rows(page, [fixed], [PERSON], '2026-11-08')[1], 0)
 
+    def test_explicit_author_header_can_repair_an_omitted_basis(self):
+        import federal_research as research
+        header = 'Remarks by Commerce Secretary Official A'
+        page = {**PAGE, 'text': header + ' November 8, 2026. ' + ('Introduction. ' * 500) + QUOTE}
+        row = {**ROW, 'attribution_quote': header}
+        row.pop('attribution_basis', None)
+        fixed = research.source_context(row, page, PERSON)
+        self.assertEqual(fixed.get('attribution_basis'), 'document_author')
+        self.assertEqual(fixed['quote'], row['quote'])
+        self.assertEqual(federal.validate_rows(page, [fixed], [PERSON], '2026-11-08')[1], 0)
+        self.assertNotEqual(research.source_context(row, {**page, 'url': 'https://news.example/speech'}, PERSON).get('attribution_basis'), 'document_author')
+
     def test_government_weekday_date_and_middle_initial(self):
         self.assertEqual(federal.checked_date('2026-11-08', 'Sunday, November 8, 2026',
                                               'Sunday, November 8, 2026', '2026-11-08'), '2026-11-08')

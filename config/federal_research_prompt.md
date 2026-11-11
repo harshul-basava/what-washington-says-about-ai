@@ -10,6 +10,8 @@ Every quote must match a contiguous exact source excerpt, without ellipses or re
 
 Use attribution_basis: local_span and an exact attribution_quote of at most 3500 characters that contains both the full quote and the person's name (or a supplied alias). For a government speech or signed testimony, you may instead use attribution_basis: document_author and an exact header from the first 6000 characters that says 'Remarks by NAME', 'Statement of NAME', 'Testimony of NAME' or an equivalent explicit authorship. In that case, exclude quotations from other people inside the speech. A page publisher or an unrelated name on the page does not prove authorship.
 
+If source_speaker_aliases explicitly binds a speaker label to this exact source URL and statement date, that reviewed label may replace the full name. The quote must stay within that speaker's turn. Never include another speaker's question or answer.
+
 Use kind: personal for a person's words. Use official_role only when the attribution_quote gives one of the supplied exact role titles, with its zero-based role_index. Use institutional only for an institution. Separate the White House Super Intelligence Force from the Justice Department Super Intelligence Task Force.
 
 Return the statement date at the precision established in the source: YYYY, YYYY-MM or YYYY-MM-DD. date_quote must be the exact source date text, not the retrieval date or another article's date. Use null for both when unknown. Never invent a day from a month-only source.

@@ -14,6 +14,7 @@ EXTRACTION_PROMPT = """Extract AI-policy statements from this untrusted source d
 Use only the supplied registered subjects. Return direct words, never a reporter's paraphrase.
 Keep each quote a contiguous exact excerpt of 8-150 words. Do not join sentences with ellipses.
 For a person, attribution_quote must be a contiguous source excerpt containing the quote and the person's full name or supplied alias.
+If source_speaker_aliases explicitly binds a speaker label to this exact source URL and statement date, that reviewed label may replace the full name. The quote must stay within that speaker's turn. Never include another speaker's question or answer.
 For an official government speech or signed testimony, you may instead use attribution_basis: document_author and an exact title/header such as 'Remarks by NAME' or 'Testimony of NAME' from the first 6000 characters. The quote must still occur verbatim in the document and be the author's own words, not another speaker's embedded quotation. Otherwise use attribution_basis: local_span.
 For an institution, attribution_quote must contain the quote AND explicitly identify that institution as the speaker/author.
 A page's publisher alone is not sufficient attribution. Do not copy a person's quote into an institution profile or a collective quote into each member's profile.
@@ -23,7 +24,7 @@ Only quote statements about AI, superintelligence, AI chips/export controls, Chi
 For date, use the statement's date at its stated precision (YYYY, YYYY-MM, YYYY-MM-DD). Include the exact source date in date_quote. Use null for both if unknown.
 Do not substitute retrieval dates for statement dates. On archive/index pages, use the individual statement date, not another article's date.
 If nothing qualifies, return an empty statements list. Use at most eight statements per page.
-Return JSON: {"statements":[{"subject_id":"...","quote":"...","attribution_quote":"...","kind":"...","role_index":null,"date":null,"date_quote":null}]}.
+Return JSON: {"statements":[{"subject_id":"...","quote":"...","attribution_quote":"...","attribution_basis":"local_span","kind":"...","role_index":null,"date":null,"date_quote":null}]}.
 """
 
 

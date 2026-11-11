@@ -197,9 +197,11 @@ def run(root, cohort, ids, stages, max_cost, workers):
                 run_token = uuid.uuid4().hex
                 code = command(root, 'scripts/federal_research.py', 'seeds', '--ids', ','.join(ids),
                                '--workers', workers, '--max-cost', allowance(), '--run-token', run_token)
+                reverify_code = command(root, 'scripts/federal_reverify_cache.py', '--ids', ','.join(ids))
                 gaps = seed_gaps(root, ids, run_token)
-                attempt['stages'][stage] = {'status': 'complete_with_source_gaps' if gaps else 'complete', 'source_gaps': gaps, 'exit_code': code}
-                if any(g['stage'] != 'source_fetch' or g['error'] in ('BudgetExceeded', 'OpenRouterRequestError') for g in gaps):
+                attempt['stages'][stage] = {'status': 'complete_with_source_gaps' if gaps else 'complete',
+                                           'source_gaps': gaps, 'exit_code': code, 'cache_reverification_exit_code': reverify_code}
+                if reverify_code or any(g['stage'] != 'source_fetch' or g['error'] in ('BudgetExceeded', 'OpenRouterRequestError') for g in gaps):
                     attempt['stages'][stage]['status'] = 'pending'; attempt['status'] = 'seed_models_pending'; checkpoint(); break
             elif stage == 'analysis':
                 code = command(root, 'scripts/federal_analysis.py', 'label', '--ids', ','.join(ids),
