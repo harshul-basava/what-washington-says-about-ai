@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_michael_s_selig",
- "revision": "22171a15b51c22f83fe92fc71a7305195424cae0a2147186e00a4e417df0c429",
+ "revision": "79ce575c47f8f0dc052a67e867a2206eae45c97f5d5d58d7c4ecb1d2128c9db7",
  "profile": {
   "id": "exec_michael_s_selig",
   "name": "Michael S. Selig",
@@ -63,7 +63,7 @@
   "n_statements": 32,
   "n_labeled": 32,
   "scores": {
-   "ai_overall": 3.0,
+   "ai_overall": null,
    "agi_pilled": 2.5,
    "x_risk": null,
    "china_race": 3.0,
@@ -71,16 +71,11 @@
   },
   "score_details": {
    "ai_overall": {
-    "score": 3.0,
-    "reason_a": "median_of_3",
-    "reason_b": "median_of_3",
-    "sids": [
-     "s2",
-     "s1",
-     "s19",
-     "s17"
-    ],
-    "label_count": 4
+    "score": null,
+    "reason_a": "no_statements",
+    "reason_b": "no_statements",
+    "sids": [],
+    "label_count": 0
    },
    "agi_pilled": {
     "score": 2.5,
@@ -307,6 +302,20 @@
     }
    },
    "disputed": []
+  },
+  "stance_review": {
+   "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+   "dimension": "ai_overall",
+   "status": "complete",
+   "reason": "The supplied statements favor domestic innovation, anticipate technological transformation, and advocate U.S. leadership in compute and financial markets, but do not establish an overall judgment about AI's benefits versus harms for Americans. The full supplied context for s1 and s2 describes transformative promise and competitive priorities rather than an overall welfare assessment. Other excerpts concern financial-sector effects, regulatory preferences, particular applications, or event announcements. Many excerpts are truncated; these classifications concern only the supplied evidence and do not establish an absence of broader views.",
+   "confidence": 4,
+   "n_statements": 32,
+   "n_contexts": 2,
+   "accepted_sids": [],
+   "finding_count": 0,
+   "model": "openai/gpt-6-astra",
+   "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+   "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
   }
  },
  "statements": [
@@ -328,11 +337,9 @@
    "analysis": {
     "status": "complete",
     "a": {
-     "ai_overall": 3,
      "agi_pilled": 3
     },
     "b": {
-     "ai_overall": 3,
      "agi_pilled": 2
     },
     "topics": [
@@ -340,16 +347,29 @@
      "jobs/economy"
     ],
     "confidence": {
-     "ai_overall": 2.5,
      "agi_pilled": 3.67
     },
     "escalated": [
      "ai_overall",
      "agi_pilled"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -416,6 +436,18 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-11T04:16:37.741249+00:00",
       "generation_id": "gen-1794370587-wd8DsocUd2a2cgEEvIwj"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -438,11 +470,9 @@
    "analysis": {
     "status": "complete",
     "a": {
-     "ai_overall": 3,
      "agi_pilled": 3
     },
     "b": {
-     "ai_overall": 3,
      "agi_pilled": 2
     },
     "topics": [
@@ -450,16 +480,29 @@
      "jobs/economy"
     ],
     "confidence": {
-     "ai_overall": 2.5,
      "agi_pilled": 3.67
     },
     "escalated": [
      "ai_overall",
      "agi_pilled"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -526,6 +569,18 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-11T04:16:37.741249+00:00",
       "generation_id": "gen-1794370587-wd8DsocUd2a2cgEEvIwj"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -561,9 +616,23 @@
     "escalated": [
      "agi_pilled"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -615,6 +684,18 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-11T04:16:37.741249+00:00",
       "generation_id": "gen-1794370587-wd8DsocUd2a2cgEEvIwj"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -643,8 +724,22 @@
     ],
     "confidence": {},
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -677,6 +772,18 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-11T04:13:56.857526+00:00",
       "generation_id": "gen-1794370413-bU0skCHrbJ4ZSOZ7HMrm"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -712,9 +819,23 @@
     "escalated": [
      "agi_pilled"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -767,6 +888,18 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-11T04:16:37.741249+00:00",
       "generation_id": "gen-1794370587-wd8DsocUd2a2cgEEvIwj"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -795,8 +928,22 @@
     ],
     "confidence": {},
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -829,6 +976,18 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-11T04:13:56.857526+00:00",
       "generation_id": "gen-1794370413-bU0skCHrbJ4ZSOZ7HMrm"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -864,8 +1023,22 @@
      "china_race": 3.33
     },
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -912,6 +1085,18 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-11T04:13:56.857526+00:00",
       "generation_id": "gen-1794370413-bU0skCHrbJ4ZSOZ7HMrm"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -942,9 +1127,23 @@
     "escalated": [
      "agi_pilled"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -992,6 +1191,18 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-11T04:16:37.741249+00:00",
       "generation_id": "gen-1794370587-wd8DsocUd2a2cgEEvIwj"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -1022,9 +1233,23 @@
     "escalated": [
      "agi_pilled"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -1072,6 +1297,18 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-11T04:16:37.741249+00:00",
       "generation_id": "gen-1794370587-wd8DsocUd2a2cgEEvIwj"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -1102,9 +1339,23 @@
     "escalated": [
      "agi_pilled"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -1152,6 +1403,18 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-11T04:16:37.741249+00:00",
       "generation_id": "gen-1794370587-wd8DsocUd2a2cgEEvIwj"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -1192,9 +1455,23 @@
     "escalated": [
      "regulation"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -1264,6 +1541,18 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-11T04:16:37.741249+00:00",
       "generation_id": "gen-1794370587-wd8DsocUd2a2cgEEvIwj"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -1292,8 +1581,22 @@
     ],
     "confidence": {},
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -1326,6 +1629,18 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-11T04:13:56.857526+00:00",
       "generation_id": "gen-1794370413-bU0skCHrbJ4ZSOZ7HMrm"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -1356,9 +1671,23 @@
     "escalated": [
      "agi_pilled"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -1406,6 +1735,18 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-11T04:16:37.741249+00:00",
       "generation_id": "gen-1794370587-wd8DsocUd2a2cgEEvIwj"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -1434,8 +1775,22 @@
     ],
     "confidence": {},
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -1468,6 +1823,18 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-11T04:13:56.857526+00:00",
       "generation_id": "gen-1794370413-bU0skCHrbJ4ZSOZ7HMrm"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -1502,9 +1869,23 @@
     "escalated": [
      "regulation"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -1560,6 +1941,18 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-11T04:16:37.741249+00:00",
       "generation_id": "gen-1794370587-wd8DsocUd2a2cgEEvIwj"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -1596,9 +1989,23 @@
      "ai_overall",
      "regulation"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -1656,6 +2063,18 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-11T04:16:37.741249+00:00",
       "generation_id": "gen-1794370587-wd8DsocUd2a2cgEEvIwj"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -1682,8 +2101,7 @@
      "regulation": 1
     },
     "b": {
-     "regulation": 1,
-     "ai_overall": 3
+     "regulation": 1
     },
     "topics": [
      "AGI/transformative",
@@ -1697,9 +2115,23 @@
      "ai_overall",
      "agi_pilled"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -1773,6 +2205,18 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-11T04:16:37.741249+00:00",
       "generation_id": "gen-1794370587-wd8DsocUd2a2cgEEvIwj"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -1811,8 +2255,22 @@
      "regulation": 4.0
     },
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -1865,6 +2323,18 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-11T04:13:56.857526+00:00",
       "generation_id": "gen-1794370413-bU0skCHrbJ4ZSOZ7HMrm"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -1887,7 +2357,6 @@
    "analysis": {
     "status": "complete",
     "a": {
-     "ai_overall": 3,
      "regulation": 1
     },
     "b": {},
@@ -1895,16 +2364,29 @@
      "regulation"
     ],
     "confidence": {
-     "ai_overall": 2.5,
      "regulation": 2.0
     },
     "escalated": [
      "ai_overall",
      "regulation"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -1963,6 +2445,18 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-11T04:16:37.741249+00:00",
       "generation_id": "gen-1794370587-wd8DsocUd2a2cgEEvIwj"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -1991,8 +2485,22 @@
     ],
     "confidence": {},
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -2025,6 +2533,18 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-11T04:13:56.857526+00:00",
       "generation_id": "gen-1794370413-bU0skCHrbJ4ZSOZ7HMrm"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -2061,9 +2581,23 @@
     "escalated": [
      "regulation"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -2124,6 +2658,18 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-11T04:16:37.741249+00:00",
       "generation_id": "gen-1794370587-wd8DsocUd2a2cgEEvIwj"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -2153,8 +2699,22 @@
     ],
     "confidence": {},
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -2188,6 +2748,18 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-11T04:14:27.598255+00:00",
       "generation_id": "gen-1794370413-2sEDcPd2gZz6kbO1PWBO"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -2224,9 +2796,23 @@
     "escalated": [
      "regulation"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -2287,6 +2873,18 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-11T04:16:37.741249+00:00",
       "generation_id": "gen-1794370587-wd8DsocUd2a2cgEEvIwj"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -2323,9 +2921,23 @@
     "escalated": [
      "regulation"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -2385,6 +2997,18 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-11T04:16:37.741249+00:00",
       "generation_id": "gen-1794370587-wd8DsocUd2a2cgEEvIwj"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -2413,8 +3037,22 @@
     ],
     "confidence": {},
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -2448,6 +3086,18 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-11T04:14:27.598255+00:00",
       "generation_id": "gen-1794370413-2sEDcPd2gZz6kbO1PWBO"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -2482,9 +3132,23 @@
     "escalated": [
      "regulation"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -2536,6 +3200,18 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-11T04:16:37.741249+00:00",
       "generation_id": "gen-1794370587-wd8DsocUd2a2cgEEvIwj"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -2570,9 +3246,23 @@
     "escalated": [
      "regulation"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -2628,6 +3318,18 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-11T04:16:37.741249+00:00",
       "generation_id": "gen-1794370587-wd8DsocUd2a2cgEEvIwj"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -2666,9 +3368,23 @@
     "escalated": [
      "agi_pilled"
     ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
-     "sol": "openai/gpt-6.1-sol"
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -2736,6 +3452,18 @@
       "model": "openai/gpt-6.1-sol",
       "assessed_at": "2026-11-11T04:16:37.741249+00:00",
       "generation_id": "gen-1794370587-wd8DsocUd2a2cgEEvIwj"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -2762,8 +3490,22 @@
     ],
     "confidence": {},
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -2796,6 +3538,18 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-11T04:14:27.598255+00:00",
       "generation_id": "gen-1794370413-2sEDcPd2gZz6kbO1PWBO"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -2829,8 +3583,22 @@
      "china_race": 4.33
     },
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -2877,6 +3645,18 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-11T04:14:27.598255+00:00",
       "generation_id": "gen-1794370413-2sEDcPd2gZz6kbO1PWBO"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -2910,8 +3690,22 @@
      "china_race": 3.67
     },
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -2958,6 +3752,18 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-11T04:14:27.598255+00:00",
       "generation_id": "gen-1794370413-2sEDcPd2gZz6kbO1PWBO"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -2992,8 +3798,22 @@
      "china_race": 4.33
     },
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+     "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -3040,6 +3860,18 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-11T04:14:27.598255+00:00",
       "generation_id": "gen-1794370413-2sEDcPd2gZz6kbO1PWBO"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "ecc60670b85e05bd55a27d4fb7f1cdfa0dfd83dbbd555670defde26e30b7a1bb",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:59.657112+00:00",
+      "generation_id": "gen-1794370841-5fsFvC0gzqaMrjmow71I"
      }
     }
    }
@@ -3543,7 +4375,7 @@
   {
    "date": "2026-03-31",
    "scores": {
-    "ai_overall": 3.0,
+    "ai_overall": null,
     "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": 3.0,
@@ -3556,7 +4388,7 @@
   {
    "date": "2026-04-30",
    "scores": {
-    "ai_overall": 3.0,
+    "ai_overall": null,
     "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": 3.0,
@@ -3569,7 +4401,7 @@
   {
    "date": "2026-05-31",
    "scores": {
-    "ai_overall": 3.0,
+    "ai_overall": null,
     "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": 3.0,
@@ -3582,7 +4414,7 @@
   {
    "date": "2026-06-30",
    "scores": {
-    "ai_overall": 3.0,
+    "ai_overall": null,
     "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": 3.0,
@@ -3595,7 +4427,7 @@
   {
    "date": "2026-07-31",
    "scores": {
-    "ai_overall": 3.0,
+    "ai_overall": null,
     "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": 3.0,
@@ -3608,7 +4440,7 @@
   {
    "date": "2026-08-31",
    "scores": {
-    "ai_overall": 3.0,
+    "ai_overall": null,
     "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": 3.0,
@@ -3621,7 +4453,7 @@
   {
    "date": "2026-09-30",
    "scores": {
-    "ai_overall": 3.0,
+    "ai_overall": null,
     "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": 3.0,
@@ -3634,7 +4466,7 @@
   {
    "date": "2026-10-31",
    "scores": {
-    "ai_overall": 3.0,
+    "ai_overall": null,
     "agi_pilled": 2.5,
     "x_risk": null,
     "china_race": 3.0,

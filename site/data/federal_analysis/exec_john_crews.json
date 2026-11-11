@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_john_crews",
- "revision": "22171a15b51c22f83fe92fc71a7305195424cae0a2147186e00a4e417df0c429",
+ "revision": "79ce575c47f8f0dc052a67e867a2206eae45c97f5d5d58d7c4ecb1d2128c9db7",
  "profile": {
   "id": "exec_john_crews",
   "name": "John Crews",
@@ -243,6 +243,20 @@
     }
    },
    "disputed": []
+  },
+  "stance_review": {
+   "review_id": "1b5aa03bb5473c2e8e3b37bac4c6aaac8dab8f7291fc85a60cd4d722d43a4b5a",
+   "dimension": "ai_overall",
+   "status": "complete",
+   "reason": "The supplied excerpt expresses an objective for NCUA's flexibility and support, not a view of AI's overall effects on Americans. Its reference to super-intelligence does not establish a general positive or negative stance.",
+   "confidence": 5,
+   "n_statements": 1,
+   "n_contexts": 0,
+   "accepted_sids": [],
+   "finding_count": 0,
+   "model": "openai/gpt-6-astra",
+   "assessed_at": "2026-11-11T04:20:02.878000+00:00",
+   "generation_id": "gen-1794370796-gIcPXzeYflNl7pU3EZ4Y"
   }
  },
  "statements": [
@@ -270,8 +284,22 @@
     ],
     "confidence": {},
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "1b5aa03bb5473c2e8e3b37bac4c6aaac8dab8f7291fc85a60cd4d722d43a4b5a",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-11T04:20:02.878000+00:00",
+     "generation_id": "gen-1794370796-gIcPXzeYflNl7pU3EZ4Y"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -305,6 +333,18 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-11T04:14:04.386137+00:00",
       "generation_id": "gen-1794370440-QR3E5xbIB5ySKS5IprHA"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "1b5aa03bb5473c2e8e3b37bac4c6aaac8dab8f7291fc85a60cd4d722d43a4b5a",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-11T04:20:02.878000+00:00",
+      "generation_id": "gen-1794370796-gIcPXzeYflNl7pU3EZ4Y"
      }
     }
    }
