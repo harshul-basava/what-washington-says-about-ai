@@ -8,3 +8,5 @@ User scope: fix the Feinberg and Adams omissions; search the 18 named priority o
 4. Check source attribution and cumulative cost, run the full tests and site build, obtain an independent final review, push both remotes, and verify the deployment.
 
 Constraints: $18.90 combined new OpenRouter and X costs, including failures and retries. Baselines: OpenRouter $445.548556756331; X $90.22. Keep all existing provider and repository caps. No Congress evidence changes. Preserve statement IDs and unknown dates. Existing daily queues already include all 18 profiles.
+
+Ruling: A scheduled daily update checked out the previous revision shortly before a follow-up push. Wait for its accounting before further paid work. Add a recovery artifact to future daily runs and the follow-up so a concurrent push cannot discard paid results. Do not force-rewind the shared branch. Cost if unresolved: missing daily costs require a conservative reservation before any follow-up resumes.

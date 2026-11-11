@@ -90,6 +90,21 @@ jobs:
             echo '```' >> "$GITHUB_STEP_SUMMARY"
           fi
 
+      - name: Preserve results before publishing
+        if: always() && steps.keys.outputs.skip != 'true'
+        run: |
+          git add data evidence site/data
+          git diff --cached --binary > "$RUNNER_TEMP/daily-update.patch"
+
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.keys.outputs.skip != 'true'
+        with:
+          name: daily-update-recovery
+          path: |
+            ${{ runner.temp }}/daily-update.patch
+            data/cost_ledger.jsonl
+          retention-days: 7
+
       - name: Commit and push (also after a failed step, so collected statements and spend are kept)
         if: always() && steps.keys.outputs.skip != 'true'
         run: |
