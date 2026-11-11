@@ -1,0 +1,35 @@
+{
+  "checked_on": "2026-11-11",
+  "method": "Independent read-only access audit of the recorded source gaps. No personal AI statements were recovered.",
+  "paid_calls": 0,
+  "excerpts_added": 0,
+  "findings": [
+    {
+      "requested_url": "https://www.dol.gov/index.php/agencies/oasam/centers-offices/ocio/ai-inventory",
+      "status": "accessible_after_official_redirect",
+      "canonical_url": "https://www.dol.gov/index.php/agencies/oasam/centers-offices/ocio/si-inventory",
+      "redirect_issue": "The first Location header uses HTTP. That endpoint redirects back to the HTTPS canonical SI inventory. A direct request to the HTTPS canonical page avoids the HTTP intermediate.",
+      "content_type": "institutional AI/SI deployment inventory",
+      "personal_AI_statement_found": false,
+      "followup": "Updated the future research seed to the exact HTTPS canonical page. Retained original role-source URLs and historical run gaps. Institutional inventory text does not establish a named official stance."
+    },
+    {
+      "requested_url": "https://tech.hhs.gov/leadership",
+      "status": "HTTP_200_client_render_shell_without_readable_page_content",
+      "canonical_url": null,
+      "readable_text": "HHS OCIO Technology",
+      "web_reader_result": "No readable lines",
+      "AI_statement_found": false,
+      "note": "The HTML requests client-side rendering. Do not infer staff identities or AI views from the page title or generic OCIO metadata."
+    },
+    {
+      "requested_url": "https://ferc.gov/commission/commission-members-and-senior-staff",
+      "status": "HTTP_200_accessible",
+      "canonical_url": "https://ferc.gov/commission/commission-members-and-senior-staff",
+      "content_type": "commission and staff role directory",
+      "AI_statement_found": false,
+      "source_last_updated": "November 02, 2026",
+      "note": "Names, titles, and biography links establish role-directory content. They do not establish AI views."
+    }
+  ]
+}
