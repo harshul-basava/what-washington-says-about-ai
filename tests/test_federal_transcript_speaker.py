@@ -153,6 +153,29 @@ class TranscriptSpeakerTests(unittest.TestCase):
         self.assertEqual(self.validate(row, {**page, 'text': 'Preface. ' * 800 + page['text']}, subject), ([], 1))
         self.assertEqual(self.validate(row, {**page, 'url': 'https://news.example/speech'}, subject), ([], 1))
 
+    def test_named_message_header_attributes_distant_official_letter_text(self):
+        subject = {**self.subject, 'name': 'Jared Isaacman', 'aliases': [],
+                   'source_speaker_aliases': [], 'organization_id': 'nasa',
+                   'roles': [{'title': 'Administrator'}]}
+        header = 'A Message From Administrator Jared Isaacman'
+        page = {**self.page, 'url': 'https://www.nasa.gov/letter',
+                'text': header + ' June 18, 2025. ' + 'Introduction. ' * 800 + self.quote}
+        row = {**self.row, 'attribution_quote': header, 'attribution_basis': 'document_author'}
+        accepted, rejected = self.validate(row, page, subject)
+        self.assertEqual(rejected, 0)
+        self.assertEqual(accepted[0][1]['attribution']['basis'], 'document_author')
+        self.assertTrue(federal.explicit_document_author(header + ' - NASA', subject))
+        for other in (header.replace('From', 'To'),
+                      header.replace('Jared Isaacman', 'Someone Else') + ', thanking Jared Isaacman',
+                      header + "'s Chief of Staff", header + ' Office',
+                      header + ': Questions and Answers',
+                      'A report about ' + header,
+                      'Advance Policy Questions for Administrator Jared Isaacman'):
+            with self.subTest(header=other):
+                self.assertFalse(federal.explicit_document_author(other, subject))
+        self.assertEqual(self.validate(row, {**page, 'url': 'https://news.example/letter'}, subject), ([], 1))
+        self.assertEqual(self.validate(row, {**page, 'text': 'Preface. ' * 800 + page['text']}, subject), ([], 1))
+
 
 if __name__ == '__main__':
     unittest.main()

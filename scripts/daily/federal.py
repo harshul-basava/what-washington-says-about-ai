@@ -104,6 +104,8 @@ def explicit_document_author(context, subject):
     honorific = r'(?:(?:Dr|Mr|Ms|Mrs)\.?\s+|The Honorable\s+|(?:Lieutenant |Major |Brigadier )?General\s+|(?:Vice |Rear )?Admiral\s+){0,2}'
     title = r'(?:(?:U\.S\.|US)\s+)?(?:' + agency_pattern + r'\s+)?' + role_pattern
     author = honorific + '(?:' + title + r'\s+)?' + honorific + who
+    if re.search(r'^A Message From\s+' + author + r'(?:\s+[-–—|]\s+' + agency_pattern + r')?$', context, re.I):
+        return True
     if re.search(r'^Office of ' + author + r'\s+(?:Keynote Address|Prepared Remarks|Remarks)\b', context, re.I):
         return True
     markers = r'(?:remarks (?:as prepared for delivery )?(?:by|of)|statement (?:of|by)|testimony (?:of|by)|speech by|prepared (?:remarks|testimony) (?:of|by)|statement for the record|as delivered by|prepared by:|from:)'

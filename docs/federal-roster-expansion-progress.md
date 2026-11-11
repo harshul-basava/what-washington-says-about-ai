@@ -1,6 +1,6 @@
 # Federal roster expansion: execution record
 
-Updated November 10, 2026.
+Updated November 11, 2026.
 
 The user set a limit of 500 current federal officials on November 10. This total includes the existing roster and the five pilot additions. Government institutions have a separate count. The expansion does not change the congressional roster.
 
@@ -43,6 +43,12 @@ The second 20-person cohort completed 160 historical web passes and initially ad
 The first two resumed cohorts and their repairs cost $10.877561 in total. The batch launcher has a $150 total model allowance, including retries, measured from ledger spending of $314.4537210994765. It stops on incomplete work and preserves the remaining allowance across restarts. The [backfill status](../data/federal_backfill_status.json) records each stage and cost.
 
 The third 20-person cohort completed all 160 historical passes and added 61 excerpts. All 143 web and X excerpts completed broad and named-policy analysis. Astra reviewed 16 profiles and accepted nine overall-AI findings. This cohort cost $8.281588. It finished in about 16 minutes under the previous worker limits. At this checkpoint, the resumed work cost $19.159149, leaving $130.840851 of the same $150 allowance. Historical web research remains pending for 373 additions.
+
+The fourth cohort completed its 160 historical passes and judgments for 110 excerpts. Astra reviewed 15 profiles and accepted five overall-AI findings. Repairs fixed a concurrent ledger-read failure and reused verified source context for excerpts from the same page. The context repair requires the exact source URL, hash, and both original excerpts. It does not relax quote or attribution checks. The saved total after this cohort was $27.460639, leaving $122.539361 of the same $150 allowance. This total includes failed requests, retries, and a diagnostic review. A request with uncertain billing retains its conservative reservation.
+
+A separate official-source audit recovered 17 missed excerpts for Aaron Lukas, Bradley Hansell, Kenneth Wilsbach, and Jared Isaacman. Each written answer passed manual checks against its exact question boundaries and source hash. The audit preserves unknown answer dates and identifies Hansell's exact document dateline. It does not treat the questions as the nominee's statements. A narrow authored-message header correction also supports Isaacman's NASA letter. The [manual source audit](../data/federal_manual_source_review.json) records these excerpts and zero paid calls. These additions require renewed model judgments and Astra review before their dependent assessments count as complete.
+
+The fifth cohort completed all requested stages, including judgments for 120 excerpts and Astra review of 12 profiles. Astra accepted one overall-AI finding. The run cost $6.991686. The saved sequence total reached $34.452325, leaving $115.547675 before the source-repair reviews and remaining cohorts. The original cumulative allowance remains $150.
 
 At resumption, the repository permitted another $185.546279 of OpenRouter spending under its unchanged lifetime cap. The user authorized a $350 workspace cap. The [read-only check before resumption](https://github.com/harshul-basava/what-washington-says-about-ai/actions/runs/42954239646) confirmed that cap, $162.11 in account credit, and $158.32 usable. These balances precede the resumed research costs. The check made no paid model calls.
 
