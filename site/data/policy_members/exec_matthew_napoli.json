@@ -18,16 +18,27 @@
      "note": "The exact quote appears in the named nominee answer after this question and before the exact next-question anchor. No question text appears in the quote."
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement lists Chinese nuclear arsenal growth and AI as separate challenges but does not address making AI competition with China a policy priority.",
+      "facets": [],
+      "confidence": 0.92,
+      "confidence_reason": "The target concerns AI race dynamics, while the evidence mentions China and AI only in a broader nuclear nonproliferation challenges list.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T08:21:24.307208+00:00",
+      "generation_id": "gen-1794385282-pAlYV3YIUMLvGwsBuhue"
+     }
+    },
+    "confidence": 0.92,
+    "final_judge": "deepseek",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    }
   ]
  },
