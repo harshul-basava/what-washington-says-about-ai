@@ -38,11 +38,11 @@ on:
         required: true
         default: "25"
       workers:
-        description: "Concurrent workers (1–8)"
+        description: "Concurrent workers (1–20), sharing the same cost allowance"
         type: choice
         required: true
-        default: "8"
-        options: ["1", "2", "3", "4", "5", "6", "7", "8"]
+        default: "20"
+        options: ["1", "2", "3", "4", "5", "6", "7", "8", "12", "16", "20"]
       stages:
         description: "Comma-separated stages to run"
         type: string
@@ -103,8 +103,8 @@ jobs:
               raise SystemExit('max_cost must be a number above 0 and at most 25.')
           if not math.isfinite(limit) or not 0 < limit <= 25:
               raise SystemExit('max_cost must be above 0 and at most 25.')
-          if not re.fullmatch(r'[1-8]', os.environ['BACKFILL_WORKERS']):
-              raise SystemExit('workers must be an integer from 1 through 8.')
+          if not re.fullmatch(r'[1-9]|1[0-9]|20', os.environ['BACKFILL_WORKERS']):
+              raise SystemExit('workers must be an integer from 1 through 20.')
           stages = os.environ['BACKFILL_STAGES'].split(',')
           if not stages or len(stages) != len(set(stages)) or not set(stages) <= {'research', 'seeds', 'analysis', 'policies', 'astra'}:
               raise SystemExit('Use comma-separated research, seeds, analysis, policies, or astra stages.')

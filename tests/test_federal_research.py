@@ -187,14 +187,17 @@ class HistoricalTests(unittest.TestCase):
         import federal_sources as sources
         client = sources.Client.__new__(sources.Client)
         started, release = threading.Event(), threading.Event()
+        ledger = []
         def chat(*args, **kwargs):
-            started.set(); release.wait(5); return {}
+            started.set(); release.wait(5); return {'usage': {'cost': 0}}
         class BudgetError(Exception): pass
-        client.llm = SimpleNamespace(spent=lambda _: 0, spent_this_month=lambda _: 999,
+        client.llm = SimpleNamespace(spent=lambda _: sum(ledger), spent_this_month=lambda _: 999,
+            _log=lambda provider, amount, tag, meta: ledger.append(amount),
             BUDGETS={'openrouter': 10, 'monthly': {'openrouter': 1}}, BudgetExceeded=BudgetError, chat=chat)
         client.metadata = {'pricing': {'prompt': '.001', 'completion': '.001'}}
-        client.baseline = 0; client.max_cost = .3; client.daily = False; client.model = 'test'
-        client.lock = threading.Lock(); client.reserved = 0
+        client.daily = False; client.model = 'test'
+        from model_budget import Budget
+        client.budget = Budget(.3, False, {'test': client.metadata}, client.llm)
         thread = threading.Thread(target=client.chat, args=([{'role': 'user', 'content': 'a'}], 'test', 10))
         thread.start(); self.assertTrue(started.wait(2))
         try:
@@ -202,7 +205,7 @@ class HistoricalTests(unittest.TestCase):
                 client.chat([{'role': 'user', 'content': 'a'}], 'test', 10)
         finally:
             release.set(); thread.join()
-        self.assertAlmostEqual(client.reserved, 0)
+        self.assertAlmostEqual(client.llm.spent('openrouter'), 0)
 
     def test_cached_research_resume_never_repeats_paid_search(self):
         import federal_research as research

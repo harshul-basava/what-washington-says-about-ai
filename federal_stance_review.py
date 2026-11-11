@@ -108,7 +108,7 @@ def run(root,max_cost=20,workers=1,ids=None):
     selected=set(saved['target_ids']) if ids is None else set(ids)
     if not selected<=set(saved['target_ids']):raise ValueError('Profile is outside the original review cohort')
     subjects=[s for s in subjects if s['id'] in selected]
-    recovered = recover_contexts(root, saved, evidence, {s['id'] for s in subjects}, workers)
+    recovered = recover_contexts(root, saved, evidence, {s['id'] for s in subjects}, min(workers, 4))
     jobs=[]
     for s in subjects:
         pid=s['id'];previous=saved['profiles'].get(pid,{})
@@ -123,7 +123,7 @@ def run(root,max_cost=20,workers=1,ids=None):
     if MODEL not in metadata:raise ValueError('Astra is unavailable')
     remaining=max_cost-(llm.spent('openrouter')-saved['budget_baseline'])
     if remaining<=0:raise llm.BudgetExceeded('Review allowance exhausted')
-    budget=Budget(remaining,False,metadata)
+    budget=Budget(remaining,False,metadata,wait_for_capacity=workers>4)
     def assess(job):
         s,contexts,signature,context_meta=job;pid=s['id']
         prompt=review_messages(s,evidence[pid],contexts,config)

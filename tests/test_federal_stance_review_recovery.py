@@ -51,12 +51,20 @@ class ContextRecoveryTests(unittest.TestCase):
         self.assertEqual(review.a.read(self.cache)['text'], review.normalize(self.text))
         self.assertEqual(saved['profiles']['a'], self.entry)
 
+    def test_parallel_model_reviews_keep_source_recovery_at_four_workers(self):
+        with patch('httpx.get', side_effect=self.source_response), \
+             patch.object(review, 'Budget', side_effect=AssertionError('Unchanged review must remain cached')), \
+             patch.object(review, 'fetch_contexts', wraps=review.fetch_contexts) as fetch:
+            saved = review.run(self.root, max_cost=1, workers=20)
+        self.assertEqual(fetch.call_args.kwargs['workers'], 4)
+        self.assertEqual(saved['profiles']['a'], self.entry)
+
     def test_changed_recovered_text_requires_a_new_review_and_keeps_prior_provenance(self):
         self.text += ' Additional source text changed after the original review.'
         prompts = []
 
         class Budget:
-            def __init__(self, *args):
+            def __init__(self, *args, wait_for_capacity=False):
                 pass
 
             def call(inner, model, messages, *args, **kwargs):

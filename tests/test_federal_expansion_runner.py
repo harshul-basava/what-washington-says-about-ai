@@ -3,6 +3,9 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+import subprocess
+import sys
+from unittest.mock import patch
 
 
 SCRIPT = Path(__file__).resolve().parents[1] / 'scripts/federal_expansion_runner.py'
@@ -35,6 +38,37 @@ class ExpansionRunnerTests(unittest.TestCase):
         self.assertEqual(self.module.remaining_allowance(25, 100, 126), 0)
         with self.assertRaises(ValueError):
             self.module.remaining_allowance(25, 100, 99)
+
+    def test_twenty_worker_plan_preserves_the_existing_cost_limit(self):
+        result = subprocess.run([sys.executable, str(SCRIPT), 'plan', '--cohort', 'expansion_04',
+                                 '--workers', '20', '--max-cost', '25'], capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        plan = json.loads(result.stdout)
+        self.assertEqual(plan['workers'], 20)
+        self.assertEqual(plan['max_model_cost_usd'], 25)
+        self.assertEqual(plan['paid_calls'], 0)
+        self.assertEqual(plan['stages'], ['research', 'seeds', 'analysis', 'policies', 'astra'])
+
+    def test_astra_receives_the_full_requested_parallelism(self):
+        import federal_analysis as analysis
+        import federal_stance_review as review
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            pid = 'exec_test'
+            audit_path = root / 'data/federal_roster_expansion_review_expansion_04.json'
+            seen = []
+            def assess(root, allowance, workers, ids):
+                seen.append(workers)
+                audit = self.module.read(audit_path)
+                audit['profiles'] = {pid: {'result': {'context_requests': []}}}
+                self.module.write(audit_path, audit)
+            with patch.object(analysis, 'inputs', return_value=([{'id': pid}], {pid: [{'sid': 's1'}]})), \
+                 patch.object(analysis, 'build', return_value={'revision': 'test', 'members': [{'id': pid, 'scores': {}}]}), \
+                 patch.object(review, 'PATH', review.PATH), patch.object(review, 'run', side_effect=assess), \
+                 patch.object(review, 'apply', return_value={'reviewed_profiles': 1}):
+                result = self.module.review_cohort(root, 'expansion_04', [pid], lambda: 5, 20, set())
+            self.assertEqual(result['status'], 'complete')
+            self.assertEqual(seen, [20])
 
     def test_original_seed_progress_survives_a_fresh_runner(self):
         with tempfile.TemporaryDirectory() as directory:

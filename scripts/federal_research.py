@@ -280,6 +280,8 @@ def main():
     parser.add_argument('--run-token', help='Identify seed checkpoints from this invocation')
     parser.add_argument('--reverify', action='store_true', help='Recheck cached research only, without new search calls')
     args = parser.parse_args()
+    if not 1 <= args.workers <= 20:
+        parser.error('workers must be 1–20')
     subjects = [s for s in policy_subjects.load_subjects(ROOT) if s['branch'] == 'executive']
     config = federal.read(ROOT / 'config/federal_research.json', {})
     audit_path = ROOT / 'data/federal_research.json'
@@ -288,7 +290,7 @@ def main():
     selected = [s for s in subjects if (not args.ids or s['id'] in args.ids.split(',')) and
                 (args.below is None or report['profiles'][s['id']]['statements'] < args.below)]
     if args.command == 'seeds':
-        client = sources.Client(ROOT, args.max_cost, daily=False)
+        client = sources.Client(ROOT, args.max_cost, daily=False, wait_for_capacity=args.workers > 8)
         seeds = federal.read(ROOT / 'config/federal_research_seeds.json', {}).get('subjects', {})
         seed_path = ROOT / 'data/federal_seed_research.json'
         seed_audit = federal.read(seed_path, {'profiles': {}})
@@ -312,7 +314,8 @@ def main():
     if args.command == 'plan':
         print(json.dumps({'subjects': [s['id'] for s in selected], 'count': len(selected), 'config': config, 'coverage': report['summary']}, indent=2)); return
     if args.command == 'research' and selected:
-        client = sources.Client(ROOT, args.max_cost, model=config['model'], daily=False)
+        client = sources.Client(ROOT, args.max_cost, model=config['model'], daily=False,
+                                wait_for_capacity=args.workers > 8)
         seeds = federal.read(ROOT / 'config/federal_research_seeds.json', {}).get('subjects', {})
         used_words = Counter()
         for subject in subjects:

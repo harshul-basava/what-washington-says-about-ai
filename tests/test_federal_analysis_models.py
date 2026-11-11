@@ -11,6 +11,25 @@ import llm
 ROOT=Path(__file__).resolve().parents[1]
 
 class GatewayTests(unittest.TestCase):
+    def test_invalid_actual_cost_never_corrupts_the_ledger(self):
+        for cost in (float('nan'), float('inf'), -.01, 'invalid', True):
+            with self.subTest(cost=cost), patch.object(llm, '_check'), \
+                 patch.dict(llm.os.environ, {'OPENROUTER_API_KEY': 'test'}), \
+                 patch.object(llm.httpx, 'post', return_value=httpx.Response(200,
+                     content=__import__('json').dumps({'usage': {'cost': cost}}).encode())), \
+                 patch.object(llm, '_log') as log:
+                with self.assertRaises(ValueError):
+                    llm.chat([], tag='test', retry_attempts=1)
+                log.assert_not_called()
+
+    def test_local_credit_check_identifies_a_request_that_never_started(self):
+        with patch.object(llm, 'spent', return_value=500), patch.object(llm, 'BUDGETS', {'openrouter': 500}), \
+             patch.object(llm.httpx, 'post') as post:
+            with self.assertRaises(llm.BudgetExceeded) as caught:
+                llm.chat([], tag='test', retry_attempts=1)
+            self.assertTrue(getattr(caught.exception, 'rejected_before_inference', False))
+            post.assert_not_called()
+
     def test_preflight_credit_rejection_retains_safe_metadata(self):
         payload={'error':{'code':402,'message':'Wait for pending requests.',
             'metadata':{'limit_source':'openrouter_in_flight_budget','reason':'in_flight_budget_exhausted'}}}
@@ -101,7 +120,7 @@ class ModelTests(unittest.TestCase):
                'source_type':'web','verified':True,'attribution':{'kind':'personal','speaker':person['name']}}
             a.write(root/'evidence/executive_a.json',{'statements':[s]})
             with patch.object(llm.httpx,'get',side_effect=AssertionError('No network at zero allowance')):
-                result=self.m.run(root,max_cost=0)
+                result=self.m.run(root,max_cost=0,workers=20)
             self.assertEqual(result['status'],'partial');self.assertEqual(result['pending_labels'],1)
             self.assertEqual(result['estimated_cost_usd'],0)
             observations=a.read(root/f'data/federal_analysis_snapshots/{a.today()}.json',{})

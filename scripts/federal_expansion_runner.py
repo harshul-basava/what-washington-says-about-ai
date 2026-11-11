@@ -125,7 +125,7 @@ def review_cohort(root, cohort, ids, allowance, workers, refresh_ids):
             return {'status': 'pending', 'reason': 'model_allowance_exhausted'}
         # The review API measures its allowance from the saved audit baseline.
         review.run(root, llm.spent('openrouter') - audit['budget_baseline'] + remaining,
-                   workers=min(workers, 4), ids=target_ids)
+                   workers=workers, ids=target_ids)
         audit = read(path)
         if any(not audit['profiles'].get(pid, {}).get('result') or audit['profiles'][pid].get('error') for pid in target_ids):
             return {'status': 'pending', 'reason': 'review_response_incomplete'}
@@ -274,8 +274,8 @@ def main():
     parser.add_argument('--workers', type=int, default=8)
     parser.add_argument('--stages', default=','.join(STAGES))
     args = parser.parse_args()
-    if not math.isfinite(args.max_cost) or not 0 < args.max_cost <= 25 or not 1 <= args.workers <= 8:
-        parser.error('Use max-cost greater than zero and at most 25; workers must be 1–8')
+    if not math.isfinite(args.max_cost) or not 0 < args.max_cost <= 25 or not 1 <= args.workers <= 20:
+        parser.error('Use max-cost greater than zero and at most 25; workers must be 1–20')
     requested = args.stages.split(',')
     if not requested or len(requested) != len(set(requested)) or not set(requested) <= set(STAGES):
         parser.error('Invalid or duplicate stages')

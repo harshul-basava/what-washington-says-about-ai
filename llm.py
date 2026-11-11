@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 import json
+import math
 import os
 import time
 from pathlib import Path
@@ -28,6 +29,11 @@ X_PRICE_PER_COUNTS_REQ = 0.01
 
 class BudgetExceeded(RuntimeError):
     pass
+
+
+class PreflightBudgetExceeded(BudgetExceeded):
+    """The local gateway refused a request before any provider transport."""
+    rejected_before_inference = True
 
 
 class OpenRouterRequestError(RuntimeError):
@@ -75,10 +81,10 @@ def spent_this_month(provider: str, prefix: str = DAILY_PREFIX) -> float:
 def _check(provider: str, tag: str = "") -> None:
     s = spent(provider)
     if s >= BUDGETS.get(provider, float("inf")):
-        raise BudgetExceeded(f"{provider} spend ${s:.2f} >= budget ${BUDGETS[provider]}")
+        raise PreflightBudgetExceeded(f"{provider} spend ${s:.2f} >= budget ${BUDGETS[provider]}")
     cap = (BUDGETS.get("monthly") or {}).get(provider)
     if cap is not None and tag.startswith(DAILY_PREFIX) and (m := spent_this_month(provider)) >= cap:
-        raise BudgetExceeded(f"{provider} spend this month ${m:.2f} >= monthly budget ${cap}")
+        raise PreflightBudgetExceeded(f"{provider} spend this month ${m:.2f} >= monthly budget ${cap}")
 
 
 def _log(provider: str, cost: float, tag: str, meta: dict) -> None:
@@ -119,7 +125,11 @@ def chat(messages: list[dict], *, tag: str, tools: list | None = None, model: st
         raise OpenRouterRequestError(r.status_code,error if isinstance(error,dict) else {},r.headers.get('Retry-After'))
     data = r.json()
     usage = data.get("usage") or {}
-    cost = float(usage.get("cost") or 0.0)
+    reported_cost = usage.get('cost')
+    if reported_cost is not None and (type(reported_cost) not in (int, float)
+                                     or not math.isfinite(reported_cost) or reported_cost < 0):
+        raise ValueError('Provider returned an invalid model cost; preserve any reservation')
+    cost = reported_cost or 0.0
     _log("openrouter", cost, tag, {"model": model, "usage": usage, "gen_id": data.get("id")})
     return data
 

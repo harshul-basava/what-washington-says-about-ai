@@ -4,7 +4,7 @@ import html
 import json
 import re
 import io
-import threading
+import math
 from html.parser import HTMLParser
 from urllib.parse import urljoin, urlsplit, urlunsplit
 
@@ -89,16 +89,12 @@ def parse_json(content):
 
 class Client:
     """Concurrent calls reserve their maximum estimated cost before contacting a model."""
-    def __init__(self, root, max_cost, model=None, daily=True):
+    def __init__(self, root, max_cost, model=None, daily=True, *, wait_for_capacity=False):
         import llm
         import policy_cascade
         self.llm = llm
         self.model = model or policy_cascade.load_strategy(root)['primary_model']
         self.daily = daily
-        self.lock = threading.Lock()
-        self.reserved = 0.0
-        self.baseline = llm.spent('openrouter')
-        self.max_cost = max_cost
         if not llm.os.environ.get('OPENROUTER_API_KEY'):
             raise ValueError('OPENROUTER_API_KEY is required for federal collection')
         response = httpx.get('https://openrouter.ai/api/v1/models', timeout=30)
@@ -106,34 +102,28 @@ class Client:
         self.metadata = next((m for m in response.json()['data'] if m['id'] == self.model), None)
         if not self.metadata:
             raise ValueError('Configured federal extraction model is unavailable')
+        from model_budget import Budget
+        self.budget = Budget(max_cost, daily, {self.model: self.metadata}, llm,
+                             wait_for_capacity=wait_for_capacity)
 
     def chat(self, messages, tag, max_tokens, tools=None):
         pricing = self.metadata['pricing']
         tiers = [pricing, *pricing.get('overrides', [])]
         in_rate = max(float(t.get('prompt', pricing['prompt'])) for t in tiers)
         out_rate = max(float(t.get('completion', pricing['completion'])) for t in tiers)
+        request_rate = max(float(t.get('request', pricing.get('request', 0)) or 0) for t in tiers)
+        if any(not math.isfinite(rate) or rate < 0 for rate in (in_rate, out_rate, request_rate)):
+            raise ValueError('Invalid model pricing')
         # One token per byte, plus all allowed retrieved pages and tool charges.
         parameters = tools[0].get('parameters', {}) if tools else {}
         uses = parameters.get('max_uses', 1) if tools else 0
         results = parameters.get('max_total_results', parameters.get('max_results', 6) * uses)
         input_bound = sum(len(m['content'].encode()) for m in messages) + 200
         input_bound += results * parameters.get('max_characters', 12000) * 4 if tools else 0
-        reserve = input_bound * in_rate + max_tokens * out_rate + 0.05 * uses
-        with self.lock:
-            spent = self.llm.spent('openrouter')
-            month_cap = self.llm.BUDGETS.get('monthly', {}).get('openrouter', float('inf'))
-            if (spent - self.baseline + self.reserved + reserve > self.max_cost
-                    or spent + self.reserved + reserve > self.llm.BUDGETS['openrouter']
-                    or (self.daily and self.llm.spent_this_month('openrouter') + self.reserved + reserve > month_cap)):
-                raise self.llm.BudgetExceeded('Federal collection reservation exceeds a run or project budget')
-            self.reserved += reserve
-        try:
-            return self.llm.chat(messages, tag=tag, model=self.model, max_tokens=max_tokens,
-                                 tools=tools, reasoning={'effort': 'low'},
-                                 **({'response_format': {'type': 'json_object'}} if tools is None else {}))
-        finally:
-            with self.lock:
-                self.reserved -= reserve
+        reserve = input_bound * in_rate + max_tokens * out_rate + request_rate + 0.05 * uses
+        return self.budget.call_reserved(self.model, messages, max_tokens, tag, reserve,
+                                        request_timeout=600, tools=tools, reasoning={'effort': 'low'},
+                                        **({'response_format': {'type': 'json_object'}} if tools is None else {}))
 
     def search(self, query, domains, since):
         prompt = (f'Search for public AI policy statements published since {since}. Topic: {query}. '
