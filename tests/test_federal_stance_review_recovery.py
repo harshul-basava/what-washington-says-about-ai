@@ -81,6 +81,54 @@ class ContextRecoveryTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             review.load_contexts(self.root, self.entry['contexts'])
 
+    def test_same_page_context_is_saved_for_each_matching_excerpt_and_reused(self):
+        second = {**self.statement, 'sid': 's2', 'text': 'AI will benefit'}
+        self.text += ' Official A said: AI will benefit our whole economy.'
+        self.meta['text_hash'] = review.a.digest(review.normalize(self.text))
+        self.entry['error'] = 'An earlier context review needs retry'
+        review.a.write(self.cache, {'status': 'available', 'url': self.statement['url'], 'text': review.normalize(self.text)})
+        review.a.write(self.root / review.PATH, self.audit)
+        result = self.response()
+        result['findings'] = [{'sid': 's2', 'label': 3, 'confidence': 4, 'reason': 'General benefits.',
+                              'supporting_quote': 'AI will benefit our whole economy.',
+                              'attribution_quote': 'Official A said: AI will benefit our whole economy.'}]
+        class Budget:
+            def __init__(self, *args, **kwargs): pass
+            def call(inner, *args, **kwargs):
+                return {'id': 'shared-generation', 'choices': [{'message': {'content': json.dumps(result)}}]}
+        with patch.object(review.a, 'inputs', return_value=([self.subject], {'a': [self.statement, second]})), \
+             patch('httpx.get', side_effect=self.source_response), patch.object(review, 'Budget', Budget), \
+             patch('llm.spent', return_value=0):
+            saved = review.run(self.root, max_cost=1)
+            entry = saved['profiles']['a']
+            self.assertNotIn('error', entry)
+            self.assertEqual(entry['contexts']['s2'], {**self.meta, 'shared_from_sid': 's1'})
+            self.assertEqual(entry['result']['findings'][0]['support_basis'], 'context')
+            with patch.object(review, 'Budget', side_effect=AssertionError('Shared context must remain cached')):
+                self.assertEqual(review.run(self.root, max_cost=1)['profiles']['a'], entry)
+
+    def test_context_sharing_requires_same_url_exact_excerpts_and_verified_cache(self):
+        review.a.write(self.cache, {'status': 'available', 'url': self.statement['url'], 'text': review.normalize(self.text)})
+        metadata = {'s1': self.meta}
+        for second in (
+            {**self.statement, 'sid': 's2', 'url': 'https://other.gov/speech'},
+            {**self.statement, 'sid': 's2', 'text': 'Words absent from the source'},
+            {**self.statement, 'sid': 's2', 'source_type': 'x'},
+        ):
+            with self.subTest(second=second):
+                shared = review.share_source_contexts(self.root, [self.statement, second], metadata)
+                self.assertNotIn('s2', shared)
+        second = {**self.statement, 'sid': 's2'}
+        shared = review.share_source_contexts(self.root, [{**self.statement, 'source_type': 'x'}, second], metadata)
+        self.assertNotIn('s2', shared)
+        unavailable = {**metadata, 's2': {'status': 'unavailable', 'reason': 'Keep this explicit source gap'}}
+        self.assertEqual(review.share_source_contexts(self.root, [self.statement, second], unavailable), unavailable)
+        review.a.write(self.cache, {'status': 'available', 'url': 'https://other.gov/speech', 'text': review.normalize(self.text)})
+        self.assertNotIn('s2', review.share_source_contexts(self.root, [self.statement, second], metadata))
+        review.a.write(self.cache, {'status': 'available', 'url': self.statement['url'], 'text': 'Changed cache'})
+        with self.assertRaises(ValueError):
+            review.share_source_contexts(self.root, [self.statement, {**self.statement, 'sid': 's2'}], metadata)
+
     def test_existing_changed_cache_is_retrieved_again_before_review(self):
         review.a.write(self.cache, {'status': 'available', 'url': self.statement['url'], 'text': 'Changed cache content'})
         with patch('httpx.get', side_effect=self.source_response), patch.object(review, 'Budget', side_effect=AssertionError('Original source restores the cached review')):

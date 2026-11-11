@@ -118,6 +118,11 @@ def run(root,max_cost=20,workers=1,ids=None):
         contexts=load_contexts(root,context_meta)
         signature=a.digest([PROMPT_VERSION,MODEL,a.subject_context(s),evidence[pid],contexts,config['rubric'],config['prompt']])
         if previous.get('input_hash')==signature and previous.get('result') and not previous.get('error'):continue
+        # A requested page can contain several excerpts from this same profile.
+        # Save explicit metadata for each usable excerpt before review and apply.
+        context_meta=share_source_contexts(root,evidence[pid],context_meta)
+        contexts=load_contexts(root,context_meta)
+        signature=a.digest([PROMPT_VERSION,MODEL,a.subject_context(s),evidence[pid],contexts,config['rubric'],config['prompt']])
         jobs.append((s,contexts,signature,context_meta))
     if not jobs:return saved
     response=llm.httpx.get('https://openrouter.ai/api/v1/models',timeout=30);response.raise_for_status()
@@ -163,6 +168,28 @@ def load_contexts(root,metadata):
             row['text']=raw['text']
         result[sid]=row
     return result
+
+
+def share_source_contexts(root, statements, metadata):
+    """Reuse a verified web page only for matching excerpts in this one profile."""
+    shared={sid:dict(meta) for sid,meta in metadata.items()}
+    byid={s['sid']:s for s in statements}
+    contexts=load_contexts(root,metadata)  # Refuse changed source text.
+    for statement in statements:
+        sid=statement['sid']
+        if sid in shared or statement.get('source_type')=='x':continue
+        for donor,context in contexts.items():
+            origin=byid.get(donor,{})
+            if origin.get('source_type')=='x' or context.get('status')!='available':continue
+            if not statement.get('url') or statement['url']!=origin.get('url') or statement['url']!=context.get('url'):continue
+            raw=a.read(root/metadata[donor]['cache_path'],{})
+            if raw.get('status')!='available' or raw.get('url')!=statement['url']:continue
+            text=normalize(context.get('text',''))
+            quotes=[normalize(s.get('text','')) for s in (origin,statement)]
+            if not all(quote and quote in text for quote in quotes):continue
+            shared[sid]={**metadata[donor],'shared_from_sid':donor}
+            break
+    return shared
 
 
 def recover_contexts(root, saved, evidence, ids, workers):
