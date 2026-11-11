@@ -4,6 +4,24 @@ Updated November 11, 2026.
 
 The user set a limit of 500 current federal officials on November 10. This total includes the existing roster and the five pilot additions. Government institutions have a separate count. The expansion does not change the congressional roster.
 
+## Completed historical research and reviews
+
+The requested research and model reviews finished on November 11. The final roster contains 500 current people and 35 institutions. All 433 additions after the pilot completed eight web passes each: 3,464 passes across 22 cohorts. These additions now have 1,184 verified excerpts across 198 people. The other 235 additions remain visible without verified evidence.
+
+The full federal corpus contains 4,796 excerpts across 289 profiles: 256 people and 33 institutions. All excerpts have current labels. No broad-analysis, regulation, summary, or named-policy model requests remain pending. The final independent Astra audits cover 206 profiles: 198 additions, four pilot profiles, and four retained profiles with changed role context. The retained refresh reused earlier historical research and refreshed judgments where required. It did not repeat every retained profile's historical search.
+
+Completion does not guarantee a score on each question. The full roster still has 246 profiles without verified evidence. Another 24 named-policy assessments require human review after the confidence cascade. These assessments remain outside accepted stance charts. The [completion audit](../data/federal_roster_expansion_completion.json) records these separate outcomes and the exact scope.
+
+The resumed research sequence used **$131.094836 of its $150 model allowance**, leaving **$18.905164**. This total includes retries, repairs, and one conservative $0.662062 reservation with uncertain billing. Requested X context cost another $0.18. The earlier bounded X archive collection cost $3.00, outside this resumed model sequence. The ledger remains below the unchanged project lifetime caps. No additional paid run is needed for this completion check.
+
+All 535 profiles have one daily source assignment across 34 groups. Daily limits can leave checks queued; historical completion does not establish current daily coverage. The existing daily workflow remains the only active schedule. The fork's duplicate schedule stays disabled.
+
+The audit preserves 21 source-access gaps across four directory or inventory URLs. It also preserves two unavailable older personal X accounts and missing account mappings. These limits do not establish an absence of public statements. The office inventory retains unresolved roles outside the selected 500; this release is not a complete federal census.
+
+Final verification passed 291 Python tests and 58 JavaScript tests. The offline site build passed. The deployed chart revisions match the final data. Browser checks confirmed agency filters, role links, no-evidence profiles, Astra review details, and the narrow layout.
+
+The following sections preserve earlier checkpoints and their costs. Their interim counts and balances do not describe the final state above.
+
 ## Completed pilot
 
 | Official | Current office | Verified web excerpts | Verified X excerpts |
@@ -50,7 +68,7 @@ A separate official-source audit recovered 17 missed excerpts for Aaron Lukas, B
 
 A follow-up audit recovered 24 more answer excerpts: nine for Christopher Mahoney, six for Dan Caine, four for Arielle Roth, and five for Kenneth Wilsbach. The [follow-up audit](../data/federal_manual_source_followup.json) records exact answer boundaries and source hashes. Caine's official biographical questionnaire explicitly connects Dan Caine and John Daniel Caine; the registry now retains that sourced full-name alias. Roth's one-word answer remains a documented limitation because it falls below the excerpt-length requirement. The questions never become part of an official's quotation. All 24 additions completed renewed judgments and Astra review for $0.622771.
 
-The [third source audit](../data/federal_manual_source_final.json) recovered nine additional answers: five for David Beck, two for Matthew Napoli, and two for Joseph Edlow. All three retrieved texts match the tracked source hashes. Edlow's date comes from the written questionnaire's May 28, 2025 dateline, rather than the May 21 filename. Beck and Napoli retain unknown answer dates. One Edlow answer needs its original question as separate context; it does not establish agreement with the senator's premises. These additions await renewed judgments and Astra review, including Napoli's first review because his profile previously had no evidence.
+The [third source audit](../data/federal_manual_source_final.json) recovered nine additional answers: five for David Beck, two for Matthew Napoli, and two for Joseph Edlow. All three retrieved texts match the tracked source hashes. Edlow's date comes from the written questionnaire's May 28, 2025 dateline, rather than the May 21 filename. Beck and Napoli retain unknown answer dates. One Edlow answer needs its original question as separate context; it does not establish agreement with the senator's premises. All nine additions completed renewed judgments and Astra review for $0.130560. This includes Napoli's first review because his profile previously had no evidence. Across all three source audits, 50 recovered excerpts completed renewed reviews for $1.151508.
 
 The [source-access follow-up](../data/federal_source_access_followup.json) found Labor's replacement HTTPS inventory URL and updated the future research seed. Its departmental descriptions do not establish personal views. HHS's leadership page returned a client-rendered shell. The FERC directory was accessible locally and contained roles without AI statements. Historical workflow gaps remain unchanged in their audit records. This follow-up made no paid calls and added no personal excerpts.
 
@@ -64,7 +82,7 @@ The accelerated backfill allows up to 20 workers for research, extraction, broad
 
 Public account searches covered all 433 additions. They found source-supported mappings for 45 people; four other leads need more account evidence. The bounded search found no verified account for 384 people. Across the new and retained people, this work adds 51 account intervals for 46 people. The search does not establish that the other people have no public account.
 
-Three official X batches added 425 verified excerpts for $3.00 in recorded API cost. Collected posts passed the numeric author checks. All 14 required original-post author checks passed, including the later Selig mapping. The batches skipped model judgments. New excerpts remain available on the site with pending assessments. These bounded keyword searches do not establish complete X histories.
+Three official X batches added 425 verified excerpts for $3.00 in recorded API cost. Collected posts passed the numeric author checks. All 14 required original-post author checks passed, including the later Selig mapping. The collection batches skipped model judgments; the completed cohort reviews subsequently assessed these excerpts. These bounded keyword searches do not establish complete X histories.
 
 The API could not retrieve the personal accounts previously documented for Olivia Trusty and Michael S. Selig. The [account follow-up](../data/federal_roster_x_unavailable_followup.json) preserves those failures and sources. Separate sources identify their government-role accounts, `OliviaTrustyFCC` and `ChairmanSelig`. Collection uses these accounts from June 28, 2025 and January 21, 2026, respectively. The final batch verified both accounts and added 14 Trusty excerpts and 27 Selig excerpts. These mappings do not establish that the old accounts changed names. The older personal histories remain unavailable.
 
@@ -74,7 +92,7 @@ All 49 new account intervals before the cutoff completed the bounded archive sea
 
 The account review also found a stale Treasury biography. A November 6 employer announcement confirms Jonathan McKernan returned to private practice. His replacement is Jennifer Murphy. Conflicting sources leave Michael J. Rigas’s current service unresolved; Jennifer Schoen fills that slot. Dated amendments preserve both original selection decisions. William K. Marshall III remains eligible after a fresh Bureau of Prisons biography check.
 
-The larger roster, historical backfills, and final Astra reviews remain in progress. Pilot completion does not establish completion of that work. Source access failures, uncertain current roles, and missing account ownership remain explicit limits.
+The selected roster's historical backfills and required Astra reviews are complete. The final audit checks every active profile and all 22 expansion cohorts. Source access failures, uncertain roles outside the active roster, and missing account ownership remain explicit limits.
 
 ## Daily update implementation
 
