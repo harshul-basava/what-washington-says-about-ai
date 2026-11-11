@@ -1,0 +1,204 @@
+name: Federal research backfill
+
+on:
+  workflow_dispatch:
+    inputs:
+      cohort:
+        description: "Expansion cohort, or refresh retained profiles"
+        type: choice
+        required: true
+        default: expansion_01
+        options:
+          - expansion_01
+          - expansion_02
+          - expansion_03
+          - expansion_04
+          - expansion_05
+          - expansion_06
+          - expansion_07
+          - expansion_08
+          - expansion_09
+          - expansion_10
+          - expansion_11
+          - expansion_12
+          - expansion_13
+          - expansion_14
+          - expansion_15
+          - expansion_16
+          - expansion_17
+          - expansion_18
+          - expansion_19
+          - expansion_20
+          - expansion_21
+          - expansion_22
+          - existing_refresh
+      max_cost:
+        description: "Maximum additional OpenRouter cost for the whole run, in USD (above 0, at most 25)"
+        type: string
+        required: true
+        default: "25"
+      workers:
+        description: "Concurrent workers (1–8)"
+        type: choice
+        required: true
+        default: "8"
+        options: ["1", "2", "3", "4", "5", "6", "7", "8"]
+      stages:
+        description: "Comma-separated stages to run"
+        type: string
+        required: true
+        default: research,seeds,analysis,policies,astra
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-update
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      BACKFILL_COHORT: ${{ inputs.cohort }}
+      BACKFILL_MAX_COST: ${{ inputs.max_cost }}
+      BACKFILL_WORKERS: ${{ inputs.workers }}
+      BACKFILL_STAGES: ${{ inputs.stages }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Include evidence and spend committed while this dispatch waited.
+          ref: ${{ github.event.repository.default_branch }}
+
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Install
+        run: uv sync --no-dev --frozen
+
+      - name: Restore research and source context checkpoints
+        id: raw_cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            data/raw/federal_research
+            data/raw/federal_stance_context
+          key: federal-backfill-raw-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: federal-backfill-raw-v1-
+
+      - name: Validate inputs and plan without model credentials
+        id: plan
+        run: |
+          python - <<'PY'
+          import math
+          import os
+          import re
+          cohort = os.environ['BACKFILL_COHORT']
+          if not re.fullmatch(r'expansion_(0[1-9]|1[0-9]|2[0-2])|existing_refresh', cohort):
+              raise SystemExit('Select expansion_01 through expansion_22, or existing_refresh.')
+          try:
+              limit = float(os.environ['BACKFILL_MAX_COST'])
+          except ValueError:
+              raise SystemExit('max_cost must be a number above 0 and at most 25.')
+          if not math.isfinite(limit) or not 0 < limit <= 25:
+              raise SystemExit('max_cost must be above 0 and at most 25.')
+          if not re.fullmatch(r'[1-8]', os.environ['BACKFILL_WORKERS']):
+              raise SystemExit('workers must be an integer from 1 through 8.')
+          stages = os.environ['BACKFILL_STAGES'].split(',')
+          if not stages or len(stages) != len(set(stages)) or not set(stages) <= {'research', 'seeds', 'analysis', 'policies', 'astra'}:
+              raise SystemExit('Use comma-separated research, seeds, analysis, policies, or astra stages.')
+          PY
+          uv run --no-dev python scripts/federal_expansion_runner.py plan \
+            --cohort "$BACKFILL_COHORT" --max-cost "$BACKFILL_MAX_COST" \
+            --workers "$BACKFILL_WORKERS" --stages "$BACKFILL_STAGES" \
+            | tee "$RUNNER_TEMP/federal-backfill-plan.log"
+
+      - name: Run the bounded cohort
+        id: execute
+        if: steps.plan.outcome == 'success'
+        continue-on-error: true
+        timeout-minutes: 75
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+        run: |
+          echo 'attempted=true' >> "$GITHUB_OUTPUT"
+          if [[ -z "$OPENROUTER_API_KEY" ]]; then
+            echo '::error::OPENROUTER_API_KEY is required.'
+            exit 1
+          fi
+          # Leave time for the offline build, cache save, and progress push.
+          set +e
+          timeout --signal=TERM --kill-after=30s 70m \
+            uv run --no-dev python scripts/federal_expansion_runner.py run \
+            --cohort "$BACKFILL_COHORT" --max-cost "$BACKFILL_MAX_COST" \
+            --workers "$BACKFILL_WORKERS" --stages "$BACKFILL_STAGES" \
+            | tee "$RUNNER_TEMP/federal-backfill-run.log"
+          result=${PIPESTATUS[0]}
+          set -e
+          echo "exit_code=$result" >> "$GITHUB_OUTPUT"
+          exit "$result"
+
+      - name: Build public site data from saved progress
+        id: build
+        if: always() && steps.execute.outputs.attempted == 'true'
+        timeout-minutes: 10
+        run: uv run --no-dev python scripts/phase5_build_site.py
+
+      - name: Prepare public progress and cost backup
+        id: checkpoint
+        if: always() && steps.execute.outputs.attempted == 'true'
+        run: |
+          git add data evidence site/data
+          git diff --cached --binary > "$RUNNER_TEMP/federal-backfill-progress.patch"
+
+      - name: Back up public checkpoints and spend
+        if: always() && steps.execute.outputs.attempted == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: federal-backfill-progress-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/federal-backfill-progress.patch
+            data/cost_ledger.jsonl
+            data/federal_backfill_status.json
+          retention-days: 7
+
+      - name: Commit saved progress and costs
+        id: save
+        timeout-minutes: 5
+        if: always() && steps.execute.outputs.attempted == 'true'
+        run: |
+          git config user.name "dc-on-ai-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data evidence site/data
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Federal backfill $BACKFILL_COHORT $(date -u +%F)"
+          git push
+
+      - name: Save research and source context checkpoints
+        if: always() && steps.execute.outputs.attempted == 'true'
+        timeout-minutes: 5
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            data/raw/federal_research
+            data/raw/federal_stance_context
+          key: ${{ steps.raw_cache.outputs.cache-primary-key }}
+
+      - name: Report the cohort result
+        if: always() && steps.execute.outputs.attempted == 'true'
+        env:
+          EXECUTION_OUTCOME: ${{ steps.execute.outcome }}
+          EXECUTION_EXIT_CODE: ${{ steps.execute.outputs.exit_code }}
+          BUILD_OUTCOME: ${{ steps.build.outcome }}
+          SAVE_OUTCOME: ${{ steps.save.outcome }}
+        run: |
+          echo '### Saved federal backfill checkpoint (check cohort and date)' >> "$GITHUB_STEP_SUMMARY"
+          if [[ -f data/federal_backfill_status.json ]]; then
+            echo '```json' >> "$GITHUB_STEP_SUMMARY"
+            cat data/federal_backfill_status.json >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          fi
+          echo "Execution: $EXECUTION_OUTCOME (exit ${EXECUTION_EXIT_CODE:-unknown}); build: $BUILD_OUTCOME; save: $SAVE_OUTCOME" >> "$GITHUB_STEP_SUMMARY"
+          [[ "$EXECUTION_OUTCOME" == success && "$BUILD_OUTCOME" == success && "$SAVE_OUTCOME" == success ]]

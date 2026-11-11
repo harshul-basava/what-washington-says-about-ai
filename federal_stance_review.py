@@ -108,13 +108,14 @@ def run(root,max_cost=20,workers=1,ids=None):
     selected=set(saved['target_ids']) if ids is None else set(ids)
     if not selected<=set(saved['target_ids']):raise ValueError('Profile is outside the original review cohort')
     subjects=[s for s in subjects if s['id'] in selected]
+    recovered = recover_contexts(root, saved, evidence, {s['id'] for s in subjects}, workers)
     jobs=[]
     for s in subjects:
         pid=s['id'];previous=saved['profiles'].get(pid,{})
-        context_meta=previous.get('contexts',{})
+        context_meta=recovered.get(pid, previous.get('contexts',{}))
         contexts=load_contexts(root,context_meta)
         signature=a.digest([PROMPT_VERSION,MODEL,a.subject_context(s),evidence[pid],contexts,config['rubric'],config['prompt']])
-        if previous.get('input_hash')==signature and previous.get('result'):continue
+        if previous.get('input_hash')==signature and previous.get('result') and not previous.get('error'):continue
         jobs.append((s,contexts,signature,context_meta))
     if not jobs:return saved
     response=llm.httpx.get('https://openrouter.ai/api/v1/models',timeout=30);response.raise_for_status()
@@ -162,7 +163,61 @@ def load_contexts(root,metadata):
     return result
 
 
-def fetch_contexts(root,workers=3):
+def recover_contexts(root, saved, evidence, ids, workers):
+    """Recover source text before reuse; keep old review metadata until a new review succeeds."""
+    contexts = {}
+    missing = {}
+    x_missing = {}
+    for pid in ids:
+        statements = {s['sid']: s for s in evidence[pid]}
+        contexts[pid] = {sid: dict(meta) for sid, meta in saved['profiles'].get(pid, {}).get('contexts', {}).items()
+                         if sid in statements}
+        for sid, meta in contexts[pid].items():
+            if meta.get('status') != 'available':
+                continue
+            statement = statements[sid]
+            path = meta.get('cache_path')
+            raw = a.read(root / path, {}) if path else {}
+            valid = (raw.get('status') == 'available' and raw.get('url') == statement['url']
+                     and meta.get('url') == statement['url']
+                     and a.digest(raw.get('text', '')) == meta.get('text_hash')
+                     and normalize(statement['text']) in normalize(raw.get('text', '')))
+            if statement.get('source_type') == 'x':
+                valid = (valid and raw.get('retrieval') == 'official_x_api_post_and_author'
+                         and raw.get('verified_author_id') == statement.get('attribution', {}).get('user_id')
+                         and bool(raw.get('verified_author_id')))
+            if not valid:
+                missing.setdefault(pid, []).append(sid)
+                if statement.get('source_type') == 'x':
+                    x_missing.setdefault(pid, []).append(sid)
+    if not missing:
+        return contexts
+    if x_missing:
+        try:
+            fetch_x_context(root, recover=x_missing)
+        except (ValueError, OSError):
+            # A missing credential or ledger cannot turn old X text into verified context.
+            for pid, sids in x_missing.items():
+                statements = {s['sid']: s for s in evidence[pid]}
+                for sid in sids:
+                    a.write(root / f'data/raw/federal_stance_context/{pid}/{sid}.json', {
+                        'status': 'unavailable', 'url': statements[sid]['url'],
+                        'reason': 'Official X context recovery unavailable'})
+    fetch_contexts(root, workers=workers, recover=missing)
+    index = a.read(root / 'data/raw/federal_stance_context/index.json', {})
+    stable = ('status', 'url', 'text_hash', 'retrieval', 'verified_author_id')
+    for pid, sids in missing.items():
+        for sid in sids:
+            restored = index.get(pid, {}).get(sid)
+            if not restored:
+                raise ValueError('Source context recovery incomplete')
+            previous = contexts[pid][sid]
+            if any(restored.get(k) != previous.get(k) for k in stable):
+                contexts[pid][sid] = restored
+    return contexts
+
+
+def fetch_contexts(root,workers=3,*,recover=None):
     """Retrieve only sources that Astra requested; never spend on search or X here."""
     import httpx,io
     from urllib.parse import urlsplit,urljoin
@@ -172,9 +227,12 @@ def fetch_contexts(root,workers=3):
     requests=[]
     for pid,entry in saved['profiles'].items():
         ss={s['sid']:s for s in evidence[pid]}
-        for row in entry.get('result',{}).get('context_requests',[]):
+        rows = ([{'sid': sid} for sid in recover.get(pid, [])] if recover is not None
+                else entry.get('result',{}).get('context_requests',[]))
+        for row in rows:
             path=root/f'data/raw/federal_stance_context/{pid}/{row["sid"]}.json'
-            if not path.exists():requests.append((pid,ss[row['sid']],path))
+            if not path.exists() or (recover is not None and ss[row['sid']].get('source_type') != 'x'):
+                requests.append((pid,ss[row['sid']],path))
     def retrieve(job):
         pid,statement,path=job;url=statement['url'];candidates=[];error=None
         for cached in (root/f'data/raw/federal_research/{pid}').glob('page-*.json'):
@@ -230,7 +288,9 @@ def fetch_contexts(root,workers=3):
     # Write an independent metadata index so a simultaneous review cannot overwrite retrieval work.
     metadata={}
     for pid,entry in saved['profiles'].items():
-        for row in entry.get('result',{}).get('context_requests',[]):
+        rows = ([{'sid': sid} for sid in recover.get(pid, [])] if recover is not None
+                else entry.get('result',{}).get('context_requests',[]))
+        for row in rows:
             path=root/f'data/raw/federal_stance_context/{pid}/{row["sid"]}.json'
             raw=a.read(path,{})
             if raw:metadata.setdefault(pid,{})[row['sid']]={k:v for k,v in raw.items() if k!='text'} | {
@@ -247,7 +307,7 @@ def verified_post_text(statement,post):
     return text
 
 
-def fetch_x_context(root):
+def fetch_x_context(root,*,recover=None):
     import llm
     from scripts.federal_x_api import Client,POST_COST
     saved=a.read(root/PATH);_,evidence=a.inputs(root)
@@ -256,7 +316,9 @@ def fetch_x_context(root):
     try:
         for pid,entry in saved['profiles'].items():
             statements={s['sid']:s for s in evidence[pid]}
-            for request in entry.get('result',{}).get('context_requests',[]):
+            rows = ([{'sid': sid} for sid in recover.get(pid, [])] if recover is not None
+                    else entry.get('result',{}).get('context_requests',[]))
+            for request in rows:
                 s=statements[request['sid']]
                 if s.get('source_type')!='x':continue
                 post_id=s.get('post_id') or s['url'].rstrip('/').split('/')[-1]

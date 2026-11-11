@@ -219,6 +219,29 @@ class HistoricalTests(unittest.TestCase):
             self.assertEqual(second['added_sids'], ['s1'])
             client.page.assert_called_once(); client.extract.assert_called_once()
 
+    def test_seed_failure_records_source_or_model_stage(self):
+        import federal_research as research
+        for stage in ('source_fetch', 'extract'):
+            with self.subTest(stage=stage), tempfile.TemporaryDirectory() as td:
+                root = Path(td)
+                federal.write(root / 'evidence' / f"{PERSON['id']}.json", {'statements': []})
+                client = Mock(model='test'); client.page.return_value = PAGE
+                getattr(client, 'page' if stage == 'source_fetch' else 'extract').side_effect = ValueError('invalid')
+                result = research.seed_one(root, PERSON, [{'url': PAGE['url']}], client)
+                self.assertEqual(result['sources'][PAGE['url']]['error_stage'], stage)
+
+    def test_seed_changed_text_restarts_partial_source(self):
+        import federal_research as research
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td); directory = root / 'data/raw/federal_research' / PERSON['id']
+            federal.write(root / 'evidence' / f"{PERSON['id']}.json", {'statements': []})
+            federal.write(directory / 'seeds.json', {'sources': {PAGE['url']: {
+                'status': 'needs_retry', 'next_chunk': 3, 'source_text_sha256': 'old'}}, 'added_sids': []})
+            client = Mock(model='test'); client.page.return_value = PAGE; client.extract.return_value = [ROW]
+            result = research.seed_one(root, PERSON, [{'url': PAGE['url']}], client)
+            client.extract.assert_called_once()
+            self.assertEqual(result['added_sids'], ['s1'])
+
     def test_unavailable_source_remains_pending_for_cached_retry(self):
         import federal_research as research
         with tempfile.TemporaryDirectory() as td:

@@ -105,14 +105,23 @@ def seed_one(root, subject, seeds, client):
         previous = audit['sources'].get(url, {})
         if previous.get('status') == 'completed':
             continue
+        error_stage = 'source_cache'
         try:
             cache = directory / ('page-' + sources.digest(url) + '.json')
             if cache.exists():
                 page = federal.read(cache, {})
             else:
+                error_stage = 'source_fetch'
                 page = client.page({'url': url, 'title': seed.get('title', '')}, [urlsplit(url).hostname])
+                error_stage = 'source_cache'
                 federal.write(cache, page)
+            error_stage = 'source_validation'
             text = sources.normalize(page['text'])
+            error_stage = 'extract'
+            if previous.get('next_chunk') and previous.get('source_text_sha256') != sources.digest(text):
+                previous = {**previous, 'next_chunk': 0}
+                for stale in directory.glob(f'seed-{sources.digest(url)}-*.json'):
+                    stale.unlink()
             entry = {**previous, 'status': 'in_progress', 'source_text_sha256': sources.digest(text)}
             for index, start in enumerate(range(0, len(text), 22000)):
                 if index < previous.get('next_chunk', 0):
@@ -139,7 +148,8 @@ def seed_one(root, subject, seeds, client):
             entry.update(status='completed', date=federal.today())
             audit['sources'][url] = entry
         except Exception as exc:
-            audit['sources'][url] = {**audit['sources'].get(url, {}), 'status': 'needs_retry', 'error': type(exc).__name__}
+            audit['sources'][url] = {**audit['sources'].get(url, {}), 'status': 'needs_retry',
+                                     'error': type(exc).__name__, 'error_stage': error_stage}
         federal.write(checkpoint, audit)
     return {'sources_checked': sum(s.get('status') == 'completed' for s in audit['sources'].values()),
             'sources_pending': sum(s.get('status') != 'completed' for s in audit['sources'].values()),
@@ -262,6 +272,7 @@ def main():
     parser.add_argument('--workers', type=int, default=6)
     parser.add_argument('--max-cost', type=float, default=75)
     parser.add_argument('--refresh', action='store_true')
+    parser.add_argument('--run-token', help='Identify seed checkpoints from this invocation')
     parser.add_argument('--reverify', action='store_true', help='Recheck cached research only, without new search calls')
     args = parser.parse_args()
     subjects = [s for s in policy_subjects.load_subjects(ROOT) if s['branch'] == 'executive']
@@ -280,6 +291,8 @@ def main():
             tasks = {executor.submit(seed_one, ROOT, s, seeds.get(s['id'], []), client): s for s in selected}
             for future in as_completed(tasks):
                 pid = tasks[future]['id']; entry = future.result()
+                if args.run_token:
+                    entry['run_token'] = args.run_token
                 seed_audit['profiles'][pid] = entry
                 federal.write(seed_path, seed_audit)
                 print(f"{pid}: {entry['sources_checked']} official leads checked, {len(entry['added_sids'])} excerpts, {entry['sources_pending']} pending", flush=True)
