@@ -21,16 +21,37 @@
     },
     "attribution_span_sha256": "13c9cb53780748e28f63247123680ea7dad2c4f542dbb50d6318d522c0377d56",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement endorses winning a generic AI race but does not mention China or competition with China.",
+      "facets": [],
+      "confidence": 0.72,
+      "confidence_reason": "The AI-race language is clear, but the target requires China competition and no China reference appears.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:18:29.730356+00:00",
+      "generation_id": "gen-1794370685-IYSLPJoOlTza9jSjOkqv"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "Loeffler endorses American AI leadership but does not identify competition with China as a policy priority.",
+      "facets": [],
+      "confidence": 0.95,
+      "confidence_reason": "Neither the statement nor its context identifies China as the competitor.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T04:18:54.852725+00:00",
+      "generation_id": "gen-1794370727-zmwBkvlAsBBWlwgE6yRK"
+     }
+    },
+    "confidence": 0.95,
+    "final_judge": "astra",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.72 is below 0.8."
    },
    {
     "sid": "s16",
@@ -51,16 +72,37 @@
     },
     "attribution_span_sha256": "13c9cb53780748e28f63247123680ea7dad2c4f542dbb50d6318d522c0377d56",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement calls for America to be an AI superpower and references an AI race summit, but not China or competition with China.",
+      "facets": [],
+      "confidence": 0.72,
+      "confidence_reason": "The race framing is explicit, but the China-specific target is not named or clearly implied.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:18:29.730496+00:00",
+      "generation_id": "gen-1794370685-IYSLPJoOlTza9jSjOkqv"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "Loeffler promotes American AI leadership and mentions a summit without addressing competition with China.",
+      "facets": [],
+      "confidence": 0.96,
+      "confidence_reason": "Global leadership language and the summit title do not establish a China-specific position.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T04:18:54.852893+00:00",
+      "generation_id": "gen-1794370727-zmwBkvlAsBBWlwgE6yRK"
+     }
+    },
+    "confidence": 0.96,
+    "final_judge": "astra",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.72 is below 0.8."
    }
   ]
  },

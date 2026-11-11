@@ -21,16 +21,125 @@
     },
     "attribution_span_sha256": "7afb90bfba69bfc3057282f9191629c1470d9ef65600a3770b4372886669944d",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker says America wants to win the AI race and dominate compute markets.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.62,
+      "confidence_reason": "The race framing is explicit, but China is not named, so target identity is inferential.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:18:32.808628+00:00",
+      "generation_id": "gen-1794370696-HGFlpVD2Mlhi920Xrq4F"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "Selig calls for compute-market dominance without identifying competition with China.",
+      "facets": [],
+      "confidence": 0.94,
+      "confidence_reason": "The excerpt names an AI race but does not establish the China-specific target.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T04:18:59.445007+00:00",
+      "generation_id": "gen-1794370728-BLt92CssrlRUk1FtXqKB"
+     }
+    },
+    "confidence": 0.94,
+    "final_judge": "astra",
     "facets_final": [],
+    "facet_disagreement": true,
+    "model_disagreement": true,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.62 is below 0.8."
+   },
+   {
+    "sid": "s28",
+    "text": "America cannot win the AI race without a robust derivatives market for compute,” Chairman Michael S. Selig said. “Just as American markets helped establish the gold standard for trading the commodities that powered the industrial economy, we will do the same for the commodity that will power the intelligence economy.",
+    "date": "2026-08-19",
+    "context": "tter inform its understanding and oversight of derivatives markets in compute. “America cannot win the AI race without a robust derivatives market for compute,” Chairman Michael S. Selig said. “Just as American markets helped establish the gold standard for trading the commodities that powered the industrial economy, we will do the same for the commodity that will power the intelligence economy. This request for comment is the first step toward establishing clear rules of t",
+    "url": "https://www.cftc.gov/PressRoom/PressReleases/9286-26",
+    "source_type": "official_statement",
+    "verified_via": "exact_normalized_search_retrieval",
+    "attribution": {
+     "kind": "official_role",
+     "speaker": "Michael S. Selig",
+     "organization_id": "cftc",
+     "basis": "local_span",
+     "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+     "role": "Chairman"
+    },
+    "strategy": "confidence_cascade",
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker says America cannot win the AI race without a robust compute derivatives market.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.84,
+      "confidence_reason": "The statement explicitly frames the policy as necessary to win the AI race, though it does not name China.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:18:34.636192+00:00",
+      "generation_id": "gen-1794370707-iCOYCvKyK3RGw1dT30TF"
+     }
+    },
+    "confidence": 0.84,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   },
+   {
+    "sid": "s32",
+    "text": "And I’m proud to be working with Secretary Lutnick and the Department of Commerce to make America the compute capital of the world. This may be the most important commodity of our time – some are even calling it digital oil. And America needs to dominate these markets to win the AI Race.",
+    "date": "2026-08-19",
+    "context": "Chairman Michael S. Selig Washington, DC | August 19, 2026 ... And I’m proud to be working with Secretary Lutnick and the Department of Commerce to make America the compute capital of the world. This may be the most important commodity of our time – some are even calling it digital oil. And America needs to dominate these markets to win the AI Race. ... Innovation depends on regulatory clarity. Clear rules create confidence. Co",
+    "url": "https://www.cftc.gov/PressRoom/SpeechesTestimony/opaselig9",
+    "source_type": "official_statement",
+    "verified_via": "exact_normalized_search_retrieval",
+    "attribution": {
+     "kind": "official_role",
+     "speaker": "Michael S. Selig",
+     "organization_id": "cftc",
+     "basis": "local_span",
+     "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+     "role": "Chairman"
+    },
+    "strategy": "confidence_cascade",
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker says America needs to dominate compute markets to win the AI Race.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.9,
+      "confidence_reason": "The statement explicitly calls for dominating compute markets to win the AI race.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:18:46.766371+00:00",
+      "generation_id": "gen-1794370710-4hVKKlbta42xlCsxdgs2"
+     }
+    },
+    "confidence": 0.9,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
     "sid": "s11",
@@ -51,16 +160,31 @@
     },
     "attribution_span_sha256": "7afb90bfba69bfc3057282f9191629c1470d9ef65600a3770b4372886669944d",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
-    "facets_final": [],
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker says the US cannot fall behind China and must lead the AI race.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.93,
+      "confidence_reason": "The statement explicitly frames AI policy as a race against China and warns against falling behind.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:18:34.635876+00:00",
+      "generation_id": "gen-1794370707-iCOYCvKyK3RGw1dT30TF"
+     }
+    },
+    "confidence": 0.93,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
     "sid": "s18",
@@ -81,16 +205,257 @@
     },
     "attribution_span_sha256": "7afb90bfba69bfc3057282f9191629c1470d9ef65600a3770b4372886669944d",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker calls the AI race critical and says smart policy is needed to win it.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.9,
+      "confidence_reason": "The statement explicitly names winning the AI race and describes a regulatory approach.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:18:34.635993+00:00",
+      "generation_id": "gen-1794370707-iCOYCvKyK3RGw1dT30TF"
+     }
+    },
+    "confidence": 0.9,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   },
+   {
+    "sid": "s30",
+    "text": "I believe a robust compute market could further this policy, and I am glad to say that the CFTC is hard at work making the U.S. a global leader in the market for this new digital commodity, which is critical to America winning the AI race.",
+    "date": "2026-03-09",
+    "context": "# Remarks at FIA Global Cleared Markets Conference Chairman Michael S. Selig Boca Raton, FL | March 09, 2026 Good afternoon, everyone. Before I begin, as is customary, I must note that the views I share today are my own as Chairman and do not necessarily reflect those of the Commission. ... We are also witnessing a fascinating new market develop here in the United States around AI compute. America is home to some of the largest data centers in the world, and companies across the country are harnessing AI in their workflows. The White House’s AI Action Plan directed the CFTC and other agencies to ensure access to large-scale compute for startups and academics by improving the financial market for compute. [12] I believe a robust compute market could further this policy, and I am glad to say that the CFTC is hard at work making the U.S. a global leader in the market for this new digital commodity, which is critical to America winning the AI race. We are also focused on bringing other markets, such as critical minerals, back",
+    "url": "https://www.cftc.gov/PressRoom/SpeechesTestimony/opaselig2",
+    "source_type": "official_statement",
+    "verified_via": "exact_normalized_search_retrieval",
+    "attribution": {
+     "kind": "personal",
+     "speaker": "Michael S. Selig",
+     "organization_id": "cftc",
+     "basis": "local_span",
+     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+    },
+    "strategy": "confidence_cascade",
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker calls U.S. compute leadership critical to winning the AI race, endorsing race competition as a priority.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.72,
+      "confidence_reason": "The AI-race framing is explicit, but China is not named in the statement.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:18:46.765982+00:00",
+      "generation_id": "gen-1794370710-4hVKKlbta42xlCsxdgs2"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "Selig endorses US compute leadership and winning the AI race without identifying China.",
+      "facets": [],
+      "confidence": 0.95,
+      "confidence_reason": "General AI leadership does not establish a position on competition with China.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T04:18:59.445122+00:00",
+      "generation_id": "gen-1794370728-BLt92CssrlRUk1FtXqKB"
+     }
+    },
+    "confidence": 0.95,
+    "final_judge": "astra",
+    "facets_final": [],
+    "facet_disagreement": true,
+    "model_disagreement": true,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.72 is below 0.8."
+   },
+   {
+    "sid": "s31",
+    "text": "American leadership here is so important. We can’t allow the algorithms that connect traders across markets for compute, critical minerals, and other essential commodities to be based on technology developed in an adversarial nation—this is a national security issue.",
+    "date": "2026-03-09",
+    "context": "# Remarks at FIA Global Cleared Markets Conference Chairman Michael S. Selig Boca Raton, FL | March 09, 2026 Good afternoon, everyone. Before I begin, as is customary, I must note that the views I share today are my own as Chairman and do not necessarily reflect those of the Commission. ... We are also witnessing a fascinating new market develop here in the United States around AI compute. America is home to some of the largest data centers in the world, and companies across the country are harnessing AI in their workflows. The White House’s AI Action Plan directed the CFTC and other agencies to ensure access to large-scale compute for startups and academics by improving the financial market for compute. [12] I believe a robust compute market could further this policy, and I am glad to say that the CFTC is hard at work making the U.S. a global leader in the market for this new digital commodity, which is critical to America winning the AI race. We are also focused on bringing other markets, such as critical minerals, back to the U.S. to decrease reliance on foreign nations and diversify reference pricing. And we want to make America the world leader for on-delivery minerals. We’ll be working with the White House, our registrants, and market participants to make this a reality. American leadership here is so important. We can’t allow the algorithms that connect traders across markets for compute, critical minerals, and other essential commodities to be based on technology developed in an adversarial nation—this is a national security issue. ... For starters, through a recently established pilot program, the CFTC is con",
+    "url": "https://www.cftc.gov/PressRoom/SpeechesTestimony/opaselig2",
+    "source_type": "official_statement",
+    "verified_via": "exact_normalized_search_retrieval",
+    "attribution": {
+     "kind": "personal",
+     "speaker": "Michael S. Selig",
+     "organization_id": "cftc",
+     "basis": "local_span",
+     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+    },
+    "strategy": "confidence_cascade",
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker says American leadership is vital and adversarial-nation technology in market algorithms is a national-security concern.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.73,
+      "confidence_reason": "The adversarial-nation and national-security framing is clear, though China is not named.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:18:46.766187+00:00",
+      "generation_id": "gen-1794370710-4hVKKlbta42xlCsxdgs2"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "Selig rejects reliance on technology from an unnamed adversarial nation rather than explicitly prioritizing competition with China.",
+      "facets": [],
+      "confidence": 0.92,
+      "confidence_reason": "Identifying the unnamed adversary as China would require an unsupported inference.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T04:18:59.445331+00:00",
+      "generation_id": "gen-1794370728-BLt92CssrlRUk1FtXqKB"
+     }
+    },
+    "confidence": 0.92,
+    "final_judge": "astra",
+    "facets_final": [],
+    "facet_disagreement": true,
+    "model_disagreement": true,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.73 is below 0.8."
+   }
+  ],
+  "ai_action_plan_2025": [
+   {
+    "sid": "s29",
+    "text": "We are also witnessing a fascinating new market develop here in the United States around AI compute. America is home to some of the largest data centers in the world, and companies across the country are harnessing AI in their workflows. The White House’s AI Action Plan directed the CFTC and other agencies to ensure access to large-scale compute for startups and academics by improving the financial market for compute.",
+    "date": "2026-03-09",
+    "context": "# Remarks at FIA Global Cleared Markets Conference Chairman Michael S. Selig Boca Raton, FL | March 09, 2026 Good afternoon, everyone. Before I begin, as is customary, I must note that the views I share today are my own as Chairman and do not necessarily reflect those of the Commission. ... We are also witnessing a fascinating new market develop here in the United States around AI compute. America is home to some of the largest data centers in the world, and companies across the country are harnessing AI in their workflows. The White House’s AI Action Plan directed the CFTC and other agencies to ensure access to large-scale compute for startups and academics by improving the financial market for compute. [12] I believe a robust compute market could further this policy, and I am glad",
+    "url": "https://www.cftc.gov/PressRoom/SpeechesTestimony/opaselig2",
+    "source_type": "official_statement",
+    "verified_via": "exact_normalized_search_retrieval",
+    "attribution": {
+     "kind": "personal",
+     "speaker": "Michael S. Selig",
+     "organization_id": "cftc",
+     "basis": "local_span",
+     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+    },
+    "strategy": "confidence_cascade",
+    "stance": "neutral",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "The speaker describes the AI Action Plan's compute directive without endorsing the plan as a whole.",
+      "facets": [],
+      "confidence": 0.82,
+      "confidence_reason": "The statement names the plan only to describe its compute-access directive.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:18:46.765854+00:00",
+      "generation_id": "gen-1794370710-4hVKKlbta42xlCsxdgs2"
+     }
+    },
+    "confidence": 0.82,
+    "final_judge": "deepseek",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   },
+   {
+    "sid": "s30",
+    "text": "I believe a robust compute market could further this policy, and I am glad to say that the CFTC is hard at work making the U.S. a global leader in the market for this new digital commodity, which is critical to America winning the AI race.",
+    "date": "2026-03-09",
+    "context": "# Remarks at FIA Global Cleared Markets Conference Chairman Michael S. Selig Boca Raton, FL | March 09, 2026 Good afternoon, everyone. Before I begin, as is customary, I must note that the views I share today are my own as Chairman and do not necessarily reflect those of the Commission. ... We are also witnessing a fascinating new market develop here in the United States around AI compute. America is home to some of the largest data centers in the world, and companies across the country are harnessing AI in their workflows. The White House’s AI Action Plan directed the CFTC and other agencies to ensure access to large-scale compute for startups and academics by improving the financial market for compute. [12] I believe a robust compute market could further this policy, and I am glad to say that the CFTC is hard at work making the U.S. a global leader in the market for this new digital commodity, which is critical to America winning the AI race. We are also focused on bringing other markets, such as critical minerals, back",
+    "url": "https://www.cftc.gov/PressRoom/SpeechesTestimony/opaselig2",
+    "source_type": "official_statement",
+    "verified_via": "exact_normalized_search_retrieval",
+    "attribution": {
+     "kind": "personal",
+     "speaker": "Michael S. Selig",
+     "organization_id": "cftc",
+     "basis": "local_span",
+     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+    },
+    "strategy": "confidence_cascade",
+    "stance": "unclear",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "The speaker supports a robust compute market as furthering a plan directive, not the AI Action Plan as a whole.",
+      "facets": [],
+      "confidence": 0.7,
+      "confidence_reason": "Support is for a compute-market component, not the whole plan.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:18:46.766079+00:00",
+      "generation_id": "gen-1794370710-4hVKKlbta42xlCsxdgs2"
+     },
+     "astra": {
+      "stance": "unclear",
+      "reason": "Selig endorses advancing the plan's compute-market policy but gives no overall position on the plan.",
+      "facets": [],
+      "confidence": 0.86,
+      "confidence_reason": "Context identifies the referenced policy, but endorsement of one component leaves the overall stance unresolved.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T04:18:59.445221+00:00",
+      "generation_id": "gen-1794370728-BLt92CssrlRUk1FtXqKB"
+     }
+    },
+    "confidence": 0.86,
+    "final_judge": "astra",
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": true,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.7 is below 0.8."
+   },
+   {
+    "sid": "s31",
+    "text": "American leadership here is so important. We can’t allow the algorithms that connect traders across markets for compute, critical minerals, and other essential commodities to be based on technology developed in an adversarial nation—this is a national security issue.",
+    "date": "2026-03-09",
+    "context": "# Remarks at FIA Global Cleared Markets Conference Chairman Michael S. Selig Boca Raton, FL | March 09, 2026 Good afternoon, everyone. Before I begin, as is customary, I must note that the views I share today are my own as Chairman and do not necessarily reflect those of the Commission. ... We are also witnessing a fascinating new market develop here in the United States around AI compute. America is home to some of the largest data centers in the world, and companies across the country are harnessing AI in their workflows. The White House’s AI Action Plan directed the CFTC and other agencies to ensure access to large-scale compute for startups and academics by improving the financial market for compute. [12] I believe a robust compute market could further this policy, and I am glad to say that the CFTC is hard at work making the U.S. a global leader in the market for this new digital commodity, which is critical to America winning the AI race. We are also focused on bringing other markets, such as critical minerals, back to the U.S. to decrease reliance on foreign nations and diversify reference pricing. And we want to make America the world leader for on-delivery minerals. We’ll be working with the White House, our registrants, and market participants to make this a reality. American leadership here is so important. We can’t allow the algorithms that connect traders across markets for compute, critical minerals, and other essential commodities to be based on technology developed in an adversarial nation—this is a national security issue. ... For starters, through a recently established pilot program, the CFTC is con",
+    "url": "https://www.cftc.gov/PressRoom/SpeechesTestimony/opaselig2",
+    "source_type": "official_statement",
+    "verified_via": "exact_normalized_search_retrieval",
+    "attribution": {
+     "kind": "personal",
+     "speaker": "Michael S. Selig",
+     "organization_id": "cftc",
+     "basis": "local_span",
+     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+    },
+    "strategy": "confidence_cascade",
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement does not mention or discuss the AI Action Plan.",
+      "facets": [],
+      "confidence": 0.98,
+      "confidence_reason": "There is no reference to the AI Action Plan in the statement.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:18:46.766281+00:00",
+      "generation_id": "gen-1794370710-4hVKKlbta42xlCsxdgs2"
+     }
+    },
+    "confidence": 0.98,
+    "final_judge": "deepseek",
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    }
   ],
   "national_ai_framework_2026": [
@@ -113,16 +478,27 @@
     },
     "attribution_span_sha256": "7afb90bfba69bfc3057282f9191629c1470d9ef65600a3770b4372886669944d",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker calls the President's National AI Legislative Framework an important step.",
+      "facets": [],
+      "confidence": 0.95,
+      "confidence_reason": "The statement names the framework and explicitly endorses it as an important step.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T04:18:34.636087+00:00",
+      "generation_id": "gen-1794370707-iCOYCvKyK3RGw1dT30TF"
+     }
+    },
+    "confidence": 0.95,
+    "final_judge": "deepseek",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    }
   ]
  },
@@ -882,6 +1258,119 @@
    "attribution_span_sha256": "7afb90bfba69bfc3057282f9191629c1470d9ef65600a3770b4372886669944d",
    "sid": "s27",
    "added": "2026-11-10"
+  },
+  {
+   "text": "America cannot win the AI race without a robust derivatives market for compute,” Chairman Michael S. Selig said. “Just as American markets helped establish the gold standard for trading the commodities that powered the industrial economy, we will do the same for the commodity that will power the intelligence economy.",
+   "date": "2026-08-19",
+   "context": "tter inform its understanding and oversight of derivatives markets in compute. “America cannot win the AI race without a robust derivatives market for compute,” Chairman Michael S. Selig said. “Just as American markets helped establish the gold standard for trading the commodities that powered the industrial economy, we will do the same for the commodity that will power the intelligence economy. This request for comment is the first step toward establishing clear rules of t",
+   "url": "https://www.cftc.gov/PressRoom/PressReleases/9286-26",
+   "source_type": "official_statement",
+   "verified": true,
+   "verified_via": "exact_normalized_search_retrieval",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Michael S. Selig",
+    "organization_id": "cftc",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "role": "Chairman"
+   },
+   "retrieved_on": "2026-11-11",
+   "source_text_sha256": "80f929c7d9222d8aa70c8d688e90580ee65b5874588012dee1bdeae2d9a52f02",
+   "origin": "federal_historical",
+   "date_quote": "August 19, 2026",
+   "research_pass": 6,
+   "sid": "s28",
+   "added": "2026-11-11"
+  },
+  {
+   "text": "We are also witnessing a fascinating new market develop here in the United States around AI compute. America is home to some of the largest data centers in the world, and companies across the country are harnessing AI in their workflows. The White House’s AI Action Plan directed the CFTC and other agencies to ensure access to large-scale compute for startups and academics by improving the financial market for compute.",
+   "date": "2026-03-09",
+   "context": "# Remarks at FIA Global Cleared Markets Conference Chairman Michael S. Selig Boca Raton, FL | March 09, 2026 Good afternoon, everyone. Before I begin, as is customary, I must note that the views I share today are my own as Chairman and do not necessarily reflect those of the Commission. ... We are also witnessing a fascinating new market develop here in the United States around AI compute. America is home to some of the largest data centers in the world, and companies across the country are harnessing AI in their workflows. The White House’s AI Action Plan directed the CFTC and other agencies to ensure access to large-scale compute for startups and academics by improving the financial market for compute. [12] I believe a robust compute market could further this policy, and I am glad",
+   "url": "https://www.cftc.gov/PressRoom/SpeechesTestimony/opaselig2",
+   "source_type": "official_statement",
+   "verified": true,
+   "verified_via": "exact_normalized_search_retrieval",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michael S. Selig",
+    "organization_id": "cftc",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "retrieved_on": "2026-11-11",
+   "source_text_sha256": "c0e0b477ecc56e8b81c06cb669862b313a999a74a403f5745e369923a1d917f2",
+   "origin": "federal_historical_seed",
+   "date_quote": "March 09, 2026",
+   "sid": "s29",
+   "added": "2026-11-11"
+  },
+  {
+   "text": "I believe a robust compute market could further this policy, and I am glad to say that the CFTC is hard at work making the U.S. a global leader in the market for this new digital commodity, which is critical to America winning the AI race.",
+   "date": "2026-03-09",
+   "context": "# Remarks at FIA Global Cleared Markets Conference Chairman Michael S. Selig Boca Raton, FL | March 09, 2026 Good afternoon, everyone. Before I begin, as is customary, I must note that the views I share today are my own as Chairman and do not necessarily reflect those of the Commission. ... We are also witnessing a fascinating new market develop here in the United States around AI compute. America is home to some of the largest data centers in the world, and companies across the country are harnessing AI in their workflows. The White House’s AI Action Plan directed the CFTC and other agencies to ensure access to large-scale compute for startups and academics by improving the financial market for compute. [12] I believe a robust compute market could further this policy, and I am glad to say that the CFTC is hard at work making the U.S. a global leader in the market for this new digital commodity, which is critical to America winning the AI race. We are also focused on bringing other markets, such as critical minerals, back",
+   "url": "https://www.cftc.gov/PressRoom/SpeechesTestimony/opaselig2",
+   "source_type": "official_statement",
+   "verified": true,
+   "verified_via": "exact_normalized_search_retrieval",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michael S. Selig",
+    "organization_id": "cftc",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "retrieved_on": "2026-11-11",
+   "source_text_sha256": "c0e0b477ecc56e8b81c06cb669862b313a999a74a403f5745e369923a1d917f2",
+   "origin": "federal_historical_seed",
+   "date_quote": "March 09, 2026",
+   "sid": "s30",
+   "added": "2026-11-11"
+  },
+  {
+   "text": "American leadership here is so important. We can’t allow the algorithms that connect traders across markets for compute, critical minerals, and other essential commodities to be based on technology developed in an adversarial nation—this is a national security issue.",
+   "date": "2026-03-09",
+   "context": "# Remarks at FIA Global Cleared Markets Conference Chairman Michael S. Selig Boca Raton, FL | March 09, 2026 Good afternoon, everyone. Before I begin, as is customary, I must note that the views I share today are my own as Chairman and do not necessarily reflect those of the Commission. ... We are also witnessing a fascinating new market develop here in the United States around AI compute. America is home to some of the largest data centers in the world, and companies across the country are harnessing AI in their workflows. The White House’s AI Action Plan directed the CFTC and other agencies to ensure access to large-scale compute for startups and academics by improving the financial market for compute. [12] I believe a robust compute market could further this policy, and I am glad to say that the CFTC is hard at work making the U.S. a global leader in the market for this new digital commodity, which is critical to America winning the AI race. We are also focused on bringing other markets, such as critical minerals, back to the U.S. to decrease reliance on foreign nations and diversify reference pricing. And we want to make America the world leader for on-delivery minerals. We’ll be working with the White House, our registrants, and market participants to make this a reality. American leadership here is so important. We can’t allow the algorithms that connect traders across markets for compute, critical minerals, and other essential commodities to be based on technology developed in an adversarial nation—this is a national security issue. ... For starters, through a recently established pilot program, the CFTC is con",
+   "url": "https://www.cftc.gov/PressRoom/SpeechesTestimony/opaselig2",
+   "source_type": "official_statement",
+   "verified": true,
+   "verified_via": "exact_normalized_search_retrieval",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michael S. Selig",
+    "organization_id": "cftc",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "retrieved_on": "2026-11-11",
+   "source_text_sha256": "c0e0b477ecc56e8b81c06cb669862b313a999a74a403f5745e369923a1d917f2",
+   "origin": "federal_historical_seed",
+   "date_quote": "March 09, 2026",
+   "sid": "s31",
+   "added": "2026-11-11"
+  },
+  {
+   "text": "And I’m proud to be working with Secretary Lutnick and the Department of Commerce to make America the compute capital of the world. This may be the most important commodity of our time – some are even calling it digital oil. And America needs to dominate these markets to win the AI Race.",
+   "date": "2026-08-19",
+   "context": "Chairman Michael S. Selig Washington, DC | August 19, 2026 ... And I’m proud to be working with Secretary Lutnick and the Department of Commerce to make America the compute capital of the world. This may be the most important commodity of our time – some are even calling it digital oil. And America needs to dominate these markets to win the AI Race. ... Innovation depends on regulatory clarity. Clear rules create confidence. Co",
+   "url": "https://www.cftc.gov/PressRoom/SpeechesTestimony/opaselig9",
+   "source_type": "official_statement",
+   "verified": true,
+   "verified_via": "exact_normalized_search_retrieval",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Michael S. Selig",
+    "organization_id": "cftc",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "role": "Chairman"
+   },
+   "retrieved_on": "2026-11-11",
+   "source_text_sha256": "5526dab4b3bddda5943dc1420de7ecf221b06d9a400a39912f4f97fbe59674c9",
+   "origin": "federal_historical_seed",
+   "date_quote": "August 19, 2026",
+   "sid": "s32",
+   "added": "2026-11-11"
   }
  ]
 }
