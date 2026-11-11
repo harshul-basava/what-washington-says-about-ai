@@ -1,0 +1,28 @@
+name: Authorized OpenRouter workspace budget
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: daily-update
+  cancel-in-progress: false
+jobs:
+  update:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --no-dev --frozen
+      - name: Apply the authorized lifetime cap to this key's workspace
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: uv run --no-dev python scripts/openrouter_workspace_budget.py --apply-authorized-350
+      - name: Verify remaining credit and limits
+        if: always()
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: uv run --no-dev python scripts/openrouter_credit_check.py --required-credit=150
