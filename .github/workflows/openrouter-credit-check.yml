@@ -1,0 +1,31 @@
+name: OpenRouter credit check
+on:
+  workflow_dispatch:
+    inputs:
+      required_credit:
+        description: "Estimated USD needed for the remaining authorized work (check only)"
+        type: string
+        default: "150"
+permissions:
+  contents: read
+concurrency:
+  group: daily-update
+  cancel-in-progress: false
+jobs:
+  check:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --no-dev --frozen
+      - name: Check credit without model calls
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          REQUIRED_CREDIT: ${{ inputs.required_credit }}
+        run: |
+          uv run --no-dev python scripts/openrouter_credit_check.py \
+            --required-credit="$REQUIRED_CREDIT"
