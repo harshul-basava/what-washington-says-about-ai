@@ -1,0 +1,75 @@
+name: Federal priority follow-up
+on:
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: Fixed-budget follow-up stage
+        type: choice
+        required: true
+        options: [x, models]
+permissions:
+  contents: write
+concurrency:
+  group: daily-update
+  cancel-in-progress: false
+jobs:
+  followup:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --no-dev --frozen
+      - uses: actions/cache/restore@v4
+        id: cache
+        with:
+          path: |
+            data/raw/federal_priority_followup
+            data/raw/federal_stance_context
+          key: federal-priority-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: federal-priority-v1-
+      - name: Run the fixed cumulative allowance
+        id: execute
+        continue-on-error: true
+        timeout-minutes: 70
+        env:
+          FOLLOWUP_STAGE: ${{ inputs.stage }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+        run: uv run --no-dev python scripts/federal_priority_followup.py "$FOLLOWUP_STAGE"
+      - name: Build saved progress
+        if: always()
+        run: uv run --no-dev python scripts/phase5_build_site.py
+      - name: Save public costs, evidence and judgments
+        if: always()
+        run: |
+          git config user.name "dc-on-ai-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data evidence site/data
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Save federal priority follow-up progress"
+          git push
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: |
+            data/raw/federal_priority_followup
+            data/raw/federal_stance_context
+          key: ${{ steps.cache.outputs.cache-primary-key }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: federal-priority-followup
+          path: |
+            data/raw/federal_priority_followup/x/
+            data/federal_priority_x_search.json
+            data/cost_ledger.jsonl
+          retention-days: 7
+      - name: Report execution result
+        if: always()
+        env:
+          OUTCOME: ${{ steps.execute.outcome }}
+        run: test "$OUTCOME" = success

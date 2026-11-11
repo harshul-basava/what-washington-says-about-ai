@@ -131,28 +131,30 @@ def search_jobs(subjects,accounts,until):
     for pid,subject in subjects.items():
         if pid in mapped:continue
         # Mentions cannot establish ownership or be imported as the subject's own words.
-        name=subject['name'].replace('"','')
-        jobs.append({'subject_id':pid,'kind':'mention','query':f'"{name}" {AI} -is:retweet',
+        names=list(dict.fromkeys(n.replace('"','') for n in [subject['name'],*subject.get('aliases',[])]))
+        names=' OR '.join(f'"{name}"' for name in names)
+        if ' OR ' in names:names='('+names+')'
+        jobs.append({'subject_id':pid,'kind':'mention','query':f'{names} {AI} -is:retweet',
                      'start':'2023-01-01','end':until})
     return [{**j,'id':a.digest(j)[:20]} for j in jobs]
 
 
-def collect_x(root,max_cost=2,max_pages=100):
+def collect_x(root,max_cost=2,max_pages=100,*,manifest_path=MANIFEST,state_path=X_STATE,raw_path=RAW,max_pages_per_job=None):
     from scripts.federal_x import registry
     from scripts.federal_x_api import Client,POST_COST,APIError
     import llm
-    root=Path(root);manifest=a.read(root/MANIFEST);config,subjects=registry(root)
+    root=Path(root);manifest=a.read(root/manifest_path);config,subjects=registry(root)
     subjects={pid:s for pid,s in subjects.items() if pid in manifest['target_ids']}
     if set(subjects)!=set(manifest['target_ids']):raise ValueError('Search cohort is no longer eligible')
     until=manifest['created_at'][:10]
     jobs=search_jobs(subjects,config['accounts'],until)
-    state=a.read(root/X_STATE,{'version':1,'until':until,'jobs':{}})
-    raw=root/RAW/'x';raw.mkdir(parents=True,exist_ok=True)
+    state=a.read(root/state_path,{'version':1,'until':until,'jobs':{}})
+    raw=root/raw_path/'x';raw.mkdir(parents=True,exist_ok=True)
     # Reuse pinned numeric identities, but retain separate search cursors and time bounds.
     api_state={'accounts':a.read(root/'data/federal_x_api_state.json',{}).get('accounts',{}),
                **state.get('api',{})}
     def checkpoint():
-        state['api']={k:v for k,v in api_state.items() if k!='accounts'};a.write(root/X_STATE,state)
+        state['api']={k:v for k,v in api_state.items() if k!='accounts'};a.write(root/state_path,state)
     client=Client(root,api_state,max_cost=max_cost,daily=False,checkpoint=checkpoint)
     before=len(llm.LEDGER.read_text().splitlines());pages=0;errors=[]
     try:
@@ -160,7 +162,9 @@ def collect_x(root,max_cost=2,max_pages=100):
             saved=state['jobs'].get(job['id'],{})
             if saved.get('status') in ('complete','sampled'):continue
             saved=state['jobs'].setdefault(job['id'],{**job,'pages':0,'posts':0,'status':'pending'})
+            job_pages=0
             while pages<max_pages:
+                if max_pages_per_job is not None and job_pages>=max_pages_per_job:break
                 if job['kind']=='mention' and saved['posts']>=200:
                     saved.update(status='sampled',stop_reason='mention_source_lead_limit',sample_limit=200)
                     saved.pop('error',None);checkpoint();break
@@ -190,7 +194,7 @@ def collect_x(root,max_cost=2,max_pages=100):
                         'retrieved_at':datetime.now(timezone.utc).isoformat()})
                     saved['pages']+=1;saved['posts']+=len(posts);saved['cursor']=cursor
                     saved['status']='pending' if cursor else 'complete';saved.pop('error',None)
-                    pages+=1;checkpoint()
+                    pages+=1;job_pages+=1;checkpoint()
                     print(job['subject_id'],job['kind'],len(posts),'posts',saved['status'],flush=True)
                     if not cursor:break
                 except (APIError,ValueError) as exc:
