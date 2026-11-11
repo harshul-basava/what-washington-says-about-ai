@@ -1,16 +1,18 @@
 # Federal priority follow-up
 
-The November 11 follow-up checks 18 current officials. It recovers 14 verified excerpts for five officials. Model review and final X pagination remain in progress.
+The November 11 follow-up checks 18 current officials. It recovers 15 verified excerpts for five officials. Model review and final X pagination remain in progress.
 
-The evidence includes five excerpts for Steve Feinberg, three for James H. Adams, three for Jules W. Hurst III, two for Jessica Curyto, and one for Dustin J. Gard-Weiss.
+The evidence includes six excerpts for Steve Feinberg, three for James H. Adams, three for Jules W. Hurst III, two for Jessica Curyto, and one for Dustin J. Gard-Weiss.
 
 Feinberg's official hearing uses “Stephen A. Feinberg.” Adams's prepared testimony uses “LT. GEN. JAMES ADAMS.” The collector now recognizes these verified variants. Hurst's official biography establishes “Jay Hurst.” His abbreviated speaker label applies only to the reviewed budget transcript.
 
-Each excerpt matches the complete retrieved source text. The [source audit](../data/federal_priority_source_review.json) records source hashes, speaker boundaries, dates, and quotation limits. The [identity audit](../data/federal_priority_identity_review.json) records the official identity links. Independent review checked all 14 excerpts. Curyto's historical articles retain personal attribution and their original dates. Four undated Feinberg written answers retain unknown dates.
+Each excerpt matches the complete retrieved source text. The [source audit](../data/federal_priority_source_review.json) records source hashes, speaker boundaries, dates, and quotation limits. The [identity audit](../data/federal_priority_identity_review.json) records the official identity links. Independent review checked the initial 14 excerpts. Curyto's historical articles retain personal attribution and their original dates. Four undated Feinberg written answers retain unknown dates.
 
 The [coverage audit](../data/federal_priority_followup.json) records search scope, source links, rejected leads, and remaining gaps for each official. Targeted searches covered official testimony, speeches, authored work, historical roles, conference recordings, and X mentions. This follow-up does not claim exhaustive coverage of public recordings or archives.
 
 The official X API searches the two existing verified accounts and uses other officials' names as discovery leads. A third party's paraphrase does not become an official's quotation. The search retains cursors and incomplete status when the fixed spending limit prevents further pages.
+
+The final X pass also led to review of Feinberg's October 2026 AI-classification memorandum. Its government download control supplied the complete signed PDF. The source audit records the issuer check, visual date check, and archived original.
 
 Thirteen officials have no new verified excerpt from this follow-up. The most useful remaining leads include Ted Suzman's NIST panel, Noah Jaffe's export-control keynote, David Hong's federal workforce panel, and Ricky Gill's national-security AI panel. The retrieved pages describe these events but do not supply their exact remarks. Other results contain biographies, joint statements, namesakes, or another speaker's words.
 
