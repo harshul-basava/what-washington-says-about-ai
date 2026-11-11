@@ -18,16 +18,27 @@
      "note": "Manually verified source attribution; see data/federal_priority_source_review.json."
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "He discusses using generative AI for financial audits, not embedded independent AI auditors.",
+      "facets": [],
+      "confidence": 0.95,
+      "confidence_reason": "The context explicitly notes financial audits are not embedded AI auditors.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T19:31:48.903369+00:00",
+      "generation_id": "gen-1794425501-UymTnqFxvybttyAXasHG"
+     }
+    },
+    "confidence": 0.95,
+    "final_judge": "deepseek",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    }
   ]
  },

@@ -19,16 +19,43 @@
     },
     "attribution_span_sha256": "35500a7d83be89775e3aab62daa1a0a333709f15510a248ae2e6216a07464e4b",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
-    "facets_final": [],
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "She recommends companies review exports to third countries with AI ties to China, endorsing export scrutiny.",
+      "facets": [
+       "enforcement"
+      ],
+      "confidence": 0.7,
+      "confidence_reason": "The statement clearly calls for export review, but whether that counts as a policy stance versus advisory guidance is somewhat interpretive.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T19:31:48.903193+00:00",
+      "generation_id": "gen-1794425501-UymTnqFxvybttyAXasHG"
+     },
+     "astra": {
+      "stance": "support",
+      "reason": "Curyto recommends reviewing exports through third countries with AI ties to China, supporting scrutiny of indirect overseas access.",
+      "facets": [
+       "enforcement"
+      ],
+      "confidence": 0.8,
+      "confidence_reason": "The recommendation supports export scrutiny, although it does not explicitly name controls or specify enforcement measures.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T19:31:56.874339+00:00",
+      "generation_id": "gen-1794425510-nB4RhqM4whYGUNlNLKI8"
+     }
+    },
+    "confidence": 0.8,
+    "final_judge": "astra",
+    "facets_final": [
+     "enforcement"
+    ],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.7 is below 0.8."
    }
   ],
   "china_race_dynamics": [
@@ -49,16 +76,27 @@
     },
     "attribution_span_sha256": "35500a7d83be89775e3aab62daa1a0a333709f15510a248ae2e6216a07464e4b",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "She mentions China ties only as a factor for export review, not as a call to prioritize competition with China.",
+      "facets": [],
+      "confidence": 0.85,
+      "confidence_reason": "No explicit race-dynamics framing is present beyond a China reference.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T19:31:48.903281+00:00",
+      "generation_id": "gen-1794425501-UymTnqFxvybttyAXasHG"
+     }
+    },
+    "confidence": 0.85,
+    "final_judge": "deepseek",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    }
   ]
  },
