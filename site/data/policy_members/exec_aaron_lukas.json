@@ -18,16 +18,31 @@
      "note": "Manual review of the named nominee written answer. The complete quote occurs after its exact question anchor and before the next question anchor. Preserve the source extraction spacing."
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
-    "facets_final": [],
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "He criticizes the lateness of focusing on Chinese aggression and says the IC lags adversaries in AI adoption, endorsing competition as a priority.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.82,
+      "confidence_reason": "The statement explicitly faults delayed focus on China and AI lag, though it does not use the exact phrase 'policy priority'.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T06:13:01.215098+00:00",
+      "generation_id": "gen-1794377565-ZaHbXb02e06E2cZCiKpW"
+     }
+    },
+    "confidence": 0.82,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
     "sid": "s4",
@@ -45,16 +60,37 @@
      "note": "Manual review of the named nominee written answer. The complete quote occurs after its exact question anchor and before the next question anchor. Preserve the source extraction spacing."
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "neutral",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "He describes increasing competition from China as a challenge to US technology leadership without explicitly endorsing a policy priority.",
+      "facets": [],
+      "confidence": 0.74,
+      "confidence_reason": "The statement is descriptive about competitive challenges, with no explicit call for prioritizing competition.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-11T06:13:01.215188+00:00",
+      "generation_id": "gen-1794377565-ZaHbXb02e06E2cZCiKpW"
+     },
+     "astra": {
+      "stance": "neutral",
+      "reason": "Lukas describes competition from China as a challenge to US technology leadership without endorsing it as an AI policy priority.",
+      "facets": [],
+      "confidence": 0.96,
+      "confidence_reason": "The statement assesses competitive pressures but makes no explicit policy endorsement or tradeoff.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-11T06:13:05.713582+00:00",
+      "generation_id": "gen-1794377582-DhyMx38Sn2lPNY4n6oTG"
+     }
+    },
+    "confidence": 0.96,
+    "final_judge": "astra",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.74 is below 0.8."
    }
   ]
  },
