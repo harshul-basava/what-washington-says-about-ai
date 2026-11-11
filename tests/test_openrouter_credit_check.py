@@ -50,6 +50,25 @@ class CreditCheckTests(unittest.TestCase):
             self.module.summarize({'limit': 100},
                                   {'total_credits': 500, 'total_usage': 0}, 185, 150)
 
+    def test_invalid_or_inconsistent_key_cap_never_authorizes_spending(self):
+        for limit in (False, 'invalid', float('nan'), -1, 100):
+            with self.subTest(limit=limit), self.assertRaises(ValueError):
+                self.module.summarize({'limit': limit, 'limit_remaining': 200},
+                                      {'total_credits': 500, 'total_usage': 0}, 185, 150)
+
+    def test_reports_budget_type_and_reset_without_identifiers(self):
+        budget = {'scope': 'workspace', 'limit_usd': 320, 'remaining_usd': 8.32,
+                  'reset_interval': 'monthly', 'resets_at': '2026-12-01T00:00:00Z',
+                  'guardrail_id': 'PRIVATE', 'budget_id': 'PRIVATE'}
+        result = self.module.summarize(
+            {'limit': 500, 'limit_remaining': 188, 'budgets': [budget], 'effective_budget': budget},
+            {'total_credits': 500, 'total_usage': 338}, 185, 150)
+        self.assertEqual(len(result['guardrail_budgets']), 1)
+        self.assertEqual(result['guardrail_budgets'][0]['scope'], 'workspace')
+        self.assertEqual(result['guardrail_budgets'][0]['limit_usd'], 320)
+        self.assertEqual(result['guardrail_budgets'][0]['reset_interval'], 'monthly')
+        self.assertNotIn('PRIVATE', str(result))
+
 
 if __name__ == '__main__':
     unittest.main()

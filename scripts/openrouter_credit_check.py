@@ -1,5 +1,6 @@
 """Read credit metadata inside Actions without exporting a repository secret."""
 import argparse
+from datetime import datetime
 import json
 import math
 import os
@@ -31,17 +32,43 @@ def summarize(key, credits, repository_remaining, required_credit):
     if key_remaining is not None:
         key_remaining = max(0, number(key_remaining))
         limits.append(key_remaining)
+    key_limit = None
+    if key['limit'] is not None:
+        key_limit = number(key['limit'])
+        if key_limit < 0 or key_remaining > key_limit:
+            raise ValueError('Invalid or inconsistent key cap')
     guardrails = list(key.get('budgets') or [])
     if key.get('effective_budget'):
         guardrails.append(key['effective_budget'])
-    guardrail_remaining = [max(0, number(b['remaining_usd'])) for b in guardrails]
+    safe_budgets = []
+    for budget in guardrails:
+        remaining = max(0, number(budget['remaining_usd']))
+        cap = None if budget.get('limit_usd') is None else number(budget['limit_usd'])
+        if cap is not None and (cap < 0 or remaining > cap):
+            raise ValueError('Invalid or inconsistent guardrail cap')
+        scope = budget.get('scope')
+        if scope not in ('organization', 'workspace', 'member', 'key', 'guardrail', 'team', 'user'):
+            scope = 'unspecified'
+        interval = budget.get('reset_interval')
+        if interval not in ('daily', 'weekly', 'monthly', None):
+            interval = 'unspecified'
+        resets_at = budget.get('resets_at')
+        if resets_at is not None:
+            resets_at = datetime.fromisoformat(resets_at.replace('Z', '+00:00')).isoformat()
+        item = {'scope': scope, 'limit_usd': cap, 'remaining_usd': remaining,
+                'reset_interval': interval, 'resets_at': resets_at}
+        if item not in safe_budgets:
+            safe_budgets.append(item)
+    guardrail_remaining = [b['remaining_usd'] for b in safe_budgets]
     limits.extend(guardrail_remaining)
     available = min(limits)
     return {
         'status': 'checked',
         'account_remaining_usd': round(account, 6),
+        'key_limit_usd': key_limit,
         'key_limit_remaining_usd': key_remaining,
         'guardrail_remaining_usd': min(guardrail_remaining) if guardrail_remaining else None,
+        'guardrail_budgets': safe_budgets,
         'repository_remaining_usd': round(repository, 6),
         'spendable_usd': round(available, 6),
         'required_credit_usd': required,
