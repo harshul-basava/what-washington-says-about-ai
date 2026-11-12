@@ -14,13 +14,13 @@ The [campaign configuration](../config/federal_collection_campaign.json) records
 
 ## Collection and reuse
 
-The configured inventory covers 172 index pages or public data files, plus existing official sources and source leads. Source groups include the White House, Federal Reserve, Commerce/NIST, Energy, Justice, Treasury, SEC, FTC, CIA, NSA, CISA and ODNI. Some indexes block direct retrieval. The report records those gaps; an index entry does not prove successful collection.
+The inventory includes agency archive indexes, public data files, existing official sources and source leads. Source groups include the White House, Federal Reserve, Commerce/NIST, Energy, Justice, Treasury, SEC, FTC, CIA, NSA, CISA and ODNI. Some indexes block direct retrieval. The report records those gaps; an index entry does not prove successful collection.
 
 Eight workers retrieve documents. Eight extraction requests can run at once through one budget manager. A lock serializes evidence updates. The queue rotates source groups and preserves priority within each group. Multi-speaker hearings without reviewed speaker mappings receive no extraction request because their quotes cannot pass the existing verifier.
 
 Each extraction signature includes the source, subjects, prompt and model. Search signatures include the complete prompt, model, domain restrictions and date window. Empty and malformed responses remain in the cache. Changed inputs invalidate their results. Daily and campaign workflows share one cache prefix and the same path list.
 
-After archive work, the campaign searches for officials with fewer than three excerpts. It pairs names within each agency and rotates agencies. It checks existing verified X accounts only where evidence remains sparse. It does not invent account mappings or add former officials.
+After archive work, the campaign searches for officials with fewer than three excerpts. It pairs names within each agency and rotates agencies. It checks existing verified X accounts for the current-official roster. It does not invent account mappings or add former officials.
 
 Ordinary judgments reuse unchanged statement inputs. Full-profile regulation and summary judgments update when their evidence changes. Astra reuses a compatible completed profile audit. Changed evidence or context still requires review. Every request includes each full source text once, with separate excerpt references and attribution metadata.
 
@@ -30,7 +30,7 @@ The trial targets five officials across five agency groups. The wider campaign h
 
 Failed queries, incomplete extractions, pending X intervals and unfinished model judgments remain pending. Confirmed retrieval failures remain visible as source gaps. Unavailable evidence never becomes a neutral or opposing stance.
 
-The final report will record actual spend, accepted excerpts, unique sources, officials and agencies reached, source gaps and remaining budget. The workflow saves public progress on failure and retains raw verification material in its cache. Full raw documents, credentials and the local human review tool stay outside Git.
+The final report records spending and reservations, accepted excerpts, unique sources, officials and agencies reached, source gaps and remaining budget. The workflow saves public progress on failure and retains raw verification material in its cache. Full raw documents, credentials and the local human review tool stay outside Git.
 
 ## Trial recovery and source checks
 
@@ -229,3 +229,18 @@ A full-post source review found clipped sentence or bullet boundaries in all thr
 The daily X collector now selects only whole source paragraphs or bullets within the same word limit. It preserves ordinary line wraps. An indivisible long passage stays in the raw cache and receives a persistent `needs_review` entry. The collector never shortens such a passage by cutting arbitrary words. The repaired posts require refreshed analysis and Astra reviews. Source checks still pass all 900 campaign additions.
 
 The excerpt selector also preserves explicit continuation conditions, including a following “Only if” paragraph. If the complete condition cannot fit, the post needs review. The full offline suite passed 390 Python tests. The existing JavaScript suite passed 74 tests.
+
+
+## Completed campaign and publication audit
+
+Run `43292296004` completed successfully and saved `6c52ab9f`. It recovered one invalid DeepSeek summary response through the existing bounded retry process. All required judgments and independent Astra reviews now match the final evidence.
+
+The campaign retained 900 added excerpts from 317 sources across 90 officials and 54 organizations. These comprise 892 official-source excerpts, five short reporting excerpts and three X excerpts. Corrections also removed 19 older records from active counts. The number of verified statements for officials rose from 3,031 to 3,912, a net increase of 881. The complete federal dataset contains 5,889 statements across 500 officials and 35 institutions. Evidence coverage remains 262 of 500 officials. Most additions deepen existing profiles.
+
+All 900 additions passed retained-source verification. The audit also replayed every active Astra input hash against its complete retained source context. It found no stale review, pending context request or active same-source duplicate among changed profiles. All 5,889 federal statements have completed ordinary analysis. Named-policy work has no pending campaign request. Independent Astra review covers 93 profiles; two corrected profiles have no verified evidence and receive no invented stance.
+
+The original model allowance remains $100. The ledger used or reserved $86.711322 and leaves $13.288678 unspent. That total includes the recovered daily charges and six unresolved reservations totaling $3.718179. Those reservations remain charged until billing can resolve them. Separate estimated X cost reached $1.305 within the existing $5 campaign ceiling. No spending baseline or verification threshold changed. The reserved review allowance exceeded the final review costs; this campaign did not exhaust the full $100.
+
+The public audit is `data/federal_collection_completion.json`. It records completed work, remaining source gaps, current coverage and unused funds. Retrieval failures and the unavailable historical Holyoak account remain explicit gaps. The configured daily schedule remains unchanged. Its interrupted attempt retains its partial status and recovery report. Raw source and Astra context files remain outside Git in the private recovery artifact and local cache.
+
+The development and production checks returned HTTP 200 and the same final data revision. Both serve 3,912 official statements and 5,889 total federal statements. The publication checks appear in the completion report.

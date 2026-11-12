@@ -62,7 +62,7 @@
 
 - [x] Recheck credit after the repository ceiling update; replay cached evidence offline.
 - [x] Run the $3 trial across agency groups. Verify sources and complete judgments before broad expansion.
-- [ ] Continue the campaign under its original $100 baseline; inspect each stage and fix failures without lowering verification rules.
-- [ ] Verify every addition against retained source snapshots, check independent primary-source samples, and confirm all required judgments finish.
-- [ ] Build once per completed publication wave; push evidence/results and verify the dev site and remote commit.
-- [ ] Report total cost, unique sources, officials/agencies reached, remaining gaps and unused budget. Complete the goal only after this audit passes.
+- [x] Continue the campaign under its original $100 baseline; inspect each stage and fix failures without lowering verification rules.
+- [x] Verify every addition against retained source snapshots, check independent primary-source samples, and confirm all required judgments finish.
+- [x] Build once per completed publication wave; push evidence/results and verify the dev site and remote commit.
+- [x] Report total cost, unique sources, officials/agencies reached, remaining gaps and unused budget. Complete the goal only after this audit passes.
