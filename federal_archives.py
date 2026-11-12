@@ -12,7 +12,7 @@ import sys
 import copy
 import threading
 from collections import defaultdict, deque
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor, as_completed, wait, FIRST_COMPLETED
 from contextlib import nullcontext
 from difflib import SequenceMatcher
 from datetime import date, timedelta
@@ -297,6 +297,8 @@ def discover(root, config, subjects, state, *, now=None):
         for row in policy_subjects.load_evidence(root,person):
             u=row.get('url','')
             if ((person['id'] in selected and row.get('source_type')=='official_statement') or
+                    (config.get('include_institution_sources') and person['entity_type']=='institution'
+                     and row.get('verified') is True) or
                     (config.get('include_hearing_inventory') and ('/CHRG-' in u or '-Wstate-' in u))):
                 add(row,'existing_verified_source_inventory',by_org.get(person.get('organization_id')),person['id'] if person['id'] in selected else None)
     return errors
@@ -399,9 +401,16 @@ def collect(root, config, client, *, ids=None, max_documents=30, max_chunks=60, 
             doc['error']=type(exc).__name__
             return doc,getattr(exc,'archive_report',{}),fetched,type(exc).__name__
     with ThreadPoolExecutor(max_workers=fetch_workers) as pool:
-        for offset in range(0,len(queue),fetch_workers):
-            if used_chunks>=max_chunks:break
-            for future in as_completed([pool.submit(work,item) for item in queue[offset:offset+fetch_workers]]):
+        remaining_queue=iter(queue);pending=set()
+        def fill_slots():
+            while len(pending)<fetch_workers and used_chunks<max_chunks and report['status']=='complete':
+                item=next(remaining_queue,None)
+                if item is None:break
+                pending.add(pool.submit(work,item))
+        fill_slots()
+        while pending:
+            finished,pending=wait(pending,return_when=FIRST_COMPLETED)
+            for future in finished:
                 doc,result,fetched,error=future.result();url=doc['url'];state['documents'][url]=doc
                 report['checked_documents']+=1;report['fetched']+=fetched
                 for key in ('model_requests','chunks_checked','rejected','extraction_errors','duplicate_excerpts'):report[key]+=result.get(key,0)
@@ -415,7 +424,9 @@ def collect(root, config, client, *, ids=None, max_documents=30, max_chunks=60, 
                     if error in ('BudgetExceeded','OpenRouterRequestError'):
                         report['status']='collection_budget_limit' if error=='BudgetExceeded' else 'provider_limit'
                 federal.write(root/STATE,state)
-            if report['status'] in ('collection_budget_limit','provider_limit'):break
+            # A slow document must not leave completed workers idle. Keep the
+            # same bounded in-flight work, shared chunk limit and budget client.
+            fill_slots()
     report['inventory_documents']=len(state['documents'])
     report['remaining_documents']=sum(d.get('processed',{}).get('status') not in ('complete','needs_review') for d in state['documents'].values())
     report['review_documents']=sum(d.get('processed',{}).get('status')=='needs_review' for d in state['documents'].values())

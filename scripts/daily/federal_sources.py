@@ -119,7 +119,7 @@ def transcript_metadata(url, html):
 def govinfo_speaker_turns(lines):
     """Read the exact four-space paragraph indentation used by GPO hearing HTML."""
     name = r"[A-Z][A-Za-z’'-]+(?:[ \t]+(?:[A-Z][A-Za-z’'-]+|de|van|von)){0,4}"
-    label = (r'(?:(?:Mr|Ms|Mrs|Dr)\.|Senator|Secretary|Admiral|General|Chairman|Chairwoman)'
+    label = (r'(?:(?:Mr|Ms|Mrs|Dr)\.|Senator|Secretary|Admiral|General|Lt\. General|Chairman|Chairwoman)'
              r'[ \t]+' + name + r'\.|The (?:Chairman|Chairwoman|Chair)\.')
     unknown = (r'(?:Mr|Ms|Mrs|Dr|Prof|Lt|Gen|Adm)\.|'
                r"[A-Z][A-Za-z’'-]*(?:[ \t]+(?:[A-Z][A-Za-z’'-]*|of|the|and|de|van|von)){0,5}[.:]")

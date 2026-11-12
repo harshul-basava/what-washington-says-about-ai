@@ -9,6 +9,23 @@ from unittest.mock import patch
 import federal_archives as archive
 
 class ArchiveTests(unittest.TestCase):
+    def test_verified_institution_documents_are_shared_leads_without_person_attribution(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d)
+            person={'id':'p','entity_type':'person','organization_id':'agency'}
+            institution={'id':'agency','entity_type':'institution','organization_id':'agency'}
+            rows=[{'url':'https://example.gov/statement','verified':True},
+                  {'url':'https://example.gov/unverified','verified':False},
+                  {'url':'https://x.com/agency/status/123','verified':True}]
+            archive.federal.write(root/'config/federal_sources.json',{'groups':[{'id':'group','organization_ids':['agency']}]})
+            with patch.object(archive.policy_subjects,'load_subjects',return_value=[person,institution]),patch.object(archive.policy_subjects,'load_evidence',side_effect=lambda root,s:rows if s['id']=='agency' else []):
+                state={};archive.discover(root,{'indexes':[]},[person],state,now='2026-11-12')
+                self.assertEqual(state['documents'],{})
+                archive.discover(root,{'indexes':[],'include_institution_sources':True},[person],state,now='2026-11-12')
+            self.assertEqual(set(state['documents']),{'https://example.gov/statement'})
+            self.assertEqual(state['documents']['https://example.gov/statement']['group'],'group')
+            self.assertNotIn('subject_ids',state['documents']['https://example.gov/statement'])
+
     def test_treasury_public_json_index_supplies_leads_only_with_date_and_url_bounds(self):
         source={'url':'https://home.treasury.gov/news-data/press-releases/2026-2023.json',
                 'domains':['home.treasury.gov'],'pattern':r'/news/press-releases/[^/?#]+/?$',
@@ -187,6 +204,23 @@ class ArchiveTests(unittest.TestCase):
             rows=archive.federal.read(root/'evidence/p.json',{})['statements']
             self.assertEqual({s['sid'] for s in rows},{f's{i}' for i in range(1,9)})
             self.assertEqual(report['chunks_checked'],8)
+
+    def test_completed_download_slot_starts_next_document_before_slow_peer_finishes(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);third_started=threading.Event();overlap=[]
+            docs={f'https://example.gov/{i}':{'url':f'https://example.gov/{i}'} for i in range(3)}
+            archive.federal.write(root/archive.STATE,{'documents':docs,'indexes':{}})
+            def fetch(url,domains):
+                if url.endswith('/0'):overlap.append(third_started.wait(timeout=1))
+                if url.endswith('/2'):third_started.set()
+                return b'data',url
+            def page(url,data,title):
+                return {'url':url,'text':'A public document without a named roster official.',
+                        'verified_via':'exact_normalized_page_text'}
+            with patch.object(archive.policy_subjects,'load_subjects',return_value=[]),patch.object(archive,'fetch',side_effect=fetch),patch.object(archive,'page_from_bytes',side_effect=page):
+                report=archive.collect(root,{},object(),discover_sources=False,max_documents=3,fetch_workers=2)
+            self.assertEqual(overlap,[True])
+            self.assertEqual(report['checked_documents'],3)
 
     def test_archive_links_require_official_allowlist_and_document_pattern(self):
         html='<a href="/newsevents/speech/barr20260714a.htm#top">AI</a><a href="https://evil.test/barr20260714a.htm">AI</a><a href="/about.htm">About</a>'

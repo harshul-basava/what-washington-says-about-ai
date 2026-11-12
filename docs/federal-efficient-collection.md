@@ -113,3 +113,21 @@ Cumulative model spending reached $37.144734, leaving $62.855266. Collection and
 The next batch adds 241 candidate documents after 1,089 free public-source checks. It extends health, science, procurement, labor, agriculture and banking archives. The 106 added index pages bring the configured total to 172. Candidates still require the full existing verification process. The source inventory and selection details appear in `data/federal_archive_followup.json`.
 
 The expanded audit also found 13 repeated source quotations that predate this campaign. Their records remain on disk with validated `duplicate_of` references. The next review refresh excludes their duplicate counts. This correction does not reduce the 710 new campaign excerpts. The original cost baselines and limits remain unchanged.
+
+## Follow-up archive results and X availability gap
+
+Run 43235810637 added 25 excerpts. Cumulative additions reached 735 excerpts from 257 sources across 74 officials. Ordinary analysis, named-policy judgments, independent Astra reviews and local source replay all completed. The corrected duplicate counts leave 3,753 excerpts for officials and 5,730 across all federal profiles. Coverage remains 263 of 500 current officials.
+
+The workflow retained a pending result because the official X API could not find `@MHolyoakFTC`. Its response reported `lookup_response_errors` and `resource-not-found`. All other mapped officials had no pending planned historical interval. The explicit source gap now closes this campaign's attempts for that unavailable account. Its original X checkpoint still remains pending, and its collection result still reports partial coverage. No record claims a successful search. A later campaign can retry the source. The audit appears in `data/federal_collection_x_source_gaps.json`.
+
+Cumulative model spending reached $41.878669, leaving $58.121331. Collection accounts for $4.457074 of that amount. Separate X spending reached $0.445.
+
+## Reviewed source repairs and institutional source reuse
+
+The assistant recovered 20 exact quotations from cached extraction proposals. Eighteen originally failed an exact office-title match. Personal attribution preserves their verified speakers without asserting that exact title. Two more use the existing supported single-author fields on Federal Reserve and SEC speech pages. Their quotations and dates remain unchanged. All 20 pass the unchanged validators on retained and freshly retrieved official sources. Independent source review also passed. The audit appears in `data/federal_collection_attribution_review.json`. Their required model judgments and Astra reviews run after this repair.
+
+Joshua Rudd's January 29, 2026 nomination hearing uses the label `Lt. General Rudd.`. The parser now supports that exact prefix within its existing four-space paragraph rule. The reviewed mapping binds that label to the exact source and hearing day. It does not establish that Rudd held the NSA directorship before his appointment. Other speakers, inline mentions, unsupported indentation and written answers remain excluded.
+
+The institutional profiles supplied 188 official URLs outside the archive inventory. Free source checks found 59 candidate pages, 101 pages without both a current official's name and AI content, and 28 retrieval gaps. These are leads for new personal attribution, not transferred institutional opinions. The archive's new `include_institution_sources` option also feeds these shared leads into daily collection. Every accepted personal statement still needs the existing source checks.
+
+The collector now starts the next queued document when a worker finishes. Previously, each fixed group waited for its slowest document. The worker ceiling, extraction semaphore, shared budget manager, chunk limit and evidence lock remain unchanged. Budget or provider errors stop new submissions while existing work saves its results.

@@ -38,6 +38,18 @@ class GovinfoTurnTests(unittest.TestCase):
         self.assertEqual(self.validate(self.other), ([], 1))
         self.assertEqual(self.validate(self.quote + ' Senator Van Hollen. ' + self.other), ([], 1))
 
+    def test_reviewed_lieutenant_general_label_requires_exact_source_and_paragraph(self):
+        subject=copy.deepcopy(self.subject)
+        subject['source_speaker_aliases'][0]['label']='Lt. General Klein.'
+        raw=self.raw.replace('Mr. Klein.', 'Lt. General Klein.')
+        rows,rejected=self.validate(page=self.page(raw),subject=subject)
+        self.assertEqual(rejected,0)
+        self.assertEqual(rows[0][1]['attribution']['speaker_label'],'Lt. General Klein.')
+        self.assertEqual(self.validate(self.other,self.page(raw),subject),([],1))
+        for invalid in [raw.replace('    Lt. General Klein.','Lt. General Klein.'),
+                        raw.replace('    Lt. General Klein.','    Lt. General Jones.')]:
+            self.assertEqual(self.validate(page=self.page(invalid),subject=subject),([],1))
+
     def test_inline_name_and_written_question_do_not_extend_a_speaker_turn(self):
         raw = ('September 17, 2025\nWitness: Ethan A. Klein\n'
                '    Senator Van Hollen. I spoke to Mr. Klein. ' + self.quote + '\n')
