@@ -24,6 +24,12 @@ ATTRIBUTION = {'kind': 'official_role', 'speaker': 'Official A', 'role': 'Secret
 
 
 class SubjectTests(unittest.TestCase):
+    def test_duplicate_key_ignores_a_copied_terminal_comma_but_keeps_questions(self):
+        import policy_subjects
+        row={'url':'https://example.gov/speech','text':'AI companies must be free to innovate'}
+        self.assertEqual(policy_subjects.source_quote_key(row),policy_subjects.source_quote_key({**row,'text':row['text']+','}))
+        self.assertNotEqual(policy_subjects.source_quote_key(row),policy_subjects.source_quote_key({**row,'text':row['text']+'?'}))
+
     def test_duplicate_records_keep_ids_but_do_not_enter_analysis(self):
         import policy_subjects
         with tempfile.TemporaryDirectory() as tmp:

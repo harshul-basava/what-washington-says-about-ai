@@ -68,4 +68,12 @@ Only extraction caches for bound speaker sources receive a new signature. Other 
 
 The resume audit found repeated quotations from the same source with different date metadata. The collector now rejects an identical normalized quotation from the same canonical URL, regardless of that metadata. Statements from different sources and dates retain the existing rules.
 
-Nine existing campaign records now carry `duplicate_of` references to their earlier stable IDs. The records remain on disk for audit. Analysis, public counts, and campaign addition counts exclude them. The loader rejects a correction unless both records have the same source and quotation. It also rejects missing targets, self-references, and chains. Original quotations, dates, attribution, and IDs remain unchanged. The correction report lives in `data/federal_collection_duplicate_corrections.json`.
+Ten campaign records now carry `duplicate_of` references to their earlier stable IDs. The records remain on disk for audit. Analysis, public counts, and campaign addition counts exclude them. The comparison ignores a copied terminal comma, but preserves question marks and the original quotation text. The loader rejects a correction unless both records have the same source and quotation. It also rejects missing targets, self-references, and chains. Original quotations, dates, attribution, and IDs remain unchanged. The correction report lives in `data/federal_collection_duplicate_corrections.json`.
+
+## November 12 expansion checkpoint
+
+Run 43195230024 completed web collection, ordinary analysis, named-policy judgments, and independent Astra review for 52 changed profiles. Its source replay checked 435 additions from 160 sources. The subsequent terminal-comma correction reduces the active additions to 434. The affected profile will complete review again before the campaign finishes.
+
+Cumulative model spending reached $20.543324, leaving $79.456676 under the original $100 allowance. Collection and discovery account for $2.657826 of that total. X spending reached $0.305 under its separate $5 ceiling. Six historical X intervals remain pending. The workflow correctly retained a pending campaign status and saved its evidence, judgments, costs, and caches.
+
+The checkpoint reached 262 officials with evidence, compared with 261 at the campaign baseline. Most additions deepen existing profiles. The archive inventory also contains hearing transcripts that require reviewed speaker mappings. Those sources remain excluded from personal evidence until the same identity and speaker-turn checks can pass. Further work will assess these gaps within the original allowance.

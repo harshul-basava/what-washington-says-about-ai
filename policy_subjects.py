@@ -108,7 +108,7 @@ def source_quote_key(statement):
     if not statement.get('url'):
         return None
     return (urldefrag(statement['url'])[0],
-            ' '.join(html.unescape(statement['text']).split()).casefold())
+            ' '.join(html.unescape(statement['text']).split()).casefold().rstrip(','))
 
 
 def active_evidence(statements):
