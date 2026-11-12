@@ -70,16 +70,41 @@
     },
     "attribution_span_sha256": "f776e42df54f60b3e0865e13362968444bb0f2429c96d7488bacc9f75ff7b04c",
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
-    "facets_final": [],
-    "facet_disagreement": false,
-    "model_disagreement": false,
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "The speaker notes China's AI development lead and the need for generation but does not explicitly endorse making competition with China a policy priority.",
+      "facets": [],
+      "confidence": 0.78,
+      "confidence_reason": "The statement mentions China AI competition but gives no explicit policy endorsement, making the stance descriptive rather than directional.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-12T03:29:10.326096+00:00",
+      "generation_id": "gen-1794454145-cG7HP2FdKKfYytIuQ1pD"
+     },
+     "astra": {
+      "stance": "support",
+      "reason": "Danly urges developing electricity generation to sustain the United States' narrow AI lead over China.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.96,
+      "confidence_reason": "He explicitly links the urgency of generation development to the short US AI lead over China without endorsing any safety tradeoff.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-12T03:29:15.359239+00:00",
+      "generation_id": "gen-1794454151-mnxIMuEFdoOk5q0alaQ5"
+     }
+    },
+    "confidence": 0.96,
+    "final_judge": "astra",
+    "facets_final": [
+     "competition_priority"
+    ],
+    "facet_disagreement": true,
+    "model_disagreement": true,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.78 is below 0.8."
    }
   ]
  },
