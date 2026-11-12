@@ -6,6 +6,8 @@ import re
 import io
 import math
 from html.parser import HTMLParser
+from datetime import datetime, timezone, timedelta, date
+from pathlib import Path
 from urllib.parse import urljoin, urlsplit, urlunsplit
 
 import httpx
@@ -94,6 +96,7 @@ class Client:
         import llm
         import policy_cascade
         self.llm = llm
+        self.root = Path(root)
         self.model = model or policy_cascade.load_strategy(root)['primary_model']
         self.daily = daily
         if not llm.os.environ.get('OPENROUTER_API_KEY'):
@@ -126,14 +129,23 @@ class Client:
                                         request_timeout=600, tools=tools, reasoning={'effort': 'low'},
                                         **({'response_format': {'type': 'json_object'}} if tools is None else {}))
 
-    def search(self, query, domains, since):
-        prompt = (f'Search for public AI policy statements published since {since}. Topic: {query}. '
+    def search(self, query, domains, since, *, until=None):
+        until=until or (datetime.now(timezone.utc).date()+timedelta(days=1)).isoformat()
+        if date.fromisoformat(since)>=date.fromisoformat(until):raise ValueError('Invalid search window')
+        prompt = (f'Search for public AI policy statements published since {since} and before {until} (exclusive). Topic: {query}. '
                   'Search now, using the web tool once. Return the relevant pages with citations. '
                   'Do not invent quotations or URLs. If none qualify, say so.')
         tool = {'type': 'openrouter:web_search', 'parameters': {
             'engine': 'exa', 'max_results': 6, 'max_uses': 1, 'max_total_results': 6,
             'max_characters': 12000, 'allowed_domains': domains}}
-        result = self.chat([{'role': 'user', 'content': prompt}], ('daily_' if self.daily else '') + 'federal_search', 2500, [tool])
+        signature=digest(json.dumps([self.model,prompt,tool,2500],sort_keys=True))
+        cache=Path(self.root)/'data/raw/federal_search'/f'{signature}.json' if getattr(self,'root',None) else None
+        if cache is not None and cache.exists():result=json.loads(cache.read_text())
+        else:
+            result = self.chat([{'role': 'user', 'content': prompt}], ('daily_' if self.daily else '') + 'federal_search', 2500, [tool])
+            if cache is not None:
+                cache.parent.mkdir(parents=True,exist_ok=True)
+                temporary=cache.with_suffix('.tmp');temporary.write_text(json.dumps(result));temporary.replace(cache)
         message = result['choices'][0]['message']
         uses = (result.get('usage', {}).get('server_tool_use_details') or {}).get('web_search_requests')
         pages = {}

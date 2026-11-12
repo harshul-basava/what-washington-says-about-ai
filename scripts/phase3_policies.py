@@ -154,6 +154,7 @@ def main():
     parser.add_argument('--scope', choices=('all', 'congress', 'executive'), default='all')
     parser.add_argument('--ids', help='Comma-separated eligible subject IDs for plan or label')
     parser.add_argument('--daily', action='store_true', help='Use daily spend tags and reserve against the monthly cap')
+    parser.add_argument('--defer-build', action='store_true', help='Save judgments; let the campaign perform the final build')
     parser.add_argument("--targets", help="Comma-separated registry IDs; filters candidate statements, not output labels")
     parser.add_argument("--batch-size", type=int, default=4)
     parser.add_argument("--workers", type=int, default=4)
@@ -202,7 +203,7 @@ def main():
                       "strategy": strategy, "review_note": "Astra work is known only after DeepSeek returns confidence; label checks live prices." if strategy else None}, indent=2), flush=True)
     if args.command == "label":
         errors = (label_cascade(items, saved, registry, rubric, confidence_prompt, strategy, args) if strategy else label(work, saved, registry, rubric, args)) if work else 0
-        p.build(ROOT)
+        if not args.defer_build:p.build(ROOT)
         if errors:
             raise SystemExit(1)
 

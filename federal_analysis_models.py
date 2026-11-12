@@ -29,10 +29,11 @@ def messages(subject,statements,stage,config,areas=None):
         '\n\nReturn only JSON with this structure (replace example values with the assessment):\n'+json.dumps(output)}]
 
 
-def run(root,max_cost=5,workers=4,ids=None,daily=False,dry=False,stages=None):
+def run(root,max_cost=5,workers=4,ids=None,daily=False,dry=False,stages=None,*,build_output=True,review_workers=None):
     root=Path(root)
     if dry:return a.plan(root,ids)
     if type(workers) is not int or not 1<=workers<=(8 if daily else 20):raise ValueError('workers must be 1–20 (1–8 for daily runs)')
+    if review_workers is not None and (type(review_workers) is not int or not 1<=review_workers<=workers):raise ValueError('Invalid review worker limit')
     import llm
     config=a.configuration(root);settings=config['settings'];subjects,evidence=a.inputs(root)
     if ids is not None:
@@ -59,14 +60,14 @@ def run(root,max_cost=5,workers=4,ids=None,daily=False,dry=False,stages=None):
     # An already complete run needs no credentials or network.
     before=a.plan(root,ids)
     if before['status']=='ok':
-        a.build(root,record=True)
+        if build_output:a.build(root,record=True)
         return {**before,'estimated_cost_usd':0,'requests':0,'errors':[]}
     if not math.isfinite(max_cost) or max_cost < 0:
         raise ValueError('max_cost must be finite and nonnegative')
     if max_cost == 0:
         report={**before,'estimated_cost_usd':0,'requests':0,'errors':[{'error':'budget_exceeded'}]}
         a.write(root/'data/federal_analysis_status.json',{'date':a.today(),**report})
-        a.build(root,record=True)
+        if build_output:a.build(root,record=True)
         return report
     if not llm.os.environ.get('OPENROUTER_API_KEY'):raise ValueError('OPENROUTER_API_KEY is required for incomplete analysis')
     result=llm.httpx.get('https://openrouter.ai/api/v1/models',timeout=30);result.raise_for_status()
@@ -173,7 +174,8 @@ def run(root,max_cost=5,workers=4,ids=None,daily=False,dry=False,stages=None):
         dispatched=False
         budget_blocked=False
         print(f'{stage}: {len(work)} requests planned',flush=True)
-        with ThreadPoolExecutor(max_workers=workers) as pool:
+        stage_workers=min(workers,review_workers or workers) if stage in ('sol','astra','reg_sol','reg_astra') else workers
+        with ThreadPoolExecutor(max_workers=stage_workers) as pool:
             futures=[pool.submit(assess,stage,job) for job in work]
             for future in as_completed(futures):
                 job,result,error=future.result();pid,ss,areas=job;requests+=1
@@ -209,5 +211,5 @@ def run(root,max_cost=5,workers=4,ids=None,daily=False,dry=False,stages=None):
             'requests':requests,'uncertain_cost_requests':budget.uncertain,'errors':errors}
     if errors:report['status']='partial'
     a.write(root/'data/federal_analysis_status.json',{'date':a.today(),**report})
-    a.build(root,record=True)
+    if build_output:a.build(root,record=True)
     return report

@@ -90,7 +90,7 @@ def command(root, script, *args, capture=False):
     return result.returncode
 
 
-def review_cohort(root, cohort, ids, allowance, workers, refresh_ids, *, allow_x_context=True):
+def review_cohort(root, cohort, ids, allowance, workers, refresh_ids, *, allow_x_context=True, build_output=True):
     import federal_analysis as analysis
     import federal_stance_review as review
     import llm
@@ -106,7 +106,8 @@ def review_cohort(root, cohort, ids, allowance, workers, refresh_ids, *, allow_x
         raise ValueError('Saved review targets left the selected current cohort')
     if not target_ids:
         return {'status': 'complete', 'reviewed_profiles': 0}
-    index = analysis.build(root)
+    index = analysis.build(root) if build_output else read(root/'site/data/federal_analysis.json')
+    if not index:index=analysis.build(root)
     scores = {m['id']: m['scores'] for m in index['members']}
     if not audit:
         audit = {'version': 1, 'prompt_version': review.PROMPT_VERSION, 'model': review.MODEL,
@@ -132,7 +133,7 @@ def review_cohort(root, cohort, ids, allowance, workers, refresh_ids, *, allow_x
         requests = [(pid, row) for pid in target_ids for row in audit['profiles'][pid]['result']['context_requests']]
         if not requests:
             result = review.apply(root)
-            analysis.build(root, record=True)
+            if build_output:analysis.build(root, record=True)
             return {'status': 'complete', **result}
         review.fetch_contexts(root, workers=min(workers, 4))
         if any(next(s for s in evidence[pid] if s['sid'] == row['sid']).get('source_type') == 'x' for pid, row in requests):

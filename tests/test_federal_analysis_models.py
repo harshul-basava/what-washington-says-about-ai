@@ -48,6 +48,15 @@ class GatewayTests(unittest.TestCase):
             self.assertEqual(post.call_count,1)
 
 class ModelTests(unittest.TestCase):
+    def test_build_can_be_deferred_for_complete_analysis_without_network(self):
+        import federal_analysis as a
+        from test_federal_analysis import FederalAnalysisTests
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);fixture=FederalAnalysisTests();fixture.a=a;fixture.fixture(root)
+            with patch.object(a,'plan',return_value={'status':'ok'}),patch.object(a,'build',side_effect=AssertionError('Deferred build')),patch.object(llm.httpx,'get',side_effect=AssertionError('No repeated model lookup')):
+                result=self.m.run(root,build_output=False,review_workers=2)
+            self.assertEqual(result['requests'],0)
+
     @classmethod
     def setUpClass(cls):
         assert (ROOT/'federal_analysis_models.py').exists(),'Federal model runner is missing'
