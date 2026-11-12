@@ -156,4 +156,37 @@ class ArchiveTests(unittest.TestCase):
             self.assertEqual(saved['budget_baseline'],100);self.assertEqual(saved['collection_baseline'],100)
             self.assertAlmostEqual(saved['spent_usd'],1.2)
 
+    def test_offline_cache_check_reuses_completed_source_and_rejects_changed_snapshot(self):
+        from scripts import federal_archives as runner
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);subject={'id':'p','name':'Alice Example','aliases':[],'entity_type':'person','roles':[]}
+            page={'url':'https://example.gov/a','text':'Alice Example discusses artificial intelligence in government services.','verified_via':'exact_normalized_page_text'}
+            class Client:
+                def extract(self,*args,**kw):return []
+            processed={};archive.process_document(root,page,[subject],processed,Client())
+            path=root/archive.RAW/'pages'/f"{archive.sources.digest(page['url'])}.json"
+            archive.federal.write(path,page)
+            archive.federal.write(root/archive.STATE,{'documents':{page['url']:{'processed':processed}}})
+            evidence={'statements':[{'sid':'s1','text':page['text'],'url':page['url'],'source_text_sha256':archive.sources.digest(page['text'])}]}
+            archive.federal.write(root/'evidence/p.json',evidence)
+            archive.federal.write(root/runner.PILOT,{'ids':['p'],'added':{'p':['s1']},'new_statements':1})
+            with patch.object(archive.policy_subjects,'load_subjects',return_value=[subject]):
+                result=runner.check_cache(root);self.assertEqual(result['documents'],1);self.assertEqual(result['model_requests'],0)
+                self.assertEqual(result['verified_new_excerpts'],1)
+                # Unrelated daily documents must not invalidate this pilot check.
+                archive.federal.write(root/archive.STATE,{'documents':{page['url']:{'processed':processed},'https://other.gov/a':{'processed':{'status':'complete'}}}})
+                self.assertEqual(runner.check_cache(root)['documents'],1)
+                for changed in ({'statements':[]},{'statements':evidence['statements']*2}):
+                    archive.federal.write(root/'evidence/p.json',changed)
+                    with self.assertRaisesRegex(ValueError,'Missing or duplicated'):runner.check_cache(root)
+                archive.federal.write(root/'evidence/p.json',evidence)
+                broken={**processed,'chunks':{}}
+                archive.federal.write(root/archive.STATE,{'documents':{page['url']:{'processed':broken}}})
+                with patch.object(archive.federal,'append_evidence',side_effect=AssertionError('Verification cannot write evidence')):
+                    with self.assertRaisesRegex(ValueError,'Incomplete source checkpoint'):runner.check_cache(root)
+                self.assertEqual(archive.federal.read(root/'evidence/p.json',{}),evidence)
+                archive.federal.write(root/archive.STATE,{'documents':{page['url']:{'processed':processed}}})
+                archive.federal.write(path,{**page,'text':page['text']+' Changed.'})
+                with self.assertRaises(ValueError):runner.check_cache(root)
+
 if __name__=='__main__':unittest.main()

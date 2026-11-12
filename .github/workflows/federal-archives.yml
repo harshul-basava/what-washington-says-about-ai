@@ -28,9 +28,13 @@ jobs:
       - name: Collect and review under the fixed cumulative pilot cap
         id: execute
         continue-on-error: true
+        timeout-minutes: 45
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: uv run --no-dev python scripts/federal_archives.py pilot
+      - name: Verify source snapshots and zero-request cache reuse
+        if: steps.execute.outcome == 'success'
+        run: uv run --no-dev python scripts/federal_archives.py check-cache
       - name: Build saved progress
         if: always()
         run: uv run --no-dev python scripts/phase5_build_site.py

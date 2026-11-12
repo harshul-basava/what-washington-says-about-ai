@@ -5,6 +5,26 @@ import federal_stance_review as review
 
 
 class StanceReviewTests(unittest.TestCase):
+    def test_prompt_shares_full_source_text_without_losing_per_excerpt_proof(self):
+        text='Official A said: AI will benefit our whole economy. '*1000
+        contexts={
+            's1':{'status':'available','url':'https://example.gov/a','text':text,'verified_author_id':'7'},
+            's2':{'status':'available','url':'https://example.gov/a','text':text,'shared_from_sid':'s1'},
+            's3':{'status':'available','url':'https://example.gov/b','text':text+'Distinct ending.'},
+            's4':{'status':'unavailable','url':'https://example.gov/c','reason':'HTTP 403'}}
+        messages=review.review_messages({'id':'test','name':'Official A'},[],contexts,{'prompt':'Prompt','rubric':'Rubric'})
+        payload=json.loads(messages[-1]['content'])
+        documents=payload['retrieved_source_documents']
+        self.assertEqual(len(documents),2)
+        self.assertEqual(payload['retrieved_source_context']['s1']['text_ref'],payload['retrieved_source_context']['s2']['text_ref'])
+        restored={}
+        for sid,row in payload['retrieved_source_context'].items():
+            row=dict(row)
+            if 'text_ref' in row:row['text']=documents[row.pop('text_ref')]
+            restored[sid]=row
+        self.assertEqual(restored,contexts)
+        self.assertLess(len(messages[-1]['content']),len(json.dumps(contexts))*.75)
+
     def result(self):
         return {'findings':[{'sid':'s1','label':3,'confidence':4,'reason':'General benefits.',
                              'supporting_quote':'AI will benefit our whole economy.'}],

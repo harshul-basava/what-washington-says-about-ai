@@ -1,5 +1,6 @@
 """Discover official archives or run the fixed-budget collection pilot."""
 import argparse
+import copy
 import json
 from pathlib import Path
 import subprocess
@@ -15,6 +16,51 @@ PILOT='data/federal_archive_pilot.json'
 PILOT_IDS=['exec_michelle_w_bowman','exec_michael_s_barr','exec_christopher_j_waller',
            'exec_philip_n_jefferson','exec_lisa_d_cook','exec_jerome_h_powell',
            'exec_lutnick','exec_kratsios','exec_klein']
+
+
+def check_cache(root):
+    """Verify completed pilot sources offline, forbidding any model request."""
+    root=Path(root);audit=federal.read(root/PILOT,{})
+    subjects=[s for s in policy_subjects.load_subjects(root) if s['id'] in audit['ids']]
+    state=federal.read(root/archive.STATE,{})
+    report={'documents':0,'verified_new_excerpts':0,'model_requests':0,'errors':[]}
+    expected=sum(map(len,audit['added'].values()));rows=[]
+    if audit.get('new_statements',expected)!=expected:raise ValueError('Pilot excerpt count changed')
+    for pid,sids in audit['added'].items():
+        if len(sids)!=len(set(sids)):raise ValueError('Duplicate pilot statement IDs')
+        evidence=federal.read(root/'evidence'/f'{pid}.json',{}).get('statements',[])
+        for sid in sids:
+            matches=[row for row in evidence if row['sid']==sid]
+            if len(matches)!=1:raise ValueError('Missing or duplicated pilot evidence')
+            rows.extend(matches)
+    class NoRequests:
+        def extract(self,*args,**kwargs):raise AssertionError('Unexpected repeat model request')
+    # Shared state also includes daily work outside this pilot.
+    for url in sorted({row['url'] for row in rows}):
+        doc=state['documents'].get(url,{})
+        done=doc.get('processed',{})
+        if done.get('status') not in ('complete','needs_review'):raise ValueError('Incomplete pilot source')
+        if any(chunk.get('status') not in ('complete','needs_review','no_candidates') for chunk in done.get('chunks',{}).values()):
+            raise ValueError('Invalid source checkpoint')
+        page=federal.read(root/archive.RAW/'pages'/f'{archive.sources.digest(url)}.json',{})
+        if not page:raise ValueError('Missing source cache')
+        named=[s for s in subjects if federal.contains_name(page['text'],s,source_url=url)]
+        expected_signature=archive.extraction_signature(archive.sources.normalize(page['text']),named,url,page.get('title',''),page.get('structured_author'))
+        if expected_signature!=done['signature']:raise ValueError('Stale source extraction')
+        # A missing checkpoint must fail without reading an extraction or writing evidence.
+        result=archive.process_document(root,page,named,copy.deepcopy(done),NoRequests(),max_chunks=0)
+        if result['status']=='pending':raise ValueError('Incomplete source checkpoint')
+        if result['model_requests'] or result['added']:raise AssertionError('Repeat changed evidence')
+        report['documents']+=1
+    for row in rows:
+        page=federal.read(root/archive.RAW/'pages'/f"{archive.sources.digest(row['url'])}.json",{})
+        text=archive.sources.normalize(page.get('text',''))
+        if archive.sources.normalize(row['text']) not in text or row['source_text_sha256']!=archive.sources.digest(text):
+            raise ValueError('Accepted excerpt no longer matches source snapshot')
+        report['verified_new_excerpts']+=1
+    if report['verified_new_excerpts']!=expected:raise ValueError('Incomplete excerpt verification')
+    federal.write(root/'data/federal_archive_cache_check.json',report)
+    return report
 
 
 def pilot(root):
@@ -67,7 +113,7 @@ def pilot(root):
             if code or attempt['policies']['uncached_requests']:raise ValueError('Policy judgments remain pending')
             attempt['astra']=review_cohort(root,'archive_pilot',ids,allowance,2,set(ids),allow_x_context=False)
             if attempt['astra']['status']!='complete':raise ValueError('Astra review remains pending')
-        audit['status']='pilot_complete'
+        audit['status']='pilot_complete';audit.pop('error',None)
     except Exception as exc:
         audit.update(status='pending',error=type(exc).__name__);raise
     finally:
@@ -80,8 +126,9 @@ def pilot(root):
 
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('command',choices=['discover','pilot']);args=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('command',choices=['discover','pilot','check-cache']);args=p.parse_args()
     if args.command=='pilot':result=pilot(ROOT)
+    elif args.command=='check-cache':result=check_cache(ROOT)
     else:
         config=federal.read(ROOT/'config/federal_archives.json',{});state=federal.read(ROOT/archive.STATE,{'version':1,'documents':{},'indexes':{}})
         subjects=[s for s in policy_subjects.load_subjects(ROOT) if s['id'] in PILOT_IDS]

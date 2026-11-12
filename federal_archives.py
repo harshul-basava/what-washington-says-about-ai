@@ -239,6 +239,7 @@ def collect(root, config, client, *, ids=None, max_documents=30, max_chunks=60, 
                 if processed.get('signature')==extraction_signature(sources.normalize(page['text']),named,url,page.get('title',''),page.get('structured_author')) and processed.get('status') in ('complete','needs_review'):
                     report['cached_documents']+=1;continue
             doc['last_attempt']=now;report['checked_documents']+=1
+            print(f"archive document {report['checked_documents']}/{max_documents}: {url}",flush=True)
             if page is None:
                 host=urlsplit(url).hostname;data,final_url=fetch(url,[host]);page=page_from_bytes(url,data,doc.get('title',''));page['retrieved_url']=final_url
                 federal.write(cache,page);doc['fetched_on']=now;report['fetched']+=1

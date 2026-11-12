@@ -74,7 +74,8 @@ class ContextRecoveryTests(unittest.TestCase):
         with patch('httpx.get', side_effect=self.source_response), patch.object(review, 'Budget', Budget), patch('llm.spent', return_value=0):
             saved = review.run(self.root, max_cost=1)
         entry = saved['profiles']['a']
-        self.assertEqual(prompts[0]['retrieved_source_context']['s1']['text'], review.normalize(self.text))
+        reference=prompts[0]['retrieved_source_context']['s1']['text_ref']
+        self.assertEqual(prompts[0]['retrieved_source_documents'][reference], review.normalize(self.text))
         self.assertNotEqual(entry['input_hash'], self.entry['input_hash'])
         self.assertEqual(entry['previous_reviews'], [self.entry])
         self.assertNotIn('applied_review_id', entry)
