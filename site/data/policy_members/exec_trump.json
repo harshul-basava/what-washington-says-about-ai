@@ -132,16 +132,27 @@
      "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement addresses speeding AI infrastructure and onshoring chip production, not overseas export access.",
+      "facets": [],
+      "confidence": 0.85,
+      "confidence_reason": "The quote concerns domestic production and infrastructure with no reference to export controls.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-12T11:01:00.281780+00:00",
+      "generation_id": "gen-1794481253-r4HzL8FscKObsVy8OXDI"
+     }
+    },
+    "confidence": 0.85,
+    "final_judge": "deepseek",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
     "sid": "s94",
@@ -159,16 +170,27 @@
      "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement praises domestic chip production but does not address export restrictions or enforcement.",
+      "facets": [],
+      "confidence": 0.95,
+      "confidence_reason": "No reference to export controls; only chip production is discussed.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-12T11:01:04.739090+00:00",
+      "generation_id": "gen-1794481254-DaUv7vZKGY8SeflednGx"
+     }
+    },
+    "confidence": 0.95,
+    "final_judge": "deepseek",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
     "sid": "s95",
@@ -186,16 +208,27 @@
      "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement discusses chip investment in the United States, which is irrelevant to export-control restrictions.",
+      "facets": [],
+      "confidence": 0.97,
+      "confidence_reason": "Chip investment alone does not establish a stance on export controls.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-12T11:01:04.739216+00:00",
+      "generation_id": "gen-1794481254-DaUv7vZKGY8SeflednGx"
+     }
+    },
+    "confidence": 0.97,
+    "final_judge": "deepseek",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
     "sid": "s22",
@@ -291,16 +324,44 @@
      "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
-    "facets_final": [],
-    "facet_disagreement": false,
+    "stance": "oppose",
+    "judges": {
+     "deepseek": {
+      "stance": "oppose",
+      "reason": "The speaker criticizes the prior administration's extreme AI export restrictions as alienating partners, arguing against such controls.",
+      "facets": [
+       "ease_controls",
+       "enforcement"
+      ],
+      "confidence": 0.75,
+      "confidence_reason": "The statement explicitly criticizes export restrictions but targets the prior administration's policy rather than a named rule.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-12T11:01:00.281528+00:00",
+      "generation_id": "gen-1794481253-r4HzL8FscKObsVy8OXDI"
+     },
+     "astra": {
+      "stance": "oppose",
+      "reason": "Trump criticizes the previous administration's AI export restrictions as excessive and harmful to American partnerships.",
+      "facets": [
+       "ease_controls"
+      ],
+      "confidence": 0.98,
+      "confidence_reason": "The statement explicitly argues against restrictive AI export policy.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-12T11:01:19.994084+00:00",
+      "generation_id": "gen-1794481266-Vg9AlNVMtBmUDh5YuBF8"
+     }
+    },
+    "confidence": 0.98,
+    "final_judge": "astra",
+    "facets_final": [
+     "ease_controls"
+    ],
+    "facet_disagreement": true,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.75 is below 0.8."
    },
    {
     "sid": "s91",
@@ -318,16 +379,44 @@
      "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
-    "facets_final": [],
-    "facet_disagreement": false,
+    "stance": "oppose",
+    "judges": {
+     "deepseek": {
+      "stance": "oppose",
+      "reason": "The speaker signs an order to rapidly expand American AI exports of all kinds, rejecting restriction-oriented export policy.",
+      "facets": [
+       "ease_controls",
+       "cloud_access"
+      ],
+      "confidence": 0.7,
+      "confidence_reason": "The statement clearly favors expanding exports but does not explicitly name a specific export-control rule.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-12T11:01:00.281701+00:00",
+      "generation_id": "gen-1794481253-r4HzL8FscKObsVy8OXDI"
+     },
+     "astra": {
+      "stance": "oppose",
+      "reason": "Trump endorses rapidly expanding overseas access to American AI chips, software, and data storage.",
+      "facets": [
+       "ease_controls"
+      ],
+      "confidence": 0.91,
+      "confidence_reason": "The statement clearly favors wider export access but does not identify specific controls to remove.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-12T11:01:19.994294+00:00",
+      "generation_id": "gen-1794481266-Vg9AlNVMtBmUDh5YuBF8"
+     }
+    },
+    "confidence": 0.91,
+    "final_judge": "astra",
+    "facets_final": [
+     "ease_controls"
+    ],
+    "facet_disagreement": true,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.7 is below 0.8."
    }
   ],
   "china_race_dynamics": [
@@ -544,6 +633,45 @@
     "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
+    "sid": "s101",
+    "text": "a dynamic, ‘try-first’ culture for AI across American industry",
+    "date": "2025-07",
+    "context": "President Trump’s AI Action Plan is focused on promoting U.S. leadership in the global competition to build advanced AI models. The Plan seeks to accelerate AI innovation by encouraging a coordinated effort at the federal level to establish “a dynamic, ‘try-first’ culture for AI across American industry.”",
+    "url": "https://docs.house.gov/meetings/GO/GO12/20250917/118621/HHRG-119-GO12-Wstate-TurnerLeeN-20250917.pdf",
+    "source_type": "official_statement",
+    "verified_via": "exact_normalized_page_text",
+    "attribution": {
+     "kind": "official_role",
+     "speaker": "Donald Trump",
+     "organization_id": "white_house",
+     "basis": "local_span",
+     "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+     "role": "President"
+    },
+    "strategy": "confidence_cascade",
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement mentions global AI competition and leadership but not competition with China as a policy priority.",
+      "facets": [],
+      "confidence": 0.85,
+      "confidence_reason": "China is not mentioned, and general global competition is insufficient for this target.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-12T11:01:04.739301+00:00",
+      "generation_id": "gen-1794481254-DaUv7vZKGY8SeflednGx"
+     }
+    },
+    "confidence": 0.85,
+    "final_judge": "deepseek",
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": false,
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
+   },
+   {
     "sid": "s6",
     "text": "China is not doing it, and if you're going to be beating China—and right now we're leading China very substantially in AI—very, very substantially.",
     "date": "2025-07-23",
@@ -652,16 +780,31 @@
      "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
-    "facets_final": [],
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker says winning the AI race demands national loyalty, endorsing competition as a policy priority.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.8,
+      "confidence_reason": "The quote clearly frames 'winning the AI race' as a priority, though China is not explicitly named.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-12T11:01:00.281425+00:00",
+      "generation_id": "gen-1794481253-r4HzL8FscKObsVy8OXDI"
+     }
+    },
+    "confidence": 0.8,
+    "final_judge": "deepseek",
+    "facets_final": [
+     "competition_priority"
+    ],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
     "sid": "s90",
@@ -679,16 +822,45 @@
      "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
-    "facets_final": [],
-    "facet_disagreement": false,
+    "stance": "support",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker warns that restrictions drove partners into China's arms, framing competition with China as a concern.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.6,
+      "confidence_reason": "China appears as a competitive concern but the quote's primary focus is export policy, making race priority implicit.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-12T11:01:00.281610+00:00",
+      "generation_id": "gen-1794481253-r4HzL8FscKObsVy8OXDI"
+     },
+     "astra": {
+      "stance": "support",
+      "reason": "Trump argues against restrictive AI exports because they push American partners toward China.",
+      "facets": [
+       "competition_priority",
+       "export_access"
+      ],
+      "confidence": 0.9,
+      "confidence_reason": "The competitive rationale for wider export access is clear, although no broader China strategy is stated.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-12T11:01:19.994208+00:00",
+      "generation_id": "gen-1794481266-Vg9AlNVMtBmUDh5YuBF8"
+     }
+    },
+    "confidence": 0.9,
+    "final_judge": "astra",
+    "facets_final": [
+     "competition_priority",
+     "export_access"
+    ],
+    "facet_disagreement": true,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.6 is below 0.8."
    }
   ],
   "ai_action_plan_2025": [
@@ -730,6 +902,55 @@
     "review_required": false,
     "review_status": "primary_accepted",
     "review_reason": "DeepSeek confidence meets the threshold."
+   },
+   {
+    "sid": "s101",
+    "text": "a dynamic, ‘try-first’ culture for AI across American industry",
+    "date": "2025-07",
+    "context": "President Trump’s AI Action Plan is focused on promoting U.S. leadership in the global competition to build advanced AI models. The Plan seeks to accelerate AI innovation by encouraging a coordinated effort at the federal level to establish “a dynamic, ‘try-first’ culture for AI across American industry.”",
+    "url": "https://docs.house.gov/meetings/GO/GO12/20250917/118621/HHRG-119-GO12-Wstate-TurnerLeeN-20250917.pdf",
+    "source_type": "official_statement",
+    "verified_via": "exact_normalized_page_text",
+    "attribution": {
+     "kind": "official_role",
+     "speaker": "Donald Trump",
+     "organization_id": "white_house",
+     "basis": "local_span",
+     "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+     "role": "President"
+    },
+    "strategy": "confidence_cascade",
+    "stance": "review_required",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "The statement describes a component of the AI Action Plan but does not explicitly endorse or oppose the plan.",
+      "facets": [],
+      "confidence": 0.72,
+      "confidence_reason": "The plan is named in context, but the quoted phrase alone is descriptive and does not establish overall support.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-12T11:01:04.739369+00:00",
+      "generation_id": "gen-1794481254-DaUv7vZKGY8SeflednGx"
+     },
+     "astra": {
+      "stance": "neutral",
+      "reason": "The fragment describes the plan's desired AI culture without expressing an overall position on the plan.",
+      "facets": [],
+      "confidence": 0.78,
+      "confidence_reason": "Context identifies the plan, but the short attributed fragment provides little evidence of stance.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-12T11:01:19.994388+00:00",
+      "generation_id": "gen-1794481266-Vg9AlNVMtBmUDh5YuBF8"
+     }
+    },
+    "confidence": 0.78,
+    "final_judge": null,
+    "facets_final": [],
+    "facet_disagreement": false,
+    "model_disagreement": false,
+    "review_required": true,
+    "review_status": "human_review_required",
+    "review_reason": "DeepSeek confidence 0.72 is below 0.8. Astra also reports confidence below the threshold; human review is required."
    },
    {
     "sid": "s18",
@@ -3090,6 +3311,29 @@
    "origin": "federal_archive",
    "date_quote": "January 9, 2026",
    "sid": "s98",
+   "added": "2026-11-12"
+  },
+  {
+   "text": "a dynamic, ‘try-first’ culture for AI across American industry",
+   "date": "2025-07",
+   "context": "President Trump’s AI Action Plan is focused on promoting U.S. leadership in the global competition to build advanced AI models. The Plan seeks to accelerate AI innovation by encouraging a coordinated effort at the federal level to establish “a dynamic, ‘try-first’ culture for AI across American industry.”",
+   "url": "https://docs.house.gov/meetings/GO/GO12/20250917/118621/HHRG-119-GO12-Wstate-TurnerLeeN-20250917.pdf",
+   "source_type": "official_statement",
+   "verified": true,
+   "verified_via": "exact_normalized_page_text",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Donald Trump",
+    "organization_id": "white_house",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "role": "President"
+   },
+   "retrieved_on": "2026-11-12",
+   "source_text_sha256": "547a4f8c7be91217eecc91761cf47772cc251482b63bc4be9926854fe388b864",
+   "origin": "federal_archive",
+   "date_quote": "July 2025",
+   "sid": "s101",
    "added": "2026-11-12"
   }
  ]

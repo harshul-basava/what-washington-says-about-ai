@@ -216,16 +216,39 @@
      "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker warns that losing the AI race to adversaries threatens national security and vows to act.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.78,
+      "confidence_reason": "China is not named, but the AI-race and adversary framing clearly endorses competition priority.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-12T11:00:52.704616+00:00",
+      "generation_id": "gen-1794481228-4GPwCzf9tUX1zcFWywoF"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "LaCerte prioritizes an AI race against unspecified adversaries but does not identify competition with China.",
+      "facets": [],
+      "confidence": 0.88,
+      "confidence_reason": "The competitive stance is explicit, but neither the statement nor its context identifies China.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-12T11:01:21.612742+00:00",
+      "generation_id": "gen-1794481266-G1dwxxS4KtksIDenmg1C"
+     }
+    },
+    "confidence": 0.88,
+    "final_judge": "astra",
     "facets_final": [],
-    "facet_disagreement": false,
-    "model_disagreement": false,
+    "facet_disagreement": true,
+    "model_disagreement": true,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.78 is below 0.8."
    }
   ]
  },

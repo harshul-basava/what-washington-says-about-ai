@@ -19,16 +19,39 @@
      "role": "Administrator"
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker calls winning the AI race vital to American dominance, endorsing a competition priority.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.72,
+      "confidence_reason": "The race framing is clear, but China is not named explicitly.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-12T11:00:49.479284+00:00",
+      "generation_id": "gen-1794481231-RDW5lVPlAUfUS3M61Gqn"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "Loeffler endorses winning the AI race without identifying China as the competitor.",
+      "facets": [],
+      "confidence": 0.9,
+      "confidence_reason": "Connecting this general AI race endorsement to China would require missing context.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-12T11:01:21.612840+00:00",
+      "generation_id": "gen-1794481266-G1dwxxS4KtksIDenmg1C"
+     }
+    },
+    "confidence": 0.9,
+    "final_judge": "astra",
     "facets_final": [],
-    "facet_disagreement": false,
-    "model_disagreement": false,
+    "facet_disagreement": true,
+    "model_disagreement": true,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.72 is below 0.8."
    },
    {
     "sid": "s10",

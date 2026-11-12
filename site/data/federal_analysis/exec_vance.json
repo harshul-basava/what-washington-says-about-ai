@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_vance",
- "revision": "9973ac89f0c075b9474299939156499dffcae6bad839723cf8493bb30f7ae378",
+ "revision": "24981a46e4bfefd138a96a7ebec02dda0ec9c89182264cfa83e1f8a671312bd1",
  "profile": {
   "id": "exec_vance",
   "name": "JD Vance",
@@ -72,26 +72,27 @@
     }
    }
   },
-  "n_statements": 21,
-  "n_labeled": 21,
+  "n_statements": 22,
+  "n_labeled": 22,
   "scores": {
    "ai_overall": 3.0,
    "agi_pilled": 2.0,
    "x_risk": 0.5,
    "china_race": null,
-   "regulation": 0.0
+   "regulation": 1.0
   },
   "score_details": {
    "ai_overall": {
     "score": 3.0,
-    "reason_a": "median_of_4",
-    "reason_b": "median_of_4",
+    "reason_a": "median_of_5",
+    "reason_b": "median_of_5",
     "sids": [
+     "s8",
      "s21",
      "s20",
      "s18"
     ],
-    "label_count": 4
+    "label_count": 5
    },
    "agi_pilled": {
     "score": 2.0,
@@ -120,41 +121,41 @@
     "label_count": 0
    },
    "regulation": {
-    "score": 0.0,
-    "reason_a": "dismissive",
-    "reason_b": "dismissive",
+    "score": 1.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
     "sids": [
-     "s19"
+     "s22"
     ],
-    "label_count": 1
+    "label_count": 2
    }
   },
   "summary": {
    "status": "complete",
-   "text": "On February 11, 2025, Vice President Vance described AI as exceptionally promising across economic innovation, employment, national security, health care, and free expression. In the same speech, he advocated worker-centered policies to secure productivity and prosperity gains and prioritized AI opportunities while acknowledging safety concerns. In September and October 2026, he called for AI companies to build safe tools and take responsibility for harms they warn their technology could cause.",
+   "text": "On February 11, 2025, Vance described AI as exceptionally promising across economic innovation, health care, national security, and other fields, while acknowledging that safety concerns still matter. He also advocated worker-centered AI policies intended to increase productivity, wages, benefits, and community prosperity. In September and October 2026 statements, Vance emphasized AI companies' responsibility to build safe tools and accountability for harms they warn their technology could cause.",
    "sids": [
     "s19",
-    "s20",
     "s21",
+    "s20",
     "s13",
     "s14"
    ],
    "sentences": [
     {
-     "text": "On February 11, 2025, Vice President Vance described AI as exceptionally promising across economic innovation, employment, national security, health care, and free expression.",
+     "text": "On February 11, 2025, Vance described AI as exceptionally promising across economic innovation, health care, national security, and other fields, while acknowledging that safety concerns still matter.",
      "sids": [
-      "s19"
-     ]
-    },
-    {
-     "text": "In the same speech, he advocated worker-centered policies to secure productivity and prosperity gains and prioritized AI opportunities while acknowledging safety concerns.",
-     "sids": [
-      "s20",
+      "s19",
       "s21"
      ]
     },
     {
-     "text": "In September and October 2026, he called for AI companies to build safe tools and take responsibility for harms they warn their technology could cause.",
+     "text": "He also advocated worker-centered AI policies intended to increase productivity, wages, benefits, and community prosperity.",
+     "sids": [
+      "s20"
+     ]
+    },
+    {
+     "text": "In September and October 2026 statements, Vance emphasized AI companies' responsibility to build safe tools and accountability for harms they warn their technology could cause.",
      "sids": [
       "s13",
       "s14"
@@ -164,7 +165,7 @@
   },
   "topics": {
    "national security": 2.333,
-   "regulation": 2.5,
+   "regulation": 3.5,
    "energy/data centers": 0.5,
    "AGI/transformative": 1.833,
    "other": 5.0,
@@ -225,6 +226,11 @@
      "sids": [],
      "why": "No stance in the supplied evidence."
     },
+    "chips": {
+     "stance": 0,
+     "sids": [],
+     "why": "No stance in the supplied evidence."
+    },
     "testing_mandate": {
      "stance": 0,
      "sids": [],
@@ -260,7 +266,7 @@
      "sids": [
       "s4"
      ],
-     "why": "Vance says the U.S. must not outsource matters of life and death to machines, supporting human control of lethal force."
+     "why": "Vance says matters of life and death must not be outsourced to machines, supporting human control of lethal force."
     },
     "licensing": {
      "stance": 0,
@@ -282,42 +288,37 @@
      "sids": [],
      "why": "No stance in the supplied evidence."
     },
-    "chips": {
-     "stance": 0,
-     "sids": [],
-     "why": "No stance on chip export controls in the supplied evidence; protecting chip technologies from theft and misuse does not establish support for export restrictions."
-    },
     "pause": {
      "stance": -1,
      "sids": [
       "s19"
      ],
-     "why": "Vance criticizes restricting AI development now as favoring incumbents and paralyzing a promising technology, implying opposition to slowing development without naming a specific pause or moratorium."
+     "why": "Vance criticizes restricting AI development now as favoring incumbents and paralyzing a promising technology, implying opposition to a slowdown without explicitly addressing a frontier AI pause."
     }
    },
    "disputed": [
-    "chips",
     "pause"
    ]
   },
   "stance_review": {
-   "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+   "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
    "dimension": "ai_overall",
    "status": "complete",
-   "reason": "The clearest general assessments are opportunity-oriented statements from February 11, 2025; several are excerpts from the same speech, not independent occasions. The remaining evidence concerns particular risks, worker participation, regulation, infrastructure, or announcements without establishing an overall benefit-harm judgment. Supplied source context resolves the relevant truncated passages, but these findings do not establish that the February 2025 outlook remained unchanged in later statements.",
+   "reason": "The supplied evidence contains clear broad optimism, particularly in the February 11, 2025 statements. Supplied source contexts were reviewed without transferring other speakers' views to Vance. Other excerpts concern particular harms, accountability, infrastructure, regulation, or announcements and do not independently establish an overall assessment. Several excerpts remain abbreviated, but their truncation does not itself justify requesting context for this dimension.",
    "confidence": 4,
-   "n_statements": 21,
-   "n_contexts": 12,
+   "n_statements": 22,
+   "n_contexts": 8,
    "accepted_sids": [
+    "s8",
     "s18",
     "s19",
     "s20",
     "s21"
    ],
-   "finding_count": 4,
+   "finding_count": 5,
    "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-   "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+   "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+   "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
   }
  },
  "statements": [
@@ -345,7 +346,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -353,8 +354,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -394,15 +395,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -433,7 +434,7 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -441,8 +442,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -496,15 +497,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -542,7 +543,7 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -550,8 +551,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -621,15 +622,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -660,7 +661,7 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -668,8 +669,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -725,15 +726,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -762,7 +763,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -770,8 +771,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -810,15 +811,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -847,7 +848,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -855,8 +856,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -895,15 +896,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -932,7 +933,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -940,8 +941,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -980,15 +981,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -1009,15 +1010,19 @@
    "analysis": {
     "status": "complete",
     "a": {
-     "x_risk": 1
+     "x_risk": 1,
+     "ai_overall": 3
     },
-    "b": {},
+    "b": {
+     "ai_overall": 3
+    },
     "topics": [
      "regulation",
      "x-risk/loss of control"
     ],
     "confidence": {
-     "x_risk": 2.67
+     "x_risk": 2.67,
+     "ai_overall": 3
     },
     "escalated": [
      "x_risk",
@@ -1025,16 +1030,22 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
-     "decision": "no_stance",
-     "labels": {},
-     "confidence": {},
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 3
+     },
+     "confidence": {
+      "ai_overall": 3
+     },
      "review_confidence": 4,
-     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
-     "accepted": false,
+     "reason": "The full post links his technology outlook to growth and productivity, then broadly characterizes AI risks as overstated or difficult to avoid. Together these imply an opportunity-led outlook, while acknowledging consumer fraud as a real concern.",
+     "supporting_quote": "When it comes to AI specifically, the risks are 1) overstated or 2) difficult to avoid.",
+     "support_basis": "excerpt",
+     "accepted": true,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1101,15 +1112,21 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
-      "decision": "no_stance",
-      "labels": {},
-      "confidence": {},
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
       "review_confidence": 4,
-      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "reason": "The full post links his technology outlook to growth and productivity, then broadly characterizes AI risks as overstated or difficult to avoid. Together these imply an opportunity-led outlook, while acknowledging consumer fraud as a real concern.",
+      "supporting_quote": "When it comes to AI specifically, the risks are 1) overstated or 2) difficult to avoid.",
+      "support_basis": "excerpt",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -1138,7 +1155,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -1146,8 +1163,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1186,15 +1203,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -1229,7 +1246,7 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -1237,8 +1254,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1296,15 +1313,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -1333,7 +1350,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -1341,8 +1358,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1382,15 +1399,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -1419,7 +1436,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -1427,8 +1444,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1467,15 +1484,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -1506,7 +1523,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -1514,8 +1531,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1555,15 +1572,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -1596,7 +1613,7 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -1604,8 +1621,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1660,15 +1677,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -1699,7 +1716,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -1707,8 +1724,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1747,15 +1764,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -1786,7 +1803,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -1794,8 +1811,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1834,15 +1851,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -1873,7 +1890,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -1881,8 +1898,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1921,15 +1938,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -1966,7 +1983,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
      "decision": "stance",
      "labels": {
       "ai_overall": 3
@@ -1975,22 +1992,22 @@
       "ai_overall": 4
      },
      "review_confidence": 4,
-     "reason": "The complete post presents worker-centered AI development as an opportunity for higher wages, safer communities, and nationwide prosperity, rather than merely a single application benefit.",
-     "supporting_quote": "new policies that will lead to higher wages, safer communities, and more prosperity across our country.",
+     "reason": "The complete post presents worker-centered AI development as a route to higher wages, safer communities, and nationwide prosperity, expressing broad but policy-dependent optimism.",
+     "supporting_quote": "American workers deserve a seat at the table as we develop new policies that will lead to higher wages, safer communities, and more prosperity across our country.",
      "support_basis": "context",
      "source_context": {
       "url": "https://x.com/VP/status/1889311746721989082",
       "text_hash": "9f61f250c842858073ddb1e8cbb18b34ca1f8022b858b595c3119c029788f34d",
       "retrieval": "official_x_api_post_and_author",
-      "quote": "new policies that will lead to higher wages, safer communities, and more prosperity across our country.",
+      "quote": "American workers deserve a seat at the table as we develop new policies that will lead to higher wages, safer communities, and more prosperity across our country.",
       "attribution_quote": null,
       "original_date": "2025-02-11",
       "verified_author_id": "1879652428490149888"
      },
      "accepted": true,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -2030,7 +2047,7 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
       "decision": "stance",
       "labels": {
        "ai_overall": 3
@@ -2039,21 +2056,21 @@
        "ai_overall": 4
       },
       "review_confidence": 4,
-      "reason": "The complete post presents worker-centered AI development as an opportunity for higher wages, safer communities, and nationwide prosperity, rather than merely a single application benefit.",
-      "supporting_quote": "new policies that will lead to higher wages, safer communities, and more prosperity across our country.",
+      "reason": "The complete post presents worker-centered AI development as a route to higher wages, safer communities, and nationwide prosperity, expressing broad but policy-dependent optimism.",
+      "supporting_quote": "American workers deserve a seat at the table as we develop new policies that will lead to higher wages, safer communities, and more prosperity across our country.",
       "support_basis": "context",
       "source_context": {
        "url": "https://x.com/VP/status/1889311746721989082",
        "text_hash": "9f61f250c842858073ddb1e8cbb18b34ca1f8022b858b595c3119c029788f34d",
        "retrieval": "official_x_api_post_and_author",
-       "quote": "new policies that will lead to higher wages, safer communities, and more prosperity across our country.",
+       "quote": "American workers deserve a seat at the table as we develop new policies that will lead to higher wages, safer communities, and more prosperity across our country.",
        "attribution_quote": null,
        "original_date": "2025-02-11",
        "verified_author_id": "1879652428490149888"
       },
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -2098,7 +2115,7 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
      "decision": "stance",
      "labels": {
       "ai_overall": 4
@@ -2107,13 +2124,13 @@
       "ai_overall": 5
      },
      "review_confidence": 4,
-     "reason": "Enthusiastically presents AI as exceptionally promising across numerous areas of American life, with restrictions framed as obstructing those benefits.",
-     "supporting_quote": "Now, our administration -- the Trump Administration -- believes that AI will have countless, revolutionary applications in economic inv- -- innovation, job creation, national security, health care, free expression, and beyond. And to restrict its development now would not only unfairly benefit incumbents in the space, it would mean paralyzing one of the most promising technologies we have seen in generations.",
+     "reason": "Enthusiastically describes revolutionary benefits across numerous domains and calls AI one of the most promising technologies in generations, without weighing substantive AI harms.",
+     "supporting_quote": "And to restrict its development now would not only unfairly benefit incumbents in the space, it would mean paralyzing one of the most promising technologies we have seen in generations.",
      "support_basis": "excerpt",
      "accepted": true,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -2203,7 +2220,7 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
       "decision": "stance",
       "labels": {
        "ai_overall": 4
@@ -2212,12 +2229,12 @@
        "ai_overall": 5
       },
       "review_confidence": 4,
-      "reason": "Enthusiastically presents AI as exceptionally promising across numerous areas of American life, with restrictions framed as obstructing those benefits.",
-      "supporting_quote": "Now, our administration -- the Trump Administration -- believes that AI will have countless, revolutionary applications in economic inv- -- innovation, job creation, national security, health care, free expression, and beyond. And to restrict its development now would not only unfairly benefit incumbents in the space, it would mean paralyzing one of the most promising technologies we have seen in generations.",
+      "reason": "Enthusiastically describes revolutionary benefits across numerous domains and calls AI one of the most promising technologies in generations, without weighing substantive AI harms.",
+      "supporting_quote": "And to restrict its development now would not only unfairly benefit incumbents in the space, it would mean paralyzing one of the most promising technologies we have seen in generations.",
       "support_basis": "excerpt",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -2252,7 +2269,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
      "decision": "stance",
      "labels": {
       "ai_overall": 3
@@ -2261,13 +2278,13 @@
       "ai_overall": 5
      },
      "review_confidence": 4,
-     "reason": "Rejects an inevitably disruptive overall economic outlook and expects broad gains for workers and communities through deliberate policy.",
-     "supporting_quote": "We refuse to view AI as a purely disruptive technology that will inevitably automate away our labor force. We believe and we will fight for policies that ensure that AI is going to make our workers more productive, and we expect that they will reap the rewards with higher wages, better benefits, and safer and more prosperous communities.",
+     "reason": "Rejects an inevitably disruptive outlook and expects AI to improve productivity, compensation, and community prosperity through supportive policies. This is a broad economic and societal assessment rather than a single application.",
+     "supporting_quote": "We believe and we will fight for policies that ensure that AI is going to make our workers more productive, and we expect that they will reap the rewards with higher wages, better benefits, and safer and more prosperous communities.",
      "support_basis": "excerpt",
      "accepted": true,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -2318,7 +2335,7 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
       "decision": "stance",
       "labels": {
        "ai_overall": 3
@@ -2327,12 +2344,12 @@
        "ai_overall": 5
       },
       "review_confidence": 4,
-      "reason": "Rejects an inevitably disruptive overall economic outlook and expects broad gains for workers and communities through deliberate policy.",
-      "supporting_quote": "We refuse to view AI as a purely disruptive technology that will inevitably automate away our labor force. We believe and we will fight for policies that ensure that AI is going to make our workers more productive, and we expect that they will reap the rewards with higher wages, better benefits, and safer and more prosperous communities.",
+      "reason": "Rejects an inevitably disruptive outlook and expects AI to improve productivity, compensation, and community prosperity through supportive policies. This is a broad economic and societal assessment rather than a single application.",
+      "supporting_quote": "We believe and we will fight for policies that ensure that AI is going to make our workers more productive, and we expect that they will reap the rewards with higher wages, better benefits, and safer and more prosperous communities.",
       "support_basis": "excerpt",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -2367,7 +2384,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
      "decision": "stance",
      "labels": {
       "ai_overall": 3
@@ -2376,13 +2393,13 @@
       "ai_overall": 5
      },
      "review_confidence": 4,
-     "reason": "Explicitly prioritizes AI's opportunity to improve public well-being while retaining safety concerns as a legitimate consideration.",
+     "reason": "Explicitly prioritizes AI's opportunity to improve public well-being while retaining a role for safety concerns.",
      "supporting_quote": "Now, this doesn't mean, of course, that all concerns about safety go out the window. But focus matters, and we must focus now on the opportunity to catch lightning in a bottle, unleash our most brilliant innovators, and use AI to improve the well-being of our nations and their peoples.",
      "support_basis": "excerpt",
      "accepted": true,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-     "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -2433,7 +2450,7 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
       "decision": "stance",
       "labels": {
        "ai_overall": 3
@@ -2442,12 +2459,133 @@
        "ai_overall": 5
       },
       "review_confidence": 4,
-      "reason": "Explicitly prioritizes AI's opportunity to improve public well-being while retaining safety concerns as a legitimate consideration.",
+      "reason": "Explicitly prioritizes AI's opportunity to improve public well-being while retaining a role for safety concerns.",
       "supporting_quote": "Now, this doesn't mean, of course, that all concerns about safety go out the window. But focus matters, and we must focus now on the opportunity to catch lightning in a bottle, unleash our most brilliant innovators, and use AI to improve the well-being of our nations and their peoples.",
       "support_basis": "excerpt",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T06:43:46.961988+00:00",
-      "generation_id": "gen-1794206601-QfOwYPm4pQmZBMjk8iJV"
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s22",
+   "date": null,
+   "url": "https://www.congress.gov/119/meeting/house/118081/witnesses/HHRG-119-JU05-Wstate-ChilsonN-20250402-U2.pdf",
+   "text": "“[W]e believe that excessive regulation of the AI sector could kill a",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "JD Vance",
+    "organization_id": "white_house",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "role": "Vice President"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
+    "b": {
+     "regulation": 1
+    },
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 2.67
+    },
+    "escalated": [
+     "regulation"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+     "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:37:19.593836+00:00",
+      "generation_id": "gen-1794479837-u4Pq7fUr5D961rQIGuet"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:41:25.636262+00:00",
+      "generation_id": "gen-1794480082-yI5OUdiptRaKXc5DZ1PP"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 2
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:45:25.378989+00:00",
+      "generation_id": "gen-1794480321-r5ZWrCUlU0XHGba5vEix"
+     },
+     "sol": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T10:48:53.518390+00:00",
+      "generation_id": "gen-1794480524-J3dXxSSpjTRDaBap5Y57"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "767937051ed4102c808a49055d8350d89b3065747bb4fdb743014b9c6446ad01",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T11:12:17.507378+00:00",
+      "generation_id": "gen-1794481909-nsVTMK6jdPBGFTYnYA2G"
      }
     }
    }
@@ -3121,6 +3259,18 @@
     "s21"
    ],
    "review_id": "28514ea2c08eec490779ff1d8de5e742f576440e02c44c6b3de4fbffb647110e"
+  },
+  {
+   "id": "exec_vance",
+   "date": "2026-11-12",
+   "dimension": "regulation",
+   "old": 0.0,
+   "new": 1.0,
+   "kind": "big",
+   "cause": "evidence or assessment changed",
+   "sids": [
+    "s22"
+   ]
   }
  ]
 }

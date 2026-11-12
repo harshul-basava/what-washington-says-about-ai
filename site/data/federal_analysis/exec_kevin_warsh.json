@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_kevin_warsh",
- "revision": "9973ac89f0c075b9474299939156499dffcae6bad839723cf8493bb30f7ae378",
+ "revision": "24981a46e4bfefd138a96a7ebec02dda0ec9c89182264cfa83e1f8a671312bd1",
  "profile": {
   "id": "exec_kevin_warsh",
   "name": "Kevin Warsh",
@@ -58,10 +58,10 @@
     }
    }
   },
-  "n_statements": 4,
-  "n_labeled": 4,
+  "n_statements": 14,
+  "n_labeled": 14,
   "scores": {
-   "ai_overall": 3.0,
+   "ai_overall": 2.0,
    "agi_pilled": 2.0,
    "x_risk": null,
    "china_race": null,
@@ -69,20 +69,26 @@
   },
   "score_details": {
    "ai_overall": {
-    "score": 3.0,
-    "reason_a": "median_of_2",
-    "reason_b": "median_of_2",
-    "sids": [],
-    "label_count": 2
+    "score": 2.0,
+    "reason_a": "median_of_3",
+    "reason_b": "median_of_3",
+    "sids": [
+     "s3",
+     "s13"
+    ],
+    "label_count": 4
    },
    "agi_pilled": {
     "score": 2.0,
     "reason_a": "consistent",
     "reason_b": "consistent",
     "sids": [
+     "s8",
+     "s6",
+     "s5",
      "s1"
     ],
-    "label_count": 1
+    "label_count": 4
    },
    "x_risk": {
     "score": null,
@@ -108,31 +114,40 @@
   },
   "summary": {
    "status": "complete",
-   "text": "In an undated personal statement, Warsh described the AI wave as potentially the most productivity-enhancing of his lifetime. In his July 15, 2026 testimony, Warsh acknowledged uncertainty about the economic benefits of the AI buildout and said the Fed was monitoring implications for inflation and the labor market.",
+   "text": "In an interview published December 16, 2025, Warsh, identified as a former Federal Reserve governor, described AI as an exciting opportunity for U.S. prosperity and a stronger workforce. In his July 14, 2026 testimony as chairman, Warsh acknowledged uncertainty about the benefits of the AI buildout and said the Fed was monitoring implications for inflation and the labor market. On August 28, 2026, he linked AI progress to the potential for substantially higher growth while raising questions about productivity, labor, and capital requirements.",
    "sids": [
     "s1",
-    "s3"
+    "s13",
+    "s6",
+    "s8"
    ],
    "sentences": [
     {
-     "text": "In an undated personal statement, Warsh described the AI wave as potentially the most productivity-enhancing of his lifetime.",
+     "text": "In an interview published December 16, 2025, Warsh, identified as a former Federal Reserve governor, described AI as an exciting opportunity for U.S. prosperity and a stronger workforce.",
      "sids": [
       "s1"
      ]
     },
     {
-     "text": "In his July 15, 2026 testimony, Warsh acknowledged uncertainty about the economic benefits of the AI buildout and said the Fed was monitoring implications for inflation and the labor market.",
+     "text": "In his July 14, 2026 testimony as chairman, Warsh acknowledged uncertainty about the benefits of the AI buildout and said the Fed was monitoring implications for inflation and the labor market.",
      "sids": [
-      "s3"
+      "s13"
+     ]
+    },
+    {
+     "text": "On August 28, 2026, he linked AI progress to the potential for substantially higher growth while raising questions about productivity, labor, and capital requirements.",
+     "sids": [
+      "s6",
+      "s8"
      ]
     }
    ]
   },
   "topics": {
-   "jobs/economy": 2.5,
-   "AGI/transformative": 0.5,
-   "energy/data centers": 0.5,
-   "other": 0.5
+   "jobs/economy": 9.5,
+   "AGI/transformative": 2.0,
+   "energy/data centers": 1.0,
+   "other": 1.5
   },
   "regulation": {
    "status": "complete",
@@ -160,7 +175,7 @@
     "dc_moratorium": {
      "stance": 0,
      "sids": [],
-     "why": "s2 notes data center construction as a driver of activity but expresses no position on a moratorium."
+     "why": "Statements describe data center construction as a driver of investment (s2, s12) but do not address a pause or moratorium."
     },
     "dc_ratepayers": {
      "stance": 0,
@@ -170,7 +185,7 @@
     "layoff_reporting": {
      "stance": 0,
      "sids": [],
-     "why": "s3 says the Fed is monitoring labor-market implications but calls for no reporting requirement."
+     "why": "Statements note the Fed is monitoring labor-market implications (s3, s13) but do not call for layoff reporting or notice rules."
     },
     "bias_audits": {
      "stance": 0,
@@ -256,21 +271,23 @@
    "disputed": []
   },
   "stance_review": {
-   "review_id": "9a2a4e3dcb2abc62069b9755285f847bd8e6691491b119be770abae144046c2a",
+   "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
    "dimension": "ai_overall",
    "status": "complete",
-   "reason": "The supplied excerpts contain an enthusiastic general productivity assessment and a more balanced assessment of AI's economic implications. Descriptions of investment activity and productivity predating AI do not independently establish an overall stance. The enthusiastic statement is undated, so its chronology relative to the dated testimony cannot be established.",
+   "reason": "The evidence includes enthusiastic optimism in the supplied former-role interview context, qualified optimism about economic growth, and balanced assessments of economic opportunities and policy challenges. Other excerpts report investment activity or pose questions without resolving AI's overall effects. Full source context was supplied only for s1.",
    "confidence": 4,
-   "n_statements": 4,
-   "n_contexts": 0,
+   "n_statements": 14,
+   "n_contexts": 1,
    "accepted_sids": [
     "s1",
-    "s3"
+    "s3",
+    "s6",
+    "s13"
    ],
-   "finding_count": 2,
+   "finding_count": 4,
    "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-11T04:19:33.583792+00:00",
-   "generation_id": "gen-1794370756-Aw3TM1qfnbzEHCxW7Uqe"
+   "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+   "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
   }
  },
  "statements": [
@@ -302,7 +319,7 @@
      "AGI/transformative"
     ],
     "confidence": {
-     "ai_overall": 4,
+     "ai_overall": 5,
      "agi_pilled": 2.67
     },
     "escalated": [
@@ -310,22 +327,30 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "9a2a4e3dcb2abc62069b9755285f847bd8e6691491b119be770abae144046c2a",
+     "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
      "decision": "stance",
      "labels": {
       "ai_overall": 4
      },
      "confidence": {
-      "ai_overall": 4
+      "ai_overall": 5
      },
      "review_confidence": 4,
-     "reason": "Describes the AI wave in exceptionally positive, lifetime-scale productivity terms, establishing a broad economic benefit rather than a narrow application. No countervailing concerns are expressed.",
-     "supporting_quote": "my guess is this is the most productivity-enhancing wave of our lifetimes",
-     "support_basis": "excerpt",
+     "reason": "The supplied source context establishes enthusiastic optimism about AI's broad benefits for the United States, including prosperity and a stronger workforce, with minimal concern about harms. The interview was published December 16, 2025, and identifies Warsh as a former Federal Reserve governor; the excerpt itself is undated.",
+     "supporting_quote": "So, I think it’s super exciting for the United States",
+     "support_basis": "context",
+     "source_context": {
+      "url": "https://www.aven.com/blog/kevin-warsh-artificial-intelligence-us-ai-lead/",
+      "text_hash": "e8d83b93794744878c06f58273a3c80ce2b43620d2105afa43d9f88da1a9bbc4",
+      "retrieval": "direct_page",
+      "quote": "So, I think it’s super exciting for the United States",
+      "attribution_quote": "Kevin Warsh :",
+      "original_date": null
+     },
      "accepted": true,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-11T04:19:33.583792+00:00",
-     "generation_id": "gen-1794370756-Aw3TM1qfnbzEHCxW7Uqe"
+     "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+     "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -403,21 +428,29 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "9a2a4e3dcb2abc62069b9755285f847bd8e6691491b119be770abae144046c2a",
+      "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
       "decision": "stance",
       "labels": {
        "ai_overall": 4
       },
       "confidence": {
-       "ai_overall": 4
+       "ai_overall": 5
       },
       "review_confidence": 4,
-      "reason": "Describes the AI wave in exceptionally positive, lifetime-scale productivity terms, establishing a broad economic benefit rather than a narrow application. No countervailing concerns are expressed.",
-      "supporting_quote": "my guess is this is the most productivity-enhancing wave of our lifetimes",
-      "support_basis": "excerpt",
+      "reason": "The supplied source context establishes enthusiastic optimism about AI's broad benefits for the United States, including prosperity and a stronger workforce, with minimal concern about harms. The interview was published December 16, 2025, and identifies Warsh as a former Federal Reserve governor; the excerpt itself is undated.",
+      "supporting_quote": "So, I think it’s super exciting for the United States",
+      "support_basis": "context",
+      "source_context": {
+       "url": "https://www.aven.com/blog/kevin-warsh-artificial-intelligence-us-ai-lead/",
+       "text_hash": "e8d83b93794744878c06f58273a3c80ce2b43620d2105afa43d9f88da1a9bbc4",
+       "retrieval": "direct_page",
+       "quote": "So, I think it’s super exciting for the United States",
+       "attribution_quote": "Kevin Warsh :",
+       "original_date": null
+      },
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-11T04:19:33.583792+00:00",
-      "generation_id": "gen-1794370756-Aw3TM1qfnbzEHCxW7Uqe"
+      "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+      "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
      }
     }
    }
@@ -447,7 +480,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "9a2a4e3dcb2abc62069b9755285f847bd8e6691491b119be770abae144046c2a",
+     "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -455,8 +488,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-11T04:19:33.583792+00:00",
-     "generation_id": "gen-1794370756-Aw3TM1qfnbzEHCxW7Uqe"
+     "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+     "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -498,15 +531,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "9a2a4e3dcb2abc62069b9755285f847bd8e6691491b119be770abae144046c2a",
+      "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-11T04:19:33.583792+00:00",
-      "generation_id": "gen-1794370756-Aw3TM1qfnbzEHCxW7Uqe"
+      "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+      "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
      }
     }
    }
@@ -537,27 +570,27 @@
      "other"
     ],
     "confidence": {
-     "ai_overall": 4
+     "ai_overall": 3
     },
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "9a2a4e3dcb2abc62069b9755285f847bd8e6691491b119be770abae144046c2a",
+     "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
      "decision": "stance",
      "labels": {
       "ai_overall": 2
      },
      "confidence": {
-      "ai_overall": 4
+      "ai_overall": 3
      },
      "review_confidence": 4,
-     "reason": "Balances economy-wide opportunities from AI with uncertainty about benefits and challenges for policymakers, without clearly making either benefits or risks dominant.",
+     "reason": "Balances economy-wide opportunities from AI with uncertainty about benefits and challenges for inflation and employment, without presenting either benefits or harms as dominant.",
      "supporting_quote": "We don’t know the extent to which the economy will benefit from the AI buildout. Yet it seems inevitable that what is now called “AI investment” will soon be called just “investment.” Even so, new opportunities for the economy introduce new challenges for policymakers. We at the Fed are monitoring the implications for inflation and the labor market.",
      "support_basis": "excerpt",
      "accepted": true,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-11T04:19:33.583792+00:00",
-     "generation_id": "gen-1794370756-Aw3TM1qfnbzEHCxW7Uqe"
+     "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+     "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -611,21 +644,21 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "9a2a4e3dcb2abc62069b9755285f847bd8e6691491b119be770abae144046c2a",
+      "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
       "decision": "stance",
       "labels": {
        "ai_overall": 2
       },
       "confidence": {
-       "ai_overall": 4
+       "ai_overall": 3
       },
       "review_confidence": 4,
-      "reason": "Balances economy-wide opportunities from AI with uncertainty about benefits and challenges for policymakers, without clearly making either benefits or risks dominant.",
+      "reason": "Balances economy-wide opportunities from AI with uncertainty about benefits and challenges for inflation and employment, without presenting either benefits or harms as dominant.",
       "supporting_quote": "We don’t know the extent to which the economy will benefit from the AI buildout. Yet it seems inevitable that what is now called “AI investment” will soon be called just “investment.” Even so, new opportunities for the economy introduce new challenges for policymakers. We at the Fed are monitoring the implications for inflation and the labor market.",
       "support_basis": "excerpt",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-11T04:19:33.583792+00:00",
-      "generation_id": "gen-1794370756-Aw3TM1qfnbzEHCxW7Uqe"
+      "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+      "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
      }
     }
    }
@@ -654,7 +687,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "9a2a4e3dcb2abc62069b9755285f847bd8e6691491b119be770abae144046c2a",
+     "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -662,8 +695,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-11T04:19:33.583792+00:00",
-     "generation_id": "gen-1794370756-Aw3TM1qfnbzEHCxW7Uqe"
+     "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+     "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -702,15 +735,1052 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "9a2a4e3dcb2abc62069b9755285f847bd8e6691491b119be770abae144046c2a",
+      "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-11T04:19:33.583792+00:00",
-      "generation_id": "gen-1794370756-Aw3TM1qfnbzEHCxW7Uqe"
+      "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+      "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s5",
+   "date": "2026-08-28",
+   "url": "https://www.federalreserve.gov/newsevents/speech/warsh20260828a.htm",
+   "text": "First, I'll touch on a few of the longer-term questions we're asking at the Fed about the latest general-purpose technology, artificial intelligence (AI), and where it might take the economy.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Kevin Warsh",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "agi_pilled": 2
+    },
+    "b": {},
+    "topics": [
+     "AGI/transformative",
+     "jobs/economy"
+    ],
+    "confidence": {
+     "agi_pilled": 2.0
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+     "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:38:55.767503+00:00",
+      "generation_id": "gen-1794479930-sYkplfG77qPO23OlKeYu"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:43:00.848380+00:00",
+      "generation_id": "gen-1794480176-EnjDH6luGN7hkdIWsDVP"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:46:54.888273+00:00",
+      "generation_id": "gen-1794480409-DMOJrgS6aWKgBI8eNcJw"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T10:49:59.410967+00:00",
+      "generation_id": "gen-1794480590-lgZM6KnFIE5buMggbMvo"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+      "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s6",
+   "date": "2026-08-28",
+   "url": "https://www.federalreserve.gov/newsevents/speech/warsh20260828a.htm",
+   "text": "To cite the clearest example, progress in artificial intelligence—the 80-year-old name for the newest technology—has been faster even than its evangelists predicted a couple of years ago. The potential for substantially higher growth is on the rise. Ever-expanding pools of capital are pouring into AI-related infrastructure of all sorts.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Kevin Warsh",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "ai_overall": 3,
+     "agi_pilled": 2
+    },
+    "b": {
+     "agi_pilled": 2,
+     "ai_overall": 3
+    },
+    "topics": [
+     "AGI/transformative",
+     "jobs/economy"
+    ],
+    "confidence": {
+     "ai_overall": 4,
+     "agi_pilled": 3.0
+    },
+    "escalated": [
+     "ai_overall"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 3
+     },
+     "confidence": {
+      "ai_overall": 4
+     },
+     "review_confidence": 4,
+     "reason": "Presents AI progress as an opportunity for substantially higher economic growth, a broad economic benefit rather than a single application. The conditional language supports optimism rather than unqualified enthusiasm.",
+     "supporting_quote": "To cite the clearest example, progress in artificial intelligence—the 80-year-old name for the newest technology—has been faster even than its evangelists predicted a couple of years ago. The potential for substantially higher growth is on the rise.",
+     "support_basis": "excerpt",
+     "accepted": true,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+     "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:38:55.767503+00:00",
+      "generation_id": "gen-1794479930-sYkplfG77qPO23OlKeYu"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:43:00.848380+00:00",
+      "generation_id": "gen-1794480176-EnjDH6luGN7hkdIWsDVP"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:46:54.888273+00:00",
+      "generation_id": "gen-1794480409-DMOJrgS6aWKgBI8eNcJw"
+     },
+     "sol": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 4
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T10:49:59.410967+00:00",
+      "generation_id": "gen-1794480590-lgZM6KnFIE5buMggbMvo"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "review_confidence": 4,
+      "reason": "Presents AI progress as an opportunity for substantially higher economic growth, a broad economic benefit rather than a single application. The conditional language supports optimism rather than unqualified enthusiasm.",
+      "supporting_quote": "To cite the clearest example, progress in artificial intelligence—the 80-year-old name for the newest technology—has been faster even than its evangelists predicted a couple of years ago. The potential for substantially higher growth is on the rise.",
+      "support_basis": "excerpt",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+      "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s7",
+   "date": "2026-08-28",
+   "url": "https://www.federalreserve.gov/newsevents/speech/warsh20260828a.htm",
+   "text": "Capital and labor have combined to create the large language models at the heart of AI. Users buy tokens to gain access to the models. Reports put annualized token sales for the two leading labs alone at more than $100 billion—an increase of 500-plus percent from a year ago.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Kevin Warsh",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+     "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:38:55.767503+00:00",
+      "generation_id": "gen-1794479930-sYkplfG77qPO23OlKeYu"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:43:00.848380+00:00",
+      "generation_id": "gen-1794480176-EnjDH6luGN7hkdIWsDVP"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:46:54.888273+00:00",
+      "generation_id": "gen-1794480409-DMOJrgS6aWKgBI8eNcJw"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+      "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s8",
+   "date": "2026-08-28",
+   "url": "https://www.federalreserve.gov/newsevents/speech/warsh20260828a.htm",
+   "text": "We recognize that AI is a new variable—potentially a new factor of production—that will have consequences for both the economy and the conduct of monetary policy. It opens some major lines of inquiry: Will the application of AI cause a significant, sustained rise in productivity across the economy? And if so, when? Will token usage be complementary or competitive to labor? Will the next generation of AI models demand even greater capital intensity, or will the models themselves help devise a capital-light solution?",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Kevin Warsh",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "agi_pilled": 2
+    },
+    "b": {
+     "agi_pilled": 2
+    },
+    "topics": [
+     "AGI/transformative",
+     "jobs/economy"
+    ],
+    "confidence": {
+     "agi_pilled": 3.0
+    },
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+     "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:38:55.767503+00:00",
+      "generation_id": "gen-1794479930-sYkplfG77qPO23OlKeYu"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:43:00.848380+00:00",
+      "generation_id": "gen-1794480176-EnjDH6luGN7hkdIWsDVP"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:46:54.888273+00:00",
+      "generation_id": "gen-1794480409-DMOJrgS6aWKgBI8eNcJw"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+      "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s9",
+   "date": "2026-08-28",
+   "url": "https://www.federalreserve.gov/newsevents/speech/warsh20260828a.htm",
+   "text": "Early on, how much of the surplus goes to owners of scarce assets—AI labs, chipmakers, energy producers, and cloud providers? Over time, how much of that value accrues to businesses and consumers? What are the broad implications for workers and for the employment side of the Fed's mandate?",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Kevin Warsh",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+     "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:38:55.767503+00:00",
+      "generation_id": "gen-1794479930-sYkplfG77qPO23OlKeYu"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:43:00.848380+00:00",
+      "generation_id": "gen-1794480176-EnjDH6luGN7hkdIWsDVP"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:46:54.888273+00:00",
+      "generation_id": "gen-1794480409-DMOJrgS6aWKgBI8eNcJw"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+      "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s10",
+   "date": "2026-08-28",
+   "url": "https://www.federalreserve.gov/newsevents/speech/warsh20260828a.htm",
+   "text": "Likewise, we don't yet know the equilibrium price of the tokens. Might there be a heterogeneity of tokens, such that growing sums will be paid for access to the best models at the frontier? Will token prices for older models fall to the level of their marginal cost?",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Kevin Warsh",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+     "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:38:55.767503+00:00",
+      "generation_id": "gen-1794479930-sYkplfG77qPO23OlKeYu"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:43:00.848380+00:00",
+      "generation_id": "gen-1794480176-EnjDH6luGN7hkdIWsDVP"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:46:54.888273+00:00",
+      "generation_id": "gen-1794480409-DMOJrgS6aWKgBI8eNcJw"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+      "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s11",
+   "date": "2026-08-28",
+   "url": "https://www.federalreserve.gov/newsevents/speech/warsh20260828a.htm",
+   "text": "More than half of the cap-ex growth this year can likely be ascribed to the buildout related to AI.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Kevin Warsh",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+     "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:38:55.767503+00:00",
+      "generation_id": "gen-1794479930-sYkplfG77qPO23OlKeYu"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:43:00.848380+00:00",
+      "generation_id": "gen-1794480176-EnjDH6luGN7hkdIWsDVP"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:46:54.888273+00:00",
+      "generation_id": "gen-1794480409-DMOJrgS6aWKgBI8eNcJw"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+      "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s12",
+   "date": "2026-07-14",
+   "url": "https://www.federalreserve.gov/newsevents/testimony/warsh20260714a.htm",
+   "text": "The most striking feature of the economy right now is business investment. The rapid pace—which appears to be accelerating—reflects, in large part, the construction of data centers and the immense demand for the AI-related equipment and software that fill them.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Kevin Warsh",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "role": "Chairman"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy",
+     "energy/data centers"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+     "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:38:55.767503+00:00",
+      "generation_id": "gen-1794479930-sYkplfG77qPO23OlKeYu"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:43:00.848380+00:00",
+      "generation_id": "gen-1794480176-EnjDH6luGN7hkdIWsDVP"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:46:54.888273+00:00",
+      "generation_id": "gen-1794480409-DMOJrgS6aWKgBI8eNcJw"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+      "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s13",
+   "date": "2026-07-14",
+   "url": "https://www.federalreserve.gov/newsevents/testimony/warsh20260714a.htm",
+   "text": "We don't know the extent to which the economy will benefit from the AI buildout. Yet it seems inevitable that what is now called \"AI investment\" will soon be called just \"investment.\" Even so, new opportunities for the economy introduce new challenges for policymakers. We at the Fed are monitoring the implications for inflation and the labor market.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Kevin Warsh",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "role": "Chairman"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "ai_overall": 2
+    },
+    "b": {
+     "ai_overall": 2
+    },
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {
+     "ai_overall": 3
+    },
+    "escalated": [
+     "ai_overall",
+     "agi_pilled"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 2
+     },
+     "confidence": {
+      "ai_overall": 3
+     },
+     "review_confidence": 4,
+     "reason": "Balances broad economic opportunities from AI with uncertain benefits and policymaking challenges involving inflation and employment.",
+     "supporting_quote": "We don't know the extent to which the economy will benefit from the AI buildout. Yet it seems inevitable that what is now called \"AI investment\" will soon be called just \"investment.\" Even so, new opportunities for the economy introduce new challenges for policymakers. We at the Fed are monitoring the implications for inflation and the labor market.",
+     "support_basis": "excerpt",
+     "accepted": true,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+     "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 1,
+       "ai_overall": 2
+      },
+      "confidence": {
+       "agi_pilled": 2,
+       "ai_overall": 2
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:38:55.767503+00:00",
+      "generation_id": "gen-1794479930-sYkplfG77qPO23OlKeYu"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 2
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:43:00.848380+00:00",
+      "generation_id": "gen-1794480176-EnjDH6luGN7hkdIWsDVP"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 2
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:46:54.888273+00:00",
+      "generation_id": "gen-1794480409-DMOJrgS6aWKgBI8eNcJw"
+     },
+     "sol": {
+      "labels": {
+       "ai_overall": 2
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T10:49:59.410967+00:00",
+      "generation_id": "gen-1794480590-lgZM6KnFIE5buMggbMvo"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 2
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "review_confidence": 4,
+      "reason": "Balances broad economic opportunities from AI with uncertain benefits and policymaking challenges involving inflation and employment.",
+      "supporting_quote": "We don't know the extent to which the economy will benefit from the AI buildout. Yet it seems inevitable that what is now called \"AI investment\" will soon be called just \"investment.\" Even so, new opportunities for the economy introduce new challenges for policymakers. We at the Fed are monitoring the implications for inflation and the labor market.",
+      "support_basis": "excerpt",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+      "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s14",
+   "date": "2026-07-14",
+   "url": "https://www.federalreserve.gov/newsevents/testimony/warsh20260714a.htm",
+   "text": "That brings me to the supply side, where productivity growth has been strong, predating gains from AI adoption.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Kevin Warsh",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "role": "Chairman"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [
+     "agi_pilled"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+     "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:38:55.767503+00:00",
+      "generation_id": "gen-1794479930-sYkplfG77qPO23OlKeYu"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:43:00.848380+00:00",
+      "generation_id": "gen-1794480176-EnjDH6luGN7hkdIWsDVP"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 1
+      },
+      "confidence": {
+       "agi_pilled": 2
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:46:54.888273+00:00",
+      "generation_id": "gen-1794480409-DMOJrgS6aWKgBI8eNcJw"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T10:49:59.410967+00:00",
+      "generation_id": "gen-1794480590-lgZM6KnFIE5buMggbMvo"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T11:16:14.219221+00:00",
+      "generation_id": "gen-1794482152-KKKnfMqmDYF7ABt9Z4gU"
      }
     }
    }
@@ -1272,7 +2342,7 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 3,
+   "n_statements": 6,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1280,12 +2350,12 @@
    "date": "2026-08-31",
    "scores": {
     "ai_overall": 2.0,
-    "agi_pilled": null,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 3,
+   "n_statements": 13,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1293,12 +2363,12 @@
    "date": "2026-09-30",
    "scores": {
     "ai_overall": 2.0,
-    "agi_pilled": null,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 3,
+   "n_statements": 13,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1306,12 +2376,12 @@
    "date": "2026-10-31",
    "scores": {
     "ai_overall": 2.0,
-    "agi_pilled": null,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 3,
+   "n_statements": 13,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1366,6 +2436,35 @@
    "kind": "big",
    "cause": "score window or assessment changed",
    "sids": []
+  },
+  {
+   "id": "exec_kevin_warsh",
+   "date": "2026-11-12",
+   "dimension": "ai_overall",
+   "old": 3.0,
+   "new": 2.0,
+   "kind": "big",
+   "cause": "Astra review after federal roster expansion research",
+   "sids": [
+    "s1",
+    "s3",
+    "s6",
+    "s13"
+   ],
+   "review_id": "4a6a36c0b3124c52e799fb08f6ffbe19f302baf8d7d990c8c2d3ee0f8a325652"
+  },
+  {
+   "id": "exec_kevin_warsh",
+   "date": "2026-11-12",
+   "dimension": "ai_overall",
+   "old": 3.0,
+   "new": 2.0,
+   "kind": "big",
+   "cause": "evidence or assessment changed",
+   "sids": [
+    "s3",
+    "s13"
+   ]
   }
  ]
 }

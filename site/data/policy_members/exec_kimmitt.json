@@ -207,16 +207,39 @@
      "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "oppose",
+      "reason": "The speaker promotes expanding American AI exports and wider access rather than restricting overseas access.",
+      "facets": [
+       "ease_controls"
+      ],
+      "confidence": 0.76,
+      "confidence_reason": "Export expansion is explicit, but the statement does not directly discuss controls.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-12T11:00:49.479486+00:00",
+      "generation_id": "gen-1794481231-RDW5lVPlAUfUS3M61Gqn"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "Kimmitt promotes overseas adoption of American AI technology without addressing export restrictions or their enforcement.",
+      "facets": [],
+      "confidence": 0.94,
+      "confidence_reason": "Export promotion does not by itself establish a position on easing or tightening export controls.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-12T11:01:21.612929+00:00",
+      "generation_id": "gen-1794481266-G1dwxxS4KtksIDenmg1C"
+     }
+    },
+    "confidence": 0.94,
+    "final_judge": "astra",
     "facets_final": [],
-    "facet_disagreement": false,
-    "model_disagreement": false,
+    "facet_disagreement": true,
+    "model_disagreement": true,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.76 is below 0.8."
    },
    {
     "sid": "s1",

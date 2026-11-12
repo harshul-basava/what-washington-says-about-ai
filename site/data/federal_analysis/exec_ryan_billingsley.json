@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_ryan_billingsley",
- "revision": "9973ac89f0c075b9474299939156499dffcae6bad839723cf8493bb30f7ae378",
+ "revision": "24981a46e4bfefd138a96a7ebec02dda0ec9c89182264cfa83e1f8a671312bd1",
  "profile": {
   "id": "exec_ryan_billingsley",
   "name": "Ryan Billingsley",
@@ -58,11 +58,11 @@
     }
    }
   },
-  "n_statements": 2,
-  "n_labeled": 2,
+  "n_statements": 8,
+  "n_labeled": 8,
   "scores": {
    "ai_overall": null,
-   "agi_pilled": null,
+   "agi_pilled": 2.0,
    "x_risk": null,
    "china_race": null,
    "regulation": null
@@ -70,65 +70,89 @@
   "score_details": {
    "ai_overall": {
     "score": null,
-    "reason_a": "insufficient_evidence",
-    "reason_b": "insufficient_evidence",
+    "reason_a": "no_statements",
+    "reason_b": "no_statements",
     "sids": [],
     "label_count": 0
    },
    "agi_pilled": {
-    "score": null,
-    "reason_a": "insufficient_evidence",
-    "reason_b": "insufficient_evidence",
-    "sids": [],
-    "label_count": 0
+    "score": 2.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s3"
+    ],
+    "label_count": 1
    },
    "x_risk": {
     "score": null,
-    "reason_a": "insufficient_evidence",
-    "reason_b": "insufficient_evidence",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "china_race": {
     "score": null,
-    "reason_a": "insufficient_evidence",
-    "reason_b": "insufficient_evidence",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "regulation": {
     "score": null,
-    "reason_a": "insufficient_evidence",
-    "reason_b": "insufficient_evidence",
+    "reason_a": "no_statements",
+    "reason_b": "no_statements",
     "sids": [],
     "label_count": 0
    }
   },
   "summary": {
    "status": "complete",
-   "text": "In a March 26, 2026 statement, Ryan Billingsley said it is essential to enable banks to adopt technologies such as AI and distributed ledger technology while maintaining expectations that they manage associated risks and operate safely and soundly. In the same statement, he said banks have increasingly used AI and machine learning in areas including fraud detection, AML/CFT processes, and credit underwriting.",
+   "text": "Ryan Billingsley said banks are increasingly using AI and machine learning for fraud detection, AML/CFT processes, and credit underwriting, and are testing generative AI for tasks such as answering customer questions and summarizing loan applicant information. He said it is essential to enable banks to adopt AI and other technologies while maintaining expectations that they manage associated risks and operate safely and soundly. He said the FDIC is piloting generative AI for internal staff use and expects to roll those tools out to its workforce by the middle of the year. He said the FDIC is investing in workforce training that covers AI literacy, generative AI concepts, AI governance, critical evaluation of AI outputs, and human oversight.",
    "sids": [
+    "s2",
+    "s3",
     "s1",
-    "s2"
+    "s4",
+    "s5",
+    "s6",
+    "s7"
    ],
    "sentences": [
     {
-     "text": "In a March 26, 2026 statement, Ryan Billingsley said it is essential to enable banks to adopt technologies such as AI and distributed ledger technology while maintaining expectations that they manage associated risks and operate safely and soundly.",
+     "text": "Ryan Billingsley said banks are increasingly using AI and machine learning for fraud detection, AML/CFT processes, and credit underwriting, and are testing generative AI for tasks such as answering customer questions and summarizing loan applicant information.",
+     "sids": [
+      "s2",
+      "s3"
+     ]
+    },
+    {
+     "text": "He said it is essential to enable banks to adopt AI and other technologies while maintaining expectations that they manage associated risks and operate safely and soundly.",
      "sids": [
       "s1"
      ]
     },
     {
-     "text": "In the same statement, he said banks have increasingly used AI and machine learning in areas including fraud detection, AML/CFT processes, and credit underwriting.",
+     "text": "He said the FDIC is piloting generative AI for internal staff use and expects to roll those tools out to its workforce by the middle of the year.",
      "sids": [
-      "s2"
+      "s4"
+     ]
+    },
+    {
+     "text": "He said the FDIC is investing in workforce training that covers AI literacy, generative AI concepts, AI governance, critical evaluation of AI outputs, and human oversight.",
+     "sids": [
+      "s5",
+      "s6",
+      "s7"
      ]
     }
    ]
   },
   "topics": {
-   "regulation": 1.0,
-   "other": 1.0
+   "regulation": 1.5,
+   "other": 4.5,
+   "AGI/transformative": 0.5,
+   "jobs/economy": 1.5
   },
   "regulation": {
    "status": "complete",
@@ -252,18 +276,18 @@
    "disputed": []
   },
   "stance_review": {
-   "review_id": "efa37e07c280c3916fd7017c043e8c6def3e18dfdabe5226f200a4aeeac210e8",
+   "review_id": "9777ea87a467a54013d63dfd70c669c05ae23677586c51e73d02feb8e77c018b",
    "dimension": "ai_overall",
    "status": "complete",
-   "reason": "Both excerpts concern AI use in banking rather than AI's overall effects on Americans. Support for bank adoption with risk management and a description of existing banking applications do not establish a general AI stance.",
+   "reason": "The supplied excerpts address banking applications, FDIC operations, training, and risk management rather than AI's overall effects on Americans. The reference to transforming everyday life describes potential scale without establishing whether that transformation is beneficial or harmful. No excerpt supports an ai_overall label; this conclusion is limited to the supplied evidence.",
    "confidence": 5,
-   "n_statements": 2,
+   "n_statements": 8,
    "n_contexts": 0,
    "accepted_sids": [],
    "finding_count": 0,
    "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-11T06:31:42.848321+00:00",
-   "generation_id": "gen-1794378698-DAazeMOqEsyZ5iVcK472"
+   "assessed_at": "2026-11-12T11:08:03.828366+00:00",
+   "generation_id": "gen-1794481676-WviJ2rhe8l7Tt0LnI8Ok"
   }
  },
  "statements": [
@@ -293,7 +317,7 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "efa37e07c280c3916fd7017c043e8c6def3e18dfdabe5226f200a4aeeac210e8",
+     "review_id": "9777ea87a467a54013d63dfd70c669c05ae23677586c51e73d02feb8e77c018b",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -301,8 +325,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-11T06:31:42.848321+00:00",
-     "generation_id": "gen-1794378698-DAazeMOqEsyZ5iVcK472"
+     "assessed_at": "2026-11-12T11:08:03.828366+00:00",
+     "generation_id": "gen-1794481676-WviJ2rhe8l7Tt0LnI8Ok"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -357,15 +381,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "efa37e07c280c3916fd7017c043e8c6def3e18dfdabe5226f200a4aeeac210e8",
+      "review_id": "9777ea87a467a54013d63dfd70c669c05ae23677586c51e73d02feb8e77c018b",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 5,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-11T06:31:42.848321+00:00",
-      "generation_id": "gen-1794378698-DAazeMOqEsyZ5iVcK472"
+      "assessed_at": "2026-11-12T11:08:03.828366+00:00",
+      "generation_id": "gen-1794481676-WviJ2rhe8l7Tt0LnI8Ok"
      }
     }
    }
@@ -394,7 +418,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "efa37e07c280c3916fd7017c043e8c6def3e18dfdabe5226f200a4aeeac210e8",
+     "review_id": "9777ea87a467a54013d63dfd70c669c05ae23677586c51e73d02feb8e77c018b",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -402,8 +426,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-11T06:31:42.848321+00:00",
-     "generation_id": "gen-1794378698-DAazeMOqEsyZ5iVcK472"
+     "assessed_at": "2026-11-12T11:08:03.828366+00:00",
+     "generation_id": "gen-1794481676-WviJ2rhe8l7Tt0LnI8Ok"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -442,15 +466,556 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "efa37e07c280c3916fd7017c043e8c6def3e18dfdabe5226f200a4aeeac210e8",
+      "review_id": "9777ea87a467a54013d63dfd70c669c05ae23677586c51e73d02feb8e77c018b",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 5,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-11T06:31:42.848321+00:00",
-      "generation_id": "gen-1794378698-DAazeMOqEsyZ5iVcK472"
+      "assessed_at": "2026-11-12T11:08:03.828366+00:00",
+      "generation_id": "gen-1794481676-WviJ2rhe8l7Tt0LnI8Ok"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s3",
+   "date": "2026-03-26",
+   "url": "https://www.congress.gov/119/meeting/house/119110/witnesses/HHRG-119-BA21-Wstate-BillingsleyR-20260326.pdf",
+   "text": "Newer technology such as Generative AI (GenAI) are emerging with the potential to transform many aspects of everyday life. Banks are testing and implementing GenAI in several ways, such as helping bank staff answer customer questions, summarizing customer service calls, writing computer code, and summarizing loan applicant financial information.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Ryan Billingsley",
+    "organization_id": "fdic",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "agi_pilled": 2
+    },
+    "b": {
+     "agi_pilled": 2
+    },
+    "topics": [
+     "AGI/transformative",
+     "jobs/economy"
+    ],
+    "confidence": {
+     "agi_pilled": 3.0
+    },
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9777ea87a467a54013d63dfd70c669c05ae23677586c51e73d02feb8e77c018b",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T11:08:03.828366+00:00",
+     "generation_id": "gen-1794481676-WviJ2rhe8l7Tt0LnI8Ok"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:40:36.022966+00:00",
+      "generation_id": "gen-1794480022-mHLNxZqOgriISdP039OO"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:44:51.058239+00:00",
+      "generation_id": "gen-1794480274-JWjI3BYsewHwFKBaS4lC"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:48:18.922458+00:00",
+      "generation_id": "gen-1794480490-DkWzad0CD2uGrPI8IVWH"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9777ea87a467a54013d63dfd70c669c05ae23677586c51e73d02feb8e77c018b",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T11:08:03.828366+00:00",
+      "generation_id": "gen-1794481676-WviJ2rhe8l7Tt0LnI8Ok"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s4",
+   "date": "2026-03-26",
+   "url": "https://www.congress.gov/119/meeting/house/119110/witnesses/HHRG-119-BA21-Wstate-BillingsleyR-20260326.pdf",
+   "text": "In addition to cloud modernization, the FDIC is currently piloting GenAI technologies for internal staff use and expects to roll those tools out to the FDIC workforce by the middle of the year. We are exploring a number of ways that this technology could assist in innovation across the breadth of FDIC business areas.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Ryan Billingsley",
+    "organization_id": "fdic",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9777ea87a467a54013d63dfd70c669c05ae23677586c51e73d02feb8e77c018b",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T11:08:03.828366+00:00",
+     "generation_id": "gen-1794481676-WviJ2rhe8l7Tt0LnI8Ok"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:40:36.022966+00:00",
+      "generation_id": "gen-1794480022-mHLNxZqOgriISdP039OO"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:44:51.058239+00:00",
+      "generation_id": "gen-1794480274-JWjI3BYsewHwFKBaS4lC"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:48:18.922458+00:00",
+      "generation_id": "gen-1794480490-DkWzad0CD2uGrPI8IVWH"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9777ea87a467a54013d63dfd70c669c05ae23677586c51e73d02feb8e77c018b",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T11:08:03.828366+00:00",
+      "generation_id": "gen-1794481676-WviJ2rhe8l7Tt0LnI8Ok"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s5",
+   "date": "2026-03-26",
+   "url": "https://www.congress.gov/119/meeting/house/119110/witnesses/HHRG-119-BA21-Wstate-BillingsleyR-20260326.pdf",
+   "text": "The FDIC is actively investing in workforce training to support the adoption of AI and other innovative technologies. These efforts are part of broader initiatives to modernize the agency's operations and ensure employees are equipped to meet evolving business needs.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Ryan Billingsley",
+    "organization_id": "fdic",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy",
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9777ea87a467a54013d63dfd70c669c05ae23677586c51e73d02feb8e77c018b",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T11:08:03.828366+00:00",
+     "generation_id": "gen-1794481676-WviJ2rhe8l7Tt0LnI8Ok"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:40:36.022966+00:00",
+      "generation_id": "gen-1794480022-mHLNxZqOgriISdP039OO"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:44:51.058239+00:00",
+      "generation_id": "gen-1794480274-JWjI3BYsewHwFKBaS4lC"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:48:18.922458+00:00",
+      "generation_id": "gen-1794480490-DkWzad0CD2uGrPI8IVWH"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9777ea87a467a54013d63dfd70c669c05ae23677586c51e73d02feb8e77c018b",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T11:08:03.828366+00:00",
+      "generation_id": "gen-1794481676-WviJ2rhe8l7Tt0LnI8Ok"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s6",
+   "date": "2026-03-26",
+   "url": "https://www.congress.gov/119/meeting/house/119110/witnesses/HHRG-119-BA21-Wstate-BillingsleyR-20260326.pdf",
+   "text": "The FDIC AI Program emphasizes foundational AI literacy for all employees, ensuring they can confidently engage with AI tools and apply them responsibly in their roles. Training covers AI fundamentals, GenAI concepts, and AI governance, while also covering more technical topics like prompt engineering.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Ryan Billingsley",
+    "organization_id": "fdic",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9777ea87a467a54013d63dfd70c669c05ae23677586c51e73d02feb8e77c018b",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T11:08:03.828366+00:00",
+     "generation_id": "gen-1794481676-WviJ2rhe8l7Tt0LnI8Ok"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:40:36.022966+00:00",
+      "generation_id": "gen-1794480022-mHLNxZqOgriISdP039OO"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:44:51.058239+00:00",
+      "generation_id": "gen-1794480274-JWjI3BYsewHwFKBaS4lC"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:48:18.922458+00:00",
+      "generation_id": "gen-1794480490-DkWzad0CD2uGrPI8IVWH"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9777ea87a467a54013d63dfd70c669c05ae23677586c51e73d02feb8e77c018b",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T11:08:03.828366+00:00",
+      "generation_id": "gen-1794481676-WviJ2rhe8l7Tt0LnI8Ok"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s7",
+   "date": "2026-03-26",
+   "url": "https://www.congress.gov/119/meeting/house/119110/witnesses/HHRG-119-BA21-Wstate-BillingsleyR-20260326.pdf",
+   "text": "Employees are trained to critically evaluate AI outputs, protect sensitive data, and ensure compliance with ethical and legal standards. Human oversight is emphasized to validate AI- generated content and decisions.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Ryan Billingsley",
+    "organization_id": "fdic",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "regulation",
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9777ea87a467a54013d63dfd70c669c05ae23677586c51e73d02feb8e77c018b",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T11:08:03.828366+00:00",
+     "generation_id": "gen-1794481676-WviJ2rhe8l7Tt0LnI8Ok"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:40:36.022966+00:00",
+      "generation_id": "gen-1794480022-mHLNxZqOgriISdP039OO"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:44:51.058239+00:00",
+      "generation_id": "gen-1794480274-JWjI3BYsewHwFKBaS4lC"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:48:18.922458+00:00",
+      "generation_id": "gen-1794480490-DkWzad0CD2uGrPI8IVWH"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9777ea87a467a54013d63dfd70c669c05ae23677586c51e73d02feb8e77c018b",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T11:08:03.828366+00:00",
+      "generation_id": "gen-1794481676-WviJ2rhe8l7Tt0LnI8Ok"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s8",
+   "date": "2026-03-26",
+   "url": "https://www.congress.gov/119/meeting/house/119110/witnesses/HHRG-119-BA21-Wstate-BillingsleyR-20260326.pdf",
+   "text": "These efforts reflect the FDIC’s commitment to fostering an AI-knowledgeable workforce capable of leveraging AI technologies and other technologies to enhance mission delivery and operational effectiveness.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Ryan Billingsley",
+    "organization_id": "fdic",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy",
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9777ea87a467a54013d63dfd70c669c05ae23677586c51e73d02feb8e77c018b",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T11:08:03.828366+00:00",
+     "generation_id": "gen-1794481676-WviJ2rhe8l7Tt0LnI8Ok"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:40:36.022966+00:00",
+      "generation_id": "gen-1794480022-mHLNxZqOgriISdP039OO"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:44:51.058239+00:00",
+      "generation_id": "gen-1794480274-JWjI3BYsewHwFKBaS4lC"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T10:48:18.922458+00:00",
+      "generation_id": "gen-1794480490-DkWzad0CD2uGrPI8IVWH"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9777ea87a467a54013d63dfd70c669c05ae23677586c51e73d02feb8e77c018b",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T11:08:03.828366+00:00",
+      "generation_id": "gen-1794481676-WviJ2rhe8l7Tt0LnI8Ok"
      }
     }
    }
@@ -955,12 +1520,12 @@
    "date": "2026-03-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 2,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -968,12 +1533,12 @@
    "date": "2026-04-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 2,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -981,12 +1546,12 @@
    "date": "2026-05-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 2,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -994,12 +1559,12 @@
    "date": "2026-06-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 2,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1007,12 +1572,12 @@
    "date": "2026-07-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 2,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1020,12 +1585,12 @@
    "date": "2026-08-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 2,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1033,12 +1598,12 @@
    "date": "2026-09-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 2,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1046,12 +1611,12 @@
    "date": "2026-10-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 2,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },

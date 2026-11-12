@@ -18,16 +18,39 @@
      "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "The speaker frames deal review around 'winning the AI race in the right way,' endorsing race competition as a policy priority.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.4,
+      "confidence_reason": "The race framing is explicit but China is not named, leaving target identity uncertain.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-12T11:00:53.651544+00:00",
+      "generation_id": "gen-1794481250-vqUNH9uRlznKV7NNsJNl"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "Meador connects transaction scrutiny to winning an unspecified AI race without addressing competition with China.",
+      "facets": [],
+      "confidence": 0.94,
+      "confidence_reason": "Neither the statement nor its context identifies China or an explicit competition-related safety tradeoff.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-12T11:01:21.613004+00:00",
+      "generation_id": "gen-1794481266-G1dwxxS4KtksIDenmg1C"
+     }
+    },
+    "confidence": 0.94,
+    "final_judge": "astra",
     "facets_final": [],
-    "facet_disagreement": false,
-    "model_disagreement": false,
+    "facet_disagreement": true,
+    "model_disagreement": true,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.4 is below 0.8."
    }
   ]
  },
