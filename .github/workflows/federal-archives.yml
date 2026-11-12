@@ -1,0 +1,67 @@
+name: Federal archive pilot
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: daily-update
+  cancel-in-progress: false
+jobs:
+  pilot:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --no-dev --frozen
+      - uses: actions/cache/restore@v4
+        id: cache
+        with:
+          path: |
+            data/raw/federal_archives
+            data/raw/federal_stance_context
+          key: federal-archives-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: federal-archives-v1-
+      - name: Collect and review under the fixed cumulative pilot cap
+        id: execute
+        continue-on-error: true
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: uv run --no-dev python scripts/federal_archives.py pilot
+      - name: Build saved progress
+        if: always()
+        run: uv run --no-dev python scripts/phase5_build_site.py
+      - name: Save public evidence, costs and judgments
+        if: always()
+        run: |
+          git config user.name "dc-on-ai-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data evidence site/data
+          git diff --cached --binary > "$RUNNER_TEMP/federal-archives.patch"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Save federal archive pilot evidence and reviews"
+          git push
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: |
+            data/raw/federal_archives
+            data/raw/federal_stance_context
+          key: ${{ steps.cache.outputs.cache-primary-key }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: federal-archive-pilot
+          path: |
+            ${{ runner.temp }}/federal-archives.patch
+            data/federal_archive_pilot.json
+            data/federal_archive_state.json
+          retention-days: 7
+      - name: Report execution result
+        if: always()
+        env:
+          OUTCOME: ${{ steps.execute.outcome }}
+        run: test "$OUTCOME" = success

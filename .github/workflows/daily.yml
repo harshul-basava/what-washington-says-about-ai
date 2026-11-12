@@ -54,6 +54,18 @@ jobs:
         if: steps.keys.outputs.skip != 'true'
         run: uv sync --no-dev --frozen
 
+      - uses: actions/cache/restore@v4
+        id: archives
+        if: steps.keys.outputs.skip != 'true'
+        with:
+          path: |
+            data/raw/federal_archives
+            data/raw/federal_stance_context
+          key: federal-archive-daily-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            federal-archive-daily-v1-
+            federal-archives-v1-
+
       - name: Refresh reference files (legislators, committees)
         if: steps.keys.outputs.skip != 'true' && env.IN_SOURCES != 'federal'
         run: |
@@ -79,6 +91,14 @@ jobs:
         if: always() && steps.keys.outputs.skip != 'true'
         timeout-minutes: 5
         run: uv run --no-dev python federal_roster.py check --max-pages 40
+
+      - uses: actions/cache/save@v4
+        if: always() && steps.keys.outputs.skip != 'true'
+        with:
+          path: |
+            data/raw/federal_archives
+            data/raw/federal_stance_context
+          key: ${{ steps.archives.outputs.cache-primary-key }}
 
       - name: Report federal update status
         if: always() && steps.keys.outputs.skip != 'true'

@@ -16,6 +16,7 @@ Keep each quote a contiguous exact excerpt of 8-150 words. Do not join sentences
 For a person, attribution_quote must be a contiguous source excerpt containing the quote and the person's full name or supplied alias.
 If source_speaker_aliases explicitly binds a speaker label to this exact source URL and statement date, that reviewed label may replace the full name. The quote must stay within that speaker's turn. Never include another speaker's question or answer.
 For an official government speech or signed testimony, you may instead use attribution_basis: document_author and an exact title/header such as 'Remarks by NAME' or 'Testimony of NAME' from the first 6000 characters. The quote must still occur verbatim in the document and be the author's own words, not another speaker's embedded quotation. Otherwise use attribution_basis: local_span.
+When structured_author is supplied by the source parser, its exact header is also valid for document_author attribution to the named person. It does not attribute embedded quotations from other speakers.
 For an institution, attribution_quote must contain the quote AND explicitly identify that institution as the speaker/author.
 A page's publisher alone is not sufficient attribution. Do not copy a person's quote into an institution profile or a collective quote into each member's profile.
 The White House Super Intelligence Force is distinct from the Justice Department Super Intelligence Task Force. Membership does not prove a policy stance.
@@ -183,14 +184,23 @@ class Client:
             raise ValueError('Source text unavailable; retry required')
         return {**page, 'text': normalize(text), 'verified_via': 'exact_normalized_search_retrieval'}
 
-    def extract(self, page, subjects, max_tokens=8000):
+    def extract(self, page, subjects, max_tokens=8000, response_cache=None):
         profiles = [{k: s.get(k) for k in ('id', 'name', 'aliases', 'entity_type', 'roles')} for s in subjects]
         # Split long pages into bounded chunks at the collector; never silently truncate evidence.
         payload = {'url': page['url'], 'title': page.get('title'), 'subjects': profiles, 'text': page['text'],
-                   'document_header': page.get('document_header')}
-        result = self.chat([{'role': 'system', 'content': EXTRACTION_PROMPT},
+                   'document_header': page.get('document_header'),
+                   'structured_author': page.get('structured_author')}
+        if response_cache is not None and response_cache.exists():
+            result = json.loads(response_cache.read_text())
+        else:
+            result = self.chat([{'role': 'system', 'content': EXTRACTION_PROMPT},
                             {'role': 'user', 'content': json.dumps(payload, ensure_ascii=False)}],
                            ('daily_' if self.daily else '') + 'federal_extract', max_tokens)
+            if response_cache is not None:
+                response_cache.parent.mkdir(parents=True, exist_ok=True)
+                temp = response_cache.with_suffix('.tmp')
+                temp.write_text(json.dumps(result, ensure_ascii=False))
+                temp.replace(response_cache)
         data = parse_json(result['choices'][0]['message'].get('content'))
         if not isinstance(data, dict) or not isinstance(data.get('statements'), list):
             raise ValueError('Malformed federal extraction; retry required')

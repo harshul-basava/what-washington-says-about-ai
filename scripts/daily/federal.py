@@ -122,6 +122,17 @@ def explicit_document_author(context, subject):
                           r'\s*[,.:–-]?\s*)?(?:delivers remarks|testimony before|statement before)\b', header, re.I))
 
 
+def structured_document_author(page, context, subject):
+    """Accept the exact author element parsed from a standalone Fed document."""
+    proof=page.get('structured_author',{})
+    url=sources.urlsplit(page['url'])
+    return (url.scheme=='https' and url.hostname=='www.federalreserve.gov'
+            and bool(re.fullmatch(r'/newsevents/(speech|testimony)/[a-z]+\d{8}[a-z]\.htm',url.path))
+            and proof.get('selector')=='div#article p.speaker' and proof.get('url')==page['url']
+            and context==proof.get('header') and contains_name(context,subject)
+            and context in sources.normalize(page['text'])[:6000])
+
+
 def transcript_speaker_context(page, quote, subject, day):
     """Bind reviewed labels to exact official transcripts and one uninterrupted speaker turn."""
     url = sources.canonical_url(page['url'])
@@ -193,7 +204,7 @@ def validate_rows(page, rows, subjects, now):
             author = (basis == 'document_author' and subject['entity_type'] == 'person'
                       and (sources.urlsplit(page['url']).hostname or '').endswith(('.gov', '.mil'))
                       and context in text[:6000]
-                      and (explicit_document_author(context, subject)
+                      and (explicit_document_author(context, subject) or structured_document_author(page,context,subject)
                            or (context in text[:1200] and '-Wstate-' in page['url'])
                            or (context in text[:1200] and '/DCPD-' in page['url'] and 'Administration of ' in context and 'The President.' in text[:1200])))
             if (quote not in text or context not in text or not (transcript or contains_name(context, subject))
@@ -305,6 +316,23 @@ def collect(root, config, since=None, dry=False):
     except Exception as exc:
         report.update(status='partial', errors=[{'stage': 'setup', 'error': type(exc).__name__}])
         return report
+    archive_settings = config.get('bulk_archives', {})
+    if archive_settings.get('enabled'):
+        # The original client's baseline precedes this work, so both collectors
+        # share the existing collection allowance. Archives also have a sub-cap.
+        try:
+            import federal_archives
+            archive_client = sources.Client(root, min(archive_settings['max_cost'], config['collection_max_cost']))
+            report['archives'] = federal_archives.collect(
+                root, read(root / 'config/federal_archives.json', {}), archive_client,
+                max_documents=archive_settings['max_documents'], max_chunks=archive_settings['max_chunks'])
+            for pid, sids in report['archives']['added'].items():
+                report['added'].setdefault(pid, []).extend(sids)
+            report['errors'].extend({**error, 'collector': 'archives'} for error in report['archives']['errors'])
+            if report['archives']['review_documents']:
+                report['errors'].append({'stage': 'archives', 'error': 'Unresolved_source_extractions'})
+        except Exception as exc:
+            report['errors'].append({'stage': 'archives', 'error': type(exc).__name__})
     in_memory = {}
     extraction_revision = sources.digest(sources.EXTRACTION_PROMPT + json.dumps(subjects, sort_keys=True))
     all_domains = sorted({d for g in groups for d in g['domains']})

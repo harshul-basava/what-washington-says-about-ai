@@ -90,7 +90,7 @@ def command(root, script, *args, capture=False):
     return result.returncode
 
 
-def review_cohort(root, cohort, ids, allowance, workers, refresh_ids):
+def review_cohort(root, cohort, ids, allowance, workers, refresh_ids, *, allow_x_context=True):
     import federal_analysis as analysis
     import federal_stance_review as review
     import llm
@@ -136,6 +136,8 @@ def review_cohort(root, cohort, ids, allowance, workers, refresh_ids):
             return {'status': 'complete', **result}
         review.fetch_contexts(root, workers=min(workers, 4))
         if any(next(s for s in evidence[pid] if s['sid'] == row['sid']).get('source_type') == 'x' for pid, row in requests):
+            if not allow_x_context:
+                return {'status': 'pending', 'reason': 'X_context_needs_separate_allowance'}
             review.fetch_x_context(root)
             review.fetch_contexts(root, workers=min(workers, 4))
         merge_contexts(root, audit)
