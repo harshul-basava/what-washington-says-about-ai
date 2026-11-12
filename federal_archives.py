@@ -197,6 +197,34 @@ def duplicate_excerpt(statement, existing):
     return False
 
 
+def retained_attribution_context(root, subject_id, statement, page):
+    """Verify immutable source offsets, or recover legacy source-bound proof."""
+    span_hash=statement.get('attribution_span_sha256')
+    if not span_hash:return statement.get('context')
+    if 'attribution_span_start' in statement or 'attribution_span_end' in statement:
+        text=sources.normalize(page['text']);start=statement.get('attribution_span_start');end=statement.get('attribution_span_end')
+        if (type(start) is not int or type(end) is not int or not 0<=start<end<=len(text)
+                or sources.digest(text)!=statement.get('source_text_sha256')
+                or sources.digest(text[start:end])!=span_hash):
+            raise ValueError('Reporting attribution source offsets or hashes changed')
+        return text[start:end]
+    root=Path(root)
+    state=federal.read(root/STATE,{})
+    signature=state.get('documents',{}).get(statement['url'],{}).get('processed',{}).get('signature','')
+    if not re.fullmatch(r'[a-f0-9]{64}',signature):
+        raise ValueError('Reporting attribution lacks its source extraction checkpoint')
+    for path in sorted((root/RAW/'extractions').glob(f'{signature}-*.json')):
+        if path.name.endswith('.response.json'):continue
+        rows=federal.read(path,[])
+        if not isinstance(rows,list):continue
+        for row in rows:
+            if not isinstance(row,dict) or row.get('subject_id')!=subject_id:continue
+            if sources.normalize(row.get('quote',''))!=sources.normalize(statement['text']):continue
+            context=sources.normalize(row.get('attribution_quote',''))
+            if sources.digest(context)==span_hash:return context
+    raise ValueError('Reporting attribution lacks an exact retained span hash match')
+
+
 def process_document(root, page, subjects, state, client, max_chunks=30, *, take_chunk=None, evidence_lock=None):
     """Resume a document, reusing validated or rejected model outputs unchanged."""
     model=getattr(client,'model',None)

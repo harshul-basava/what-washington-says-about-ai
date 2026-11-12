@@ -285,6 +285,9 @@ def validate_rows(page, rows, subjects, now):
                 'verified': True, 'verified_via': page['verified_via'], 'attribution': attr,
                 'retrieved_on': now, 'source_text_sha256': sources.digest(text), 'origin': 'federal',
                 'date_quote': date_anchor,
+                **({'attribution_span_start': text.index(context),
+                    'attribution_span_end': text.index(context) + len(context)}
+                   if not (sources.urlsplit(page['url']).hostname or '').endswith(('.gov', '.mil')) else {}),
             })))
         except (ValueError, KeyError, TypeError, AttributeError):
             rejected += 1

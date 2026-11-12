@@ -1,0 +1,176 @@
+{
+  "reviewed_at_utc": "2026-11-12T17:40:31.988603+00:00",
+  "checked_rows": 31,
+  "checked_sources": 20,
+  "checked_ids": [
+    "exec_trump/s126",
+    "exec_kratsios/s268",
+    "exec_kratsios/s269",
+    "exec_michael/s55",
+    "exec_michael/s56",
+    "exec_ferguson/s66",
+    "exec_ferguson/s67",
+    "exec_ferguson/s68",
+    "exec_rubio/s14",
+    "exec_rubio/s15",
+    "exec_rubio/s16",
+    "exec_raman/s9",
+    "exec_raman/s10",
+    "exec_raman/s11",
+    "exec_raman/s12",
+    "exec_raman/s13",
+    "exec_ratcliffe/s11",
+    "exec_fu/s49",
+    "exec_holyoak/s23",
+    "exec_holyoak/s24",
+    "exec_forst/s22",
+    "exec_forst/s23",
+    "exec_stanton/s12",
+    "exec_paul_atkins/s40",
+    "exec_paul_atkins/s41",
+    "exec_brandon_williams/s26",
+    "exec_laura_v_swett/s10",
+    "exec_brian_stone/s19",
+    "exec_ryan_billingsley/s14",
+    "exec_keith_sonderling/s21",
+    "exec_brandon_pugh/s8"
+  ],
+  "conclusion": "All 31 source hashes, quoted words, and named speakers match. Withdraw six vague news fragments. Replace Michael s56, Pugh s8, and Holyoak s23 to restore essential meaning. Use month precision or null for Michael s56 and Pugh s8. Ferguson s68 has an optional context expansion.",
+  "date_findings": [
+    {
+      "id": "exec_michael/s56",
+      "old_date": "2026-09-11",
+      "inferred_day_from_weekday": "2026-09-10",
+      "recommended_precision": "2026-09",
+      "anchor": "September 11, 2026",
+      "reason": "The source says Michael spoke Thursday; the publication date was Friday."
+    },
+    {
+      "id": "exec_fu/s49",
+      "old_date": "2024-06-26",
+      "inferred_day_from_weekday": "2024-06-25",
+      "recommended_action": "withdraw; if retained, use 2024-06 or null",
+      "anchor": "June 26, 2024",
+      "reason": "The source says Fu spoke Tuesday; the publication date was Wednesday."
+    },
+    {
+      "id": "exec_brandon_pugh/s8",
+      "old_date": "2026-10-28",
+      "recommended_precision": "2026-10",
+      "anchor": "October 28, 2026",
+      "reason": "The source says the Army announcement occurred this week. It does not establish that the statement occurred on publication day."
+    }
+  ],
+  "withdrawals": [
+    {
+      "subject_id": "exec_brandon_pugh",
+      "sid": "s8",
+      "url": "https://defensescoop.com/2026/10/28/army-aws-wwt-ai-cybersecurity-project-griffin/",
+      "reason": "The original is a noun phrase without the actor or commitment. The replacement states his commitment. The article dates publication to October 28, 2026 but describes the announcement only as “this week”. Use month precision or null unless a primary dated release supplies the exact statement date. In this article, SI is the administration’s term for AI; it does not establish superhuman capability."
+    },
+    {
+      "subject_id": "exec_brandon_williams",
+      "sid": "s26",
+      "url": "https://fedscoop.com/us-nuclear-security-agency-seeks-information-on-ai-for-national-security/",
+      "reason": "Short excerpt omits its subject, antecedent, or substantive AI claim; retain the original but exclude it from judgments."
+    },
+    {
+      "subject_id": "exec_ferguson",
+      "sid": "s68",
+      "url": "https://search.ftc.gov/system/files/ftc_gov/pdf/ferguson-statement-social-media-6b.pdf",
+      "reason": "Optional context improvement: restore the previous sentence so “these bureaucrats” explicitly identifies AI safety bureaucrats. The original remains his own complete statement; this is not an attribution withdrawal."
+    },
+    {
+      "subject_id": "exec_fu",
+      "sid": "s49",
+      "url": "https://fedscoop.com/energy-releases-generative-ai-guidance-employees-contractors/",
+      "reason": "Short excerpt omits its subject, antecedent, or substantive AI claim; retain the original but exclude it from judgments."
+    },
+    {
+      "subject_id": "exec_holyoak",
+      "sid": "s23",
+      "url": "https://search.ftc.gov/system/files/ftc_gov/pdf/statement-holyoak-ai-6b-study_0.pdf",
+      "reason": "The original begins “to conduct” and omits Holyoak’s personal action and support. Restore the full contiguous sentence. The literal digit 6 is an inline citation marker in the retained PDF text; do not silently remove it while claiming exact contiguous proof."
+    },
+    {
+      "subject_id": "exec_kratsios",
+      "sid": "s268",
+      "url": "https://fedscoop.com/national-ai-initiative-office-launched/",
+      "reason": "Short excerpt omits its subject, antecedent, or substantive AI claim; retain the original but exclude it from judgments."
+    },
+    {
+      "subject_id": "exec_kratsios",
+      "sid": "s269",
+      "url": "https://fedscoop.com/president-trump-sign-executive-order-national-ai-strategy/",
+      "reason": "Short excerpt omits its subject, antecedent, or substantive AI claim; retain the original but exclude it from judgments."
+    },
+    {
+      "subject_id": "exec_michael",
+      "sid": "s56",
+      "url": "https://defensescoop.com/2026/09/11/dod-poised-to-move-all-classified-ai-workloads-off-anthropic-by-october/",
+      "reason": "The original omits what the Maven/Palantir work transitioned away from. The replacement states his supplier-diversity goal. The article says he spoke Thursday; September 11, 2026 was Friday. The inferred day is September 10, but the retained page lacks a literal absolute-date anchor for that day. Use verified month precision or null."
+    },
+    {
+      "subject_id": "exec_stanton",
+      "sid": "s12",
+      "url": "https://fedscoop.com/the-government-is-buying-ai-by-the-token-it-should-buy-results/",
+      "reason": "Short excerpt omits its subject, antecedent, or substantive AI claim; retain the original but exclude it from judgments."
+    },
+    {
+      "subject_id": "exec_trump",
+      "sid": "s126",
+      "url": "https://fedscoop.com/trump-launches-ai-site-america-gov/",
+      "reason": "Short excerpt omits its subject, antecedent, or substantive AI claim; retain the original but exclude it from judgments."
+    }
+  ],
+  "replacements": [
+    {
+      "subject_id": "exec_michael",
+      "old_sid": "s56",
+      "new_sid": "s57",
+      "url": "https://defensescoop.com/2026/09/11/dod-poised-to-move-all-classified-ai-workloads-off-anthropic-by-october/",
+      "date": "2026-09",
+      "date_quote": "September 11, 2026",
+      "status": "appended_complete_quote",
+      "immutable_span_proof": true
+    },
+    {
+      "subject_id": "exec_ferguson",
+      "old_sid": "s68",
+      "new_sid": "s69",
+      "url": "https://search.ftc.gov/system/files/ftc_gov/pdf/ferguson-statement-social-media-6b.pdf",
+      "date": "2024-09-19",
+      "date_quote": "September 19, 2024",
+      "status": "appended_complete_quote",
+      "immutable_span_proof": false
+    },
+    {
+      "subject_id": "exec_holyoak",
+      "old_sid": "s23",
+      "new_sid": "s26",
+      "url": "https://search.ftc.gov/system/files/ftc_gov/pdf/statement-holyoak-ai-6b-study_0.pdf",
+      "date": "2025-09-11",
+      "date_quote": "September 11, 2025",
+      "status": "appended_complete_quote",
+      "immutable_span_proof": false
+    },
+    {
+      "subject_id": "exec_brandon_pugh",
+      "old_sid": "s8",
+      "new_sid": "s9",
+      "url": "https://defensescoop.com/2026/10/28/army-aws-wwt-ai-cybersecurity-project-griffin/",
+      "date": "2026-10",
+      "date_quote": "October 28, 2026",
+      "status": "appended_complete_quote",
+      "immutable_span_proof": true
+    }
+  ],
+  "span_proof_migrations": [
+    {
+      "subject_id": "exec_michael",
+      "sid": "s55",
+      "source_text_sha256": "d322b9e27e82c9f86c9e608da468bca8e9fdba5c158857f0760cf8d04f77d547",
+      "attribution_span_sha256": "1ad3bc0f468255891d692fb8cd70d35be9dd4f0da1a7165aedef60e1423de291"
+    }
+  ]
+}

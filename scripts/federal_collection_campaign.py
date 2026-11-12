@@ -82,7 +82,7 @@ def verify_sources(root,audit):
                 if pid not in subjects:raise ValueError('Campaign subject left the current roster')
                 subject=subjects[pid];attr=row.get('attribution',{})
                 role_index=next((i for i,r in enumerate(subject.get('roles',[])) if r['title']==attr.get('role') and r['organization_id']==attr.get('organization_id')),None)
-                proposal={'subject_id':pid,'quote':row['text'],'attribution_quote':row.get('context'),
+                proposal={'subject_id':pid,'quote':row['text'],'attribution_quote':archive.retained_attribution_context(root,pid,row,page),
                           'attribution_basis':attr.get('basis'),'kind':attr.get('kind'),'role_index':role_index,
                           'date':row.get('date'),'date_quote':row.get('date_quote')}
                 valid,rejected=archive.federal.validate_rows(page,[proposal],[subject],archive.federal.today())

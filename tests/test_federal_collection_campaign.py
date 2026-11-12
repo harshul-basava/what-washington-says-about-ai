@@ -6,6 +6,51 @@ from scripts import federal_collection_campaign as campaign
 
 
 class CampaignTests(unittest.TestCase):
+    def test_reporting_verification_recovers_only_hash_matched_source_bound_context(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);archive=campaign.archive
+            subject={'id':'p','name':'Alice Example','entity_type':'person','organization_id':'agency','roles':[]}
+            quote='Artificial intelligence must improve public services and protect privacy.'
+            context=f'Alice Example said, “{quote}”'
+            page={'url':'https://news.example/story','text':context,'verified_via':'exact_normalized_page_text'}
+            proposal={'subject_id':'p','quote':quote,'attribution_quote':context,'kind':'personal','date':None,'date_quote':None}
+            good,rejected=archive.federal.validate_rows(page,[proposal],[subject],'2026-11-12')
+            self.assertEqual(rejected,0)
+            row={k:v for k,v in good[0][1].items() if not k.startswith('attribution_span_start') and not k.startswith('attribution_span_end')}
+            row['sid']='s1';signature='a'*64
+            campaign.write(root/'evidence/p.json',{'statements':[row]})
+            campaign.write(root/archive.RAW/'pages'/f"{archive.sources.digest(page['url'])}.json",page)
+            campaign.write(root/archive.STATE,{'documents':{page['url']:{'processed':{'signature':signature}}}})
+            path=root/archive.RAW/'extractions'/f'{signature}-0.json';campaign.write(path,[proposal])
+            audit={'added':{'p':['s1']}}
+            with patch.object(campaign.policy_subjects,'load_subjects',return_value=[subject]):
+                self.assertEqual(campaign.verify_sources(root,audit)['verified_new_excerpts'],1)
+                for changed in [{**proposal,'subject_id':'other'}, {**proposal,'attribution_quote':context+' changed'}]:
+                    campaign.write(path,[changed])
+                    with self.assertRaises(ValueError):campaign.verify_sources(root,audit)
+                campaign.write(path,[proposal]);campaign.write(root/archive.STATE,{'documents':{}})
+                with self.assertRaises(ValueError):campaign.verify_sources(root,audit)
+
+    def test_reporting_span_proof_survives_extraction_rotation_and_rejects_tampering(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);archive=campaign.archive
+            subject={'id':'p','name':'Alice Example','entity_type':'person','organization_id':'agency','roles':[]}
+            quote='Artificial intelligence must improve public services and protect privacy.'
+            context=f'Alice Example said, “{quote}”'
+            page={'url':'https://news.example/story','text':context,'verified_via':'exact_normalized_page_text'}
+            proposal={'subject_id':'p','quote':quote,'attribution_quote':context,'kind':'personal','date':None,'date_quote':None}
+            row={**archive.federal.validate_rows(page,[proposal],[subject],'2026-11-12')[0][0][1],'sid':'s1'}
+            self.assertEqual(row.get('attribution_span_start'),0)
+            self.assertEqual(row.get('attribution_span_end'),len(context))
+            campaign.write(root/archive.RAW/'pages'/f"{archive.sources.digest(page['url'])}.json",page)
+            campaign.write(root/'evidence/p.json',{'statements':[row]})
+            campaign.write(root/archive.STATE,{'documents':{page['url']:{'processed':{'signature':'b'*64}}}})
+            with patch.object(campaign.policy_subjects,'load_subjects',return_value=[subject]):
+                self.assertEqual(campaign.verify_sources(root,{'added':{'p':['s1']}})['verified_new_excerpts'],1)
+                for change in [{'attribution_span_start':1},{'attribution_span_start':True},{'attribution_span_end':len(context)+1},{'attribution_span_sha256':'0'*64}]:
+                    campaign.write(root/'evidence/p.json',{'statements':[{**row,**change}]})
+                    with self.assertRaises(ValueError):campaign.verify_sources(root,{'added':{'p':['s1']}})
+
     def test_recovered_additions_exclude_unverified_or_withdrawn_records(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)
