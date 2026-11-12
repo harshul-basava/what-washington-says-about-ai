@@ -10,7 +10,10 @@
   "exec_michael",
   "exec_peters",
   "exec_pilkerton",
-  "exec_rudd"
+  "exec_rudd",
+  "exec_curyto",
+  "exec_klein",
+  "exec_vought"
  ],
  "original_scores": {
   "exec_michael": {
@@ -40,6 +43,27 @@
    "x_risk": null,
    "china_race": 3.0,
    "regulation": null
+  },
+  "exec_curyto": {
+   "ai_overall": null,
+   "agi_pilled": null,
+   "x_risk": null,
+   "china_race": null,
+   "regulation": null
+  },
+  "exec_klein": {
+   "ai_overall": 3.0,
+   "agi_pilled": null,
+   "x_risk": null,
+   "china_race": 3.0,
+   "regulation": 1.5
+  },
+  "exec_vought": {
+   "ai_overall": 3.0,
+   "agi_pilled": null,
+   "x_risk": null,
+   "china_race": 2.0,
+   "regulation": 2.0
   }
  },
  "profiles": {
@@ -703,8 +727,489 @@
     "assessed_at": "2026-11-11T08:40:01.216467+00:00"
    },
    "applied_review_id": "5bd88654dc45fa3dcbea7b9d6a1dc3bd0ad58cc9a1c9b2e9bdbeff4ea30052f1"
+  },
+  "exec_curyto": {
+   "input_hash": "5bc911ec9a3cc993ecf73488ec28cfb7783c88fd6bcedceed7634d0fa1d82ec5",
+   "evidence_hash": "89a48d79dab46006958c52fc8b6eb8728aaa0eb118eb0c6d023bc32522858664",
+   "contexts": {},
+   "result": {
+    "findings": [],
+    "no_stance_sids": [
+     "s1",
+     "s2"
+    ],
+    "context_requests": [],
+    "confidence": 5,
+    "reason": "Neither supplied excerpt expresses a view of AI's overall effects on Americans. The statements concern cooperation on risk and safety discussions and export reviews involving AI ties to China; neither supports an overall benefits-versus-harms label. This conclusion is limited to the supplied excerpts.",
+    "summary_sentences": [
+     {
+      "text": "In November 2023, Curyto described a plan to convene experts on AI risk and safety as reflecting willingness to cooperate where interests align.",
+      "sids": [
+       "s1"
+      ]
+     },
+     {
+      "text": "In October 2023, Curyto advised companies to review exports to third countries that may have AI commercial and research ties to China.",
+      "sids": [
+       "s2"
+      ]
+     }
+    ],
+    "summary": {
+     "status": "complete",
+     "text": "In November 2023, Curyto described a plan to convene experts on AI risk and safety as reflecting willingness to cooperate where interests align. In October 2023, Curyto advised companies to review exports to third countries that may have AI commercial and research ties to China.",
+     "sids": [
+      "s1",
+      "s2"
+     ],
+     "sentences": [
+      {
+       "text": "In November 2023, Curyto described a plan to convene experts on AI risk and safety as reflecting willingness to cooperate where interests align.",
+       "sids": [
+        "s1"
+       ]
+      },
+      {
+       "text": "In October 2023, Curyto advised companies to review exports to third countries that may have AI commercial and research ties to China.",
+       "sids": [
+        "s2"
+       ]
+      }
+     ]
+    }
+   },
+   "model": "openai/gpt-6-astra",
+   "generation_id": "gen-1794453940-cadqeKNQ9TpvI8ElMppe",
+   "assessed_at": "2026-11-12T03:25:45.549401+00:00",
+   "applied_review_id": "eb2a0d190ca20568c3ada0bd78b443dffd91115d9009105bcd60b4cdd918334b"
+  },
+  "exec_klein": {
+   "input_hash": "1c8d97c051ee5425faca95dff7e2a6dac805d2a795ae1cf143fa493cf5896c81",
+   "evidence_hash": "e5b2d96c1e0af6385baaba9651a9f2a7c32b15a71afc659991691a34ceb7d0f9",
+   "contexts": {
+    "s2": {
+     "status": "available",
+     "url": "https://www.commerce.senate.gov/wp-content/uploads/media/doc/Dr.%20Ethan%20Klein%20Opening%20Statement%20for%209.17.25.pdf",
+     "retrieval": "direct_page",
+     "retrieved_at": "2026-11-12T03:26:02.022030+00:00",
+     "text_hash": "0b8c912379c0de9d886553c131160064d58b2f46da43becd530013132e62169a",
+     "cache_path": "data/raw/federal_stance_context/exec_klein/s2.json"
+    },
+    "s1": {
+     "status": "available",
+     "url": "https://www.commerce.senate.gov/wp-content/uploads/media/doc/Dr.%20Ethan%20Klein%20Opening%20Statement%20for%209.17.25.pdf",
+     "retrieval": "direct_page",
+     "retrieved_at": "2026-11-12T03:26:02.022030+00:00",
+     "text_hash": "0b8c912379c0de9d886553c131160064d58b2f46da43becd530013132e62169a",
+     "cache_path": "data/raw/federal_stance_context/exec_klein/s2.json",
+     "shared_from_sid": "s2"
+    },
+    "s4": {
+     "status": "available",
+     "url": "https://www.commerce.senate.gov/wp-content/uploads/media/doc/Dr.%20Ethan%20Klein%20Opening%20Statement%20for%209.17.25.pdf",
+     "retrieval": "direct_page",
+     "retrieved_at": "2026-11-12T03:26:02.022030+00:00",
+     "text_hash": "0b8c912379c0de9d886553c131160064d58b2f46da43becd530013132e62169a",
+     "cache_path": "data/raw/federal_stance_context/exec_klein/s2.json",
+     "shared_from_sid": "s2"
+    }
+   },
+   "result": {
+    "findings": [
+     {
+      "sid": "s2",
+      "label": 4,
+      "confidence": 4,
+      "reason": "In his September 17, 2025 nominee statement, Klein places AI within an emerging-technology agenda centered on broad public benefits. The supplied context establishes his own optimistic assessment and criticism of excessive restraint, rather than a narrow application benefit.",
+      "supporting_quote": "Emerging technologies promise to expand economic opportunity, improve public health, and enhance national security. Yet in policy discussions about their governance, discourse has at times leaned too far toward restraint, slowing the pace of progress. As a technologist, I remain fundamentally hopeful that technology can improve American lives and further our nation’s flourishing.",
+      "attribution_quote": "Statement of Dr. Ethan A. Klein Nominee for Associate Director of the Office of Science and Technology Policy",
+      "support_basis": "context"
+     },
+     {
+      "sid": "s9",
+      "label": 3,
+      "confidence": 4,
+      "reason": "Beyond identifying particular applications, Klein explicitly makes industry adoption for Americans' benefit a broad AI-policy priority. This establishes an opportunity-oriented general stance, without emphatically dismissing risks.",
+      "supporting_quote": "And I have one--if confirmed, one big priority for me in terms of what actions we take on AI policy should be around industry adoption at the end point where the American people can benefit from these technologies.",
+      "support_basis": "excerpt"
+     }
+    ],
+    "no_stance_sids": [
+     "s1",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s8",
+     "s10",
+     "s11",
+     "s12"
+    ],
+    "context_requests": [],
+    "confidence": 4,
+    "reason": "The supplied evidence supports an opportunity-oriented outlook, particularly in Klein's September 2025 nominee remarks. Other excerpts concern competition, regulation, infrastructure, workforce applications, or procedures without independently establishing an overall assessment. The opening statement's optimism encompasses emerging technologies including AI, rather than AI exclusively; the written answers have no separately established dates.",
+    "summary_sentences": [
+     {
+      "text": "In his September 17, 2025 nominee statement, Klein expressed optimism about emerging technologies, including AI, and argued that governance discussions had sometimes placed too much emphasis on restraint.",
+      "sids": [
+       "s2"
+      ]
+     },
+     {
+      "text": "At his nomination hearing that day, he identified industry adoption that benefits Americans as a major AI-policy priority.",
+      "sids": [
+       "s9"
+      ]
+     },
+     {
+      "text": "In undated written nomination answers, he supported sector-specific federal frameworks and allowed that regulatory clarity or new federal regulations could be needed for responsible AI innovation.",
+      "sids": [
+       "s11"
+      ]
+     }
+    ],
+    "summary": {
+     "status": "complete",
+     "text": "In his September 17, 2025 nominee statement, Klein expressed optimism about emerging technologies, including AI, and argued that governance discussions had sometimes placed too much emphasis on restraint. At his nomination hearing that day, he identified industry adoption that benefits Americans as a major AI-policy priority. In undated written nomination answers, he supported sector-specific federal frameworks and allowed that regulatory clarity or new federal regulations could be needed for responsible AI innovation.",
+     "sids": [
+      "s2",
+      "s9",
+      "s11"
+     ],
+     "sentences": [
+      {
+       "text": "In his September 17, 2025 nominee statement, Klein expressed optimism about emerging technologies, including AI, and argued that governance discussions had sometimes placed too much emphasis on restraint.",
+       "sids": [
+        "s2"
+       ]
+      },
+      {
+       "text": "At his nomination hearing that day, he identified industry adoption that benefits Americans as a major AI-policy priority.",
+       "sids": [
+        "s9"
+       ]
+      },
+      {
+       "text": "In undated written nomination answers, he supported sector-specific federal frameworks and allowed that regulatory clarity or new federal regulations could be needed for responsible AI innovation.",
+       "sids": [
+        "s11"
+       ]
+      }
+     ]
+    }
+   },
+   "model": "openai/gpt-6-astra",
+   "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS",
+   "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+   "previous_reviews": [
+    {
+     "input_hash": "55261e34d46bb7befa0c5ec9eb470294d9c4eda04e59cd9a5b3bfce719e8f47c",
+     "evidence_hash": "e5b2d96c1e0af6385baaba9651a9f2a7c32b15a71afc659991691a34ceb7d0f9",
+     "contexts": {
+      "s2": {
+       "status": "available",
+       "url": "https://www.commerce.senate.gov/wp-content/uploads/media/doc/Dr.%20Ethan%20Klein%20Opening%20Statement%20for%209.17.25.pdf",
+       "retrieval": "direct_page",
+       "retrieved_at": "2026-11-12T03:26:02.022030+00:00",
+       "text_hash": "0b8c912379c0de9d886553c131160064d58b2f46da43becd530013132e62169a",
+       "cache_path": "data/raw/federal_stance_context/exec_klein/s2.json"
+      }
+     },
+     "result": {
+      "findings": [
+       {
+        "sid": "s9",
+        "label": 3,
+        "confidence": 4,
+        "reason": "Beyond particular medical and transportation applications, Klein identifies industry adoption for Americans' benefit as a broad AI-policy priority. This establishes an opportunity-oriented general stance, without asserting overwhelmingly positive effects.",
+        "supporting_quote": "And I have one--if confirmed, one big priority for me in terms of what actions we take on AI policy should be around industry adoption at the end point where the American people can benefit from these technologies.",
+        "support_basis": "excerpt"
+       }
+      ],
+      "no_stance_sids": [
+       "s1",
+       "s3",
+       "s4",
+       "s5",
+       "s6",
+       "s7",
+       "s8",
+       "s10",
+       "s11",
+       "s12"
+      ],
+      "context_requests": [
+       {
+        "sid": "s2",
+        "reason": "The excerpt expresses broad optimism about emerging technologies and criticizes excessive restraint, but does not explicitly identify AI. Surrounding text could establish whether this assessment applies specifically to AI or to other technologies."
+       }
+      ],
+      "confidence": 4,
+      "reason": "The supplied evidence supports an opportunity-oriented general stance through Klein's broad adoption priority. Most other excerpts address competition, particular applications, workforce policy, regulatory approaches, or implementation rather than AI's overall effects. The scope of the emerging-technologies assessment in s2 remains unresolved without surrounding source text.",
+      "summary_sentences": [
+       {
+        "text": "At his September 17, 2025 nomination hearing, Klein identified industry adoption that benefits Americans as a priority for his prospective work on AI policy.",
+        "sids": [
+         "s9"
+        ]
+       },
+       {
+        "text": "He also supported worker training and reskilling to help Americans use AI in their daily work.",
+        "sids": [
+         "s8"
+        ]
+       },
+       {
+        "text": "In written nomination answers whose dates are not separately established, Klein supported regulatory sandboxes without compromising safety and allowed that greater federal regulatory clarity or new rules could be needed for responsible AI innovation.",
+        "sids": [
+         "s10",
+         "s11"
+        ]
+       }
+      ],
+      "summary": {
+       "status": "complete",
+       "text": "At his September 17, 2025 nomination hearing, Klein identified industry adoption that benefits Americans as a priority for his prospective work on AI policy. He also supported worker training and reskilling to help Americans use AI in their daily work. In written nomination answers whose dates are not separately established, Klein supported regulatory sandboxes without compromising safety and allowed that greater federal regulatory clarity or new rules could be needed for responsible AI innovation.",
+       "sids": [
+        "s9",
+        "s8",
+        "s10",
+        "s11"
+       ],
+       "sentences": [
+        {
+         "text": "At his September 17, 2025 nomination hearing, Klein identified industry adoption that benefits Americans as a priority for his prospective work on AI policy.",
+         "sids": [
+          "s9"
+         ]
+        },
+        {
+         "text": "He also supported worker training and reskilling to help Americans use AI in their daily work.",
+         "sids": [
+          "s8"
+         ]
+        },
+        {
+         "text": "In written nomination answers whose dates are not separately established, Klein supported regulatory sandboxes without compromising safety and allowed that greater federal regulatory clarity or new rules could be needed for responsible AI innovation.",
+         "sids": [
+          "s10",
+          "s11"
+         ]
+        }
+       ]
+      }
+     },
+     "model": "openai/gpt-6-astra",
+     "generation_id": "gen-1794453940-xbhcPNwCHciflGZZibc3",
+     "assessed_at": "2026-11-12T03:25:58.223251+00:00"
+    }
+   ],
+   "original_summary": {
+    "value": {
+     "status": "complete",
+     "text": "In a September 17, 2025 opening statement, Ethan Klein said OSTP can lead the United States to \"global dominance in AI\" and argued that policy discourse had at times leaned too far toward restraint. In the same statement, he cited OSTP's work under Director Kratsios on America's AI Action Plan and executive orders to promote artificial intelligence, nuclear energy, and advanced aviation. In answers associated with his nomination hearing, Klein emphasized sector- and use-case-specific AI standards and regulatory approaches, including sandboxes, while also citing possible needs for greater federal regulatory clarity. His hearing answers also discussed international AI competition and standards, AI-related energy infrastructure, workforce training, and industry adoption.",
+     "sids": [
+      "s1",
+      "s2",
+      "s4",
+      "s5",
+      "s10",
+      "s11",
+      "s6",
+      "s7",
+      "s8",
+      "s9"
+     ],
+     "sentences": [
+      {
+       "text": "In a September 17, 2025 opening statement, Ethan Klein said OSTP can lead the United States to \"global dominance in AI\" and argued that policy discourse had at times leaned too far toward restraint.",
+       "sids": [
+        "s1",
+        "s2"
+       ]
+      },
+      {
+       "text": "In the same statement, he cited OSTP's work under Director Kratsios on America's AI Action Plan and executive orders to promote artificial intelligence, nuclear energy, and advanced aviation.",
+       "sids": [
+        "s4"
+       ]
+      },
+      {
+       "text": "In answers associated with his nomination hearing, Klein emphasized sector- and use-case-specific AI standards and regulatory approaches, including sandboxes, while also citing possible needs for greater federal regulatory clarity.",
+       "sids": [
+        "s5",
+        "s10",
+        "s11"
+       ]
+      },
+      {
+       "text": "His hearing answers also discussed international AI competition and standards, AI-related energy infrastructure, workforce training, and industry adoption.",
+       "sids": [
+        "s6",
+        "s7",
+        "s8",
+        "s9"
+       ]
+      }
+     ]
+    },
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "generation_id": "gen-1794453877-dIzgNhKETKfhGdfmhLX3",
+    "assessed_at": "2026-11-12T03:24:40.320202+00:00"
+   },
+   "applied_review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736"
+  },
+  "exec_vought": {
+   "input_hash": "a61ba7eaac3fdbad3d5985c856cc63cf6f0ada818a420083164416a368e65eeb",
+   "evidence_hash": "f89305091d82ad7b83d6264034eab804ade46a04ee65896a9927ab1f4664ffb7",
+   "contexts": {},
+   "result": {
+    "findings": [
+     {
+      "sid": "s3",
+      "label": 3,
+      "confidence": 4,
+      "reason": "Presents AI as a broad economic and social opportunity across multiple goals, rather than describing a single application. The measured promise of benefits supports a positive general stance without unequivocal enthusiasm.",
+      "supporting_quote": "The deployment of AI holds the promise to improve efficiency, effectiveness, safety, fairness, welfare, transparency, and other economic and social goals, and America's continued status as a global leader in AI development is important to preserving our economic and national security.",
+      "support_basis": "excerpt"
+     },
+     {
+      "sid": "s4",
+      "label": 3,
+      "confidence": 4,
+      "reason": "Beyond its regulatory position, the statement presents society's enjoyment of AI benefits as the goal and treats risks as matters for targeted rules and comparative assessment.",
+      "supporting_quote": "While narrowly tailored and evidence­ based regulations that address specific and identifiable risks could provide an enabling environment for U.S. companies to maintain global competitiveness, agencies must avoid a precautionary approach that holds AI systems to an impossibly high standard such that society cannot enjoy their benefits and that could undermine America's position as the global leader in AI innovation. Where AI entails risk, agencies should consider the potential benefits and costs of employing AI, as compared to the systems AI has been designed to complement or replace.",
+      "support_basis": "excerpt"
+     },
+     {
+      "sid": "s5",
+      "label": 2,
+      "confidence": 5,
+      "reason": "Explicitly balances broad expected social and economic benefits against a substantial range of risks requiring assessment and mitigation.",
+      "supporting_quote": "AI is expected to have a positive impact across many sectors of social and economic life, including employment, transportation, education, finance, healthcare, personal security, and manufacturing. At the same time, AI applications could pose risks to privacy, individual rights, personal choice, civil liberties, public health, safety, and security that must be carefully assessed and appropriately addressed.",
+      "support_basis": "excerpt"
+     }
+    ],
+    "no_stance_sids": [
+     "s1",
+     "s2",
+     "s6",
+     "s7",
+     "s8"
+    ],
+    "context_requests": [],
+    "confidence": 4,
+    "reason": "The supplied November 2020 memorandum excerpts establish broadly positive and balanced general AI views in Vought's official capacity at that time. The other excerpts concern technology generally or specific federal uses, procurement, and safeguards; they do not independently establish an overall AI stance. No additional source context was supplied, and the historical findings are not treated as evidence of a current general position.",
+    "summary_sentences": [
+     {
+      "text": "In his November 17, 2020 memorandum as OMB Director, Vought described broad potential benefits from AI while recognizing risks to rights, safety, and security that should be addressed.",
+      "sids": [
+       "s3",
+       "s5"
+      ]
+     },
+     {
+      "text": "That memorandum opposed unnecessarily restrictive approaches that prevent society from enjoying AI's benefits and supported narrowly tailored, evidence-based regulation.",
+      "sids": [
+       "s4"
+      ]
+     },
+     {
+      "text": "In April 2025, Vought directed agencies to prioritize effective AI adoption while requiring safeguards for high-impact uses and cessation when risks cannot be properly mitigated.",
+      "sids": [
+       "s6",
+       "s8"
+      ]
+     }
+    ],
+    "summary": {
+     "status": "complete",
+     "text": "In his November 17, 2020 memorandum as OMB Director, Vought described broad potential benefits from AI while recognizing risks to rights, safety, and security that should be addressed. That memorandum opposed unnecessarily restrictive approaches that prevent society from enjoying AI's benefits and supported narrowly tailored, evidence-based regulation. In April 2025, Vought directed agencies to prioritize effective AI adoption while requiring safeguards for high-impact uses and cessation when risks cannot be properly mitigated.",
+     "sids": [
+      "s3",
+      "s5",
+      "s4",
+      "s6",
+      "s8"
+     ],
+     "sentences": [
+      {
+       "text": "In his November 17, 2020 memorandum as OMB Director, Vought described broad potential benefits from AI while recognizing risks to rights, safety, and security that should be addressed.",
+       "sids": [
+        "s3",
+        "s5"
+       ]
+      },
+      {
+       "text": "That memorandum opposed unnecessarily restrictive approaches that prevent society from enjoying AI's benefits and supported narrowly tailored, evidence-based regulation.",
+       "sids": [
+        "s4"
+       ]
+      },
+      {
+       "text": "In April 2025, Vought directed agencies to prioritize effective AI adoption while requiring safeguards for high-impact uses and cessation when risks cannot be properly mitigated.",
+       "sids": [
+        "s6",
+        "s8"
+       ]
+      }
+     ]
+    }
+   },
+   "model": "openai/gpt-6-astra",
+   "generation_id": "gen-1794453940-6y2qqYGgJGLyXzMs5bRR",
+   "assessed_at": "2026-11-12T03:26:01.119454+00:00",
+   "original_summary": {
+    "value": {
+     "status": "complete",
+     "text": "In a November 17, 2020 OMB memorandum as Director, Vought wrote that AI deployment promises efficiency, safety, fairness, and other goals and that U.S. leadership in AI is important to economic and national security. The same 2020 memorandum said agencies must avoid actions that needlessly hamper AI innovation and avoid a precautionary approach, while assessing risks and promoting trustworthy AI. In an April 3, 2025 OMB memorandum as Director, Vought directed agencies to prioritize AI adoption, remove unnecessary bureaucratic requirements, and implement proportionate risk-management practices for high-impact AI, including ceasing use if mitigation is not possible. In undated reported remarks, Vought said agencies should promote technology innovation while protecting American technology, economic and national security, privacy, and civil liberties, and that he was working on technology including AI to provide a wider-angle lens on the federal government.",
+     "sids": [
+      "s3",
+      "s4",
+      "s5",
+      "s6",
+      "s8",
+      "s1",
+      "s2"
+     ],
+     "sentences": [
+      {
+       "text": "In a November 17, 2020 OMB memorandum as Director, Vought wrote that AI deployment promises efficiency, safety, fairness, and other goals and that U.S. leadership in AI is important to economic and national security.",
+       "sids": [
+        "s3"
+       ]
+      },
+      {
+       "text": "The same 2020 memorandum said agencies must avoid actions that needlessly hamper AI innovation and avoid a precautionary approach, while assessing risks and promoting trustworthy AI.",
+       "sids": [
+        "s4",
+        "s5"
+       ]
+      },
+      {
+       "text": "In an April 3, 2025 OMB memorandum as Director, Vought directed agencies to prioritize AI adoption, remove unnecessary bureaucratic requirements, and implement proportionate risk-management practices for high-impact AI, including ceasing use if mitigation is not possible.",
+       "sids": [
+        "s6",
+        "s8"
+       ]
+      },
+      {
+       "text": "In undated reported remarks, Vought said agencies should promote technology innovation while protecting American technology, economic and national security, privacy, and civil liberties, and that he was working on technology including AI to provide a wider-angle lens on the federal government.",
+       "sids": [
+        "s1",
+        "s2"
+       ]
+      }
+     ]
+    },
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "generation_id": "gen-1794453876-lkIjrqQqEG2gCb8zYTWK",
+    "assessed_at": "2026-11-12T03:24:42.598407+00:00"
+   },
+   "applied_review_id": "1091af17f5013d23ff1c04f6a9dba2baf21125411940b4633478f4aaf74bc7c2"
   }
  },
  "change_cause": "Astra review after federal roster expansion research",
- "ledger_cost": 0.464046
+ "ledger_cost": 6.311754
 }

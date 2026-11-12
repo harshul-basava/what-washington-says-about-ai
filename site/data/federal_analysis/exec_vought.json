@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_vought",
- "revision": "60d9f79e495e6d1f868ba447be9e00a3cc1dc50195596881a11060bf963f9c8b",
+ "revision": "0f3167bc4259de48cb71e772ceb97aeb5e8eb1ed70b8b1e5447540b12f4e8f58",
  "profile": {
   "id": "exec_vought",
   "name": "Russell Vought",
@@ -63,78 +63,99 @@
     }
    }
   },
-  "n_statements": 2,
-  "n_labeled": 2,
+  "n_statements": 8,
+  "n_labeled": 8,
   "scores": {
-   "ai_overall": null,
+   "ai_overall": 3.0,
    "agi_pilled": null,
    "x_risk": null,
-   "china_race": null,
-   "regulation": null
+   "china_race": 2.0,
+   "regulation": 2.0
   },
   "score_details": {
    "ai_overall": {
-    "score": null,
-    "reason_a": "insufficient_evidence",
-    "reason_b": "insufficient_evidence",
-    "sids": [],
-    "label_count": 0
+    "score": 3.0,
+    "reason_a": "median_of_3",
+    "reason_b": "median_of_3",
+    "sids": [
+     "s4",
+     "s3"
+    ],
+    "label_count": 3
    },
    "agi_pilled": {
     "score": null,
-    "reason_a": "insufficient_evidence",
-    "reason_b": "insufficient_evidence",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "x_risk": {
     "score": null,
-    "reason_a": "insufficient_evidence",
-    "reason_b": "insufficient_evidence",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "china_race": {
-    "score": null,
-    "reason_a": "insufficient_evidence",
-    "reason_b": "insufficient_evidence",
-    "sids": [],
-    "label_count": 0
+    "score": 2.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s4"
+    ],
+    "label_count": 2
    },
    "regulation": {
-    "score": null,
-    "reason_a": "insufficient_evidence",
-    "reason_b": "insufficient_evidence",
-    "sids": [],
-    "label_count": 0
+    "score": 2.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s8",
+     "s5"
+    ],
+    "label_count": 4
    }
   },
   "summary": {
    "status": "complete",
-   "text": "Russell Vought stated that agencies should continue to promote technology and innovation while protecting American technology, economic and national security, privacy, and civil liberties. Vought also said he was working on technology, including AI, to have a wider-angle lens on what is happening with the federal government.",
+   "text": "In his November 17, 2020 memorandum as OMB Director, Vought described broad potential benefits from AI while recognizing risks to rights, safety, and security that should be addressed. That memorandum opposed unnecessarily restrictive approaches that prevent society from enjoying AI's benefits and supported narrowly tailored, evidence-based regulation. In April 2025, Vought directed agencies to prioritize effective AI adoption while requiring safeguards for high-impact uses and cessation when risks cannot be properly mitigated.",
    "sids": [
-    "s1",
-    "s2"
+    "s3",
+    "s5",
+    "s4",
+    "s6",
+    "s8"
    ],
    "sentences": [
     {
-     "text": "Russell Vought stated that agencies should continue to promote technology and innovation while protecting American technology, economic and national security, privacy, and civil liberties.",
+     "text": "In his November 17, 2020 memorandum as OMB Director, Vought described broad potential benefits from AI while recognizing risks to rights, safety, and security that should be addressed.",
      "sids": [
-      "s1"
+      "s3",
+      "s5"
      ]
     },
     {
-     "text": "Vought also said he was working on technology, including AI, to have a wider-angle lens on what is happening with the federal government.",
+     "text": "That memorandum opposed unnecessarily restrictive approaches that prevent society from enjoying AI's benefits and supported narrowly tailored, evidence-based regulation.",
      "sids": [
-      "s2"
+      "s4"
+     ]
+    },
+    {
+     "text": "In April 2025, Vought directed agencies to prioritize effective AI adoption while requiring safeguards for high-impact uses and cessation when risks cannot be properly mitigated.",
+     "sids": [
+      "s6",
+      "s8"
      ]
     }
    ]
   },
   "topics": {
-   "regulation": 0.5,
-   "national security": 0.5,
-   "other": 1.0
+   "regulation": 2.333,
+   "national security": 1.0,
+   "other": 2.833,
+   "jobs/economy": 1.333,
+   "China/competition": 0.5
   },
   "regulation": {
    "status": "complete",
@@ -256,6 +277,24 @@
     }
    },
    "disputed": []
+  },
+  "stance_review": {
+   "review_id": "1091af17f5013d23ff1c04f6a9dba2baf21125411940b4633478f4aaf74bc7c2",
+   "dimension": "ai_overall",
+   "status": "complete",
+   "reason": "The supplied November 2020 memorandum excerpts establish broadly positive and balanced general AI views in Vought's official capacity at that time. The other excerpts concern technology generally or specific federal uses, procurement, and safeguards; they do not independently establish an overall AI stance. No additional source context was supplied, and the historical findings are not treated as evidence of a current general position.",
+   "confidence": 4,
+   "n_statements": 8,
+   "n_contexts": 0,
+   "accepted_sids": [
+    "s3",
+    "s4",
+    "s5"
+   ],
+   "finding_count": 3,
+   "model": "openai/gpt-6-astra",
+   "assessed_at": "2026-11-12T03:26:01.119454+00:00",
+   "generation_id": "gen-1794453940-6y2qqYGgJGLyXzMs5bRR"
   }
  },
  "statements": [
@@ -282,8 +321,22 @@
     ],
     "confidence": {},
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "1091af17f5013d23ff1c04f6a9dba2baf21125411940b4633478f4aaf74bc7c2",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T03:26:01.119454+00:00",
+     "generation_id": "gen-1794453940-6y2qqYGgJGLyXzMs5bRR"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -318,6 +371,18 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-09T03:06:23.455759+00:00",
       "generation_id": "gen-1794193580-CWs3m8PuFmGaKukwlGqa"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "1091af17f5013d23ff1c04f6a9dba2baf21125411940b4633478f4aaf74bc7c2",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T03:26:01.119454+00:00",
+      "generation_id": "gen-1794453940-6y2qqYGgJGLyXzMs5bRR"
      }
     }
    }
@@ -344,8 +409,22 @@
     ],
     "confidence": {},
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "1091af17f5013d23ff1c04f6a9dba2baf21125411940b4633478f4aaf74bc7c2",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T03:26:01.119454+00:00",
+     "generation_id": "gen-1794453940-6y2qqYGgJGLyXzMs5bRR"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -377,6 +456,815 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-09T03:06:23.455759+00:00",
       "generation_id": "gen-1794193580-CWs3m8PuFmGaKukwlGqa"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "1091af17f5013d23ff1c04f6a9dba2baf21125411940b4633478f4aaf74bc7c2",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T03:26:01.119454+00:00",
+      "generation_id": "gen-1794453940-6y2qqYGgJGLyXzMs5bRR"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s3",
+   "date": "2020-11-17",
+   "url": "https://www.whitehouse.gov/wp-content/uploads/2020/11/M-21-06.pdf",
+   "text": "The deployment of AI holds the promise to improve efficiency, effectiveness, safety, fairness, welfare, transparency, and other economic and social goals, and America's continued status as a global leader in AI development is important to preserving our economic and national security.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Russell Vought",
+    "organization_id": "omb",
+    "basis": "manual_signed_memorandum",
+    "note": "Signed OMB memorandum by Russell T. Vought as Director. This is an official policy statement at the historical date, not an inference about his private views. AI benefits and regulatory approach.",
+    "role": "Director, Office of Management and Budget"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "ai_overall": 3,
+     "china_race": 1
+    },
+    "b": {
+     "ai_overall": 3
+    },
+    "topics": [
+     "jobs/economy",
+     "national security"
+    ],
+    "confidence": {
+     "ai_overall": 4,
+     "china_race": 2.0
+    },
+    "escalated": [
+     "china_race"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "1091af17f5013d23ff1c04f6a9dba2baf21125411940b4633478f4aaf74bc7c2",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 3
+     },
+     "confidence": {
+      "ai_overall": 4
+     },
+     "review_confidence": 4,
+     "reason": "Presents AI as a broad economic and social opportunity across multiple goals, rather than describing a single application. The measured promise of benefits supports a positive general stance without unequivocal enthusiasm.",
+     "supporting_quote": "The deployment of AI holds the promise to improve efficiency, effectiveness, safety, fairness, welfare, transparency, and other economic and social goals, and America's continued status as a global leader in AI development is important to preserving our economic and national security.",
+     "support_basis": "excerpt",
+     "accepted": true,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T03:26:01.119454+00:00",
+     "generation_id": "gen-1794453940-6y2qqYGgJGLyXzMs5bRR"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:22:48.030451+00:00",
+      "generation_id": "gen-1794453725-OJl4FqHveFvaJIzx4Auz"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3,
+       "china_race": 1
+      },
+      "confidence": {
+       "ai_overall": 3,
+       "china_race": 2
+      },
+      "topics": [
+       "jobs/economy",
+       "national security",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:22:55.961278+00:00",
+      "generation_id": "gen-1794453769-UGpERfU0Dlxefc1GWEmp"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3,
+       "china_race": 1
+      },
+      "confidence": {
+       "ai_overall": 3,
+       "china_race": 2
+      },
+      "topics": [
+       "jobs/economy",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:48.826485+00:00",
+      "generation_id": "gen-1794453820-0pKdpc4hVuVMXKmkFka0"
+     },
+     "sol": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 5
+      },
+      "topics": [
+       "jobs/economy",
+       "national security"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T03:23:57.354922+00:00",
+      "generation_id": "gen-1794453831-wIlROqCK8DWg9P6kdCFF"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "1091af17f5013d23ff1c04f6a9dba2baf21125411940b4633478f4aaf74bc7c2",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "review_confidence": 4,
+      "reason": "Presents AI as a broad economic and social opportunity across multiple goals, rather than describing a single application. The measured promise of benefits supports a positive general stance without unequivocal enthusiasm.",
+      "supporting_quote": "The deployment of AI holds the promise to improve efficiency, effectiveness, safety, fairness, welfare, transparency, and other economic and social goals, and America's continued status as a global leader in AI development is important to preserving our economic and national security.",
+      "support_basis": "excerpt",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T03:26:01.119454+00:00",
+      "generation_id": "gen-1794453940-6y2qqYGgJGLyXzMs5bRR"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s4",
+   "date": "2020-11-17",
+   "url": "https://www.whitehouse.gov/wp-content/uploads/2020/11/M-21-06.pdf",
+   "text": "To that end, Federal agencies must avoid regulatory or non-regulatory actions that needlessly hamper AI innovation and growth. Where permitted by law, when deciding whether and how to regulate in an area that may affect AI applications, agencies should assess the effect of the potential regulation on Al innovation and growth. While narrowly tailored and evidence­ based regulations that address specific and identifiable risks could provide an enabling environment for U.S. companies to maintain global competitiveness, agencies must avoid a precautionary approach that holds AI systems to an impossibly high standard such that society cannot enjoy their benefits and that could undermine America's position as the global leader in AI innovation. Where AI entails risk, agencies should consider the potential benefits and costs of employing AI, as compared to the systems AI has been designed to complement or replace.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Russell Vought",
+    "organization_id": "omb",
+    "basis": "manual_signed_memorandum",
+    "note": "Signed OMB memorandum by Russell T. Vought as Director. This is an official policy statement at the historical date, not an inference about his private views. Precaution and regulatory tradeoffs.",
+    "role": "Director, Office of Management and Budget"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "china_race": 2,
+     "regulation": 1,
+     "ai_overall": 3
+    },
+    "b": {
+     "china_race": 2,
+     "regulation": 1,
+     "ai_overall": 3
+    },
+    "topics": [
+     "regulation",
+     "China/competition"
+    ],
+    "confidence": {
+     "china_race": 2.33,
+     "regulation": 4.0,
+     "ai_overall": 4
+    },
+    "escalated": [
+     "china_race",
+     "regulation"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "1091af17f5013d23ff1c04f6a9dba2baf21125411940b4633478f4aaf74bc7c2",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 3
+     },
+     "confidence": {
+      "ai_overall": 4
+     },
+     "review_confidence": 4,
+     "reason": "Beyond its regulatory position, the statement presents society's enjoyment of AI benefits as the goal and treats risks as matters for targeted rules and comparative assessment.",
+     "supporting_quote": "While narrowly tailored and evidence­ based regulations that address specific and identifiable risks could provide an enabling environment for U.S. companies to maintain global competitiveness, agencies must avoid a precautionary approach that holds AI systems to an impossibly high standard such that society cannot enjoy their benefits and that could undermine America's position as the global leader in AI innovation. Where AI entails risk, agencies should consider the potential benefits and costs of employing AI, as compared to the systems AI has been designed to complement or replace.",
+     "support_basis": "excerpt",
+     "accepted": true,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T03:26:01.119454+00:00",
+     "generation_id": "gen-1794453940-6y2qqYGgJGLyXzMs5bRR"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 2,
+       "regulation": 2
+      },
+      "confidence": {
+       "china_race": 3,
+       "regulation": 5
+      },
+      "topics": [
+       "regulation",
+       "China/competition",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:22:48.030451+00:00",
+      "generation_id": "gen-1794453725-OJl4FqHveFvaJIzx4Auz"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1,
+       "china_race": 1
+      },
+      "confidence": {
+       "regulation": 4,
+       "china_race": 2
+      },
+      "topics": [
+       "regulation",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:22:55.961278+00:00",
+      "generation_id": "gen-1794453769-UGpERfU0Dlxefc1GWEmp"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1,
+       "china_race": 2
+      },
+      "confidence": {
+       "regulation": 3,
+       "china_race": 2
+      },
+      "topics": [
+       "regulation",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:48.826485+00:00",
+      "generation_id": "gen-1794453820-0pKdpc4hVuVMXKmkFka0"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 2,
+       "ai_overall": 3,
+       "regulation": 1
+      },
+      "confidence": {
+       "china_race": 4,
+       "ai_overall": 4,
+       "regulation": 5
+      },
+      "topics": [
+       "regulation",
+       "China/competition",
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T03:23:57.354922+00:00",
+      "generation_id": "gen-1794453831-wIlROqCK8DWg9P6kdCFF"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "1091af17f5013d23ff1c04f6a9dba2baf21125411940b4633478f4aaf74bc7c2",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "review_confidence": 4,
+      "reason": "Beyond its regulatory position, the statement presents society's enjoyment of AI benefits as the goal and treats risks as matters for targeted rules and comparative assessment.",
+      "supporting_quote": "While narrowly tailored and evidence­ based regulations that address specific and identifiable risks could provide an enabling environment for U.S. companies to maintain global competitiveness, agencies must avoid a precautionary approach that holds AI systems to an impossibly high standard such that society cannot enjoy their benefits and that could undermine America's position as the global leader in AI innovation. Where AI entails risk, agencies should consider the potential benefits and costs of employing AI, as compared to the systems AI has been designed to complement or replace.",
+      "support_basis": "excerpt",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T03:26:01.119454+00:00",
+      "generation_id": "gen-1794453940-6y2qqYGgJGLyXzMs5bRR"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s5",
+   "date": "2020-11-17",
+   "url": "https://www.whitehouse.gov/wp-content/uploads/2020/11/M-21-06.pdf",
+   "text": "AI is expected to have a positive impact across many sectors of social and economic life, including employment, transportation, education, finance, healthcare, personal security, and manufacturing. At the same time, AI applications could pose risks to privacy, individual rights, personal choice, civil liberties, public health, safety, and security that must be carefully assessed and appropriately addressed. Since the continued adoption and acceptance of AI will depend significantly on public trust and validation, the government's regulatory and non-regulatory approaches to AI should contribute to public trust in AI by promoting reliable, robust, and trustworthy AI applications.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Russell Vought",
+    "organization_id": "omb",
+    "basis": "manual_signed_memorandum",
+    "note": "Signed OMB memorandum by Russell T. Vought as Director. This is an official policy statement at the historical date, not an inference about his private views. AI benefits, risks, and public trust.",
+    "role": "Director, Office of Management and Budget"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "ai_overall": 2,
+     "regulation": 2
+    },
+    "b": {
+     "ai_overall": 2
+    },
+    "topics": [
+     "regulation",
+     "jobs/economy",
+     "other"
+    ],
+    "confidence": {
+     "ai_overall": 5,
+     "regulation": 3.0
+    },
+    "escalated": [
+     "regulation"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "1091af17f5013d23ff1c04f6a9dba2baf21125411940b4633478f4aaf74bc7c2",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 2
+     },
+     "confidence": {
+      "ai_overall": 5
+     },
+     "review_confidence": 4,
+     "reason": "Explicitly balances broad expected social and economic benefits against a substantial range of risks requiring assessment and mitigation.",
+     "supporting_quote": "AI is expected to have a positive impact across many sectors of social and economic life, including employment, transportation, education, finance, healthcare, personal security, and manufacturing. At the same time, AI applications could pose risks to privacy, individual rights, personal choice, civil liberties, public health, safety, and security that must be carefully assessed and appropriately addressed.",
+     "support_basis": "excerpt",
+     "accepted": true,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T03:26:01.119454+00:00",
+     "generation_id": "gen-1794453940-6y2qqYGgJGLyXzMs5bRR"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 2,
+       "regulation": 2
+      },
+      "confidence": {
+       "ai_overall": 5,
+       "regulation": 4
+      },
+      "topics": [
+       "regulation",
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:22:48.030451+00:00",
+      "generation_id": "gen-1794453725-OJl4FqHveFvaJIzx4Auz"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 2,
+       "regulation": 2
+      },
+      "confidence": {
+       "ai_overall": 4,
+       "regulation": 2
+      },
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:22:55.961278+00:00",
+      "generation_id": "gen-1794453769-UGpERfU0Dlxefc1GWEmp"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 2
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:48.826485+00:00",
+      "generation_id": "gen-1794453820-0pKdpc4hVuVMXKmkFka0"
+     },
+     "sol": {
+      "labels": {
+       "ai_overall": 2
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy",
+       "regulation"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T03:23:57.354922+00:00",
+      "generation_id": "gen-1794453831-wIlROqCK8DWg9P6kdCFF"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "1091af17f5013d23ff1c04f6a9dba2baf21125411940b4633478f4aaf74bc7c2",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 2
+      },
+      "confidence": {
+       "ai_overall": 5
+      },
+      "review_confidence": 4,
+      "reason": "Explicitly balances broad expected social and economic benefits against a substantial range of risks requiring assessment and mitigation.",
+      "supporting_quote": "AI is expected to have a positive impact across many sectors of social and economic life, including employment, transportation, education, finance, healthcare, personal security, and manufacturing. At the same time, AI applications could pose risks to privacy, individual rights, personal choice, civil liberties, public health, safety, and security that must be carefully assessed and appropriately addressed.",
+      "support_basis": "excerpt",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T03:26:01.119454+00:00",
+      "generation_id": "gen-1794453940-6y2qqYGgJGLyXzMs5bRR"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s6",
+   "date": "2025-04-03",
+   "url": "https://www.whitehouse.gov/wp-content/uploads/2025/02/M-25-21-Accelerating-Federal-Use-of-AI-through-Innovation-Governance-and-Public-Trust.pdf?inline=1",
+   "text": "Agencies must lean forward on adopting effective, mission-enabling AI to benefit the American people. To best achieve this, agencies must remove unnecessary and bureaucratic requirements that inhibit innovation and responsible adoption. Agencies must develop public AI strategies that elevate AI adoption and innovation as a priority, while increasing transparency to the American public, civil society, and industry.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Russell Vought",
+    "organization_id": "omb",
+    "basis": "manual_signed_memorandum",
+    "note": "Signed OMB memorandum by Russell T. Vought as Director. This is an official policy statement at the historical date, not an inference about his private views. Government AI adoption.",
+    "role": "Director, Office of Management and Budget"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
+    "b": {
+     "regulation": 1
+    },
+    "topics": [
+     "regulation",
+     "other"
+    ],
+    "confidence": {
+     "regulation": 3.0
+    },
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "1091af17f5013d23ff1c04f6a9dba2baf21125411940b4633478f4aaf74bc7c2",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T03:26:01.119454+00:00",
+     "generation_id": "gen-1794453940-6y2qqYGgJGLyXzMs5bRR"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3,
+       "regulation": 1
+      },
+      "confidence": {
+       "ai_overall": 3,
+       "regulation": 4
+      },
+      "topics": [
+       "regulation",
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:22:48.030451+00:00",
+      "generation_id": "gen-1794453725-OJl4FqHveFvaJIzx4Auz"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3,
+       "regulation": 1
+      },
+      "confidence": {
+       "ai_overall": 3,
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:22:55.961278+00:00",
+      "generation_id": "gen-1794453769-UGpERfU0Dlxefc1GWEmp"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3,
+       "regulation": 1
+      },
+      "confidence": {
+       "ai_overall": 3,
+       "regulation": 2
+      },
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:48.826485+00:00",
+      "generation_id": "gen-1794453820-0pKdpc4hVuVMXKmkFka0"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "1091af17f5013d23ff1c04f6a9dba2baf21125411940b4633478f4aaf74bc7c2",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T03:26:01.119454+00:00",
+      "generation_id": "gen-1794453940-6y2qqYGgJGLyXzMs5bRR"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s7",
+   "date": "2025-04-03",
+   "url": "https://www.whitehouse.gov/wp-content/uploads/2025/02/M-25-21-Accelerating-Federal-Use-of-AI-through-Innovation-Governance-and-Public-Trust.pdf?inline=1",
+   "text": "Agencies must maximize the value of existing investments to ensure speedy deployment and to protect taxpayer dollars from duplicative spending, including sharing resources within an agency and across government. Agencies must also reuse resources that enable AI adoption, such as agency data, models, code, and assessments of AI performance. When choosing to pursue an AI acquisition, agencies should invest in the American AI marketplace and maximize the use of AI products and services that are developed and produced in the United States.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Russell Vought",
+    "organization_id": "omb",
+    "basis": "manual_signed_memorandum",
+    "note": "Signed OMB memorandum by Russell T. Vought as Director. This is an official policy statement at the historical date, not an inference about his private views. AI procurement and resource sharing.",
+    "role": "Director, Office of Management and Budget"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy",
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [
+     "china_race"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "1091af17f5013d23ff1c04f6a9dba2baf21125411940b4633478f4aaf74bc7c2",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T03:26:01.119454+00:00",
+     "generation_id": "gen-1794453940-6y2qqYGgJGLyXzMs5bRR"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:22:48.030451+00:00",
+      "generation_id": "gen-1794453725-OJl4FqHveFvaJIzx4Auz"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 2
+      },
+      "topics": [
+       "jobs/economy",
+       "China/competition",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:22:55.961278+00:00",
+      "generation_id": "gen-1794453769-UGpERfU0Dlxefc1GWEmp"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:48.826485+00:00",
+      "generation_id": "gen-1794453820-0pKdpc4hVuVMXKmkFka0"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T03:23:57.354922+00:00",
+      "generation_id": "gen-1794453831-wIlROqCK8DWg9P6kdCFF"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "1091af17f5013d23ff1c04f6a9dba2baf21125411940b4633478f4aaf74bc7c2",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T03:26:01.119454+00:00",
+      "generation_id": "gen-1794453940-6y2qqYGgJGLyXzMs5bRR"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s8",
+   "date": "2025-04-03",
+   "url": "https://www.whitehouse.gov/wp-content/uploads/2025/02/M-25-21-Accelerating-Federal-Use-of-AI-through-Innovation-Governance-and-Public-Trust.pdf?inline=1",
+   "text": "As such, agencies are directed to implement minimum risk management practices for AI that could have significant impacts when deployed (\"high-impact AI\"), as outlined in the Appendix, and to prioritize the use of AI that is safe, secure, and resilient. When the high-impact AI is not performing at an appropriate level, agencies must have a plan to discontinue its use until actions are taken to achieve compliance with this memorandum. If proper risk mitigation is not possible, agencies must cease the use of the AI. In an effort to reduce redundancy and unnecessary burden, agencies are reminded that risk management practices for AI should be proportionate to the anticipated risk from its intended use. These protections will ensure that agencies are serving the American public.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Russell Vought",
+    "organization_id": "omb",
+    "basis": "manual_signed_memorandum",
+    "note": "Signed OMB memorandum by Russell T. Vought as Director. This is an official policy statement at the historical date, not an inference about his private views. High-impact AI safeguards and cessation.",
+    "role": "Director, Office of Management and Budget"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 2
+    },
+    "b": {
+     "regulation": 2
+    },
+    "topics": [
+     "regulation",
+     "other"
+    ],
+    "confidence": {
+     "regulation": 2.67
+    },
+    "escalated": [
+     "regulation"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "1091af17f5013d23ff1c04f6a9dba2baf21125411940b4633478f4aaf74bc7c2",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T03:26:01.119454+00:00",
+     "generation_id": "gen-1794453940-6y2qqYGgJGLyXzMs5bRR"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:22:48.030451+00:00",
+      "generation_id": "gen-1794453725-OJl4FqHveFvaJIzx4Auz"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 2
+      },
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:22:55.961278+00:00",
+      "generation_id": "gen-1794453769-UGpERfU0Dlxefc1GWEmp"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 2
+      },
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:48.826485+00:00",
+      "generation_id": "gen-1794453820-0pKdpc4hVuVMXKmkFka0"
+     },
+     "sol": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T03:23:57.354922+00:00",
+      "generation_id": "gen-1794453831-wIlROqCK8DWg9P6kdCFF"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "1091af17f5013d23ff1c04f6a9dba2baf21125411940b4633478f4aaf74bc7c2",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T03:26:01.119454+00:00",
+      "generation_id": "gen-1794453940-6y2qqYGgJGLyXzMs5bRR"
      }
     }
    }
@@ -386,599 +1274,599 @@
   {
    "date": "2023-01-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2023-02-28",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2023-03-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2023-04-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2023-05-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2023-06-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2023-07-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2023-08-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2023-09-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2023-10-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2023-11-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2023-12-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2024-01-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2024-02-29",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2024-03-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2024-04-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2024-05-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2024-06-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2024-07-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2024-08-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2024-09-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2024-10-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2024-11-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2024-12-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-01-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-02-28",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-03-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 1.5
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 3,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-04-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 2.0
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 6,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-05-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 2.0
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 6,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-06-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 2.0
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 6,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-07-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 2.0
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 6,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-08-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 2.0
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 6,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-09-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 2.0
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 6,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-10-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 2.0
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 6,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-11-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 2.0
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 6,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-12-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 2.0
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 6,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-01-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 2.0
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 6,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-02-28",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 2.0
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 6,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-03-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 2.0
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 6,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-04-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 2.0
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 6,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-05-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 2.0
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 6,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-06-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 2.0
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 6,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-07-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 2.0
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 6,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-08-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 2.0
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 6,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-09-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 2.0
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 6,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-10-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 2.0,
+    "regulation": 2.0
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 6,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -1017,6 +1905,19 @@
     "regulation": null
    },
    "n_statements": 2,
+   "status": "complete",
+   "kind": "observed"
+  },
+  {
+   "date": "2026-11-12",
+   "scores": {
+    "ai_overall": 3.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": 2.0,
+    "regulation": 2.0
+   },
+   "n_statements": 8,
    "status": "complete",
    "kind": "observed"
   }

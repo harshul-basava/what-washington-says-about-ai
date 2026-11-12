@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_klein",
- "revision": "60d9f79e495e6d1f868ba447be9e00a3cc1dc50195596881a11060bf963f9c8b",
+ "revision": "0f3167bc4259de48cb71e772ceb97aeb5e8eb1ed70b8b1e5447540b12f4e8f58",
  "profile": {
   "id": "exec_klein",
   "name": "Ethan Klein",
@@ -62,24 +62,24 @@
     }
    }
   },
-  "n_statements": 4,
-  "n_labeled": 4,
+  "n_statements": 12,
+  "n_labeled": 12,
   "scores": {
-   "ai_overall": 4.0,
+   "ai_overall": 3.0,
    "agi_pilled": null,
    "x_risk": null,
    "china_race": 3.0,
-   "regulation": 1.0
+   "regulation": 1.5
   },
   "score_details": {
    "ai_overall": {
-    "score": 4.0,
-    "reason_a": "median_of_1",
-    "reason_b": "median_of_1",
+    "score": 3.0,
+    "reason_a": "median_of_2",
+    "reason_b": "median_of_2",
     "sids": [
-     "s2"
+     "s9"
     ],
-    "label_count": 1
+    "label_count": 2
    },
    "agi_pilled": {
     "score": null,
@@ -100,50 +100,59 @@
     "reason_a": "consistent",
     "reason_b": "consistent",
     "sids": [
+     "s6",
      "s1"
     ],
-    "label_count": 1
+    "label_count": 2
    },
    "regulation": {
-    "score": 1.0,
+    "score": 1.5,
     "reason_a": "consistent",
-    "reason_b": "no_statements",
+    "reason_b": "consistent",
     "sids": [
-     "s2"
+     "s5",
+     "s2",
+     "s11"
     ],
-    "label_count": 2
+    "label_count": 5
    }
   },
   "summary": {
    "status": "complete",
-   "text": "In his September 17, 2025 nominee statement, Klein argued that OSTP could lead America toward global dominance in AI and other emerging technologies. In that statement, he expressed optimism that emerging technologies could improve American lives and argued that governance discussions had sometimes leaned too far toward restraint.",
+   "text": "In his September 17, 2025 nominee statement, Klein expressed optimism about emerging technologies, including AI, and argued that governance discussions had sometimes placed too much emphasis on restraint. At his nomination hearing that day, he identified industry adoption that benefits Americans as a major AI-policy priority. In undated written nomination answers, he supported sector-specific federal frameworks and allowed that regulatory clarity or new federal regulations could be needed for responsible AI innovation.",
    "sids": [
-    "s1",
-    "s2"
+    "s2",
+    "s9",
+    "s11"
    ],
    "sentences": [
     {
-     "text": "In his September 17, 2025 nominee statement, Klein argued that OSTP could lead America toward global dominance in AI and other emerging technologies.",
+     "text": "In his September 17, 2025 nominee statement, Klein expressed optimism about emerging technologies, including AI, and argued that governance discussions had sometimes placed too much emphasis on restraint.",
      "sids": [
-      "s1",
       "s2"
      ]
     },
     {
-     "text": "In that statement, he expressed optimism that emerging technologies could improve American lives and argued that governance discussions had sometimes leaned too far toward restraint.",
+     "text": "At his nomination hearing that day, he identified industry adoption that benefits Americans as a major AI-policy priority.",
      "sids": [
-      "s2"
+      "s9"
+     ]
+    },
+    {
+     "text": "In undated written nomination answers, he supported sector-specific federal frameworks and allowed that regulatory clarity or new federal regulations could be needed for responsible AI innovation.",
+     "sids": [
+      "s11"
      ]
     }
    ]
   },
   "topics": {
-   "China/competition": 0.5,
+   "China/competition": 1.5,
    "national security": 0.833,
-   "regulation": 1.667,
-   "jobs/economy": 0.333,
-   "energy/data centers": 0.333,
-   "other": 0.333
+   "regulation": 4.667,
+   "jobs/economy": 1.333,
+   "energy/data centers": 1.333,
+   "other": 2.333
   },
   "regulation": {
    "status": "complete",
@@ -189,11 +198,6 @@
      "why": "No stance in the supplied evidence."
     },
     "training_consent": {
-     "stance": 0,
-     "sids": [],
-     "why": "No stance in the supplied evidence."
-    },
-    "preemption": {
      "stance": 0,
      "sids": [],
      "why": "No stance in the supplied evidence."
@@ -262,25 +266,33 @@
      "stance": 0,
      "sids": [],
      "why": "No stance in the supplied evidence."
+    },
+    "preemption": {
+     "stance": 0,
+     "sids": [],
+     "why": "Klein supports federal AI frameworks but does not endorse overriding state AI laws or a moratorium on them; he attributes concerns about a state-law patchwork to President Trump."
     }
    },
-   "disputed": []
+   "disputed": [
+    "preemption"
+   ]
   },
   "stance_review": {
-   "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
+   "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
    "dimension": "ai_overall",
    "status": "complete",
-   "reason": "The supplied evidence supports an optimistic AI-inclusive technology outlook in Klein’s September 2025 nominee statement, but not a standalone assessment of AI’s overall effects. The other excerpts concern international leadership, regulatory burden, or administration actions and do not independently establish an overall AI stance.",
-   "confidence": 3,
-   "n_statements": 4,
-   "n_contexts": 1,
+   "reason": "The supplied evidence supports an opportunity-oriented outlook, particularly in Klein's September 2025 nominee remarks. Other excerpts concern competition, regulation, infrastructure, workforce applications, or procedures without independently establishing an overall assessment. The opening statement's optimism encompasses emerging technologies including AI, rather than AI exclusively; the written answers have no separately established dates.",
+   "confidence": 4,
+   "n_statements": 12,
+   "n_contexts": 3,
    "accepted_sids": [
-    "s2"
+    "s2",
+    "s9"
    ],
-   "finding_count": 1,
+   "finding_count": 2,
    "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-09T05:23:51.743972+00:00",
-   "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
+   "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+   "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
   }
  },
  "statements": [
@@ -315,15 +327,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
+     "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 3,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:23:51.743972+00:00",
-     "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
+     "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+     "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -376,14 +389,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
+      "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 3,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:23:51.743972+00:00",
-      "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
+      "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+      "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
      }
     }
    }
@@ -417,7 +431,7 @@
     ],
     "confidence": {
      "regulation": 3.0,
-     "ai_overall": 3
+     "ai_overall": 4
     },
     "escalated": [
      "ai_overall",
@@ -425,29 +439,30 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
+     "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+     "decision": "stance",
      "labels": {
       "ai_overall": 4
      },
      "confidence": {
-      "ai_overall": 3
+      "ai_overall": 4
      },
-     "review_confidence": 3,
-     "reason": "In context, Klein includes AI among the emerging technologies under discussion and expresses broad optimism about their benefits for Americans, while criticizing excessive restraint. Benefits dominate and no substantive harms are acknowledged. Confidence is limited because this outlook covers emerging technologies collectively rather than AI alone.",
+     "review_confidence": 4,
+     "reason": "In his September 17, 2025 nominee statement, Klein places AI within an emerging-technology agenda centered on broad public benefits. The supplied context establishes his own optimistic assessment and criticism of excessive restraint, rather than a narrow application benefit.",
      "supporting_quote": "Emerging technologies promise to expand economic opportunity, improve public health, and enhance national security. Yet in policy discussions about their governance, discourse has at times leaned too far toward restraint, slowing the pace of progress. As a technologist, I remain fundamentally hopeful that technology can improve American lives and further our nation’s flourishing.",
      "support_basis": "context",
      "source_context": {
       "url": "https://www.commerce.senate.gov/wp-content/uploads/media/doc/Dr.%20Ethan%20Klein%20Opening%20Statement%20for%209.17.25.pdf",
-      "text_hash": "e88d66494f6f6b0efed0176f1b5cd5b2e9f191aff6e8c7d545b75d3c8330bb03",
-      "retrieval": "exact_normalized_search_retrieval",
+      "text_hash": "0b8c912379c0de9d886553c131160064d58b2f46da43becd530013132e62169a",
+      "retrieval": "direct_page",
       "quote": "Emerging technologies promise to expand economic opportunity, improve public health, and enhance national security. Yet in policy discussions about their governance, discourse has at times leaned too far toward restraint, slowing the pace of progress. As a technologist, I remain fundamentally hopeful that technology can improve American lives and further our nation’s flourishing.",
       "attribution_quote": "Statement of Dr. Ethan A. Klein Nominee for Associate Director of the Office of Science and Technology Policy",
       "original_date": "2025-09-17"
      },
      "accepted": true,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:23:51.743972+00:00",
-     "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
+     "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+     "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -519,28 +534,29 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
+      "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+      "decision": "stance",
       "labels": {
        "ai_overall": 4
       },
       "confidence": {
-       "ai_overall": 3
+       "ai_overall": 4
       },
-      "review_confidence": 3,
-      "reason": "In context, Klein includes AI among the emerging technologies under discussion and expresses broad optimism about their benefits for Americans, while criticizing excessive restraint. Benefits dominate and no substantive harms are acknowledged. Confidence is limited because this outlook covers emerging technologies collectively rather than AI alone.",
+      "review_confidence": 4,
+      "reason": "In his September 17, 2025 nominee statement, Klein places AI within an emerging-technology agenda centered on broad public benefits. The supplied context establishes his own optimistic assessment and criticism of excessive restraint, rather than a narrow application benefit.",
       "supporting_quote": "Emerging technologies promise to expand economic opportunity, improve public health, and enhance national security. Yet in policy discussions about their governance, discourse has at times leaned too far toward restraint, slowing the pace of progress. As a technologist, I remain fundamentally hopeful that technology can improve American lives and further our nation’s flourishing.",
       "support_basis": "context",
       "source_context": {
        "url": "https://www.commerce.senate.gov/wp-content/uploads/media/doc/Dr.%20Ethan%20Klein%20Opening%20Statement%20for%209.17.25.pdf",
-       "text_hash": "e88d66494f6f6b0efed0176f1b5cd5b2e9f191aff6e8c7d545b75d3c8330bb03",
-       "retrieval": "exact_normalized_search_retrieval",
+       "text_hash": "0b8c912379c0de9d886553c131160064d58b2f46da43becd530013132e62169a",
+       "retrieval": "direct_page",
        "quote": "Emerging technologies promise to expand economic opportunity, improve public health, and enhance national security. Yet in policy discussions about their governance, discourse has at times leaned too far toward restraint, slowing the pace of progress. As a technologist, I remain fundamentally hopeful that technology can improve American lives and further our nation’s flourishing.",
        "attribution_quote": "Statement of Dr. Ethan A. Klein Nominee for Associate Director of the Office of Science and Technology Policy",
        "original_date": "2025-09-17"
       },
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:23:51.743972+00:00",
-      "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
+      "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+      "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
      }
     }
    }
@@ -575,15 +591,16 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
+     "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 3,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:23:51.743972+00:00",
-     "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
+     "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+     "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -645,14 +662,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
+      "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 3,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:23:51.743972+00:00",
-      "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
+      "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+      "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
      }
     }
    }
@@ -683,15 +701,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
+     "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+     "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 3,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-09T05:23:51.743972+00:00",
-     "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
+     "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+     "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -734,14 +753,837 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3",
+      "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+      "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 3,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-09T05:23:51.743972+00:00",
-      "generation_id": "gen-1794201818-04qGZGixeHwYo5kWidyk"
+      "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+      "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s5",
+   "date": "2025-09-17",
+   "url": "https://www.govinfo.gov/content/pkg/CHRG-119shrg63889/html/CHRG-119shrg63889.htm",
+   "text": "In my personal belief, I think NIST, as a former National Bureau of Standards, is an excellent place to do use case and sector-specific standards that can help enable industry adoption and enable public trust. I think that the position of this administration is very much focused on that in terms of the America's AI Action Plan and the tasks specifically given to the Office of Science and Technology Policy in issuing an RFI that will seek to identify those kinds of barriers and places where we may need either deregulatory action, greater use exemptions, waivers, or regulatory sandboxing, or places where we may actually need more regulatory clarity to, again, ensure industry adoption and public trust in this technology.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Ethan Klein",
+    "organization_id": "ostp",
+    "basis": "manual_speaker_turn",
+    "note": "Nomination hearing. The GPO witness list identifies Ethan A. Klein; the excerpt remains within his uninterrupted answer. AI standards and regulatory barriers."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
+    "b": {
+     "regulation": 1
+    },
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 3.0
+    },
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+     "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:22:20.429296+00:00",
+      "generation_id": "gen-1794453726-9hUwaIZtgvdsmZqbgrt9"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:39.841024+00:00",
+      "generation_id": "gen-1794453769-hMg8p2qEnaEjHPBMwNAb"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:50.476325+00:00",
+      "generation_id": "gen-1794453821-xHokhFWjbpsVD0ktFFfq"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+      "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s6",
+   "date": "2025-09-17",
+   "url": "https://www.govinfo.gov/content/pkg/CHRG-119shrg63889/html/CHRG-119shrg63889.htm",
+   "text": "Senator, thank you for your question. It is incredibly important, because what we do in the United States will impact how the world adopts artificial intelligence, whether other countries will be built on an American AI stack or a Chinese AI stack. And along with that goes technical standards and everything that is going to set the future of applications across a range of sectors. Artificial intelligence is not confined, you know, to anyone, you know, sector. It is something that will be adopted across medicine, across transportation, agriculture. These are things we are already seeing today.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Ethan Klein",
+    "organization_id": "ostp",
+    "basis": "manual_speaker_turn",
+    "note": "Nomination hearing. The GPO witness list identifies Ethan A. Klein; the excerpt remains within his uninterrupted answer. International AI competition and adoption."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "china_race": 3
+    },
+    "b": {
+     "china_race": 3
+    },
+    "topics": [
+     "China/competition"
+    ],
+    "confidence": {
+     "china_race": 3.67
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+     "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:22:20.429296+00:00",
+      "generation_id": "gen-1794453726-9hUwaIZtgvdsmZqbgrt9"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2,
+       "china_race": 3
+      },
+      "confidence": {
+       "agi_pilled": 2,
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:39.841024+00:00",
+      "generation_id": "gen-1794453769-hMg8p2qEnaEjHPBMwNAb"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:50.476325+00:00",
+      "generation_id": "gen-1794453821-xHokhFWjbpsVD0ktFFfq"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T03:23:57.502229+00:00",
+      "generation_id": "gen-1794453831-NvxWaSNypBMKeEhx3Naa"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+      "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s7",
+   "date": "2025-09-17",
+   "url": "https://www.govinfo.gov/content/pkg/CHRG-119shrg63889/html/CHRG-119shrg63889.htm",
+   "text": "Certainly. And actually, pillar two of the AI Action Plan is exactly focused on that. It is focused on the infrastructure, and that includes both the data centers that will be needed, but also all the underlying energy infrastructure. And this administration, under President Trump, has taken a number of different Executive Orders seeking to unleash that energy. In one area that I know very personally, in terms of nuclear energy, we have had just an incredible opportunity now to enable that testing, enable quicker deployment of, you know, these reactors for commercial deployment and also for Government use.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Ethan Klein",
+    "organization_id": "ostp",
+    "basis": "manual_speaker_turn",
+    "note": "Nomination hearing. The GPO witness list identifies Ethan A. Klein; the excerpt remains within his uninterrupted answer. AI and energy infrastructure."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "energy/data centers"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+     "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:22:20.429296+00:00",
+      "generation_id": "gen-1794453726-9hUwaIZtgvdsmZqbgrt9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:39.841024+00:00",
+      "generation_id": "gen-1794453769-hMg8p2qEnaEjHPBMwNAb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:50.476325+00:00",
+      "generation_id": "gen-1794453821-xHokhFWjbpsVD0ktFFfq"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+      "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s8",
+   "date": "2025-09-17",
+   "url": "https://www.govinfo.gov/content/pkg/CHRG-119shrg63889/html/CHRG-119shrg63889.htm",
+   "text": "Any action that this administration would take with regard to AI has to have the American worker core and center. It has been a big push within America's AI Action Plan, is to focus on ways that the Federal Government can assess, where there may be, you know, new job opportunities, new areas, new sectors that Americans should be trained up for, for jobs of the future, and ensuring that we are investing in any re- skilling or ability for American workers to include and involve AI in their daily work to, you know, increase efficiency and make their jobs, you know, more enjoyable.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Ethan Klein",
+    "organization_id": "ostp",
+    "basis": "manual_speaker_turn",
+    "note": "Nomination hearing. The GPO witness list identifies Ethan A. Klein; the excerpt remains within his uninterrupted answer. AI workforce training."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+     "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:22:20.429296+00:00",
+      "generation_id": "gen-1794453726-9hUwaIZtgvdsmZqbgrt9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:39.841024+00:00",
+      "generation_id": "gen-1794453769-hMg8p2qEnaEjHPBMwNAb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:50.476325+00:00",
+      "generation_id": "gen-1794453821-xHokhFWjbpsVD0ktFFfq"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+      "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s9",
+   "date": "2025-09-17",
+   "url": "https://www.govinfo.gov/content/pkg/CHRG-119shrg63889/html/CHRG-119shrg63889.htm",
+   "text": "Certainly, Senator. So again, I would focus at a use case and sector specific kind of level. If you are talking about medical diagnostics, where AI can be used to enhance and augment existing diagnostic capabilities for early detection of cancer. In the transportation space, we had the rich discussion there on unmanned aircraft systems. For example, automated driving systems as well. The Department of Transportation rolled out a new AV policy framework. These are the areas that already today we are seeing the benefits of AI technology. And I have one--if confirmed, one big priority for me in terms of what actions we take on AI policy should be around industry adoption at the end point where the American people can benefit from these technologies.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Ethan Klein",
+    "organization_id": "ostp",
+    "basis": "manual_speaker_turn",
+    "note": "Nomination hearing. The GPO witness list identifies Ethan A. Klein; the excerpt remains within his uninterrupted answer. AI applications and industry adoption."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "ai_overall": 3
+    },
+    "b": {
+     "ai_overall": 3
+    },
+    "topics": [
+     "other"
+    ],
+    "confidence": {
+     "ai_overall": 4
+    },
+    "escalated": [
+     "ai_overall"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 3
+     },
+     "confidence": {
+      "ai_overall": 4
+     },
+     "review_confidence": 4,
+     "reason": "Beyond identifying particular applications, Klein explicitly makes industry adoption for Americans' benefit a broad AI-policy priority. This establishes an opportunity-oriented general stance, without emphatically dismissing risks.",
+     "supporting_quote": "And I have one--if confirmed, one big priority for me in terms of what actions we take on AI policy should be around industry adoption at the end point where the American people can benefit from these technologies.",
+     "support_basis": "excerpt",
+     "accepted": true,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+     "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:22:20.429296+00:00",
+      "generation_id": "gen-1794453726-9hUwaIZtgvdsmZqbgrt9"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:39.841024+00:00",
+      "generation_id": "gen-1794453769-hMg8p2qEnaEjHPBMwNAb"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:50.476325+00:00",
+      "generation_id": "gen-1794453821-xHokhFWjbpsVD0ktFFfq"
+     },
+     "sol": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T03:23:57.502229+00:00",
+      "generation_id": "gen-1794453831-NvxWaSNypBMKeEhx3Naa"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "review_confidence": 4,
+      "reason": "Beyond identifying particular applications, Klein explicitly makes industry adoption for Americans' benefit a broad AI-policy priority. This establishes an opportunity-oriented general stance, without emphatically dismissing risks.",
+      "supporting_quote": "And I have one--if confirmed, one big priority for me in terms of what actions we take on AI policy should be around industry adoption at the end point where the American people can benefit from these technologies.",
+      "support_basis": "excerpt",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+      "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s10",
+   "date": null,
+   "url": "https://www.govinfo.gov/content/pkg/CHRG-119shrg63889/html/CHRG-119shrg63889.htm",
+   "text": "Regulatory sandboxes are an invaluable tool to enable the deployment and testing of technologies in real-world settings to collect the data needed to update regulatory regimes, without compromising safety. OSTP does not read the legislation to provide the Director unilateral authority to waive Federal regulations, but rather to give the Director a leading role in advancing innovative uses of emerging technologies to support their responsible deployment. I believe it is essential for OSTP to work with the relevant agencies to examine existing rules and regulations and identify needed changes that will help us to maintain our Nation's edge in AI and foster innovations.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Ethan Klein",
+    "organization_id": "ostp",
+    "basis": "manual_named_answer",
+    "note": "Klein answers written questions after his nomination hearing. The date of this written answer is not separately established. The senator's question is not his statement."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
+    "b": {
+     "regulation": 1
+    },
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 3.0
+    },
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+     "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:22:20.429296+00:00",
+      "generation_id": "gen-1794453726-9hUwaIZtgvdsmZqbgrt9"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:39.841024+00:00",
+      "generation_id": "gen-1794453769-hMg8p2qEnaEjHPBMwNAb"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:50.476325+00:00",
+      "generation_id": "gen-1794453821-xHokhFWjbpsVD0ktFFfq"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+      "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s11",
+   "date": null,
+   "url": "https://www.govinfo.gov/content/pkg/CHRG-119shrg63889/html/CHRG-119shrg63889.htm",
+   "text": "President Trump has made clear his concerns about how a patchwork of state AI laws will compromise U.S. leadership. Applications of AI are today already regulated at the sector-specific, use-case-specific level by relevant Federal bodies, including the Federal Aviation Administration, the Food and Drug Administration, etc., with appropriate guardrails consistent with those bodies' statutory missions. Where appropriate, greater regulatory clarity, or in some cases, new regulations may be needed at the Federal level to enable responsible AI innovation. If confirmed, I look forward to working with you and your colleagues to ensure sufficient Federal frameworks for AI applications are in place.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Ethan Klein",
+    "organization_id": "ostp",
+    "basis": "manual_named_answer",
+    "note": "Klein answers written questions after his nomination hearing. The date of this written answer is not separately established. The senator's question is not his statement."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 2
+    },
+    "b": {
+     "regulation": 2
+    },
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 3.0
+    },
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+     "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:22:20.429296+00:00",
+      "generation_id": "gen-1794453726-9hUwaIZtgvdsmZqbgrt9"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:39.841024+00:00",
+      "generation_id": "gen-1794453769-hMg8p2qEnaEjHPBMwNAb"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:50.476325+00:00",
+      "generation_id": "gen-1794453821-xHokhFWjbpsVD0ktFFfq"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+      "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s12",
+   "date": null,
+   "url": "https://www.govinfo.gov/content/pkg/CHRG-119shrg63889/html/CHRG-119shrg63889.htm",
+   "text": "The role of OSTP is to coordinate implementation of the AI Action Plan across the Federal Government, while ensuring that the perspectives of all relevant stakeholders are meaningfully represented. The RFI issued by OSTP in formulating the AI Action Plan received nearly 10,000 responses from across society. If confirmed, I will work to ensure that engagement mechanisms, such as public comment opportunities and stakeholder roundtables, are used to their full effect to solicit a broad and myriad set of perspectives that can meaningfully inform the Action Plan's implementation and achievement of the objectives detailed therein.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Ethan Klein",
+    "organization_id": "ostp",
+    "basis": "manual_named_answer",
+    "note": "Klein answers written questions after his nomination hearing. The date of this written answer is not separately established. The senator's question is not his statement."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+     "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:22:20.429296+00:00",
+      "generation_id": "gen-1794453726-9hUwaIZtgvdsmZqbgrt9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:39.841024+00:00",
+      "generation_id": "gen-1794453769-hMg8p2qEnaEjHPBMwNAb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T03:23:50.476325+00:00",
+      "generation_id": "gen-1794453821-xHokhFWjbpsVD0ktFFfq"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "06203818b3a7d30bddf66acd1eeead6b26caea58e0094e4d86e03744b8a9f736",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T03:26:21.585251+00:00",
+      "generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS"
      }
     }
    }
@@ -1167,182 +2009,182 @@
   {
    "date": "2025-09-30",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 1.0
    },
-   "n_statements": 3,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-10-31",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 1.0
    },
-   "n_statements": 3,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-11-30",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 1.0
    },
-   "n_statements": 3,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-12-31",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 1.0
    },
-   "n_statements": 3,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-01-31",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 1.0
    },
-   "n_statements": 3,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-02-28",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 1.0
    },
-   "n_statements": 4,
+   "n_statements": 9,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-03-31",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 1.0
    },
-   "n_statements": 4,
+   "n_statements": 9,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-04-30",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 1.0
    },
-   "n_statements": 4,
+   "n_statements": 9,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-05-31",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 1.0
    },
-   "n_statements": 4,
+   "n_statements": 9,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-06-30",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 1.0
    },
-   "n_statements": 4,
+   "n_statements": 9,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-07-31",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 1.0
    },
-   "n_statements": 4,
+   "n_statements": 9,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-08-31",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 1.0
    },
-   "n_statements": 4,
+   "n_statements": 9,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-09-30",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 1.0
    },
-   "n_statements": 4,
+   "n_statements": 9,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-10-31",
    "scores": {
-    "ai_overall": 4.0,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 1.0
    },
-   "n_statements": 4,
+   "n_statements": 9,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1384,6 +2226,19 @@
    "n_statements": 4,
    "status": "complete",
    "kind": "observed"
+  },
+  {
+   "date": "2026-11-12",
+   "scores": {
+    "ai_overall": 3.0,
+    "agi_pilled": null,
+    "x_risk": null,
+    "china_race": 3.0,
+    "regulation": 1.5
+   },
+   "n_statements": 12,
+   "status": "complete",
+   "kind": "observed"
   }
  ],
  "changes": [
@@ -1399,6 +2254,32 @@
     "s2"
    ],
    "review_id": "aa11fd85c9cea9a8eaa3feabe974f9f19acf21280819e93d427c80ea3c5dfca3"
+  },
+  {
+   "id": "exec_klein",
+   "date": "2026-11-12",
+   "dimension": "ai_overall",
+   "old": 4.0,
+   "new": 3.0,
+   "kind": "big",
+   "cause": "evidence or assessment changed",
+   "sids": [
+    "s9"
+   ]
+  },
+  {
+   "id": "exec_klein",
+   "date": "2026-11-12",
+   "dimension": "regulation",
+   "old": 1.0,
+   "new": 1.5,
+   "kind": "small",
+   "cause": "evidence or assessment changed",
+   "sids": [
+    "s5",
+    "s2",
+    "s11"
+   ]
   }
  ]
 }
