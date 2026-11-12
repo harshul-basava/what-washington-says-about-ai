@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_keith_sonderling",
- "revision": "73c56542b93b9e888f892d8a3ea72e6d377667762206b9e236decb708b267ba9",
+ "revision": "f8569101332144283a293131cf4ff1c0349428b1edd4dc5f1dc57b4ebf99ba4a",
  "profile": {
   "id": "exec_keith_sonderling",
   "name": "Keith Sonderling",
@@ -58,11 +58,11 @@
     }
    }
   },
-  "n_statements": 16,
-  "n_labeled": 16,
+  "n_statements": 20,
+  "n_labeled": 20,
   "scores": {
    "ai_overall": 3.0,
-   "agi_pilled": null,
+   "agi_pilled": 2.0,
    "x_risk": null,
    "china_race": 3.0,
    "regulation": 2.0
@@ -70,20 +70,25 @@
   "score_details": {
    "ai_overall": {
     "score": 3.0,
-    "reason_a": "median_of_3",
-    "reason_b": "median_of_3",
+    "reason_a": "median_of_8",
+    "reason_b": "median_of_8",
     "sids": [
+     "s16",
      "s4",
-     "s3"
+     "s3",
+     "s11",
+     "s9"
     ],
-    "label_count": 3
+    "label_count": 8
    },
    "agi_pilled": {
-    "score": null,
-    "reason_a": "silent",
-    "reason_b": "silent",
-    "sids": [],
-    "label_count": 0
+    "score": 2.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s18"
+    ],
+    "label_count": 1
    },
    "x_risk": {
     "score": null,
@@ -116,41 +121,42 @@
   },
   "summary": {
    "status": "complete",
-   "text": "Writing as Deputy Secretary of Labor on November 24, 2025, Sonderling described AI as an opportunity for workers and encouraged its adoption for higher-paying jobs, productivity, and greater personal fulfillment. On February 27, 2025, he emphasized that workplace AI should comply with existing civil-rights and health-and-safety laws, describing both potential workplace benefits and discrimination risks. He also called for reskilling workers displaced by AI, including knowledge workers whose jobs had historically been performed in offices.",
+   "text": "On February 27, 2025, Sonderling described AI's potential to improve productivity and working conditions while emphasizing civil-rights protections and retraining for displaced workers. Writing as deputy secretary of labor on November 24, 2025, he encouraged workers to embrace AI for higher-paying jobs, productivity, and greater fulfillment. On March 24, 2026, he said AI was creating jobs, productivity gains, and entrepreneurship, and called for skills that would let all Americans share in that prosperity.",
    "sids": [
-    "s3",
-    "s5",
     "s8",
     "s14",
-    "s15"
+    "s15",
+    "s5",
+    "s17"
    ],
    "sentences": [
     {
-     "text": "Writing as Deputy Secretary of Labor on November 24, 2025, Sonderling described AI as an opportunity for workers and encouraged its adoption for higher-paying jobs, productivity, and greater personal fulfillment.",
+     "text": "On February 27, 2025, Sonderling described AI's potential to improve productivity and working conditions while emphasizing civil-rights protections and retraining for displaced workers.",
      "sids": [
-      "s3",
+      "s8",
+      "s14",
+      "s15"
+     ]
+    },
+    {
+     "text": "Writing as deputy secretary of labor on November 24, 2025, he encouraged workers to embrace AI for higher-paying jobs, productivity, and greater fulfillment.",
+     "sids": [
       "s5"
      ]
     },
     {
-     "text": "On February 27, 2025, he emphasized that workplace AI should comply with existing civil-rights and health-and-safety laws, describing both potential workplace benefits and discrimination risks.",
+     "text": "On March 24, 2026, he said AI was creating jobs, productivity gains, and entrepreneurship, and called for skills that would let all Americans share in that prosperity.",
      "sids": [
-      "s8"
-     ]
-    },
-    {
-     "text": "He also called for reskilling workers displaced by AI, including knowledge workers whose jobs had historically been performed in offices.",
-     "sids": [
-      "s14",
-      "s15"
+      "s17"
      ]
     }
    ]
   },
   "topics": {
-   "jobs/economy": 12.333,
+   "jobs/economy": 15.833,
    "China/competition": 1.833,
-   "regulation": 1.833
+   "regulation": 1.833,
+   "AGI/transformative": 0.5
   },
   "regulation": {
    "status": "complete",
@@ -189,15 +195,6 @@
      "stance": 0,
      "sids": [],
      "why": "No stance in the supplied evidence."
-    },
-    "bias_audits": {
-     "stance": 1,
-     "sids": [
-      "s8",
-      "s10",
-      "s13"
-     ],
-     "why": "Sonderling says AI used in the workforce must comply with civil rights laws and that transparency can show whether employment decisions are fair or biased, implying support for testing or auditing AI for discrimination."
     },
     "training_consent": {
      "stance": 0,
@@ -273,27 +270,41 @@
      "stance": 0,
      "sids": [],
      "why": "No stance in the supplied evidence."
+    },
+    "bias_audits": {
+     "stance": 2,
+     "sids": [
+      "s8"
+     ],
+     "why": "On February 27, 2025, Sonderling explicitly said workplace AI must comply with civil rights laws and incorporate civil rights protections, supporting prohibitions on discriminatory AI use, though not specifically mandating audits."
     }
    },
-   "disputed": []
+   "disputed": [
+    "bias_audits"
+   ]
   },
   "stance_review": {
-   "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+   "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
    "dimension": "ai_overall",
    "status": "complete",
-   "reason": "The November 24, 2025 statements establish a positive general outlook on AI's benefits for American workers, with Sonderling explicitly speaking as Deputy Secretary of Labor. The remaining excerpts concern workforce implementation, particular workplace benefits and harms, legal compliance, or leadership ambitions rather than a clear assessment of AI overall. Supplied source context resolves the referent in s4; no additional context is necessary for these classifications.",
+   "reason": "The supplied evidence supports a generally favorable assessment of AI's broad economic and workforce effects, alongside statements emphasizing safeguards and adjustment to displacement. Narrow hiring applications, individual harms, leadership ambitions, and program announcements were not treated as general AI judgments. Full source context was supplied only for the November 24, 2025 article; context-based findings retain its attribution to Sonderling as deputy secretary.",
    "confidence": 4,
-   "n_statements": 16,
+   "n_statements": 20,
    "n_contexts": 7,
    "accepted_sids": [
     "s3",
     "s4",
-    "s5"
+    "s5",
+    "s8",
+    "s9",
+    "s11",
+    "s16",
+    "s17"
    ],
-   "finding_count": 3,
+   "finding_count": 8,
    "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-   "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+   "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+   "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
   }
  },
  "statements": [
@@ -321,7 +332,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+     "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -329,8 +340,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-     "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+     "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+     "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -369,15 +380,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+      "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-      "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+      "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+      "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
      }
     }
    }
@@ -415,7 +426,7 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+     "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -423,8 +434,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-     "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+     "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+     "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -494,15 +505,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+      "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-      "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+      "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+      "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
      }
     }
    }
@@ -537,7 +548,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+     "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
      "decision": "stance",
      "labels": {
       "ai_overall": 3
@@ -546,13 +557,13 @@
       "ai_overall": 4
      },
      "review_confidence": 4,
-     "reason": "Expresses a broad positive assessment of AI's prospects for workers, rather than endorsing a single application or training program.",
+     "reason": "Expresses a broad positive assessment of AI's prospects for workers, rather than endorsing one particular application.",
      "supporting_quote": "I believe AI represents a new frontier of opportunity for workers.",
      "support_basis": "excerpt",
      "accepted": true,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-     "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+     "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+     "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -603,7 +614,7 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+      "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
       "decision": "stance",
       "labels": {
        "ai_overall": 3
@@ -612,12 +623,12 @@
        "ai_overall": 4
       },
       "review_confidence": 4,
-      "reason": "Expresses a broad positive assessment of AI's prospects for workers, rather than endorsing a single application or training program.",
+      "reason": "Expresses a broad positive assessment of AI's prospects for workers, rather than endorsing one particular application.",
       "supporting_quote": "I believe AI represents a new frontier of opportunity for workers.",
       "support_basis": "excerpt",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-      "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+      "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+      "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
      }
     }
    }
@@ -658,7 +669,7 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+     "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
      "decision": "stance",
      "labels": {
       "ai_overall": 3
@@ -667,7 +678,7 @@
       "ai_overall": 4
      },
      "review_confidence": 4,
-     "reason": "The supplied source context establishes that 'full promise' refers to Sonderling's broad assessment of AI as an opportunity for workers. He presents policy action as necessary to realize that opportunity, not merely to win international competition.",
+     "reason": "The supplied source resolves 'its full promise' as AI's broad opportunity for workers. Sonderling presents that opportunity as achievable through workforce policy, not simply as a goal of international competition.",
      "supporting_quote": "I believe AI represents a new frontier of opportunity for workers. To realize its full promise, however, we must take the steps that are outlined in the Trump Administration’s AI Action Plan , a bold strategy for America to secure global dominance in AI.",
      "support_basis": "context",
      "source_context": {
@@ -680,8 +691,8 @@
      },
      "accepted": true,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-     "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+     "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+     "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -754,7 +765,7 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+      "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
       "decision": "stance",
       "labels": {
        "ai_overall": 3
@@ -763,7 +774,7 @@
        "ai_overall": 4
       },
       "review_confidence": 4,
-      "reason": "The supplied source context establishes that 'full promise' refers to Sonderling's broad assessment of AI as an opportunity for workers. He presents policy action as necessary to realize that opportunity, not merely to win international competition.",
+      "reason": "The supplied source resolves 'its full promise' as AI's broad opportunity for workers. Sonderling presents that opportunity as achievable through workforce policy, not simply as a goal of international competition.",
       "supporting_quote": "I believe AI represents a new frontier of opportunity for workers. To realize its full promise, however, we must take the steps that are outlined in the Trump Administration’s AI Action Plan , a bold strategy for America to secure global dominance in AI.",
       "support_basis": "context",
       "source_context": {
@@ -775,8 +786,8 @@
        "original_date": "2025-11-24"
       },
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-      "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+      "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+      "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
      }
     }
    }
@@ -814,7 +825,7 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+     "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
      "decision": "stance",
      "labels": {
       "ai_overall": 4
@@ -823,13 +834,13 @@
       "ai_overall": 5
      },
      "review_confidence": 4,
-     "reason": "Enthusiastically encourages Americans to embrace AI, citing broad benefits across employment, productivity, and personal fulfillment without raising concerns in this statement.",
+     "reason": "Enthusiastically urges Americans to embrace AI for broad gains in jobs, productivity, and personal fulfillment, without raising concerns in this statement.",
      "supporting_quote": "As Deputy Secretary of Labor, I’m passionate about helping American workers understand the power of artificial intelligence (AI) and empowering them to embrace it as a tool that can unlock new high-paying jobs, improved levels of productivity, and greater fulfillment in their lives.",
      "support_basis": "excerpt",
      "accepted": true,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-     "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+     "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+     "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -898,7 +909,7 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+      "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
       "decision": "stance",
       "labels": {
        "ai_overall": 4
@@ -907,12 +918,12 @@
        "ai_overall": 5
       },
       "review_confidence": 4,
-      "reason": "Enthusiastically encourages Americans to embrace AI, citing broad benefits across employment, productivity, and personal fulfillment without raising concerns in this statement.",
+      "reason": "Enthusiastically urges Americans to embrace AI for broad gains in jobs, productivity, and personal fulfillment, without raising concerns in this statement.",
       "supporting_quote": "As Deputy Secretary of Labor, I’m passionate about helping American workers understand the power of artificial intelligence (AI) and empowering them to embrace it as a tool that can unlock new high-paying jobs, improved levels of productivity, and greater fulfillment in their lives.",
       "support_basis": "excerpt",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-      "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+      "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+      "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
      }
     }
    }
@@ -943,7 +954,7 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+     "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -951,8 +962,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-     "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+     "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+     "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1006,15 +1017,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+      "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-      "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+      "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+      "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
      }
     }
    }
@@ -1045,7 +1056,7 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+     "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -1053,8 +1064,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-     "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+     "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+     "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1109,15 +1120,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+      "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-      "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+      "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+      "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
      }
     }
    }
@@ -1141,17 +1152,20 @@
    "analysis": {
     "status": "complete",
     "a": {
-     "regulation": 2
+     "regulation": 2,
+     "ai_overall": 2
     },
     "b": {
-     "regulation": 2
+     "regulation": 2,
+     "ai_overall": 2
     },
     "topics": [
      "jobs/economy",
      "regulation"
     ],
     "confidence": {
-     "regulation": 3.0
+     "regulation": 3.0,
+     "ai_overall": 4
     },
     "escalated": [
      "ai_overall",
@@ -1159,16 +1173,22 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
-     "decision": "no_stance",
-     "labels": {},
-     "confidence": {},
+     "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 2
+     },
+     "confidence": {
+      "ai_overall": 4
+     },
      "review_confidence": 4,
-     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
-     "accepted": false,
+     "reason": "Balances broad workforce benefits—productivity, better jobs, safety, and security—with discrimination and effectiveness risks, making protections a central condition of beneficial use.",
+     "supporting_quote": "to ensure that it's being used properly on the American workforce to actually help make them more productive, help make their jobs better, safer, more secure. And there's a lot of promise with AI on that. But on the flip side, if we don't have those American values built into it, if we don't have those civil rights protections built into artificial intelligence, not only are people potentially going to be discriminate, but the products are not going to be able to do what they are intended to do.",
+     "support_basis": "excerpt",
+     "accepted": true,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-     "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+     "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+     "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1238,15 +1258,21 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
-      "decision": "no_stance",
-      "labels": {},
-      "confidence": {},
+      "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 2
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
       "review_confidence": 4,
-      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "reason": "Balances broad workforce benefits—productivity, better jobs, safety, and security—with discrimination and effectiveness risks, making protections a central condition of beneficial use.",
+      "supporting_quote": "to ensure that it's being used properly on the American workforce to actually help make them more productive, help make their jobs better, safer, more secure. And there's a lot of promise with AI on that. But on the flip side, if we don't have those American values built into it, if we don't have those civil rights protections built into artificial intelligence, not only are people potentially going to be discriminate, but the products are not going to be able to do what they are intended to do.",
+      "support_basis": "excerpt",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-      "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+      "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+      "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
      }
     }
    }
@@ -1269,27 +1295,39 @@
    },
    "analysis": {
     "status": "complete",
-    "a": {},
-    "b": {},
+    "a": {
+     "ai_overall": 3
+    },
+    "b": {
+     "ai_overall": 3
+    },
     "topics": [
      "jobs/economy"
     ],
-    "confidence": {},
+    "confidence": {
+     "ai_overall": 4
+    },
     "escalated": [
      "ai_overall"
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
-     "decision": "no_stance",
-     "labels": {},
-     "confidence": {},
+     "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 3
+     },
+     "confidence": {
+      "ai_overall": 4
+     },
      "review_confidence": 4,
-     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
-     "accepted": false,
+     "reason": "Frames AI as improving workers' jobs overall, with training offered as the means to build confidence and address displacement fears.",
+     "supporting_quote": "How do we develop those programs in place, the Department of Labor, to train the next generation of workers to be confident about using AI, to not feel like it's going to make them lose their jobs, but it's going to make their jobs better.",
+     "support_basis": "excerpt",
+     "accepted": true,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-     "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+     "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+     "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1343,15 +1381,21 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
-      "decision": "no_stance",
-      "labels": {},
-      "confidence": {},
+      "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
       "review_confidence": 4,
-      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "reason": "Frames AI as improving workers' jobs overall, with training offered as the means to build confidence and address displacement fears.",
+      "supporting_quote": "How do we develop those programs in place, the Department of Labor, to train the next generation of workers to be confident about using AI, to not feel like it's going to make them lose their jobs, but it's going to make their jobs better.",
+      "support_basis": "excerpt",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-      "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+      "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+      "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
      }
     }
    }
@@ -1394,7 +1438,7 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+     "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -1402,8 +1446,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-     "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+     "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+     "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1476,15 +1520,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+      "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-      "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+      "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+      "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
      }
     }
    }
@@ -1507,28 +1551,40 @@
    },
    "analysis": {
     "status": "complete",
-    "a": {},
-    "b": {},
+    "a": {
+     "ai_overall": 3
+    },
+    "b": {
+     "ai_overall": 3
+    },
     "topics": [
      "jobs/economy"
     ],
-    "confidence": {},
+    "confidence": {
+     "ai_overall": 4
+    },
     "escalated": [
      "ai_overall",
      "regulation"
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
-     "decision": "no_stance",
-     "labels": {},
-     "confidence": {},
+     "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 3
+     },
+     "confidence": {
+      "ai_overall": 4
+     },
      "review_confidence": 4,
-     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
-     "accepted": false,
+     "reason": "Presents broadly improved working lives as AI's intended outcome and treats displacement concerns as addressable through development and deployment choices.",
+     "supporting_quote": "That's really working with the entire AI community, whether it's the venture capitalists, the vendors, to ensure that these products are developed, designed, and deployed with that in mind, that this is going to essentially make your job easier, better, and you could be more enjoyable and thrive more in the workplace and not having that fear of displacement.",
+     "support_basis": "excerpt",
+     "accepted": true,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-     "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+     "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+     "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1586,15 +1642,21 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
-      "decision": "no_stance",
-      "labels": {},
-      "confidence": {},
+      "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
       "review_confidence": 4,
-      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "reason": "Presents broadly improved working lives as AI's intended outcome and treats displacement concerns as addressable through development and deployment choices.",
+      "supporting_quote": "That's really working with the entire AI community, whether it's the venture capitalists, the vendors, to ensure that these products are developed, designed, and deployed with that in mind, that this is going to essentially make your job easier, better, and you could be more enjoyable and thrive more in the workplace and not having that fear of displacement.",
+      "support_basis": "excerpt",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-      "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+      "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+      "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
      }
     }
    }
@@ -1628,7 +1690,7 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+     "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -1636,8 +1698,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-     "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+     "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+     "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1693,15 +1755,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+      "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-      "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+      "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+      "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
      }
     }
    }
@@ -1740,7 +1802,7 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+     "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -1748,8 +1810,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-     "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+     "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+     "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1809,15 +1871,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+      "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-      "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+      "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+      "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
      }
     }
    }
@@ -1849,7 +1911,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+     "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -1857,8 +1919,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-     "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+     "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+     "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1897,15 +1959,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+      "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-      "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+      "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+      "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
      }
     }
    }
@@ -1937,7 +1999,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+     "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -1945,8 +2007,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-     "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+     "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+     "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1985,15 +2047,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+      "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-      "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+      "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+      "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
      }
     }
    }
@@ -2014,14 +2076,18 @@
    "analysis": {
     "status": "complete",
     "a": {
+     "ai_overall": 3,
      "china_race": 1
     },
-    "b": {},
+    "b": {
+     "ai_overall": 3
+    },
     "topics": [
      "jobs/economy",
      "China/competition"
     ],
     "confidence": {
+     "ai_overall": 4,
      "china_race": 2.0
     },
     "escalated": [
@@ -2030,16 +2096,30 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
-     "decision": "no_stance",
-     "labels": {},
-     "confidence": {},
+     "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 3
+     },
+     "confidence": {
+      "ai_overall": 4
+     },
      "review_confidence": 4,
-     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
-     "accepted": false,
+     "reason": "In his November 2025 deputy-secretary article, the closing passage links AI-driven economic transformation to worker prosperity while acknowledging uncertainty and the need to adapt.",
+     "supporting_quote": "The reality is that we can’t be sure exactly how the capabilities of AI will evolve in the coming years, but we can be certain that our workforce system cannot remain stagnant. The Department of Labor’s advancement of the AI Action Plan represents a bold step forward in building the agility needed to navigate this wave of economic transformation. The Department of Labor is proud to support President Trump’s vision of American leadership in AI and eager to advance all actions necessary to bring economic prosperity to American workers.",
+     "support_basis": "context",
+     "source_context": {
+      "url": "https://beta.dol.gov/news-events/blog/ai-action-plan",
+      "text_hash": "64ac3660bef453aad08dc3f74c51ded37115b5fdfc7efeaaab3430ef164f2b14",
+      "retrieval": "direct_page",
+      "quote": "The reality is that we can’t be sure exactly how the capabilities of AI will evolve in the coming years, but we can be certain that our workforce system cannot remain stagnant. The Department of Labor’s advancement of the AI Action Plan represents a bold step forward in building the agility needed to navigate this wave of economic transformation. The Department of Labor is proud to support President Trump’s vision of American leadership in AI and eager to advance all actions necessary to bring economic prosperity to American workers.",
+      "attribution_quote": "Author: Keith Sonderling",
+      "original_date": "2025-11-24"
+     },
+     "accepted": true,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-     "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+     "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+     "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -2112,15 +2192,441 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68",
+      "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "review_confidence": 4,
+      "reason": "In his November 2025 deputy-secretary article, the closing passage links AI-driven economic transformation to worker prosperity while acknowledging uncertainty and the need to adapt.",
+      "supporting_quote": "The reality is that we can’t be sure exactly how the capabilities of AI will evolve in the coming years, but we can be certain that our workforce system cannot remain stagnant. The Department of Labor’s advancement of the AI Action Plan represents a bold step forward in building the agility needed to navigate this wave of economic transformation. The Department of Labor is proud to support President Trump’s vision of American leadership in AI and eager to advance all actions necessary to bring economic prosperity to American workers.",
+      "support_basis": "context",
+      "source_context": {
+       "url": "https://beta.dol.gov/news-events/blog/ai-action-plan",
+       "text_hash": "64ac3660bef453aad08dc3f74c51ded37115b5fdfc7efeaaab3430ef164f2b14",
+       "retrieval": "direct_page",
+       "quote": "The reality is that we can’t be sure exactly how the capabilities of AI will evolve in the coming years, but we can be certain that our workforce system cannot remain stagnant. The Department of Labor’s advancement of the AI Action Plan represents a bold step forward in building the agility needed to navigate this wave of economic transformation. The Department of Labor is proud to support President Trump’s vision of American leadership in AI and eager to advance all actions necessary to bring economic prosperity to American workers.",
+       "attribution_quote": "Author: Keith Sonderling",
+       "original_date": "2025-11-24"
+      },
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+      "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s17",
+   "date": "2026-03-24",
+   "url": "https://www.dol.gov/newsroom/releases/osec/osec20260324",
+   "text": "We are seeing AI create new jobs, new levels of productivity, and new forms of entrepreneurship, and we want to make sure all Americans have the skills to share in that prosperity.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Keith Sonderling",
+    "organization_id": "labor",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "ai_overall": 4
+    },
+    "b": {
+     "ai_overall": 4
+    },
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {
+     "ai_overall": 5
+    },
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 4
+     },
+     "confidence": {
+      "ai_overall": 5
+     },
+     "review_confidence": 4,
+     "reason": "Presents AI as generating broad economic prosperity through jobs, productivity, and entrepreneurship, with the emphasis entirely on enabling Americans to share its benefits.",
+     "supporting_quote": "We are seeing AI create new jobs, new levels of productivity, and new forms of entrepreneurship, and we want to make sure all Americans have the skills to share in that prosperity.",
+     "support_basis": "excerpt",
+     "accepted": true,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+     "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:00.514566+00:00",
+      "generation_id": "gen-1794493797-Ary7JrCJqqkNAthnjaH9"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:35.091981+00:00",
+      "generation_id": "gen-1794493820-bfE2YQYiu5is3ply8n78"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:57.526119+00:00",
+      "generation_id": "gen-1794493845-sNo8b2Z5mho38FC1mHer"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 4
+      },
+      "confidence": {
+       "ai_overall": 5
+      },
+      "review_confidence": 4,
+      "reason": "Presents AI as generating broad economic prosperity through jobs, productivity, and entrepreneurship, with the emphasis entirely on enabling Americans to share its benefits.",
+      "supporting_quote": "We are seeing AI create new jobs, new levels of productivity, and new forms of entrepreneurship, and we want to make sure all Americans have the skills to share in that prosperity.",
+      "support_basis": "excerpt",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+      "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s18",
+   "date": "2026-04-29",
+   "url": "https://www.dol.gov/newsroom/releases/eta/eta20260429",
+   "text": "“The department is committed to ensuring that every American has the opportunity to thrive in our nation's workforce, especially in a world that is rapidly being reshaped by artificial intelligence,”",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Keith Sonderling",
+    "organization_id": "labor",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "role": "Secretary of Labor"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "agi_pilled": 2
+    },
+    "b": {
+     "agi_pilled": 2
+    },
+    "topics": [
+     "jobs/economy",
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "agi_pilled": 2.67
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+     "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:00.514566+00:00",
+      "generation_id": "gen-1794493797-Ary7JrCJqqkNAthnjaH9"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:35.091981+00:00",
+      "generation_id": "gen-1794493820-bfE2YQYiu5is3ply8n78"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 2
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:57.526119+00:00",
+      "generation_id": "gen-1794493845-sNo8b2Z5mho38FC1mHer"
+     },
+     "sol": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 4
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T14:31:03.944412+00:00",
+      "generation_id": "gen-1794493859-nemParCtcfOnUnDmRkBC"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T14:09:25.275141+00:00",
-      "generation_id": "gen-1794492540-rJ8DdDi4ZwOazvIcfRMr"
+      "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+      "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s19",
+   "date": "2026-04-29",
+   "url": "https://www.dol.gov/newsroom/releases/eta/eta20260429",
+   "text": "“Today, we are unveiling a new AI in Registered Apprenticeship Innovation Portal that provides practical tools and resources to promote the integration of artificial intelligence skills into Registered Apprenticeship programs, marking a major step forward in preparing the American workforce for the jobs of the future.”",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Keith Sonderling",
+    "organization_id": "labor",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "role": "Secretary of Labor"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+     "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:00.514566+00:00",
+      "generation_id": "gen-1794493797-Ary7JrCJqqkNAthnjaH9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:35.091981+00:00",
+      "generation_id": "gen-1794493820-bfE2YQYiu5is3ply8n78"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:57.526119+00:00",
+      "generation_id": "gen-1794493845-sNo8b2Z5mho38FC1mHer"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+      "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s20",
+   "date": "2026-04-02",
+   "url": "https://www.dol.gov/newsroom/releases/osec/osec20260402",
+   "text": "Through the TechAccess Initiative, the Department of Labor will maximize the impact of regional AI readiness efforts by ensuring they are fully integrated into the workforce and education systems.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Keith Sonderling",
+    "organization_id": "labor",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+     "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:00.514566+00:00",
+      "generation_id": "gen-1794493797-Ary7JrCJqqkNAthnjaH9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:35.091981+00:00",
+      "generation_id": "gen-1794493820-bfE2YQYiu5is3ply8n78"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:57.526119+00:00",
+      "generation_id": "gen-1794493845-sNo8b2Z5mho38FC1mHer"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:41:15.245619+00:00",
+      "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
      }
     }
    }
@@ -2455,7 +2961,7 @@
   {
    "date": "2025-02-28",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
@@ -2468,7 +2974,7 @@
   {
    "date": "2025-03-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
@@ -2481,7 +2987,7 @@
   {
    "date": "2025-04-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
@@ -2494,7 +3000,7 @@
   {
    "date": "2025-05-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
@@ -2507,7 +3013,7 @@
   {
    "date": "2025-06-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
@@ -2520,7 +3026,7 @@
   {
    "date": "2025-07-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
@@ -2533,7 +3039,7 @@
   {
    "date": "2025-08-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
@@ -2546,7 +3052,7 @@
   {
    "date": "2025-09-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
@@ -2559,7 +3065,7 @@
   {
    "date": "2025-10-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
@@ -2630,7 +3136,7 @@
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 16,
+   "n_statements": 17,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2638,12 +3144,12 @@
    "date": "2026-04-30",
    "scores": {
     "ai_overall": 3.0,
-    "agi_pilled": null,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 16,
+   "n_statements": 20,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2651,12 +3157,12 @@
    "date": "2026-05-31",
    "scores": {
     "ai_overall": 3.0,
-    "agi_pilled": null,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 16,
+   "n_statements": 20,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2664,12 +3170,12 @@
    "date": "2026-06-30",
    "scores": {
     "ai_overall": 3.0,
-    "agi_pilled": null,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 16,
+   "n_statements": 20,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2677,12 +3183,12 @@
    "date": "2026-07-31",
    "scores": {
     "ai_overall": 3.0,
-    "agi_pilled": null,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 16,
+   "n_statements": 20,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2690,12 +3196,12 @@
    "date": "2026-08-31",
    "scores": {
     "ai_overall": 3.0,
-    "agi_pilled": null,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 16,
+   "n_statements": 20,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2703,12 +3209,12 @@
    "date": "2026-09-30",
    "scores": {
     "ai_overall": 3.0,
-    "agi_pilled": null,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 16,
+   "n_statements": 20,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2716,12 +3222,12 @@
    "date": "2026-10-31",
    "scores": {
     "ai_overall": 3.0,
-    "agi_pilled": null,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 16,
+   "n_statements": 20,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2782,6 +3288,26 @@
     "s5"
    ],
    "review_id": "3db0eadd0c8f512c7768f45ab2a44c197b34c2f6cfef6e87de01b1c359413d68"
+  },
+  {
+   "id": "exec_keith_sonderling",
+   "date": "2026-11-12",
+   "dimension": "ai_overall",
+   "old": null,
+   "new": 3.0,
+   "kind": "big",
+   "cause": "Astra review after federal roster expansion research",
+   "sids": [
+    "s3",
+    "s4",
+    "s5",
+    "s8",
+    "s9",
+    "s11",
+    "s16",
+    "s17"
+   ],
+   "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571"
   }
  ]
 }

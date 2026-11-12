@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_erwin_gianchandani",
- "revision": "73c56542b93b9e888f892d8a3ea72e6d377667762206b9e236decb708b267ba9",
+ "revision": "f8569101332144283a293131cf4ff1c0349428b1edd4dc5f1dc57b4ebf99ba4a",
  "profile": {
   "id": "exec_erwin_gianchandani",
   "name": "Erwin Gianchandani",
@@ -59,32 +59,38 @@
     }
    }
   },
-  "n_statements": 8,
-  "n_labeled": 8,
+  "n_statements": 15,
+  "n_labeled": 15,
   "scores": {
-   "ai_overall": null,
-   "agi_pilled": 2.0,
+   "ai_overall": 3.0,
+   "agi_pilled": 2.5,
    "x_risk": null,
    "china_race": null,
    "regulation": null
   },
   "score_details": {
    "ai_overall": {
-    "score": null,
-    "reason_a": "no_statements",
-    "reason_b": "no_statements",
-    "sids": [],
-    "label_count": 0
+    "score": 3.0,
+    "reason_a": "median_of_3",
+    "reason_b": "median_of_3",
+    "sids": [
+     "s6",
+     "s7",
+     "s2"
+    ],
+    "label_count": 3
    },
    "agi_pilled": {
-    "score": 2.0,
+    "score": 2.5,
     "reason_a": "consistent",
     "reason_b": "consistent",
     "sids": [
+     "s13",
+     "s11",
      "s6",
      "s2"
     ],
-    "label_count": 2
+    "label_count": 4
    },
    "x_risk": {
     "score": null,
@@ -110,47 +116,43 @@
   },
   "summary": {
    "status": "complete",
-   "text": "In 2025 and 2026 statements, Erwin Gianchandani described AI as holding transformative potential to reshape how the world functions and as already reshaping how Americans work, learn, build, and create new technologies. He said NSF's AI-ready test beds program is designed to help academia and industry researchers accelerate that transformation by simulating real-world conditions AI systems will encounter as they scale and deploy. In 2024 and 2025 statements, he characterized NSF investments in AI-enabled protein design and programmable cloud laboratories as efforts to accelerate scientific progress, overcome adoption barriers, and maintain U.S. biotechnology leadership.",
+   "text": "In August 2025, Gianchandani described AI as transformative and characterized test beds as potential infrastructure for a promising AI-enabled future. In April 2026, he emphasized AI's effects on Americans' work and daily activities and advocated broader access to the knowledge, tools and training needed to benefit from it. He also supported overcoming barriers to AI-enabled protein design and advancing AI-enabled scientific experimentation.",
    "sids": [
     "s2",
-    "s6",
     "s7",
-    "s1",
-    "s3",
-    "s4",
-    "s8"
+    "s6",
+    "s8",
+    "s4"
    ],
    "sentences": [
     {
-     "text": "In 2025 and 2026 statements, Erwin Gianchandani described AI as holding transformative potential to reshape how the world functions and as already reshaping how Americans work, learn, build, and create new technologies.",
-     "sids": [
-      "s2",
-      "s6"
-     ]
-    },
-    {
-     "text": "He said NSF's AI-ready test beds program is designed to help academia and industry researchers accelerate that transformation by simulating real-world conditions AI systems will encounter as they scale and deploy.",
+     "text": "In August 2025, Gianchandani described AI as transformative and characterized test beds as potential infrastructure for a promising AI-enabled future.",
      "sids": [
       "s2",
       "s7"
      ]
     },
     {
-     "text": "In 2024 and 2025 statements, he characterized NSF investments in AI-enabled protein design and programmable cloud laboratories as efforts to accelerate scientific progress, overcome adoption barriers, and maintain U.S. biotechnology leadership.",
+     "text": "In April 2026, he emphasized AI's effects on Americans' work and daily activities and advocated broader access to the knowledge, tools and training needed to benefit from it.",
      "sids": [
-      "s1",
-      "s3",
-      "s4",
-      "s8"
+      "s6"
+     ]
+    },
+    {
+     "text": "He also supported overcoming barriers to AI-enabled protein design and advancing AI-enabled scientific experimentation.",
+     "sids": [
+      "s8",
+      "s4"
      ]
     }
    ]
   },
   "topics": {
-   "other": 5.0,
-   "AGI/transformative": 2.0,
-   "China/competition": 0.5,
-   "jobs/economy": 0.5
+   "other": 6.0,
+   "AGI/transformative": 5.0,
+   "China/competition": 1.5,
+   "jobs/economy": 1.5,
+   "national security": 1.0
   },
   "regulation": {
    "status": "complete",
@@ -274,18 +276,22 @@
    "disputed": []
   },
   "stance_review": {
-   "review_id": "a339133e10ce279248e1912eefd90eef9a8417cbfaced42e45e482d7a4e9b466",
+   "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
    "dimension": "ai_overall",
    "status": "complete",
-   "reason": "The excerpts express support for specific research initiatives and describe AI's transformative potential, but do not clearly assess whether AI will be good for Americans overall. In particular, s2 advocates accelerating technological transformation without establishing its overall benefits, while s6 describes changes in Americans' activities without clearly evaluating their net effects. These distinctions do not establish that Gianchandani lacks a general AI position outside the supplied excerpts.",
+   "reason": "The supplied contexts establish a generally optimistic outlook toward AI, while most excerpts concern particular applications, infrastructure or competitiveness rather than AI's overall effects. Findings s2 and s7 draw on the same attributed passage and are not independent expressions. Full source context was supplied only for s2, s6 and s7; the remaining classifications use their excerpts.",
    "confidence": 4,
-   "n_statements": 8,
-   "n_contexts": 0,
-   "accepted_sids": [],
-   "finding_count": 0,
+   "n_statements": 15,
+   "n_contexts": 3,
+   "accepted_sids": [
+    "s2",
+    "s6",
+    "s7"
+   ],
+   "finding_count": 3,
    "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-11T07:28:24.967655+00:00",
-   "generation_id": "gen-1794382087-X305zmQ2rGScl9RkCryr"
+   "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+   "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
   }
  },
  "statements": [
@@ -313,7 +319,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "a339133e10ce279248e1912eefd90eef9a8417cbfaced42e45e482d7a4e9b466",
+     "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -321,8 +327,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-11T07:28:24.967655+00:00",
-     "generation_id": "gen-1794382087-X305zmQ2rGScl9RkCryr"
+     "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+     "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -361,15 +367,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "a339133e10ce279248e1912eefd90eef9a8417cbfaced42e45e482d7a4e9b466",
+      "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-11T07:28:24.967655+00:00",
-      "generation_id": "gen-1794382087-X305zmQ2rGScl9RkCryr"
+      "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+      "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
      }
     }
    }
@@ -390,15 +396,18 @@
    "analysis": {
     "status": "complete",
     "a": {
+     "ai_overall": 3,
      "agi_pilled": 2
     },
     "b": {
-     "agi_pilled": 2
+     "agi_pilled": 2,
+     "ai_overall": 3
     },
     "topics": [
      "AGI/transformative"
     ],
     "confidence": {
+     "ai_overall": 4,
      "agi_pilled": 3.67
     },
     "escalated": [
@@ -406,16 +415,30 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "a339133e10ce279248e1912eefd90eef9a8417cbfaced42e45e482d7a4e9b466",
-     "decision": "no_stance",
-     "labels": {},
-     "confidence": {},
+     "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 3
+     },
+     "confidence": {
+      "ai_overall": 4
+     },
      "review_confidence": 4,
-     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
-     "accepted": false,
+     "reason": "The supplied source context goes beyond transformative capability: Gianchandani explicitly describes a promising AI-enabled future and supports accelerating it. This establishes general optimism, without the emphatic enthusiasm needed for level 4.",
+     "supporting_quote": "By catalyzing living labs focused on critical sectors and use-cases, this program lays the foundation for what could become essential infrastructure for a promising AI-enabled future.",
+     "support_basis": "context",
+     "source_context": {
+      "url": "https://www.nsf.gov/news/nsf-invests-ai-ready-test-beds-accelerate-us-leadership",
+      "text_hash": "b719b05d4282a1261edcf62634adfac5b40f2132b77a306cec7f8ae727d687d4",
+      "retrieval": "direct_page",
+      "quote": "By catalyzing living labs focused on critical sectors and use-cases, this program lays the foundation for what could become essential infrastructure for a promising AI-enabled future.",
+      "attribution_quote": "said Erwin Gianchandani, NSF assistant director for TIP.",
+      "original_date": "2025-08-06"
+     },
+     "accepted": true,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-11T07:28:24.967655+00:00",
-     "generation_id": "gen-1794382087-X305zmQ2rGScl9RkCryr"
+     "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+     "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -489,15 +512,29 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "a339133e10ce279248e1912eefd90eef9a8417cbfaced42e45e482d7a4e9b466",
-      "decision": "no_stance",
-      "labels": {},
-      "confidence": {},
+      "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
       "review_confidence": 4,
-      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "reason": "The supplied source context goes beyond transformative capability: Gianchandani explicitly describes a promising AI-enabled future and supports accelerating it. This establishes general optimism, without the emphatic enthusiasm needed for level 4.",
+      "supporting_quote": "By catalyzing living labs focused on critical sectors and use-cases, this program lays the foundation for what could become essential infrastructure for a promising AI-enabled future.",
+      "support_basis": "context",
+      "source_context": {
+       "url": "https://www.nsf.gov/news/nsf-invests-ai-ready-test-beds-accelerate-us-leadership",
+       "text_hash": "b719b05d4282a1261edcf62634adfac5b40f2132b77a306cec7f8ae727d687d4",
+       "retrieval": "direct_page",
+       "quote": "By catalyzing living labs focused on critical sectors and use-cases, this program lays the foundation for what could become essential infrastructure for a promising AI-enabled future.",
+       "attribution_quote": "said Erwin Gianchandani, NSF assistant director for TIP.",
+       "original_date": "2025-08-06"
+      },
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-11T07:28:24.967655+00:00",
-      "generation_id": "gen-1794382087-X305zmQ2rGScl9RkCryr"
+      "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+      "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
      }
     }
    }
@@ -529,7 +566,7 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "a339133e10ce279248e1912eefd90eef9a8417cbfaced42e45e482d7a4e9b466",
+     "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -537,8 +574,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-11T07:28:24.967655+00:00",
-     "generation_id": "gen-1794382087-X305zmQ2rGScl9RkCryr"
+     "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+     "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -594,15 +631,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "a339133e10ce279248e1912eefd90eef9a8417cbfaced42e45e482d7a4e9b466",
+      "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-11T07:28:24.967655+00:00",
-      "generation_id": "gen-1794382087-X305zmQ2rGScl9RkCryr"
+      "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+      "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
      }
     }
    }
@@ -632,7 +669,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "a339133e10ce279248e1912eefd90eef9a8417cbfaced42e45e482d7a4e9b466",
+     "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -640,8 +677,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-11T07:28:24.967655+00:00",
-     "generation_id": "gen-1794382087-X305zmQ2rGScl9RkCryr"
+     "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+     "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -682,15 +719,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "a339133e10ce279248e1912eefd90eef9a8417cbfaced42e45e482d7a4e9b466",
+      "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-11T07:28:24.967655+00:00",
-      "generation_id": "gen-1794382087-X305zmQ2rGScl9RkCryr"
+      "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+      "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
      }
     }
    }
@@ -719,7 +756,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "a339133e10ce279248e1912eefd90eef9a8417cbfaced42e45e482d7a4e9b466",
+     "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -727,8 +764,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-11T07:28:24.967655+00:00",
-     "generation_id": "gen-1794382087-X305zmQ2rGScl9RkCryr"
+     "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+     "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -767,15 +804,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "a339133e10ce279248e1912eefd90eef9a8417cbfaced42e45e482d7a4e9b466",
+      "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-11T07:28:24.967655+00:00",
-      "generation_id": "gen-1794382087-X305zmQ2rGScl9RkCryr"
+      "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+      "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
      }
     }
    }
@@ -796,31 +833,48 @@
    "analysis": {
     "status": "complete",
     "a": {
-     "agi_pilled": 2
+     "agi_pilled": 2,
+     "ai_overall": 3
     },
     "b": {
-     "agi_pilled": 2
+     "agi_pilled": 2,
+     "ai_overall": 3
     },
     "topics": [
      "AGI/transformative",
      "jobs/economy"
     ],
     "confidence": {
-     "agi_pilled": 3.0
+     "agi_pilled": 3.0,
+     "ai_overall": 4
     },
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "a339133e10ce279248e1912eefd90eef9a8417cbfaced42e45e482d7a4e9b466",
-     "decision": "no_stance",
-     "labels": {},
-     "confidence": {},
+     "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 3
+     },
+     "confidence": {
+      "ai_overall": 4
+     },
      "review_confidence": 4,
-     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
-     "accepted": false,
+     "reason": "In the supplied interview context, he presents AI as an opportunity across American work, communities and economic sectors. He treats unequal access and preparedness as challenges to realizing its benefits, rather than presenting harms as dominant.",
+     "supporting_quote": "the opportunity that AI presents with the need where we see AI potentially being able to bring benefit.",
+     "support_basis": "context",
+     "source_context": {
+      "url": "https://federalnewsnetwork.com/artificial-intelligence/2026/04/closing-the-gap-between-ai-technology-and-who-can-actually-use-it/",
+      "text_hash": "d73edfc490c0c0a962e14c3c5db3ae9e446f25482c1b01e9d6aa8a2d162af324",
+      "retrieval": "direct_page",
+      "quote": "the opportunity that AI presents with the need where we see AI potentially being able to bring benefit.",
+      "attribution_quote": "Erwin Gianchandani Yeah",
+      "original_date": "2026-04-22"
+     },
+     "accepted": true,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-11T07:28:24.967655+00:00",
-     "generation_id": "gen-1794382087-X305zmQ2rGScl9RkCryr"
+     "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+     "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -874,15 +928,29 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "a339133e10ce279248e1912eefd90eef9a8417cbfaced42e45e482d7a4e9b466",
-      "decision": "no_stance",
-      "labels": {},
-      "confidence": {},
+      "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
       "review_confidence": 4,
-      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "reason": "In the supplied interview context, he presents AI as an opportunity across American work, communities and economic sectors. He treats unequal access and preparedness as challenges to realizing its benefits, rather than presenting harms as dominant.",
+      "supporting_quote": "the opportunity that AI presents with the need where we see AI potentially being able to bring benefit.",
+      "support_basis": "context",
+      "source_context": {
+       "url": "https://federalnewsnetwork.com/artificial-intelligence/2026/04/closing-the-gap-between-ai-technology-and-who-can-actually-use-it/",
+       "text_hash": "d73edfc490c0c0a962e14c3c5db3ae9e446f25482c1b01e9d6aa8a2d162af324",
+       "retrieval": "direct_page",
+       "quote": "the opportunity that AI presents with the need where we see AI potentially being able to bring benefit.",
+       "attribution_quote": "Erwin Gianchandani Yeah",
+       "original_date": "2026-04-22"
+      },
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-11T07:28:24.967655+00:00",
-      "generation_id": "gen-1794382087-X305zmQ2rGScl9RkCryr"
+      "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+      "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
      }
     }
    }
@@ -903,25 +971,45 @@
    },
    "analysis": {
     "status": "complete",
-    "a": {},
-    "b": {},
+    "a": {
+     "ai_overall": 3
+    },
+    "b": {
+     "ai_overall": 3
+    },
     "topics": [
      "other"
     ],
-    "confidence": {},
+    "confidence": {
+     "ai_overall": 4
+    },
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "a339133e10ce279248e1912eefd90eef9a8417cbfaced42e45e482d7a4e9b466",
-     "decision": "no_stance",
-     "labels": {},
-     "confidence": {},
+     "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
+     "decision": "stance",
+     "labels": {
+      "ai_overall": 3
+     },
+     "confidence": {
+      "ai_overall": 4
+     },
      "review_confidence": 4,
-     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
-     "accepted": false,
+     "reason": "The source context explicitly linked to this statement includes his description of a promising AI-enabled future. That supplies a general positive outlook beyond the excerpt's procedural description of test beds.",
+     "supporting_quote": "By catalyzing living labs focused on critical sectors and use-cases, this program lays the foundation for what could become essential infrastructure for a promising AI-enabled future.",
+     "support_basis": "context",
+     "source_context": {
+      "url": "https://www.nsf.gov/news/nsf-invests-ai-ready-test-beds-accelerate-us-leadership",
+      "text_hash": "b719b05d4282a1261edcf62634adfac5b40f2132b77a306cec7f8ae727d687d4",
+      "retrieval": "direct_page",
+      "quote": "By catalyzing living labs focused on critical sectors and use-cases, this program lays the foundation for what could become essential infrastructure for a promising AI-enabled future.",
+      "attribution_quote": "said Erwin Gianchandani, NSF assistant director for TIP.",
+      "original_date": "2025-08-06"
+     },
+     "accepted": true,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-11T07:28:24.967655+00:00",
-     "generation_id": "gen-1794382087-X305zmQ2rGScl9RkCryr"
+     "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+     "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -960,15 +1048,29 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "a339133e10ce279248e1912eefd90eef9a8417cbfaced42e45e482d7a4e9b466",
-      "decision": "no_stance",
-      "labels": {},
-      "confidence": {},
+      "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
+      "decision": "stance",
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
       "review_confidence": 4,
-      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "reason": "The source context explicitly linked to this statement includes his description of a promising AI-enabled future. That supplies a general positive outlook beyond the excerpt's procedural description of test beds.",
+      "supporting_quote": "By catalyzing living labs focused on critical sectors and use-cases, this program lays the foundation for what could become essential infrastructure for a promising AI-enabled future.",
+      "support_basis": "context",
+      "source_context": {
+       "url": "https://www.nsf.gov/news/nsf-invests-ai-ready-test-beds-accelerate-us-leadership",
+       "text_hash": "b719b05d4282a1261edcf62634adfac5b40f2132b77a306cec7f8ae727d687d4",
+       "retrieval": "direct_page",
+       "quote": "By catalyzing living labs focused on critical sectors and use-cases, this program lays the foundation for what could become essential infrastructure for a promising AI-enabled future.",
+       "attribution_quote": "said Erwin Gianchandani, NSF assistant director for TIP.",
+       "original_date": "2025-08-06"
+      },
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-11T07:28:24.967655+00:00",
-      "generation_id": "gen-1794382087-X305zmQ2rGScl9RkCryr"
+      "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+      "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
      }
     }
    }
@@ -998,7 +1100,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "a339133e10ce279248e1912eefd90eef9a8417cbfaced42e45e482d7a4e9b466",
+     "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -1006,8 +1108,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-11T07:28:24.967655+00:00",
-     "generation_id": "gen-1794382087-X305zmQ2rGScl9RkCryr"
+     "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+     "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1046,15 +1148,707 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "a339133e10ce279248e1912eefd90eef9a8417cbfaced42e45e482d7a4e9b466",
+      "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-11T07:28:24.967655+00:00",
-      "generation_id": "gen-1794382087-X305zmQ2rGScl9RkCryr"
+      "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+      "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s9",
+   "date": "2026-07-22",
+   "url": "https://www.nsf.gov/tip/updates/nsf-announces-400m-investment-new-national-network-ai",
+   "text": "The NSF Programmable Cloud Laboratories initiative will unlock new discoveries in a wide range of fields and while also advancing AI-enabled technologies that form the backbone of the automated science revolution,",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Erwin Gianchandani",
+    "organization_id": "nsf_tip",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "role": "Assistant Director"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "AGI/transformative"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+     "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:09.948324+00:00",
+      "generation_id": "gen-1794493786-VjEcr4Q74ZomTHczhp4v"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:32.673049+00:00",
+      "generation_id": "gen-1794493812-qce6Lm4HdYtiMwYckzMl"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:49.107473+00:00",
+      "generation_id": "gen-1794493837-rnhxK7fk4eb14Hc7zkHR"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+      "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s10",
+   "date": "2026-06-04",
+   "url": "https://www.nsf.gov/tip/updates/nsf-darpa-release-new-report-rfi-align-government-academia",
+   "text": "NSF is excited to partner with DARPA, working alongside CAISI, on this groundbreaking effort to catalyze AI innovation for national security",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Erwin Gianchandani",
+    "organization_id": "nsf_tip",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "role": "Assistant Director"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "national security"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+     "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:09.948324+00:00",
+      "generation_id": "gen-1794493786-VjEcr4Q74ZomTHczhp4v"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:32.673049+00:00",
+      "generation_id": "gen-1794493812-qce6Lm4HdYtiMwYckzMl"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:49.107473+00:00",
+      "generation_id": "gen-1794493837-rnhxK7fk4eb14Hc7zkHR"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+      "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s11",
+   "date": "2026-10-14",
+   "url": "https://www.nsf.gov/tip/updates/nsf-announces-teams-selected-accelerate-efficiency-gains-us",
+   "text": "As the U.S. builds on our successes in super intelligence by expanding our national SI capacity, NSF is pleased to support efforts that make this technology more efficient for broader adoption",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Erwin Gianchandani",
+    "organization_id": "nsf_tip",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "role": "Assistant Director"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "agi_pilled": 3
+    },
+    "b": {},
+    "topics": [
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "agi_pilled": 2.67
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+     "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:09.948324+00:00",
+      "generation_id": "gen-1794493786-VjEcr4Q74ZomTHczhp4v"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:32.673049+00:00",
+      "generation_id": "gen-1794493812-qce6Lm4HdYtiMwYckzMl"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 2
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:49.107473+00:00",
+      "generation_id": "gen-1794493837-rnhxK7fk4eb14Hc7zkHR"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T14:31:04.283889+00:00",
+      "generation_id": "gen-1794493859-JvVpovpna8c1jiWGicwl"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+      "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s12",
+   "date": "2025-12-19",
+   "url": "https://www.nsf.gov/tip/updates/us-national-science-foundation-micron-foundation-invest",
+   "text": "NSF is prioritizing American competitiveness in critical and emerging technologies through programs like NSF ExLENT that expand crucial opportunities for American students and workers everywhere to learn important skills and contribute to the American economy",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Erwin Gianchandani",
+    "organization_id": "nsf_tip",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "role": "Assistant Director"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+     "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:09.948324+00:00",
+      "generation_id": "gen-1794493786-VjEcr4Q74ZomTHczhp4v"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:32.673049+00:00",
+      "generation_id": "gen-1794493812-qce6Lm4HdYtiMwYckzMl"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:49.107473+00:00",
+      "generation_id": "gen-1794493837-rnhxK7fk4eb14Hc7zkHR"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+      "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s13",
+   "date": "2026-10-16",
+   "url": "https://www.nsf.gov/tip/updates/nsf-invests-more-110-million-improving-nextg-wireless",
+   "text": "As fields like super intelligence, quantum computing, and space exploration expand, the U.S. needs reliable, secure, and advanced wireless and telecommunications networks to maintain the pace and scale of innovation ushered in by these technologies",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Erwin Gianchandani",
+    "organization_id": "nsf_tip",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "agi_pilled": 3
+    },
+    "b": {},
+    "topics": [
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "agi_pilled": 2.67
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+     "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:09.948324+00:00",
+      "generation_id": "gen-1794493786-VjEcr4Q74ZomTHczhp4v"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:32.673049+00:00",
+      "generation_id": "gen-1794493812-qce6Lm4HdYtiMwYckzMl"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:49.107473+00:00",
+      "generation_id": "gen-1794493837-rnhxK7fk4eb14Hc7zkHR"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T14:31:04.283889+00:00",
+      "generation_id": "gen-1794493859-JvVpovpna8c1jiWGicwl"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+      "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s14",
+   "date": "2025-12-19",
+   "url": "https://www.nsf.gov/tip/updates/nsf-invests-over-10m-advance-us-leadership-privacy-enhancing",
+   "text": "NSF is prioritizing investments in critical technologies to ensure a reliable and practical AI future while at the same time positioning the U.S. as a global leader in AI",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Erwin Gianchandani",
+    "organization_id": "nsf_tip",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "role": "Assistant Director"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "China/competition"
+    ],
+    "confidence": {},
+    "escalated": [
+     "ai_overall",
+     "china_race"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+     "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:09.948324+00:00",
+      "generation_id": "gen-1794493786-VjEcr4Q74ZomTHczhp4v"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:32.673049+00:00",
+      "generation_id": "gen-1794493812-qce6Lm4HdYtiMwYckzMl"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3,
+       "china_race": 1
+      },
+      "confidence": {
+       "ai_overall": 2,
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:49.107473+00:00",
+      "generation_id": "gen-1794493837-rnhxK7fk4eb14Hc7zkHR"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition",
+       "other"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T14:31:04.283889+00:00",
+      "generation_id": "gen-1794493859-JvVpovpna8c1jiWGicwl"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+      "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s15",
+   "date": "2026-09-23",
+   "url": "https://www.nsf.gov/tip/updates/nsf-invests-translating-low-dimensional-semiconductor",
+   "text": "NSF ELEGANT aims to de-risk advanced microelectronics manufacturing technology to the point where industry can make a timely, credible, evidence-based commitment to its adoption,",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Erwin Gianchandani",
+    "organization_id": "nsf_tip",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "role": "Assistant Director"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+     "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:09.948324+00:00",
+      "generation_id": "gen-1794493786-VjEcr4Q74ZomTHczhp4v"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:32.673049+00:00",
+      "generation_id": "gen-1794493812-qce6Lm4HdYtiMwYckzMl"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T14:30:49.107473+00:00",
+      "generation_id": "gen-1794493837-rnhxK7fk4eb14Hc7zkHR"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:42:27.363510+00:00",
+      "generation_id": "gen-1794494528-whXtsvC6dGuSM0p4wezX"
      }
     }
    }
@@ -1467,7 +2261,7 @@
   {
    "date": "2025-08-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
@@ -1480,7 +2274,7 @@
   {
    "date": "2025-09-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
@@ -1493,7 +2287,7 @@
   {
    "date": "2025-10-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
@@ -1506,7 +2300,7 @@
   {
    "date": "2025-11-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
@@ -1519,143 +2313,143 @@
   {
    "date": "2025-12-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 6,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-01-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 6,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-02-28",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 6,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-03-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 6,
+   "n_statements": 8,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-04-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 7,
+   "n_statements": 9,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-05-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 7,
+   "n_statements": 9,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-06-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 7,
+   "n_statements": 10,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-07-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 7,
+   "n_statements": 11,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-08-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 7,
+   "n_statements": 11,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-09-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 3.0,
     "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 7,
+   "n_statements": 12,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-10-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": 2.0,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.5,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 7,
+   "n_statements": 14,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1686,5 +2480,36 @@
    "kind": "observed"
   }
  ],
- "changes": []
+ "changes": [
+  {
+   "id": "exec_erwin_gianchandani",
+   "date": "2026-11-12",
+   "dimension": "ai_overall",
+   "old": null,
+   "new": 3.0,
+   "kind": "big",
+   "cause": "Astra review after federal roster expansion research",
+   "sids": [
+    "s2",
+    "s6",
+    "s7"
+   ],
+   "review_id": "27d5ffa504f60073ef6d78cb0aa0adb380d091dcaf7903af93089b96a494b274"
+  },
+  {
+   "id": "exec_erwin_gianchandani",
+   "date": "2026-11-12",
+   "dimension": "agi_pilled",
+   "old": 2.0,
+   "new": 2.5,
+   "kind": "small",
+   "cause": "evidence or assessment changed",
+   "sids": [
+    "s13",
+    "s11",
+    "s6",
+    "s2"
+   ]
+  }
+ ]
 }
