@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_kessler",
- "revision": "d9ff777abc155b3243fe541d11dd7822e7b914958317d5ac32543f5e54a37a8b",
+ "revision": "581475adf1f3fbee1dbc8e8a6262dc655d4330a494eb7b921b1b195435a51b68",
  "profile": {
   "id": "exec_kessler",
   "name": "Jeffrey Kessler",
@@ -59,13 +59,13 @@
     }
    }
   },
-  "n_statements": 11,
-  "n_labeled": 11,
+  "n_statements": 21,
+  "n_labeled": 21,
   "scores": {
    "ai_overall": null,
    "agi_pilled": null,
    "x_risk": null,
-   "china_race": null,
+   "china_race": 3.0,
    "regulation": null
   },
   "score_details": {
@@ -91,11 +91,13 @@
     "label_count": 0
    },
    "china_race": {
-    "score": null,
-    "reason_a": "silent",
-    "reason_b": "silent",
-    "sids": [],
-    "label_count": 0
+    "score": 3.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s15"
+    ],
+    "label_count": 3
    },
    "regulation": {
     "score": null,
@@ -107,48 +109,50 @@
   },
   "summary": {
    "status": "complete",
-   "text": "Kessler said export controls should evolve with technology while protecting national security, and that permitting H200 sales to China under controlled conditions would strengthen the American technology ecosystem (s2). In July 2026 remarks, Kessler said BIS enforcement resources are spread too thin and that its enforcement unit should be orders of magnitude larger (s3). Kessler cited BIS settlements involving semiconductor equipment, design software, and micro-electronics, and described budget increases for BIS’s Export Administration unit to add technical experts for enforcement (s7, s8). Kessler described the Entity List as one of many tools to cut off foreign adversaries seeking to exploit American technology for malign purposes (s11).",
+   "text": "In May 2025, Kessler said the administration would pursue a strategy for American SI technology with trusted foreign countries while keeping it from adversaries and rejecting the prior administration’s SI policies (s1). In June 2025, Kessler said wrongdoers divert AI chips and he was concerned not all of it was caught, while describing export controls as strong and BIS as able to use the Foreign Direct Product Rule aggressively for semiconductor-related technologies (s12, s17, s19). In January 2026, Kessler said export controls should evolve with technology while protecting national security, and that permitting H200 sales to China under controlled conditions would strengthen the American technology ecosystem (s2). In July 2026, Kessler said BIS enforcement resources were spread too thin and that its enforcement unit should be orders of magnitude larger (s3).",
    "sids": [
+    "s1",
+    "s12",
+    "s17",
+    "s19",
     "s2",
-    "s3",
-    "s7",
-    "s8",
-    "s11"
+    "s3"
    ],
    "sentences": [
     {
-     "text": "Kessler said export controls should evolve with technology while protecting national security, and that permitting H200 sales to China under controlled conditions would strengthen the American technology ecosystem (s2).",
+     "text": "In May 2025, Kessler said the administration would pursue a strategy for American SI technology with trusted foreign countries while keeping it from adversaries and rejecting the prior administration’s SI policies (s1).",
+     "sids": [
+      "s1"
+     ]
+    },
+    {
+     "text": "In June 2025, Kessler said wrongdoers divert AI chips and he was concerned not all of it was caught, while describing export controls as strong and BIS as able to use the Foreign Direct Product Rule aggressively for semiconductor-related technologies (s12, s17, s19).",
+     "sids": [
+      "s12",
+      "s17",
+      "s19"
+     ]
+    },
+    {
+     "text": "In January 2026, Kessler said export controls should evolve with technology while protecting national security, and that permitting H200 sales to China under controlled conditions would strengthen the American technology ecosystem (s2).",
      "sids": [
       "s2"
      ]
     },
     {
-     "text": "In July 2026 remarks, Kessler said BIS enforcement resources are spread too thin and that its enforcement unit should be orders of magnitude larger (s3).",
+     "text": "In July 2026, Kessler said BIS enforcement resources were spread too thin and that its enforcement unit should be orders of magnitude larger (s3).",
      "sids": [
       "s3"
-     ]
-    },
-    {
-     "text": "Kessler cited BIS settlements involving semiconductor equipment, design software, and micro-electronics, and described budget increases for BIS’s Export Administration unit to add technical experts for enforcement (s7, s8).",
-     "sids": [
-      "s7",
-      "s8"
-     ]
-    },
-    {
-     "text": "Kessler described the Entity List as one of many tools to cut off foreign adversaries seeking to exploit American technology for malign purposes (s11).",
-     "sids": [
-      "s11"
      ]
     }
    ]
   },
   "topics": {
-   "China/competition": 0.667,
-   "national security": 5.667,
-   "regulation": 2.667,
-   "other": 1.0,
-   "jobs/economy": 1.0
+   "China/competition": 2.333,
+   "national security": 11.333,
+   "regulation": 4.5,
+   "other": 1.5,
+   "jobs/economy": 1.333
   },
   "regulation": {
    "status": "complete",
@@ -208,7 +212,7 @@
      "sids": [
       "s2"
      ],
-     "why": "Supports permitting the sale of H200 chips to China under controlled conditions, favoring more advanced chip sales over stricter controls."
+     "why": "Kessler explicitly supports permitting H200 advanced-chip sales to China under controlled conditions, indicating support for looser advanced-chip export policy."
     },
     "testing_mandate": {
      "stance": 0,
@@ -274,18 +278,18 @@
    "disputed": []
   },
   "stance_review": {
-   "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+   "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
    "dimension": "ai_overall",
    "status": "complete",
-   "reason": "None of the supplied excerpts establishes a general view of AI's overall effects on Americans. They address technology exports, national security, enforcement resources, or specific enforcement actions. Support for controlled technology sales and opposition to technology misuse do not establish an ai_overall stance. No additional source context was supplied; these conclusions are limited to the excerpts.",
+   "reason": "The supplied excerpts address export controls, enforcement, semiconductor competition, and technological leadership rather than whether AI will be good or harmful for Americans overall. Support for American AI infrastructure and controlled chip exports does not establish a general assessment of AI's effects. No ai_overall label is warranted from this bounded evidence; no additional source context was supplied.",
    "confidence": 5,
-   "n_statements": 11,
+   "n_statements": 21,
    "n_contexts": 0,
    "accepted_sids": [],
    "finding_count": 0,
    "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-   "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+   "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+   "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
   }
  },
  "statements": [
@@ -315,7 +319,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -323,8 +327,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-     "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -368,15 +372,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 5,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-      "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
      }
     }
    }
@@ -407,7 +411,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -415,8 +419,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-     "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -461,15 +465,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 5,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-      "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
      }
     }
    }
@@ -499,7 +503,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -507,8 +511,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-     "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -550,15 +554,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 5,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-      "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
      }
     }
    }
@@ -589,7 +593,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -597,8 +601,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-     "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -640,15 +644,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 5,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-      "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
      }
     }
    }
@@ -679,7 +683,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -687,8 +691,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-     "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -730,15 +734,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 5,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-      "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
      }
     }
    }
@@ -768,7 +772,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -776,8 +780,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-     "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -819,15 +823,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 5,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-      "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
      }
     }
    }
@@ -858,7 +862,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -866,8 +870,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-     "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -909,15 +913,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 5,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-      "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
      }
     }
    }
@@ -948,7 +952,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -956,8 +960,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-     "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -999,15 +1003,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 5,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-      "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
      }
     }
    }
@@ -1037,7 +1041,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -1045,8 +1049,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-     "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1087,15 +1091,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 5,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-      "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
      }
     }
    }
@@ -1124,7 +1128,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -1132,8 +1136,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-     "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1173,15 +1177,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 5,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-      "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
      }
     }
    }
@@ -1211,7 +1215,7 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
@@ -1219,8 +1223,8 @@
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-     "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1259,15 +1263,1037 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "1d9408dc678cc0e0ad5811029c6bd1ada1a222de42f54b083956088f3aa26293",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
       "review_confidence": 5,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T11:02:17.777433+00:00",
-      "generation_id": "gen-1794481330-9okr7q0JuxYVoUbxbmhp"
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s12",
+   "date": "2025-06-12",
+   "url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62140/html/CHRG-119hhrg62140.htm",
+   "text": "We do see significant efforts by wrongdoers to divert AI chips as well as other products that are export controlled. But we see those more commonly that you might expect, and we have enforcement operations that are active to address those types of activities. I'm concerned that we're not catching all of it, that there's a lot that goes undetected. And this budget is intended to enable us to capture more of it and prevent more wrongdoing.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Jeffrey Kessler",
+    "organization_id": "bis",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "speaker_label": "Mr. Kessler.",
+    "speaker_identity_source_url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62140/html/CHRG-119hhrg62140.htm",
+    "speaker_alias_verified_on": "2026-11-12"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "national security",
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:42:43.993185+00:00",
+      "generation_id": "gen-1794490956-tmH7IEF4OBSx7SEgLGLm"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:46:04.989619+00:00",
+      "generation_id": "gen-1794491125-XKFZH7bXVE4TC1QyL0cE"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:47:46.757738+00:00",
+      "generation_id": "gen-1794491260-plObayPUiMKHTagEMur3"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s13",
+   "date": "2025-06-12",
+   "url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62140/html/CHRG-119hhrg62140.htm",
+   "text": "So our assessment is that Huawei's Ascend chip production capacity for 2025 will be at or below 200,000. And we project that most or all of that will be delivered to companies within China. China is investing. I think it's important to say we shouldn't take too much comfort from that fact. China is investing huge amounts to increase its AI chip production and as well as the capabilities of the chips that it produces. So it's critical for us not to have a false sense of security to understand that China is catching up quickly. But that is our projection for this year.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Jeffrey Kessler",
+    "organization_id": "bis",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "speaker_label": "Mr. Kessler.",
+    "speaker_identity_source_url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62140/html/CHRG-119hhrg62140.htm",
+    "speaker_alias_verified_on": "2026-11-12"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "china_race": 2
+    },
+    "b": {
+     "china_race": 1
+    },
+    "topics": [
+     "China/competition",
+     "national security"
+    ],
+    "confidence": {
+     "china_race": 3.33
+    },
+    "escalated": [
+     "china_race"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:42:43.993185+00:00",
+      "generation_id": "gen-1794490956-tmH7IEF4OBSx7SEgLGLm"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:46:04.989619+00:00",
+      "generation_id": "gen-1794491125-XKFZH7bXVE4TC1QyL0cE"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:47:46.757738+00:00",
+      "generation_id": "gen-1794491260-plObayPUiMKHTagEMur3"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T13:50:37.199789+00:00",
+      "generation_id": "gen-1794491428-YvHuEPgCELD9NyfPlV0i"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s14",
+   "date": "2025-06-12",
+   "url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62140/html/CHRG-119hhrg62140.htm",
+   "text": "Well, what I can say is that the governments that we made deals with are very much aware of the security requirements that we have when we export AI chips. Those have been a topic of discussion, and we've made no secret of the fact that for any chips to be exported, any of the chips that they're interested in getting, BIS approval would be needed. And what we look at when we authorize or not, exports like that, what we look at is whether the chips are going to be secure when they're deployed overseas.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Jeffrey Kessler",
+    "organization_id": "bis",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "speaker_label": "Mr. Kessler.",
+    "speaker_identity_source_url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62140/html/CHRG-119hhrg62140.htm",
+    "speaker_alias_verified_on": "2026-11-12"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "national security"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:42:43.993185+00:00",
+      "generation_id": "gen-1794490956-tmH7IEF4OBSx7SEgLGLm"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:46:04.989619+00:00",
+      "generation_id": "gen-1794491125-XKFZH7bXVE4TC1QyL0cE"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:47:46.757738+00:00",
+      "generation_id": "gen-1794491260-plObayPUiMKHTagEMur3"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s15",
+   "date": "2025-06-12",
+   "url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62140/html/CHRG-119hhrg62140.htm",
+   "text": "So yes, as you said, we shouldn't take too much comfort in the fact that China's production of these advanced chips is relatively small because we know they have global ambitions. China wants to dominate the global supply chain in semiconductors and has had plans to achieve that goal for more than a decade. It's consistently executed on those points. But I think there are two parts. One is we need to do what the President just did in the Middle East and ensure that American technology can become the foundation for AI infrastructure around the world because that closes--it closes out market space for others that would supplant us otherwise.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Jeffrey Kessler",
+    "organization_id": "bis",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "speaker_label": "Mr. Kessler.",
+    "speaker_identity_source_url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62140/html/CHRG-119hhrg62140.htm",
+    "speaker_alias_verified_on": "2026-11-12"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "china_race": 3
+    },
+    "b": {
+     "china_race": 3
+    },
+    "topics": [
+     "China/competition",
+     "national security"
+    ],
+    "confidence": {
+     "china_race": 3.67
+    },
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:42:43.993185+00:00",
+      "generation_id": "gen-1794490956-tmH7IEF4OBSx7SEgLGLm"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 5
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:46:04.989619+00:00",
+      "generation_id": "gen-1794491125-XKFZH7bXVE4TC1QyL0cE"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:47:46.757738+00:00",
+      "generation_id": "gen-1794491260-plObayPUiMKHTagEMur3"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s16",
+   "date": "2025-06-12",
+   "url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62140/html/CHRG-119hhrg62140.htm",
+   "text": "Yes, the diffusion rule is very problematic. The diffusion rule was something that the Biden administration did in its final hours before leaving office. It was hastily constructed. It established a regime--a worldwide regime for controlling chips that was bureaucratic, heavy handed. It drew arbitrary distinctions between different countries. Some are favored and some are less favored. It offended many of our partners and allies. It was not ready for prime time. And I think frankly even members of the former administration might admit that to you in private. So that's why we rescinded that rule. It is not suitable for actually being put into practice. And we did that before the rule became effective because we didn't want to disrupt global markets in these critical technologies.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Jeffrey Kessler",
+    "organization_id": "bis",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "speaker_label": "Mr. Kessler.",
+    "speaker_identity_source_url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62140/html/CHRG-119hhrg62140.htm",
+    "speaker_alias_verified_on": "2026-11-12"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "national security",
+     "regulation"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition",
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:42:43.993185+00:00",
+      "generation_id": "gen-1794490956-tmH7IEF4OBSx7SEgLGLm"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:46:04.989619+00:00",
+      "generation_id": "gen-1794491125-XKFZH7bXVE4TC1QyL0cE"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:47:46.757738+00:00",
+      "generation_id": "gen-1794491260-plObayPUiMKHTagEMur3"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s17",
+   "date": "2025-06-12",
+   "url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62140/html/CHRG-119hhrg62140.htm",
+   "text": "What I will say is that export controls have been strong. And I'm confident that they will remain strong in the future, including with respect to the AI technologies that we're talking about today and many other technologies of concern.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Jeffrey Kessler",
+    "organization_id": "bis",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "speaker_label": "Mr. Kessler.",
+    "speaker_identity_source_url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62140/html/CHRG-119hhrg62140.htm",
+    "speaker_alias_verified_on": "2026-11-12"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "national security"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:42:43.993185+00:00",
+      "generation_id": "gen-1794490956-tmH7IEF4OBSx7SEgLGLm"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:46:04.989619+00:00",
+      "generation_id": "gen-1794491125-XKFZH7bXVE4TC1QyL0cE"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:47:46.757738+00:00",
+      "generation_id": "gen-1794491260-plObayPUiMKHTagEMur3"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s18",
+   "date": "2025-06-12",
+   "url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62140/html/CHRG-119hhrg62140.htm",
+   "text": "I think it needs to start with some of the areas that you mentioned, particularly controls on semiconductors and semiconductor-related technology, semiconductor manufacturing, equipment, software that relates to semiconductor manufacturing, and other AI-related technologies. We need to make sure that for all of these critical technologies, our allies are fully aligned. And I agree with you that there has been some progress, particularly with respect to the Netherlands and Japan. But it's incomplete. The task is incomplete and more needs to be done. I would consider using the Foreign Direct Product Rule. I think it's an important tool in our toolkit to make sure that there isn't backfilling as you said.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Jeffrey Kessler",
+    "organization_id": "bis",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "speaker_label": "Mr. Kessler.",
+    "speaker_identity_source_url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62140/html/CHRG-119hhrg62140.htm",
+    "speaker_alias_verified_on": "2026-11-12"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "national security",
+     "China/competition",
+     "regulation"
+    ],
+    "confidence": {},
+    "escalated": [
+     "china_race"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:42:43.993185+00:00",
+      "generation_id": "gen-1794490956-tmH7IEF4OBSx7SEgLGLm"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:46:04.989619+00:00",
+      "generation_id": "gen-1794491125-XKFZH7bXVE4TC1QyL0cE"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:47:46.757738+00:00",
+      "generation_id": "gen-1794491260-plObayPUiMKHTagEMur3"
+     },
+     "sol": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T13:50:37.199789+00:00",
+      "generation_id": "gen-1794491428-YvHuEPgCELD9NyfPlV0i"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s19",
+   "date": "2025-06-12",
+   "url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62140/html/CHRG-119hhrg62140.htm",
+   "text": "BIS has the ability to impose the Foreign Direct Product Rule particularly with respect to semiconductor- related technologies. So the FDPR doesn't apply equally across technology areas. But in the area of semiconductors, it's fairly strong. So we have a lot of flexibility to be aggressive.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Jeffrey Kessler",
+    "organization_id": "bis",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "speaker_label": "Mr. Kessler.",
+    "speaker_identity_source_url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62140/html/CHRG-119hhrg62140.htm",
+    "speaker_alias_verified_on": "2026-11-12"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "national security",
+     "regulation"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:42:43.993185+00:00",
+      "generation_id": "gen-1794490956-tmH7IEF4OBSx7SEgLGLm"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:46:04.989619+00:00",
+      "generation_id": "gen-1794491125-XKFZH7bXVE4TC1QyL0cE"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:47:46.757738+00:00",
+      "generation_id": "gen-1794491260-plObayPUiMKHTagEMur3"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s20",
+   "date": "2025-06-12",
+   "url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62140/html/CHRG-119hhrg62140.htm",
+   "text": "Well, BIS' mission is to protect critical technologies and to protect critical supply chains as a department and as an administration. Ensuring that we have a sufficient flow of talent into our cutting-edge technologies and cutting-edge companies is absolutely a priority. And we have a range of initiatives across the government to ensure, for example, American dominance, continued dominance in AI and other scientific fields. And also to ensure a robust workforce at the technical level, trade schools, vocational training. So I agree with you about the importance of that. And it's something that we are focused on as an administration.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Jeffrey Kessler",
+    "organization_id": "bis",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "speaker_label": "Mr. Kessler.",
+    "speaker_identity_source_url": "https://www.govinfo.gov/content/pkg/CHRG-119hhrg62140/html/CHRG-119hhrg62140.htm",
+    "speaker_alias_verified_on": "2026-11-12"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {
+     "china_race": 2
+    },
+    "topics": [
+     "national security",
+     "jobs/economy",
+     "China/competition"
+    ],
+    "confidence": {},
+    "escalated": [
+     "china_race"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:42:43.993185+00:00",
+      "generation_id": "gen-1794490956-tmH7IEF4OBSx7SEgLGLm"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "national security",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:46:04.989619+00:00",
+      "generation_id": "gen-1794491125-XKFZH7bXVE4TC1QyL0cE"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "national security",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:47:46.757738+00:00",
+      "generation_id": "gen-1794491260-plObayPUiMKHTagEMur3"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "China/competition",
+       "national security"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T13:50:37.199789+00:00",
+      "generation_id": "gen-1794491428-YvHuEPgCELD9NyfPlV0i"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s21",
+   "date": "2026-02-12",
+   "url": "https://www.bis.gov/news-updates",
+   "text": "The Bureau of Industry and Security is strongly committed to safeguarding sensitive American technologies and deterring wrongdoers. When companies export their products around the world, they must follow the law or face stiff penalties.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "official_role",
+    "speaker": "Jeffrey Kessler",
+    "organization_id": "bis",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "role": "Under Secretary of Commerce for Industry and Security"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "national security",
+     "regulation"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 5,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+     "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:42:43.993185+00:00",
+      "generation_id": "gen-1794490956-tmH7IEF4OBSx7SEgLGLm"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:46:04.989619+00:00",
+      "generation_id": "gen-1794491125-XKFZH7bXVE4TC1QyL0cE"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:47:46.757738+00:00",
+      "generation_id": "gen-1794491260-plObayPUiMKHTagEMur3"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "4d3d2602d4aedd5c6fb14893b3ef5dcd8e5adc7c974dea3888563efd69e27db8",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 5,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:04:33.041203+00:00",
+      "generation_id": "gen-1794492264-BITbzsY8SGVogGhrf2Jf"
      }
     }
    }
@@ -1657,10 +2683,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 3,
+   "n_statements": 12,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1670,10 +2696,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 3,
+   "n_statements": 12,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1683,10 +2709,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 4,
+   "n_statements": 13,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1696,10 +2722,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 4,
+   "n_statements": 13,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1709,10 +2735,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 4,
+   "n_statements": 13,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1722,10 +2748,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 4,
+   "n_statements": 13,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1735,10 +2761,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 4,
+   "n_statements": 13,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1748,10 +2774,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 5,
+   "n_statements": 14,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1761,10 +2787,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 5,
+   "n_statements": 15,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1774,10 +2800,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 5,
+   "n_statements": 15,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1787,10 +2813,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 5,
+   "n_statements": 15,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1800,10 +2826,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 5,
+   "n_statements": 15,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1813,10 +2839,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 5,
+   "n_statements": 15,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1826,10 +2852,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 9,
+   "n_statements": 19,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1839,10 +2865,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 9,
+   "n_statements": 19,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1852,10 +2878,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 9,
+   "n_statements": 19,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1865,10 +2891,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 9,
+   "n_statements": 19,
    "status": "complete",
    "kind": "reconstructed"
   },

@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_brandon_pugh",
- "revision": "d9ff777abc155b3243fe541d11dd7822e7b914958317d5ac32543f5e54a37a8b",
+ "revision": "581475adf1f3fbee1dbc8e8a6262dc655d4330a494eb7b921b1b195435a51b68",
  "profile": {
   "id": "exec_brandon_pugh",
   "name": "Brandon Pugh",
@@ -59,13 +59,13 @@
     }
    }
   },
-  "n_statements": 5,
-  "n_labeled": 5,
+  "n_statements": 6,
+  "n_labeled": 6,
   "scores": {
    "ai_overall": null,
    "agi_pilled": null,
    "x_risk": null,
-   "china_race": null,
+   "china_race": 1.0,
    "regulation": 2.0
   },
   "score_details": {
@@ -91,11 +91,13 @@
     "label_count": 0
    },
    "china_race": {
-    "score": null,
-    "reason_a": "silent",
-    "reason_b": "silent",
-    "sids": [],
-    "label_count": 0
+    "score": 1.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s6"
+    ],
+    "label_count": 1
    },
    "regulation": {
     "score": 2.0,
@@ -109,47 +111,50 @@
   },
   "summary": {
    "status": "complete",
-   "text": "Brandon Pugh said that not looking at how AI is helping on cyber defense puts one at a huge disadvantage. He also said that leveraging AI is a national security imperative. In June 2024 testimony, he said AI requires guardrails to maintain consumer privacy and adequately secure data, and that findings show many current uses of AI for cyber defense. He also noted that there are risks, especially within the energy space.",
+   "text": "Brandon Pugh said that not examining how AI helps cyber defense puts one at a huge disadvantage. He described leveraging AI as a national security imperative and said AI requires guardrails to protect consumer privacy and secure data. Pugh stated that findings show many current uses of AI for cyber defense and noted risks, especially in the energy space. In 2023 testimony, he said the U.S.-China rivalry has taken a digital nature and that China has raced with the U.S. on technology including AI.",
    "sids": [
     "s1",
     "s2",
     "s3",
     "s4",
-    "s5"
+    "s5",
+    "s6"
    ],
    "sentences": [
     {
-     "text": "Brandon Pugh said that not looking at how AI is helping on cyber defense puts one at a huge disadvantage.",
+     "text": "Brandon Pugh said that not examining how AI helps cyber defense puts one at a huge disadvantage.",
      "sids": [
       "s1"
      ]
     },
     {
-     "text": "He also said that leveraging AI is a national security imperative.",
+     "text": "He described leveraging AI as a national security imperative and said AI requires guardrails to protect consumer privacy and secure data.",
      "sids": [
-      "s2"
+      "s2",
+      "s3"
      ]
     },
     {
-     "text": "In June 2024 testimony, he said AI requires guardrails to maintain consumer privacy and adequately secure data, and that findings show many current uses of AI for cyber defense.",
+     "text": "Pugh stated that findings show many current uses of AI for cyber defense and noted risks, especially in the energy space.",
      "sids": [
-      "s3",
-      "s4"
-     ]
-    },
-    {
-     "text": "He also noted that there are risks, especially within the energy space.",
-     "sids": [
+      "s4",
       "s5"
+     ]
+    },
+    {
+     "text": "In 2023 testimony, he said the U.S.-China rivalry has taken a digital nature and that China has raced with the U.S. on technology including AI.",
+     "sids": [
+      "s6"
      ]
     }
    ]
   },
   "topics": {
-   "national security": 3.0,
+   "national security": 3.5,
    "regulation": 0.5,
    "other": 0.5,
-   "energy/data centers": 1.0
+   "energy/data centers": 1.0,
+   "China/competition": 0.5
   },
   "regulation": {
    "status": "complete",
@@ -273,18 +278,18 @@
    "disputed": []
   },
   "stance_review": {
-   "review_id": "d80429ed1f336a2bf492bf074f01240139a8b99749ed654d13e631bf5c88ccda",
+   "review_id": "5eff684ad6c883f88f4c061b55c7245c86f6b57594dd08cd91357b9f892d0132",
    "dimension": "ai_overall",
    "status": "complete",
-   "reason": "The supplied statements address cyber defense, national security, privacy, and energy-sector risks rather than AI's overall effects on Americans. Calling AI adoption a national security imperative does not by itself establish an overall assessment. The supplied context for s5 likewise concerns specific risks and privacy protections, not a general AI stance.",
-   "confidence": 5,
-   "n_statements": 5,
-   "n_contexts": 1,
+   "reason": "The supplied excerpts address cyber defense, national security, privacy safeguards, energy-sector risks, and technological competition with China. None establishes a general assessment of whether AI will be good for Americans overall. No additional source context was supplied; these conclusions are limited to the excerpts, not Pugh's views beyond them.",
+   "confidence": 4,
+   "n_statements": 6,
+   "n_contexts": 0,
    "accepted_sids": [],
    "finding_count": 0,
    "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-11T06:37:00.913590+00:00",
-   "generation_id": "gen-1794379014-D7tLsW6BYeAA2Bx0Ldfs"
+   "assessed_at": "2026-11-12T14:09:59.068730+00:00",
+   "generation_id": "gen-1794492589-ixuS9P0LNQyaS7UdODfW"
   }
  },
  "statements": [
@@ -312,16 +317,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "d80429ed1f336a2bf492bf074f01240139a8b99749ed654d13e631bf5c88ccda",
+     "review_id": "5eff684ad6c883f88f4c061b55c7245c86f6b57594dd08cd91357b9f892d0132",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-11T06:37:00.913590+00:00",
-     "generation_id": "gen-1794379014-D7tLsW6BYeAA2Bx0Ldfs"
+     "assessed_at": "2026-11-12T14:09:59.068730+00:00",
+     "generation_id": "gen-1794492589-ixuS9P0LNQyaS7UdODfW"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -362,15 +367,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "d80429ed1f336a2bf492bf074f01240139a8b99749ed654d13e631bf5c88ccda",
+      "review_id": "5eff684ad6c883f88f4c061b55c7245c86f6b57594dd08cd91357b9f892d0132",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-11T06:37:00.913590+00:00",
-      "generation_id": "gen-1794379014-D7tLsW6BYeAA2Bx0Ldfs"
+      "assessed_at": "2026-11-12T14:09:59.068730+00:00",
+      "generation_id": "gen-1794492589-ixuS9P0LNQyaS7UdODfW"
      }
     }
    }
@@ -399,16 +404,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "d80429ed1f336a2bf492bf074f01240139a8b99749ed654d13e631bf5c88ccda",
+     "review_id": "5eff684ad6c883f88f4c061b55c7245c86f6b57594dd08cd91357b9f892d0132",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-11T06:37:00.913590+00:00",
-     "generation_id": "gen-1794379014-D7tLsW6BYeAA2Bx0Ldfs"
+     "assessed_at": "2026-11-12T14:09:59.068730+00:00",
+     "generation_id": "gen-1794492589-ixuS9P0LNQyaS7UdODfW"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -447,15 +452,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "d80429ed1f336a2bf492bf074f01240139a8b99749ed654d13e631bf5c88ccda",
+      "review_id": "5eff684ad6c883f88f4c061b55c7245c86f6b57594dd08cd91357b9f892d0132",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-11T06:37:00.913590+00:00",
-      "generation_id": "gen-1794379014-D7tLsW6BYeAA2Bx0Ldfs"
+      "assessed_at": "2026-11-12T14:09:59.068730+00:00",
+      "generation_id": "gen-1794492589-ixuS9P0LNQyaS7UdODfW"
      }
     }
    }
@@ -491,16 +496,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "d80429ed1f336a2bf492bf074f01240139a8b99749ed654d13e631bf5c88ccda",
+     "review_id": "5eff684ad6c883f88f4c061b55c7245c86f6b57594dd08cd91357b9f892d0132",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-11T06:37:00.913590+00:00",
-     "generation_id": "gen-1794379014-D7tLsW6BYeAA2Bx0Ldfs"
+     "assessed_at": "2026-11-12T14:09:59.068730+00:00",
+     "generation_id": "gen-1794492589-ixuS9P0LNQyaS7UdODfW"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -553,15 +558,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "d80429ed1f336a2bf492bf074f01240139a8b99749ed654d13e631bf5c88ccda",
+      "review_id": "5eff684ad6c883f88f4c061b55c7245c86f6b57594dd08cd91357b9f892d0132",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-11T06:37:00.913590+00:00",
-      "generation_id": "gen-1794379014-D7tLsW6BYeAA2Bx0Ldfs"
+      "assessed_at": "2026-11-12T14:09:59.068730+00:00",
+      "generation_id": "gen-1794492589-ixuS9P0LNQyaS7UdODfW"
      }
     }
    }
@@ -590,16 +595,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "d80429ed1f336a2bf492bf074f01240139a8b99749ed654d13e631bf5c88ccda",
+     "review_id": "5eff684ad6c883f88f4c061b55c7245c86f6b57594dd08cd91357b9f892d0132",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-11T06:37:00.913590+00:00",
-     "generation_id": "gen-1794379014-D7tLsW6BYeAA2Bx0Ldfs"
+     "assessed_at": "2026-11-12T14:09:59.068730+00:00",
+     "generation_id": "gen-1794492589-ixuS9P0LNQyaS7UdODfW"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -640,15 +645,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "d80429ed1f336a2bf492bf074f01240139a8b99749ed654d13e631bf5c88ccda",
+      "review_id": "5eff684ad6c883f88f4c061b55c7245c86f6b57594dd08cd91357b9f892d0132",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-11T06:37:00.913590+00:00",
-      "generation_id": "gen-1794379014-D7tLsW6BYeAA2Bx0Ldfs"
+      "assessed_at": "2026-11-12T14:09:59.068730+00:00",
+      "generation_id": "gen-1794492589-ixuS9P0LNQyaS7UdODfW"
      }
     }
    }
@@ -677,16 +682,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "d80429ed1f336a2bf492bf074f01240139a8b99749ed654d13e631bf5c88ccda",
+     "review_id": "5eff684ad6c883f88f4c061b55c7245c86f6b57594dd08cd91357b9f892d0132",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-11T06:37:00.913590+00:00",
-     "generation_id": "gen-1794379014-D7tLsW6BYeAA2Bx0Ldfs"
+     "assessed_at": "2026-11-12T14:09:59.068730+00:00",
+     "generation_id": "gen-1794492589-ixuS9P0LNQyaS7UdODfW"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -725,15 +730,125 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "d80429ed1f336a2bf492bf074f01240139a8b99749ed654d13e631bf5c88ccda",
+      "review_id": "5eff684ad6c883f88f4c061b55c7245c86f6b57594dd08cd91357b9f892d0132",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-11T06:37:00.913590+00:00",
-      "generation_id": "gen-1794379014-D7tLsW6BYeAA2Bx0Ldfs"
+      "assessed_at": "2026-11-12T14:09:59.068730+00:00",
+      "generation_id": "gen-1794492589-ixuS9P0LNQyaS7UdODfW"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s6",
+   "date": "2023-02-01",
+   "url": "https://www.govinfo.gov/content/pkg/CHRG-118hhrg51706/html/CHRG-118hhrg51706.htm",
+   "text": "It goes without saying that the United States' rivalry with China has taken on a digital nature. And China has been in a race with us in terms of technology for years, from artificial intelligence to military-specific technology.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Brandon Pugh",
+    "organization_id": "army",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "speaker_label": "Mr. Pugh.",
+    "speaker_identity_source_url": "https://www.govinfo.gov/content/pkg/CHRG-118hhrg51706/html/CHRG-118hhrg51706.htm",
+    "speaker_alias_verified_on": "2026-11-12"
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "china_race": 1
+    },
+    "b": {
+     "china_race": 1
+    },
+    "topics": [
+     "China/competition",
+     "national security"
+    ],
+    "confidence": {
+     "china_race": 4.0
+    },
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "5eff684ad6c883f88f4c061b55c7245c86f6b57594dd08cd91357b9f892d0132",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T14:09:59.068730+00:00",
+     "generation_id": "gen-1794492589-ixuS9P0LNQyaS7UdODfW"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:45:02.958158+00:00",
+      "generation_id": "gen-1794491099-j5O8zpco0aK0tEQNOLLi"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:47:22.049208+00:00",
+      "generation_id": "gen-1794491239-XuIQBRkhzUGBz13QMU99"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T13:50:09.105904+00:00",
+      "generation_id": "gen-1794491407-W97bISPLy8v7VAMIZMq7"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "5eff684ad6c883f88f4c061b55c7245c86f6b57594dd08cd91357b9f892d0132",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T14:09:59.068730+00:00",
+      "generation_id": "gen-1794492589-ixuS9P0LNQyaS7UdODfW"
      }
     }
    }
@@ -762,8 +877,8 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 1,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -775,8 +890,8 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 1,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -788,8 +903,8 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 1,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -801,8 +916,8 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 1,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -814,8 +929,8 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 1,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -827,8 +942,8 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 1,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -840,8 +955,8 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 1,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -853,8 +968,8 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 1,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -866,8 +981,8 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 1,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -879,8 +994,8 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 1,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -892,8 +1007,8 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 1,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -905,8 +1020,8 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 1,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -918,8 +1033,8 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 1,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -931,8 +1046,8 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 1,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -944,8 +1059,8 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 1,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -957,8 +1072,8 @@
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 1,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -967,10 +1082,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -980,10 +1095,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -993,10 +1108,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1006,10 +1121,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1019,10 +1134,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1032,10 +1147,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1045,10 +1160,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1058,10 +1173,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1071,10 +1186,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1084,10 +1199,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1097,10 +1212,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1110,10 +1225,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1123,10 +1238,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1136,10 +1251,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1149,10 +1264,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1162,10 +1277,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1175,10 +1290,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1188,10 +1303,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1201,10 +1316,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1214,10 +1329,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1227,10 +1342,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1240,10 +1355,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1253,10 +1368,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1266,10 +1381,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1279,10 +1394,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1292,10 +1407,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1305,10 +1420,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1318,10 +1433,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -1331,10 +1446,10 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
-   "n_statements": 2,
+   "n_statements": 3,
    "status": "complete",
    "kind": "reconstructed"
   },

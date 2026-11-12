@@ -151,6 +151,56 @@
     "review_required": true,
     "review_status": "human_review_required",
     "review_reason": "DeepSeek confidence 0.65 is below 0.8. Astra also reports confidence below the threshold; human review is required."
+   },
+   {
+    "sid": "s53",
+    "text": "There is no prize for second place in the global race for AI dominance",
+    "date": "2025-12-09",
+    "context": "\"There is no prize for second place in the global race for AI dominance,\" said Emil Michael, undersecretary of war for research and engineering.",
+    "url": "https://www.war.gov/serve-from-netstorage/News/News-Stories/Article/Article/4355797/hegseth-introduces-department-to-new-ai-tool/index.html",
+    "source_type": "official_statement",
+    "verified_via": "exact_normalized_page_text",
+    "attribution": {
+     "kind": "personal",
+     "speaker": "Emil Michael",
+     "organization_id": "war",
+     "basis": "local_span",
+     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+    },
+    "strategy": "confidence_cascade",
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "support",
+      "reason": "He explicitly endorses AI race framing by saying second place in the global AI dominance race is unacceptable.",
+      "facets": [
+       "competition_priority"
+      ],
+      "confidence": 0.7,
+      "confidence_reason": "The race framing is explicit, but the statement does not name China.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-12T14:02:14.821465+00:00",
+      "generation_id": "gen-1794492106-YwFPxMpwwpw2knecq6J9"
+     },
+     "astra": {
+      "stance": "not_relevant",
+      "reason": "He endorses winning a global AI race but does not identify China as a competitor.",
+      "facets": [],
+      "confidence": 0.95,
+      "confidence_reason": "Neither the statement nor its context connects the global race to China.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-12T14:03:02.237773+00:00",
+      "generation_id": "gen-1794492169-1QahEQToj61mn6h4EHwk"
+     }
+    },
+    "confidence": 0.95,
+    "final_judge": "astra",
+    "facets_final": [],
+    "facet_disagreement": true,
+    "model_disagreement": true,
+    "review_required": false,
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.7 is below 0.8."
    }
   ],
   "ai_action_plan_2025": [
@@ -1585,6 +1635,53 @@
    "origin": "federal_archive",
    "date_quote": "Dec. 9, 2025",
    "sid": "s52",
+   "added": "2026-11-12"
+  },
+  {
+   "text": "There is no prize for second place in the global race for AI dominance",
+   "date": "2025-12-09",
+   "context": "\"There is no prize for second place in the global race for AI dominance,\" said Emil Michael, undersecretary of war for research and engineering.",
+   "url": "https://www.war.gov/serve-from-netstorage/News/News-Stories/Article/Article/4355797/hegseth-introduces-department-to-new-ai-tool/index.html",
+   "source_type": "official_statement",
+   "verified": true,
+   "verified_via": "exact_normalized_page_text",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Emil Michael",
+    "organization_id": "war",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "retrieved_on": "2026-11-12",
+   "source_text_sha256": "03fbb7d5013cdde467891039faa7aa9dd9eb2145e0f1e8b8885b842989b89132",
+   "origin": "federal_archive",
+   "date_quote": "Dec. 9, 2025",
+   "sid": "s53",
+   "added": "2026-11-12"
+  },
+  {
+   "text": "The AI industry, the private sector, is investing hundreds of billions of dollars per year in that which dwarfs orders of magnitude, the amount we're spending in DOD. We should be leveraging that in some way.",
+   "date": "2025-03-27",
+   "context": "Mr. Michael. Certainly it is Senator. It's obvious to me, and I'll give you an example. The AI industry, the private sector, is investing hundreds of billions of dollars per year in that which dwarfs orders of magnitude, the amount we're spending in DOD. We should be leveraging that in some way.",
+   "url": "https://www.govinfo.gov/content/pkg/CHRG-119shrg63037/html/CHRG-119shrg63037.htm",
+   "source_type": "official_statement",
+   "verified": true,
+   "verified_via": "exact_normalized_page_text",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Emil Michael",
+    "organization_id": "war",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source.",
+    "speaker_label": "Mr. Michael.",
+    "speaker_identity_source_url": "https://www.govinfo.gov/content/pkg/CHRG-119shrg63037/html/CHRG-119shrg63037.htm",
+    "speaker_alias_verified_on": "2026-11-12"
+   },
+   "retrieved_on": "2026-11-12",
+   "source_text_sha256": "7ab1ed1d7ae8d8e1849ce0f8001e3446df3d6cede41837e2d3c7aa6604aa45bc",
+   "origin": "federal_archive",
+   "date_quote": "MARCH 27, 2025",
+   "sid": "s54",
    "added": "2026-11-12"
   }
  ]
