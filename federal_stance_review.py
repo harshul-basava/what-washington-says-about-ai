@@ -115,13 +115,14 @@ def manifest(root):
     a.write(path,saved);return saved
 
 
-def run(root,max_cost=20,workers=1,ids=None):
+def run(root,max_cost=20,workers=1,ids=None,*,x_allowance=None):
     import llm
     saved=manifest(root);config=a.configuration(root);subjects,evidence=a.inputs(root)
     selected=set(saved['target_ids']) if ids is None else set(ids)
     if not selected<=set(saved['target_ids']):raise ValueError('Profile is outside the original review cohort')
     subjects=[s for s in subjects if s['id'] in selected]
-    recovered = recover_contexts(root, saved, evidence, {s['id'] for s in subjects}, min(workers, 4))
+    options={'x_allowance':x_allowance} if x_allowance is not None else {}
+    recovered = recover_contexts(root, saved, evidence, {s['id'] for s in subjects}, min(workers, 4),**options)
     jobs=[]
     for s in subjects:
         pid=s['id'];previous=saved['profiles'].get(pid,{})
@@ -203,7 +204,7 @@ def share_source_contexts(root, statements, metadata):
     return shared
 
 
-def recover_contexts(root, saved, evidence, ids, workers):
+def recover_contexts(root, saved, evidence, ids, workers,*,x_allowance=None):
     """Recover source text before reuse; keep old review metadata until a new review succeeds."""
     contexts = {}
     missing = {}
@@ -233,8 +234,10 @@ def recover_contexts(root, saved, evidence, ids, workers):
     if not missing:
         return contexts
     if x_missing:
+        if x_allowance is not None and x_allowance()<=0:raise ValueError('No X context allowance')
         try:
-            fetch_x_context(root, recover=x_missing)
+            if x_allowance is None:fetch_x_context(root, recover=x_missing)
+            else:fetch_x_context(root,recover=x_missing,max_cost=min(.5,x_allowance()))
         except (ValueError, OSError):
             # A missing credential or ledger cannot turn old X text into verified context.
             for pid, sids in x_missing.items():
@@ -347,11 +350,11 @@ def verified_post_text(statement,post):
     return text
 
 
-def fetch_x_context(root,*,recover=None):
+def fetch_x_context(root,*,recover=None,max_cost=.5):
     import llm
     from scripts.federal_x_api import Client,POST_COST
     saved=a.read(root/PATH);_,evidence=a.inputs(root)
-    state={};client=Client(root,state,max_cost=0.5,daily=False)
+    state={};client=Client(root,state,max_cost=max_cost,daily=False)
     before=len(llm.LEDGER.read_text().splitlines());report=[]
     try:
         for pid,entry in saved['profiles'].items():

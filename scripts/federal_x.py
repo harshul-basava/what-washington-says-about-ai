@@ -156,10 +156,13 @@ def request_page(root, request):
     except subprocess.TimeoutExpired:return {'error':'timeout'}
     except Exception:return {'error':'request_failed'}
 
-def collect(root, mode='daily', since=None, dry=False, client=None, now=None, ids=None, page_limit=None, until=None):
+def collect(root, mode='daily', since=None, dry=False, client=None, now=None, ids=None, page_limit=None, until=None, max_cost=None):
     from federal import append_evidence
     root=Path(root);now=now or datetime.now(timezone.utc).date().isoformat()
     config,subjects=registry(root)
+    if max_cost is not None:
+        if type(max_cost) not in (int,float) or not math.isfinite(max_cost) or max_cost<0:raise ValueError('Invalid X campaign allowance')
+        config={**config,'api_max_cost':min(config.get('api_max_cost',2),max_cost)}
     provider=configured_provider(config)
     if mode not in ('daily','historical'):raise ValueError('Unknown X collection mode')
     end=(date.fromisoformat(now)+timedelta(days=1)).isoformat()

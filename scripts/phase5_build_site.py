@@ -69,7 +69,7 @@ def committee_roles():
     return out
 
 
-def main():
+def main(*,record_federal=False):
     roster = json.loads((ROOT / "data/roster.json").read_text())
     scores = json.loads((ROOT / "data/scores.json").read_text())
     legis = {m["id"]["bioguide"]: m for m in json.loads((ROOT / "data/ref/legislators-current.json").read_text())}
@@ -174,9 +174,12 @@ def main():
     print("policies", len(policies["policies"]))
     if (ROOT / 'config/federal_analysis.json').exists():
         import federal_analysis
-        federal = federal_analysis.build(ROOT)
+        federal = federal_analysis.build(ROOT,record=record_federal)
         print('federal analysis profiles', len(federal['members']))
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--record-federal-history',action='store_true')
+    main(record_federal=parser.parse_args().record_federal_history)

@@ -90,7 +90,7 @@ def command(root, script, *args, capture=False):
     return result.returncode
 
 
-def review_cohort(root, cohort, ids, allowance, workers, refresh_ids, *, allow_x_context=True, build_output=True):
+def review_cohort(root, cohort, ids, allowance, workers, refresh_ids, *, allow_x_context=True, build_output=True, x_allowance=None, reuse_existing=False):
     import federal_analysis as analysis
     import federal_stance_review as review
     import llm
@@ -118,6 +118,14 @@ def review_cohort(root, cohort, ids, allowance, workers, refresh_ids, *, allow_x
     audit['target_ids'] = target_ids
     for pid in target_ids:
         audit['original_scores'].setdefault(pid, scores[pid])
+    if reuse_existing:
+        for other in sorted((root/'data').glob('federal_roster_expansion_review_*.json')):
+            if other==path:continue
+            for pid,entry in read(other).get('profiles',{}).items():
+                if pid not in target_ids or entry.get('error') or not entry.get('result') or entry['result'].get('context_requests'):continue
+                if entry.get('evidence_hash')!=analysis.digest(evidence[pid]):continue
+                if entry.get('assessed_at','')>audit['profiles'].get(pid,{}).get('assessed_at',''):
+                    audit['profiles'][pid]=entry
     write(path, audit)
     review.PATH = str(path.relative_to(root))
     for _ in range(3):
@@ -125,8 +133,9 @@ def review_cohort(root, cohort, ids, allowance, workers, refresh_ids, *, allow_x
         if remaining <= 0:
             return {'status': 'pending', 'reason': 'model_allowance_exhausted'}
         # The review API measures its allowance from the saved audit baseline.
+        options={'x_allowance':x_allowance} if x_allowance is not None else {}
         review.run(root, llm.spent('openrouter') - audit['budget_baseline'] + remaining,
-                   workers=workers, ids=target_ids)
+                   workers=workers, ids=target_ids,**options)
         audit = read(path)
         if any(not audit['profiles'].get(pid, {}).get('result') or audit['profiles'][pid].get('error') for pid in target_ids):
             return {'status': 'pending', 'reason': 'review_response_incomplete'}
@@ -139,7 +148,10 @@ def review_cohort(root, cohort, ids, allowance, workers, refresh_ids, *, allow_x
         if any(next(s for s in evidence[pid] if s['sid'] == row['sid']).get('source_type') == 'x' for pid, row in requests):
             if not allow_x_context:
                 return {'status': 'pending', 'reason': 'X_context_needs_separate_allowance'}
-            review.fetch_x_context(root)
+            if x_allowance is not None and x_allowance()<=0:
+                return {'status':'pending','reason':'X_context_allowance_exhausted'}
+            if x_allowance is None:review.fetch_x_context(root)
+            else:review.fetch_x_context(root,max_cost=min(.5,x_allowance()))
             review.fetch_contexts(root, workers=min(workers, 4))
         merge_contexts(root, audit)
         write(path, audit)

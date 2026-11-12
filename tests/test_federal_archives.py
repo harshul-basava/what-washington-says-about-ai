@@ -134,7 +134,7 @@ class ArchiveTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             quote='Alice Example said artificial intelligence will improve public services across the country.'
             class Client:
-                def extract(self,*args,**kw):return [{'subject_id':'p','quote':quote,'attribution_quote':quote,'kind':'personal','date':None,'date_quote':None}]
+                def extract(self,*args,**kw):raise AssertionError('Do not pay for a speaker that cannot pass the existing verifier')
             subject={'id':'p','name':'Alice Example','aliases':[],'entity_type':'person','organization_id':'test','roles':[]}
             page={'url':'https://www.govinfo.gov/content/pkg/CHRG-1/html/CHRG-1.htm','text':quote,'verified_via':'exact_normalized_page_text'}
             result=archive.process_document(Path(d),page,[subject],{},Client())

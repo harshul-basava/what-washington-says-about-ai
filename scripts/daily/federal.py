@@ -325,7 +325,8 @@ def collect(root, config, since=None, dry=False):
             archive_client = sources.Client(root, min(archive_settings['max_cost'], config['collection_max_cost']))
             report['archives'] = federal_archives.collect(
                 root, read(root / 'config/federal_archives.json', {}), archive_client,
-                max_documents=archive_settings['max_documents'], max_chunks=archive_settings['max_chunks'])
+                max_documents=archive_settings['max_documents'], max_chunks=archive_settings['max_chunks'],
+                fetch_workers=archive_settings.get('fetch_workers',4),extraction_workers=archive_settings.get('extraction_workers',2))
             for pid, sids in report['archives']['added'].items():
                 report['added'].setdefault(pid, []).extend(sids)
             report['errors'].extend({**error, 'collector': 'archives'} for error in report['archives']['errors'])

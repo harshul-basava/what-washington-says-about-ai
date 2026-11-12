@@ -54,6 +54,18 @@ jobs:
         if: steps.keys.outputs.skip != 'true'
         run: uv sync --no-dev --frozen
 
+      - name: Restore earlier archive snapshots
+        uses: actions/cache/restore@v4
+        if: steps.keys.outputs.skip != 'true'
+        with:
+          path: |
+            data/raw/federal_archives
+            data/raw/federal_stance_context
+          key: federal-legacy-daily-${{ github.run_id }}
+          restore-keys: |
+            federal-archive-daily-v1-
+            federal-archives-v1-
+
       - uses: actions/cache/restore@v4
         id: archives
         if: steps.keys.outputs.skip != 'true'
@@ -61,10 +73,12 @@ jobs:
           path: |
             data/raw/federal_archives
             data/raw/federal_stance_context
-          key: federal-archive-daily-v1-${{ github.run_id }}-${{ github.run_attempt }}
+            data/raw/federal_search
+            data/raw/federal_x_api
+          key: federal-daily-v2-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
-            federal-archive-daily-v1-
-            federal-archives-v1-
+            federal-daily-v2-
+            federal-collection-v2-
 
       - name: Refresh reference files (legislators, committees)
         if: steps.keys.outputs.skip != 'true' && env.IN_SOURCES != 'federal'
@@ -98,6 +112,8 @@ jobs:
           path: |
             data/raw/federal_archives
             data/raw/federal_stance_context
+            data/raw/federal_search
+            data/raw/federal_x_api
           key: ${{ steps.archives.outputs.cache-primary-key }}
 
       - name: Report federal update status

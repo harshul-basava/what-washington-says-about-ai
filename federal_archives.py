@@ -144,6 +144,12 @@ def process_document(root, page, subjects, state, client, max_chunks=30, *, take
     text=sources.normalize(page['text']);signature=extraction_signature(text,subjects,page['url'],page.get('title',''),page.get('structured_author'))
     if state.get('signature')!=signature:state.clear();state.update(signature=signature,chunks={})
     report={'status':'complete','model_requests':0,'rejected':0,'extraction_errors':0,'added':{},'chunks_checked':0,'duplicate_excerpts':0}
+    if subjects and '/CHRG-' in page['url']:
+        subjects=[s for s in subjects if any(page['url'] in alias.get('source_urls',[]) for alias in s.get('source_speaker_aliases',[]))]
+        if not subjects:
+            state.update(status='needs_review',reason='reviewed_speaker_mapping_required',source_text_sha256=sources.digest(text),selector_version=SELECTOR_VERSION)
+            report.update(status='needs_review',reason='reviewed_speaker_mapping_required')
+            return report
     chunks=state['chunks'];all_done=True
     for index,start in enumerate(range(0,len(text),22000)):
         key=str(index);chunk={**page,'text':text[start:start+26000],'document_header':text[:6000]}
@@ -250,7 +256,7 @@ def fair_documents(documents):
     return result
 
 
-def collect(root, config, client, *, ids=None, max_documents=30, max_chunks=60, discover_sources=True, fetch_workers=1, extraction_workers=1):
+def collect(root, config, client, *, ids=None, max_documents=30, max_chunks=60, discover_sources=True, fetch_workers=1, extraction_workers=1, urls=None):
     if type(fetch_workers) is not int or not 1<=fetch_workers<=8:raise ValueError('fetch_workers must be 1–8')
     if type(extraction_workers) is not int or not 1<=extraction_workers<=4:raise ValueError('extraction_workers must be 1–4')
     root=Path(root);all_subjects=[s for s in policy_subjects.load_subjects(root) if s['branch']=='executive' and s['entity_type']=='person']
@@ -261,7 +267,8 @@ def collect(root, config, client, *, ids=None, max_documents=30, max_chunks=60, 
     if discover_sources:report['errors'].extend(discover(root,config,subjects,state,now=now))
     federal.write(root/STATE,state)
     report.update(document_outcomes=[],groups={})
-    ordered=fair_documents(state['documents'].values());queue=[]
+    wanted_urls=None if urls is None else set(urls)
+    ordered=fair_documents(d for u,d in state['documents'].items() if wanted_urls is None or u in wanted_urls);queue=[]
     # Resolve unchanged caches before submitting work; no model request is needed.
     for original in ordered:
         doc=copy.deepcopy(original);url=doc['url'];cache=root/RAW/'pages'/f'{sources.digest(url)}.json';processed=doc.setdefault('processed',{})
