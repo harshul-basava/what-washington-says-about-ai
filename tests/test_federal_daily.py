@@ -26,6 +26,24 @@ CONFIG = {'version': 1, 'bootstrap_days': 14, 'overlap_days': 3, 'pages_per_grou
 
 
 class FederalTests(unittest.TestCase):
+    def test_search_retrieval_is_a_lead_not_a_verified_source_snapshot(self):
+        page={**PAGE,'verified_via':'exact_normalized_search_retrieval'}
+        self.assertEqual(federal.validate_rows(page,[ROW],[PERSON],'2026-11-08'),([],1))
+
+    def test_documented_speaker_conflict_blocks_only_the_reviewed_source(self):
+        subject={**PERSON,'source_attribution_exclusions':[{'url':PAGE['url'],'reason':'Conflicting speaker labels','reviewed_on':'2026-11-12'}]}
+        self.assertEqual(federal.validate_rows(PAGE,[ROW],[subject],'2026-11-08'),([],1))
+        other={**PAGE,'url':'https://commerce.gov/news/other'}
+        self.assertEqual(federal.validate_rows(other,[ROW],[subject],'2026-11-08')[1],0)
+
+    def test_personal_quote_cannot_use_narration_as_its_own_attribution(self):
+        narration = 'Commerce Secretary Official A supports American leadership in artificial intelligence.'
+        page = {**PAGE, 'text': 'November 8, 2026. ' + narration}
+        row = {**ROW, 'quote': narration, 'attribution_quote': narration}
+        self.assertEqual(federal.validate_rows(page, [row], [PERSON], '2026-11-08'), ([], 1))
+        # A surrounding speaker attribution still supports the actual direct words.
+        self.assertEqual(federal.validate_rows(PAGE, [ROW], [PERSON], '2026-11-08')[1], 0)
+
     def test_same_source_quote_cannot_reenter_with_a_different_date(self):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);self.fixture(root)

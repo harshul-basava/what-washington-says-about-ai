@@ -131,3 +131,27 @@ Joshua Rudd's January 29, 2026 nomination hearing uses the label `Lt. General Ru
 The institutional profiles supplied 188 official URLs outside the archive inventory. Free source checks found 59 candidate pages, 101 pages without both a current official's name and AI content, and 28 retrieval gaps. These are leads for new personal attribution, not transferred institutional opinions. The archive's new `include_institution_sources` option also feeds these shared leads into daily collection. Every accepted personal statement still needs the existing source checks.
 
 The collector now starts the next queued document when a worker finishes. Previously, each fixed group waited for its slowest document. The worker ceiling, extraction semaphore, shared budget manager, chunk limit and evidence lock remain unchanged. Budget or provider errors stop new submissions while existing work saves its results.
+
+## Source attribution audit and corrections
+
+Run 43242025047 completed collection and reviews and saved `d79afd18`. Its mechanical source replay counted 772 additions from 268 sources. A fresh manual check then found that a White House fact sheet narrated the President's actions instead of quoting his own words. The assistant expanded the audit to 35 new local-attribution records and obtained an independent source review.
+
+The audit withdrew 21 original records and appended one clean replacement quotation. Eighteen records failed personal attribution: eight White House narratives, six FTC transcript turns with conflicting speaker labels, one answer assigned to the questioner in meeting minutes, one archive heading, one meeting readout, and one biography. Two more lacked sufficient author or full-source proof. One quotation included the reporter's attribution between the speaker's sentences; its replacement retains only a contiguous direct quotation. The other 14 audited records passed the context checks.
+
+The records retain their original text, dates, source URLs, attribution and hashes. Withdrawn records now have `verified: false` and a documented reason. The correction audit lives in `data/federal_collection_attribution_corrections.json`. The fresh-source sample records its failed context check in `data/federal_collection_followup_spotcheck.json`. Exact text matches alone do not prove that the named official spoke the words. These targeted assistant checks do not establish a population accuracy rate.
+
+The corrected campaign has 752 active additions from 260 sources. All pass the stricter offline source replay. Cumulative model cost remains $49.589249, with $50.410751 left. Separate X cost remains $0.445. The next run refreshes every corrected profile, including profiles whose last new statement was withdrawn.
+
+The verifier now requires a directly retrieved source snapshot. Search text remains a lead and cannot become verified evidence. The archive collector avoids paid extraction for these unsupported snapshots. Personal local attribution also requires context beyond the quotation itself. Reviewed transcript turns and explicit document authors retain their separate identity checks. The conflicting FTC transcript has a source-specific exclusion for automatic personal attribution to Chris Mufarrige.
+
+When a profile loses its last verified statement, the review runner preserves its previous Astra review in `retired_reviews` and removes it from the active review targets. It refreshes the empty profile without paying for an impossible summary with source citations. A lack of evidence does not become a neutral stance.
+
+## Further sources and focused searches within the same allowance
+
+Free checks covered 1,918 presidential archive documents from 2025 and 2026. Of these, 285 contain AI terms and the current President's administration heading. Conservative title and speaker checks selected 66 source leads. Independent review removed seven additional documents with other speakers. The existing quote, date and author checks still decide which excerpts qualify.
+
+Free checks also covered 39 indexes and 97 documents in the military research and engineering archive. Eight documents contain both AI terms and a current official's name in the article body. Two news indexes now feed daily discovery. The combined archive extension adds 72 URLs outside the existing inventory.
+
+The remaining search plan adds 33 queries for 63 low-evidence officials missing from the original query plan. It also adds 230 distinct, focused queries for 210 officials with one to fourteen verified excerpts. These queries cover AI safety and oversight, then deployment, public services, jobs, China and export controls. Completed queries and source extractions retain their caches. The selection details appear in `data/federal_collection_final_extension.json`.
+
+The work bounds now allow 4,200 archive document checks and 413 saved queries. The original financial baselines and limits remain unchanged: $100 total model cost, $20 for collection within that total, at least $20 reserved before further collection, and the separate $5 X ceiling. The runner checks available provider credit again before execution.

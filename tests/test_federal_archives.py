@@ -9,6 +9,18 @@ from unittest.mock import patch
 import federal_archives as archive
 
 class ArchiveTests(unittest.TestCase):
+    def test_search_only_snapshot_needs_source_proof_without_paid_extraction(self):
+        with tempfile.TemporaryDirectory() as d:
+            page={'url':'https://example.gov/speech','text':'Alice Example discusses artificial intelligence policy and its impact.',
+                  'verified_via':'exact_normalized_search_retrieval'}
+            subject={'id':'p','name':'Alice Example','aliases':[],'entity_type':'person','roles':[]}
+            class Client:
+                def extract(self,*args,**kwargs):raise AssertionError('Search text cannot verify the source')
+            state={};result=archive.process_document(Path(d),page,[subject],state,Client())
+            self.assertEqual(result['model_requests'],0)
+            self.assertEqual(result['added'],{})
+            self.assertEqual(state['reason'],'full_source_snapshot_required')
+
     def test_verified_institution_documents_are_shared_leads_without_person_attribution(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)
@@ -83,7 +95,7 @@ class ArchiveTests(unittest.TestCase):
         docs={f'https://example.gov/{i}':{'url':f'https://example.gov/{i}'} for i in range(2)}
         class Client:
             def extract(self,page,*args,**kwargs):
-                return [{'subject_id':'p','quote':page['text'],'attribution_quote':page['text'],'kind':'personal','date':None,'date_quote':None}]
+                return [{'subject_id':'p','quote':page['text'].split(': ',1)[1],'attribution_quote':page['text'],'kind':'personal','date':None,'date_quote':None}]
         outputs=[]
         for workers in (1,2):
             with tempfile.TemporaryDirectory() as d:
@@ -193,7 +205,7 @@ class ArchiveTests(unittest.TestCase):
                         counter['active']+=1;counter['calls']+=1;counter['peak']=max(counter['peak'],counter['active'])
                     barrier.wait(timeout=3)
                     with lock:counter['active']-=1
-                    return [{'subject_id':'p','quote':page['text'],'attribution_quote':page['text'],'kind':'personal','date':None,'date_quote':None}]
+                    return [{'subject_id':'p','quote':page['text'].split(': ',1)[1],'attribution_quote':page['text'],'kind':'personal','date':None,'date_quote':None}]
             def page(url,data,title):
                 i=url.rsplit('/',1)[-1]
                 return {'url':url,'text':f'Alice Example: artificial intelligence improves service {i} through distinct new capabilities for society.', 'verified_via':'exact_normalized_page_text'}
@@ -295,11 +307,12 @@ class ArchiveTests(unittest.TestCase):
     def test_exact_verified_excerpt_is_added_once_and_partial_overlap_is_skipped(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);(root/'evidence').mkdir();(root/'evidence/p.json').write_text(json.dumps({'id':'p','statements':[]}))
-            quote='Alice Example said artificial intelligence will improve public services across the country.'
+            quote='Artificial intelligence will improve public services across the whole country.'
+            context=f'Alice Example said, “{quote}”'
             class Client:
-                def extract(self,*args,**kw):return [{'subject_id':'p','quote':quote,'attribution_quote':quote,'kind':'personal','date':None,'date_quote':None}]
+                def extract(self,*args,**kw):return [{'subject_id':'p','quote':quote,'attribution_quote':context,'kind':'personal','date':None,'date_quote':None}]
             subject={'id':'p','name':'Alice Example','aliases':[],'entity_type':'person','organization_id':'test','roles':[]}
-            page={'url':'https://example.gov/a','text':quote,'verified_via':'exact_normalized_page_text'}
+            page={'url':'https://example.gov/a','text':context,'verified_via':'exact_normalized_page_text'}
             first=archive.process_document(root,page,[subject],{},Client())
             self.assertEqual(first['added'],{'p':['s1']})
             second=archive.process_document(root,{**page,'url':'https://example.gov/mirror'},[subject],{},Client())

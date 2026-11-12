@@ -6,6 +6,25 @@ from scripts import federal_collection_campaign as campaign
 
 
 class CampaignTests(unittest.TestCase):
+    def test_recovered_additions_exclude_unverified_or_withdrawn_records(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d)
+            campaign.write(root/'evidence/p.json',{'statements':[
+                {'sid':'s1','verified':True}, {'sid':'s2','verified':False},
+                {'sid':'s3'}, {'sid':'s4','verified':True}]})
+            audit={'ids':['p'],'initial_sids':{'p':['s1']}}
+            self.assertEqual(campaign.recover_additions(root,audit),{'p':['s4']})
+
+    def test_profile_review_survives_withdrawal_of_its_last_addition(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d)
+            campaign.write(root/'evidence/p.json',{'statements':[{'sid':'s1','verified':False}]})
+            audit={'ids':['p'],'initial_sids':{'p':[]},'correction_profile_ids':['p']}
+            self.assertEqual(campaign.recover_additions(root,audit),{})
+            self.assertEqual(campaign.changed_profiles(root,audit),['p'])
+            with self.assertRaises(ValueError):
+                campaign.changed_profiles(root,{**audit,'correction_profile_ids':['outside']})
+
     def test_all_official_x_scope_retries_remaining_history_with_original_allowance(self):
         import llm
         from scripts import federal_x
@@ -49,7 +68,7 @@ class CampaignTests(unittest.TestCase):
 
     def test_recovered_additions_exclude_documented_duplicates(self):
         with tempfile.TemporaryDirectory() as d:
-            root=Path(d);old={'sid':'s1','url':'https://example.gov/speech','text':'A verified quotation about artificial intelligence.'}
+            root=Path(d);old={'sid':'s1','url':'https://example.gov/speech','text':'A verified quotation about artificial intelligence.','verified':True}
             campaign.write(root/'evidence/p.json',{'statements':[old,{**old,'sid':'s2','duplicate_of':'s1'},{**old,'sid':'s3','text':'A separate verified quotation about artificial intelligence.'}]})
             audit={'ids':['p'],'initial_sids':{'p':['s1']}}
             self.assertEqual(campaign.recover_additions(root,audit),{'p':['s3']})
@@ -141,9 +160,10 @@ class CampaignTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)
             audit={'initial_sids':{'p':['s1']},'ids':['p']}
-            page={'url':'https://agency.gov/a','text':'Alice says artificial intelligence needs careful oversight across the economy.','verified_via':'exact_normalized_page_text'}
+            quote='Artificial intelligence needs careful oversight across the whole economy.'
+            page={'url':'https://agency.gov/a','text':f'Alice said, “{quote}”','verified_via':'exact_normalized_page_text'}
             subject={'id':'p','name':'Alice','aliases':[],'entity_type':'person','organization_id':'agency','roles':[]}
-            row={'sid':'s2','url':page['url'],'text':page['text'],'context':page['text'],'source_text_sha256':campaign.archive.sources.digest(page['text']),'origin':'federal_archive','verified':True,
+            row={'sid':'s2','url':page['url'],'text':quote,'context':page['text'],'source_text_sha256':campaign.archive.sources.digest(page['text']),'origin':'federal_archive','verified':True,
                  'attribution':{'speaker':'Alice','kind':'personal','organization_id':'agency','basis':'local_span'},'date':None,'date_quote':None}
             campaign.write(root/'evidence/p.json',{'statements':[{'sid':'s1'},row]})
             self.assertEqual(campaign.recover_additions(root,audit),{'p':['s2']})

@@ -105,7 +105,23 @@ def review_cohort(root, cohort, ids, allowance, workers, refresh_ids, *, allow_x
     target_ids = list(dict.fromkeys(audit.get('target_ids', []) + target_ids))
     if not set(target_ids) <= set(ids):
         raise ValueError('Saved review targets left the selected current cohort')
+    withdrawn = [pid for pid in target_ids if not evidence[pid]]
+    if withdrawn:
+        # A review cannot cite evidence after its last verified source is removed.
+        # Retain the previous review as audit history, without inventing an Astra
+        # conclusion or paying for an impossible cited summary of an empty set.
+        for pid in withdrawn:
+            audit.setdefault('retired_reviews', []).append({
+                'subject_id': pid, 'reason': 'no_verified_evidence',
+                'retired_at': datetime.now(timezone.utc).isoformat(),
+                'evidence_hash': analysis.digest(evidence[pid]),
+                'previous_review': audit.get('profiles', {}).pop(pid, None)})
+        target_ids = [pid for pid in target_ids if pid not in withdrawn]
+        audit['target_ids'] = target_ids
+        write(path, audit)
     if not target_ids:
+        if withdrawn and build_output:
+            analysis.build(root, record=True)
         return {'status': 'complete', 'reviewed_profiles': 0}
     index = analysis.build(root) if build_output else read(root/'site/data/federal_analysis.json')
     if not index:index=analysis.build(root)

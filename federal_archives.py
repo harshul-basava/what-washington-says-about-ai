@@ -203,6 +203,11 @@ def process_document(root, page, subjects, state, client, max_chunks=30, *, take
     text=sources.normalize(page['text']);signature=extraction_signature(text,subjects,page['url'],page.get('title',''),page.get('structured_author'),model,page.get('transcript_lines'))
     if state.get('signature')!=signature:state.clear();state.update(signature=signature,chunks={},model=model)
     report={'status':'complete','model_requests':0,'rejected':0,'extraction_errors':0,'added':{},'chunks_checked':0,'duplicate_excerpts':0}
+    if page.get('verified_via') == 'exact_normalized_search_retrieval':
+        state.update(status='needs_review',reason='full_source_snapshot_required',
+                     source_text_sha256=sources.digest(text),selector_version=SELECTOR_VERSION)
+        report.update(status='needs_review',reason='full_source_snapshot_required')
+        return report
     if subjects and '/CHRG-' in page['url']:
         subjects=[s for s in subjects if any(page['url'] in alias.get('source_urls',[]) for alias in s.get('source_speaker_aliases',[]))]
         if not subjects:

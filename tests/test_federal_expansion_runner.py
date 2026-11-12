@@ -12,6 +12,43 @@ SCRIPT = Path(__file__).resolve().parents[1] / 'scripts/federal_expansion_runner
 
 
 class ExpansionRunnerTests(unittest.TestCase):
+    def test_last_evidence_withdrawal_retires_prior_review_without_paid_calls(self):
+        import federal_analysis as analysis
+        import federal_stance_review as review
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);path=root/'data/federal_roster_expansion_review_test.json'
+            prior={'evidence_hash':'old','result':{'findings':[{'sid':'s1'}],'context_requests':[]}}
+            self.module.write(path,{'target_ids':['p'],'profiles':{'p':prior},'original_scores':{'p':{}},'budget_baseline':0})
+            with patch.object(analysis,'inputs',return_value=([{'id':'p'}],{'p':[]})), \
+                 patch.object(analysis,'build',return_value={'revision':'test','members':[{'id':'p','scores':{}}]}) as build, \
+                 patch.object(review,'run') as run, patch.object(review,'apply',return_value={'reviewed_profiles':1}) as apply:
+                result=self.module.review_cohort(root,'test',['p'],lambda:5,2,{'p'})
+            run.assert_not_called();apply.assert_not_called();build.assert_called_once()
+            self.assertEqual(result['status'],'complete')
+            self.assertEqual(result['reviewed_profiles'],0)
+            saved=self.module.read(path)
+            self.assertEqual(saved['target_ids'],[])
+            self.assertNotIn('p',saved['profiles'])
+            self.assertEqual(saved['retired_reviews'][0]['previous_review'],prior)
+            self.assertEqual(saved['retired_reviews'][0]['reason'],'no_verified_evidence')
+
+    def test_withdrawn_profile_does_not_skip_other_profiles_needing_review(self):
+        import federal_analysis as analysis
+        import federal_stance_review as review
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);path=root/'data/federal_roster_expansion_review_test.json'
+            prior={'result':{'context_requests':[]}}
+            self.module.write(path,{'target_ids':['p','q'],'profiles':{'p':prior,'q':prior},
+                                    'original_scores':{'p':{},'q':{}},'budget_baseline':0})
+            with patch.object(analysis,'inputs',return_value=([{'id':'p'},{'id':'q'}],{'p':[],'q':[{'sid':'s1'}]})), \
+                 patch.object(analysis,'build',return_value={'revision':'test','members':[{'id':'q','scores':{}}]}), \
+                 patch.object(review,'PATH',review.PATH), patch.object(review,'run') as run, \
+                 patch.object(review,'apply',return_value={'reviewed_profiles':1}):
+                result=self.module.review_cohort(root,'test',['p','q'],lambda:5,2,{'p','q'})
+            self.assertEqual(run.call_args.kwargs['ids'],['q'])
+            self.assertEqual(result['reviewed_profiles'],1)
+            self.assertEqual(self.module.read(path)['target_ids'],['q'])
+
     def test_completed_review_status_uses_the_filtered_evidence_hash(self):
         import federal_analysis as analysis
         import llm

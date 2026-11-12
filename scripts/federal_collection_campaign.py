@@ -41,9 +41,17 @@ def recover_additions(root,audit):
     result={}
     for pid in audit['ids']:
         rows=read(Path(root)/'evidence'/f'{pid}.json').get('statements',[])
-        sids=[s['sid'] for s in policy_subjects.active_evidence(rows) if s['sid'] not in audit['initial_sids'][pid]]
+        sids=[s['sid'] for s in policy_subjects.active_evidence(rows)
+              if s.get('verified') is True and s['sid'] not in audit['initial_sids'][pid]]
         if sids:result[pid]=sids
     return result
+
+
+def changed_profiles(root,audit):
+    corrected=set(audit.get('correction_profile_ids',[]))
+    if not corrected<=set(audit['ids']):
+        raise ValueError('Evidence correction is outside the campaign roster')
+    return sorted(set(recover_additions(root,audit))|corrected)
 
 
 def verify_sources(root,audit):
@@ -259,7 +267,7 @@ def run(root,phase):
             part['x_finished']=part.get('x',part['x_plan']).get('pending_windows',0)==0;save()
         # Only the new or changed evidence enters ordinary judgment jobs. Existing
         # regulation/summary caches invalidate when their complete profile changes.
-        changed=sorted(recover_additions(root,audit))
+        changed=changed_profiles(root,audit)
         if phase=='trial' and not changed:raise ValueError('Trial has no new verified evidence; inspect sources before expansion')
         if changed:
             part['analysis']=models.run(root,max_cost=available(),workers=4,review_workers=2,ids=changed,build_output=False)

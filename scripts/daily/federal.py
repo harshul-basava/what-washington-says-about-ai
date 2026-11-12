@@ -195,12 +195,17 @@ def transcript_speaker_context(page, quote, subject, day):
 
 def validate_rows(page, rows, subjects, now):
     """Verify quote presence and a local attribution span, without inferring speaker opinions."""
+    if page.get('verified_via') != 'exact_normalized_page_text':
+        return [], len(rows)
     by_id = {s['id']: s for s in subjects}
     text = sources.normalize(page['text'])
     accepted, rejected = [], 0
     for row in rows:
         try:
             subject = by_id[row['subject_id']]
+            if any(sources.canonical_url(excluded['url']) == sources.canonical_url(page['url'])
+                   for excluded in subject.get('source_attribution_exclusions', [])):
+                raise ValueError('Source has a reviewed speaker attribution conflict')
             quote = sources.normalize(row['quote'])
             context = sources.normalize(row['attribution_quote'])
             if not 8 <= len(quote.split()) <= 150 or len(context) > 3500:
@@ -218,6 +223,13 @@ def validate_rows(page, rows, subjects, now):
                   and (sources.urlsplit(page['url']).hostname or '').endswith(('.gov', '.mil'))
                   and context in text[:6000] and explicit_document_author(context, subject)):
                 basis = 'document_author'
+            # A person's name inside third-person narration is not speaker proof.
+            # Local attribution must supply context beyond the quoted words.
+            # Reviewed transcript turns and explicit document authors have their
+            # own identity checks and do not need this surrounding prose.
+            if (subject['entity_type'] == 'person' and basis == 'local_span'
+                    and not transcript and context == quote):
+                raise ValueError('Personal quotation requires separate speaker context')
             author = (basis == 'document_author' and subject['entity_type'] == 'person'
                       and (sources.urlsplit(page['url']).hostname or '').endswith(('.gov', '.mil'))
                       and context in text[:6000]
