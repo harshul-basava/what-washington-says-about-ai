@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "built_on": "2026-11-12",
- "revision": "70b21253da20d802d8536dfa12860f662151e684dbf8460eecd2a49a7f358248",
+ "revision": "63c0b5db750be2e68188d34c714cd109355311b71e16741d020c93d2f65daac8",
  "dimensions": [
   {
    "id": "ai_overall",
@@ -165,8 +165,8 @@
  },
  "coverage": {
   "profiles": 535,
-  "statements": 4827,
-  "labeled_statements": 4827,
+  "statements": 5008,
+  "labeled_statements": 5008,
   "pending_labels": 0,
   "pending_regulation": 0,
   "pending_summaries": 0,
@@ -14221,12 +14221,12 @@
   "summary": {
    "people": 500,
    "institutions": 35,
-   "statements": 4827,
-   "unique_source_pages": 3685,
+   "statements": 5008,
+   "unique_source_pages": 3699,
    "official_source_pages_checked": 743,
    "people_median_statements": 1.0,
    "people_without_evidence": 239,
-   "people_with_12_statements": 55,
+   "people_with_12_statements": 57,
    "people_searched": 500,
    "people_completed": 500,
    "congress_people": 649,
@@ -46231,29 +46231,36 @@
      }
     }
    },
-   "n_statements": 5,
-   "n_labeled": 5,
+   "n_statements": 32,
+   "n_labeled": 32,
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "score_details": {
     "ai_overall": {
-     "score": null,
-     "reason_a": "no_statements",
-     "reason_b": "no_statements",
-     "sids": [],
-     "label_count": 0
+     "score": 3.0,
+     "reason_a": "median_of_2",
+     "reason_b": "median_of_3",
+     "sids": [
+      "s13",
+      "s12",
+      "s6"
+     ],
+     "label_count": 3
     },
     "agi_pilled": {
-     "score": null,
-     "reason_a": "silent",
+     "score": 1.0,
+     "reason_a": "consistent",
      "reason_b": "silent",
-     "sids": [],
-     "label_count": 0
+     "sids": [
+      "s13",
+      "s11"
+     ],
+     "label_count": 2
     },
     "x_risk": {
      "score": null,
@@ -46270,54 +46277,78 @@
      "label_count": 0
     },
     "regulation": {
-     "score": null,
-     "reason_a": "no_statements",
-     "reason_b": "no_statements",
-     "sids": [],
-     "label_count": 0
+     "score": 1.0,
+     "reason_a": "consistent",
+     "reason_b": "consistent",
+     "sids": [
+      "s13",
+      "s8",
+      "s7",
+      "s6"
+     ],
+     "label_count": 4
     }
    },
    "summary": {
     "status": "complete",
-    "text": "In October 2025 remarks, Christopher J. Waller framed AI’s labor effects as a question of whether it replaces people or makes them more productive, and said policymakers must separate hype from data to understand AI’s implications for growth, productivity, and the economy. He also stated that if AI constitutes a structural shift in labor demand, monetary policy will not be an effective tool. In September 2026, he discussed whether agentic commerce will use platform-specific or interoperable standards, saying interoperable standards could help level the playing field for smaller merchants and payment providers. He called for a proactive approach that balances innovation with safety, integrity, and stability in payments.",
+    "text": "In an October 15, 2025 speech, Waller said policymakers should separate AI hype from data and manage risks without slowing innovation, and he expressed hope that AI would deliver productivity gains. On October 16, 2025, he said monetary policy would not be an effective tool if AI caused a structural shift in labor demand. In a February 24, 2026 speech, Waller described Fed AI adoption as System-wide and business-led, with a common internal platform, guardrails, human accountability, and AI use incorporated into employee performance goals. In September and October 2026 remarks, he discussed AI's potential to improve payments fraud detection, cross-border payments, and data access while also warning about hallucinations, bias, and cybersecurity risks.",
     "sids": [
-     "s1",
      "s2",
+     "s6",
+     "s12",
      "s3",
-     "s4",
-     "s5"
+     "s14",
+     "s16",
+     "s17",
+     "s18",
+     "s23",
+     "s27",
+     "s29",
+     "s30",
+     "s25"
     ],
     "sentences": [
      {
-      "text": "In October 2025 remarks, Christopher J. Waller framed AI’s labor effects as a question of whether it replaces people or makes them more productive, and said policymakers must separate hype from data to understand AI’s implications for growth, productivity, and the economy.",
+      "text": "In an October 15, 2025 speech, Waller said policymakers should separate AI hype from data and manage risks without slowing innovation, and he expressed hope that AI would deliver productivity gains.",
       "sids": [
-       "s1",
-       "s2"
+       "s2",
+       "s6",
+       "s12"
       ]
      },
      {
-      "text": "He also stated that if AI constitutes a structural shift in labor demand, monetary policy will not be an effective tool.",
+      "text": "On October 16, 2025, he said monetary policy would not be an effective tool if AI caused a structural shift in labor demand.",
       "sids": [
        "s3"
       ]
      },
      {
-      "text": "In September 2026, he discussed whether agentic commerce will use platform-specific or interoperable standards, saying interoperable standards could help level the playing field for smaller merchants and payment providers.",
+      "text": "In a February 24, 2026 speech, Waller described Fed AI adoption as System-wide and business-led, with a common internal platform, guardrails, human accountability, and AI use incorporated into employee performance goals.",
       "sids": [
-       "s4"
+       "s14",
+       "s16",
+       "s17",
+       "s18"
       ]
      },
      {
-      "text": "He called for a proactive approach that balances innovation with safety, integrity, and stability in payments.",
+      "text": "In September and October 2026 remarks, he discussed AI's potential to improve payments fraud detection, cross-border payments, and data access while also warning about hallucinations, bias, and cybersecurity risks.",
       "sids": [
-       "s5"
+       "s23",
+       "s27",
+       "s29",
+       "s30",
+       "s25"
       ]
      }
     ]
    },
    "topics": {
-    "jobs/economy": 3.5,
-    "regulation": 1.5
+    "jobs/economy": 7.833,
+    "regulation": 5.333,
+    "other": 16.0,
+    "AGI/transformative": 0.833,
+    "misuse (bio/cyber)": 2.0
    },
    "regulation": {
     "status": "complete",
@@ -46355,7 +46386,7 @@
      "layoff_reporting": {
       "stance": 0,
       "sids": [],
-      "why": "Statements discuss AI's labor-market effects but do not call for layoff or hiring-change reporting."
+      "why": "No stance in the supplied evidence."
      },
      "bias_audits": {
       "stance": 0,
@@ -46439,20 +46470,6 @@
      }
     },
     "disputed": []
-   },
-   "stance_review": {
-    "review_id": "b7fef953fe5f29b5c50938affeb5f1a4fa9461e4b03e0c7c5aea7851cb34efc2",
-    "dimension": "ai_overall",
-    "status": "complete",
-    "reason": "None of the supplied excerpts establishes Waller's view of whether AI will be good for Americans overall. They raise a question about technology and employment, advocate evidence-based economic analysis, discuss monetary policy's limitations, or address payment-specific opportunities and safeguards. These are not general assessments of AI's net benefits or harms.",
-    "confidence": 5,
-    "n_statements": 5,
-    "n_contexts": 0,
-    "accepted_sids": [],
-    "finding_count": 0,
-    "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-11T03:58:33.786897+00:00",
-    "generation_id": "gen-1794369505-nzcl7JT5Jl075KabuWsO"
    }
   },
   {
@@ -56542,11 +56559,11 @@
      }
     }
    },
-   "n_statements": 14,
-   "n_labeled": 14,
+   "n_statements": 29,
+   "n_labeled": 29,
    "scores": {
     "ai_overall": 3.0,
-    "agi_pilled": 1.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
@@ -56555,21 +56572,22 @@
     "ai_overall": {
      "score": 3.0,
      "reason_a": "median_of_2",
-     "reason_b": "median_of_2",
+     "reason_b": "median_of_3",
      "sids": [
       "s5",
       "s2"
      ],
-     "label_count": 2
+     "label_count": 3
     },
     "agi_pilled": {
-     "score": 1.0,
+     "score": 2.0,
      "reason_a": "consistent",
-     "reason_b": "silent",
+     "reason_b": "consistent",
      "sids": [
-      "s6"
+      "s6",
+      "s15"
      ],
-     "label_count": 1
+     "label_count": 2
     },
     "x_risk": {
      "score": null,
@@ -56595,40 +56613,51 @@
    },
    "summary": {
     "status": "complete",
-    "text": "On November 7, 2025, Jefferson described AI's potential to speed up workers' tasks and called labor disruption a real risk. On May 27, 2026, Jefferson expressed optimism about AI's promise for productivity and growth while monitoring its effects on the labor market and inflation. On October 1, 2026, Jefferson said AI-related spending was supporting strong business investment and expected AI-related investments to continue supporting growth that year.",
+    "text": "In a May 2026 speech, Jefferson said he was optimistic about AI's promise to drive productivity and growth while monitoring its effects on the labor market and inflation. He has also described AI as a real risk of labor disruption and said job loss is likely for certain firms and workers in certain occupations. In October 2026, he said AI-related spending was supporting business investment and expected AI-related investments to continue supporting growth. He has said it is likely still too soon to tell how AI's labor and price effects will affect monetary policy.",
     "sids": [
-     "s1",
      "s5",
+     "s1",
+     "s23",
      "s8",
-     "s9"
+     "s9",
+     "s19",
+     "s25"
     ],
     "sentences": [
      {
-      "text": "On November 7, 2025, Jefferson described AI's potential to speed up workers' tasks and called labor disruption a real risk.",
-      "sids": [
-       "s1"
-      ]
-     },
-     {
-      "text": "On May 27, 2026, Jefferson expressed optimism about AI's promise for productivity and growth while monitoring its effects on the labor market and inflation.",
+      "text": "In a May 2026 speech, Jefferson said he was optimistic about AI's promise to drive productivity and growth while monitoring its effects on the labor market and inflation.",
       "sids": [
        "s5"
       ]
      },
      {
-      "text": "On October 1, 2026, Jefferson said AI-related spending was supporting strong business investment and expected AI-related investments to continue supporting growth that year.",
+      "text": "He has also described AI as a real risk of labor disruption and said job loss is likely for certain firms and workers in certain occupations.",
+      "sids": [
+       "s1",
+       "s23"
+      ]
+     },
+     {
+      "text": "In October 2026, he said AI-related spending was supporting business investment and expected AI-related investments to continue supporting growth.",
       "sids": [
        "s8",
        "s9"
+      ]
+     },
+     {
+      "text": "He has said it is likely still too soon to tell how AI's labor and price effects will affect monetary policy.",
+      "sids": [
+       "s19",
+       "s25"
       ]
      }
     ]
    },
    "topics": {
-    "jobs/economy": 10.5,
-    "AGI/transformative": 2.0,
+    "jobs/economy": 23.5,
+    "AGI/transformative": 2.5,
     "energy/data centers": 0.5,
-    "other": 1.0
+    "other": 2.5
    },
    "regulation": {
     "status": "complete",
@@ -56666,7 +56695,7 @@
      "layoff_reporting": {
       "stance": 0,
       "sids": [],
-      "why": "Statements note AI-related job-loss risk (s1) and monitoring labor-market effects (s2, s5), but call for no reporting or notice requirement."
+      "why": "Statements note AI-related job-loss risk (s1, s23) but call for no reporting or notice requirement."
      },
      "bias_audits": {
       "stance": 0,
@@ -56750,23 +56779,6 @@
      }
     },
     "disputed": []
-   },
-   "stance_review": {
-    "review_id": "2a90ec4d13ddf535c1131fc763e1b01bab5cef922528bbf2a5577d297071c81f",
-    "dimension": "ai_overall",
-    "status": "complete",
-    "reason": "The supplied excerpts establish a generally optimistic economic assessment in s2 and s5, which repeat the same substantive statement. Other excerpts address specific labor risks, investment effects, economic developments, or speech agendas without establishing an overall AI stance. These are Jefferson's statements, not institutional positions of the Federal Reserve.",
-    "confidence": 5,
-    "n_statements": 14,
-    "n_contexts": 0,
-    "accepted_sids": [
-     "s2",
-     "s5"
-    ],
-    "finding_count": 2,
-    "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-11T04:19:28.486204+00:00",
-    "generation_id": "gen-1794370756-IwL81JOTOkqoIJNIVki7"
    }
   },
   {
@@ -56827,29 +56839,34 @@
      }
     }
    },
-   "n_statements": 14,
-   "n_labeled": 14,
+   "n_statements": 37,
+   "n_labeled": 37,
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 2.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": 1.5
+    "regulation": 2.0
    },
    "score_details": {
     "ai_overall": {
-     "score": null,
-     "reason_a": "no_statements",
-     "reason_b": "no_statements",
-     "sids": [],
-     "label_count": 0
+     "score": 2.0,
+     "reason_a": "median_of_3",
+     "reason_b": "median_of_2",
+     "sids": [
+      "s31",
+      "s17"
+     ],
+     "label_count": 3
     },
     "agi_pilled": {
-     "score": null,
-     "reason_a": "silent",
+     "score": 1.0,
+     "reason_a": "consistent",
      "reason_b": "silent",
-     "sids": [],
-     "label_count": 0
+     "sids": [
+      "s19"
+     ],
+     "label_count": 1
     },
     "x_risk": {
      "score": null,
@@ -56866,60 +56883,71 @@
      "label_count": 0
     },
     "regulation": {
-     "score": 1.5,
+     "score": 2.0,
      "reason_a": "consistent",
-     "reason_b": "one_off_capped",
+     "reason_b": "consistent",
      "sids": [
+      "s30",
+      "s27",
+      "s34",
+      "s20",
       "s13",
       "s12",
-      "s5",
-      "s4"
+      "s5"
      ],
-     "label_count": 11
+     "label_count": 24
     }
    },
    "summary": {
     "status": "complete",
-    "text": "In an August 19, 2025 official statement, Bowman said she continued to be encouraged by significant ongoing investments in AI and machine learning and that some initial benefits of bank AI adoption were already visible [s1]. In the same statement, she said changes ideally would occur with regulators' willing embrace so that AI use cases could proliferate in a way that benefits the banking system [s2]. In a November 22, 2024 statement, she said AI use must comply with current laws and regulations, including fair lending, cybersecurity, data privacy, third-party risk management, and copyright [s5], while also saying regulators should preserve banks' ability to innovate and realize AI's benefits [s3]. She also said that while she had suggested regulators need not rush to regulate, it was important to continue monitoring AI developments [s7].",
+    "text": "In November 2024 remarks, Bowman said AI use must comply with current laws and regulations, including fair lending and cybersecurity, and that regulators should understand AI before considering regulatory changes; she also warned that over-regulation can prevent benefits. In August 2025, she said initial benefits of bank AI adoption were already visible and that regulatory changes ideally would occur with regulators' willing embrace. In 2026 remarks and testimony, she described AI's risks and benefits as more tangible, emphasized supporting responsible innovation while maintaining safeguards, and said the Fed with the OCC and FDIC amended model risk management guidance to clarify it does not apply to generative or agentic AI.",
     "sids": [
+     "s4",
+     "s5",
+     "s6",
+     "s15",
      "s1",
      "s2",
-     "s5",
-     "s3",
-     "s7"
+     "s17",
+     "s20",
+     "s22",
+     "s30"
     ],
     "sentences": [
      {
-      "text": "In an August 19, 2025 official statement, Bowman said she continued to be encouraged by significant ongoing investments in AI and machine learning and that some initial benefits of bank AI adoption were already visible [s1].",
+      "text": "In November 2024 remarks, Bowman said AI use must comply with current laws and regulations, including fair lending and cybersecurity, and that regulators should understand AI before considering regulatory changes; she also warned that over-regulation can prevent benefits.",
       "sids": [
-       "s1"
+       "s4",
+       "s5",
+       "s6",
+       "s15"
       ]
      },
      {
-      "text": "In the same statement, she said changes ideally would occur with regulators' willing embrace so that AI use cases could proliferate in a way that benefits the banking system [s2].",
+      "text": "In August 2025, she said initial benefits of bank AI adoption were already visible and that regulatory changes ideally would occur with regulators' willing embrace.",
       "sids": [
+       "s1",
        "s2"
       ]
      },
      {
-      "text": "In a November 22, 2024 statement, she said AI use must comply with current laws and regulations, including fair lending, cybersecurity, data privacy, third-party risk management, and copyright [s5], while also saying regulators should preserve banks' ability to innovate and realize AI's benefits [s3].",
+      "text": "In 2026 remarks and testimony, she described AI's risks and benefits as more tangible, emphasized supporting responsible innovation while maintaining safeguards, and said the Fed with the OCC and FDIC amended model risk management guidance to clarify it does not apply to generative or agentic AI.",
       "sids": [
-       "s5",
-       "s3"
-      ]
-     },
-     {
-      "text": "She also said that while she had suggested regulators need not rush to regulate, it was important to continue monitoring AI developments [s7].",
-      "sids": [
-       "s7"
+       "s17",
+       "s20",
+       "s22",
+       "s30"
       ]
      }
     ]
    },
    "topics": {
-    "jobs/economy": 2.0,
-    "regulation": 11.5,
-    "copyright": 0.5
+    "jobs/economy": 2.5,
+    "regulation": 28.0,
+    "copyright": 0.5,
+    "AGI/transformative": 3.0,
+    "misuse (bio/cyber)": 2.5,
+    "national security": 0.5
    },
    "regulation": {
     "status": "complete",
@@ -57039,26 +57067,12 @@
       "sids": [
        "s5"
       ],
-      "why": "Bowman explicitly says AI use must comply with fair-lending laws, supporting nondiscrimination requirements for AI in credit decisions, though she does not call for mandatory bias audits."
+      "why": "Bowman explicitly says AI use must comply with fair-lending laws and regulations, supporting nondiscrimination requirements for AI in lending, though she does not call for a separate bias-audit mandate."
      }
     },
     "disputed": [
      "bias_audits"
     ]
-   },
-   "stance_review": {
-    "review_id": "1e1401af32d3ff87069bd9787e17c433a901573be6e136faaf2613851bf58a18",
-    "dimension": "ai_overall",
-    "status": "complete",
-    "reason": "The supplied excerpts express optimism about AI in banking and finance and discuss regulatory approaches, but none establishes a view of AI's overall effects on Americans. Sector-specific benefits, openness to adoption, and regulatory caution do not independently qualify for ai_overall labels. This conclusion is limited to the supplied excerpts.",
-    "confidence": 5,
-    "n_statements": 14,
-    "n_contexts": 0,
-    "accepted_sids": [],
-    "finding_count": 0,
-    "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-11T04:34:35.019088+00:00",
-    "generation_id": "gen-1794371665-lk44yoEZXkn6bpMIKH62"
    }
   },
   {
@@ -57119,41 +57133,53 @@
      }
     }
    },
-   "n_statements": 14,
-   "n_labeled": 14,
+   "n_statements": 79,
+   "n_labeled": 79,
    "scores": {
-    "ai_overall": 2.0,
+    "ai_overall": 2.5,
     "agi_pilled": 2.0,
-    "x_risk": null,
+    "x_risk": 3.0,
     "china_race": null,
     "regulation": 2.0
    },
    "score_details": {
     "ai_overall": {
-     "score": 2.0,
-     "reason_a": "median_of_2",
-     "reason_b": "median_of_2",
+     "score": 2.5,
+     "reason_a": "median_of_5",
+     "reason_b": "median_of_8",
      "sids": [
-      "s11"
+      "s59",
+      "s42",
+      "s11",
+      "s1",
+      "s40",
+      "s25"
      ],
-     "label_count": 2
+     "label_count": 8
     },
     "agi_pilled": {
      "score": 2.0,
      "reason_a": "consistent",
      "reason_b": "consistent",
      "sids": [
+      "s74",
       "s1",
-      "s14"
+      "s70",
+      "s60",
+      "s59",
+      "s14",
+      "s53"
      ],
-     "label_count": 2
+     "label_count": 14
     },
     "x_risk": {
-     "score": null,
-     "reason_a": "silent",
-     "reason_b": "silent",
-     "sids": [],
-     "label_count": 0
+     "score": 3.0,
+     "reason_a": "consistent",
+     "reason_b": "consistent",
+     "sids": [
+      "s17"
+     ],
+     "label_count": 1
     },
     "china_race": {
      "score": null,
@@ -57164,59 +57190,75 @@
     },
     "regulation": {
      "score": 2.0,
-     "reason_a": "consistent",
-     "reason_b": "no_statements",
+     "reason_a": "one_off_capped",
+     "reason_b": "consistent",
      "sids": [
-      "s12",
-      "s9"
+      "s18",
+      "s38",
+      "s37",
+      "s32",
+      "s21"
      ],
-     "label_count": 3
+     "label_count": 12
     }
    },
    "summary": {
     "status": "complete",
-    "text": "On July 14, 2026, Barr described potential broad economic benefits from AI alongside the possibility of worsening inequality, and urged consideration of policies to spread its gains. On April 4, 2025, he described potential improvements in financial services from generative AI while emphasizing risk-management responsibilities for banks, fintechs, and regulators. On April 17, 2025, he emphasized recognizing both generative AI's benefits and risks and focused on defending finance against deepfake-related risks.",
+    "text": "Barr has said AI could fundamentally transform the economy and society, with long-run benefits but possible short-term labor-market disruption and harm to some workers. He has argued that capturing AI's benefits requires managing risks, including bias in consumer lending and deepfake-enabled fraud. Barr has described the Federal Reserve as having established an AI program and governance framework and as using GenAI tools where appropriate within clear guardrails. He has said policy choices in areas such as education, worker training, competition, and tax policy will help determine whether AI's gains are broadly shared.",
     "sids": [
-     "s1",
-     "s2",
-     "s4",
+     "s52",
+     "s59",
      "s9",
-     "s10",
-     "s11",
-     "s12"
+     "s57",
+     "s12",
+     "s54",
+     "s58",
+     "s62",
+     "s4",
+     "s75"
     ],
     "sentences": [
      {
-      "text": "On July 14, 2026, Barr described potential broad economic benefits from AI alongside the possibility of worsening inequality, and urged consideration of policies to spread its gains.",
+      "text": "Barr has said AI could fundamentally transform the economy and society, with long-run benefits but possible short-term labor-market disruption and harm to some workers.",
       "sids": [
-       "s1",
-       "s2",
-       "s4"
+       "s52",
+       "s59"
       ]
      },
      {
-      "text": "On April 4, 2025, he described potential improvements in financial services from generative AI while emphasizing risk-management responsibilities for banks, fintechs, and regulators.",
+      "text": "He has argued that capturing AI's benefits requires managing risks, including bias in consumer lending and deepfake-enabled fraud.",
       "sids": [
        "s9",
-       "s10"
+       "s57",
+       "s12"
       ]
      },
      {
-      "text": "On April 17, 2025, he emphasized recognizing both generative AI's benefits and risks and focused on defending finance against deepfake-related risks.",
+      "text": "Barr has described the Federal Reserve as having established an AI program and governance framework and as using GenAI tools where appropriate within clear guardrails.",
       "sids": [
-       "s11",
-       "s12"
+       "s54",
+       "s58",
+       "s62"
+      ]
+     },
+     {
+      "text": "He has said policy choices in areas such as education, worker training, competition, and tax policy will help determine whether AI's gains are broadly shared.",
+      "sids": [
+       "s4",
+       "s75"
       ]
      }
     ]
    },
    "topics": {
-    "jobs/economy": 2.5,
-    "AGI/transformative": 1.5,
-    "other": 5.5,
-    "regulation": 3.5,
-    "deepfakes/elections": 0.5,
-    "misuse (bio/cyber)": 0.5
+    "jobs/economy": 27.5,
+    "AGI/transformative": 13.0,
+    "other": 14.5,
+    "regulation": 18.0,
+    "deepfakes/elections": 4.0,
+    "misuse (bio/cyber)": 1.0,
+    "x-risk/loss of control": 0.5,
+    "national security": 0.5
    },
    "regulation": {
     "status": "complete",
@@ -57227,9 +57269,12 @@
       "why": "No stance in the supplied evidence."
      },
      "deepfakes": {
-      "stance": 0,
-      "sids": [],
-      "why": "The supplied statements note deepfake risk in finance but do not call for penalties, takedown duties, or likeness rights."
+      "stance": 2,
+      "sids": [
+       "s37",
+       "s34"
+      ],
+      "why": "Calls for increasing penalties for Gen AI fraud and raising costs for cybercriminals using deepfakes."
      },
      "election_ads": {
       "stance": 0,
@@ -57254,12 +57299,15 @@
      "layoff_reporting": {
       "stance": 0,
       "sids": [],
-      "why": "The supplied statements discuss AI effects on jobs but do not call for layoff or hiring-change reporting."
+      "why": "No stance in the supplied evidence."
      },
      "bias_audits": {
-      "stance": 0,
-      "sids": [],
-      "why": "No stance in the supplied evidence."
+      "stance": 1,
+      "sids": [
+       "s31",
+       "s57"
+      ],
+      "why": "Urges fintech developers to identify biases in training data and monitor outputs, and says AI bias in consumer lending must be reduced."
      },
      "training_consent": {
       "stance": 0,
@@ -57297,9 +57345,12 @@
       "why": "No stance in the supplied evidence."
      },
      "misuse": {
-      "stance": 0,
-      "sids": [],
-      "why": "No stance in the supplied evidence."
+      "stance": 1,
+      "sids": [
+       "s18",
+       "s17"
+      ],
+      "why": "Calls for safeguards against misuse and preventing GenAI from being weaponized in catastrophic ways."
      },
      "nuclear": {
       "stance": 0,
@@ -57312,11 +57363,6 @@
       "why": "No stance in the supplied evidence."
      },
      "licensing": {
-      "stance": 0,
-      "sids": [],
-      "why": "No stance in the supplied evidence."
-     },
-     "intl_agreement": {
       "stance": 0,
       "sids": [],
       "why": "No stance in the supplied evidence."
@@ -57335,26 +57381,16 @@
       "stance": 0,
       "sids": [],
       "why": "No stance in the supplied evidence."
+     },
+     "intl_agreement": {
+      "stance": 0,
+      "sids": [],
+      "why": "The supplied evidence calls for collaboration and agreement on AI-use red lines, but does not establish support for or opposition to a treaty or formal international AI safety agreement."
      }
     },
-    "disputed": []
-   },
-   "stance_review": {
-    "review_id": "48981a51fd2891a509a7bf97e1842af3ed269d87af22713b09586417eb6947db",
-    "dimension": "ai_overall",
-    "status": "complete",
-    "reason": "The supplied excerpts establish a conditional positive general assessment and an explicit balanced assessment. Other excerpts concern particular distributional harms or policies, banking applications, financial crime, scenario methodology, or technological trajectory rather than AI's overall net effects. These classifications apply to Barr's statements, not an institutional Federal Reserve position.",
-    "confidence": 4,
-    "n_statements": 14,
-    "n_contexts": 0,
-    "accepted_sids": [
-     "s1",
-     "s11"
-    ],
-    "finding_count": 2,
-    "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-11T04:19:48.444305+00:00",
-    "generation_id": "gen-1794370768-nERW1bqRZyNB4WvjJggR"
+    "disputed": [
+     "intl_agreement"
+    ]
    }
   },
   {
@@ -57415,38 +57451,49 @@
      }
     }
    },
-   "n_statements": 6,
-   "n_labeled": 6,
+   "n_statements": 57,
+   "n_labeled": 57,
    "scores": {
-    "ai_overall": 3.0,
-    "agi_pilled": null,
-    "x_risk": null,
+    "ai_overall": 2.0,
+    "agi_pilled": 2.0,
+    "x_risk": 0.5,
     "china_race": null,
-    "regulation": null
+    "regulation": 2.0
    },
    "score_details": {
     "ai_overall": {
-     "score": 3.0,
-     "reason_a": "median_of_1",
-     "reason_b": "median_of_1",
+     "score": 2.0,
+     "reason_a": "median_of_4",
+     "reason_b": "median_of_4",
      "sids": [
-      "s4"
+      "s57",
+      "s53",
+      "s40",
+      "s32"
      ],
-     "label_count": 1
+     "label_count": 9
     },
     "agi_pilled": {
-     "score": null,
-     "reason_a": "silent",
-     "reason_b": "silent",
-     "sids": [],
-     "label_count": 0
+     "score": 2.0,
+     "reason_a": "consistent",
+     "reason_b": "consistent",
+     "sids": [
+      "s52",
+      "s50",
+      "s41",
+      "s39",
+      "s31"
+     ],
+     "label_count": 12
     },
     "x_risk": {
-     "score": null,
-     "reason_a": "silent",
+     "score": 0.5,
+     "reason_a": "consistent",
      "reason_b": "silent",
-     "sids": [],
-     "label_count": 0
+     "sids": [
+      "s13"
+     ],
+     "label_count": 1
     },
     "china_race": {
      "score": null,
@@ -57456,49 +57503,70 @@
      "label_count": 0
     },
     "regulation": {
-     "score": null,
-     "reason_a": "no_statements",
-     "reason_b": "no_statements",
-     "sids": [],
-     "label_count": 0
+     "score": 2.0,
+     "reason_a": "consistent",
+     "reason_b": "consistent",
+     "sids": [
+      "s27"
+     ],
+     "label_count": 1
     }
    },
    "summary": {
     "status": "complete",
-    "text": "On February 24, 2026, Cook expressed cautious long-run optimism that AI-driven innovation would improve people's lives. She described AI as capable of boosting productivity through faster idea creation and broadening participation in invention and entrepreneurship. On September 28, 2026, Cook described herself as a longstanding advocate of responsible AI development and said specific government roles in AI's trajectory were for elected officials to decide.",
+    "text": "Lisa D. Cook has described herself as a long-standing advocate of responsible AI development and responsible innovation. She has characterized AI as a general-purpose technology poised to significantly affect the economy and productivity. She has also identified concerns including privacy, bias, effects on workers, fraud, cybersecurity, and financial-stability risks. Cook has said any specific government role in AI's trajectory is for elected officials to decide, while noting the Fed encourages responsible AI use in the financial sector consistent with safe and sound practices and applicable law.",
     "sids": [
-     "s4",
-     "s5",
-     "s6",
      "s1",
-     "s2"
+     "s40",
+     "s23",
+     "s42",
+     "s52",
+     "s53",
+     "s43",
+     "s44",
+     "s2",
+     "s54"
     ],
     "sentences": [
      {
-      "text": "On February 24, 2026, Cook expressed cautious long-run optimism that AI-driven innovation would improve people's lives.",
-      "sids": [
-       "s4"
-      ]
-     },
-     {
-      "text": "She described AI as capable of boosting productivity through faster idea creation and broadening participation in invention and entrepreneurship.",
-      "sids": [
-       "s5",
-       "s6"
-      ]
-     },
-     {
-      "text": "On September 28, 2026, Cook described herself as a longstanding advocate of responsible AI development and said specific government roles in AI's trajectory were for elected officials to decide.",
+      "text": "Lisa D. Cook has described herself as a long-standing advocate of responsible AI development and responsible innovation.",
       "sids": [
        "s1",
-       "s2"
+       "s40"
+      ]
+     },
+     {
+      "text": "She has characterized AI as a general-purpose technology poised to significantly affect the economy and productivity.",
+      "sids": [
+       "s23",
+       "s42",
+       "s52"
+      ]
+     },
+     {
+      "text": "She has also identified concerns including privacy, bias, effects on workers, fraud, cybersecurity, and financial-stability risks.",
+      "sids": [
+       "s53",
+       "s43",
+       "s44"
+      ]
+     },
+     {
+      "text": "Cook has said any specific government role in AI's trajectory is for elected officials to decide, while noting the Fed encourages responsible AI use in the financial sector consistent with safe and sound practices and applicable law.",
+      "sids": [
+       "s2",
+       "s54"
       ]
      }
     ]
    },
    "topics": {
-    "regulation": 2.0,
-    "jobs/economy": 4.0
+    "regulation": 6.5,
+    "jobs/economy": 25.0,
+    "AGI/transformative": 8.5,
+    "other": 15.0,
+    "x-risk/loss of control": 1.0,
+    "energy/data centers": 1.0
    },
    "regulation": {
     "status": "complete",
@@ -57620,22 +57688,6 @@
      }
     },
     "disputed": []
-   },
-   "stance_review": {
-    "review_id": "0d9b782d7ed295cfd0fdfed44a3f21f86597f9a614b8554b01a28f47668db9cc",
-    "dimension": "ai_overall",
-    "status": "complete",
-    "reason": "The supplied excerpts establish a cautiously positive general AI outlook in s4. The other statements address responsible development, government authority, research interests, or particular innovation and productivity benefits without independently expressing an overall assessment of AI. No additional source context was supplied.",
-    "confidence": 4,
-    "n_statements": 6,
-    "n_contexts": 0,
-    "accepted_sids": [
-     "s4"
-    ],
-    "finding_count": 1,
-    "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-11T04:19:43.603717+00:00",
-    "generation_id": "gen-1794370772-qjwQqzOTkZzOunlDaqQL"
    }
   },
   {

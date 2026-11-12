@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_christopher_j_waller",
- "revision": "70b21253da20d802d8536dfa12860f662151e684dbf8460eecd2a49a7f358248",
+ "revision": "63c0b5db750be2e68188d34c714cd109355311b71e16741d020c93d2f65daac8",
  "profile": {
   "id": "exec_christopher_j_waller",
   "name": "Christopher J. Waller",
@@ -60,29 +60,36 @@
     }
    }
   },
-  "n_statements": 5,
-  "n_labeled": 5,
+  "n_statements": 32,
+  "n_labeled": 32,
   "scores": {
-   "ai_overall": null,
-   "agi_pilled": null,
+   "ai_overall": 3.0,
+   "agi_pilled": 1.0,
    "x_risk": null,
    "china_race": null,
-   "regulation": null
+   "regulation": 1.0
   },
   "score_details": {
    "ai_overall": {
-    "score": null,
-    "reason_a": "no_statements",
-    "reason_b": "no_statements",
-    "sids": [],
-    "label_count": 0
+    "score": 3.0,
+    "reason_a": "median_of_2",
+    "reason_b": "median_of_3",
+    "sids": [
+     "s13",
+     "s12",
+     "s6"
+    ],
+    "label_count": 3
    },
    "agi_pilled": {
-    "score": null,
-    "reason_a": "silent",
+    "score": 1.0,
+    "reason_a": "consistent",
     "reason_b": "silent",
-    "sids": [],
-    "label_count": 0
+    "sids": [
+     "s13",
+     "s11"
+    ],
+    "label_count": 2
    },
    "x_risk": {
     "score": null,
@@ -99,54 +106,78 @@
     "label_count": 0
    },
    "regulation": {
-    "score": null,
-    "reason_a": "no_statements",
-    "reason_b": "no_statements",
-    "sids": [],
-    "label_count": 0
+    "score": 1.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s13",
+     "s8",
+     "s7",
+     "s6"
+    ],
+    "label_count": 4
    }
   },
   "summary": {
    "status": "complete",
-   "text": "In October 2025 remarks, Christopher J. Waller framed AI’s labor effects as a question of whether it replaces people or makes them more productive, and said policymakers must separate hype from data to understand AI’s implications for growth, productivity, and the economy. He also stated that if AI constitutes a structural shift in labor demand, monetary policy will not be an effective tool. In September 2026, he discussed whether agentic commerce will use platform-specific or interoperable standards, saying interoperable standards could help level the playing field for smaller merchants and payment providers. He called for a proactive approach that balances innovation with safety, integrity, and stability in payments.",
+   "text": "In an October 15, 2025 speech, Waller said policymakers should separate AI hype from data and manage risks without slowing innovation, and he expressed hope that AI would deliver productivity gains. On October 16, 2025, he said monetary policy would not be an effective tool if AI caused a structural shift in labor demand. In a February 24, 2026 speech, Waller described Fed AI adoption as System-wide and business-led, with a common internal platform, guardrails, human accountability, and AI use incorporated into employee performance goals. In September and October 2026 remarks, he discussed AI's potential to improve payments fraud detection, cross-border payments, and data access while also warning about hallucinations, bias, and cybersecurity risks.",
    "sids": [
-    "s1",
     "s2",
+    "s6",
+    "s12",
     "s3",
-    "s4",
-    "s5"
+    "s14",
+    "s16",
+    "s17",
+    "s18",
+    "s23",
+    "s27",
+    "s29",
+    "s30",
+    "s25"
    ],
    "sentences": [
     {
-     "text": "In October 2025 remarks, Christopher J. Waller framed AI’s labor effects as a question of whether it replaces people or makes them more productive, and said policymakers must separate hype from data to understand AI’s implications for growth, productivity, and the economy.",
+     "text": "In an October 15, 2025 speech, Waller said policymakers should separate AI hype from data and manage risks without slowing innovation, and he expressed hope that AI would deliver productivity gains.",
      "sids": [
-      "s1",
-      "s2"
+      "s2",
+      "s6",
+      "s12"
      ]
     },
     {
-     "text": "He also stated that if AI constitutes a structural shift in labor demand, monetary policy will not be an effective tool.",
+     "text": "On October 16, 2025, he said monetary policy would not be an effective tool if AI caused a structural shift in labor demand.",
      "sids": [
       "s3"
      ]
     },
     {
-     "text": "In September 2026, he discussed whether agentic commerce will use platform-specific or interoperable standards, saying interoperable standards could help level the playing field for smaller merchants and payment providers.",
+     "text": "In a February 24, 2026 speech, Waller described Fed AI adoption as System-wide and business-led, with a common internal platform, guardrails, human accountability, and AI use incorporated into employee performance goals.",
      "sids": [
-      "s4"
+      "s14",
+      "s16",
+      "s17",
+      "s18"
      ]
     },
     {
-     "text": "He called for a proactive approach that balances innovation with safety, integrity, and stability in payments.",
+     "text": "In September and October 2026 remarks, he discussed AI's potential to improve payments fraud detection, cross-border payments, and data access while also warning about hallucinations, bias, and cybersecurity risks.",
      "sids": [
-      "s5"
+      "s23",
+      "s27",
+      "s29",
+      "s30",
+      "s25"
      ]
     }
    ]
   },
   "topics": {
-   "jobs/economy": 3.5,
-   "regulation": 1.5
+   "jobs/economy": 7.833,
+   "regulation": 5.333,
+   "other": 16.0,
+   "AGI/transformative": 0.833,
+   "misuse (bio/cyber)": 2.0
   },
   "regulation": {
    "status": "complete",
@@ -184,7 +215,7 @@
     "layoff_reporting": {
      "stance": 0,
      "sids": [],
-     "why": "Statements discuss AI's labor-market effects but do not call for layoff or hiring-change reporting."
+     "why": "No stance in the supplied evidence."
     },
     "bias_audits": {
      "stance": 0,
@@ -268,20 +299,6 @@
     }
    },
    "disputed": []
-  },
-  "stance_review": {
-   "review_id": "b7fef953fe5f29b5c50938affeb5f1a4fa9461e4b03e0c7c5aea7851cb34efc2",
-   "dimension": "ai_overall",
-   "status": "complete",
-   "reason": "None of the supplied excerpts establishes Waller's view of whether AI will be good for Americans overall. They raise a question about technology and employment, advocate evidence-based economic analysis, discuss monetary policy's limitations, or address payment-specific opportunities and safeguards. These are not general assessments of AI's net benefits or harms.",
-   "confidence": 5,
-   "n_statements": 5,
-   "n_contexts": 0,
-   "accepted_sids": [],
-   "finding_count": 0,
-   "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-11T03:58:33.786897+00:00",
-   "generation_id": "gen-1794369505-nzcl7JT5Jl075KabuWsO"
   }
  },
  "statements": [
@@ -710,6 +727,1790 @@
       "model": "openai/gpt-6-astra",
       "assessed_at": "2026-11-11T03:58:33.786897+00:00",
       "generation_id": "gen-1794369505-nzcl7JT5Jl075KabuWsO"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s6",
+   "date": "2025-10-15",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20251015a.htm",
+   "text": "The task for policymakers is to manage those risks without slowing the innovation that drives growth. History shows that adaptation, not avoidance, is what sustains progress.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
+    "b": {
+     "regulation": 1,
+     "ai_overall": 3
+    },
+    "topics": [
+     "regulation",
+     "jobs/economy"
+    ],
+    "confidence": {
+     "regulation": 3.33
+    },
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:15.138975+00:00",
+      "generation_id": "gen-1794464347-8sS3WpenDZzBE6ny1NEU"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "regulation": 3,
+       "ai_overall": 2
+      },
+      "topics": [
+       "regulation",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:36.918678+00:00",
+      "generation_id": "gen-1794464424-5FagMt97swIGNJD7F5Oi"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:40.130558+00:00",
+      "generation_id": "gen-1794464485-alRhRgNGM32ZC81uaczJ"
+     },
+     "sol": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T06:22:43.237317+00:00",
+      "generation_id": "gen-1794464558-AMT8fYE2iMIYRJMNfBNS"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s7",
+   "date": "2025-10-15",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20251015a.htm",
+   "text": "Europe has often chosen to regulate first—to contain potential harms before the technology fully develops. The United States is taking a different path, leaning on its tradition of experimentation and market dynamism. That openness has long been a competitive advantage.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
+    "b": {
+     "regulation": 1
+    },
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 3.33
+    },
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:15.138975+00:00",
+      "generation_id": "gen-1794464347-8sS3WpenDZzBE6ny1NEU"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:36.918678+00:00",
+      "generation_id": "gen-1794464424-5FagMt97swIGNJD7F5Oi"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:40.130558+00:00",
+      "generation_id": "gen-1794464485-alRhRgNGM32ZC81uaczJ"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s8",
+   "date": "2025-10-15",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20251015a.htm",
+   "text": "The American tradition is to invent and make use of technology, not shrink from it. Where there are risks, we take reasonable steps to mitigate them, rather than seek to avoid them altogether. Risk-taking is at the heart of our market economy; it fuels innovation, and we must preserve it.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
+    "b": {
+     "regulation": 1
+    },
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 3.0
+    },
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:15.138975+00:00",
+      "generation_id": "gen-1794464347-8sS3WpenDZzBE6ny1NEU"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:36.918678+00:00",
+      "generation_id": "gen-1794464424-5FagMt97swIGNJD7F5Oi"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:40.130558+00:00",
+      "generation_id": "gen-1794464485-alRhRgNGM32ZC81uaczJ"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s9",
+   "date": "2025-10-15",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20251015a.htm",
+   "text": "I have championed a System-wide approach to continually educate our teams and enable experimentation with the latest wave of innovations—from large language models and agentic AI to applications in coding and payments.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:15.138975+00:00",
+      "generation_id": "gen-1794464347-8sS3WpenDZzBE6ny1NEU"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:36.918678+00:00",
+      "generation_id": "gen-1794464424-5FagMt97swIGNJD7F5Oi"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:40.130558+00:00",
+      "generation_id": "gen-1794464485-alRhRgNGM32ZC81uaczJ"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s10",
+   "date": "2025-10-15",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20251015a.htm",
+   "text": "These engagements, combined with our own hands-on technical research, allow us to apply these technologies within the Fed and to support innovation across the private sector.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:15.138975+00:00",
+      "generation_id": "gen-1794464347-8sS3WpenDZzBE6ny1NEU"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:36.918678+00:00",
+      "generation_id": "gen-1794464424-5FagMt97swIGNJD7F5Oi"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:40.130558+00:00",
+      "generation_id": "gen-1794464485-alRhRgNGM32ZC81uaczJ"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s11",
+   "date": "2025-10-15",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20251015a.htm",
+   "text": "If hardware and software innovation continue to drive down the cost of AI, then I see few barriers to its ongoing proliferation throughout the economy.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "agi_pilled": 2
+    },
+    "b": {},
+    "topics": [
+     "jobs/economy",
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "agi_pilled": 2.0
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 2
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:15.138975+00:00",
+      "generation_id": "gen-1794464347-8sS3WpenDZzBE6ny1NEU"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 2
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:36.918678+00:00",
+      "generation_id": "gen-1794464424-5FagMt97swIGNJD7F5Oi"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:40.130558+00:00",
+      "generation_id": "gen-1794464485-alRhRgNGM32ZC81uaczJ"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T06:22:43.237317+00:00",
+      "generation_id": "gen-1794464558-AMT8fYE2iMIYRJMNfBNS"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s12",
+   "date": "2025-10-15",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20251015a.htm",
+   "text": "Any sustained productivity growth above 2 percent will tend to support rising real incomes and living standards without inflation pressure. As a monetary policymaker, I'm hoping that AI delivers.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "ai_overall": 3
+    },
+    "b": {
+     "ai_overall": 3
+    },
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {
+     "ai_overall": 3.0
+    },
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:15.138975+00:00",
+      "generation_id": "gen-1794464347-8sS3WpenDZzBE6ny1NEU"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:36.918678+00:00",
+      "generation_id": "gen-1794464424-5FagMt97swIGNJD7F5Oi"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:40.130558+00:00",
+      "generation_id": "gen-1794464485-alRhRgNGM32ZC81uaczJ"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s13",
+   "date": "2025-10-15",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20251015a.htm",
+   "text": "AI is moving faster than previous waves of innovation. That velocity means both the disruptions and the benefits will arrive sooner. The challenge is to keep pace—to help workers and firms adjust so the gains in efficiency translate into higher real wages and sustained growth across the economy. For policymakers, we must let the disruption occur and trust that the long-run benefits will exceed any short-run costs.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "ai_overall": 3,
+     "agi_pilled": 2,
+     "regulation": 1
+    },
+    "b": {
+     "ai_overall": 3
+    },
+    "topics": [
+     "jobs/economy",
+     "AGI/transformative",
+     "regulation"
+    ],
+    "confidence": {
+     "ai_overall": 3.0,
+     "agi_pilled": 2.67,
+     "regulation": 2.33
+    },
+    "escalated": [
+     "agi_pilled",
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 3,
+       "regulation": 1
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 3,
+       "regulation": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:15.138975+00:00",
+      "generation_id": "gen-1794464347-8sS3WpenDZzBE6ny1NEU"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 3,
+       "regulation": 1
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 3,
+       "regulation": 2
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:36.918678+00:00",
+      "generation_id": "gen-1794464424-5FagMt97swIGNJD7F5Oi"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 3,
+       "regulation": 1
+      },
+      "confidence": {
+       "agi_pilled": 2,
+       "ai_overall": 3,
+       "regulation": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:40.130558+00:00",
+      "generation_id": "gen-1794464485-alRhRgNGM32ZC81uaczJ"
+     },
+     "sol": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 5
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T06:22:43.237317+00:00",
+      "generation_id": "gen-1794464558-AMT8fYE2iMIYRJMNfBNS"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s14",
+   "date": "2026-02-24",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20260224a.htm",
+   "text": "We cannot approach AI casually. As a central bank, we hold ourselves to a high standard. That means clear guardrails on how and where it's used, strong information-security controls, rigorous model validation, human accountability for decisions, and ongoing evaluation as the technology evolves. Innovation and risk management are not competing priorities here — they reinforce each other. We need to respect these principles, but passivity isn't an option either.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:15.138975+00:00",
+      "generation_id": "gen-1794464347-8sS3WpenDZzBE6ny1NEU"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:36.918678+00:00",
+      "generation_id": "gen-1794464424-5FagMt97swIGNJD7F5Oi"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:40.130558+00:00",
+      "generation_id": "gen-1794464485-alRhRgNGM32ZC81uaczJ"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s15",
+   "date": "2026-02-24",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20260224a.htm",
+   "text": "AI systems can amplify errors as quickly as they amplify efficiency. They can hallucinate. They can introduce real risks around data protection, model risk, bias, and operational resilience.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:15.138975+00:00",
+      "generation_id": "gen-1794464347-8sS3WpenDZzBE6ny1NEU"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:36.918678+00:00",
+      "generation_id": "gen-1794464424-5FagMt97swIGNJD7F5Oi"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:40.130558+00:00",
+      "generation_id": "gen-1794464485-alRhRgNGM32ZC81uaczJ"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s16",
+   "date": "2026-02-24",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20260224a.htm",
+   "text": "In implementing AI across the Fed, we're moving as one System, with shared direction and alignment. We have developed a common internal general-purpose AI platform for all Reserve bank employees to use.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:15.138975+00:00",
+      "generation_id": "gen-1794464347-8sS3WpenDZzBE6ny1NEU"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:36.918678+00:00",
+      "generation_id": "gen-1794464424-5FagMt97swIGNJD7F5Oi"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:40.130558+00:00",
+      "generation_id": "gen-1794464485-alRhRgNGM32ZC81uaczJ"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s17",
+   "date": "2026-02-24",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20260224a.htm",
+   "text": "Our approach is intentionally business-led and AI-enabled. We start with the problem to be solved and the business need, then apply the right capability from across the AI stack.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:15.138975+00:00",
+      "generation_id": "gen-1794464347-8sS3WpenDZzBE6ny1NEU"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:36.918678+00:00",
+      "generation_id": "gen-1794464424-5FagMt97swIGNJD7F5Oi"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:40.130558+00:00",
+      "generation_id": "gen-1794464485-alRhRgNGM32ZC81uaczJ"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s18",
+   "date": "2026-02-24",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20260224a.htm",
+   "text": "AI use is not optional. Baseline literacy and application are being built into employee performance goals across the System. What gets measured gets done.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:15.138975+00:00",
+      "generation_id": "gen-1794464347-8sS3WpenDZzBE6ny1NEU"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:36.918678+00:00",
+      "generation_id": "gen-1794464424-5FagMt97swIGNJD7F5Oi"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:40.130558+00:00",
+      "generation_id": "gen-1794464485-alRhRgNGM32ZC81uaczJ"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s19",
+   "date": "2026-02-24",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20260224a.htm",
+   "text": "At that pace of change, a Bank-by-Bank approach simply won't work, especially for frontier technologies such as tokenization, quantum computing, and generative AI.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:15.138975+00:00",
+      "generation_id": "gen-1794464347-8sS3WpenDZzBE6ny1NEU"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:36.918678+00:00",
+      "generation_id": "gen-1794464424-5FagMt97swIGNJD7F5Oi"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:40.130558+00:00",
+      "generation_id": "gen-1794464485-alRhRgNGM32ZC81uaczJ"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s20",
+   "date": "2026-02-24",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20260224a.htm",
+   "text": "AI is one clear example of how the Federal Reserve can execute boldly, at scale, when we take a System-first approach.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:15.138975+00:00",
+      "generation_id": "gen-1794464347-8sS3WpenDZzBE6ny1NEU"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:36.918678+00:00",
+      "generation_id": "gen-1794464424-5FagMt97swIGNJD7F5Oi"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:40.130558+00:00",
+      "generation_id": "gen-1794464485-alRhRgNGM32ZC81uaczJ"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s21",
+   "date": "2026-09-29",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20260928a.htm",
+   "text": "Consistent with this year's theme, today I want to focus more specifically on the state of artificial intelligence (AI) in payments and raise a few questions about how this technology could change the way payment systems operate.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:15.138975+00:00",
+      "generation_id": "gen-1794464347-8sS3WpenDZzBE6ny1NEU"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:36.918678+00:00",
+      "generation_id": "gen-1794464424-5FagMt97swIGNJD7F5Oi"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:40.130558+00:00",
+      "generation_id": "gen-1794464485-alRhRgNGM32ZC81uaczJ"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s22",
+   "date": "2026-09-29",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20260928a.htm",
+   "text": "There is a rich history of deploying machine learning to combat payments fraud. The industry was also an early adopter of large language models (LLMs) for payment reconciliation and similar tasks. Now it is helping to build foundational infrastructure for AI agents to operate more broadly in the economy.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:15.138975+00:00",
+      "generation_id": "gen-1794464347-8sS3WpenDZzBE6ny1NEU"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:36.918678+00:00",
+      "generation_id": "gen-1794464424-5FagMt97swIGNJD7F5Oi"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:40.130558+00:00",
+      "generation_id": "gen-1794464485-alRhRgNGM32ZC81uaczJ"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s23",
+   "date": "2026-09-29",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20260928a.htm",
+   "text": "LLMs have contextual awareness that can greatly improve the accuracy of sanctions screening and anti-money-laundering systems. Research has demonstrated that they can significantly reduce false-positive alerts for illicit activity.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:15.138975+00:00",
+      "generation_id": "gen-1794464347-8sS3WpenDZzBE6ny1NEU"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:36.918678+00:00",
+      "generation_id": "gen-1794464424-5FagMt97swIGNJD7F5Oi"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:40.130558+00:00",
+      "generation_id": "gen-1794464485-alRhRgNGM32ZC81uaczJ"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s24",
+   "date": "2026-09-29",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20260928a.htm",
+   "text": "Given the velocity of modern payment systems, I expect LLMs to augment, rather than replace, faster, more traditional anomaly detection methods.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:15.138975+00:00",
+      "generation_id": "gen-1794464347-8sS3WpenDZzBE6ny1NEU"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:36.918678+00:00",
+      "generation_id": "gen-1794464424-5FagMt97swIGNJD7F5Oi"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:40.130558+00:00",
+      "generation_id": "gen-1794464485-alRhRgNGM32ZC81uaczJ"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s25",
+   "date": "2026-09-29",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20260928a.htm",
+   "text": "Nearly every week we see new model releases pushing the boundaries of cybersecurity or AI agents escaping their test environments and breaching external systems. In the payments world, a successful cyberattack against a highly interconnected payment infrastructure could significantly disrupt international commerce.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "misuse (bio/cyber)"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:15.138975+00:00",
+      "generation_id": "gen-1794464347-8sS3WpenDZzBE6ny1NEU"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:36.918678+00:00",
+      "generation_id": "gen-1794464424-5FagMt97swIGNJD7F5Oi"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "misuse (bio/cyber)",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:40.130558+00:00",
+      "generation_id": "gen-1794464485-alRhRgNGM32ZC81uaczJ"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s26",
+   "date": "2026-09-29",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20260928a.htm",
+   "text": "AI can be used to support the development of new, more secure software and help catch vulnerabilities before they're introduced. However, there is clearly an asymmetry. Threat actors need to exploit only one key vulnerability, whereas payment system operators and service providers need to defend a large attack surface.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "misuse (bio/cyber)"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:23.060768+00:00",
+      "generation_id": "gen-1794464348-l1qDqNCoaiZZD07O1RtE"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:29.405571+00:00",
+      "generation_id": "gen-1794464424-HCeiFJCXN72WVcXHeNbm"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:33.015956+00:00",
+      "generation_id": "gen-1794464485-SeCqVlxPRXegXHfdzxvS"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s27",
+   "date": "2026-09-29",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20260928a.htm",
+   "text": "If presented with the right data and criteria, AI agents have the potential to excel at solving these complex optimization problems, helping to improve the efficiency of cross-border payments.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:23.060768+00:00",
+      "generation_id": "gen-1794464348-l1qDqNCoaiZZD07O1RtE"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:29.405571+00:00",
+      "generation_id": "gen-1794464424-HCeiFJCXN72WVcXHeNbm"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:33.015956+00:00",
+      "generation_id": "gen-1794464485-SeCqVlxPRXegXHfdzxvS"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s28",
+   "date": "2026-09-29",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20260928a.htm",
+   "text": "At the beginning of the summer, I hosted an industry roundtable at the Federal Reserve that focused on agentic commerce, which involves using AI agents to make e-commerce purchases.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:23.060768+00:00",
+      "generation_id": "gen-1794464348-l1qDqNCoaiZZD07O1RtE"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:29.405571+00:00",
+      "generation_id": "gen-1794464424-HCeiFJCXN72WVcXHeNbm"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:33.015956+00:00",
+      "generation_id": "gen-1794464485-SeCqVlxPRXegXHfdzxvS"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s29",
+   "date": "2026-10-01",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20261001a.htm",
+   "text": "Like past technological advances that have improved FRED, and perhaps more than most of them, AI is empowering users to do more with data. AI can find, summarize, and visualize data more quickly than one person—or even many people—can. AI can work with much larger quantities of information. And AI significantly broadens the audience for data through its searches and by explaining complex concepts to lay users.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:23.060768+00:00",
+      "generation_id": "gen-1794464348-l1qDqNCoaiZZD07O1RtE"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:29.405571+00:00",
+      "generation_id": "gen-1794464424-HCeiFJCXN72WVcXHeNbm"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:33.015956+00:00",
+      "generation_id": "gen-1794464485-SeCqVlxPRXegXHfdzxvS"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s30",
+   "date": "2026-10-01",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20261001a.htm",
+   "text": "Unlike past technological advances that primarily aided in the distribution of data, AI can create content as well, and this capability creates new risks. As I think is well known, AI can hallucinate, introduce bias, and hide key assumptions, often with confidence and polish.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:23.060768+00:00",
+      "generation_id": "gen-1794464348-l1qDqNCoaiZZD07O1RtE"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:29.405571+00:00",
+      "generation_id": "gen-1794464424-HCeiFJCXN72WVcXHeNbm"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:33.015956+00:00",
+      "generation_id": "gen-1794464485-SeCqVlxPRXegXHfdzxvS"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s31",
+   "date": "2026-10-01",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20261001a.htm",
+   "text": "AI may not accurately cite the sources for data. AI may also make a variety of errors in interpreting data, such as that old bête noire for economists and statisticians—confusing correlation with causation.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:23.060768+00:00",
+      "generation_id": "gen-1794464348-l1qDqNCoaiZZD07O1RtE"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:29.405571+00:00",
+      "generation_id": "gen-1794464424-HCeiFJCXN72WVcXHeNbm"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:33.015956+00:00",
+      "generation_id": "gen-1794464485-SeCqVlxPRXegXHfdzxvS"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s32",
+   "date": "2026-10-01",
+   "url": "https://www.federalreserve.gov/newsevents/speech/waller20261001a.htm",
+   "text": "In response to these challenges and opportunities, FRED has introduced the FRED MCP Connector to simplify connecting FRED data with AI systems. Using the Model Context Protocol (MCP), the FRED MCP Connector enables users to find and retrieve data from FRED using an AI agent of their choice—which the FRED staff calls \"BYOAI.\"",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Christopher J. Waller",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:23.060768+00:00",
+      "generation_id": "gen-1794464348-l1qDqNCoaiZZD07O1RtE"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:29.405571+00:00",
+      "generation_id": "gen-1794464424-HCeiFJCXN72WVcXHeNbm"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:33.015956+00:00",
+      "generation_id": "gen-1794464485-SeCqVlxPRXegXHfdzxvS"
      }
     }
    }
@@ -1148,169 +2949,169 @@
   {
    "date": "2025-10-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
-   "n_statements": 3,
+   "n_statements": 11,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-11-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
-   "n_statements": 3,
+   "n_statements": 11,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-12-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
-   "n_statements": 3,
+   "n_statements": 11,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-01-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
-   "n_statements": 3,
+   "n_statements": 11,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-02-28",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
-   "n_statements": 3,
+   "n_statements": 18,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-03-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
-   "n_statements": 3,
+   "n_statements": 18,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-04-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
-   "n_statements": 3,
+   "n_statements": 18,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-05-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
-   "n_statements": 3,
+   "n_statements": 18,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-06-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
-   "n_statements": 3,
+   "n_statements": 18,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-07-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
-   "n_statements": 3,
+   "n_statements": 18,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-08-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
-   "n_statements": 3,
+   "n_statements": 18,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-09-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
-   "n_statements": 5,
+   "n_statements": 28,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-10-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
-   "n_statements": 5,
+   "n_statements": 32,
    "status": "complete",
    "kind": "reconstructed"
   },

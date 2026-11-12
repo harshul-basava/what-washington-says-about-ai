@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_michelle_w_bowman",
- "revision": "70b21253da20d802d8536dfa12860f662151e684dbf8460eecd2a49a7f358248",
+ "revision": "63c0b5db750be2e68188d34c714cd109355311b71e16741d020c93d2f65daac8",
  "profile": {
   "id": "exec_michelle_w_bowman",
   "name": "Michelle W. Bowman",
@@ -60,29 +60,34 @@
     }
    }
   },
-  "n_statements": 14,
-  "n_labeled": 14,
+  "n_statements": 37,
+  "n_labeled": 37,
   "scores": {
-   "ai_overall": null,
-   "agi_pilled": null,
+   "ai_overall": 2.0,
+   "agi_pilled": 1.0,
    "x_risk": null,
    "china_race": null,
-   "regulation": 1.5
+   "regulation": 2.0
   },
   "score_details": {
    "ai_overall": {
-    "score": null,
-    "reason_a": "no_statements",
-    "reason_b": "no_statements",
-    "sids": [],
-    "label_count": 0
+    "score": 2.0,
+    "reason_a": "median_of_3",
+    "reason_b": "median_of_2",
+    "sids": [
+     "s31",
+     "s17"
+    ],
+    "label_count": 3
    },
    "agi_pilled": {
-    "score": null,
-    "reason_a": "silent",
+    "score": 1.0,
+    "reason_a": "consistent",
     "reason_b": "silent",
-    "sids": [],
-    "label_count": 0
+    "sids": [
+     "s19"
+    ],
+    "label_count": 1
    },
    "x_risk": {
     "score": null,
@@ -99,60 +104,71 @@
     "label_count": 0
    },
    "regulation": {
-    "score": 1.5,
+    "score": 2.0,
     "reason_a": "consistent",
-    "reason_b": "one_off_capped",
+    "reason_b": "consistent",
     "sids": [
+     "s30",
+     "s27",
+     "s34",
+     "s20",
      "s13",
      "s12",
-     "s5",
-     "s4"
+     "s5"
     ],
-    "label_count": 11
+    "label_count": 24
    }
   },
   "summary": {
    "status": "complete",
-   "text": "In an August 19, 2025 official statement, Bowman said she continued to be encouraged by significant ongoing investments in AI and machine learning and that some initial benefits of bank AI adoption were already visible [s1]. In the same statement, she said changes ideally would occur with regulators' willing embrace so that AI use cases could proliferate in a way that benefits the banking system [s2]. In a November 22, 2024 statement, she said AI use must comply with current laws and regulations, including fair lending, cybersecurity, data privacy, third-party risk management, and copyright [s5], while also saying regulators should preserve banks' ability to innovate and realize AI's benefits [s3]. She also said that while she had suggested regulators need not rush to regulate, it was important to continue monitoring AI developments [s7].",
+   "text": "In November 2024 remarks, Bowman said AI use must comply with current laws and regulations, including fair lending and cybersecurity, and that regulators should understand AI before considering regulatory changes; she also warned that over-regulation can prevent benefits. In August 2025, she said initial benefits of bank AI adoption were already visible and that regulatory changes ideally would occur with regulators' willing embrace. In 2026 remarks and testimony, she described AI's risks and benefits as more tangible, emphasized supporting responsible innovation while maintaining safeguards, and said the Fed with the OCC and FDIC amended model risk management guidance to clarify it does not apply to generative or agentic AI.",
    "sids": [
+    "s4",
+    "s5",
+    "s6",
+    "s15",
     "s1",
     "s2",
-    "s5",
-    "s3",
-    "s7"
+    "s17",
+    "s20",
+    "s22",
+    "s30"
    ],
    "sentences": [
     {
-     "text": "In an August 19, 2025 official statement, Bowman said she continued to be encouraged by significant ongoing investments in AI and machine learning and that some initial benefits of bank AI adoption were already visible [s1].",
+     "text": "In November 2024 remarks, Bowman said AI use must comply with current laws and regulations, including fair lending and cybersecurity, and that regulators should understand AI before considering regulatory changes; she also warned that over-regulation can prevent benefits.",
      "sids": [
-      "s1"
+      "s4",
+      "s5",
+      "s6",
+      "s15"
      ]
     },
     {
-     "text": "In the same statement, she said changes ideally would occur with regulators' willing embrace so that AI use cases could proliferate in a way that benefits the banking system [s2].",
+     "text": "In August 2025, she said initial benefits of bank AI adoption were already visible and that regulatory changes ideally would occur with regulators' willing embrace.",
      "sids": [
+      "s1",
       "s2"
      ]
     },
     {
-     "text": "In a November 22, 2024 statement, she said AI use must comply with current laws and regulations, including fair lending, cybersecurity, data privacy, third-party risk management, and copyright [s5], while also saying regulators should preserve banks' ability to innovate and realize AI's benefits [s3].",
+     "text": "In 2026 remarks and testimony, she described AI's risks and benefits as more tangible, emphasized supporting responsible innovation while maintaining safeguards, and said the Fed with the OCC and FDIC amended model risk management guidance to clarify it does not apply to generative or agentic AI.",
      "sids": [
-      "s5",
-      "s3"
-     ]
-    },
-    {
-     "text": "She also said that while she had suggested regulators need not rush to regulate, it was important to continue monitoring AI developments [s7].",
-     "sids": [
-      "s7"
+      "s17",
+      "s20",
+      "s22",
+      "s30"
      ]
     }
    ]
   },
   "topics": {
-   "jobs/economy": 2.0,
-   "regulation": 11.5,
-   "copyright": 0.5
+   "jobs/economy": 2.5,
+   "regulation": 28.0,
+   "copyright": 0.5,
+   "AGI/transformative": 3.0,
+   "misuse (bio/cyber)": 2.5,
+   "national security": 0.5
   },
   "regulation": {
    "status": "complete",
@@ -272,26 +288,12 @@
      "sids": [
       "s5"
      ],
-     "why": "Bowman explicitly says AI use must comply with fair-lending laws, supporting nondiscrimination requirements for AI in credit decisions, though she does not call for mandatory bias audits."
+     "why": "Bowman explicitly says AI use must comply with fair-lending laws and regulations, supporting nondiscrimination requirements for AI in lending, though she does not call for a separate bias-audit mandate."
     }
    },
    "disputed": [
     "bias_audits"
    ]
-  },
-  "stance_review": {
-   "review_id": "1e1401af32d3ff87069bd9787e17c433a901573be6e136faaf2613851bf58a18",
-   "dimension": "ai_overall",
-   "status": "complete",
-   "reason": "The supplied excerpts express optimism about AI in banking and finance and discuss regulatory approaches, but none establishes a view of AI's overall effects on Americans. Sector-specific benefits, openness to adoption, and regulatory caution do not independently qualify for ai_overall labels. This conclusion is limited to the supplied excerpts.",
-   "confidence": 5,
-   "n_statements": 14,
-   "n_contexts": 0,
-   "accepted_sids": [],
-   "finding_count": 0,
-   "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-11T04:34:35.019088+00:00",
-   "generation_id": "gen-1794371665-lk44yoEZXkn6bpMIKH62"
   }
  },
  "statements": [
@@ -1743,6 +1745,1788 @@
      }
     }
    }
+  },
+  {
+   "sid": "s15",
+   "date": "2024-11-22",
+   "url": "https://www.federalreserve.gov/newsevents/speech/bowman20241122a.htm",
+   "text": "Over-regulation of AI can itself present risks by preventing the realization of benefits of improved efficiency, lower operational costs, and better fraud prevention and customer service.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
+    "b": {
+     "regulation": 1
+    },
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 4.0
+    },
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:55.671775+00:00",
+      "generation_id": "gen-1794464349-vTIja7S3wHXLkfQeA7CD"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:47.316101+00:00",
+      "generation_id": "gen-1794464425-24G5tjRWmqxmOh8beNov"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "regulation": 4,
+       "ai_overall": 4
+      },
+      "topics": [
+       "regulation",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:22:16.440672+00:00",
+      "generation_id": "gen-1794464486-bwQ7QP3uBExzbKfJ359G"
+     },
+     "sol": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation",
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T06:22:45.802697+00:00",
+      "generation_id": "gen-1794464558-mT3dSFtmMnDCSwX3sCPL"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s16",
+   "date": "2024-11-22",
+   "url": "https://www.federalreserve.gov/newsevents/speech/bowman20241122a.htm",
+   "text": "An overly conservative regulatory approach can skew the competitive landscape by pushing activities outside of the regulated banking system or preventing the use of AI altogether.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
+    "b": {
+     "regulation": 1
+    },
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 4.0
+    },
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:55.671775+00:00",
+      "generation_id": "gen-1794464349-vTIja7S3wHXLkfQeA7CD"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:47.316101+00:00",
+      "generation_id": "gen-1794464425-24G5tjRWmqxmOh8beNov"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:22:16.440672+00:00",
+      "generation_id": "gen-1794464486-bwQ7QP3uBExzbKfJ359G"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s17",
+   "date": "2026-04-27",
+   "url": "https://www.federalreserve.gov/newsevents/speech/bowman20260501a.htm",
+   "text": "Today, we are facing the rapid evolution of AI tools much earlier than many expected, and the risks and benefits are now more tangible and clear.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "ai_overall": 2
+    },
+    "b": {
+     "ai_overall": 2
+    },
+    "topics": [
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "ai_overall": 3.0
+    },
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 2
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:55.671775+00:00",
+      "generation_id": "gen-1794464349-vTIja7S3wHXLkfQeA7CD"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 2
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:47.316101+00:00",
+      "generation_id": "gen-1794464425-24G5tjRWmqxmOh8beNov"
+     },
+     "ds_2": {
+      "labels": {
+       "ai_overall": 2
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:22:16.440672+00:00",
+      "generation_id": "gen-1794464486-bwQ7QP3uBExzbKfJ359G"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s18",
+   "date": "2026-04-27",
+   "url": "https://www.federalreserve.gov/newsevents/speech/bowman20260501a.htm",
+   "text": "Anthropic's Mythos—an AI model that identifies cyber vulnerabilities—highlights the dynamic nature of this technology and the rapid pace that its capability can evolve.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "misuse (bio/cyber)",
+     "AGI/transformative"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:55.671775+00:00",
+      "generation_id": "gen-1794464349-vTIja7S3wHXLkfQeA7CD"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "misuse (bio/cyber)",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:47.316101+00:00",
+      "generation_id": "gen-1794464425-24G5tjRWmqxmOh8beNov"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "misuse (bio/cyber)",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:22:16.440672+00:00",
+      "generation_id": "gen-1794464486-bwQ7QP3uBExzbKfJ359G"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s19",
+   "date": "2026-04-27",
+   "url": "https://www.federalreserve.gov/newsevents/speech/bowman20260501a.htm",
+   "text": "Whether used in targeted modeling or enterprise-wide tools, AI will become a force multiplier for the financial system, and in the broader U.S. economy.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "ai_overall": 3,
+     "agi_pilled": 2
+    },
+    "b": {
+     "ai_overall": 3
+    },
+    "topics": [
+     "jobs/economy",
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "ai_overall": 3.5,
+     "agi_pilled": 2.67
+    },
+    "escalated": [
+     "ai_overall",
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "agi_pilled": 2,
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:55.671775+00:00",
+      "generation_id": "gen-1794464349-vTIja7S3wHXLkfQeA7CD"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:47.316101+00:00",
+      "generation_id": "gen-1794464425-24G5tjRWmqxmOh8beNov"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2,
+       "ai_overall": 3
+      },
+      "confidence": {
+       "agi_pilled": 3,
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:22:16.440672+00:00",
+      "generation_id": "gen-1794464486-bwQ7QP3uBExzbKfJ359G"
+     },
+     "sol": {
+      "labels": {
+       "ai_overall": 3
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T06:22:45.802697+00:00",
+      "generation_id": "gen-1794464558-mT3dSFtmMnDCSwX3sCPL"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s20",
+   "date": "2026-04-27",
+   "url": "https://www.federalreserve.gov/newsevents/speech/bowman20260501a.htm",
+   "text": "An important part of our job as supervisors is to ensure that banks are aware of and attentive to the risks and challenges inherent in its use, so it can be deployed responsibly and effectively. And we need to ensure that there is a path for innovation, which includes the use of AI.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 2
+    },
+    "b": {},
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 2.5
+    },
+    "escalated": [
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 2
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:55.671775+00:00",
+      "generation_id": "gen-1794464349-vTIja7S3wHXLkfQeA7CD"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:47.316101+00:00",
+      "generation_id": "gen-1794464425-24G5tjRWmqxmOh8beNov"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:22:16.440672+00:00",
+      "generation_id": "gen-1794464486-bwQ7QP3uBExzbKfJ359G"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T06:22:45.802697+00:00",
+      "generation_id": "gen-1794464558-mT3dSFtmMnDCSwX3sCPL"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s21",
+   "date": "2026-04-27",
+   "url": "https://www.federalreserve.gov/newsevents/speech/bowman20260501a.htm",
+   "text": "Therefore, it is necessary to ensure that our supervisory guidance does not hinder access to and implementation of innovation. This includes emphasis on the flexibility to develop, implement, and manage AI to be consistent with their unique structure, business, and culture.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
+    "b": {
+     "regulation": 1
+    },
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 4.0
+    },
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:55.671775+00:00",
+      "generation_id": "gen-1794464349-vTIja7S3wHXLkfQeA7CD"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:47.316101+00:00",
+      "generation_id": "gen-1794464425-24G5tjRWmqxmOh8beNov"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:22:16.440672+00:00",
+      "generation_id": "gen-1794464486-bwQ7QP3uBExzbKfJ359G"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s22",
+   "date": "2026-04-27",
+   "url": "https://www.federalreserve.gov/newsevents/speech/bowman20260501a.htm",
+   "text": "Together with the OCC and FDIC, the Fed recently amended our model risk management guidance to clarify that it does not apply to generative or agentic AI.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
+    "b": {
+     "regulation": 1
+    },
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 3.0
+    },
+    "escalated": [
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:55.671775+00:00",
+      "generation_id": "gen-1794464349-vTIja7S3wHXLkfQeA7CD"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:47.316101+00:00",
+      "generation_id": "gen-1794464425-24G5tjRWmqxmOh8beNov"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 0
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:22:16.440672+00:00",
+      "generation_id": "gen-1794464486-bwQ7QP3uBExzbKfJ359G"
+     },
+     "sol": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T06:22:45.802697+00:00",
+      "generation_id": "gen-1794464558-mT3dSFtmMnDCSwX3sCPL"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s23",
+   "date": "2026-04-27",
+   "url": "https://www.federalreserve.gov/newsevents/speech/bowman20260501a.htm",
+   "text": "Going forward, we expect other risk-management and governance practices to support adoption of generative and agentic AI in ways that will encourage ongoing innovation.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
+    "b": {},
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 3.0
+    },
+    "escalated": [
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:55.671775+00:00",
+      "generation_id": "gen-1794464349-vTIja7S3wHXLkfQeA7CD"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:47.316101+00:00",
+      "generation_id": "gen-1794464425-24G5tjRWmqxmOh8beNov"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:22:16.440672+00:00",
+      "generation_id": "gen-1794464486-bwQ7QP3uBExzbKfJ359G"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T06:22:45.802697+00:00",
+      "generation_id": "gen-1794464558-mT3dSFtmMnDCSwX3sCPL"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s24",
+   "date": "2026-04-27",
+   "url": "https://www.federalreserve.gov/newsevents/speech/bowman20260501a.htm",
+   "text": "Innovation is a necessary component of financial services, and supervisory guidance should not be a barrier for banks to engage with new and evolving tools and technologies.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
+    "b": {
+     "regulation": 1
+    },
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 4.0
+    },
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:55.671775+00:00",
+      "generation_id": "gen-1794464349-vTIja7S3wHXLkfQeA7CD"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:47.316101+00:00",
+      "generation_id": "gen-1794464425-24G5tjRWmqxmOh8beNov"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:22:16.440672+00:00",
+      "generation_id": "gen-1794464486-bwQ7QP3uBExzbKfJ359G"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s25",
+   "date": "2026-07-07",
+   "url": "https://www.federalreserve.gov/newsevents/speech/bowman20260707a.htm",
+   "text": "In setting out my priorities late last year, I initiated work on a set of sound practices for financial institutions to consider in the responsible adoption and use of artificial intelligence (AI).",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
+    "b": {
+     "regulation": 1
+    },
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 3.0
+    },
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:55.671775+00:00",
+      "generation_id": "gen-1794464349-vTIja7S3wHXLkfQeA7CD"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:47.316101+00:00",
+      "generation_id": "gen-1794464425-24G5tjRWmqxmOh8beNov"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:22:16.440672+00:00",
+      "generation_id": "gen-1794464486-bwQ7QP3uBExzbKfJ359G"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s26",
+   "date": "2026-07-07",
+   "url": "https://www.federalreserve.gov/newsevents/speech/bowman20260707a.htm",
+   "text": "Our focus has been on supporting institutions that want to innovate responsibly by leveraging AI tools in their operations.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
+    "b": {},
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 3.0
+    },
+    "escalated": [
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:55.671775+00:00",
+      "generation_id": "gen-1794464349-vTIja7S3wHXLkfQeA7CD"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:47.316101+00:00",
+      "generation_id": "gen-1794464425-24G5tjRWmqxmOh8beNov"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:22:16.440672+00:00",
+      "generation_id": "gen-1794464486-bwQ7QP3uBExzbKfJ359G"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T06:22:45.802697+00:00",
+      "generation_id": "gen-1794464558-mT3dSFtmMnDCSwX3sCPL"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s27",
+   "date": "2026-07-07",
+   "url": "https://www.federalreserve.gov/newsevents/speech/bowman20260707a.htm",
+   "text": "From my perspective, financial institutions should be specific about how they use AI and whether it is material to their business operations or legal and regulatory obligations.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 2
+    },
+    "b": {},
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 2.5
+    },
+    "escalated": [
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 2
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:55.671775+00:00",
+      "generation_id": "gen-1794464349-vTIja7S3wHXLkfQeA7CD"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:47.316101+00:00",
+      "generation_id": "gen-1794464425-24G5tjRWmqxmOh8beNov"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:22:16.440672+00:00",
+      "generation_id": "gen-1794464486-bwQ7QP3uBExzbKfJ359G"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T06:22:45.802697+00:00",
+      "generation_id": "gen-1794464558-mT3dSFtmMnDCSwX3sCPL"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s28",
+   "date": "2026-07-07",
+   "url": "https://www.federalreserve.gov/newsevents/speech/bowman20260707a.htm",
+   "text": "In the report, we emphasized that lower-risk uses of AI should receive a lighter supervisory and regulatory touch.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 1
+    },
+    "b": {
+     "regulation": 1
+    },
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 4.0
+    },
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:55.671775+00:00",
+      "generation_id": "gen-1794464349-vTIja7S3wHXLkfQeA7CD"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:47.316101+00:00",
+      "generation_id": "gen-1794464425-24G5tjRWmqxmOh8beNov"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:22:16.440672+00:00",
+      "generation_id": "gen-1794464486-bwQ7QP3uBExzbKfJ359G"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s29",
+   "date": "2026-07-07",
+   "url": "https://www.federalreserve.gov/newsevents/speech/bowman20260707a.htm",
+   "text": "What works or is a consideration for larger institutions using AI in complex applications is not appropriate for smaller institutions with less complex AI uses.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {},
+    "escalated": [
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:55.671775+00:00",
+      "generation_id": "gen-1794464349-vTIja7S3wHXLkfQeA7CD"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:47.316101+00:00",
+      "generation_id": "gen-1794464425-24G5tjRWmqxmOh8beNov"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:22:16.440672+00:00",
+      "generation_id": "gen-1794464486-bwQ7QP3uBExzbKfJ359G"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T06:22:45.802697+00:00",
+      "generation_id": "gen-1794464558-mT3dSFtmMnDCSwX3sCPL"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s30",
+   "date": "2026-07-07",
+   "url": "https://www.federalreserve.gov/newsevents/speech/bowman20260707a.htm",
+   "text": "We need to ensure these practices support responsible innovation across the financial system while maintaining appropriate safeguards, especially for higher-risk applications.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 2
+    },
+    "b": {
+     "regulation": 2
+    },
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {
+     "regulation": 3.33
+    },
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:55.671775+00:00",
+      "generation_id": "gen-1794464349-vTIja7S3wHXLkfQeA7CD"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:47.316101+00:00",
+      "generation_id": "gen-1794464425-24G5tjRWmqxmOh8beNov"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 4
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:22:16.440672+00:00",
+      "generation_id": "gen-1794464486-bwQ7QP3uBExzbKfJ359G"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s31",
+   "date": "2026-06-04",
+   "url": "https://www.federalreserve.gov/newsevents/testimony/bowman20260604a.htm",
+   "text": "The financial system continues to adapt to technological advances, including the rapid evolution of artificial intelligence (AI) capabilities and the risks and benefits of its use.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "ai_overall": 2
+    },
+    "b": {},
+    "topics": [
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "ai_overall": 2.5
+    },
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 2
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:55.671775+00:00",
+      "generation_id": "gen-1794464349-vTIja7S3wHXLkfQeA7CD"
+     },
+     "ds_1": {
+      "labels": {
+       "ai_overall": 2
+      },
+      "confidence": {
+       "ai_overall": 2
+      },
+      "topics": [
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:47.316101+00:00",
+      "generation_id": "gen-1794464425-24G5tjRWmqxmOh8beNov"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:22:16.440672+00:00",
+      "generation_id": "gen-1794464486-bwQ7QP3uBExzbKfJ359G"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T06:22:45.802697+00:00",
+      "generation_id": "gen-1794464558-mT3dSFtmMnDCSwX3sCPL"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s32",
+   "date": "2026-06-04",
+   "url": "https://www.federalreserve.gov/newsevents/testimony/bowman20260604a.htm",
+   "text": "Recent advances in frontier AI models have dramatically accelerated the identification of cyber vulnerabilities across critical infrastructure, including the banking system.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "misuse (bio/cyber)",
+     "national security"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:55.671775+00:00",
+      "generation_id": "gen-1794464349-vTIja7S3wHXLkfQeA7CD"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "misuse (bio/cyber)",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:47.316101+00:00",
+      "generation_id": "gen-1794464425-24G5tjRWmqxmOh8beNov"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "misuse (bio/cyber)",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:22:16.440672+00:00",
+      "generation_id": "gen-1794464486-bwQ7QP3uBExzbKfJ359G"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s33",
+   "date": "2026-06-04",
+   "url": "https://www.federalreserve.gov/newsevents/testimony/bowman20260604a.htm",
+   "text": "While this enhanced detection capability offers opportunities to strengthen cybersecurity defenses, it also identifies new vulnerabilities to potential cyberattacks.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "misuse (bio/cyber)"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:55.671775+00:00",
+      "generation_id": "gen-1794464349-vTIja7S3wHXLkfQeA7CD"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:47.316101+00:00",
+      "generation_id": "gen-1794464425-24G5tjRWmqxmOh8beNov"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "misuse (bio/cyber)",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:22:16.440672+00:00",
+      "generation_id": "gen-1794464486-bwQ7QP3uBExzbKfJ359G"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s34",
+   "date": "2026-06-04",
+   "url": "https://www.federalreserve.gov/newsevents/testimony/bowman20260604a.htm",
+   "text": "Effectively managing these emerging cyber risks will require ongoing collaboration between public and private entities, continuous monitoring of AI developments, regular stakeholder communications, and agile regulatory and supervisory frameworks that keep pace with rapid technological change.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 2
+    },
+    "b": {
+     "regulation": 2
+    },
+    "topics": [
+     "regulation",
+     "misuse (bio/cyber)"
+    ],
+    "confidence": {
+     "regulation": 3.0
+    },
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:55.671775+00:00",
+      "generation_id": "gen-1794464349-vTIja7S3wHXLkfQeA7CD"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "misuse (bio/cyber)",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:47.316101+00:00",
+      "generation_id": "gen-1794464425-24G5tjRWmqxmOh8beNov"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "misuse (bio/cyber)",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:22:16.440672+00:00",
+      "generation_id": "gen-1794464486-bwQ7QP3uBExzbKfJ359G"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s35",
+   "date": "2026-06-04",
+   "url": "https://www.federalreserve.gov/newsevents/testimony/bowman20260604a.htm",
+   "text": "It is important that, going forward, we ensure that there is a path to responsible innovation in the banking system, including in the use of AI.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:34.531694+00:00",
+      "generation_id": "gen-1794464356-kcvArerXrrWb0KXEg7wA"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:35.281072+00:00",
+      "generation_id": "gen-1794464430-xG7WwDrJpUvxbET9f8xF"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:38.814525+00:00",
+      "generation_id": "gen-1794464492-GqYcP3I4mGFh0CvWhldY"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s36",
+   "date": "2026-06-04",
+   "url": "https://www.federalreserve.gov/newsevents/testimony/bowman20260604a.htm",
+   "text": "Next week, the FSB's SRC will publish a report on sound practices for financial institution use of AI.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:34.531694+00:00",
+      "generation_id": "gen-1794464356-kcvArerXrrWb0KXEg7wA"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:35.281072+00:00",
+      "generation_id": "gen-1794464430-xG7WwDrJpUvxbET9f8xF"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:38.814525+00:00",
+      "generation_id": "gen-1794464492-GqYcP3I4mGFh0CvWhldY"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s37",
+   "date": "2026-06-04",
+   "url": "https://www.federalreserve.gov/newsevents/testimony/bowman20260604a.htm",
+   "text": "This will guide institutions in safely adopting and effectively using AI.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Michelle W. Bowman",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:34.531694+00:00",
+      "generation_id": "gen-1794464356-kcvArerXrrWb0KXEg7wA"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:35.281072+00:00",
+      "generation_id": "gen-1794464430-xG7WwDrJpUvxbET9f8xF"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:38.814525+00:00",
+      "generation_id": "gen-1794464492-GqYcP3I4mGFh0CvWhldY"
+     }
+    }
+   }
   }
  ],
  "history": [
@@ -2041,7 +3825,7 @@
     "china_race": null,
     "regulation": 1.5
    },
-   "n_statements": 12,
+   "n_statements": 14,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2054,7 +3838,7 @@
     "china_race": null,
     "regulation": 1.5
    },
-   "n_statements": 12,
+   "n_statements": 14,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2067,7 +3851,7 @@
     "china_race": null,
     "regulation": 1.5
    },
-   "n_statements": 12,
+   "n_statements": 14,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2080,7 +3864,7 @@
     "china_race": null,
     "regulation": 1.5
    },
-   "n_statements": 12,
+   "n_statements": 14,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2093,7 +3877,7 @@
     "china_race": null,
     "regulation": 1.5
    },
-   "n_statements": 12,
+   "n_statements": 14,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2106,7 +3890,7 @@
     "china_race": null,
     "regulation": 1.5
    },
-   "n_statements": 12,
+   "n_statements": 14,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2119,7 +3903,7 @@
     "china_race": null,
     "regulation": 1.5
    },
-   "n_statements": 12,
+   "n_statements": 14,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2132,7 +3916,7 @@
     "china_race": null,
     "regulation": 1.5
    },
-   "n_statements": 12,
+   "n_statements": 14,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2145,7 +3929,7 @@
     "china_race": null,
     "regulation": 1.5
    },
-   "n_statements": 12,
+   "n_statements": 14,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2158,7 +3942,7 @@
     "china_race": null,
     "regulation": 1.5
    },
-   "n_statements": 14,
+   "n_statements": 16,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2171,7 +3955,7 @@
     "china_race": null,
     "regulation": 1.5
    },
-   "n_statements": 14,
+   "n_statements": 16,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2184,7 +3968,7 @@
     "china_race": null,
     "regulation": 1.5
    },
-   "n_statements": 14,
+   "n_statements": 16,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2197,7 +3981,7 @@
     "china_race": null,
     "regulation": 1.5
    },
-   "n_statements": 14,
+   "n_statements": 16,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2210,7 +3994,7 @@
     "china_race": null,
     "regulation": 1.5
    },
-   "n_statements": 14,
+   "n_statements": 16,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2223,7 +4007,7 @@
     "china_race": null,
     "regulation": 1.5
    },
-   "n_statements": 14,
+   "n_statements": 16,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2236,7 +4020,7 @@
     "china_race": null,
     "regulation": 1.5
    },
-   "n_statements": 14,
+   "n_statements": 16,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2249,98 +4033,98 @@
     "china_race": null,
     "regulation": 1.5
    },
-   "n_statements": 14,
+   "n_statements": 16,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-04-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 2.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
     "regulation": 1.5
    },
-   "n_statements": 14,
+   "n_statements": 24,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-05-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 2.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
     "regulation": 1.5
    },
-   "n_statements": 14,
+   "n_statements": 24,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-06-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 2.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": 1.5
+    "regulation": 2.0
    },
-   "n_statements": 14,
+   "n_statements": 31,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-07-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 2.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": 1.5
+    "regulation": 2.0
    },
-   "n_statements": 14,
+   "n_statements": 37,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-08-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 2.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": 1.5
+    "regulation": 2.0
    },
-   "n_statements": 14,
+   "n_statements": 37,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-09-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 2.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": 1.5
+    "regulation": 2.0
    },
-   "n_statements": 14,
+   "n_statements": 37,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-10-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 2.0,
+    "agi_pilled": 1.0,
     "x_risk": null,
     "china_race": null,
-    "regulation": 1.5
+    "regulation": 2.0
    },
-   "n_statements": 14,
+   "n_statements": 37,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2371,5 +4155,24 @@
    "kind": "observed"
   }
  ],
- "changes": []
+ "changes": [
+  {
+   "id": "exec_michelle_w_bowman",
+   "date": "2026-11-12",
+   "dimension": "regulation",
+   "old": 1.5,
+   "new": 2.0,
+   "kind": "small",
+   "cause": "evidence or assessment changed",
+   "sids": [
+    "s30",
+    "s27",
+    "s34",
+    "s20",
+    "s13",
+    "s12",
+    "s5"
+   ]
+  }
+ ]
 }

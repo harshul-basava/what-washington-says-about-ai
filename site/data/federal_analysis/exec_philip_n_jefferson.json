@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_philip_n_jefferson",
- "revision": "70b21253da20d802d8536dfa12860f662151e684dbf8460eecd2a49a7f358248",
+ "revision": "63c0b5db750be2e68188d34c714cd109355311b71e16741d020c93d2f65daac8",
  "profile": {
   "id": "exec_philip_n_jefferson",
   "name": "Philip N. Jefferson",
@@ -60,11 +60,11 @@
     }
    }
   },
-  "n_statements": 14,
-  "n_labeled": 14,
+  "n_statements": 29,
+  "n_labeled": 29,
   "scores": {
    "ai_overall": 3.0,
-   "agi_pilled": 1.0,
+   "agi_pilled": 2.0,
    "x_risk": null,
    "china_race": null,
    "regulation": null
@@ -73,21 +73,22 @@
    "ai_overall": {
     "score": 3.0,
     "reason_a": "median_of_2",
-    "reason_b": "median_of_2",
+    "reason_b": "median_of_3",
     "sids": [
      "s5",
      "s2"
     ],
-    "label_count": 2
+    "label_count": 3
    },
    "agi_pilled": {
-    "score": 1.0,
+    "score": 2.0,
     "reason_a": "consistent",
-    "reason_b": "silent",
+    "reason_b": "consistent",
     "sids": [
-     "s6"
+     "s6",
+     "s15"
     ],
-    "label_count": 1
+    "label_count": 2
    },
    "x_risk": {
     "score": null,
@@ -113,40 +114,51 @@
   },
   "summary": {
    "status": "complete",
-   "text": "On November 7, 2025, Jefferson described AI's potential to speed up workers' tasks and called labor disruption a real risk. On May 27, 2026, Jefferson expressed optimism about AI's promise for productivity and growth while monitoring its effects on the labor market and inflation. On October 1, 2026, Jefferson said AI-related spending was supporting strong business investment and expected AI-related investments to continue supporting growth that year.",
+   "text": "In a May 2026 speech, Jefferson said he was optimistic about AI's promise to drive productivity and growth while monitoring its effects on the labor market and inflation. He has also described AI as a real risk of labor disruption and said job loss is likely for certain firms and workers in certain occupations. In October 2026, he said AI-related spending was supporting business investment and expected AI-related investments to continue supporting growth. He has said it is likely still too soon to tell how AI's labor and price effects will affect monetary policy.",
    "sids": [
-    "s1",
     "s5",
+    "s1",
+    "s23",
     "s8",
-    "s9"
+    "s9",
+    "s19",
+    "s25"
    ],
    "sentences": [
     {
-     "text": "On November 7, 2025, Jefferson described AI's potential to speed up workers' tasks and called labor disruption a real risk.",
-     "sids": [
-      "s1"
-     ]
-    },
-    {
-     "text": "On May 27, 2026, Jefferson expressed optimism about AI's promise for productivity and growth while monitoring its effects on the labor market and inflation.",
+     "text": "In a May 2026 speech, Jefferson said he was optimistic about AI's promise to drive productivity and growth while monitoring its effects on the labor market and inflation.",
      "sids": [
       "s5"
      ]
     },
     {
-     "text": "On October 1, 2026, Jefferson said AI-related spending was supporting strong business investment and expected AI-related investments to continue supporting growth that year.",
+     "text": "He has also described AI as a real risk of labor disruption and said job loss is likely for certain firms and workers in certain occupations.",
+     "sids": [
+      "s1",
+      "s23"
+     ]
+    },
+    {
+     "text": "In October 2026, he said AI-related spending was supporting business investment and expected AI-related investments to continue supporting growth.",
      "sids": [
       "s8",
       "s9"
+     ]
+    },
+    {
+     "text": "He has said it is likely still too soon to tell how AI's labor and price effects will affect monetary policy.",
+     "sids": [
+      "s19",
+      "s25"
      ]
     }
    ]
   },
   "topics": {
-   "jobs/economy": 10.5,
-   "AGI/transformative": 2.0,
+   "jobs/economy": 23.5,
+   "AGI/transformative": 2.5,
    "energy/data centers": 0.5,
-   "other": 1.0
+   "other": 2.5
   },
   "regulation": {
    "status": "complete",
@@ -184,7 +196,7 @@
     "layoff_reporting": {
      "stance": 0,
      "sids": [],
-     "why": "Statements note AI-related job-loss risk (s1) and monitoring labor-market effects (s2, s5), but call for no reporting or notice requirement."
+     "why": "Statements note AI-related job-loss risk (s1, s23) but call for no reporting or notice requirement."
     },
     "bias_audits": {
      "stance": 0,
@@ -268,23 +280,6 @@
     }
    },
    "disputed": []
-  },
-  "stance_review": {
-   "review_id": "2a90ec4d13ddf535c1131fc763e1b01bab5cef922528bbf2a5577d297071c81f",
-   "dimension": "ai_overall",
-   "status": "complete",
-   "reason": "The supplied excerpts establish a generally optimistic economic assessment in s2 and s5, which repeat the same substantive statement. Other excerpts address specific labor risks, investment effects, economic developments, or speech agendas without establishing an overall AI stance. These are Jefferson's statements, not institutional positions of the Federal Reserve.",
-   "confidence": 5,
-   "n_statements": 14,
-   "n_contexts": 0,
-   "accepted_sids": [
-    "s2",
-    "s5"
-   ],
-   "finding_count": 2,
-   "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-11T04:19:28.486204+00:00",
-   "generation_id": "gen-1794370756-IwL81JOTOkqoIJNIVki7"
   }
  },
  "statements": [
@@ -1602,6 +1597,963 @@
      }
     }
    }
+  },
+  {
+   "sid": "s15",
+   "date": "2025-11-07",
+   "url": "https://www.federalreserve.gov/newsevents/speech/jefferson20251107a.htm",
+   "text": "AI has the potential to transform how we work and how we live, and it could have a profound effect on the economy.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Philip N. Jefferson",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "agi_pilled": 2
+    },
+    "b": {
+     "agi_pilled": 2
+    },
+    "topics": [
+     "AGI/transformative",
+     "jobs/economy"
+    ],
+    "confidence": {
+     "agi_pilled": 3.67
+    },
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:33.038743+00:00",
+      "generation_id": "gen-1794464348-gtQPoReC48zOm2V6oDl7"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 4
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:43.617438+00:00",
+      "generation_id": "gen-1794464424-WXwfKBtYqnMU80uc3AVl"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:31.152265+00:00",
+      "generation_id": "gen-1794464486-BNwifrd7wCivGkFSHAf6"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s16",
+   "date": "2025-11-07",
+   "url": "https://www.federalreserve.gov/newsevents/speech/jefferson20251107a.htm",
+   "text": "By automating certain tasks, it could lead to a reduction in some types of jobs. But increased productivity leads to economic growth, which may create new employment opportunities. AI is also expected to create new job categories and transform existing ones.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Philip N. Jefferson",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {
+     "ai_overall": 2
+    },
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [
+     "ai_overall"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "ai_overall": 2
+      },
+      "confidence": {
+       "ai_overall": 3
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:33.038743+00:00",
+      "generation_id": "gen-1794464348-gtQPoReC48zOm2V6oDl7"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:43.617438+00:00",
+      "generation_id": "gen-1794464424-WXwfKBtYqnMU80uc3AVl"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:31.152265+00:00",
+      "generation_id": "gen-1794464486-BNwifrd7wCivGkFSHAf6"
+     },
+     "sol": {
+      "labels": {
+       "ai_overall": 2
+      },
+      "confidence": {
+       "ai_overall": 4
+      },
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T06:22:44.158205+00:00",
+      "generation_id": "gen-1794464558-mTb0iGzwBzwOB3PxgA5o"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s17",
+   "date": "2025-11-07",
+   "url": "https://www.federalreserve.gov/newsevents/speech/jefferson20251107a.htm",
+   "text": "On the other side of our dual mandate, price stability, AI could help the economy achieve higher growth through increased productivity while reducing inflationary pressures.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Philip N. Jefferson",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:33.038743+00:00",
+      "generation_id": "gen-1794464348-gtQPoReC48zOm2V6oDl7"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:43.617438+00:00",
+      "generation_id": "gen-1794464424-WXwfKBtYqnMU80uc3AVl"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:31.152265+00:00",
+      "generation_id": "gen-1794464486-BNwifrd7wCivGkFSHAf6"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s18",
+   "date": "2025-11-07",
+   "url": "https://www.federalreserve.gov/newsevents/speech/jefferson20251107a.htm",
+   "text": "Conversely, AI could put upward pressure on certain price categories as many firms push to scale up the technology.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Philip N. Jefferson",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:33.038743+00:00",
+      "generation_id": "gen-1794464348-gtQPoReC48zOm2V6oDl7"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:43.617438+00:00",
+      "generation_id": "gen-1794464424-WXwfKBtYqnMU80uc3AVl"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:31.152265+00:00",
+      "generation_id": "gen-1794464486-BNwifrd7wCivGkFSHAf6"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s19",
+   "date": "2025-11-07",
+   "url": "https://www.federalreserve.gov/newsevents/speech/jefferson20251107a.htm",
+   "text": "So, what do these still-developing labor and price effects mean for monetary policy? The short answer is that it is likely still too soon to tell.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Philip N. Jefferson",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:33.038743+00:00",
+      "generation_id": "gen-1794464348-gtQPoReC48zOm2V6oDl7"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:43.617438+00:00",
+      "generation_id": "gen-1794464424-WXwfKBtYqnMU80uc3AVl"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:31.152265+00:00",
+      "generation_id": "gen-1794464486-BNwifrd7wCivGkFSHAf6"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s20",
+   "date": "2025-11-07",
+   "url": "https://www.federalreserve.gov/newsevents/speech/jefferson20251107a.htm",
+   "text": "Some of the recent changes in hiring patterns, productivity growth, and inflation are likely to represent AI-driven change, but it is difficult to know the degree.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Philip N. Jefferson",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:33.038743+00:00",
+      "generation_id": "gen-1794464348-gtQPoReC48zOm2V6oDl7"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:43.617438+00:00",
+      "generation_id": "gen-1794464424-WXwfKBtYqnMU80uc3AVl"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:31.152265+00:00",
+      "generation_id": "gen-1794464486-BNwifrd7wCivGkFSHAf6"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s21",
+   "date": "2025-11-07",
+   "url": "https://www.federalreserve.gov/newsevents/speech/jefferson20251107a.htm",
+   "text": "Productivity gains from AI may affect the relationship between employment and inflation and hence the conduct of monetary policy.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Philip N. Jefferson",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:33.038743+00:00",
+      "generation_id": "gen-1794464348-gtQPoReC48zOm2V6oDl7"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:43.617438+00:00",
+      "generation_id": "gen-1794464424-WXwfKBtYqnMU80uc3AVl"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:31.152265+00:00",
+      "generation_id": "gen-1794464486-BNwifrd7wCivGkFSHAf6"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s22",
+   "date": "2025-11-21",
+   "url": "https://www.federalreserve.gov/newsevents/speech/jefferson20251121a.htm",
+   "text": "AI can enable a worker to complete in seconds or a few minutes tasks that previously took many minutes, if not hours. Already, it is boosting worker productivity in a wide range of industries and occupations, including customer service, logistics, computer programming, and medical research.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Philip N. Jefferson",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:33.038743+00:00",
+      "generation_id": "gen-1794464348-gtQPoReC48zOm2V6oDl7"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:43.617438+00:00",
+      "generation_id": "gen-1794464424-WXwfKBtYqnMU80uc3AVl"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:31.152265+00:00",
+      "generation_id": "gen-1794464486-BNwifrd7wCivGkFSHAf6"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s23",
+   "date": "2025-11-21",
+   "url": "https://www.federalreserve.gov/newsevents/speech/jefferson20251121a.htm",
+   "text": "At the same time, many people have legitimate concerns that AI will cause job loss. At least for certain firms and workers in certain occupations, this is likely to be true.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Philip N. Jefferson",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:33.038743+00:00",
+      "generation_id": "gen-1794464348-gtQPoReC48zOm2V6oDl7"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:43.617438+00:00",
+      "generation_id": "gen-1794464424-WXwfKBtYqnMU80uc3AVl"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:31.152265+00:00",
+      "generation_id": "gen-1794464486-BNwifrd7wCivGkFSHAf6"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s24",
+   "date": "2025-11-21",
+   "url": "https://www.federalreserve.gov/newsevents/speech/jefferson20251121a.htm",
+   "text": "On the other side of our dual mandate—price stability—AI could help the economy achieve higher growth through increased productivity while reducing inflationary pressures. Specifically, increased productivity could lower production costs and put downward pressure on prices.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Philip N. Jefferson",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:33.038743+00:00",
+      "generation_id": "gen-1794464348-gtQPoReC48zOm2V6oDl7"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:43.617438+00:00",
+      "generation_id": "gen-1794464424-WXwfKBtYqnMU80uc3AVl"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:31.152265+00:00",
+      "generation_id": "gen-1794464486-BNwifrd7wCivGkFSHAf6"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s25",
+   "date": "2025-11-21",
+   "url": "https://www.federalreserve.gov/newsevents/speech/jefferson20251121a.htm",
+   "text": "In terms of AI's implications for monetary policy, it is likely still too soon to tell. Policymakers must sort out changes in the economy that are due to cyclical factors from those resulting from structural change, which AI may well represent.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Philip N. Jefferson",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:33.038743+00:00",
+      "generation_id": "gen-1794464348-gtQPoReC48zOm2V6oDl7"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:43.617438+00:00",
+      "generation_id": "gen-1794464424-WXwfKBtYqnMU80uc3AVl"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:31.152265+00:00",
+      "generation_id": "gen-1794464486-BNwifrd7wCivGkFSHAf6"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T06:22:44.158205+00:00",
+      "generation_id": "gen-1794464558-mTb0iGzwBzwOB3PxgA5o"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s26",
+   "date": "2025-11-21",
+   "url": "https://www.federalreserve.gov/newsevents/speech/jefferson20251121a.htm",
+   "text": "Productivity gains from AI may affect the relationship between employment and inflation and, hence, the conduct of monetary policy. Monetary policy decisions, of course, need to be made with a broad view of what is happening in the economy, not just in one sector or technology. There is still much to learn. I counsel exercising humility about the challenges in predicting AI's effects on employment and inflation.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Philip N. Jefferson",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:33.038743+00:00",
+      "generation_id": "gen-1794464348-gtQPoReC48zOm2V6oDl7"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:43.617438+00:00",
+      "generation_id": "gen-1794464424-WXwfKBtYqnMU80uc3AVl"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:31.152265+00:00",
+      "generation_id": "gen-1794464486-BNwifrd7wCivGkFSHAf6"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s27",
+   "date": "2025-11-21",
+   "url": "https://www.federalreserve.gov/newsevents/speech/jefferson20251121a.htm",
+   "text": "A finding in the most recent survey is likely of particular interest to a conference exploring financial stability in a time of technological change—30 percent of contacts surveyed cited a turn in the prevailing sentiment toward AI as a salient risk to the U.S. financial system and the global economy. That was up from 9 percent in the spring survey. Participants noted that if such an unwinding were to occur, it could tighten financial conditions and restrain economic activity more broadly.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Philip N. Jefferson",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy",
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:33.038743+00:00",
+      "generation_id": "gen-1794464348-gtQPoReC48zOm2V6oDl7"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:43.617438+00:00",
+      "generation_id": "gen-1794464424-WXwfKBtYqnMU80uc3AVl"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:31.152265+00:00",
+      "generation_id": "gen-1794464486-BNwifrd7wCivGkFSHAf6"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s28",
+   "date": "2025-11-21",
+   "url": "https://www.federalreserve.gov/newsevents/speech/jefferson20251121a.htm",
+   "text": "In contrast, the firms most closely identified with AI technologies in today's market generally have well-established and growing earnings streams. The second difference is that because of their solid earnings base, the price-to-earnings ratios of AI-related firms have thus far remained well below the peak ratios of dot-com firms in the late 1990s and early 2000s.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Philip N. Jefferson",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy",
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:33.038743+00:00",
+      "generation_id": "gen-1794464348-gtQPoReC48zOm2V6oDl7"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:43.617438+00:00",
+      "generation_id": "gen-1794464424-WXwfKBtYqnMU80uc3AVl"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:31.152265+00:00",
+      "generation_id": "gen-1794464486-BNwifrd7wCivGkFSHAf6"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s29",
+   "date": "2025-11-21",
+   "url": "https://www.federalreserve.gov/newsevents/speech/jefferson20251121a.htm",
+   "text": "If that turns out to be the case, leverage in the AI sector could increase—and so could the losses if sentiment toward AI shifts. I will watch this developing trend closely.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Philip N. Jefferson",
+    "organization_id": "federal_reserve",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy",
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:19:33.038743+00:00",
+      "generation_id": "gen-1794464348-gtQPoReC48zOm2V6oDl7"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:20:43.617438+00:00",
+      "generation_id": "gen-1794464424-WXwfKBtYqnMU80uc3AVl"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T06:21:31.152265+00:00",
+      "generation_id": "gen-1794464486-BNwifrd7wCivGkFSHAf6"
+     }
+    }
+   }
   }
  ],
  "history": [
@@ -2050,156 +3002,156 @@
   {
    "date": "2025-11-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 2.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 6,
+   "n_statements": 21,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-12-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 2.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 6,
+   "n_statements": 21,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-01-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 2.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 6,
+   "n_statements": 21,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-02-28",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 2.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 7,
+   "n_statements": 22,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-03-31",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 2.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 7,
+   "n_statements": 22,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-04-30",
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 2.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 7,
+   "n_statements": 22,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-05-31",
    "scores": {
-    "ai_overall": 3.0,
-    "agi_pilled": null,
+    "ai_overall": 2.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 8,
+   "n_statements": 23,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-06-30",
    "scores": {
-    "ai_overall": 3.0,
-    "agi_pilled": null,
+    "ai_overall": 2.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 8,
+   "n_statements": 23,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-07-31",
    "scores": {
-    "ai_overall": 3.0,
-    "agi_pilled": null,
+    "ai_overall": 2.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 8,
+   "n_statements": 23,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-08-31",
    "scores": {
-    "ai_overall": 3.0,
-    "agi_pilled": null,
+    "ai_overall": 2.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 8,
+   "n_statements": 23,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-09-30",
    "scores": {
-    "ai_overall": 3.0,
-    "agi_pilled": null,
+    "ai_overall": 2.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 8,
+   "n_statements": 23,
    "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-10-31",
    "scores": {
-    "ai_overall": 3.0,
-    "agi_pilled": 1.0,
+    "ai_overall": 2.5,
+    "agi_pilled": 2.0,
     "x_risk": null,
     "china_race": null,
     "regulation": null
    },
-   "n_statements": 13,
+   "n_statements": 28,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2230,5 +3182,19 @@
    "kind": "observed"
   }
  ],
- "changes": []
+ "changes": [
+  {
+   "id": "exec_philip_n_jefferson",
+   "date": "2026-11-12",
+   "dimension": "agi_pilled",
+   "old": 1.0,
+   "new": 2.0,
+   "kind": "big",
+   "cause": "evidence or assessment changed",
+   "sids": [
+    "s6",
+    "s15"
+   ]
+  }
+ ]
 }
