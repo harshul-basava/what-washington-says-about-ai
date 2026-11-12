@@ -9,6 +9,39 @@ from unittest.mock import patch
 import federal_archives as archive
 
 class ArchiveTests(unittest.TestCase):
+    def test_serial_and_parallel_collection_accept_the_same_verified_evidence(self):
+        subject={'id':'p','name':'Alice Example','aliases':[],'entity_type':'person','branch':'executive','organization_id':'test','roles':[]}
+        quotes=['Alice Example: Artificial intelligence export controls must prevent hostile military organizations from acquiring advanced computing equipment.',
+                'Alice Example: Independent AI auditors should inspect frontier laboratories and publish their safety findings before deployment.']
+        docs={f'https://example.gov/{i}':{'url':f'https://example.gov/{i}'} for i in range(2)}
+        class Client:
+            def extract(self,page,*args,**kwargs):
+                return [{'subject_id':'p','quote':page['text'],'attribution_quote':page['text'],'kind':'personal','date':None,'date_quote':None}]
+        outputs=[]
+        for workers in (1,2):
+            with tempfile.TemporaryDirectory() as d:
+                root=Path(d);archive.federal.write(root/'evidence/p.json',{'id':'p','statements':[]})
+                archive.federal.write(root/archive.STATE,{'documents':docs,'indexes':{}})
+                def fetch(url,domains):return ('<p>'+quotes[int(url[-1])]+'</p>').encode(),url
+                with patch.object(archive.policy_subjects,'load_subjects',return_value=[subject]),patch.object(archive,'fetch',side_effect=fetch):
+                    archive.collect(root,{},Client(),discover_sources=False,max_documents=2,fetch_workers=workers,extraction_workers=workers)
+                rows=archive.federal.read(root/'evidence/p.json',{})['statements']
+                outputs.append(sorted((r['text'],r['url'],r['verified'],r['attribution']['speaker']) for r in rows))
+        self.assertEqual(len(outputs[0]),2);self.assertEqual(outputs[0],outputs[1])
+
+    def test_index_pattern_change_rechecks_same_day_and_access_challenge_is_a_gap(self):
+        with tempfile.TemporaryDirectory() as d:
+            source={'url':'https://example.gov/index','domains':['example.gov'],'pattern':'/old$'}
+            state={};config={'indexes':[source]}
+            with patch.object(archive,'fetch',return_value=(b'<a href="/new/">AI</a>','https://example.gov/index')),patch.object(archive.policy_subjects,'load_subjects',return_value=[]):
+                archive.discover(Path(d),config,[],state,now='2026-11-12')
+                source['pattern']='/new/$'
+                archive.discover(Path(d),config,[],state,now='2026-11-12')
+            self.assertIn('https://example.gov/new/',state['documents'])
+            with patch.object(archive,'fetch',return_value=(b'<meta content="5; URL=/index?bm-verify=challenge">','https://example.gov/index')),patch.object(archive.policy_subjects,'load_subjects',return_value=[]):
+                archive.discover(Path(d),config,[],state,now='2026-11-13')
+            self.assertEqual(state['indexes'][source['url']]['status'],'source_unavailable')
+
     def test_sec_speaker_requires_exact_single_official_speaker_field(self):
         url='https://www.sec.gov/newsroom/speeches-statements/example'
         quote='Artificial intelligence can improve public services and help many people throughout the country.'

@@ -288,7 +288,7 @@
       "domains": [
         "treasury.gov"
       ],
-      "pattern": "/news/press-releases/[^/?#]+$",
+      "pattern": "/news/press-releases/(?!statements-remarks/?$|readouts/?$|testimonies/?$)[^/?#]+/?$",
       "group": "treasury"
     },
     {
@@ -296,7 +296,7 @@
       "domains": [
         "treasury.gov"
       ],
-      "pattern": "/news/press-releases/[^/?#]+$",
+      "pattern": "/news/press-releases/(?!statements-remarks/?$|readouts/?$|testimonies/?$)[^/?#]+/?$",
       "group": "treasury"
     },
     {
@@ -304,7 +304,7 @@
       "domains": [
         "treasury.gov"
       ],
-      "pattern": "/news/press-releases/[^/?#]+$",
+      "pattern": "/news/press-releases/(?!statements-remarks/?$|readouts/?$|testimonies/?$)[^/?#]+/?$",
       "group": "treasury"
     },
     {
@@ -312,7 +312,7 @@
       "domains": [
         "treasury.gov"
       ],
-      "pattern": "/news/press-releases/[^/?#]+$",
+      "pattern": "/news/press-releases/(?!statements-remarks/?$|readouts/?$|testimonies/?$)[^/?#]+/?$",
       "group": "treasury"
     },
     {
@@ -324,11 +324,11 @@
       "group": "dhs"
     },
     {
-      "url": "https://www.odni.gov/index.php/newsroom/speeches-interviews",
+      "url": "https://www.odni.gov/newsroom/?query-19-category=remarks",
       "domains": [
         "odni.gov"
       ],
-      "pattern": "/index.php/newsroom/[^?#]*(?:item/|speeches-interviews/)[^?#]+",
+      "pattern": "/[0-9]+/[^/?#]+/?$",
       "group": "odni"
     }
   ],

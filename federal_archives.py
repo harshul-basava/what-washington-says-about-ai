@@ -245,14 +245,19 @@ def discover(root, config, subjects, state, *, now=None):
         if group:doc.setdefault('group',group)
         if pid:doc['subject_ids']=sorted(set(doc.get('subject_ids',[])+[pid]))
     def fetch_index(source):
+        signature=sources.digest(json.dumps(source,sort_keys=True))
         try:
             data,_=fetch(source['url'],source['domains'])
-            links=archive_links(data.decode('utf-8',errors='replace'),source)
-            return source,links,{'checked_on':now,'links':len(links),'sha256':sources.digest(data.decode('utf-8',errors='replace')),'status':'complete'}
+            html=data.decode('utf-8',errors='replace')
+            if 'bm-verify=' in html or '__cf_chl' in html:
+                return source,[],{'checked_on':now,'signature':signature,'status':'source_unavailable','error':'SourceAccessChallenge'}
+            links=archive_links(html,source)
+            return source,links,{'checked_on':now,'signature':signature,'links':len(links),'sha256':sources.digest(html),'status':'complete'}
         except Exception as exc:
-            return source,[],{'checked_on':now,'status':'source_unavailable','error':type(exc).__name__}
+            return source,[],{'checked_on':now,'signature':signature,'status':'source_unavailable','error':type(exc).__name__}
     with ThreadPoolExecutor(max_workers=max(1,min(config.get('index_workers',1),8))) as pool:
-        pending=[s for s in config['indexes'] if indexes.get(s['url'],{}).get('checked_on')!=now]
+        pending=[s for s in config['indexes'] if indexes.get(s['url'],{}).get('checked_on')!=now
+                 or indexes.get(s['url'],{}).get('signature')!=sources.digest(json.dumps(s,sort_keys=True))]
         for source,links,result in pool.map(fetch_index,pending):
             indexes[source['url']]=result
             for row in links:add(row,source['url'],source.get('group'))
