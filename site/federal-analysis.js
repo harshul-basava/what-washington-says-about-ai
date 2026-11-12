@@ -376,7 +376,7 @@
 <section class="fc-section" id="fa-roster-coverage"><details><summary>Officials and offices covered</summary><label class="fc-control">Agency or office<select id="fa-agency"><option value="all">All organizations</option>${(data.organizations || []).map(o=>`<option value="${esc(o.id)}" ${o.id===state.organization ? 'selected' : ''}>${esc(o.name)}</option>`).join('')}</select></label><div id="fa-roster-table"></div></details></section>
       <section class="fc-section" id="fc-cohort"><h2 id="fc-cohort-title"></h2><p class="fc-description">Each dot is one profile, colored by the selected score.</p><div id="fc-dots"></div></section>
       <section class="fc-section" id="fc-agency-section"><h2>Scores by agency</h2><p class="fc-description">Profiles in each agency, by the selected score.</p><div id="fc-agencies"></div><div id="fc-agency-selection" aria-live="polite"></div></section>
-      <section class="fc-section" id="fc-timeline-section"><h2 id="fc-timeline-title"></h2><p class="fc-description">Percent of profiles, month by month.</p><div class="fa-range" role="radiogroup" aria-label="Time range"><button type="button" role="radio" data-trange="3m" aria-checked="false">3 months</button><button type="button" role="radio" data-trange="12m" aria-checked="true">12 months</button><button type="button" role="radio" data-trange="all" aria-checked="false">All</button></div><div id="fc-timeline" class="fc-plot"></div></section>
+      <section class="fc-section" id="fc-timeline-section"><h2 id="fc-timeline-title"></h2><p class="fc-description">Share with a score of 3 or higher among profiles scored on this question. Evidence coverage shows the share of all selected profiles with a score.</p><p class="fa-note">History uses today's roster and excerpts dated on or before each month-end. Months without scores have no support percentage.</p><div class="fa-range" role="radiogroup" aria-label="Time range"><button type="button" role="radio" data-trange="3m" aria-checked="false">3 months</button><button type="button" role="radio" data-trange="12m" aria-checked="true">12 months</button><button type="button" role="radio" data-trange="all" aria-checked="false">All</button></div><div id="fc-timeline" class="fc-plot"></div></section>
       <section class="fc-section" id="fc-recent-section"><h2>Recent changes</h2><p class="fc-description">Scores that moved by more than 1 point in the last 60 days.</p><div id="fc-recent"></div></section>
       <section class="fc-section" id="fc-topic-section"><h2>Topics</h2><h3>Share of statements about each topic</h3><div class="fa-range" role="radiogroup" aria-label="Time range"><button type="button" role="radio" data-topicrange="3m" aria-checked="false">3 months</button><button type="button" role="radio" data-topicrange="12m" aria-checked="true">12 months</button><button type="button" role="radio" data-topicrange="all" aria-checked="false">All</button></div><div id="fc-topic-share"></div><h3 id="fc-voices-title"></h3><div id="fc-voices"></div></section>
       <section class="fc-section" id="fc-members-section"><h2>All profiles</h2><div class="fa-listbar"><input id="fa-search" type="search" placeholder="Search name or agency…" autocomplete="off" aria-label="Search profiles"></div><div id="fc-members"></div></section>`;
@@ -398,22 +398,28 @@
       get('fc-voices').innerHTML=charts.renderVoices(members,topic);
       renderTable();
     }
-    // same look as the Congress page's chart over time: one line, percent axis, end label, hover readout
+    // Support uses scored profiles; coverage retains the full selected cohort.
     function drawTimeline(members,profiles) {
       const el=get('fc-timeline'); el.innerHTML='';
       const Plot=global.Plot, css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
       const end=new Date(data.built_on.slice(0,10)+'T00:00:00Z'), days={'3m':90,'12m':365}[state.trange];
-      const rows=charts.cohortHistory(members,profiles,state.chartDimension,'reconstructed').map(r=>({d:new Date(r.date+'T00:00:00Z'),v:r.percent/100,high:r.high,n:r.total}))
+      const rows=charts.cohortHistory(members,profiles,state.chartDimension,'reconstructed').map(r=>({...r,d:new Date(r.date+'T00:00:00Z')}))
         .filter(r=>!days || r.d>=new Date(+end-days*864e5));
-      if (!Plot || !rows.length) { el.innerHTML='<p class="fa-empty">No history in this range.</p>'; return; }
-      const W=Math.max(300,el.clientWidth-24), name=who();
-      el.append(Plot.plot({width:W,height:290,marginLeft:48,marginRight:90,marginTop:20,style:{background:'transparent',fontSize:'11px',color:css('--fg')},
-        x:{type:'utc',label:null}, y:{label:null,percent:true,grid:true,tickFormat:d=>d+'%',domain:[0,Math.max(10,...rows.map(r=>r.v*100))]},
+      if (!rows.length) { el.innerHTML='<p class="fa-empty">No history in this range.</p>'; return; }
+      const W=Math.max(300,el.clientWidth-24), unit=who().toLowerCase();
+      el.innerHTML='<div class="fc-legend"><span><i style="width:20px;height:0;border-radius:0;border-top:2px solid var(--accent)"></i>Share among scored</span><span><i style="width:20px;height:0;border-radius:0;border-top:2px dashed var(--muted)"></i>Evidence coverage</span></div>';
+      if (Plot) el.append(Plot.plot({width:W,height:290,marginLeft:55,marginRight:105,marginTop:20,style:{background:'transparent',fontSize:'11px',color:css('--fg')},
+        ariaLabel:'Share among scored profiles and evidence coverage over time',
+        x:{type:'utc',label:null}, y:{label:null,grid:true,tickFormat:charts.percentText,domain:[0,Math.max(10,...rows.flatMap(r=>[r.percent ?? 0,r.coveragePercent]))]},
         marks:[Plot.ruleY([0],{stroke:css('--line')}),
-          Plot.line(rows,{x:'d',y:'v',stroke:css('--accent'),strokeWidth:2}),
-          Plot.text(rows.slice(-1),{x:'d',y:'v',text:()=>name,fill:css('--accent'),dx:6,textAnchor:'start',fontWeight:600}),
-          Plot.tip(rows,Plot.pointerX({x:'d',y:'v',fill:css('--raised')||css('--bg'),stroke:css('--line'),
-            channels:{Date:r=>r.d.toISOString().slice(0,10),Share:r=>`${(r.v*100).toFixed(0)}%`,Profiles:r=>`${r.high} of ${r.n}`},format:{x:false,y:false}}))]}));
+          Plot.line(rows,{x:'d',y:'percent',stroke:css('--accent'),strokeWidth:2}),
+          Plot.line(rows,{x:'d',y:'coveragePercent',stroke:css('--muted'),strokeWidth:1.5,strokeDasharray:'5,4'}),
+          Plot.text(rows.slice(-1).filter(r=>r.percent!==null),{x:'d',y:'percent',text:r=>charts.percentText(r.percent),fill:css('--accent'),dx:6,textAnchor:'start',fontWeight:600}),
+          Plot.tip(rows,Plot.pointerX({x:'d',y:r=>r.percent ?? r.coveragePercent,fill:css('--raised')||css('--bg'),stroke:css('--line'),
+            channels:{Date:r=>r.date,'Share among scored':r=>charts.percentText(r.percent),'Score ≥3':r=>`${r.high} of ${r.scored} scored ${unit}`,
+              'Evidence coverage':r=>`${r.scored} of ${r.total} ${unit} (${charts.percentText(r.coveragePercent)})`},format:{x:false,y:false}}))]}));
+      else el.insertAdjacentHTML('beforeend','<p class="fa-empty">Chart unavailable. See exact dates and counts below.</p>');
+      el.insertAdjacentHTML('beforeend',charts.timelineDetails(rows,unit));
     }
     function renderTable() {
       const q=state.search.trim().toLowerCase();

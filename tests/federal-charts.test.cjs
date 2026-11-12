@@ -21,14 +21,46 @@ test('policy bars preserve explicit and implied stances with unknowns outside st
   assert.deepEqual(row.counts,{'-2':0,'-1':1,'0':1,'1':0,'2':1});
   assert.equal(row.total,4);assert.equal(row.unknown,1);
 });
-test('timeline keeps current cohort denominator and separates observed dates from reconstructed dates',()=>{
+test('timeline uses scored profiles for support and the current cohort for coverage',()=>{
   const data={a:{history:[{date:'2025-01-31',kind:'reconstructed',status:'complete',scores:{x_risk:3}},
     {date:'2025-02-01',kind:'observed',status:'complete',scores:{x_risk:4}}]},
     b:{history:[{date:'2025-01-31',kind:'reconstructed',status:'pending',scores:{x_risk:4}}]}};
   const result=charts.cohortHistory([person('a'),person('b')],data,'x_risk','reconstructed');
-  assert.deepEqual(result,[{date:'2025-01-31',high:1,scored:1,total:2,percent:50}]);
-  assert.equal(charts.cohortHistory([person('b')],data,'x_risk','reconstructed')[0].percent,0);
+  assert.deepEqual(result,[{date:'2025-01-31',high:1,scored:1,total:2,percent:100,coveragePercent:50}]);
+  assert.equal(charts.cohortHistory([person('b')],data,'x_risk','reconstructed')[0].percent,null);
   assert.equal(charts.cohortHistory([person('a')],data,'x_risk','observed').length,1);
+});
+test('timeline distinguishes a known zero from missing scores and respects the selected cohort',()=>{
+  const history=(date,score,status='complete')=>({date,kind:'reconstructed',status,scores:{x_risk:score}});
+  const data={a:{history:[history('2025-01-31',0),history('2025-02-28',null)]},
+    b:{history:[history('2025-01-31',3),history('2025-02-28',4,'pending')]},
+    c:{history:[history('2025-01-31',null),history('2025-02-28',null)]}};
+  assert.deepEqual(charts.cohortHistory([person('a'),person('c')],data,'x_risk','reconstructed'),[
+    {date:'2025-01-31',high:0,scored:1,total:2,percent:0,coveragePercent:50},
+    {date:'2025-02-28',high:0,scored:0,total:2,percent:null,coveragePercent:0}
+  ]);
+  assert.deepEqual(charts.cohortHistory([],data,'x_risk','reconstructed'),[]);
+});
+test('timeline readout shows support and evidence coverage with decimal percentages',()=>{
+  const members=Array.from({length:500},(_,i)=>person(String(i)));
+  const profiles=Object.fromEntries(members.map((m,i)=>[m.id,{history:[{
+    date:'2026-10-31',kind:'reconstructed',status:'complete',scores:{x_risk:i===0?3:i<10?0:null}
+  }]}]));
+  const html=charts.renderTimeline(members,profiles,'x_risk','reconstructed');
+  assert.match(html,/10\.0%/);
+  assert.match(html,/1 of 10 scored profiles/);
+  assert.match(html,/10 of 500 profiles/);
+  assert.match(html,/2\.0%/);
+  assert.match(html,/Evidence coverage/);
+  for (const profile of Object.values(profiles)) profile.history[0].scores.x_risk ??= 0;
+  assert.match(charts.renderTimeline(members,profiles,'x_risk','reconstructed'),/0\.2%/);
+});
+test('timeline readout does not report zero support when no profile has a score',()=>{
+  const profiles={a:{history:[{date:'2026-10-31',kind:'reconstructed',status:'complete',scores:{x_risk:null}}]}};
+  const html=charts.renderTimeline([person('a')],profiles,'x_risk','reconstructed');
+  assert.match(html,/No scored profiles/);
+  assert.match(html,/0 of 1 profiles/);
+  assert.doesNotMatch(html,/0\.0% among scored/);
 });
 test('rolling topic shares split each statement and count the exact 30-day window',()=>{
   const profiles={a:{topics:[{date:'2025-01-01',topics:['safety']},{date:'2025-01-02',topics:['safety','jobs']},

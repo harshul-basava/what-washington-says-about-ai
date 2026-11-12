@@ -4,6 +4,7 @@
   const view = () => typeof module !== 'undefined' && module.exports ? require('./federal-analysis.js') : global.FederalAnalysis;
   const esc = v => String(v ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const fmt = n => n===null || n===undefined ? 'Unscored' : Number.isInteger(n) ? String(n) : n.toFixed(1);
+  const percentText = n => Number.isFinite(n) ? `${n.toFixed(1)}%` : 'No scored profiles';
   const DAY = 86400000;
   const date = value => Date.parse(value+'T00:00:00Z');
   const iso = value => new Date(value).toISOString().slice(0,10);
@@ -59,7 +60,9 @@
       const row=rows.get(h.date),n=h.scores?.[dimension];
       if (h.status==='complete' && validScore(n)) {row.scored++;if (n>=3) row.high++;}
     }
-    return [...rows.values()].sort((a,b)=>a.date.localeCompare(b.date)).map(r=>({...r,percent:r.total ? r.high/r.total*100 : 0}));
+    return [...rows.values()].sort((a,b)=>a.date.localeCompare(b.date)).map(r=>({...r,
+      percent:r.scored ? r.high/r.scored*100 : null,
+      coveragePercent:r.total ? r.scored/r.total*100 : 0}));
   }
   function topicTimeline(members,profiles,topics,start,end) {
     const events=members.flatMap(m=>profiles[m.id]?.topics || []).filter(e=>Number.isFinite(date(e.date)) && e.topics.length)
@@ -153,10 +156,18 @@
         return `<g style="color:${s.color}">${connect?paths.map(p=>`<polyline points="${p.map(x=>x.map(n=>n.toFixed(2)).join(',')).join(' ')}"/>`).join(''):''}${s.rows.length<=100?s.rows.filter(r=>r.value!==null).map(row=>`<circle cx="${x(row.date)}" cy="${y(row.value)}" r="3"><title>${esc(s.name)} · ${esc(row.date)}: ${fmt(row.value)}${percent?'%':''}</title></circle>`).join(''):''}</g>`;
       }).join('')}<text x="${l}" y="${h-5}">${iso(min)}</text>${min!==max?`<text x="${w-r}" y="${h-5}" text-anchor="end">${iso(max)}</text>`:''}</svg>`;
   }
+  function timelineDetails(rows,unit='profiles') {
+    const latest=rows.at(-1);
+    if (!latest) return '';
+    return `<p class="fa-note"><strong>${latest.date}:</strong> ${latest.scored ?
+      `${percentText(latest.percent)} among scored ${esc(unit)} (${latest.high} of ${latest.scored} scored ${esc(unit)} score 3 or higher).` : 'No scored profiles.'}
+      Evidence coverage: ${latest.scored} of ${latest.total} ${esc(unit)} (${percentText(latest.coveragePercent)}) have a score on this question.</p>
+      <details><summary>Exact dates and counts (${rows.length})</summary><div class="fa-table-scroll fc-data-table"><table><thead><tr><th scope="col">Date</th><th scope="col">Score ≥3</th><th scope="col">Scored</th><th scope="col">All ${esc(unit)}</th><th scope="col">Share among scored</th><th scope="col">Evidence coverage</th></tr></thead><tbody>${rows.map(r=>`<tr><th scope="row">${r.date}</th><td>${r.high}</td><td>${r.scored}</td><td>${r.total}</td><td>${percentText(r.percent)}</td><td>${percentText(r.coveragePercent)}</td></tr>`).join('')}</tbody></table></div></details>`;
+  }
   function renderTimeline(members,profiles,dimension,kind) {
     const rows=cohortHistory(members,profiles,dimension,kind);
-    return lineChart([{name:'Current cohort',rows:rows.map(r=>({...r,value:r.percent})),color:'var(--accent)'}],{title:'Percentage of the selected profiles with scores of 3 or more',connect:kind==='reconstructed'})+
-      `<details><summary>Exact dates and counts (${rows.length})</summary><div class="fa-table-scroll fc-data-table"><table><thead><tr><th>Date</th><th>Score ≥3</th><th>Scored</th><th>All profiles</th><th>Share ≥3</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r.date}</td><td>${r.high}</td><td>${r.scored}</td><td>${r.total}</td><td>${fmt(r.percent)}%</td></tr>`).join('')}</tbody></table></div></details>`;
+    return lineChart([{name:'Share among scored',rows:rows.map(r=>({...r,value:r.percent})),color:'var(--accent)'}],{title:'Percentage of scored profiles with scores of 3 or more',connect:kind==='reconstructed'})+
+      timelineDetails(rows);
   }
   function renderPolicies(members,areas,selected) {
     const rows=policyDistribution(members,areas), max=Math.max(1,...rows.flatMap(r=>[r.counts[-2]+r.counts[-1],r.counts[1]+r.counts[2]]));
@@ -218,7 +229,7 @@
     const rows=members.flatMap(m=>(profiles[m.id]?.changes||[]).filter(c=>c.dimension===dimension && c.date<=end && date(c.date)>=date(end)-60*DAY && c.old!==null && c.new!==null && Math.abs(c.new-c.old)>1).map(c=>({...c,member:m}))).sort((a,b)=>b.date.localeCompare(a.date));
     return rows.length?`<div class="fa-table-scroll"><table><thead><tr><th>Date</th><th>Profile</th><th>Change</th><th>Now</th><th>Cause</th></tr></thead><tbody>${rows.slice(0,30).map(c=>`<tr><td>${esc(c.date)}</td><td>${profileLink(c.member,esc(c.member.name))}</td><td>${fmt(c.old)} → ${fmt(c.new)}</td><td>${esc(Number.isInteger(c.new)?levelName(dimension,c.new):'')}</td><td>${esc(c.cause)}</td></tr>`).join('')}</tbody></table></div>`:'<p class="fa-empty">No score has moved by more than 1 point in the last 60 days.</p>';
   }
-  const api={validateCharts,agencyDistribution,policyDistribution,cohortHistory,topicTimeline,comparisonPoints,presetMembers,
+  const api={validateCharts,agencyDistribution,policyDistribution,cohortHistory,percentText,timelineDetails,topicTimeline,comparisonPoints,presetMembers,
     scoreLegend,scoreAvailability,renderAvailability,renderDots,renderAgencies,renderTimeline,renderPolicies,renderPolicySelection,renderScatter,renderTopicShare,renderVoices,renderMembers,renderRecent,PRESETS};
   if(typeof module!=='undefined' && module.exports) module.exports=api;else global.FederalCharts=api;
 })(typeof window!=='undefined'?window:globalThis);
