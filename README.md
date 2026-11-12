@@ -34,6 +34,12 @@ The congressional and federal views score public statements from 0 to 4 on five 
 | `analysis/` | Notebook and draft findings |
 | `docs/` | Plan and assumptions |
 
+## Congress score history
+
+The congressional score timeline uses scored members as its denominator. Solid lines show the share with scores of 3 or higher. Dashed lines show evidence coverage within each group. Tooltips and count tables retain one decimal place and both denominators. Missing scores produce gaps rather than zero support.
+
+Historical counts come from saved labels and published score snapshots. Silence does not count as a stance, including numeric zeros from the older scoring rules. The [coverage audit](data/congress_history_coverage_audit.json) records the source commits and the recovered counts. The daily job saves the scored-member count in each new snapshot.
+
 ## Run it
 
 ```bash

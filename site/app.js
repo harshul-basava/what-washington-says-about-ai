@@ -58,8 +58,8 @@ const $ = id => document.getElementById(id);
 async function init(){
   const [mj, tl, cm] = await Promise.all(["members","timeline","committees"].map(f=>fetch(`data/${f}.json`).then(r=>r.json())));
   M = mj.members; TL = tl; COMM = cm; UPDATED = mj.updated;
-  const opt = f => fetch(`data/${f}.json`).then(r=>r.ok?r.json():null).catch(()=>null);
-  [DAILY, HISTORY, CHANGES, RF] = await Promise.all([opt("daily"), opt("history"), opt("changes"), opt("regfocus")]);
+  const opt = (f,options) => fetch(`data/${f}.json`,options).then(r=>r.ok?r.json():null).catch(()=>null);
+  [DAILY, HISTORY, CHANGES, RF] = await Promise.all([opt("daily"), opt("history",{cache:"no-cache"}), opt("changes"), opt("regfocus")]);
   if ($("rfchart") && document.querySelector("[data-pick]")) FED = await opt("federal_analysis");
   // Policies page: Congress / Executive officials / Institutions switch drives both charts
   document.querySelectorAll("[data-pick]").forEach(b=>b.onclick=()=>{ const v=b.dataset.pick, was=S.who;
@@ -386,19 +386,27 @@ function drawTrend(){
   const el=document.getElementById("trend"); el.innerHTML=""; const k=S.dim, d=DIMS.find(x=>x[0]===k);
   setTitle("trend-title", `Members who ${d[3]}, over time`);
   if (!HISTORY){ el.innerHTML='<p class="note">No history yet.</p>'; return; }
-  const name = {all:"All members", D:"Democrats", R:"Republicans"};
-  const data = HISTORY.filter(r=>r.c===S.cong && r.k===k).map(r=>({d:new Date(r.d+"T00:00:00Z"), p:r.p, who:name[r.p], v:r.hi/r.n, hi:r.hi, n:r.n})).sort((a,b)=>a.p.localeCompare(b.p) || a.d-b.d);
+  const rows = CongressHistory.series(HISTORY,S.cong,k);
+  const data = rows.map(r=>({...r,date:r.d,d:new Date(r.d+'T00:00:00Z')}));
+  if (!data.length){ el.innerHTML='<p class="note">No history for this selection.</p>'; return; }
   const W=widthOf(el);
-  const lo = d3.min(data,d=>d.d), hi = d3.max(data,d=>d.d), EV = eventMarks(lo, hi, W, 48, 110);
-  el.append(Plot.plot({width:W, height:290, marginLeft:48, marginRight:110, marginTop:EV.top, style:plotStyle(),
-    x:{type:"utc", label:null, domain:[lo,hi]}, y:{label:null, percent:true, grid:true, tickFormat:d=>d+"%"},
+  const lo = d3.min(data,d=>d.d), hi = d3.max(data,d=>d.d), EV = eventMarks(lo, hi, W, 55, 110);
+  el.innerHTML='<div class="legend trend-legend"><span><i class="trend-solid"></i>Share among scored</span><span><i class="trend-dashed"></i>Evidence coverage</span></div>';
+  el.append(Plot.plot({width:W, height:290, marginLeft:55, marginRight:110, marginTop:EV.top, style:plotStyle(),
+    ariaLabel:'Congress support among scored members and evidence coverage over time',
+    x:{type:"utc", label:null, domain:[lo,hi]}, y:{label:null, grid:true, tickFormat:CongressHistory.percentText,domain:[0,Math.max(10,...rows.flatMap(r=>[r.percent??0,r.coveragePercent??0]))]},
     color:{domain:["All members","Democrats","Republicans"], range:[css("--muted"), PC("D"), PC("R")]},
     marks:[Plot.ruleY([0],{stroke:css("--line")}),
       ...EV.marks,
-      Plot.line(data,{x:"d", y:"v", z:"who", stroke:"who", strokeWidth:d=>d.p==="all"?1.5:2, strokeDasharray:d=>d.p==="all"?"4 3":null}),
-      Plot.text(data.filter((x,i,a)=>!a[i+1] || a[i+1].p!==x.p),{x:"d", y:"v", text:"who", fill:"who", dx:6, textAnchor:"start", fontWeight:600}),
-      Plot.tip(data, Plot.pointerX({x:"d", y:"v", z:"who", fill:css("--card"), stroke:css("--line"), channels:{Date:x=>x.d.toISOString().slice(0,10), Group:"who", Share:x=>`${(x.v*100).toFixed(0)}%`, Members:x=>`${x.hi} of ${x.n}`}, format:{x:false, y:false, stroke:false, z:false}}))]}));
-  el.insertAdjacentHTML("beforeend", EV.key);
+      Plot.line(data,{x:"d", y:"percent", z:"who", stroke:"who", strokeWidth:2}),
+      Plot.line(data,{x:"d", y:"coveragePercent", z:"who", stroke:"who", strokeWidth:1.5, strokeDasharray:"5 4",strokeOpacity:.7}),
+      Plot.text(data.filter((x,i,a)=>(!a[i+1] || a[i+1].p!==x.p)&&x.percent!==null),{x:"d", y:"percent", text:"who", fill:"who", dx:6, textAnchor:"start", fontWeight:600}),
+      Plot.tip(data, Plot.pointerX({x:"d", y:r=>r.percent??r.coveragePercent, z:"who", fill:css("--card"), stroke:css("--line"),
+        channels:{Date:r=>r.date,Group:"who",'Share among scored':r=>CongressHistory.supportText(r),
+          'Score ≥3':r=>r.scored===null?'Unavailable':`${r.hi} of ${r.scored} scored members`,
+          'Evidence coverage':r=>r.scored===null?'Unavailable':`${r.scored} of ${r.n} members (${CongressHistory.percentText(r.coveragePercent)})`},
+        format:{x:false,y:false,stroke:false,z:false}}))]}));
+  el.insertAdjacentHTML("beforeend", EV.key+CongressHistory.details(rows));
 }
 /* ---------- recent big changes ---------- */
 function drawChanges(){

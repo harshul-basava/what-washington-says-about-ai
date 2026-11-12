@@ -1,0 +1,130 @@
+{
+  "version": 1,
+  "checked_on": "2026-11-11",
+  "method": "Recover scored-member counts from saved labels and published scores. Exclude legacy numeric zeros when both judges reported no relevant statement. Preserve every original total, high-score count and archived mean. Add a current snapshot from existing published scores; no model calls.",
+  "sources": {
+    "backfill.json": {
+      "method": "exact replay from tracked labels and dated evidence",
+      "rows": 1410,
+      "prior_values_unchanged": true,
+      "input_revision": "4acef4b5ee32c484defc1ce6ed43c7e0f06b8fb7"
+    },
+    "2026-11-07.json": {
+      "method": "published score snapshot",
+      "source_commit": "7ebfe7740972580046edf5d649300fae6a569175",
+      "rows": 30,
+      "prior_values_unchanged": true,
+      "legacy_silence_scores_excluded": {
+        "119/all/agi_pilled": 223,
+        "119/all/x_risk": 318,
+        "119/all/china_race": 141,
+        "119/D/agi_pilled": 118,
+        "119/D/x_risk": 132,
+        "119/D/china_race": 107,
+        "119/R/agi_pilled": 105,
+        "119/R/x_risk": 186,
+        "119/R/china_race": 34,
+        "120/all/agi_pilled": 231,
+        "120/all/x_risk": 285,
+        "120/all/china_race": 158,
+        "120/D/agi_pilled": 152,
+        "120/D/x_risk": 156,
+        "120/D/china_race": 135,
+        "120/R/agi_pilled": 77,
+        "120/R/x_risk": 128,
+        "120/R/china_race": 21
+      },
+      "scored_count_method": "Count valid published scores except records where both judges explicitly reported silence or no relevant statement. Preserve original totals, high-score counts and archived means."
+    },
+    "2026-11-08.json": {
+      "method": "published score snapshot",
+      "source_commit": "f4c83e6fced7c8a1ae78cda7c1c189c8e8bcafa6",
+      "rows": 30,
+      "prior_values_unchanged": true,
+      "legacy_silence_scores_excluded": {
+        "119/all/agi_pilled": 223,
+        "119/all/x_risk": 316,
+        "119/all/china_race": 141,
+        "119/D/agi_pilled": 118,
+        "119/D/x_risk": 131,
+        "119/D/china_race": 107,
+        "119/R/agi_pilled": 105,
+        "119/R/x_risk": 185,
+        "119/R/china_race": 34,
+        "120/all/agi_pilled": 231,
+        "120/all/x_risk": 284,
+        "120/all/china_race": 158,
+        "120/D/agi_pilled": 152,
+        "120/D/x_risk": 155,
+        "120/D/china_race": 135,
+        "120/R/agi_pilled": 77,
+        "120/R/x_risk": 128,
+        "120/R/china_race": 21
+      },
+      "scored_count_method": "Count valid published scores except records where both judges explicitly reported silence or no relevant statement. Preserve original totals, high-score counts and archived means."
+    },
+    "2026-11-09.json": {
+      "method": "published score snapshot",
+      "source_commit": "1a04b9d0794b69e1bb03a920399dbef8ec2f1ab5",
+      "rows": 30,
+      "prior_values_unchanged": true,
+      "legacy_silence_scores_excluded": {
+        "119/all/agi_pilled": 223,
+        "119/all/x_risk": 316,
+        "119/all/china_race": 141,
+        "119/D/agi_pilled": 118,
+        "119/D/x_risk": 131,
+        "119/D/china_race": 107,
+        "119/R/agi_pilled": 105,
+        "119/R/x_risk": 185,
+        "119/R/china_race": 34,
+        "120/all/agi_pilled": 231,
+        "120/all/x_risk": 284,
+        "120/all/china_race": 158,
+        "120/D/agi_pilled": 152,
+        "120/D/x_risk": 155,
+        "120/D/china_race": 135,
+        "120/R/agi_pilled": 77,
+        "120/R/x_risk": 128,
+        "120/R/china_race": 21
+      },
+      "scored_count_method": "Count valid published scores except records where both judges explicitly reported silence or no relevant statement. Preserve original totals, high-score counts and archived means."
+    },
+    "2026-11-10.json": {
+      "method": "published score snapshot",
+      "source_commit": "2e5ea622dc81725c6277e654c84914db13df2439",
+      "rows": 30,
+      "prior_values_unchanged": true,
+      "legacy_silence_scores_excluded": {
+        "119/all/agi_pilled": 223,
+        "119/all/x_risk": 316,
+        "119/all/china_race": 140,
+        "119/D/agi_pilled": 118,
+        "119/D/x_risk": 131,
+        "119/D/china_race": 106,
+        "119/R/agi_pilled": 105,
+        "119/R/x_risk": 185,
+        "119/R/china_race": 34,
+        "120/all/agi_pilled": 231,
+        "120/all/x_risk": 284,
+        "120/all/china_race": 157,
+        "120/D/agi_pilled": 152,
+        "120/D/x_risk": 155,
+        "120/D/china_race": 134,
+        "120/R/agi_pilled": 77,
+        "120/R/x_risk": 128,
+        "120/R/china_race": 21
+      },
+      "scored_count_method": "Count valid published scores except records where both judges explicitly reported silence or no relevant statement. Preserve original totals, high-score counts and archived means."
+    }
+  },
+  "current_snapshot": {
+    "date": "2026-11-11",
+    "source": "data/scores.json",
+    "method": "Current published scores; no new model assessments.",
+    "date_basis": "America/Chicago local date for this manual observation; scheduled daily observations retain their existing UTC dates."
+  },
+  "recovered_rows": 1530,
+  "exported_rows": 1560,
+  "archived_mean_note": "The retained mean field records the original published mean and can include legacy silence zeros. The timeline does not use it."
+}

@@ -8,6 +8,7 @@
 Usage: python scripts/daily/history.py backfill|snapshot|build
 """
 import json
+import math
 import sys
 from datetime import date, timedelta
 
@@ -37,9 +38,10 @@ def summarize(day, score_of, roster, groups):
                 continue
             for k in DIMS:
                 vals = [score_of(i, k) for i in xs]
-                num = [v for v in vals if v is not None]
+                num = [v for v in vals if type(v) in (int, float) and math.isfinite(v) and 0 <= v <= 4]
                 rows.append({"d": day, "c": cong, "p": pa, "k": k, "n": len(xs),
-                             "hi": sum(v >= 3 for v in num), "mean": round(sum(num) / len(num), 3) if num else None})
+                             "scored": len(num), "hi": sum(v >= 3 for v in num),
+                             "mean": round(sum(num) / len(num), 3) if num else None})
     return rows
 
 
@@ -75,12 +77,19 @@ def backfill():
     save_json(HIST / "backfill.json", rows)
 
 
+def published_score(dimension):
+    """Legacy snapshots stored silence as zero; it does not establish a stance."""
+    if all(dimension.get(key) in ('silent', 'no_statements') for key in ('reason_a', 'reason_b')):
+        return None
+    value = dimension.get('score')
+    return value if type(value) in (int, float) and math.isfinite(value) and 0 <= value <= 4 else None
+
+
 def snapshot():
     roster, groups = cohorts()
     scores = json.loads((ROOT / "data/scores.json").read_text())
     def score_of(i, k):
-        v = (scores.get(i) or {}).get("dimensions", {}).get(k, {}).get("score")
-        return v if isinstance(v, (int, float)) else None
+        return published_score((scores.get(i) or {}).get("dimensions", {}).get(k, {}))
     save_json(HIST / f"{today()}.json", summarize(today(), score_of, roster, groups))
 
 
