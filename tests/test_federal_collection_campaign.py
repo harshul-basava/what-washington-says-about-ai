@@ -6,6 +6,120 @@ from scripts import federal_collection_campaign as campaign
 
 
 class CampaignTests(unittest.TestCase):
+    def test_fixed_x_catchup_keeps_original_budget_and_unfinished_work_pending(self):
+        from scripts import federal_x
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);audit={'x_baseline':90,'limits':{'x_limit_usd':5}}
+            window={'since':'2026-11-10','until':'2026-11-12'}
+            calls=[]
+            def collect(*args,**kwargs):
+                calls.append(kwargs)
+                return {'pending_windows':3 if kwargs.get('dry') else 1,'accounts':3}
+            with patch.object(federal_x,'collect',side_effect=collect):
+                report=campaign.x_catchup(root,audit,window,['p'],93.5)
+            self.assertEqual(report['status'],'pending')
+            self.assertEqual(calls[1]['max_cost'],.5)
+            self.assertEqual(calls[1]['since'],window['since'])
+            self.assertEqual(calls[1]['until'],window['until'])
+            self.assertEqual(calls[1]['ids'],['p'])
+            self.assertEqual(audit['x_baseline'],90)
+            with patch.object(federal_x,'collect',return_value={'pending_windows':0}) as collect:
+                self.assertEqual(campaign.x_catchup(root,audit,window,['p'],94.5)['status'],'complete')
+                self.assertEqual(collect.call_count,1)
+            with patch.object(federal_x,'collect',return_value={'pending_windows':3}) as collect:
+                self.assertEqual(campaign.x_catchup(root,audit,window,['p'],94.5)['status'],'pending')
+                self.assertEqual(collect.call_count,1)
+
+    def test_catchup_window_survives_failure_and_config_removal(self):
+        import llm
+        from scripts import federal_x
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);subject={'id':'p','name':'Alice','entity_type':'person','branch':'executive'}
+            window={'since':'2026-11-10','until':'2026-11-12'}
+            config={'limit_usd':100,'trial_limit_usd':3,'collection_limit_usd':20,'x_limit_usd':5,'x_catchup':window}
+            campaign.write(root/campaign.CONFIG,config)
+            campaign.write(root/'evidence/p.json',{'statements':[]})
+            ledger=root/'data/cost_ledger.jsonl';ledger.parent.mkdir(parents=True);ledger.write_text('')
+            audit=campaign.initialize(root,config,[subject],{'p':[]},400,90,0)
+            audit['phases']={'trial':{'status':'complete'},'expand':{'archive_selection_version':2,
+                'archives_finished':True,'archive_batches':[],'gap_search_finished':True,'x_finished':True}}
+            campaign.write(root/campaign.PATH,audit)
+            with patch.object(campaign.analysis,'inputs',return_value=([subject],{'p':[]})), \
+                 patch.object(campaign,'command',return_value={'spendable_usd':100}), \
+                 patch.object(llm,'spent',side_effect=lambda p:400 if p=='openrouter' else 90), \
+                 patch.object(llm,'LEDGER',ledger), \
+                 patch.object(federal_x,'registry',return_value=({'accounts':[{'subject_id':'p'}]},{})):
+                with patch.object(campaign,'x_catchup',side_effect=RuntimeError('Temporary failure')):
+                    with self.assertRaisesRegex(RuntimeError,'Temporary failure'):campaign.run(root,'expand')
+                saved=campaign.read(root/campaign.PATH)
+                self.assertEqual(saved['phases']['expand']['x_catchup']['window'],window)
+                self.assertEqual(saved['phases']['expand']['x_catchup']['status'],'pending')
+                config.pop('x_catchup');campaign.write(root/campaign.CONFIG,config)
+                with patch.object(campaign,'x_catchup',return_value={'window':window,'status':'pending'}) as collect:
+                    with self.assertRaisesRegex(ValueError,'collection remains pending'):campaign.run(root,'expand')
+                    self.assertEqual(collect.call_args.args[2],window)
+                config['x_catchup']={**window,'until':'2026-11-13'};campaign.write(root/campaign.CONFIG,config)
+                with patch.object(campaign,'x_catchup') as collect:
+                    with self.assertRaisesRegex(ValueError,'cannot move'):campaign.run(root,'expand')
+                    collect.assert_not_called()
+
+    def test_source_recovery_failure_saves_pending_before_paid_work(self):
+        import llm
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);subject={'id':'p','name':'Alice','entity_type':'person','branch':'executive'}
+            config={'limit_usd':100,'trial_limit_usd':3,'collection_limit_usd':20,'x_limit_usd':5}
+            campaign.write(root/campaign.CONFIG,config)
+            campaign.write(root/'evidence/p.json',{'statements':[{'sid':'s1','verified':True}]})
+            ledger=root/'data/cost_ledger.jsonl';ledger.parent.mkdir(parents=True);ledger.write_text('')
+            audit=campaign.initialize(root,config,[subject],{'p':[]},400,90,0)
+            audit.update(status='complete',phases={'trial':{'status':'complete'},'expand':{'status':'complete'}})
+            campaign.write(root/campaign.PATH,audit)
+            with patch.object(campaign.analysis,'inputs',return_value=([subject],{'p':[]})), \
+                 patch.object(campaign,'command',return_value={'spendable_usd':100}), \
+                 patch.object(llm,'spent',side_effect=lambda p:400 if p=='openrouter' else 90), \
+                 patch.object(llm,'LEDGER',ledger), \
+                 patch.object(campaign,'hydrate_sources',side_effect=ValueError('Source text changed')), \
+                 patch.object(campaign.models,'run') as models, \
+                 patch.object(campaign.archive.sources,'Client') as extraction:
+                with self.assertRaisesRegex(ValueError,'Source text changed'):campaign.run(root,'expand')
+                models.assert_not_called();extraction.assert_not_called()
+            saved=campaign.read(root/campaign.PATH)
+            self.assertEqual(saved['status'],'pending')
+            self.assertEqual(saved['phases']['expand']['status'],'pending')
+            self.assertIn('Source text changed',saved['phases']['expand']['error'])
+            self.assertEqual(saved['added'],{'p':['s1']})
+            self.assertEqual(saved['baseline'],400)
+
+    def test_missing_government_snapshot_restores_only_identical_source(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);archive=campaign.archive;url='https://example.gov/speech'
+            text='Alice Example said that artificial intelligence must improve public services and protect privacy. '+('Source context. '*5)
+            row={'sid':'s1','url':url,'source_type':'official_statement','source_text_sha256':archive.sources.digest(text.strip())}
+            campaign.write(root/'evidence/p.json',{'statements':[row]})
+            audit={'added':{'p':['s1']}}
+            path=root/archive.RAW/'pages'/f'{archive.sources.digest(url)}.json'
+            with patch.object(archive,'fetch',return_value=(text.encode(),url)) as fetch:
+                result=campaign.hydrate_sources(root,audit)
+                self.assertEqual(result['restored_sources'],1)
+                self.assertEqual(campaign.read(path)['text'],text.strip())
+                campaign.hydrate_sources(root,audit)
+                self.assertEqual(fetch.call_count,1)
+
+    def test_snapshot_recovery_rejects_changed_text_redirects_and_nonofficial_hosts(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);archive=campaign.archive
+            text='Alice Example said that artificial intelligence must improve public services and protect privacy. '+('Source context. '*5)
+            for url,final,body in [('https://example.gov/speech','https://example.gov/speech',text+' Changed.'),
+                                   ('https://example.gov/speech','https://example.gov/other',text),
+                                   ('https://news.example/speech','https://news.example/speech',text)]:
+                row={'sid':'s1','url':url,'source_type':'official_statement','source_text_sha256':archive.sources.digest(text.strip())}
+                campaign.write(root/'evidence/p.json',{'statements':[row]})
+                with patch.object(archive,'fetch',return_value=(body.encode(),final)) as fetch:
+                    with self.assertRaises(ValueError):campaign.hydrate_sources(root,{'added':{'p':['s1']}})
+                    if 'news.example' in url:fetch.assert_not_called()
+                path=root/archive.RAW/'pages'/f'{archive.sources.digest(url)}.json'
+                self.assertFalse(path.exists())
+
     def test_reporting_verification_recovers_only_hash_matched_source_bound_context(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);archive=campaign.archive

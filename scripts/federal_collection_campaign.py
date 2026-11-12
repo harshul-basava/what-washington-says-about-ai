@@ -54,6 +54,41 @@ def changed_profiles(root,audit):
     return sorted(set(recover_additions(root,audit))|corrected)
 
 
+def hydrate_sources(root,audit):
+    """Restore missing public government snapshots only when their full text hash matches.
+
+    Manual source recoveries can precede the remote cache. This makes no model
+    requests, never changes existing proof, and does not replace source verification.
+    """
+    root=Path(root);missing={}
+    for pid,sids in audit.get('added',{}).items():
+        for row in read(root/'evidence'/f'{pid}.json').get('statements',[]):
+            if row.get('sid') not in sids or row.get('source_type')=='x':continue
+            url=row['url'];path=root/archive.RAW/'pages'/f'{archive.sources.digest(url)}.json'
+            if path.exists():continue
+            parsed=archive.sources.urlsplit(url)
+            if (parsed.scheme!='https' or parsed.username or parsed.password or parsed.port
+                    or not (parsed.hostname or '').endswith(('.gov','.mil'))):
+                raise ValueError('Missing non-government proof requires the original source cache')
+            expected=row.get('source_text_sha256')
+            if not isinstance(expected,str) or len(expected)!=64:
+                raise ValueError('Missing source hash for snapshot recovery')
+            if url in missing and missing[url][1]!=expected:
+                raise ValueError('Conflicting source hashes for snapshot recovery')
+            missing[url]=(path,expected)
+    def restore(item):
+        url,(path,expected)=item
+        data,final=archive.fetch(url,[archive.sources.urlsplit(url).hostname])
+        if final!=url:raise ValueError('Snapshot recovery cannot change the source URL')
+        page=archive.page_from_bytes(final,data)
+        if archive.sources.digest(archive.sources.normalize(page['text']))!=expected:
+            raise ValueError('Snapshot recovery source text changed')
+        write(path,page)
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        list(pool.map(restore,missing.items()))
+    return {'restored_sources':len(missing),'model_requests':0}
+
+
 def verify_sources(root,audit):
     root=Path(root);count=0;urls=set();subjects=None
     for pid,sids in audit['added'].items():
@@ -129,6 +164,24 @@ def pending_sources(state,urls):
     return sorted(u for u in set(urls) if pending(u))
 
 
+def x_catchup(root,audit,window,ids,spent):
+    """Search one fixed recent interval without resetting historical checkpoints."""
+    from scripts import federal_x
+    if date.fromisoformat(window['since'])>=date.fromisoformat(window['until']):
+        raise ValueError('Invalid X catch-up interval')
+    result={'window':window,'status':'complete','plan':{'pending_windows':0,'accounts':0}}
+    if not ids:return result
+    options={'mode':'historical','ids':ids,'since':window['since'],'until':window['until']}
+    result['plan']=federal_x.collect(root,dry=True,**options)
+    available=archive.remaining(audit['x_baseline'],audit['limits']['x_limit_usd'],spent)
+    if result['plan']['pending_windows'] and available>1:
+        result['collection']=federal_x.collect(root,page_limit=100,max_cost=min(2,available-1),**options)
+    final=result.get('collection',result['plan'])
+    if final.get('pending_windows') or final.get('errors') or final.get('error'):
+        result['status']='pending'
+    return result
+
+
 def run(root,phase):
     import llm
     root=Path(root);config=read(root/CONFIG);subjects,evidence=analysis.inputs(root)
@@ -168,6 +221,8 @@ def run(root,phase):
              discover_sources=not part['archive_batches'] and urls is None,urls=urls)
     save()
     try:
+        hydrate_sources(root,audit)
+        verify_sources(root,audit)
         if available()<=0:raise ValueError('Campaign allowance is exhausted')
         if phase=='expand' and part['archive_batches'] and part.get('speaker_context_version')!=archive.sources.SPEAKER_CONTEXT_VERSION:
             inventory=read(root/archive.STATE).get('documents',{})
@@ -265,6 +320,19 @@ def run(root,phase):
             if part['x_plan']['pending_windows'] and x_available>1:
                 part['x']=federal_x.collect(root,mode='historical',ids=x_ids,page_limit=10,max_cost=min(2,x_available-1))
             part['x_finished']=part.get('x',part['x_plan']).get('pending_windows',0)==0;save()
+        if phase=='expand' and (config.get('x_catchup') or part.get('x_catchup')):
+            from scripts import federal_x
+            previous=part.get('x_catchup',{}).get('window')
+            window=config.get('x_catchup') or previous
+            if previous is not None and previous!=window:
+                raise ValueError('Saved X catch-up interval cannot move during a retry')
+            if previous is None:
+                part['x_catchup']={'window':window,'status':'pending'}
+                save()
+            x_config,_=federal_x.registry(root)
+            mapped={account['subject_id'] for account in x_config['accounts']}
+            part['x_catchup']=x_catchup(root,audit,window,sorted(set(ids)&mapped),llm.spent('x'))
+            save()
         # Only the new or changed evidence enters ordinary judgment jobs. Existing
         # regulation/summary caches invalidate when their complete profile changes.
         changed=changed_profiles(root,audit)
@@ -281,7 +349,9 @@ def run(root,phase):
             save()
             if part['astra']['status']!='complete':raise ValueError('Independent Astra review remains pending')
         part['verification']=verify_sources(root,audit)
-        if not part.get('archives_finished') or (phase=='expand' and (not part.get('gap_search_finished') or not part.get('x_finished'))):
+        if (not part.get('archives_finished') or (phase=='expand' and
+                (not part.get('gap_search_finished') or not part.get('x_finished') or
+                 (part.get('x_catchup') and part['x_catchup'].get('status')!='complete')))):
             raise ValueError('Campaign collection remains pending; completed reviews are saved')
         part['status']='complete';part.pop('error',None)
         audit['status']='complete' if phase=='expand' else 'trial_complete'
