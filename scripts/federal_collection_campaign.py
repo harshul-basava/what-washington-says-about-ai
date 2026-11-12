@@ -41,7 +41,7 @@ def recover_additions(root,audit):
     result={}
     for pid in audit['ids']:
         rows=read(Path(root)/'evidence'/f'{pid}.json').get('statements',[])
-        sids=[s['sid'] for s in rows if s['sid'] not in audit['initial_sids'][pid]]
+        sids=[s['sid'] for s in policy_subjects.active_evidence(rows) if s['sid'] not in audit['initial_sids'][pid]]
         if sids:result[pid]=sids
     return result
 

@@ -10,6 +10,7 @@ import uuid
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from policy_subjects import active_evidence
 STAGES = ('research', 'seeds', 'analysis', 'policies', 'astra')
 
 
@@ -260,7 +261,7 @@ def run(root, cohort, ids, stages, max_cost, workers):
                    web_passes_completed=8 - len(pending.get(pid, [])),
                    source_pages_pending=seed_profiles.get(pid, {}).get('sources_pending', 0))
         row['analysis'] = 'complete' if analysis.plan(root, {pid})['status'] == 'ok' else 'pending'
-        ss = read(root / f'evidence/{pid}.json').get('statements', [])
+        ss = active_evidence(read(root / f'evidence/{pid}.json').get('statements', []))
         row['n_statements'] = len(ss)
         if not ss:
             row['astra'] = 'no_evidence_to_review'

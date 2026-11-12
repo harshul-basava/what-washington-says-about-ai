@@ -63,3 +63,9 @@ On one 134,445-character official hearing transcript, matching the 500 officials
 The extraction prompt referred to reviewed speaker mappings, but its subject payload omitted them. The corrected payload includes only mappings bound to the current source URL. The existing source, identity, date and same-speaker-turn checks remain unchanged. This affects seven registered source URLs for Jerome H. Powell and Jules W. Hurst III.
 
 Only extraction caches for bound speaker sources receive a new signature. Other source signatures remain unchanged. The next campaign resume will recheck the affected sources under the original spending limits, if collection allowance remains. It then updates judgments for any new evidence. A missing allowance records the deferred source URLs explicitly. Fresh campaigns still perform archive discovery before this migration.
+
+## Same-source duplicate corrections
+
+The resume audit found repeated quotations from the same source with different date metadata. The collector now rejects an identical normalized quotation from the same canonical URL, regardless of that metadata. Statements from different sources and dates retain the existing rules.
+
+Nine existing campaign records now carry `duplicate_of` references to their earlier stable IDs. The records remain on disk for audit. Analysis, public counts, and campaign addition counts exclude them. The loader rejects a correction unless both records have the same source and quotation. It also rejects missing targets, self-references, and chains. Original quotations, dates, attribution, and IDs remain unchanged. The correction report lives in `data/federal_collection_duplicate_corrections.json`.

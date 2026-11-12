@@ -12,6 +12,22 @@ SCRIPT = Path(__file__).resolve().parents[1] / 'scripts/federal_expansion_runner
 
 
 class ExpansionRunnerTests(unittest.TestCase):
+    def test_completed_review_status_uses_the_filtered_evidence_hash(self):
+        import federal_analysis as analysis
+        import llm
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);pid='p';cohort='expansion_01'
+            old={'sid':'s1','url':'https://example.gov/speech','text':'A verified quotation about artificial intelligence.'}
+            self.module.write(root/'evidence/p.json',{'statements':[old,{**old,'sid':'s2','duplicate_of':'s1'}]})
+            self.module.write(root/'data/federal_roster_expansion.json',{'profiles':{pid:{}},'cohorts':[],'funding_status':{}})
+            self.module.write(root/f'data/federal_roster_expansion_review_{cohort}.json',{'profiles':{pid:{'applied_review_id':'r1','evidence_hash':analysis.digest([old])}}})
+            credit={'guardrail_budgets':[{'scope':'workspace','reset_interval':None,'limit_usd':350}],'spendable_usd':10}
+            with patch.object(self.module,'command',return_value=credit),patch.object(llm,'spent',return_value=0),patch.object(analysis,'inputs',return_value=([{'id':pid,'entity_type':'institution'}],{pid:[old]})),patch.object(analysis,'configuration',return_value={}),patch.object(analysis,'state',return_value=({},{})),patch.object(analysis,'plan',return_value={'status':'ok'}),patch.object(self.module,'review_cohort',return_value={'status':'complete'}):
+                self.module.run(root,cohort,[pid],['astra'],5,1)
+            profile=self.module.read(root/'data/federal_roster_expansion.json')['profiles'][pid]
+            self.assertEqual(profile['astra'],'complete')
+            self.assertEqual(profile['n_statements'],1)
+
     def setUp(self):
         self.assertTrue(SCRIPT.exists(), 'The resumable cohort runner must exist')
         spec = importlib.util.spec_from_file_location('expansion_runner', SCRIPT)

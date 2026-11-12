@@ -24,6 +24,20 @@ ATTRIBUTION = {'kind': 'official_role', 'speaker': 'Official A', 'role': 'Secret
 
 
 class SubjectTests(unittest.TestCase):
+    def test_duplicate_records_keep_ids_but_do_not_enter_analysis(self):
+        import policy_subjects
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            path=root/'evidence/executive_a.json'
+            old=p.read_json(path)['statements'][0]
+            duplicate={**old,'sid':'s99','date':None,'duplicate_of':old['sid']}
+            p.write_json(path,{'statements':[old,duplicate]})
+            self.assertEqual([r['sid'] for r in policy_subjects.load_evidence(root,PERSON)],[old['sid']])
+            self.assertEqual(len(p.read_json(path)['statements']),2)
+            for changes in ({'text':'Unrelated words.'},{'duplicate_of':'s404'},{'duplicate_of':'s99'},{'url':'https://example.gov/other'}):
+                p.write_json(path,{'statements':[old,{**duplicate,**changes}]})
+                with self.assertRaises(ValueError):policy_subjects.load_evidence(root,PERSON)
+
     def fixture(self, root):
         p.write_json(root / 'config/policies.json', REGISTRY)
         (root / 'config/policy_rubric.md').write_text('rubric')

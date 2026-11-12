@@ -6,6 +6,13 @@ from scripts import federal_collection_campaign as campaign
 
 
 class CampaignTests(unittest.TestCase):
+    def test_recovered_additions_exclude_documented_duplicates(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);old={'sid':'s1','url':'https://example.gov/speech','text':'A verified quotation about artificial intelligence.'}
+            campaign.write(root/'evidence/p.json',{'statements':[old,{**old,'sid':'s2','duplicate_of':'s1'},{**old,'sid':'s3','text':'A separate verified quotation about artificial intelligence.'}]})
+            audit={'ids':['p'],'initial_sids':{'p':['s1']}}
+            self.assertEqual(campaign.recover_additions(root,audit),{'p':['s3']})
+
     def test_fresh_archive_run_discovers_sources_before_speaker_migration(self):
         import llm
         with tempfile.TemporaryDirectory() as d:

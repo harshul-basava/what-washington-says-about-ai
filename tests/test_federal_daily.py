@@ -26,6 +26,14 @@ CONFIG = {'version': 1, 'bootstrap_days': 14, 'overlap_days': 3, 'pages_per_grou
 
 
 class FederalTests(unittest.TestCase):
+    def test_same_source_quote_cannot_reenter_with_a_different_date(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            statement={'text':QUOTE,'url':PAGE['url'],'date':None,'verified':True}
+            self.assertEqual(federal.append_evidence(root,'executive_a',[statement]),['s1'])
+            self.assertEqual(federal.append_evidence(root,'executive_a',[{**statement,'url':PAGE['url']+'#quote','date':'2026-11-08'}]),[])
+            self.assertEqual(federal.append_evidence(root,'executive_a',[{**statement,'url':'https://commerce.gov/news/later','date':'2026-11-09'}]),['s2'])
+
     @classmethod
     def setUpClass(cls):
         # A descriptive assertion also proves the new collector does not exist before implementation.

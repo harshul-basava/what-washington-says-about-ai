@@ -15,6 +15,15 @@ import federal
 
 
 class HistoricalTests(unittest.TestCase):
+    def test_research_coverage_excludes_duplicate_counts_and_dates(self):
+        import federal_coverage
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td);old={'sid':'s1','text':QUOTE,'url':PAGE['url'],'date':'2025','verified':True}
+            federal.write(root/'evidence'/f"{PERSON['id']}.json",{'statements':[old,{**old,'sid':'s2','date':'2026','duplicate_of':'s1'}]})
+            profile=federal_coverage.coverage(root,[PERSON],{})['profiles'][PERSON['id']]
+            self.assertEqual(profile['statements'],1)
+            self.assertEqual(profile['latest_date'],'2025')
+
     def test_official_document_author_can_support_distant_speech_quote(self):
         header = 'Remarks by Commerce Secretary Official A'
         page = {**PAGE, 'text': header + ' November 8, 2026. ' + ('Introductory text. ' * 300) + QUOTE}

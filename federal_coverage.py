@@ -5,6 +5,7 @@ import statistics
 from collections import Counter, defaultdict
 from datetime import date, datetime, timedelta, timezone
 from federal_x_config import fingerprint, current_job, provider, state_file
+from policy_subjects import active_evidence
 
 
 def read(path, default):
@@ -168,7 +169,7 @@ def coverage(root, subjects, audit):
     seed_audit = read(root / 'data/federal_seed_research.json', {}).get('profiles', {})
     for subject in subjects:
         statements = read(root / 'evidence' / f"{subject['id']}.json", {'statements': []})['statements']
-        statements = [s for s in statements if s.get('verified') is True and s.get('url') and s.get('text')]
+        statements = [s for s in active_evidence(statements) if s.get('verified') is True and s.get('url') and s.get('text')]
         source_urls.update(s['url'] for s in statements)
         passes = audit.get('profiles', {}).get(subject['id'], {}).get('passes', {})
         completed = [p for p in passes.values() if p.get('status') == 'completed']

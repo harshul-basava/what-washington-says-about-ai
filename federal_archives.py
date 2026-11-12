@@ -164,6 +164,8 @@ def extraction_signature(text, subjects, url='', title='', structured_author=Non
 
 
 def duplicate_excerpt(statement, existing):
+    key=policy_subjects.source_quote_key(statement)
+    if key is not None and any(policy_subjects.source_quote_key(old)==key for old in existing):return True
     if overlaps(statement,existing):return True
     words=sources.normalize(statement['text']).casefold().split()
     for old in existing:

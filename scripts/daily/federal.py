@@ -260,8 +260,10 @@ def append_evidence(root, subject_id, statements):
         raise ValueError('Federal subject needs an existing evidence file')
     existing = evidence['statements']
     # A release repeated on an index/mirror is one dated quote, even with a different URL.
-    # Different dates remain distinct; preserve the first source and all published IDs.
+    # Different sources/dates remain distinct. The same source and quotation do
+    # not become a new statement when extraction changes its date metadata.
     known = {(sources.normalize(s['text']), s.get('date')) for s in existing}
+    known_sources = {policy_subjects.source_quote_key(s) for s in existing} - {None}
     reported_urls = {sources.canonical_url(s['url']) for s in statements if not (sources.urlsplit(s['url']).hostname or '').endswith(('.gov', '.mil'))}
     used_words = Counter()
     if reported_urls:
@@ -275,7 +277,8 @@ def append_evidence(root, subject_id, statements):
     added = []
     for statement in statements:
         key = (sources.normalize(statement['text']), statement.get('date'))
-        if key in known:
+        source_key = policy_subjects.source_quote_key(statement)
+        if key in known or source_key in known_sources:
             continue
         url = sources.canonical_url(statement['url'])
         if url in reported_urls:
@@ -284,6 +287,7 @@ def append_evidence(root, subject_id, statements):
                 continue
             used_words[url] += words
         known.add(key)
+        known_sources.add(source_key)
         sid = f's{next_id}'; next_id += 1
         existing.append({**public_statement(statement), 'sid': sid, 'added': today()})
         added.append(sid)

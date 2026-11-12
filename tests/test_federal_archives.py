@@ -9,6 +9,11 @@ from unittest.mock import patch
 import federal_archives as archive
 
 class ArchiveTests(unittest.TestCase):
+    def test_exact_source_duplicate_does_not_depend_on_date_metadata(self):
+        old={'url':'https://example.gov/speech','text':'Artificial intelligence must improve public services and protect privacy.','date':None}
+        self.assertTrue(archive.duplicate_excerpt({**old,'date':'2026-11-08'},[old]))
+        self.assertFalse(archive.duplicate_excerpt({**old,'url':'https://example.gov/other','date':'2026-11-08'},[old]))
+
     def test_extractor_receives_only_reviewed_speakers_for_its_source(self):
         client=archive.sources.Client.__new__(archive.sources.Client);client.daily=False;payloads=[]
         def chat(messages,*args,**kwargs):

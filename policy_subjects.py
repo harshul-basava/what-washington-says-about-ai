@@ -1,10 +1,11 @@
 """Additional policy subjects; the congressional scoring roster stays unchanged."""
 import json
 import hashlib
+import html
 import re
 from datetime import date
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urldefrag
 
 ATTRIBUTION_INSTRUCTIONS = """For evidence with attribution metadata, classify only the named subject's
 position in the stated capacity. An institutional statement represents that institution,
@@ -103,6 +104,29 @@ def load_subjects(root):
     return subjects
 
 
+def source_quote_key(statement):
+    if not statement.get('url'):
+        return None
+    return (urldefrag(statement['url'])[0],
+            ' '.join(html.unescape(statement['text']).split()).casefold())
+
+
+def active_evidence(statements):
+    """Keep correction records and stable IDs on disk, but exclude proven copies."""
+    if not any('duplicate_of' in s for s in statements):
+        return statements
+    by_id = {s['sid']: s for s in statements}
+    for row in statements:
+        if 'duplicate_of' not in row:
+            continue
+        original = by_id.get(row['duplicate_of'])
+        if (original is None or original is row or 'duplicate_of' in original
+                or source_quote_key(row) is None
+                or source_quote_key(row) != source_quote_key(original)):
+            raise ValueError('Duplicate correction requires the same source and quotation')
+    return [s for s in statements if 'duplicate_of' not in s]
+
+
 def load_evidence(root, subject):
     statements = _read(Path(root) / 'evidence' / f"{subject['id']}.json")['statements']
     seen = set()
@@ -124,7 +148,7 @@ def load_evidence(root, subject):
             raise ValueError('Official attribution requires a sourced role')
         if kind == 'institutional' and attr.get('organization_id') != subject['id']:
             raise ValueError('Institutional attribution requires the named institution')
-    return statements
+    return active_evidence(statements)
 
 
 def public_profile(subject):
