@@ -14,7 +14,7 @@ The [campaign configuration](../config/federal_collection_campaign.json) records
 
 ## Collection and reuse
 
-The configured inventory covers 41 index pages, plus existing official sources and source leads. Source groups include the White House, Federal Reserve, Commerce/NIST, Energy, Justice, Treasury, SEC, FTC, CIA, NSA, CISA and ODNI. Some indexes block direct retrieval. The report records those gaps; an index entry does not prove successful collection.
+The configured inventory covers 66 index pages or public data files, plus existing official sources and source leads. Source groups include the White House, Federal Reserve, Commerce/NIST, Energy, Justice, Treasury, SEC, FTC, CIA, NSA, CISA and ODNI. Some indexes block direct retrieval. The report records those gaps; an index entry does not prove successful collection.
 
 Eight workers retrieve documents. Four extraction requests can run at once through one budget manager. A lock serializes evidence updates. The queue rotates source groups and preserves priority within each group. Multi-speaker hearings without reviewed speaker mappings receive no extraction request because their quotes cannot pass the existing verifier.
 
@@ -77,3 +77,21 @@ Run 43195230024 completed web collection, ordinary analysis, named-policy judgme
 Cumulative model spending reached $20.543324, leaving $79.456676 under the original $100 allowance. Collection and discovery account for $2.657826 of that total. X spending reached $0.305 under its separate $5 ceiling. Six historical X intervals remain pending. The workflow correctly retained a pending campaign status and saved its evidence, judgments, costs, and caches.
 
 The checkpoint reached 262 officials with evidence, compared with 261 at the campaign baseline. Most additions deepen existing profiles. The archive inventory also contains hearing transcripts that require reviewed speaker mappings. Those sources remain excluded from personal evidence until the same identity and speaker-turn checks can pass. Further work will assess these gaps within the original allowance.
+
+## Completed first expansion wave
+
+Run 43208756264 finished the six remaining X intervals and the affected profile review. All 434 active additions from 159 sources passed the full source replay. All 52 changed profiles completed ordinary analysis, named-policy judgments and independent Astra review. The X searches added no statements.
+
+Cumulative model spending reached $21.501196, leaving $78.498804 under the original allowance. Collection and discovery account for $2.657826 of that total. Separate X spending reached $0.365. The campaign now resumes from this completed checkpoint without resetting its baseline, caches or limits.
+
+## Reviewed hearing expansion and deeper archives
+
+The next wave adds 47 source-specific speaker mappings for 37 current officials across 42 official hearing documents. The assistant checked each identity, exact oral label and hearing date against the primary source. The audit lives in `data/federal_hearing_speaker_review.json`. One candidate mapping incorrectly connected Representative French Hill's words to FDIC official Travis Hill. The review rejected it.
+
+GPO transcripts use indented, mixed-case speaker labels. The parser retains the original preformatted lines and requires the exact indentation before it accepts a mapped speaker. Unknown speakers and section headings end the previous turn. Written answers do not inherit the oral hearing date. Source URL, person, date and same-turn checks remain mandatory. Unsupported formats remain gaps. Daily collection uses the same parser and invalidates cached results when line proof changes.
+
+Historical testimony can precede an official's current appointment. The source mapping establishes personal identity; it does not establish that the official held the current role on the statement date. Existing role checks still apply.
+
+Free archive discovery added 1,536 source leads across NIST, Energy, FTC, SEC and Treasury. These leads increase the inventory to 3,557 documents. Deeper SEC discovery uses only chronological page links. Treasury's public page code loads older records from JSON files. The collector now reads those files directly, covering press releases since 2025 and remarks since 2023. Index dates select leads only; every accepted statement must still pass the article's full verification checks.
+
+The new indexes also feed daily updates. `data/federal_archive_extension.json` records the source URLs and discovery counts. These counts describe leads, not accepted statements. The original campaign's collection and review limits remain unchanged.

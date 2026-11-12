@@ -108,8 +108,27 @@ def sec_speech(url):
 
 
 def archive_links(html, source):
-    parser=Links();parser.feed(html);found={}
-    for href,title in parser.links:
+    if source.get('format') == 'treasury_news_json':
+        parsed=urlsplit(source['url'])
+        if (parsed.scheme!='https' or parsed.netloc!='home.treasury.gov'
+                or not re.fullmatch(r'/news-data/(press-releases|statements-remarks)/\d{4}-\d{4}\.json',parsed.path)):
+            raise ValueError('Unsupported Treasury archive URL')
+        payload=json.loads(html)
+        if not isinstance(payload,dict) or not isinstance(payload.get('items'),list):
+            raise ValueError('Invalid Treasury archive items')
+        links=[]
+        for row in payload['items']:
+            if not isinstance(row,dict) or not isinstance(row.get('url'),str) or not isinstance(row.get('title'),str):continue
+            stamp=row.get('date','')
+            if not isinstance(stamp,str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2}',stamp):continue
+            try:date.fromisoformat(stamp)
+            except ValueError:continue
+            if stamp < source.get('since','0001-01-01'):continue
+            links.append((row['url'],row['title']))
+    else:
+        parser=Links();parser.feed(html);links=parser.links
+    found={}
+    for href,title in links:
         url=sources.canonical_url(urljoin(source['url'],href))
         if sources.allowed_url(url,source['domains']) and re.search(source['pattern'],url):
             found[url]={'url':url,'title':title}
@@ -134,13 +153,14 @@ def fetch(url, domains):
 
 
 def page_from_bytes(url, data, title=''):
-    author=None
+    author=None;transcript={}
     if data.startswith(b'%PDF'):
         from pypdf import PdfReader
         text=' '.join(p.extract_text() or '' for p in PdfReader(io.BytesIO(data)).pages)
     else:
         html=data.decode('utf-8',errors='replace')
         parser=sources.PageText();parser.feed(html);text=''.join(parser.parts)
+        transcript=sources.transcript_metadata(url,html)
         if urlsplit(url).hostname=='www.federalreserve.gov' and re.fullmatch(r'/newsevents/(speech|testimony)/[a-z]+\d{8}[a-z]\.htm',urlsplit(url).path):
             article=FedArticle();article.feed(html);body=sources.normalize(''.join(article.parts))
             if len(article.names)==1 and body in sources.normalize(text) and article.names[0] in body[:6000]:
@@ -152,14 +172,15 @@ def page_from_bytes(url, data, title=''):
                 author={'header':speaker.names[0],'selector':speaker.selector,'url':url}
     text=sources.normalize(text)
     if len(text)<120:raise ValueError('Insufficient source text')
-    return {'url':url,'title':title,'text':text,'verified_via':'exact_normalized_page_text','parser_version':2,**({'structured_author':author} if author else {})}
+    return {'url':url,'title':title,'text':text,'verified_via':'exact_normalized_page_text','parser_version':2,**transcript,**({'structured_author':author} if author else {})}
 
 
-def extraction_signature(text, subjects, url='', title='', structured_author=None,model=None):
+def extraction_signature(text, subjects, url='', title='', structured_author=None,model=None,transcript_lines=None):
     payload=[VERSION,sources.EXTRACTION_PROMPT,text,subjects,url,title,structured_author]
     if model is not None:payload.append({'model':model})
     if any(sources.bound_speakers(s,url) for s in subjects):
         payload.append({'speaker_context_version':sources.SPEAKER_CONTEXT_VERSION})
+    if transcript_lines is not None:payload.append({'govinfo_pre_v1':sources.digest(transcript_lines)})
     return sources.digest(json.dumps(payload,sort_keys=True))
 
 
@@ -179,7 +200,7 @@ def duplicate_excerpt(statement, existing):
 def process_document(root, page, subjects, state, client, max_chunks=30, *, take_chunk=None, evidence_lock=None):
     """Resume a document, reusing validated or rejected model outputs unchanged."""
     model=getattr(client,'model',None)
-    text=sources.normalize(page['text']);signature=extraction_signature(text,subjects,page['url'],page.get('title',''),page.get('structured_author'),model)
+    text=sources.normalize(page['text']);signature=extraction_signature(text,subjects,page['url'],page.get('title',''),page.get('structured_author'),model,page.get('transcript_lines'))
     if state.get('signature')!=signature:state.clear();state.update(signature=signature,chunks={},model=model)
     report={'status':'complete','model_requests':0,'rejected':0,'extraction_errors':0,'added':{},'chunks_checked':0,'duplicate_excerpts':0}
     if subjects and '/CHRG-' in page['url']:
@@ -345,9 +366,10 @@ def collect(root, config, client, *, ids=None, max_documents=30, max_chunks=60, 
         if doc.get('error') and doc['error'] not in ('BudgetExceeded','OpenRouterRequestError') and doc.get('last_attempt')==now:continue
         page=federal.read(cache,{}) if cache.exists() and recent else None
         if page and sec_speech(url) and page.get('parser_version')!=2:page=None
+        if page and sources.govinfo_transcript(url) and any(sources.bound_speakers(s,url) for s in subjects) and page.get('transcript_format')!='govinfo_pre_v1':page=None
         if page:
             named=named_subjects(page['text'],subjects,url)
-            if processed.get('selector_version')==SELECTOR_VERSION and processed.get('signature')==extraction_signature(sources.normalize(page['text']),named,url,page.get('title',''),page.get('structured_author'),getattr(client,'model',None)) and processed.get('status') in ('complete','needs_review'):
+            if processed.get('selector_version')==SELECTOR_VERSION and processed.get('signature')==extraction_signature(sources.normalize(page['text']),named,url,page.get('title',''),page.get('structured_author'),getattr(client,'model',None),page.get('transcript_lines')) and processed.get('status') in ('complete','needs_review'):
                 report['cached_documents']+=1;continue
         queue.append((doc,page))
         if len(queue)>=max_documents:break

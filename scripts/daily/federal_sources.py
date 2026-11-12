@@ -85,6 +85,63 @@ class PageText(HTMLParser):
             self.parts.append(data)
 
 
+def govinfo_transcript(url):
+    parsed = urlsplit(url)
+    return (parsed.scheme == 'https' and parsed.hostname == 'www.govinfo.gov'
+            and bool(re.fullmatch(r'/content/pkg/(CHRG-\d+[a-z]+\d+)/html/\1\.htm', parsed.path)))
+
+
+class GovinfoPre(HTMLParser):
+    def __init__(self):
+        super().__init__(); self.active = False; self.parts = []; self.blocks = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag == 'pre': self.active = True; self.parts = []
+        elif self.active: self.parts.append(' ')
+
+    def handle_endtag(self, tag):
+        if tag == 'pre' and self.active:
+            self.blocks.append(''.join(self.parts)); self.active = False
+        elif self.active: self.parts.append(' ')
+
+    def handle_data(self, data):
+        if self.active: self.parts.append(data)
+
+
+def transcript_metadata(url, html):
+    """Retain original preformatted lines; normalized prose cannot prove turn boundaries."""
+    if not govinfo_transcript(url): return {}
+    parser = GovinfoPre(); parser.feed(html)
+    return {'transcript_format': 'govinfo_pre_v1',
+            'transcript_lines': parser.blocks[0] if len(parser.blocks) == 1 else ''}
+
+
+def govinfo_speaker_turns(lines):
+    """Read the exact four-space paragraph indentation used by GPO hearing HTML."""
+    name = r"[A-Z][A-Za-z’'-]+(?:[ \t]+(?:[A-Z][A-Za-z’'-]+|de|van|von)){0,4}"
+    label = (r'(?:(?:Mr|Ms|Mrs|Dr)\.|Senator|Secretary|Admiral|General|Chairman|Chairwoman)'
+             r'[ \t]+' + name + r'\.|The (?:Chairman|Chairwoman|Chair)\.')
+    unknown = (r'(?:Mr|Ms|Mrs|Dr|Prof|Lt|Gen|Adm)\.|'
+               r"[A-Z][A-Za-z’'-]*(?:[ \t]+(?:[A-Z][A-Za-z’'-]*|of|the|and|de|van|von)){0,5}[.:]")
+    # Written questions, submitted material and section headings end oral turns.
+    # Unsupported labels and indentation may close a turn but never establish its speaker.
+    boundary = re.compile(r'(?m)^ {4}(?! )(?P<label>' + label + r')(?=\s|$)'
+                          r'|^[ \t]*(?:' + unknown + r')(?=\s|$)'
+                          r'|^[ \t]*[A-Z][A-Z0-9,()/&’\x27 -]+[ \t]*$'
+                          r'|^[ \t]*(?:(?:Question(?:[ \t]+\d+)?|Answer)\.|\[|'
+                          r'Prepared Statement|Response to|STATEMENT OF|PREPARED STATEMENT|APPENDIX)')
+    marks = list(boundary.finditer(lines))
+    first_oral = next((m.start() for m in marks if m.group('label')), len(lines))
+    written = re.compile(r'(?im)^[ \t]*(?:\[(?:Prepared questions submitted|Questions for the record with answers)'
+                         r'|Response(?:s)? to Written Questions|Advance Policy Questions)')
+    cutoff = next((m.start() for m in written.finditer(lines) if m.start() > first_oral), len(lines))
+    for index, mark in enumerate(marks):
+        if mark.start() >= cutoff: break
+        if mark.group('label'):
+            stop = min(marks[index + 1].start() if index + 1 < len(marks) else len(lines), cutoff)
+            yield mark.group('label'), normalize(lines[mark.start():stop])
+
+
 def parse_json(content):
     text = (content or '').strip()
     try:
@@ -192,7 +249,8 @@ class Client:
                     text = normalize(''.join(parser.parts))
                 if len(text) < 120:
                     raise ValueError('Source page has insufficient text')
-                return {**page, 'text': text, 'verified_via': 'exact_normalized_page_text'}
+                proof = {} if response.content.startswith(b'%PDF') else transcript_metadata(url, response.text)
+                return {**page, 'text': text, 'verified_via': 'exact_normalized_page_text', **proof}
         except (httpx.HTTPError, ValueError):
             pass
         text = page.get('text') or ''

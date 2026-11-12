@@ -9,6 +9,23 @@ from unittest.mock import patch
 import federal_archives as archive
 
 class ArchiveTests(unittest.TestCase):
+    def test_treasury_public_json_index_supplies_leads_only_with_date_and_url_bounds(self):
+        source={'url':'https://home.treasury.gov/news-data/press-releases/2026-2023.json',
+                'domains':['home.treasury.gov'],'pattern':r'/news/press-releases/[^/?#]+/?$',
+                'format':'treasury_news_json','since':'2025-01-01'}
+        rows=[{'url':'/news/press-releases/sb1/','title':'Remarks on AI','date':'2025-03-01'},
+              {'url':'/news/press-releases/jy1/','title':'Earlier remarks','date':'2024-03-01'},
+              {'url':'https://example.test/news/press-releases/a/','title':'External','date':'2025-03-01'},
+              {'url':'/about/','title':'About','date':'2025-03-01'},
+              {'url':'/news/press-releases/bad/','title':'Bad date','date':'not a date'}]
+        payload=json.dumps({'category':'press-releases','items':rows})
+        self.assertEqual(archive.archive_links(payload,source),
+                         [{'url':'https://home.treasury.gov/news/press-releases/sb1/','title':'Remarks on AI'}])
+        for bad in [payload.replace('"items"','"missing"'), json.dumps({'items':'not a list'}), '{}']:
+            with self.assertRaises(ValueError):archive.archive_links(bad,source)
+        with self.assertRaises(ValueError):
+            archive.archive_links(payload,{**source,'url':'https://example.gov/news-data/press-releases/2026-2023.json'})
+
     def test_exact_source_duplicate_does_not_depend_on_date_metadata(self):
         old={'url':'https://example.gov/speech','text':'Artificial intelligence must improve public services and protect privacy.','date':None}
         self.assertTrue(archive.duplicate_excerpt({**old,'date':'2026-11-08'},[old]))

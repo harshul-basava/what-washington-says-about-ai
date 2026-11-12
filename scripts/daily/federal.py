@@ -161,6 +161,19 @@ def transcript_speaker_context(page, quote, subject, day):
             raise ValueError('Transcript speaker identity needs reviewed source evidence')
         if start <= day and (end is None or day < end):
             reviewed[alias['label']] = alias
+    if sources.govinfo_transcript(url):
+        lines = page.get('transcript_lines', '')
+        text = sources.normalize(page['text'])
+        if (page.get('transcript_format') != 'govinfo_pre_v1' or not lines
+                or sources.normalize(lines) not in text):
+            raise ValueError('GPO transcript requires retained original paragraph boundaries')
+        for label, turn in sources.govinfo_speaker_turns(lines):
+            alias = reviewed.get(label)
+            at = turn.find(quote, len(label))
+            if alias and at >= 0 and at + len(quote) <= 3500:
+                return {'context': turn[:at + len(quote)], 'label': label,
+                        'source_url': alias['source_url'], 'verified_on': alias['verified_on']}
+        raise ValueError('Quote lacks a reviewed same-speaker GPO paragraph')
     # The reviewed transcript format labels speakers with uppercase names and a period.
     # Single-letter questions and explicit reporter labels also end a speaker turn.
     marker = (r"(?<![\w.])(?:(?:[A-Z][A-Z’'-]+|[A-Z]\.)(?:\s+(?:[A-Z][A-Z’'-]+|[A-Z]\.)){1,5}"
@@ -405,7 +418,8 @@ def collect(root, config, since=None, dry=False):
             page = client.page(in_memory.get(url, queued), all_domains)
             page['verified_via'] = page.get('verified_via', 'exact_normalized_search_retrieval')
             content_hash = sources.digest(sources.normalize(page['text']))
-            revision = sources.digest(content_hash + extraction_revision)
+            proof = json.dumps([page.get('transcript_format'), page['transcript_lines']]) if 'transcript_lines' in page else ''
+            revision = sources.digest(content_hash + extraction_revision + proof)
             if state['processed'].get(url, {}).get('revision') != revision:
                 text = sources.normalize(page['text'])
                 # Overlap chunks so an excerpt at a boundary remains available in full.
