@@ -2,12 +2,15 @@
   "version": 1,
   "checked_on": "2026-11-12",
   "source_revision": "783a3836",
-  "status": "collected_awaiting_judgments",
+  "status": "complete",
   "method": "Read complete primary documents; verify exact normalized passages and explicit authorship or uninterrupted speaker turns. Do not infer dates for written answers.",
   "budget": {
     "openrouter_baseline": 450.8879181862512,
     "x_baseline": 93.09000099999979,
-    "combined_limit": 8.0
+    "combined_limit": 8.0,
+    "openrouter_spend_usd": 0.635063,
+    "x_spend_usd": 0.0,
+    "combined_spend_usd": 0.635063
   },
   "rows": [
     {
@@ -251,7 +254,7 @@
       "sid": "s2"
     }
   ],
-  "model_reviews": "pending",
+  "model_reviews": "complete",
   "paid_collection_calls": 0,
   "profiles": {
     "exec_klein": {
@@ -267,7 +270,18 @@
         "s11",
         "s12"
       ],
-      "model_reviews": "pending"
+      "model_reviews": "complete",
+      "scores_after": {
+        "ai_overall": 3.0,
+        "agi_pilled": null,
+        "x_risk": null,
+        "china_race": 3.0,
+        "regulation": 1.5
+      },
+      "astra_review_dimension": "ai_overall",
+      "astra_assessed_at": "2026-11-12T03:26:21.585251+00:00",
+      "astra_generation_id": "gen-1794453963-kDQ0VkB9ry8lWbsRgAlS",
+      "daily_web_assignment": "(\"Ethan Klein\" OR \"Kevin Hassett\") AI artificial intelligence superintelligence policy statements"
     },
     "exec_vought": {
       "before": 2,
@@ -280,7 +294,18 @@
         "s7",
         "s8"
       ],
-      "model_reviews": "pending"
+      "model_reviews": "complete",
+      "scores_after": {
+        "ai_overall": 3.0,
+        "agi_pilled": null,
+        "x_risk": null,
+        "china_race": 2.0,
+        "regulation": 2.0
+      },
+      "astra_review_dimension": "ai_overall",
+      "astra_assessed_at": "2026-11-12T03:26:01.119454+00:00",
+      "astra_generation_id": "gen-1794453940-6y2qqYGgJGLyXzMs5bRR",
+      "daily_web_assignment": "(\"Russell Vought\" OR \"Thomas Flagg\") AI artificial intelligence superintelligence policy statements"
     },
     "exec_james_danly": {
       "before": 2,
@@ -288,7 +313,18 @@
       "added_sids": [
         "s3"
       ],
-      "model_reviews": "pending"
+      "model_reviews": "complete",
+      "scores_after": {
+        "ai_overall": null,
+        "agi_pilled": null,
+        "x_risk": null,
+        "china_race": 2.5,
+        "regulation": null
+      },
+      "astra_review_dimension": "ai_overall",
+      "astra_assessed_at": "2026-11-12T03:29:36.921909+00:00",
+      "astra_generation_id": "gen-1794454170-R2wxJbSrN6Qh0QWmTYjW",
+      "daily_web_assignment": "(\"Brandon Williams\" OR \"James Danly\") AI artificial intelligence superintelligence policy statements"
     },
     "exec_douglas_cossa": {
       "before": 1,
@@ -296,7 +332,18 @@
       "added_sids": [
         "s2"
       ],
-      "model_reviews": "pending"
+      "model_reviews": "complete",
+      "scores_after": {
+        "ai_overall": null,
+        "agi_pilled": null,
+        "x_risk": null,
+        "china_race": null,
+        "regulation": null
+      },
+      "astra_review_dimension": "ai_overall",
+      "astra_assessed_at": "2026-11-12T03:32:10.003564+00:00",
+      "astra_generation_id": "gen-1794454325-6UclcaM12otUZGtEwCu3",
+      "daily_web_assignment": "(\"Brej Gruskin\" OR \"Douglas Cossa\") AI artificial intelligence superintelligence policy statements"
     }
   },
   "added_statements": 16,
@@ -307,5 +354,34 @@
     "https://www.whitehouse.gov/wp-content/uploads/2020/11/M-21-06.pdf",
     "https://www.whitehouse.gov/wp-content/uploads/2025/02/M-25-21-Accelerating-Federal-Use-of-AI-through-Innovation-Governance-and-Public-Trust.pdf?inline=1"
   ],
-  "credit_check_run": "https://github.com/harshul-basava/what-washington-says-about-ai/actions/runs/43146533058"
+  "credit_check_run": "https://github.com/harshul-basava/what-washington-says-about-ai/actions/runs/43146533058",
+  "source_count": 5,
+  "verification": {
+    "exact_normalized_passages": 16,
+    "distinct_source_documents": 5,
+    "verified_on": "2026-11-12",
+    "tests": {
+      "python": 298,
+      "javascript": 64
+    },
+    "offline_build": "passed"
+  },
+  "workflow_runs": [
+    {
+      "cohort": "existing_refresh",
+      "run_url": "https://github.com/harshul-basava/what-washington-says-about-ai/actions/runs/43147674293",
+      "status": "success"
+    },
+    {
+      "cohort": "expansion_04",
+      "run_url": "https://github.com/harshul-basava/what-washington-says-about-ai/actions/runs/43148350628",
+      "status": "success"
+    },
+    {
+      "cohort": "expansion_07",
+      "run_url": "https://github.com/harshul-basava/what-washington-says-about-ai/actions/runs/43148701113",
+      "status": "success"
+    }
+  ],
+  "review_scope": "New excerpts received the standard five-dimension cascade, regulation classification, summaries, named-policy judgments where matched, and Astra review of overall AI views. This does not resolve the separate x-risk spot-check queue."
 }

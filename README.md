@@ -40,6 +40,10 @@ The congressional score timeline uses scored members as its denominator. Solid l
 
 Historical counts come from saved labels and published score snapshots. Silence does not count as a stance, including numeric zeros from the older scoring rules. The [coverage audit](data/congress_history_coverage_audit.json) records the source commits and the recovered counts. The daily job saves the scored-member count in each new snapshot.
 
+## Evidence spot checks
+
+The [initial source audit](docs/ai-evidence-spotchecks-2026-11-12.md) checks 14 statements across Congress and executive officials. It records source matches, two date corrections, a composite quotation, and unresolved context or label concerns. This small sample does not estimate overall accuracy. The [structured findings and review queue](data/ai_evidence_spotchecks_20261112.json) keep confirmed corrections separate from proposed judgment changes.
+
 ## Run it
 
 ```bash
