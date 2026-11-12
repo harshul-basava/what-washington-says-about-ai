@@ -279,11 +279,46 @@ class XTests(unittest.TestCase):
             self.assertEqual(report['errors'][0]['error'],'repeated_cursor')
 
     def test_long_excerpt_is_an_exact_substring_and_stays_in_copyright_limit(self):
-        text='Introductory words. '+TEXT+' '+('Additional details appear here. '*20)
+        text=('A complete introduction about unrelated work. '*5)+'\n\n'+TEXT+'\n\n'+('Additional details appear here. '*20)
         s=self.x.statement(POST|{'text':text},ACCOUNT,PERSON,'7','2026-01-01','2026-11-09','2026-11-08')
         self.assertTrue(s['excerpted'])
         self.assertIn(s['text'],text)
-        self.assertEqual(len(s['text'].split()),25)
+        self.assertEqual(s['text'],TEXT)
+
+    def test_long_x_post_keeps_complete_bullets_and_omits_link_prompt(self):
+        intro='The new agency. Better technology. Historic results.'
+        bullets='→ Superintelligence adoption up 605%\n→ 635,000+ labor hours saved - the equivalent of about 79,000 work days'
+        text=intro+'\n\n'+bullets+'\n→ Brand new systems provide several additional capabilities for our teams across the country.'
+        self.assertEqual(self.x.excerpt(text),intro+'\n\n'+bullets)
+        paragraph='Our laboratory uses artificial intelligence to model materials at larger scales and predict how those materials perform.'
+        text=('Complete introductory context appears here. '*8)+'\n\n'+paragraph+'\n\nLearn more:\nhttps://example.gov'
+        self.assertEqual(self.x.excerpt(text),paragraph)
+
+    def test_overlong_condition_stays_in_review_queue_instead_of_being_cut(self):
+        text='We support artificial intelligence only if '+('strict safeguards protect people and their data '*7)+'under these conditions.'
+        self.assertIsNone(self.x.excerpt(text))
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            report=self.x.collect(root,since='2026-11-01',client=lambda request:PAGE|{'posts':[POST|{'text':text}]},now='2026-11-08')
+            self.assertEqual(report['added'],{})
+            self.assertEqual(report['needs_review'][0]['post_id'],POST['id'])
+            self.assertEqual(report['needs_review'][0]['reason'],'no_complete_excerpt_within_word_limit')
+            self.assertTrue(list((root/'data/raw/federal_x').glob('*/*.json')))
+            saved=json.loads((root/'data/federal_x_state.json').read_text())
+            candidate=saved['needs_review']['official_a:100']
+            self.assertEqual(candidate['subject_id'],PERSON['id'])
+            self.assertTrue((root/candidate['raw_path']).exists())
+            self.x.collect(root,since='2026-11-01',client=lambda request:PAGE|{'posts':[]},now='2026-11-08')
+            self.assertEqual(json.loads((root/'data/federal_x_state.json').read_text())['needs_review'],saved['needs_review'])
+
+    def test_x_excerpt_does_not_drop_a_following_condition(self):
+        claim='We support artificial intelligence for better public services and safer communities.'
+        condition='Only if '+('strong safeguards protect people and preserve meaningful oversight '*6)+'under these conditions.'
+        self.assertIsNone(self.x.excerpt(claim+'\n\n'+condition))
+        for marker in ['- ','→ ','🌾 ']:
+            self.assertIsNone(self.x.excerpt(claim+'\n\n'+marker+condition))
+        self.assertIsNone(self.x.excerpt('If '+('all protections remain applicable '*12)+'apply:\n\n'+claim))
+        self.assertIsNone(self.x.excerpt(('Context about earlier policy choices. '*8)+'\n\nHowever, artificial intelligence should support public services only under strict oversight.'))
 
     def test_current_and_archived_account_mappings_remain_visible_without_auth(self):
         import federal_coverage

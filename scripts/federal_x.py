@@ -99,12 +99,33 @@ def registry(root):
     return config,subjects
 
 def excerpt(text):
-    """One contiguous excerpt, capped at 25 words, near the policy term."""
-    words=list(re.finditer(r'\S+',text));match=AI.search(text)
-    if not match or len(words)<8:return None
-    pivot=next((i for i,w in enumerate(words) if w.end()>match.start()),0)
-    start=max(0,min(pivot-5,len(words)-25));end=min(len(words),start+25)
-    return text[words[start].start():words[end-1].end()]
+    """Keep whole paragraphs or bullets; never cut a sentence to fit 25 words.
+
+    Longer indivisible passages remain in the retained post for source review.
+    A blank line or an explicit list marker supplies a source-authored boundary.
+    Ordinary line wraps do not supply a boundary.
+    """
+    if not AI.search(text) or len(text.split())<8:return None
+    if len(text.split())<=25:return text.strip()
+    boundary=re.compile(r'\n[ \t]*\n+|\n(?=[ \t]*(?:[-*•→]|[\U0001f300-\U0001faff])\ufe0f?[ \t])')
+    cuts=[0,*[m.end() for m in boundary.finditer(text)],len(text)]
+    units=[(start,end) for start,end in zip(cuts,cuts[1:]) if text[start:end].strip()]
+    continuation=re.compile(r'(?i)^(?:but\b|however\b|only\b|unless\b|provided\b|except\b|subject to\b|if\b|although\b)')
+    marker=re.compile(r'^(?:[-*•→]|[\U0001f300-\U0001faff])\ufe0f?[ \t]+')
+    clean_units=[marker.sub('',text[start:end].strip()) for start,end in units]
+    continues=[bool(continuation.match(unit)) or (i>0 and clean_units[i-1].endswith(':'))
+               for i,unit in enumerate(clean_units)]
+    candidates=[]
+    for i,(start,_) in enumerate(units):
+        if i and continues[i]:continue
+        for j,(unit_start,end) in enumerate(units[i:],i):
+            last=text[unit_start:end].strip()
+            if re.match(r'(?i)^(?:learn more|read more|https?://)',last):break
+            quote=text[start:end].strip();count=len(quote.split())
+            if count>25:break
+            if j+1<len(units) and continues[j+1]:continue
+            if count>=8 and AI.search(quote):candidates.append((count,-start,quote))
+    return max(candidates)[2] if candidates else None
 
 def post_date(value):
     try:moment=datetime.fromisoformat(value.replace('Z','+00:00'))
@@ -122,7 +143,7 @@ def valid_post(post):
     except (KeyError,ValueError,TypeError,AttributeError):return False
     return True
 
-def statement(post, account, subject, user_id, start, end, now, provider='emusks'):
+def statement(post, account, subject, user_id, start, end, now, provider='emusks', *, review_queue=None):
     try:
         if (str(post['author_id'])!=str(user_id) or post['author'].lower()!=account['handle'].lower() or
             post.get('is_repost') or post.get('is_promoted') or post.get('restricted') or
@@ -131,13 +152,20 @@ def statement(post, account, subject, user_id, start, end, now, provider='emusks
         day=post_date(raw_date)
         if not start<=day<end or day>now or day<account['valid_from'] or (account.get('valid_until') and day>=account['valid_until']):return None
         text=post['text']
-        if not isinstance(text,str) or not (quote:=excerpt(text)):return None
+        if not isinstance(text,str):return None
         attr={'kind':account['kind'],'speaker':subject['name'],'basis':'verified_x_account','account':account['handle'],'user_id':str(user_id)}
         if account['kind']=='institutional':attr['organization_id']=subject['organization_id']
         if account['kind']=='official_role':
             role=subject['roles'][account['role_index']]
             if (role.get('start_date') and day<role['start_date']) or (role.get('end_date') and day>role['end_date']):return None
             attr.update(organization_id=role['organization_id'],role=role['title'])
+        quote=excerpt(text)
+        if quote is None:
+            if review_queue is not None and AI.search(text) and len(text.split())>25:
+                review_queue.append({'post_id':post['id'],'account_id':account['id'],
+                    'url':f"https://x.com/{account['handle']}/status/{post['id']}",
+                    'reason':'no_complete_excerpt_within_word_limit'})
+            return None
         return {'text':quote,'date':day,'date_quote':raw_date,'context':f"Original public X post by {subject['name']}.",
             'url':f"https://x.com/{account['handle']}/status/{post['id']}",'source_type':'x',
             'verified':True,'verified_via':provider+'_post_text_and_author_id','attribution':attr,
@@ -186,7 +214,7 @@ def collect(root, mode='daily', since=None, dry=False, client=None, now=None, id
     unmapped=selected-mapped
     report={'date':now,'provider':provider,'mode':mode,'status':'dry_run' if dry else 'ok',
         'accounts':len({a['handle'].lower() for a in accounts}),'account_intervals':len(accounts),
-        'mapped_profiles':len(mapped),'unmapped_profiles':len(unmapped),'pages':0,'added':{},'errors':[],
+            'mapped_profiles':len(mapped),'unmapped_profiles':len(unmapped),'pages':0,'added':{},'errors':[],'needs_review':[],
         'note':'Search results are not a complete X archive. Unmapped profiles need sourced account mappings.'}
     if ids:report.update(subject_ids=sorted(selected),unmapped_subject_ids=sorted(unmapped))
     if until is not None:report['historical_until']=until
@@ -304,9 +332,17 @@ def collect(root, mode='daily', since=None, dry=False, client=None, now=None, id
             cache=root/'data/raw'/('federal_x_api' if provider=='x_api' else 'federal_x')/a['id']/(digest(json.dumps(request,sort_keys=True))+'.json')
             write(cache,{'request':request,'response':result,'retrieved_on':now})
             previous_posts={s.get('post_id') for s in read(root/'evidence'/f"{a['subject_id']}.json",{'statements':[]})['statements']}
-            accepted=[s for p in posts if p.get('id') not in previous_posts and (s:=statement(p,a,subjects[a['subject_id']],uid,job['start'],job['end'],now,provider))]
+            review_start=len(report['needs_review'])
+            accepted=[s for p in posts if p.get('id') not in previous_posts and (s:=statement(p,a,subjects[a['subject_id']],uid,job['start'],job['end'],now,provider,review_queue=report['needs_review']))]
+            for candidate in report['needs_review'][review_start:]:
+                state.setdefault('needs_review',{})[a['id']+':'+candidate['post_id']]={
+                    **candidate,'subject_id':a['subject_id'],'raw_path':str(cache.relative_to(root))}
             added=append_evidence(root,a['subject_id'],accepted)
-            if added:report['added'].setdefault(a['subject_id'],[]).extend(added)
+            if added:
+                report['added'].setdefault(a['subject_id'],[]).extend(added)
+                for row in read(root/'evidence'/f"{a['subject_id']}.json",{'statements':[]})['statements']:
+                    if row['sid'] in added:
+                        state.get('needs_review',{}).pop(a['id']+':'+row['post_id'],None)
             job.update(cursor=cursor,pages=job['pages']+1,status='pending' if cursor else 'searched')
             if cursor:job.setdefault('cursor_hashes',[]).append(digest(cursor))
             job.pop('error',None)
