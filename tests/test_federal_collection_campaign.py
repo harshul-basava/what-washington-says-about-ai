@@ -1,10 +1,40 @@
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 from scripts import federal_collection_campaign as campaign
 
 
 class CampaignTests(unittest.TestCase):
+    def test_failed_gap_search_keeps_campaign_pending_and_retryable(self):
+        import llm
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);subjects=[{'id':'p','name':'Alice Example','organization_id':'a','entity_type':'person','branch':'executive'}];evidence={'p':[]}
+            config={'limit_usd':100,'trial_limit_usd':3,'collection_limit_usd':20,'x_limit_usd':5,'gap_query_limit':10,'total_excerpt_limit':2500}
+            campaign.write(root/campaign.CONFIG,config)
+            campaign.write(root/'config/federal_sources.json',{'groups':[{'id':'a','organization_ids':['a'],'domains':['example.gov']}]})
+            campaign.write(root/'evidence/p.json',{'statements':[]})
+            ledger=root/'data/cost_ledger.jsonl';ledger.parent.mkdir(parents=True,exist_ok=True);ledger.write_text('')
+            audit=campaign.initialize(root,config,subjects,evidence,400,90,0)
+            audit['phases']={'trial':{'status':'complete'},'expand':{'archives_finished':True,'x_finished':True,'queries':{},'archive_batches':[]}}
+            campaign.write(root/campaign.PATH,audit)
+            class Broken:
+                def search(self,*args,**kwargs):raise RuntimeError('Temporary provider failure')
+            with patch.object(campaign.analysis,'inputs',return_value=(subjects,evidence)),patch.object(campaign,'command',return_value={'spendable_usd':100}),patch.object(llm,'spent',side_effect=lambda p:400 if p=='openrouter' else 90),patch.object(llm,'LEDGER',ledger),patch.object(campaign.archive.sources,'Client',return_value=Broken()):
+                with self.assertRaisesRegex(ValueError,'collection remains pending'):campaign.run(root,'expand')
+            saved=campaign.read(root/campaign.PATH)
+            self.assertEqual(saved['status'],'pending');self.assertFalse(saved['phases']['expand']['gap_search_finished'])
+
+    def test_daily_and_campaign_restore_the_same_latest_cache_prefix(self):
+        import yaml
+        root=Path(__file__).resolve().parents[1];prefixes=[]
+        for file in ['daily.yml','federal-collection.yml']:
+            config=yaml.safe_load((root/'.github/workflows'/file).read_text())
+            steps=next(iter(config['jobs'].values()))['steps']
+            cache=next(s for s in steps if s.get('id') in ('cache','archives'))
+            prefixes.append(cache['with']['restore-keys'].splitlines()[0])
+        self.assertEqual(prefixes,['federal-shared-v2-']*2)
+
     def test_resume_keeps_original_budget_and_trial_cannot_use_expansion_allowance(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);subjects=[{'id':'p','entity_type':'person','branch':'executive'}];evidence={'p':[{'sid':'s1'}]}

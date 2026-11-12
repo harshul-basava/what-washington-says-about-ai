@@ -42,10 +42,9 @@ jobs:
             data/raw/federal_stance_context
             data/raw/federal_search
             data/raw/federal_x_api
-          key: federal-collection-v2-${{ github.run_id }}-${{ github.run_attempt }}
+          key: federal-shared-v2-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
-            federal-collection-v2-
-            federal-daily-v2-
+            federal-shared-v2-
       - name: Verify existing archive pilot without model calls
         run: |
           if [ ! -f data/federal_collection_campaign.json ]; then

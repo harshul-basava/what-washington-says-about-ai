@@ -124,8 +124,10 @@ def page_from_bytes(url, data, title=''):
     return {'url':url,'title':title,'text':text,'verified_via':'exact_normalized_page_text',**({'structured_author':author} if author else {})}
 
 
-def extraction_signature(text, subjects, url='', title='', structured_author=None):
-    return sources.digest(json.dumps([VERSION,sources.EXTRACTION_PROMPT,text,subjects,url,title,structured_author],sort_keys=True))
+def extraction_signature(text, subjects, url='', title='', structured_author=None,model=None):
+    payload=[VERSION,sources.EXTRACTION_PROMPT,text,subjects,url,title,structured_author]
+    if model is not None:payload.append({'model':model})
+    return sources.digest(json.dumps(payload,sort_keys=True))
 
 
 def duplicate_excerpt(statement, existing):
@@ -141,8 +143,9 @@ def duplicate_excerpt(statement, existing):
 
 def process_document(root, page, subjects, state, client, max_chunks=30, *, take_chunk=None, evidence_lock=None):
     """Resume a document, reusing validated or rejected model outputs unchanged."""
-    text=sources.normalize(page['text']);signature=extraction_signature(text,subjects,page['url'],page.get('title',''),page.get('structured_author'))
-    if state.get('signature')!=signature:state.clear();state.update(signature=signature,chunks={})
+    model=getattr(client,'model',None)
+    text=sources.normalize(page['text']);signature=extraction_signature(text,subjects,page['url'],page.get('title',''),page.get('structured_author'),model)
+    if state.get('signature')!=signature:state.clear();state.update(signature=signature,chunks={},model=model)
     report={'status':'complete','model_requests':0,'rejected':0,'extraction_errors':0,'added':{},'chunks_checked':0,'duplicate_excerpts':0}
     if subjects and '/CHRG-' in page['url']:
         subjects=[s for s in subjects if any(page['url'] in alias.get('source_urls',[]) for alias in s.get('source_speaker_aliases',[]))]
@@ -278,7 +281,7 @@ def collect(root, config, client, *, ids=None, max_documents=30, max_chunks=60, 
         page=federal.read(cache,{}) if cache.exists() and recent else None
         if page:
             named=[s for s in subjects if federal.contains_name(page['text'],s,source_url=url)]
-            if processed.get('selector_version')==SELECTOR_VERSION and processed.get('signature')==extraction_signature(sources.normalize(page['text']),named,url,page.get('title',''),page.get('structured_author')) and processed.get('status') in ('complete','needs_review'):
+            if processed.get('selector_version')==SELECTOR_VERSION and processed.get('signature')==extraction_signature(sources.normalize(page['text']),named,url,page.get('title',''),page.get('structured_author'),getattr(client,'model',None)) and processed.get('status') in ('complete','needs_review'):
                 report['cached_documents']+=1;continue
         queue.append((doc,page))
         if len(queue)>=max_documents:break
@@ -289,6 +292,7 @@ def collect(root, config, client, *, ids=None, max_documents=30, max_chunks=60, 
             if used_chunks>=max_chunks:return False
             used_chunks+=1;return True
     class LimitedClient:
+        model=getattr(client,'model',None)
         def extract(self,*args,**kwargs):
             with extract_slots:return client.extract(*args,**kwargs)
     def work(item):

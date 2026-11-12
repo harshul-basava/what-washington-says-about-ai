@@ -9,6 +9,19 @@ from unittest.mock import patch
 import federal_archives as archive
 
 class ArchiveTests(unittest.TestCase):
+    def test_changed_extractor_invalidates_an_empty_result(self):
+        with tempfile.TemporaryDirectory() as d:
+            calls=[]
+            class Client:
+                model='first'
+                def extract(self,*args,**kwargs):calls.append(self.model);return []
+            client=Client();state={}
+            page={'url':'https://example.gov/a','text':'Alice Example says artificial intelligence could improve public services.'}
+            subject={'id':'p','name':'Alice Example','aliases':[],'entity_type':'person','roles':[]}
+            archive.process_document(Path(d),page,[subject],state,client)
+            client.model='second';archive.process_document(Path(d),page,[subject],state,client)
+            self.assertEqual(calls,['first','second'])
+
     def test_archive_indexes_download_concurrently_and_save_empty_results(self):
         with tempfile.TemporaryDirectory() as d:
             counts={'active':0,'peak':0};lock=threading.Lock()

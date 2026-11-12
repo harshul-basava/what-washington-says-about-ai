@@ -75,10 +75,9 @@ jobs:
             data/raw/federal_stance_context
             data/raw/federal_search
             data/raw/federal_x_api
-          key: federal-daily-v2-${{ github.run_id }}-${{ github.run_attempt }}
+          key: federal-shared-v2-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
-            federal-daily-v2-
-            federal-collection-v2-
+            federal-shared-v2-
 
       - name: Refresh reference files (legislators, committees)
         if: steps.keys.outputs.skip != 'true' && env.IN_SOURCES != 'federal'

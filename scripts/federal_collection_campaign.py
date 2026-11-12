@@ -142,12 +142,18 @@ def run(root,phase):
                 count+=result['checked_documents']
                 if result['status']=='provider_limit':raise ValueError('Collection provider requires recovery')
                 if not result['checked_documents'] or result['status']=='collection_budget_limit':break
-            part['archives_finished']=True;save()
+            archive_state=read(root/archive.STATE).get('documents',{})
+            checked_urls={row['url'] for batch in part['archive_batches'] for row in batch.get('document_outcomes',[])}
+            part['pending_archive_urls']=[u for u in checked_urls if archive_state.get(u,{}).get('processed',{}).get('status')=='pending'
+                                          or archive_state.get(u,{}).get('error') in ('BudgetExceeded','OpenRouterRequestError')]
+            part['source_gaps']=[{'url':u,'error':archive_state[u]['error']} for u in checked_urls if archive_state.get(u,{}).get('error')
+                                 and archive_state[u]['error'] not in ('BudgetExceeded','OpenRouterRequestError')]
+            part['archives_finished']=not part['pending_archive_urls'];save()
         if phase=='expand' and not part.get('gap_search_finished'):
             _,current=analysis.inputs(root);groups=read(root/'config/federal_sources.json')['groups']
             selection=read(root/'data/federal_roster_selection.json')
             rank={pid:i for i,pid in enumerate(selection.get('selected_new_ids',[]))}
-            queries=gap_queries(subjects,current,groups,rank)[:config['gap_query_limit']]
+            queries=part.setdefault('gap_plan',gap_queries(subjects,current,groups,rank)[:config['gap_query_limit']]);save()
             until=(date.fromisoformat(audit['created_on'])+timedelta(days=1)).isoformat()
             state=read(root/archive.STATE);new_urls={u for entry in part['queries'].values() for u in entry.get('urls',[])}
             for offset in range(0,len(queries),4):
@@ -180,7 +186,9 @@ def run(root,phase):
                     result=collect_batch(len(new_urls),urls=sorted(new_urls));part.setdefault('gap_batches',[]).append(result)
                     state=read(root/archive.STATE);new_urls.clear();save()
                     if result['status']=='provider_limit':raise ValueError('Gap extraction provider requires recovery')
-            part['gap_search_finished']=True;save()
+            keys=[archive.sources.digest(json.dumps([q,'2023-01-01',until],sort_keys=True)) for q in queries]
+            part['gap_pending_queries']=sum(part['queries'].get(k,{}).get('status')!='complete' for k in keys)
+            part['gap_search_finished']=not part['gap_pending_queries'];save()
         if phase=='expand' and not part.get('x_finished'):
             from scripts import federal_x
             x_config,_=federal_x.registry(root);_,current=analysis.inputs(root)
@@ -192,7 +200,7 @@ def run(root,phase):
             x_available=archive.remaining(audit['x_baseline'],audit['limits']['x_limit_usd'],llm.spent('x'))
             if part['x_plan']['pending_windows'] and x_available>1:
                 part['x']=federal_x.collect(root,mode='historical',ids=x_ids,page_limit=10,max_cost=min(2,x_available-1))
-            part['x_finished']=True;save()
+            part['x_finished']=part.get('x',part['x_plan']).get('pending_windows',0)==0;save()
         # Only the new or changed evidence enters ordinary judgment jobs. Existing
         # regulation/summary caches invalidate when their complete profile changes.
         changed=sorted(recover_additions(root,audit))
@@ -209,6 +217,8 @@ def run(root,phase):
             save()
             if part['astra']['status']!='complete':raise ValueError('Independent Astra review remains pending')
         part['verification']=verify_sources(root,audit)
+        if not part.get('archives_finished') or (phase=='expand' and (not part.get('gap_search_finished') or not part.get('x_finished'))):
+            raise ValueError('Campaign collection remains pending; completed reviews are saved')
         part['status']='complete';part.pop('error',None)
         audit['status']='complete' if phase=='expand' else 'trial_complete'
         save()

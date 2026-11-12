@@ -45,10 +45,11 @@ def check_cache(root):
         page=federal.read(root/archive.RAW/'pages'/f'{archive.sources.digest(url)}.json',{})
         if not page:raise ValueError('Missing source cache')
         named=[s for s in subjects if federal.contains_name(page['text'],s,source_url=url)]
-        expected_signature=archive.extraction_signature(archive.sources.normalize(page['text']),named,url,page.get('title',''),page.get('structured_author'))
+        expected_signature=archive.extraction_signature(archive.sources.normalize(page['text']),named,url,page.get('title',''),page.get('structured_author'),done.get('model'))
         if expected_signature!=done['signature']:raise ValueError('Stale source extraction')
         # A missing checkpoint must fail without reading an extraction or writing evidence.
-        result=archive.process_document(root,page,named,copy.deepcopy(done),NoRequests(),max_chunks=0)
+        client=NoRequests();client.model=done.get('model')
+        result=archive.process_document(root,page,named,copy.deepcopy(done),client,max_chunks=0)
         if result['status']=='pending':raise ValueError('Incomplete source checkpoint')
         if result['model_requests'] or result['added']:raise AssertionError('Repeat changed evidence')
         report['documents']+=1

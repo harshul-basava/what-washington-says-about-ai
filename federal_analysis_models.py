@@ -73,7 +73,7 @@ def run(root,max_cost=5,workers=4,ids=None,daily=False,dry=False,stages=None,*,b
     result=llm.httpx.get('https://openrouter.ai/api/v1/models',timeout=30);result.raise_for_status()
     metadata={m['id']:m for m in result.json()['data'] if m['id'] in settings['models'].values()}
     if set(metadata)!=set(settings['models'].values()):raise ValueError('Configured analysis model is unavailable')
-    budget=Budget(max_cost,daily,metadata,wait_for_capacity=not daily and workers>8);errors=[];requests=0
+    budget=Budget(max_cost,daily,metadata,wait_for_capacity=not daily and workers>1);errors=[];requests=0
     sequence=['ds_0','ds_1','ds_2','sol','astra','reg_ds','reg_sol','reg_astra','summary']
     if stages is not None:
         if not set(stages)<=set(sequence):raise ValueError('Unknown analysis stage')
