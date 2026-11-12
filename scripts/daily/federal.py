@@ -123,12 +123,16 @@ def explicit_document_author(context, subject):
 
 
 def structured_document_author(page, context, subject):
-    """Accept the exact author element parsed from a standalone Fed document."""
+    """Accept exact author elements from explicitly supported standalone sources."""
     proof=page.get('structured_author',{})
     url=sources.urlsplit(page['url'])
-    return (url.scheme=='https' and url.hostname=='www.federalreserve.gov'
-            and bool(re.fullmatch(r'/newsevents/(speech|testimony)/[a-z]+\d{8}[a-z]\.htm',url.path))
-            and proof.get('selector')=='div#article p.speaker' and proof.get('url')==page['url']
+    fed=(url.hostname=='www.federalreserve.gov'
+         and bool(re.fullmatch(r'/newsevents/(speech|testimony)/[a-z]+\d{8}[a-z]\.htm',url.path))
+         and proof.get('selector')=='div#article p.speaker')
+    sec=(url.hostname=='www.sec.gov'
+         and bool(re.fullmatch(r'/(?:newsroom/speeches-statements|news/speech)/[^/]+',url.path))
+         and proof.get('selector')=='div.field--name-dynamic-twig-fieldnode-news-speaker')
+    return (url.scheme=='https' and (fed or sec) and proof.get('url')==page['url']
             and context==proof.get('header') and contains_name(context,subject)
             and context in sources.normalize(page['text'])[:6000])
 

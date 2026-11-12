@@ -100,6 +100,15 @@ def collection_spend(root,audit):
     return sum(r.get('cost',0) for line in rows if (r:=json.loads(line)).get('tag') in ('federal_extract','federal_search'))
 
 
+def pending_sources(state,urls):
+    documents=state.get('documents',{})
+    def pending(url):
+        doc=documents.get(url,{})
+        if doc.get('error'):return doc['error'] in ('BudgetExceeded','OpenRouterRequestError')
+        return doc.get('processed',{}).get('status') not in ('complete','needs_review')
+    return sorted(u for u in set(urls) if pending(u))
+
+
 def run(root,phase):
     import llm
     root=Path(root);config=read(root/CONFIG);subjects,evidence=analysis.inputs(root)
@@ -107,9 +116,12 @@ def run(root,phase):
     credit=command(root,'scripts/openrouter_credit_check.py','--required-credit=0',capture=True)
     start=llm.spent('openrouter');credit_available=credit['spendable_usd']
     audit=initialize(root,config,subjects,evidence,start,llm.spent('x'),len(llm.LEDGER.read_text().splitlines()))
+    audit['last_credit_check']=credit
     if not set(audit['ids'])<={s['id'] for s in subjects}:raise ValueError('Current roster changed; reconcile campaign scope before resuming')
     if phase=='expand' and audit['phases'].get('trial',{}).get('status')!='complete':raise ValueError('The trial must pass before expansion')
     part=audit['phases'].setdefault(phase,{'status':'in_progress','archive_batches':[],'queries':{}})
+    if part.get('archive_selection_version')!=2:
+        part['archives_finished']=False;part['archive_selection_version']=2
     ids=config['trial_ids'] if phase=='trial' else audit['ids']
     if not set(ids)<=set(audit['ids']):raise ValueError('Campaign includes an excluded official')
     def available():return allowance(audit,phase,llm.spent('openrouter'),credit_available-(llm.spent('openrouter')-start))
@@ -135,6 +147,11 @@ def run(root,phase):
         if available()<=0:raise ValueError('Campaign allowance is exhausted')
         if not part.get('archives_finished'):
             quota=config['trial_documents'] if phase=='trial' else config['archive_documents']
+            # A request/chunk interruption must remain retryable even after the
+            # unique-document quota has been reached. Budgets never reset.
+            retry=part.get('pending_archive_urls',[])
+            if retry and collect_available()>0:
+                part['archive_batches'].append(collect_batch(len(retry),urls=retry));save()
             count=sum(b['checked_documents'] for b in part['archive_batches'])
             while count<quota and collect_available()>0:
                 if sum(map(len,recover_additions(root,audit).values()))>=config['archive_excerpt_limit']:break
@@ -144,8 +161,7 @@ def run(root,phase):
                 if not result['checked_documents'] or result['status']=='collection_budget_limit':break
             archive_state=read(root/archive.STATE).get('documents',{})
             checked_urls={row['url'] for batch in part['archive_batches'] for row in batch.get('document_outcomes',[])}
-            part['pending_archive_urls']=[u for u in checked_urls if archive_state.get(u,{}).get('processed',{}).get('status')=='pending'
-                                          or archive_state.get(u,{}).get('error') in ('BudgetExceeded','OpenRouterRequestError')]
+            part['pending_archive_urls']=pending_sources({'documents':archive_state},checked_urls)
             part['source_gaps']=[{'url':u,'error':archive_state[u]['error']} for u in checked_urls if archive_state.get(u,{}).get('error')
                                  and archive_state[u]['error'] not in ('BudgetExceeded','OpenRouterRequestError')]
             part['archives_finished']=not part['pending_archive_urls'];save()
@@ -187,8 +203,15 @@ def run(root,phase):
                     state=read(root/archive.STATE);new_urls.clear();save()
                     if result['status']=='provider_limit':raise ValueError('Gap extraction provider requires recovery')
             keys=[archive.sources.digest(json.dumps([q,'2023-01-01',until],sort_keys=True)) for q in queries]
+            # Revisit saved results even when all their discovery requests are
+            # already cached. Unattempted or chunk-limited sources are pending.
+            gap_urls={u for entry in part['queries'].values() for u in entry.get('urls',[])}
+            pending=pending_sources(read(root/archive.STATE),gap_urls)
+            if pending and collect_available()>0:
+                part.setdefault('gap_batches',[]).append(collect_batch(len(pending),urls=pending));save()
+            part['gap_pending_urls']=pending_sources(read(root/archive.STATE),gap_urls)
             part['gap_pending_queries']=sum(part['queries'].get(k,{}).get('status')!='complete' for k in keys)
-            part['gap_search_finished']=not part['gap_pending_queries'];save()
+            part['gap_search_finished']=not part['gap_pending_queries'] and not part['gap_pending_urls'];save()
         if phase=='expand' and not part.get('x_finished'):
             from scripts import federal_x
             x_config,_=federal_x.registry(root);_,current=analysis.inputs(root)

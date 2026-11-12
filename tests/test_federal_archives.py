@@ -9,6 +9,28 @@ from unittest.mock import patch
 import federal_archives as archive
 
 class ArchiveTests(unittest.TestCase):
+    def test_sec_speaker_requires_exact_single_official_speaker_field(self):
+        url='https://www.sec.gov/newsroom/speeches-statements/example'
+        quote='Artificial intelligence can improve public services and help many people throughout the country.'
+        subject={'id':'p','name':'Paul S. Atkins','aliases':[],'entity_type':'person','organization_id':'sec','roles':[]}
+        speaker='<div class="field--name-dynamic-twig-fieldnode-news-speaker"><div><a href="/about/sec-commissioners/paul-s-atkins">Paul S. Atkins, <span>Chairman</span></a></div></div>'
+        html='<nav>Other Person</nav>'+speaker+'<p>'+quote+'</p>'
+        row={'subject_id':'p','quote':quote,'attribution_quote':'Paul S. Atkins, Chairman','attribution_basis':'document_author','kind':'personal','date':None,'date_quote':None}
+        page=archive.page_from_bytes(url,html.encode())
+        valid,rejected=archive.federal.validate_rows(page,[row],[subject],'2026-11-12')
+        self.assertEqual((len(valid),rejected),(1,0))
+        for bad in [archive.page_from_bytes('https://example.gov/a',html.encode()),
+                    archive.page_from_bytes(url,html.replace('field--name-dynamic-twig-fieldnode-news-speaker','footer').encode()),
+                    archive.page_from_bytes(url,(html+speaker).encode())]:
+            self.assertEqual(archive.federal.validate_rows(bad,[row],[subject],'2026-11-12'),([],1))
+
+    def test_selected_official_sources_precede_unrelated_inventory_without_dropping_it(self):
+        docs=[{'url':'https://a.gov/1','group':'a','title':'AI'},
+              {'url':'https://b.gov/1','group':'b','title':'AI','subject_ids':['p']},
+              {'url':'https://www.sec.gov/1','group':'sec','title':'AI'}]
+        ordered=archive.fair_documents(docs,preferred_ids={'p'},preferred_domains=['sec.gov'])
+        self.assertEqual([d['url'] for d in ordered],['https://b.gov/1','https://www.sec.gov/1','https://a.gov/1'])
+
     def test_changed_extractor_invalidates_an_empty_result(self):
         with tempfile.TemporaryDirectory() as d:
             calls=[]

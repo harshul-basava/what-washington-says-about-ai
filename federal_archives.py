@@ -80,6 +80,33 @@ class FedArticle(HTMLParser):
         if self.speaker is not None:self.name.append(data)
 
 
+class SECSpeaker(HTMLParser):
+    """Read only commissioner links inside the SEC's explicit news-speaker field."""
+    selector='div.field--name-dynamic-twig-fieldnode-news-speaker'
+    def __init__(self):
+        super().__init__();self.depth=0;self.field=None;self.link=False;self.parts=[];self.names=[]
+    def handle_starttag(self,tag,attrs):
+        attrs=dict(attrs)
+        if tag=='div':
+            self.depth+=1
+            if 'field--name-dynamic-twig-fieldnode-news-speaker' in attrs.get('class','').split():self.field=self.depth
+        if tag=='a' and self.field is not None and re.fullmatch(r'/about/sec-commissioners/[^/]+',attrs.get('href','')):
+            self.link=True;self.parts=[]
+    def handle_endtag(self,tag):
+        if tag=='a' and self.link:
+            self.names.append(sources.normalize(''.join(self.parts)));self.link=False
+        if tag=='div':
+            if self.field==self.depth:self.field=None
+            self.depth-=1
+    def handle_data(self,data):
+        if self.link:self.parts.append(data)
+
+
+def sec_speech(url):
+    parsed=urlsplit(url)
+    return parsed.hostname=='www.sec.gov' and bool(re.fullmatch(r'/(?:newsroom/speeches-statements|news/speech)/[^/]+',parsed.path))
+
+
 def archive_links(html, source):
     parser=Links();parser.feed(html);found={}
     for href,title in parser.links:
@@ -119,9 +146,13 @@ def page_from_bytes(url, data, title=''):
             if len(article.names)==1 and body in sources.normalize(text) and article.names[0] in body[:6000]:
                 text=body
                 author={'header':article.names[0],'selector':'div#article p.speaker','url':url}
+        if sec_speech(url):
+            speaker=SECSpeaker();speaker.feed(html)
+            if len(speaker.names)==1 and speaker.names[0] in sources.normalize(text)[:6000]:
+                author={'header':speaker.names[0],'selector':speaker.selector,'url':url}
     text=sources.normalize(text)
     if len(text)<120:raise ValueError('Insufficient source text')
-    return {'url':url,'title':title,'text':text,'verified_via':'exact_normalized_page_text',**({'structured_author':author} if author else {})}
+    return {'url':url,'title':title,'text':text,'verified_via':'exact_normalized_page_text','parser_version':2,**({'structured_author':author} if author else {})}
 
 
 def extraction_signature(text, subjects, url='', title='', structured_author=None,model=None):
@@ -241,8 +272,12 @@ def discover(root, config, subjects, state, *, now=None):
     return errors
 
 
-def fair_documents(documents):
+def fair_documents(documents,*,preferred_ids=None,preferred_domains=None):
     """Rotate source groups; preserve priority and oldest-attempt order within each."""
+    documents=list(documents)
+    if preferred_ids or preferred_domains:
+        def preferred(d):return bool(set(d.get('subject_ids',[])) & set(preferred_ids or [])) or sources.allowed_url(d['url'],preferred_domains or [])
+        return fair_documents(d for d in documents if preferred(d))+fair_documents(d for d in documents if not preferred(d))
     buckets=defaultdict(list)
     for doc in documents:
         group=doc.get('group') or urlsplit(doc['url']).hostname
@@ -271,7 +306,10 @@ def collect(root, config, client, *, ids=None, max_documents=30, max_chunks=60, 
     federal.write(root/STATE,state)
     report.update(document_outcomes=[],groups={})
     wanted_urls=None if urls is None else set(urls)
-    ordered=fair_documents(d for u,d in state['documents'].items() if wanted_urls is None or u in wanted_urls);queue=[]
+    groups=federal.read(root/'config/federal_sources.json',{}).get('groups',[])
+    organizations={s.get('organization_id') for s in subjects}
+    domains=sorted({d for g in groups if organizations.intersection(g['organization_ids']) for d in g['domains']})
+    ordered=fair_documents((d for u,d in state['documents'].items() if wanted_urls is None or u in wanted_urls),preferred_ids=ids,preferred_domains=domains if ids is not None else None);queue=[]
     # Resolve unchanged caches before submitting work; no model request is needed.
     for original in ordered:
         doc=copy.deepcopy(original);url=doc['url'];cache=root/RAW/'pages'/f'{sources.digest(url)}.json';processed=doc.setdefault('processed',{})
@@ -279,6 +317,7 @@ def collect(root, config, client, *, ids=None, max_documents=30, max_chunks=60, 
         # Preserve failed-source cooldowns across repeated commands.
         if doc.get('error') and doc['error'] not in ('BudgetExceeded','OpenRouterRequestError') and doc.get('last_attempt')==now:continue
         page=federal.read(cache,{}) if cache.exists() and recent else None
+        if page and sec_speech(url) and page.get('parser_version')!=2:page=None
         if page:
             named=[s for s in subjects if federal.contains_name(page['text'],s,source_url=url)]
             if processed.get('selector_version')==SELECTOR_VERSION and processed.get('signature')==extraction_signature(sources.normalize(page['text']),named,url,page.get('title',''),page.get('structured_author'),getattr(client,'model',None)) and processed.get('status') in ('complete','needs_review'):
