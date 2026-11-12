@@ -5,7 +5,7 @@ on:
       phase:
         description: "Trial must pass before expansion; both share the fixed campaign budget"
         type: choice
-        options: [trial, expand]
+        options: [trial, expand, verify]
         default: trial
 permissions:
   contents: write
@@ -58,9 +58,14 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
           PHASE: ${{ inputs.phase }}
-        run: uv run --no-dev python scripts/federal_collection_campaign.py run --phase "$PHASE"
+        run: |
+          if [ "$PHASE" = verify ]; then
+            uv run --no-dev python scripts/federal_collection_campaign.py verify
+          else
+            uv run --no-dev python scripts/federal_collection_campaign.py run --phase "$PHASE"
+          fi
       - name: Verify new source snapshots
-        if: steps.execute.outcome == 'success'
+        if: steps.execute.outcome == 'success' && inputs.phase != 'verify'
         run: uv run --no-dev python scripts/federal_collection_campaign.py verify
       - name: Build saved evidence and judgments
         if: always()

@@ -6,6 +6,24 @@ from scripts import federal_collection_campaign as campaign
 
 
 class CampaignTests(unittest.TestCase):
+    def test_fresh_archive_run_discovers_sources_before_speaker_migration(self):
+        import llm
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);url='https://example.gov/a'
+            subjects=[{'id':'p','name':'Alice Example','organization_id':'a','entity_type':'person','branch':'executive','source_speaker_aliases':[{'source_urls':[url]}]}];evidence={'p':[]}
+            config={'limit_usd':100,'trial_limit_usd':3,'collection_limit_usd':20,'x_limit_usd':5,'archive_documents':1,'archive_excerpt_limit':100}
+            campaign.write(root/campaign.CONFIG,config);campaign.write(root/'evidence/p.json',{'statements':[]})
+            ledger=root/'data/cost_ledger.jsonl';ledger.parent.mkdir(parents=True);ledger.write_text('')
+            audit=campaign.initialize(root,config,subjects,evidence,400,90,0)
+            audit['phases']={'trial':{'status':'complete'},'expand':{'archive_selection_version':2,'gap_search_finished':True,'x_finished':True,'queries':{},'archive_batches':[]}}
+            campaign.write(root/campaign.PATH,audit);campaign.write(root/campaign.archive.STATE,{'documents':{url:{}}})
+            def finish(root,*args,**kwargs):
+                campaign.write(root/campaign.archive.STATE,{'documents':{url:{'processed':{'status':'complete'}}}})
+                return {'checked_documents':1,'status':'complete','document_outcomes':[{'url':url}],'discovered':kwargs['discover_sources']}
+            with patch.object(campaign.analysis,'inputs',return_value=(subjects,evidence)),patch.object(campaign,'command',return_value={'spendable_usd':100}),patch.object(llm,'spent',side_effect=lambda p:400 if p=='openrouter' else 90),patch.object(llm,'LEDGER',ledger),patch.object(campaign.archive.sources,'Client'),patch.object(campaign.archive,'collect',side_effect=finish):
+                result=campaign.run(root,'expand')
+            self.assertTrue(result['phases']['expand']['archive_batches'][0]['discovered'])
+
     def test_archive_retry_finishes_after_document_quota_is_reached(self):
         import llm
         with tempfile.TemporaryDirectory() as d:
@@ -75,13 +93,18 @@ class CampaignTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)
             audit={'initial_sids':{'p':['s1']},'ids':['p']}
-            page={'url':'https://agency.gov/a','text':'Alice says artificial intelligence needs careful oversight across the economy.'}
-            row={'sid':'s2','url':page['url'],'text':page['text'],'source_text_sha256':campaign.archive.sources.digest(page['text']),'origin':'federal_archive','verified':True}
+            page={'url':'https://agency.gov/a','text':'Alice says artificial intelligence needs careful oversight across the economy.','verified_via':'exact_normalized_page_text'}
+            subject={'id':'p','name':'Alice','aliases':[],'entity_type':'person','organization_id':'agency','roles':[]}
+            row={'sid':'s2','url':page['url'],'text':page['text'],'context':page['text'],'source_text_sha256':campaign.archive.sources.digest(page['text']),'origin':'federal_archive','verified':True,
+                 'attribution':{'speaker':'Alice','kind':'personal','organization_id':'agency','basis':'local_span'},'date':None,'date_quote':None}
             campaign.write(root/'evidence/p.json',{'statements':[{'sid':'s1'},row]})
             self.assertEqual(campaign.recover_additions(root,audit),{'p':['s2']})
             campaign.write(root/campaign.archive.RAW/'pages'/f"{campaign.archive.sources.digest(page['url'])}.json",page)
             audit['added']={'p':['s2']}
-            self.assertEqual(campaign.verify_sources(root,audit)['verified_new_excerpts'],1)
+            with patch.object(campaign.policy_subjects,'load_subjects',return_value=[subject]):
+                self.assertEqual(campaign.verify_sources(root,audit)['verified_new_excerpts'],1)
+                campaign.write(root/'evidence/p.json',{'statements':[{'sid':'s1'},{**row,'context':'Bob said these words.'}]})
+                with self.assertRaisesRegex(ValueError,'attribution or date'):campaign.verify_sources(root,audit)
             campaign.write(root/'evidence/p.json',{'statements':[{'sid':'s1'}]})
             with self.assertRaises(ValueError):campaign.verify_sources(root,audit)
 

@@ -158,6 +158,8 @@ def page_from_bytes(url, data, title=''):
 def extraction_signature(text, subjects, url='', title='', structured_author=None,model=None):
     payload=[VERSION,sources.EXTRACTION_PROMPT,text,subjects,url,title,structured_author]
     if model is not None:payload.append({'model':model})
+    if any(sources.bound_speakers(s,url) for s in subjects):
+        payload.append({'speaker_context_version':sources.SPEAKER_CONTEXT_VERSION})
     return sources.digest(json.dumps(payload,sort_keys=True))
 
 
@@ -299,6 +301,24 @@ def fair_documents(documents,*,preferred_ids=None,preferred_domains=None):
     return result
 
 
+def named_subjects(text,subjects,url):
+    """Discard impossible ASCII names before the unchanged exact name matcher.
+
+    Python's Unicode IGNORECASE also matches these four non-ASCII letters to
+    ASCII letters. Preserve them in the token filter. Non-ASCII names bypass
+    this filter entirely, as do source-specific reviewed speaker mappings.
+    """
+    words=set(re.findall(r'[a-z]+',text.translate(str.maketrans({'İ':'I','ı':'i','ſ':'s','K':'K'})).lower()))
+    url=sources.canonical_url(url)
+    result=[]
+    for subject in subjects:
+        names=[sources.normalize(n) for n in [subject['name'],*subject.get('aliases',[])]]
+        possible=any(not n.isascii() or set(re.findall(r'[a-z]+',n.lower()))<=words for n in names)
+        possible=possible or any(url in alias.get('source_urls',[]) for alias in subject.get('source_speaker_aliases',[]))
+        if possible and federal.contains_name(text,subject,source_url=url):result.append(subject)
+    return result
+
+
 def collect(root, config, client, *, ids=None, max_documents=30, max_chunks=60, discover_sources=True, fetch_workers=1, extraction_workers=1, urls=None):
     if type(fetch_workers) is not int or not 1<=fetch_workers<=8:raise ValueError('fetch_workers must be 1–8')
     if type(extraction_workers) is not int or not 1<=extraction_workers<=4:raise ValueError('extraction_workers must be 1–4')
@@ -324,7 +344,7 @@ def collect(root, config, client, *, ids=None, max_documents=30, max_chunks=60, 
         page=federal.read(cache,{}) if cache.exists() and recent else None
         if page and sec_speech(url) and page.get('parser_version')!=2:page=None
         if page:
-            named=[s for s in subjects if federal.contains_name(page['text'],s,source_url=url)]
+            named=named_subjects(page['text'],subjects,url)
             if processed.get('selector_version')==SELECTOR_VERSION and processed.get('signature')==extraction_signature(sources.normalize(page['text']),named,url,page.get('title',''),page.get('structured_author'),getattr(client,'model',None)) and processed.get('status') in ('complete','needs_review'):
                 report['cached_documents']+=1;continue
         queue.append((doc,page))
@@ -347,7 +367,7 @@ def collect(root, config, client, *, ids=None, max_documents=30, max_chunks=60, 
             if page is None:
                 host=urlsplit(url).hostname;data,final_url=fetch(url,[host]);page=page_from_bytes(url,data,doc.get('title',''));page['retrieved_url']=final_url
                 federal.write(root/RAW/'pages'/f'{sources.digest(url)}.json',page);doc['fetched_on']=now;fetched=1
-            named=[s for s in subjects if federal.contains_name(page['text'],s,source_url=url)]
+            named=named_subjects(page['text'],subjects,url)
             result=process_document(root,page,named,processed,LimitedClient(),max_chunks=max_chunks,take_chunk=take_chunk,evidence_lock=evidence_lock)
             doc.pop('error',None)
             return doc,result,fetched,None

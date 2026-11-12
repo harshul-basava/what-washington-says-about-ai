@@ -9,6 +9,34 @@ from unittest.mock import patch
 import federal_archives as archive
 
 class ArchiveTests(unittest.TestCase):
+    def test_extractor_receives_only_reviewed_speakers_for_its_source(self):
+        client=archive.sources.Client.__new__(archive.sources.Client);client.daily=False;payloads=[]
+        def chat(messages,*args,**kwargs):
+            payloads.append(json.loads(messages[1]['content']))
+            return {'choices':[{'message':{'content':'{"statements":[]}'}}]}
+        client.chat=chat
+        bound={'label':'MR. JONES.','source_urls':['https://example.gov/hearing'],'valid_from':'2025-01-01'}
+        other={'label':'DR. JONES.','source_urls':['https://example.gov/other']}
+        subject={'id':'p','name':'John Jones','source_speaker_aliases':[bound,other]}
+        client.extract({'url':'https://example.gov/hearing','text':'MR. JONES. Artificial intelligence is relevant to this discussion.'},[subject])
+        self.assertEqual(payloads[0]['subjects'][0].get('source_speaker_aliases'),[bound])
+
+    def test_speaker_prompt_fix_invalidates_only_sources_with_bound_mappings(self):
+        subject={'id':'p','name':'John Jones','source_speaker_aliases':[{'label':'MR. JONES.','source_urls':['https://example.gov/hearing']}]}
+        self.assertNotEqual(archive.extraction_signature('source',[subject],'https://example.gov/hearing'),'5fb8db2f517af34cf78282f4bdc052bb9755cbd6d6ccab005a70af3f64a2f64d')
+        self.assertEqual(archive.extraction_signature('source',[subject],'https://example.gov/other'),'f46fe2bf42ec1970d004841ca7edf9282df3a932bd30580b1a2deadff6442022')
+
+    def test_name_candidates_preserve_aliases_middle_initials_unicode_and_reviewed_speakers(self):
+        subjects=[{'id':'alice','name':'Alice Example','aliases':['A. Example']},
+                  {'id':'kosiba','name':'Timothy Kosiba'},
+                  {'id':'rene','name':'René Dumas'},
+                  {'id':'john','name':'John Jones','source_speaker_aliases':[{'label':'MR. JONES.','source_urls':['https://example.gov/hearing']}]},
+                  {'id':'other','name':'Alice Examples'}]
+        text='ALİCE B. EXAMPLE and Timothy Kosiba spoke with René Dumas. MR. JONES. I agree.'
+        self.assertEqual([s['id'] for s in archive.named_subjects(text,subjects,'https://example.gov/hearing')],['alice','kosiba','rene','john'])
+        self.assertEqual([s['id'] for s in archive.named_subjects('A. Example spoke.',subjects,'https://example.gov/other')],['alice'])
+        self.assertEqual(archive.named_subjects('MR. JONES. I agree.',subjects,'https://example.gov/other'),[])
+
     def test_serial_and_parallel_collection_accept_the_same_verified_evidence(self):
         subject={'id':'p','name':'Alice Example','aliases':[],'entity_type':'person','branch':'executive','organization_id':'test','roles':[]}
         quotes=['Alice Example: Artificial intelligence export controls must prevent hostile military organizations from acquiring advanced computing equipment.',

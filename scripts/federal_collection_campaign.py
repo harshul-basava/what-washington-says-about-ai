@@ -47,7 +47,7 @@ def recover_additions(root,audit):
 
 
 def verify_sources(root,audit):
-    root=Path(root);count=0;urls=set()
+    root=Path(root);count=0;urls=set();subjects=None
     for pid,sids in audit['added'].items():
         rows=read(root/'evidence'/f'{pid}.json').get('statements',[])
         if len(sids)!=len(set(sids)):raise ValueError('Duplicate campaign statement IDs')
@@ -70,8 +70,20 @@ def verify_sources(root,audit):
                 text=archive.sources.normalize(page.get('text',''))
                 if not row.get('verified') or not text or archive.sources.normalize(row['text']) not in text or row.get('source_text_sha256')!=archive.sources.digest(text):
                     raise ValueError('Campaign excerpt or source snapshot changed')
+                if subjects is None:subjects={s['id']:s for s in policy_subjects.load_subjects(root)}
+                if pid not in subjects:raise ValueError('Campaign subject left the current roster')
+                subject=subjects[pid];attr=row.get('attribution',{})
+                role_index=next((i for i,r in enumerate(subject.get('roles',[])) if r['title']==attr.get('role') and r['organization_id']==attr.get('organization_id')),None)
+                proposal={'subject_id':pid,'quote':row['text'],'attribution_quote':row.get('context'),
+                          'attribution_basis':attr.get('basis'),'kind':attr.get('kind'),'role_index':role_index,
+                          'date':row.get('date'),'date_quote':row.get('date_quote')}
+                valid,rejected=archive.federal.validate_rows(page,[proposal],[subject],archive.federal.today())
+                fields=('speaker','kind','organization_id','basis','role','speaker_label','speaker_identity_source_url')
+                if rejected or len(valid)!=1 or any(valid[0][1]['attribution'].get(k)!=attr.get(k) for k in fields):
+                    raise ValueError('Campaign attribution or date verification failed')
             count+=1;urls.add(row['url'])
-    return {'verified_new_excerpts':count,'unique_sources':len(urls),'model_requests':0,'errors':[]}
+    return {'verified_new_excerpts':count,'unique_sources':len(urls),'model_requests':0,'errors':[],
+            'web_checks':['quote','source_hash','author','date','role'],'x_checks':['quote','author']}
 
 
 def gap_queries(subjects,evidence,groups,ranking):
@@ -145,6 +157,20 @@ def run(root,phase):
     save()
     try:
         if available()<=0:raise ValueError('Campaign allowance is exhausted')
+        if phase=='expand' and part['archive_batches'] and part.get('speaker_context_version')!=archive.sources.SPEAKER_CONTEXT_VERSION:
+            inventory=read(root/archive.STATE).get('documents',{})
+            rechecks=sorted({u for s in subjects for alias in s.get('source_speaker_aliases',[]) for u in alias.get('source_urls',[]) if u in inventory})
+            if rechecks and collect_available()>0:
+                result=collect_batch(len(rechecks),urls=rechecks);part['archive_batches'].append(result)
+                part['archives_finished']=False
+                part['speaker_context_version']=archive.sources.SPEAKER_CONTEXT_VERSION
+                part['speaker_context_rechecks']=rechecks
+                part.pop('deferred_speaker_context_urls',None)
+                part['pending_archive_urls']=pending_sources(read(root/archive.STATE),rechecks+part.get('pending_archive_urls',[]));save()
+                if result['status']=='provider_limit':raise ValueError('Speaker context extraction provider requires recovery')
+            elif rechecks:
+                part['deferred_speaker_context_urls']=rechecks;save()
+            else:part['speaker_context_version']=archive.sources.SPEAKER_CONTEXT_VERSION
         if not part.get('archives_finished'):
             quota=config['trial_documents'] if phase=='trial' else config['archive_documents']
             # A request/chunk interruption must remain retryable even after the

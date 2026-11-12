@@ -32,36 +32,36 @@
 **Files:** `federal_archives.py`, `tests/test_federal_archives.py`, `config/federal_archives.json`.
 **Interfaces:** Extend `collect(..., fetch_workers=1, extraction_workers=1)` without breaking the daily caller. Use one shared extraction client and serialize evidence appends. Return per-document and per-agency outcomes.
 
-- [ ] Write failing tests for concurrent shared-subject appends, total chunk limits, cache reuse and fair source ordering.
-- [ ] Implement bounded concurrency, persistent checkpoints, agency-fair selection and expanded official indexes.
-- [ ] Run archive tests and compare serial/parallel accepted evidence on fixed fixtures.
-- [ ] Commit the tested collector.
+- [x] Write failing tests for concurrent shared-subject appends, total chunk limits, cache reuse and fair source ordering.
+- [x] Implement bounded concurrency, persistent checkpoints, agency-fair selection and expanded official indexes.
+- [x] Run archive tests and compare serial/parallel accepted evidence on fixed fixtures.
+- [x] Commit the tested collector.
 
 ### Task 2: Persistent search reuse and deferred builds
 
 **Files:** `scripts/daily/federal_sources.py`, `federal_analysis_models.py`, `scripts/federal_expansion_runner.py`, focused tests.
 **Interfaces:** Cache `Client.search` by complete request inputs and daily check date; save raw responses before parsing. Add optional build deferral without changing defaults or analysis semantics. Allow a per-stage review worker ceiling.
 
-- [ ] Write failing tests for repeated/empty searches, invalidation, interrupted responses and unchanged judgment reuse.
-- [ ] Implement persistent search cache, four extraction/DeepSeek workers and two high-cost review workers; defer redundant intermediate exports.
-- [ ] Run the affected suites and commit.
+- [x] Write failing tests for repeated/empty searches, invalidation, interrupted responses and unchanged judgment reuse.
+- [x] Implement persistent search cache, four extraction/DeepSeek workers and two high-cost review workers; defer redundant intermediate exports.
+- [x] Run the affected suites and commit.
 
 ### Task 3: Cumulative campaign and daily integration
 
 **Files:** new `scripts/federal_collection_campaign.py`, campaign config/workflow, `budgets.yaml`, daily cache configuration, tests.
 **Interfaces:** `plan`, `run`, and `verify` commands. Durable campaign baseline, trial gate, source queue, evidence-ID baseline, stage checkpoints, per-agency yield and cost report. Resume existing work; never reset allowances. Use existing policy and Astra pipelines. Discover individual sources only for gaps after archive work.
 
-- [ ] Write failing tests for budget persistence, review reserve, trial gate, added-evidence recovery and truthful terminal states.
-- [ ] Implement the runner, guarded workflow, current-roster gap search and capped X fallback where existing verified accounts need it.
-- [ ] Add the new caches to daily/pilot workflows and use the same daily concurrency group.
-- [ ] Run full offline tests, obtain an independent code review, fix important findings and push.
+- [x] Write failing tests for budget persistence, review reserve, trial gate, added-evidence recovery and truthful terminal states.
+- [x] Implement the runner, guarded workflow, current-roster gap search and capped X fallback where existing verified accounts need it.
+- [x] Add the new caches to daily/pilot workflows and use the same daily concurrency group.
+- [x] Run full offline tests, obtain an independent code review, fix important findings and push.
 
 ### Task 4: Trial, expansion and publication
 
 **Files:** campaign reports, evidence, judgments, site exports, documentation.
 
-- [ ] Recheck credit after the repository ceiling update; replay cached evidence offline.
-- [ ] Run the $3 trial across agency groups. Verify sources and complete judgments before broad expansion.
+- [x] Recheck credit after the repository ceiling update; replay cached evidence offline.
+- [x] Run the $3 trial across agency groups. Verify sources and complete judgments before broad expansion.
 - [ ] Continue the campaign under its original $100 baseline; inspect each stage and fix failures without lowering verification rules.
 - [ ] Verify every addition against retained source snapshots, check independent primary-source samples, and confirm all required judgments finish.
 - [ ] Build once per completed publication wave; push evidence/results and verify the dev site and remote commit.
