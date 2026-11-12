@@ -36,6 +36,10 @@ STATE = 'data/federal_archive_state.json'
 RAW = 'data/raw/federal_archives'
 
 
+class SourceSnapshotChanged(ValueError):
+    """New author metadata must not replace the source that proves existing rows."""
+
+
 def remaining(baseline, limit, spent):
     if any(type(v) not in (float, int) or not math.isfinite(v) or v < 0 for v in (baseline, limit, spent)) or spent < baseline - 1e-6:
         raise ValueError('Invalid or regressed budget ledger')
@@ -102,9 +106,36 @@ class SECSpeaker(HTMLParser):
         if self.link:self.parts.append(data)
 
 
+class FDICSpeaker(HTMLParser):
+    """Read individual speaker entries only inside the official byline field."""
+    selector='div.field--name-field-speaker-information div.speaker.field__item'
+    def __init__(self):
+        super().__init__();self.depth=0;self.field=None;self.speaker=None;self.parts=[];self.names=[]
+    def handle_starttag(self,tag,attrs):
+        attrs=dict(attrs);classes=set(attrs.get('class','').split())
+        if tag=='div':
+            self.depth+=1
+            if 'field--name-field-speaker-information' in classes:self.field=self.depth
+            elif self.field is not None and {'speaker','field__item'}<=classes:
+                self.speaker=self.depth;self.parts=[]
+    def handle_endtag(self,tag):
+        if tag=='div':
+            if self.speaker==self.depth:
+                self.names.append(sources.normalize(''.join(self.parts)));self.speaker=None
+            if self.field==self.depth:self.field=None
+            self.depth-=1
+    def handle_data(self,data):
+        if self.speaker is not None:self.parts.append(data)
+
+
 def sec_speech(url):
     parsed=urlsplit(url)
     return parsed.hostname=='www.sec.gov' and bool(re.fullmatch(r'/(?:newsroom/speeches-statements|news/speech)/[^/]+',parsed.path))
+
+
+def fdic_speech(url):
+    parsed=urlsplit(url)
+    return parsed.hostname=='www.fdic.gov' and bool(re.fullmatch(r'/news/speeches/\d{4}/[^/]+',parsed.path))
 
 
 def archive_links(html, source):
@@ -127,9 +158,20 @@ def archive_links(html, source):
             links.append((row['url'],row['title']))
     else:
         parser=Links();parser.feed(html);links=parser.links
+    index=urlsplit(source['url'])
+    house_index=(index.scheme=='https' and index.netloc=='docs.house.gov'
+                 and index.path.lower()=='/committee/calendar/byevent.aspx'
+                 and re.fullmatch(r'EventID=\d+',index.query,re.I))
     found={}
     for href,title in links:
-        url=sources.canonical_url(urljoin(source['url'],href))
+        target=urlsplit(urljoin(source['url'],href))
+        # House event pages still publish HTTP links; their same-path HTTPS PDFs work.
+        # This changes discovery only. Full retrieval and source verification still apply.
+        if (house_index and target.scheme=='http' and target.netloc=='docs.house.gov'
+                and not target.query and not target.fragment
+                and re.fullmatch(r'/meetings/[A-Z]{2}/[A-Z]{2}\d{2}/\d{8}/\d+/H(?:HRG|MTG)-\d+-[A-Z]{2}\d{2}-Wstate-[^/]+\.pdf',target.path)):
+            target=target._replace(scheme='https')
+        url=sources.canonical_url(target.geturl())
         if sources.allowed_url(url,source['domains']) and re.search(source['pattern'],url):
             found[url]={'url':url,'title':title}
     return list(found.values())
@@ -170,9 +212,15 @@ def page_from_bytes(url, data, title=''):
             speaker=SECSpeaker();speaker.feed(html)
             if len(speaker.names)==1 and speaker.names[0] in sources.normalize(text)[:6000]:
                 author={'header':speaker.names[0],'selector':speaker.selector,'url':url}
+        if fdic_speech(url):
+            speaker=FDICSpeaker();speaker.feed(html)
+            if len(speaker.names)==1 and speaker.names[0] in sources.normalize(text)[:6000]:
+                author={'header':speaker.names[0],'selector':speaker.selector,'url':url}
     text=sources.normalize(text)
     if len(text)<120:raise ValueError('Insufficient source text')
-    return {'url':url,'title':title,'text':text,'verified_via':'exact_normalized_page_text','parser_version':2,**transcript,**({'structured_author':author} if author else {})}
+    return {'url':url,'title':title,'text':text,'verified_via':'exact_normalized_page_text','parser_version':2,
+            **({'fdic_speaker_version':1} if fdic_speech(url) else {}),
+            **transcript,**({'structured_author':author} if author else {})}
 
 
 def extraction_signature(text, subjects, url='', title='', structured_author=None,model=None,transcript_lines=None):
@@ -402,9 +450,13 @@ def collect(root, config, client, *, ids=None, max_documents=30, max_chunks=60, 
         # Preserve failed-source cooldowns across repeated commands.
         if doc.get('error') and doc['error'] not in ('BudgetExceeded','OpenRouterRequestError') and doc.get('last_attempt')==now:continue
         page=federal.read(cache,{}) if cache.exists() and recent else None
+        if page is None and cache.exists() and fdic_speech(url):
+            retained=federal.read(cache,{})
+            if retained.get('fdic_speaker_version')!=1:page=retained
         if page and sec_speech(url) and page.get('parser_version')!=2:page=None
+        needs_fdic_author=bool(page and fdic_speech(url) and page.get('fdic_speaker_version')!=1)
         if page and sources.govinfo_transcript(url) and any(sources.bound_speakers(s,url) for s in subjects) and page.get('transcript_format')!='govinfo_pre_v1':page=None
-        if page:
+        if page and not needs_fdic_author:
             named=named_subjects(page['text'],subjects,url)
             if processed.get('selector_version')==SELECTOR_VERSION and processed.get('signature')==extraction_signature(sources.normalize(page['text']),named,url,page.get('title',''),page.get('structured_author'),getattr(client,'model',None),page.get('transcript_lines')) and processed.get('status') in ('complete','needs_review'):
                 report['cached_documents']+=1;continue
@@ -425,6 +477,14 @@ def collect(root, config, client, *, ids=None, max_documents=30, max_chunks=60, 
         doc['last_attempt']=now
         print('archive document: '+url,flush=True)
         try:
+            if page is not None and fdic_speech(url) and page.get('fdic_speaker_version')!=1:
+                data,final_url=fetch(url,[urlsplit(url).hostname]);fresh=page_from_bytes(url,data,doc.get('title',''))
+                if final_url!=url or sources.normalize(fresh['text'])!=sources.normalize(page['text']):
+                    raise SourceSnapshotChanged('FDIC author migration requires the exact retained source text')
+                page={**page,'fdic_speaker_version':1}
+                if fresh.get('structured_author'):page['structured_author']=fresh['structured_author']
+                else:page.pop('structured_author',None)
+                federal.write(root/RAW/'pages'/f'{sources.digest(url)}.json',page);doc['fetched_on']=now;fetched=1
             if page is None:
                 host=urlsplit(url).hostname;data,final_url=fetch(url,[host]);page=page_from_bytes(url,data,doc.get('title',''));page['retrieved_url']=final_url
                 federal.write(root/RAW/'pages'/f'{sources.digest(url)}.json',page);doc['fetched_on']=now;fetched=1

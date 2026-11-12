@@ -132,7 +132,10 @@ def structured_document_author(page, context, subject):
     sec=(url.hostname=='www.sec.gov'
          and bool(re.fullmatch(r'/(?:newsroom/speeches-statements|news/speech)/[^/]+',url.path))
          and proof.get('selector')=='div.field--name-dynamic-twig-fieldnode-news-speaker')
-    return (url.scheme=='https' and (fed or sec) and proof.get('url')==page['url']
+    fdic=(url.hostname=='www.fdic.gov'
+          and bool(re.fullmatch(r'/news/speeches/\d{4}/[^/]+',url.path))
+          and proof.get('selector')=='div.field--name-field-speaker-information div.speaker.field__item')
+    return (url.scheme=='https' and (fed or sec or fdic) and proof.get('url')==page['url']
             and context==proof.get('header') and contains_name(context,subject)
             and context in sources.normalize(page['text'])[:6000])
 

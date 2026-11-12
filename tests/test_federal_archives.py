@@ -9,6 +9,74 @@ from unittest.mock import patch
 import federal_archives as archive
 
 class ArchiveTests(unittest.TestCase):
+    def test_fdic_metadata_migration_preserves_changed_source_snapshot(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);url='https://www.fdic.gov/news/speeches/2026/example'
+            html=b'<div class="field--name-field-speaker-information"><div class="speaker field__item">Chairman Travis Hill</div></div><p>Artificial intelligence can improve public services and help many people throughout the country, while appropriate oversight protects consumers.</p>'
+            page=archive.page_from_bytes(url,html);page.pop('fdic_speaker_version',None);page.pop('structured_author',None)
+            subject={'id':'p','name':'Travis Hill','branch':'executive','entity_type':'person','organization_id':'fdic','roles':[]}
+            cache=root/archive.RAW/'pages'/f'{archive.sources.digest(url)}.json'
+            archive.federal.write(cache,page)
+            archive.federal.write(root/archive.STATE,{'documents':{url:{'url':url,'fetched_on':'2000-01-01'}},'indexes':{}})
+            class Client:
+                def extract(self,*args,**kwargs):raise AssertionError('Changed source must not trigger paid extraction')
+            with patch.object(archive.policy_subjects,'load_subjects',return_value=[subject]),patch.object(archive,'fetch',return_value=(b'<nav>Changed navigation</nav>'+html,url)):
+                result=archive.collect(root,{},Client(),discover_sources=False)
+            self.assertEqual(archive.federal.read(cache,{}),page)
+            self.assertEqual(result['model_requests'],0)
+            self.assertEqual(result['errors'][0]['error'],'SourceSnapshotChanged')
+
+    def test_old_fdic_snapshot_refreshes_once_for_speaker_metadata(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);url='https://www.fdic.gov/news/speeches/2026/example'
+            html=b'<div class="field--name-field-speaker-information"><div class="speaker field__item">Chairman Travis Hill</div></div><p>Artificial intelligence can improve public services and help many people throughout the country, while appropriate oversight protects consumers.</p>'
+            page=archive.page_from_bytes(url,html);page.pop('fdic_speaker_version',None);page.pop('structured_author',None)
+            subject={'id':'p','name':'Travis Hill','branch':'executive','entity_type':'person','organization_id':'fdic','roles':[]}
+            archive.federal.write(root/archive.RAW/'pages'/f'{archive.sources.digest(url)}.json',page)
+            archive.federal.write(root/archive.STATE,{'documents':{url:{'url':url,'fetched_on':archive.federal.today()}},'indexes':{}})
+            class Client:
+                def extract(self,page,subjects,**kwargs):
+                    self.header=page['structured_author']['header'];return []
+            client=Client()
+            with patch.object(archive.policy_subjects,'load_subjects',return_value=[subject]),patch.object(archive,'fetch',return_value=(html,url)) as fetch:
+                archive.collect(root,{},client,discover_sources=False)
+                archive.collect(root,{},client,discover_sources=False)
+            self.assertEqual(fetch.call_count,1)
+            self.assertEqual(client.header,'Chairman Travis Hill')
+
+    def test_fdic_speech_requires_its_single_explicit_speaker_field(self):
+        url='https://www.fdic.gov/news/speeches/2026/example'
+        quote='Artificial intelligence can improve public services and help many people throughout the country.'
+        subject={'id':'p','name':'Travis Hill','aliases':[],'entity_type':'person','organization_id':'fdic','roles':[]}
+        speaker='<div class="field--name-field-speaker-information"><div class="speaker field__item">Chairman <span>Travis Hill</span></div></div>'
+        html='<nav>Other Person</nav>'+speaker+'<p>'+quote+'</p>'
+        row={'subject_id':'p','quote':quote,'attribution_quote':'Chairman Travis Hill','attribution_basis':'document_author','kind':'personal','date':None,'date_quote':None}
+        page=archive.page_from_bytes(url,html.encode())
+        self.assertEqual(len(archive.federal.validate_rows(page,[row],[subject],'2026-11-12')[0]),1)
+        for bad in [archive.page_from_bytes('https://example.gov/news/speeches/2026/example',html.encode()),
+                    archive.page_from_bytes('https://www.fdic.gov/news/speeches/2026',html.encode()),
+                    archive.page_from_bytes(url,html.replace('field--name-field-speaker-information','footer').encode()),
+                    archive.page_from_bytes(url,html.replace('speaker field__item','unrelated').encode()),
+                    archive.page_from_bytes(url,(html+speaker).encode()),
+                    archive.page_from_bytes(url,html.replace('</div></div>','</div><div class="speaker field__item">Other Person</div></div>').encode())]:
+            self.assertEqual(archive.federal.validate_rows(bad,[row],[subject],'2026-11-12'),([],1))
+
+    def test_house_witness_http_links_resolve_to_exact_https_documents(self):
+        source={'url':'https://docs.house.gov/Committee/Calendar/ByEvent.aspx?EventID=119184',
+                'domains':['docs.house.gov'],'pattern':r'/meetings/.*-Wstate-.*\.pdf$'}
+        path='/meetings/AS/AS35/20260514/119184/HHRG-119-AS35-Wstate-StanleyC-20260514.pdf'
+        html=f'<a href="http://docs.house.gov{path}">Statement</a>'
+        self.assertEqual(archive.archive_links(html,source),[{'url':'https://docs.house.gov'+path,'title':'Statement'}])
+        meeting=path.replace('HHRG-','HMTG-')
+        self.assertEqual(archive.archive_links(html.replace(path,meeting),source),
+                         [{'url':'https://docs.house.gov'+meeting,'title':'Statement'}])
+        for bad in ('http://other.house.gov'+path,'http://docs.house.gov:8080'+path,
+                    'http://user@docs.house.gov'+path,'http://docs.house.gov'+path+'?download=1'):
+            self.assertEqual(archive.archive_links(f'<a href="{bad}">Statement</a>',source),[])
+        for index in ('https://other.house.gov/Committee/Calendar/ByEvent.aspx?EventID=119184',
+                      'https://docs.house.gov/unrelated?EventID=119184'):
+            self.assertEqual(archive.archive_links(html,{**source,'url':index}),[])
+
     def test_reported_extraction_uses_short_contiguous_quotes_without_changing_official_prompt(self):
         client=archive.sources.Client.__new__(archive.sources.Client);client.daily=False;calls=[]
         def chat(messages,*args,**kwargs):
