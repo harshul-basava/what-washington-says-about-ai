@@ -62,16 +62,37 @@
      "role": "Assistant Secretary for Export Enforcement"
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "neutral",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "The speaker describes recent enforcement actions without explicitly endorsing export controls.",
+      "facets": [],
+      "confidence": 0.76,
+      "confidence_reason": "The sentence reports indictments and arrests but does not clearly state a policy position.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-12T19:18:37.065276+00:00",
+      "generation_id": "gen-1794511097-UuX3gxHYEljFh2vwdjYg"
+     },
+     "astra": {
+      "stance": "neutral",
+      "reason": "Peters highlights prosecutions involving illegal AI chip exports without explicitly endorsing or opposing export restrictions or enforcement.",
+      "facets": [],
+      "confidence": 0.95,
+      "confidence_reason": "The sentence describes enforcement cases, while his official role and hearing context cannot supply an endorsement.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-12T19:18:43.426132+00:00",
+      "generation_id": "gen-1794511118-LD7b3yKncGH5FfM3NoIT"
+     }
+    },
+    "confidence": 0.95,
+    "final_judge": "astra",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.76 is below 0.8."
    },
    {
     "sid": "s2",
