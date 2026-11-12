@@ -1,5 +1,7 @@
 import json
 import tempfile
+import threading
+import time
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -7,6 +9,67 @@ from unittest.mock import patch
 import federal_archives as archive
 
 class ArchiveTests(unittest.TestCase):
+    def test_archive_indexes_download_concurrently_and_save_empty_results(self):
+        with tempfile.TemporaryDirectory() as d:
+            counts={'active':0,'peak':0};lock=threading.Lock()
+            def fetch(url,domains):
+                with lock:counts['active']+=1;counts['peak']=max(counts['peak'],counts['active'])
+                time.sleep(.02)
+                with lock:counts['active']-=1
+                return b'<html></html>',url
+            config={'index_workers':2,'indexes':[{'url':f'https://example.gov/{i}','domains':['example.gov'],'pattern':'/speech/'} for i in range(2)]}
+            state={}
+            with patch.object(archive,'fetch',side_effect=fetch) as mocked,patch.object(archive.policy_subjects,'load_subjects',return_value=[]):
+                archive.discover(Path(d),config,[],state,now='2026-11-12')
+                archive.discover(Path(d),config,[],state,now='2026-11-12')
+            self.assertEqual(counts['peak'],2);self.assertEqual(mocked.call_count,2)
+            self.assertEqual(len(state['indexes']),2)
+
+    def test_spaced_super_intelligence_rechecks_old_empty_chunk_without_repeating_positive_chunks(self):
+        import re
+        with tempfile.TemporaryDirectory() as d:
+            page={'url':'https://example.gov/a','text':'Alice Example says super intelligence requires careful oversight for public benefit.'}
+            subject={'id':'p','name':'Alice Example','aliases':[],'entity_type':'person','roles':[]}
+            state={};calls=[]
+            class Client:
+                def extract(self,*args,**kwargs):calls.append(1);return []
+            with patch.object(archive,'AI',re.compile('artificial intelligence')):
+                archive.process_document(Path(d),page,[subject],state,Client())
+            archive.process_document(Path(d),page,[subject],state,Client())
+            archive.process_document(Path(d),page,[subject],state,Client())
+            self.assertEqual(len(calls),1)
+
+    def test_fair_document_queue_rotates_across_agencies(self):
+        docs=[{'url':f'https://a.gov/{i}','group':'a','title':'AI'} for i in range(4)]
+        docs.append({'url':'https://b.gov/1','group':'b','title':'AI'})
+        ordered=archive.fair_documents(docs)
+        self.assertEqual([d['group'] for d in ordered[:2]],['a','b'])
+
+    def test_parallel_collection_preserves_shared_profile_and_global_chunk_limit(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);subject={'id':'p','name':'Alice Example','aliases':[],'entity_type':'person','branch':'executive','organization_id':'test','roles':[]}
+            docs={f'https://example.gov/{i}':{'url':f'https://example.gov/{i}'} for i in range(4)}
+            archive.federal.write(root/'evidence/p.json',{'id':'p','statements':[]})
+            archive.federal.write(root/archive.STATE,{'documents':docs,'indexes':{}})
+            counter={'active':0,'peak':0,'calls':0};lock=threading.Lock()
+            class Client:
+                def extract(self,page,*args,**kwargs):
+                    with lock:
+                        counter['active']+=1;counter['calls']+=1;counter['peak']=max(counter['peak'],counter['active'])
+                    time.sleep(.02)
+                    with lock:counter['active']-=1
+                    return [{'subject_id':'p','quote':page['text'],'attribution_quote':page['text'],'kind':'personal','date':None,'date_quote':None}]
+            def page(url,data,title):
+                i=url.rsplit('/',1)[-1]
+                return {'url':url,'text':f'Alice Example: artificial intelligence improves service {i} through distinct new capabilities for society.', 'verified_via':'exact_normalized_page_text'}
+            with patch.object(archive.policy_subjects,'load_subjects',return_value=[subject]),patch.object(archive,'fetch',side_effect=lambda u,d:(b'data',u)),patch.object(archive,'page_from_bytes',side_effect=page),patch.object(archive,'duplicate_excerpt',return_value=False):
+                report=archive.collect(root,{},Client(),discover_sources=False,max_documents=4,max_chunks=2,fetch_workers=4,extraction_workers=2)
+            self.assertEqual(counter['calls'],2);self.assertEqual(counter['peak'],2)
+            self.assertEqual(report['new_statements'],2)
+            rows=archive.federal.read(root/'evidence/p.json',{})['statements']
+            self.assertEqual({s['sid'] for s in rows},{'s1','s2'})
+            self.assertEqual(report['chunks_checked'],2)
+
     def test_archive_links_require_official_allowlist_and_document_pattern(self):
         html='<a href="/newsevents/speech/barr20260714a.htm#top">AI</a><a href="https://evil.test/barr20260714a.htm">AI</a><a href="/about.htm">About</a>'
         source={'url':'https://www.federalreserve.gov/newsevents/speech/2026-speeches.htm','domains':['federalreserve.gov'],'pattern':r'/newsevents/(speech|testimony)/[a-z]+[0-9]{8}[a-z]\.htm$'}
