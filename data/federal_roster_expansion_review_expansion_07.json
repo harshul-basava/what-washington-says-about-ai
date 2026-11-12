@@ -108,45 +108,102 @@
  },
  "profiles": {
   "exec_douglas_cossa": {
-   "input_hash": "c1730ee09132e5e803ebb78f9c48a5a018783ffdadd88a03d6947be88725975e",
-   "evidence_hash": "c4dfec173e867e0458a79a474491fef6401e8b14d2b9559b902fd5578f7a7f88",
+   "input_hash": "0aa42072273b67a6d824fc6edf1627feb1bb3a594608d79176bf8673de115b85",
+   "evidence_hash": "c8828d865c93d2b53c6a641d7818ede0218d12e40957649efaaad71193904c61",
    "contexts": {},
    "result": {
     "findings": [],
     "no_stance_sids": [
-     "s1"
+     "s1",
+     "s2"
     ],
     "context_requests": [],
     "confidence": 5,
-    "reason": "The supplied excerpt describes Zero Trust identity and policy enforcement, without expressing a view of AI's overall effects. It supports no ai_overall label; this does not establish the subject's views outside the supplied evidence.",
+    "reason": "Neither excerpt establishes a view of AI's overall effects on Americans. The first describes Zero Trust, while the second addresses network infrastructure for AI and data processing. These narrow technical statements do not support an ai_overall label.",
     "summary_sentences": [
      {
-      "text": "Cossa describes Zero Trust as identity and policy enforcement using fine-grained attributes; the supplied excerpt makes no explicit claim about AI.",
+      "text": "Cossa describes Zero Trust in terms of identity and policy enforcement using fine-grained attributes.",
       "sids": [
        "s1"
+      ]
+     },
+     {
+      "text": "Speaking as DIA CIO on December 6, 2021, Cossa discussed modernizing local networks to support AI capabilities and large-scale data processing.",
+      "sids": [
+       "s2"
       ]
      }
     ],
     "summary": {
      "status": "complete",
-     "text": "Cossa describes Zero Trust as identity and policy enforcement using fine-grained attributes; the supplied excerpt makes no explicit claim about AI.",
+     "text": "Cossa describes Zero Trust in terms of identity and policy enforcement using fine-grained attributes. Speaking as DIA CIO on December 6, 2021, Cossa discussed modernizing local networks to support AI capabilities and large-scale data processing.",
      "sids": [
-      "s1"
+      "s1",
+      "s2"
      ],
      "sentences": [
       {
-       "text": "Cossa describes Zero Trust as identity and policy enforcement using fine-grained attributes; the supplied excerpt makes no explicit claim about AI.",
+       "text": "Cossa describes Zero Trust in terms of identity and policy enforcement using fine-grained attributes.",
        "sids": [
         "s1"
+       ]
+      },
+      {
+       "text": "Speaking as DIA CIO on December 6, 2021, Cossa discussed modernizing local networks to support AI capabilities and large-scale data processing.",
+       "sids": [
+        "s2"
        ]
       }
      ]
     }
    },
    "model": "openai/gpt-6-astra",
-   "generation_id": "gen-1794378696-CvMaYcqzVGRn92JaVWRF",
-   "assessed_at": "2026-11-11T06:31:40.638111+00:00",
-   "applied_review_id": "cc2aeeee0d8b2f52e5c4d99cfc4a793bddacdf56636e6e448aa6995b2dbdb8ed"
+   "generation_id": "gen-1794454325-6UclcaM12otUZGtEwCu3",
+   "assessed_at": "2026-11-12T03:32:10.003564+00:00",
+   "previous_reviews": [
+    {
+     "input_hash": "c1730ee09132e5e803ebb78f9c48a5a018783ffdadd88a03d6947be88725975e",
+     "evidence_hash": "c4dfec173e867e0458a79a474491fef6401e8b14d2b9559b902fd5578f7a7f88",
+     "contexts": {},
+     "result": {
+      "findings": [],
+      "no_stance_sids": [
+       "s1"
+      ],
+      "context_requests": [],
+      "confidence": 5,
+      "reason": "The supplied excerpt describes Zero Trust identity and policy enforcement, without expressing a view of AI's overall effects. It supports no ai_overall label; this does not establish the subject's views outside the supplied evidence.",
+      "summary_sentences": [
+       {
+        "text": "Cossa describes Zero Trust as identity and policy enforcement using fine-grained attributes; the supplied excerpt makes no explicit claim about AI.",
+        "sids": [
+         "s1"
+        ]
+       }
+      ],
+      "summary": {
+       "status": "complete",
+       "text": "Cossa describes Zero Trust as identity and policy enforcement using fine-grained attributes; the supplied excerpt makes no explicit claim about AI.",
+       "sids": [
+        "s1"
+       ],
+       "sentences": [
+        {
+         "text": "Cossa describes Zero Trust as identity and policy enforcement using fine-grained attributes; the supplied excerpt makes no explicit claim about AI.",
+         "sids": [
+          "s1"
+         ]
+        }
+       ]
+      }
+     },
+     "model": "openai/gpt-6-astra",
+     "generation_id": "gen-1794378696-CvMaYcqzVGRn92JaVWRF",
+     "assessed_at": "2026-11-11T06:31:40.638111+00:00",
+     "applied_review_id": "cc2aeeee0d8b2f52e5c4d99cfc4a793bddacdf56636e6e448aa6995b2dbdb8ed"
+    }
+   ],
+   "applied_review_id": "43bf8eb4a803575a8de06273273e5f380b4b43ea55bca618bc5f66cdd177f383"
   },
   "exec_mittal_desai": {
    "input_hash": "a3ae7fce0a2164179b362cc3216bf10a6072ba04d004db813dbed2e92d7c15ee",
@@ -971,5 +1028,5 @@
   }
  },
  "change_cause": "Astra review after federal roster expansion research",
- "ledger_cost": 0.404246
+ "ledger_cost": 90.061507
 }
