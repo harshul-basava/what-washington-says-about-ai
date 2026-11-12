@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_keith_sonderling",
- "revision": "754b943e30604713d64ad03b95ce15148510f2c6ac1589a1d785d54e0a8a7b55",
+ "revision": "2c57154bfddf4e0d1d685effa4b9572382614343111cdc0f09ed4005f81567a7",
  "profile": {
   "id": "exec_keith_sonderling",
   "name": "Keith Sonderling",
@@ -58,8 +58,8 @@
     }
    }
   },
-  "n_statements": 20,
-  "n_labeled": 20,
+  "n_statements": 21,
+  "n_labeled": 21,
   "scores": {
    "ai_overall": 3.0,
    "agi_pilled": 2.0,
@@ -121,39 +121,52 @@
   },
   "summary": {
    "status": "complete",
-   "text": "On February 27, 2025, Sonderling described AI's potential to improve productivity and working conditions while emphasizing civil-rights protections and retraining for displaced workers. Writing as deputy secretary of labor on November 24, 2025, he encouraged workers to embrace AI for higher-paying jobs, productivity, and greater fulfillment. On March 24, 2026, he said AI was creating jobs, productivity gains, and entrepreneurship, and called for skills that would let all Americans share in that prosperity.",
+   "text": "In June 2025, Sonderling said the issue was “really coming down to employee trust” (s1). In a November 2025 official statement, writing as Deputy Secretary of Labor, he described AI as a new frontier of opportunity for workers and called for advancing the Trump Administration’s AI Action Plan through skills development, labor-market evaluation, and retraining (s3, s4, s6). In February 2025 testimony, he said AI use in the workforce should comply with longstanding civil rights, health, and safety laws, and he discussed reskilling workers displaced by AI (s8, s14). In 2026 statements, Sonderling said AI was creating new jobs and productivity gains, announced a Department of Labor portal for AI skills in Registered Apprenticeship programs, and described the TechAccess Initiative as integrating regional AI readiness into workforce and education systems (s17, s19, s20).",
    "sids": [
+    "s1",
+    "s3",
+    "s4",
+    "s6",
     "s8",
     "s14",
-    "s15",
-    "s5",
-    "s17"
+    "s17",
+    "s19",
+    "s20"
    ],
    "sentences": [
     {
-     "text": "On February 27, 2025, Sonderling described AI's potential to improve productivity and working conditions while emphasizing civil-rights protections and retraining for displaced workers.",
+     "text": "In June 2025, Sonderling said the issue was “really coming down to employee trust” (s1).",
+     "sids": [
+      "s1"
+     ]
+    },
+    {
+     "text": "In a November 2025 official statement, writing as Deputy Secretary of Labor, he described AI as a new frontier of opportunity for workers and called for advancing the Trump Administration’s AI Action Plan through skills development, labor-market evaluation, and retraining (s3, s4, s6).",
+     "sids": [
+      "s3",
+      "s4",
+      "s6"
+     ]
+    },
+    {
+     "text": "In February 2025 testimony, he said AI use in the workforce should comply with longstanding civil rights, health, and safety laws, and he discussed reskilling workers displaced by AI (s8, s14).",
      "sids": [
       "s8",
-      "s14",
-      "s15"
+      "s14"
      ]
     },
     {
-     "text": "Writing as deputy secretary of labor on November 24, 2025, he encouraged workers to embrace AI for higher-paying jobs, productivity, and greater fulfillment.",
+     "text": "In 2026 statements, Sonderling said AI was creating new jobs and productivity gains, announced a Department of Labor portal for AI skills in Registered Apprenticeship programs, and described the TechAccess Initiative as integrating regional AI readiness into workforce and education systems (s17, s19, s20).",
      "sids": [
-      "s5"
-     ]
-    },
-    {
-     "text": "On March 24, 2026, he said AI was creating jobs, productivity gains, and entrepreneurship, and called for skills that would let all Americans share in that prosperity.",
-     "sids": [
-      "s17"
+      "s17",
+      "s19",
+      "s20"
      ]
     }
    ]
   },
   "topics": {
-   "jobs/economy": 15.833,
+   "jobs/economy": 16.833,
    "China/competition": 1.833,
    "regulation": 1.833,
    "AGI/transformative": 0.5
@@ -195,6 +208,15 @@
      "stance": 0,
      "sids": [],
      "why": "No stance in the supplied evidence."
+    },
+    "bias_audits": {
+     "stance": 1,
+     "sids": [
+      "s8",
+      "s10",
+      "s13"
+     ],
+     "why": "Sonderling calls for AI used in employment to comply with civil rights laws and be transparent enough to detect bias in employment decisions, implying support for anti-discrimination safeguards in AI hiring."
     },
     "training_consent": {
      "stance": 0,
@@ -270,41 +292,9 @@
      "stance": 0,
      "sids": [],
      "why": "No stance in the supplied evidence."
-    },
-    "bias_audits": {
-     "stance": 2,
-     "sids": [
-      "s8"
-     ],
-     "why": "On February 27, 2025, Sonderling explicitly said workplace AI must comply with civil rights laws and incorporate civil rights protections, supporting prohibitions on discriminatory AI use, though not specifically mandating audits."
     }
    },
-   "disputed": [
-    "bias_audits"
-   ]
-  },
-  "stance_review": {
-   "review_id": "8b84328346c7531516e0b14ffdab1f8ce2a3c7cb54774d7946cff2981a34c571",
-   "dimension": "ai_overall",
-   "status": "complete",
-   "reason": "The supplied evidence supports a generally favorable assessment of AI's broad economic and workforce effects, alongside statements emphasizing safeguards and adjustment to displacement. Narrow hiring applications, individual harms, leadership ambitions, and program announcements were not treated as general AI judgments. Full source context was supplied only for the November 24, 2025 article; context-based findings retain its attribution to Sonderling as deputy secretary.",
-   "confidence": 4,
-   "n_statements": 20,
-   "n_contexts": 7,
-   "accepted_sids": [
-    "s3",
-    "s4",
-    "s5",
-    "s8",
-    "s9",
-    "s11",
-    "s16",
-    "s17"
-   ],
-   "finding_count": 8,
-   "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-12T14:41:15.245619+00:00",
-   "generation_id": "gen-1794494445-neyS3mE61Ijdf5bIoWr2"
+   "disputed": []
   }
  },
  "statements": [
@@ -2630,6 +2620,65 @@
      }
     }
    }
+  },
+  {
+   "sid": "s21",
+   "date": "2026-04-02",
+   "url": "https://www.dol.gov/newsroom/releases/osec/osec20260402",
+   "text": "This partnership demonstrates the Trump Administration’s unified and innovative approach to supporting American workers in the age of AI",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Keith Sonderling",
+    "organization_id": "labor",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T17:23:02.258189+00:00",
+      "generation_id": "gen-1794504179-GGqUiCycN61T46iy4xYT"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T17:23:38.191748+00:00",
+      "generation_id": "gen-1794504215-IsiJCzRMxfbu8PFsZLi7"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T17:24:07.945793+00:00",
+      "generation_id": "gen-1794504245-gFVuZUritW0g7xuYJanu"
+     }
+    }
+   }
   }
  ],
  "history": [
@@ -3149,7 +3198,7 @@
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 20,
+   "n_statements": 21,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -3162,7 +3211,7 @@
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 20,
+   "n_statements": 21,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -3175,7 +3224,7 @@
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 20,
+   "n_statements": 21,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -3188,7 +3237,7 @@
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 20,
+   "n_statements": 21,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -3201,7 +3250,7 @@
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 20,
+   "n_statements": 21,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -3214,7 +3263,7 @@
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 20,
+   "n_statements": 21,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -3227,7 +3276,7 @@
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 20,
+   "n_statements": 21,
    "status": "complete",
    "kind": "reconstructed"
   },
