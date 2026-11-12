@@ -344,7 +344,7 @@ def named_subjects(text,subjects,url):
 
 def collect(root, config, client, *, ids=None, max_documents=30, max_chunks=60, discover_sources=True, fetch_workers=1, extraction_workers=1, urls=None):
     if type(fetch_workers) is not int or not 1<=fetch_workers<=8:raise ValueError('fetch_workers must be 1–8')
-    if type(extraction_workers) is not int or not 1<=extraction_workers<=4:raise ValueError('extraction_workers must be 1–4')
+    if type(extraction_workers) is not int or not 1<=extraction_workers<=8:raise ValueError('extraction_workers must be 1–8')
     root=Path(root);all_subjects=[s for s in policy_subjects.load_subjects(root) if s['branch']=='executive' and s['entity_type']=='person']
     if ids is not None and not set(ids)<={s['id'] for s in all_subjects}:raise ValueError('Unknown or excluded official')
     subjects=[s for s in all_subjects if ids is None or s['id'] in ids]

@@ -166,27 +166,27 @@ class ArchiveTests(unittest.TestCase):
     def test_parallel_collection_preserves_shared_profile_and_global_chunk_limit(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);subject={'id':'p','name':'Alice Example','aliases':[],'entity_type':'person','branch':'executive','organization_id':'test','roles':[]}
-            docs={f'https://example.gov/{i}':{'url':f'https://example.gov/{i}'} for i in range(4)}
+            docs={f'https://example.gov/{i}':{'url':f'https://example.gov/{i}'} for i in range(12)}
             archive.federal.write(root/'evidence/p.json',{'id':'p','statements':[]})
             archive.federal.write(root/archive.STATE,{'documents':docs,'indexes':{}})
-            counter={'active':0,'peak':0,'calls':0};lock=threading.Lock()
+            counter={'active':0,'peak':0,'calls':0};lock=threading.Lock();barrier=threading.Barrier(8)
             class Client:
                 def extract(self,page,*args,**kwargs):
                     with lock:
                         counter['active']+=1;counter['calls']+=1;counter['peak']=max(counter['peak'],counter['active'])
-                    time.sleep(.02)
+                    barrier.wait(timeout=3)
                     with lock:counter['active']-=1
                     return [{'subject_id':'p','quote':page['text'],'attribution_quote':page['text'],'kind':'personal','date':None,'date_quote':None}]
             def page(url,data,title):
                 i=url.rsplit('/',1)[-1]
                 return {'url':url,'text':f'Alice Example: artificial intelligence improves service {i} through distinct new capabilities for society.', 'verified_via':'exact_normalized_page_text'}
             with patch.object(archive.policy_subjects,'load_subjects',return_value=[subject]),patch.object(archive,'fetch',side_effect=lambda u,d:(b'data',u)),patch.object(archive,'page_from_bytes',side_effect=page),patch.object(archive,'duplicate_excerpt',return_value=False):
-                report=archive.collect(root,{},Client(),discover_sources=False,max_documents=4,max_chunks=2,fetch_workers=4,extraction_workers=2)
-            self.assertEqual(counter['calls'],2);self.assertEqual(counter['peak'],2)
-            self.assertEqual(report['new_statements'],2)
+                report=archive.collect(root,{},Client(),discover_sources=False,max_documents=12,max_chunks=8,fetch_workers=8,extraction_workers=8)
+            self.assertEqual(counter['calls'],8);self.assertEqual(counter['peak'],8)
+            self.assertEqual(report['new_statements'],8)
             rows=archive.federal.read(root/'evidence/p.json',{})['statements']
-            self.assertEqual({s['sid'] for s in rows},{'s1','s2'})
-            self.assertEqual(report['chunks_checked'],2)
+            self.assertEqual({s['sid'] for s in rows},{f's{i}' for i in range(1,9)})
+            self.assertEqual(report['chunks_checked'],8)
 
     def test_archive_links_require_official_allowlist_and_document_pattern(self):
         html='<a href="/newsevents/speech/barr20260714a.htm#top">AI</a><a href="https://evil.test/barr20260714a.htm">AI</a><a href="/about.htm">About</a>'

@@ -14,9 +14,9 @@ The [campaign configuration](../config/federal_collection_campaign.json) records
 
 ## Collection and reuse
 
-The configured inventory covers 66 index pages or public data files, plus existing official sources and source leads. Source groups include the White House, Federal Reserve, Commerce/NIST, Energy, Justice, Treasury, SEC, FTC, CIA, NSA, CISA and ODNI. Some indexes block direct retrieval. The report records those gaps; an index entry does not prove successful collection.
+The configured inventory covers 172 index pages or public data files, plus existing official sources and source leads. Source groups include the White House, Federal Reserve, Commerce/NIST, Energy, Justice, Treasury, SEC, FTC, CIA, NSA, CISA and ODNI. Some indexes block direct retrieval. The report records those gaps; an index entry does not prove successful collection.
 
-Eight workers retrieve documents. Four extraction requests can run at once through one budget manager. A lock serializes evidence updates. The queue rotates source groups and preserves priority within each group. Multi-speaker hearings without reviewed speaker mappings receive no extraction request because their quotes cannot pass the existing verifier.
+Eight workers retrieve documents. Eight extraction requests can run at once through one budget manager. A lock serializes evidence updates. The queue rotates source groups and preserves priority within each group. Multi-speaker hearings without reviewed speaker mappings receive no extraction request because their quotes cannot pass the existing verifier.
 
 Each extraction signature includes the source, subjects, prompt and model. Search signatures include the complete prompt, model, domain restrictions and date window. Empty and malformed responses remain in the cache. Changed inputs invalidate their results. Daily and campaign workflows share one cache prefix and the same path list.
 
@@ -95,3 +95,21 @@ Historical testimony can precede an official's current appointment. The source m
 Free archive discovery added 1,536 source leads across NIST, Energy, FTC, SEC and Treasury. These leads increase the inventory to 3,557 documents. Deeper SEC discovery uses only chronological page links. Treasury's public page code loads older records from JSON files. The collector now reads those files directly, covering press releases since 2025 and remarks since 2023. Index dates select leads only; every accepted statement must still pass the article's full verification checks.
 
 The new indexes also feed daily updates. `data/federal_archive_extension.json` records the source URLs and discovery counts. These counts describe leads, not accepted statements. The original campaign's collection and review limits remain unchanged.
+
+## Completed X search reuse
+
+The official X planner now reuses a completed account search when its saved interval fully covers the requested interval. Reuse requires the same account and query fingerprint, a terminal cursor, at least one saved page and a sufficient actual query cutoff. It retains the original checkpoint. Pending cursors, changed account definitions and incomplete cutoffs remain pending. Daily searches retain their separate checkpoints.
+
+The current roster plan initially showed 40 pending intervals. Saved records prove that 39 already have completed searches through a later cutoff. Only one historical interval remains incomplete. The campaign can now check all mapped current officials within its saved roster, while retaining the original X allowance. A changed selection reopens the X stage. An older completed result cannot hide a new pending plan when funds are insufficient.
+
+Eight extraction requests now share the existing budget manager. Evidence writes remain serialized. Ordinary analysis retains four workers; expensive reviews retain two. The regression suite checks simultaneous writes to the same profile and the shared chunk limit. These changes do not alter prompts, models, source checks or spending caps.
+
+## Completed hearing and Treasury wave
+
+Run 43213184419 completed successfully and saved commit `f7335de0`. Cumulative additions reached 710 verified excerpts from 236 sources across 71 officials. All required ordinary analysis, named-policy work and independent Astra reviews finished. The source replay passed every addition. Twelve fresh primary-source checks also passed, including six hearings. Their context notes appear in `data/federal_collection_expansion_spotcheck.json`. These targeted checks do not establish a population accuracy rate.
+
+Cumulative model spending reached $37.144734, leaving $62.855266. Collection and discovery account for $4.287314 of that total. Separate X spending reached $0.435. Evidence coverage reached 263 of 500 current officials. Most additions deepen existing profiles.
+
+The next batch adds 241 candidate documents after 1,089 free public-source checks. It extends health, science, procurement, labor, agriculture and banking archives. The 106 added index pages bring the configured total to 172. Candidates still require the full existing verification process. The source inventory and selection details appear in `data/federal_archive_followup.json`.
+
+The expanded audit also found 13 repeated source quotations that predate this campaign. Their records remain on disk with validated `duplicate_of` references. The next review refresh excludes their duplicate counts. This correction does not reduce the 710 new campaign excerpts. The original cost baselines and limits remain unchanged.

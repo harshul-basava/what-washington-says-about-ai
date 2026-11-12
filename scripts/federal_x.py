@@ -20,7 +20,7 @@ sys.path[:0]=[str(ROOT),str(ROOT/'scripts/daily')]
 import policy_subjects
 from dotenv import dotenv_values
 from federal_sources import digest
-from federal_x_config import KEYWORDS, PROBLEM_TYPES, fingerprint, current_job, provider as configured_provider, state_file
+from federal_x_config import KEYWORDS, PROBLEM_TYPES, fingerprint, current_job, covers_history, provider as configured_provider, state_file
 
 AI=re.compile(r'\b(?:AI|AGI|artificial intelligence|superintelligence|super intelligence|OpenAI|Anthropic|export controls?|frontier act|kill switch act|stop stealing our chips|independent verification)\b',re.I)
 ERRORS={'missing_auth_token','missing_bearer_token','authentication_failed','rate_limited','timeout','request_failed','malformed_response','budget_exceeded','credits_exhausted','account_identity_changed','account_unavailable','ownership_anchor_unavailable','window_not_ready'}
@@ -204,6 +204,15 @@ def collect(root, mode='daily', since=None, dry=False, client=None, now=None, id
     active_fingerprints={a['id']:fingerprint(a) for a in accounts}
     for a in accounts:
         account_fingerprint=active_fingerprints[a['id']]
+        if provider=='x_api' and mode=='historical' and history_window=='account':
+            requested_start=max(since or config['since'],a['valid_from'])
+            requested_end=min(end,a.get('valid_until') or end,history_cutoff)
+            completed=next((j for j in state['jobs'].values()
+                            if covers_history(j,a['id'],account_fingerprint,requested_start,requested_end)),None)
+            if completed is not None:
+                report.setdefault('reused_history',[]).append({'account_id':a['id'],'start':requested_start,
+                    'end':requested_end,'completed_job_key':completed['key']})
+                continue
         # An explicit cutoff resumes only the exact planned intervals, including any
         # identical intervals already saved under the default or another cohort.
         previous=[] if until is not None else [j for j in state['jobs'].values()

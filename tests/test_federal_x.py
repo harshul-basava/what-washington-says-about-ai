@@ -414,6 +414,44 @@ class XTests(unittest.TestCase):
                     self.x.collect(root,mode='historical',client=lambda req:PAGE,now='2026-11-08')
                 self.assertFalse((root/'data/federal_x_state.json').exists())
 
+    def test_complete_official_history_covers_a_shorter_requested_window_without_another_call(self):
+        from federal_x_config import fingerprint
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);self.fixture(root)
+            config=CONFIG|{'provider':'x_api','historical_window':'account','historical_until':'2026-11-08'}
+            write_json(root/'config/federal_x.json',config)
+            job={'key':'longer','account_id':ACCOUNT['id'],'fingerprint':fingerprint(ACCOUNT),
+                 'mode':'historical','window':'account','historical_until':'2026-11-10',
+                 'start':'2023-01-01','end':'2026-11-10','query_end_time':'2026-11-10T00:00:00Z',
+                 'status':'searched','cursor':None,'pages':1,'last_attempt':0}
+            state_path=root/'data/federal_x_api_state.json'
+            state={'accounts':{},'jobs':{'longer':job},'last_request_at':0}
+            write_json(state_path,state);before=state_path.read_bytes()
+            plan=self.x.collect(root,mode='historical',dry=True,now='2026-11-12')
+            self.assertEqual(plan['pending_windows'],0)
+            self.assertEqual(state_path.read_bytes(),before)
+            calls=[]
+            report=self.x.collect(root,mode='historical',client=lambda r:calls.append(r),now='2026-11-12')
+            self.assertEqual(report['pending_windows'],0);self.assertEqual(calls,[])
+            import federal_coverage
+            write_json(root/'config/federal_x.json',config|{'since':'2024-01-01'})
+            pending=job|{'key':'shorter','start':'2024-01-01','end':'2026-11-08',
+                        'historical_until':'2026-11-08','status':'pending','pages':0}
+            for jobs in [{'longer':job}, {'longer':job,'shorter':pending}]:
+                write_json(state_path,{**state,'jobs':jobs})
+                self.assertEqual(self.x.collect(root,mode='historical',dry=True,now='2026-11-12')['pending_windows'],0)
+                coverage=federal_coverage.coverage(root,policy_subjects.load_subjects(root),{})
+                self.assertEqual(coverage['profiles'][PERSON['id']]['x_status'],'searched')
+                self.assertEqual(coverage['profiles'][PERSON['id']]['x_windows_searched'],1)
+            write_json(root/'config/federal_x.json',config)
+            for changes in [{'status':'pending','cursor':'next'}, {'fingerprint':'stale'},
+                            {'account_id':'different'}, {'start':'2024-01-01'},
+                            {'query_end_time':'2026-11-07T23:59:00Z'}, {'query_end_time':None},
+                            {'cursor':'next'}, {'pages':0}, {'mode':'daily'}]:
+                with self.subTest(changes=changes):
+                    write_json(state_path,{**state,'jobs':{'longer':job|changes}})
+                    self.assertEqual(self.x.collect(root,mode='historical',dry=True,now='2026-11-12')['pending_windows'],1)
+
     def test_cohort_cutoff_resumes_official_archive_without_touching_other_jobs(self):
         from federal_x_config import current_job, fingerprint
 
@@ -458,7 +496,8 @@ class XTests(unittest.TestCase):
                 second=self.x.collect(root,client=api,**scope)
                 self.assertEqual(second['status'],'ok')
                 self.assertEqual(second['pending_windows'],0)
-                self.assertEqual(self.x.collect(root,dry=True,mode='historical',now='2026-11-10')['pending_windows'],2)
+                # The completed longer account interval also covers its older pending interval.
+                self.assertEqual(self.x.collect(root,dry=True,mode='historical',now='2026-11-10')['pending_windows'],1)
 
             self.assertEqual([r['cursor'] for r in calls[-2:]],[None,'cohort-next'])
             self.assertTrue(all(r['end_time']=='2026-11-08T00:00:00Z' for r in calls[-2:]))
@@ -472,6 +511,9 @@ class XTests(unittest.TestCase):
             self.assertEqual([s['post_id'] for s in self.x.read(root/f"evidence/{PERSON['id']}.json",{})['statements']],['100'])
             reports=self.x.read(root/'data/federal_x_cohort_status.json',{})['cohorts']
             self.assertEqual(list(reports.values()),[second])
+            import federal_coverage
+            coverage=federal_coverage.coverage(root,policy_subjects.load_subjects(root),{})
+            self.assertEqual(coverage['profiles'][PERSON['id']]['x_status'],'searched')
 
     def test_cohort_cutoff_requires_selected_historical_subjects_and_iso_date(self):
         with tempfile.TemporaryDirectory() as tmp:

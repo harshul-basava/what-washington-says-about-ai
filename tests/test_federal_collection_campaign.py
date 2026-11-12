@@ -6,6 +6,47 @@ from scripts import federal_collection_campaign as campaign
 
 
 class CampaignTests(unittest.TestCase):
+    def test_all_official_x_scope_retries_remaining_history_with_original_allowance(self):
+        import llm
+        from scripts import federal_x
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d)
+            subjects=[{'id':'p','name':'Alice','entity_type':'person','branch':'executive'}]
+            evidence={'p':[{'sid':f's{i}'} for i in range(4)]}
+            config={'limit_usd':100,'trial_limit_usd':3,'collection_limit_usd':20,'x_limit_usd':5,
+                    'x_scope':'all_current_officials'}
+            campaign.write(root/campaign.CONFIG,config)
+            campaign.write(root/'evidence/p.json',{'statements':evidence['p']})
+            ledger=root/'data/cost_ledger.jsonl';ledger.parent.mkdir(parents=True);ledger.write_text('')
+            audit=campaign.initialize(root,config,subjects,evidence,400,90,0)
+            audit['phases']={'trial':{'status':'complete'},'expand':{
+                'archive_selection_version':2,'archives_finished':True,'archive_batches':[],
+                'gap_search_finished':True,'queries':{},'x_finished':True,'x':{'pending_windows':0}}}
+            campaign.write(root/campaign.PATH,audit)
+            accounts={'accounts':[{'subject_id':'p'},{'subject_id':'outside_campaign'}]}
+            calls=[]
+            def collect(*args,**kwargs):
+                calls.append(kwargs)
+                return {'pending_windows':1 if kwargs.get('dry') else 0,'accounts':1}
+            with patch.object(campaign.analysis,'inputs',return_value=(subjects,evidence)),patch.object(campaign,'command',return_value={'spendable_usd':100}),patch.object(llm,'spent',side_effect=lambda p:401 if p=='openrouter' else 93.5),patch.object(llm,'LEDGER',ledger),patch.object(federal_x,'registry',return_value=(accounts,{})),patch.object(federal_x,'collect',side_effect=collect):
+                result=campaign.run(root,'expand')
+            self.assertEqual(len(calls),2)
+            self.assertEqual(calls[0]['ids'],['p'])
+            self.assertEqual(calls[1]['ids'],['p'])
+            self.assertEqual(calls[1]['max_cost'],.5)
+            self.assertNotIn('until',calls[1])
+            self.assertEqual(result['baseline'],400)
+            self.assertEqual(result['x_baseline'],90)
+            self.assertEqual(result['status'],'complete')
+            campaign.write(root/campaign.PATH,audit);calls.clear()
+            with patch.object(campaign.analysis,'inputs',return_value=(subjects,evidence)),patch.object(campaign,'command',return_value={'spendable_usd':100}),patch.object(llm,'spent',side_effect=lambda p:401 if p=='openrouter' else 94.5),patch.object(llm,'LEDGER',ledger),patch.object(federal_x,'registry',return_value=(accounts,{})),patch.object(federal_x,'collect',side_effect=collect):
+                with self.assertRaisesRegex(ValueError,'collection remains pending'):
+                    campaign.run(root,'expand')
+            self.assertEqual(len(calls),1)
+            saved=campaign.read(root/campaign.PATH)
+            self.assertFalse(saved['phases']['expand']['x_finished'])
+            self.assertEqual(saved['phases']['expand']['x_plan']['pending_windows'],1)
+
     def test_recovered_additions_exclude_documented_duplicates(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);old={'sid':'s1','url':'https://example.gov/speech','text':'A verified quotation about artificial intelligence.'}

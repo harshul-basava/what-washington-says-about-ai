@@ -1,6 +1,7 @@
 """Shared federal X query and checkpoint identity for collection and coverage."""
 import hashlib
 import json
+from datetime import datetime, timezone
 
 KEYWORDS = '(AI OR "artificial intelligence" OR AGI OR superintelligence OR "super intelligence" OR OpenAI OR Anthropic OR "AI chips" OR "export controls" OR "FRONTIER Act" OR "Kill Switch Act" OR "Stop Stealing Our Chips" OR "independent verification")'
 
@@ -24,6 +25,25 @@ def state_file(config):
 def fingerprint(account):
     # A changed query or sourced account definition requires a fresh search.
     return hashlib.sha256((json.dumps(account, sort_keys=True) + KEYWORDS).encode()).hexdigest()
+
+
+def covers_history(job, account_id, account_fingerprint, start, end):
+    """A terminal official-API account search can cover a contained interval."""
+    if (job.get('account_id') != account_id or job.get('fingerprint') != account_fingerprint
+            or job.get('mode') != 'historical' or job.get('window') != 'account'
+            or job.get('status') != 'searched' or job.get('cursor') is not None
+            or type(job.get('pages')) is not int or job['pages'] < 1):
+        return False
+    try:
+        target_start = datetime.fromisoformat(start).replace(tzinfo=timezone.utc)
+        target_end = datetime.fromisoformat(end).replace(tzinfo=timezone.utc)
+        source_start = datetime.fromisoformat(job['start']).replace(tzinfo=timezone.utc)
+        source_end = datetime.fromisoformat(job['end']).replace(tzinfo=timezone.utc)
+        actual_end = datetime.fromisoformat(job['query_end_time'].replace('Z', '+00:00'))
+        return (actual_end.tzinfo is not None and source_start <= target_start < target_end <= source_end
+                and actual_end >= target_end)
+    except (KeyError, TypeError, ValueError, AttributeError):
+        return False
 
 
 def current_job(job, fingerprints, config, until=None):

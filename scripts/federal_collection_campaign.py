@@ -124,6 +124,8 @@ def pending_sources(state,urls):
 def run(root,phase):
     import llm
     root=Path(root);config=read(root/CONFIG);subjects,evidence=analysis.inputs(root)
+    x_scope=config.get('x_scope','low_evidence')
+    if x_scope not in ('low_evidence','all_current_officials'):raise ValueError('Unknown campaign X scope')
     subjects=[s for s in subjects if s['entity_type']=='person' and s['branch']=='executive']
     credit=command(root,'scripts/openrouter_credit_check.py','--required-credit=0',capture=True)
     start=llm.spent('openrouter');credit_available=credit['spendable_usd']
@@ -132,6 +134,8 @@ def run(root,phase):
     if not set(audit['ids'])<={s['id'] for s in subjects}:raise ValueError('Current roster changed; reconcile campaign scope before resuming')
     if phase=='expand' and audit['phases'].get('trial',{}).get('status')!='complete':raise ValueError('The trial must pass before expansion')
     part=audit['phases'].setdefault(phase,{'status':'in_progress','archive_batches':[],'queries':{}})
+    if phase=='expand' and part.get('x_scope','low_evidence')!=x_scope:
+        part['x_finished']=False
     if part.get('archive_selection_version')!=2:
         part['archives_finished']=False;part['archive_selection_version']=2
     ids=config['trial_ids'] if phase=='trial' else audit['ids']
@@ -152,7 +156,7 @@ def run(root,phase):
     def collect_batch(limit,urls=None):
         client=archive.sources.Client(root,collect_available(),daily=False,wait_for_capacity=True)
         return archive.collect(root,read(root/'config/federal_archives.json'),client,ids=ids,max_documents=limit,
-             max_chunks=40 if phase=='trial' else 200,fetch_workers=8,extraction_workers=4,
+             max_chunks=40 if phase=='trial' else 200,fetch_workers=8,extraction_workers=8,
              discover_sources=not part['archive_batches'] and urls is None,urls=urls)
     save()
     try:
@@ -242,8 +246,11 @@ def run(root,phase):
             from scripts import federal_x
             x_config,_=federal_x.registry(root);_,current=analysis.inputs(root)
             mapped={a['subject_id'] for a in x_config['accounts']}
-            x_ids=[s['id'] for s in subjects if s['id'] in mapped and len(current[s['id']])<3]
+            x_ids=[s['id'] for s in subjects if s['id'] in set(ids) & mapped
+                   and (x_scope=='all_current_officials' or len(current[s['id']])<3)]
+            part['x_scope']=x_scope
             part['x_plan']=federal_x.collect(root,mode='historical',ids=x_ids,dry=True) if x_ids else {'pending_windows':0,'accounts':0}
+            part.pop('x',None)
             # Resume existing historical intervals. Do not create a new cutoff that
             # would repeat each account's previously completed history.
             x_available=archive.remaining(audit['x_baseline'],audit['limits']['x_limit_usd'],llm.spent('x'))

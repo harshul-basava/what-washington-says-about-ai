@@ -4,7 +4,7 @@ import json
 import statistics
 from collections import Counter, defaultdict
 from datetime import date, datetime, timedelta, timezone
-from federal_x_config import fingerprint, current_job, provider, state_file
+from federal_x_config import fingerprint, current_job, covers_history, provider, state_file
 from policy_subjects import active_evidence
 
 
@@ -147,6 +147,21 @@ def coverage(root, subjects, audit):
     account_ids={a['id'] for a in x_accounts}
     fingerprints = {account['id']: fingerprint(account) for account in x_accounts}
     current_jobs = [job for job in x_state.get('jobs', {}).values() if current_job(job, fingerprints, x_config, until)]
+    if x_provider == 'x_api':
+        if x_config.get('historical_window') == 'account':
+            for account in x_accounts:
+                start = max(x_config['since'], account['valid_from'])
+                end = min(v for v in (x_config.get('historical_until'), account.get('valid_until'), until) if v)
+                completed = next((job for job in x_state.get('jobs', {}).values()
+                                  if covers_history(job, account['id'], fingerprints[account['id']], start, end)), None)
+                # A saved wider interval supplies coverage even when the configured
+                # start advances. Keep its real checkpoint rather than inventing one.
+                if completed is not None and completed not in current_jobs:
+                    current_jobs.append(completed)
+        current_jobs = [job for job in current_jobs if job.get('mode') != 'historical'
+                        or job.get('status') == 'searched'
+                        or not any(covers_history(other, job['account_id'], job['fingerprint'], job['start'], job['end'])
+                                   for other in x_state.get('jobs', {}).values())]
     x_enabled = bool(x_config.get('enabled'))
     due_accounts = _daily_x_accounts_due(x_accounts, current_jobs, today.isoformat(), until) if x_enabled else []
     due_by_profile = Counter(account['subject_id'] for account in due_accounts)
