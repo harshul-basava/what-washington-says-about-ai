@@ -193,6 +193,19 @@ def transcript_speaker_context(page, quote, subject, day):
     raise ValueError('Quote lacks a reviewed same-speaker transcript span')
 
 
+def presidential_document_author(page, context, subject):
+    """The administration header identifies its President, not a named guest."""
+    url = sources.urlsplit(page['url'])
+    if (url.hostname not in ('govinfo.gov', 'www.govinfo.gov')
+            or not re.fullmatch(r'/content/pkg/(DCPD-\d{9})/(?:html/\1\.htm|pdf/\1\.pdf)', url.path)):
+        return False
+    header = sources.normalize(page['text'])[:1200]
+    if context not in header or 'The President.' not in header:
+        return False
+    match = re.search(r'\bAdministration of ([^,]{3,100}), (?:19|20)\d{2}\b', context)
+    return bool(match and contains_name(match[1], subject))
+
+
 def validate_rows(page, rows, subjects, now):
     """Verify quote presence and a local attribution span, without inferring speaker opinions."""
     if page.get('verified_via') != 'exact_normalized_page_text':
@@ -235,7 +248,7 @@ def validate_rows(page, rows, subjects, now):
                       and context in text[:6000]
                       and (explicit_document_author(context, subject) or structured_document_author(page,context,subject)
                            or (context in text[:1200] and '-Wstate-' in page['url'])
-                           or (context in text[:1200] and '/DCPD-' in page['url'] and 'Administration of ' in context and 'The President.' in text[:1200])))
+                           or presidential_document_author(page, context, subject)))
             if (quote not in text or context not in text or not (transcript or contains_name(context, subject))
                     or (basis == 'document_author' and not author)
                     or (basis == 'local_span' and quote not in context)
@@ -431,7 +444,8 @@ def collect(root, config, since=None, dry=False):
             page['verified_via'] = page.get('verified_via', 'exact_normalized_search_retrieval')
             content_hash = sources.digest(sources.normalize(page['text']))
             proof = json.dumps([page.get('transcript_format'), page['transcript_lines']]) if 'transcript_lines' in page else ''
-            revision = sources.digest(content_hash + extraction_revision + proof)
+            prompt_change = sources.extraction_prompt(url).removeprefix(sources.EXTRACTION_PROMPT)
+            revision = sources.digest(content_hash + extraction_revision + proof + prompt_change)
             if state['processed'].get(url, {}).get('revision') != revision:
                 text = sources.normalize(page['text'])
                 # Overlap chunks so an excerpt at a boundary remains available in full.

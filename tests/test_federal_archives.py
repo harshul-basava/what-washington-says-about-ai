@@ -9,6 +9,30 @@ from unittest.mock import patch
 import federal_archives as archive
 
 class ArchiveTests(unittest.TestCase):
+    def test_reported_extraction_uses_short_contiguous_quotes_without_changing_official_prompt(self):
+        client=archive.sources.Client.__new__(archive.sources.Client);client.daily=False;calls=[]
+        def chat(messages,*args,**kwargs):
+            calls.append(messages)
+            return {'choices':[{'message':{'content':'{"statements":[]}'}}]}
+        client.chat=chat
+        for url in ('https://example.gov/speech','https://news.example/interview'):
+            client.extract({'url':url,'text':'Source text'},[])
+        self.assertEqual(calls[0][0]['content'],archive.sources.EXTRACTION_PROMPT)
+        self.assertIn('25 words in total',calls[1][0]['content'])
+        self.assertIn('self-contained',calls[1][0]['content'])
+
+    def test_reported_archive_requires_explicit_index_opt_in_and_matching_domain(self):
+        with tempfile.TemporaryDirectory() as d:
+            source={'url':'https://news.example/index','domains':['news.example'],'pattern':'/story/'}
+            html=b'<a href="/story/ai">AI interview</a><a href="https://other.example/story/ai">Other</a>'
+            with patch.object(archive,'fetch',return_value=(html,source['url'])),patch.object(archive.policy_subjects,'load_subjects',return_value=[]):
+                state={};archive.discover(Path(d),{'indexes':[source]},[],state,now='2026-11-12')
+                self.assertEqual(state['documents'],{})
+                source['source_type']='reported_statement'
+                archive.discover(Path(d),{'indexes':[source]},[],state,now='2026-11-12')
+            self.assertEqual(set(state['documents']),{'https://news.example/story/ai'})
+            self.assertNotIn('subject_ids',state['documents']['https://news.example/story/ai'])
+
     def test_search_only_snapshot_needs_source_proof_without_paid_extraction(self):
         with tempfile.TemporaryDirectory() as d:
             page={'url':'https://example.gov/speech','text':'Alice Example discusses artificial intelligence policy and its impact.',

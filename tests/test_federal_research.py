@@ -15,6 +15,18 @@ import federal
 
 
 class HistoricalTests(unittest.TestCase):
+    def test_presidential_archive_header_does_not_attribute_remarks_to_a_guest(self):
+        url='https://www.govinfo.gov/content/pkg/DCPD-202600001/html/DCPD-202600001.htm'
+        good_header='Administration of Official A, 2026 Remarks at the AI Summit'
+        bad_header='Administration of Someone Else, 2026 Welcoming Official A to the AI Summit'
+        row={**ROW,'kind':'personal','attribution_basis':'document_author'}
+        for header,expected in [(good_header,0),(bad_header,1)]:
+            page={**PAGE,'url':url,'text':header+' November 8, 2026. The President. '+QUOTE}
+            self.assertEqual(federal.validate_rows(page,[{**row,'attribution_quote':header}],[PERSON],'2026-11-08')[1],expected)
+        page={**PAGE,'url':url.replace('www.govinfo.gov','other.gov'),
+              'text':good_header+' November 8, 2026. The President. '+QUOTE}
+        self.assertEqual(federal.validate_rows(page,[{**row,'attribution_quote':good_header}],[PERSON],'2026-11-08')[1],1)
+
     def test_research_coverage_excludes_duplicate_counts_and_dates(self):
         import federal_coverage
         with tempfile.TemporaryDirectory() as td:

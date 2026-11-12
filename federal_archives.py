@@ -176,7 +176,7 @@ def page_from_bytes(url, data, title=''):
 
 
 def extraction_signature(text, subjects, url='', title='', structured_author=None,model=None,transcript_lines=None):
-    payload=[VERSION,sources.EXTRACTION_PROMPT,text,subjects,url,title,structured_author]
+    payload=[VERSION,sources.extraction_prompt(url),text,subjects,url,title,structured_author]
     if model is not None:payload.append({'model':model})
     if any(sources.bound_speakers(s,url) for s in subjects):
         payload.append({'speaker_context_version':sources.SPEAKER_CONTEXT_VERSION})
@@ -268,9 +268,10 @@ def discover(root, config, subjects, state, *, now=None):
     now=now or federal.today();documents=state.setdefault('documents',{});indexes=state.setdefault('indexes',{});errors=[]
     groups=federal.read(Path(root)/'config/federal_sources.json',{}).get('groups',[])
     by_org={oid:g['id'] for g in groups for oid in g['organization_ids']}
-    def add(row,origin,group=None,pid=None):
+    def add(row,origin,group=None,pid=None,reported_domains=None):
         url=sources.canonical_url(row['url']);host=urlsplit(url).hostname or ''
-        if not host.endswith(('.gov','.mil')) or not sources.allowed_url(url,[host]):return
+        if not sources.allowed_url(url,[host]):return
+        if not host.endswith(('.gov','.mil')) and not sources.allowed_url(url,reported_domains or []):return
         doc=documents.setdefault(url,{'url':url,'title':row.get('title',''),'discovered_from':origin})
         if group:doc.setdefault('group',group)
         if pid:doc['subject_ids']=sorted(set(doc.get('subject_ids',[])+[pid]))
@@ -290,7 +291,8 @@ def discover(root, config, subjects, state, *, now=None):
                  or indexes.get(s['url'],{}).get('signature')!=sources.digest(json.dumps(s,sort_keys=True))]
         for source,links,result in pool.map(fetch_index,pending):
             indexes[source['url']]=result
-            for row in links:add(row,source['url'],source.get('group'))
+            for row in links:add(row,source['url'],source.get('group'),
+                                 reported_domains=source['domains'] if source.get('source_type')=='reported_statement' else None)
             if result.get('error'):errors.append({'url':source['url'],'stage':'index','error':result['error']})
     # Existing official documents are shared inventory, not one paid search per person.
     selected={s['id'] for s in subjects}

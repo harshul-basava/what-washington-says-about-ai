@@ -43,6 +43,15 @@ def normalize(text):
     return ' '.join(html.unescape(text).split())
 
 
+def extraction_prompt(url):
+    if (urlsplit(url).hostname or '').endswith(('.gov', '.mil')):
+        return EXTRACTION_PROMPT
+    return EXTRACTION_PROMPT + ('\nFor this non-government source, all returned quote fields must use at most 25 words in total. '
+        'Choose self-contained contiguous direct quotations of at least eight words that preserve the speaker’s policy meaning. '
+        'Never drop a qualification or change the meaning to fit. Return no quotation if none fits. '
+        'Keep separate speaker context in attribution_quote and retain the full source for review.\n')
+
+
 def digest(value):
     return hashlib.sha256(value.encode()).hexdigest()
 
@@ -276,7 +285,7 @@ class Client:
         if response_cache is not None and response_cache.exists():
             result = json.loads(response_cache.read_text())
         else:
-            result = self.chat([{'role': 'system', 'content': EXTRACTION_PROMPT},
+            result = self.chat([{'role': 'system', 'content': extraction_prompt(page['url'])},
                             {'role': 'user', 'content': json.dumps(payload, ensure_ascii=False)}],
                            ('daily_' if self.daily else '') + 'federal_extract', max_tokens)
             if response_cache is not None:
