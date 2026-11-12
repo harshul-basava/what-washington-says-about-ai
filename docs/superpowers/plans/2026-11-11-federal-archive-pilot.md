@@ -12,10 +12,10 @@
 
 ## Tasks
 
-- [ ] Add tests and collector: allowlisted archive links; bounded documents/chunks; unchanged and negative-cache reuse; source/prompt/subject changes invalidate extraction; malformed/rejected rows remain visible without repeat paid calls; partial cursors resume; cross-source excerpt overlap rejected; exact validators retained.
-- [ ] Add CLI and fixed cumulative pilot runner. Retain baseline on retries; reserve review funds. Use current eligible people only. Archive config includes Fed speech/testimony indexes, Commerce speech index, and existing official hearing URLs. Preserve source-specific gaps.
-- [ ] Add optional daily archive collection under existing collection allowance and manual pilot workflow. No extra schedule. Run ordinary analysis/policy judgments and targeted Astra review after pilot evidence collection. Save results and cache on failures.
-- [ ] Run unit/full tests, independent review, zero-paid discovery preview, bounded live pilot, source spot checks and zero-new-request repeat. Build local site, report yield and costs, commit/push only collector and public evidence changes.
+- [x] Add tests and collector: allowlisted archive links; bounded documents/chunks; unchanged and negative-cache reuse; source/prompt/subject changes invalidate extraction; malformed/rejected rows remain visible without repeat paid calls; partial cursors resume; cross-source excerpt overlap rejected; exact validators retained.
+- [x] Add CLI and fixed cumulative pilot runner. Retain baseline on retries; reserve review funds. Use current eligible people only. Archive config includes Fed speech/testimony indexes, Commerce speech index, and existing official hearing URLs. Preserve source-specific gaps.
+- [x] Add optional daily archive collection under existing collection allowance and manual pilot workflow. No extra schedule. Run ordinary analysis/policy judgments and targeted Astra review after pilot evidence collection. Save results and cache on failures.
+- [x] Run unit/full tests, independent review, zero-paid discovery preview, bounded live pilot, source spot checks and zero-new-request repeat. Build local site, report yield and costs, commit/push only collector and public evidence changes.
 
 ## Review focus
 
@@ -25,3 +25,8 @@ Budget resets across retries; changed/partial sources; cross-speaker attribution
 
 - Existing branch codex/policy-judgments reused; internal review changes left untouched.
 - Prior original-repository credit: $22.721652 usable, before $0.635063 later spending. Fresh read-only check dispatched.
+- Fresh original-repository check confirmed $22.086589 usable before the pilot. No cap changed.
+- Initial bounded pass added 181 verified excerpts from 23 speeches by five Federal Reserve officials. Collection cost $0.078488. No new testimony entered this pass; Commerce and one hearing PDF remain source gaps.
+- Fixed repeated source text in Astra input without dropping any context or attribution metadata. Independent code review confirmed the fix and the read-only cache check.
+- Completed pilot cost $2.603508. All ordinary judgments and all five Astra profile reviews completed. The cache check verified every new excerpt and made zero model requests. Five primary-source spot checks confirmed text, dates, authors and relevant context.
+- All 322 Python tests and 74 JavaScript tests passed. Workflow 43168816928 completed successfully and pushed the public data. Existing internal review-tool changes remain local.
