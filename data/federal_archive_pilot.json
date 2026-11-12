@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "status": "pending",
+  "status": "pilot_complete",
   "ids": [
     "exec_michelle_w_bowman",
     "exec_michael_s_barr",
@@ -468,6 +468,46 @@
         "status": "pending",
         "reason": "review_response_incomplete"
       }
+    },
+    {
+      "started_on": "2026-11-12",
+      "baseline": 453.70955920961137,
+      "analysis": {
+        "profiles": 5,
+        "statements": 234,
+        "labeled_statements": 234,
+        "pending_labels": 0,
+        "pending_regulation": 0,
+        "pending_summaries": 0,
+        "pending_stages": {},
+        "status": "ok",
+        "estimated_cost_usd": 0,
+        "requests": 0,
+        "errors": []
+      },
+      "policies": {
+        "people": 3,
+        "candidate_statements": 7,
+        "candidate_pairs": {
+          "export_controls": 4,
+          "china_race_dynamics": 3
+        },
+        "uncached_requests": 0,
+        "estimated_cost_usd": null,
+        "strategy": {
+          "kind": "confidence_cascade",
+          "version": 1,
+          "primary_model": "deepseek/deepseek-v4.1-flash-1017",
+          "reviewer_model": "openai/gpt-6-astra",
+          "threshold": 0.8
+        },
+        "review_note": "Astra work is known only after DeepSeek returns confidence; label checks live prices."
+      },
+      "astra": {
+        "status": "complete",
+        "reviewed_profiles": 5,
+        "accepted_findings": 26
+      }
     }
   ],
   "initial_sids": {
@@ -820,8 +860,7 @@
   "collection_baseline": 451.52298105125124,
   "collection_finished": true,
   "collection_spend_usd": 0.07848756172006688,
-  "error": "ValueError",
-  "spent_usd": 2.186578,
-  "remaining_usd": 7.813422,
+  "spent_usd": 2.603508,
+  "remaining_usd": 7.396492,
   "new_statements": 181
 }
