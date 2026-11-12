@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_john_a_squires",
- "revision": "70c0ded46ac95857a6c9d73ca0f315e710a2e9a17e248330f9c5b7f27a70e701",
+ "revision": "47f0b3d12cee8b24b919f22245460a2415a54050f4464f09e4bf4e3a383ec347",
  "profile": {
   "id": "exec_john_a_squires",
   "name": "John A. Squires",
@@ -61,13 +61,13 @@
     }
    }
   },
-  "n_statements": 13,
-  "n_labeled": 13,
+  "n_statements": 31,
+  "n_labeled": 31,
   "scores": {
    "ai_overall": null,
-   "agi_pilled": null,
+   "agi_pilled": 1.0,
    "x_risk": null,
-   "china_race": 1.0,
+   "china_race": 1.5,
    "regulation": null
   },
   "score_details": {
@@ -79,11 +79,13 @@
     "label_count": 0
    },
    "agi_pilled": {
-    "score": null,
+    "score": 1.0,
     "reason_a": "silent",
-    "reason_b": "silent",
-    "sids": [],
-    "label_count": 0
+    "reason_b": "consistent",
+    "sids": [
+     "s23"
+    ],
+    "label_count": 1
    },
    "x_risk": {
     "score": null,
@@ -93,13 +95,14 @@
     "label_count": 0
    },
    "china_race": {
-    "score": 1.0,
+    "score": 1.5,
     "reason_a": "consistent",
-    "reason_b": "silent",
+    "reason_b": "consistent",
     "sids": [
-     "s5"
+     "s5",
+     "s27"
     ],
-    "label_count": 1
+    "label_count": 2
    },
    "regulation": {
     "score": null,
@@ -111,61 +114,53 @@
   },
   "summary": {
    "status": "complete",
-   "text": "John A. Squires said AI cannot be excluded from any discussion of the future of intellectual property and described IP protection in AI, quantum, biotechnology, advanced materials, and semiconductors as essential national-security functions. In September 2026 remarks, he described the USPTO's new Emerging Technologies Office in San Francisco as a hub to advance AI use, steer AI adoption, and help U.S. companies enter the federal marketplace and export AI products. In March 2026 congressional testimony, he described agency AI efforts including the ASAP! prior-art pilot, AI agents assisting examiners on eligibility issues with a human in the loop, and AI tools used to identify fraudulent filings. He also outlined a vision of examiners deploying AI agents at scale, cited task-directed AI agents for trademark classification, and welcomed a new chief artificial intelligence officer to help aggressively modernize agency systems and workflows.",
+   "text": "John A. Squires said AI cannot be excluded from discussions about the future of intellectual property and described IP protection in AI and other emerging fields as essential national-security functions. He said the USPTO has been leveraging AI in patent examination through a human-in-the-loop approach and has accelerated deployment of AI search tools for examiners. Squires said the USPTO established an Emerging Technologies Office in San Francisco to convene AI stakeholders, promote AI companies' business with the government, and help U.S. companies export AI. In March 2026 testimony, he cited the creation of an AI Policy Working Group and revised inventorship guidance for AI-assisted inventions.",
    "sids": [
     "s1",
     "s2",
-    "s3",
-    "s4",
-    "s5",
-    "s8",
-    "s9",
-    "s11",
-    "s10",
-    "s13",
-    "s14"
+    "s15",
+    "s17",
+    "s29",
+    "s24",
+    "s25"
    ],
    "sentences": [
     {
-     "text": "John A. Squires said AI cannot be excluded from any discussion of the future of intellectual property and described IP protection in AI, quantum, biotechnology, advanced materials, and semiconductors as essential national-security functions.",
+     "text": "John A. Squires said AI cannot be excluded from discussions about the future of intellectual property and described IP protection in AI and other emerging fields as essential national-security functions.",
      "sids": [
       "s1",
       "s2"
      ]
     },
     {
-     "text": "In September 2026 remarks, he described the USPTO's new Emerging Technologies Office in San Francisco as a hub to advance AI use, steer AI adoption, and help U.S. companies enter the federal marketplace and export AI products.",
+     "text": "He said the USPTO has been leveraging AI in patent examination through a human-in-the-loop approach and has accelerated deployment of AI search tools for examiners.",
      "sids": [
-      "s3",
-      "s4",
-      "s5"
+      "s15",
+      "s17"
      ]
     },
     {
-     "text": "In March 2026 congressional testimony, he described agency AI efforts including the ASAP! prior-art pilot, AI agents assisting examiners on eligibility issues with a human in the loop, and AI tools used to identify fraudulent filings.",
+     "text": "Squires said the USPTO established an Emerging Technologies Office in San Francisco to convene AI stakeholders, promote AI companies' business with the government, and help U.S. companies export AI.",
      "sids": [
-      "s8",
-      "s9",
-      "s11"
+      "s29"
      ]
     },
     {
-     "text": "He also outlined a vision of examiners deploying AI agents at scale, cited task-directed AI agents for trademark classification, and welcomed a new chief artificial intelligence officer to help aggressively modernize agency systems and workflows.",
+     "text": "In March 2026 testimony, he cited the creation of an AI Policy Working Group and revised inventorship guidance for AI-assisted inventions.",
      "sids": [
-      "s10",
-      "s13",
-      "s14"
+      "s24",
+      "s25"
      ]
     }
    ]
   },
   "topics": {
-   "copyright": 2.0,
+   "copyright": 3.5,
    "national security": 0.5,
-   "other": 8.0,
+   "other": 21.0,
    "jobs/economy": 1.5,
-   "China/competition": 0.5,
-   "regulation": 0.5
+   "China/competition": 1.0,
+   "regulation": 3.5
   },
   "regulation": {
    "status": "complete",
@@ -213,7 +208,7 @@
     "training_consent": {
      "stance": 0,
      "sids": [],
-     "why": "Statements about IP protection and national security (s2) do not address consent or payment for AI training data."
+     "why": "No stance in the supplied evidence."
     },
     "preemption": {
      "stance": 0,
@@ -223,7 +218,7 @@
     "chips": {
      "stance": 0,
      "sids": [],
-     "why": "Mention of semiconductors as an IP/security field (s2) is not a position on chip export controls."
+     "why": "No stance in the supplied evidence."
     },
     "testing_mandate": {
      "stance": 0,
@@ -289,18 +284,18 @@
    "disputed": []
   },
   "stance_review": {
-   "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+   "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
    "dimension": "ai_overall",
    "status": "complete",
-   "reason": "The supplied excerpts discuss AI in intellectual property, agency modernization, national security, and commercial adoption, but do not establish a general assessment of AI's overall effects on Americans. Enthusiasm for advancing emerging technologies in s12 does not by itself establish that assessment. This conclusion is limited to the supplied excerpts.",
-   "confidence": 5,
-   "n_statements": 13,
+   "reason": "The supplied excerpts support favorable views of specific AI applications, intellectual-property policy, and industry engagement, but do not establish an assessment of AI's overall effects on Americans. The enthusiasm for emerging technologies in s12 concerns technological advancement, while s23 describes AI's cross-sector trajectory and the need for IP protection rather than its overall benefits and harms. These distinctions do not justify an ai_overall label. This conclusion is limited to the supplied excerpts; no additional source context was provided.",
+   "confidence": 4,
+   "n_statements": 31,
    "n_contexts": 0,
    "accepted_sids": [],
    "finding_count": 0,
    "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-   "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+   "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+   "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
   }
  },
  "statements": [
@@ -328,16 +323,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-     "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -376,15 +371,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-      "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
      }
     }
    }
@@ -414,16 +409,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-     "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -465,15 +460,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-      "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
      }
     }
    }
@@ -502,16 +497,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-     "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -550,15 +545,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-      "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
      }
     }
    }
@@ -587,16 +582,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-     "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -635,15 +630,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-      "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
      }
     }
    }
@@ -679,16 +674,16 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-     "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -754,15 +749,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-      "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
      }
     }
    }
@@ -795,16 +790,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-     "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -845,15 +840,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-      "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
      }
     }
    }
@@ -885,16 +880,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-     "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -933,15 +928,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-      "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
      }
     }
    }
@@ -973,16 +968,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-     "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1021,15 +1016,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-      "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
      }
     }
    }
@@ -1061,16 +1056,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-     "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1109,15 +1104,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-      "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
      }
     }
    }
@@ -1149,16 +1144,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-     "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1197,15 +1192,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-      "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
      }
     }
    }
@@ -1236,16 +1231,16 @@
     ],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-     "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1307,15 +1302,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-      "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
      }
     }
    }
@@ -1344,16 +1339,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-     "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1392,15 +1387,15 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-      "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
      }
     }
    }
@@ -1429,16 +1424,16 @@
     "escalated": [],
     "stance_review": {
      "reviewed_dimension": "ai_overall",
-     "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
      "decision": "no_stance",
      "labels": {},
      "confidence": {},
-     "review_confidence": 5,
+     "review_confidence": 4,
      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
      "accepted": false,
      "model": "openai/gpt-6-astra",
-     "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-     "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
     },
     "models": {
      "deepseek": "deepseek/deepseek-v4.1-flash-1017",
@@ -1477,15 +1472,1616 @@
      },
      "astra_stance_review": {
       "reviewed_dimension": "ai_overall",
-      "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
       "decision": "no_stance",
       "labels": {},
       "confidence": {},
-      "review_confidence": 5,
+      "review_confidence": 4,
       "reason": "Astra found no qualifying AI overall stance in this excerpt.",
       "model": "openai/gpt-6-astra",
-      "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-      "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s15",
+   "date": "2026-03-25",
+   "url": "https://docs.house.gov/meetings/JU/JU03/20260325/119088/HHRG-119-JU03-Wstate-SquiresJ-20260325.pdf",
+   "text": "The USPTO has been actively leveraging artificial intelligence in the patent examination process and is pursuing new opportunities with AI to enhance efficiency and improve quality. The USPTO takes a human-in-the-loop approach by designing outcome-driven systems to reduce pendency, and lower costs, while emphasizing a continuous focus on ensuring patents are “born strong.”",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "John A. Squires",
+    "organization_id": "uspto",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:53.172223+00:00",
+      "generation_id": "gen-1794508757-lAT0MuZAZGwWNHe4j3Wy"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:22.723463+00:00",
+      "generation_id": "gen-1794508810-VvyNno9nLSdKaghbdEaf"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:58.671045+00:00",
+      "generation_id": "gen-1794508843-Wbbsk4HglZsAMwmMCuo7"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s16",
+   "date": "2026-03-25",
+   "url": "https://docs.house.gov/meetings/JU/JU03/20260325/119088/HHRG-119-JU03-Wstate-SquiresJ-20260325.pdf",
+   "text": "The earliest operational use of AI for patent examination began in 2021 with the launch of an autoclassification system for patent classification, the release of the AI-powered More Like This Document search tool later that year, and the implementation of the AI-powered Similarity Search in 2022.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "John A. Squires",
+    "organization_id": "uspto",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:53.172223+00:00",
+      "generation_id": "gen-1794508757-lAT0MuZAZGwWNHe4j3Wy"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:22.723463+00:00",
+      "generation_id": "gen-1794508810-VvyNno9nLSdKaghbdEaf"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:58.671045+00:00",
+      "generation_id": "gen-1794508843-Wbbsk4HglZsAMwmMCuo7"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s17",
+   "date": "2026-03-25",
+   "url": "https://docs.house.gov/meetings/JU/JU03/20260325/119088/HHRG-119-JU03-Wstate-SquiresJ-20260325.pdf",
+   "text": "Now, the USPTO is accelerating delivery of new AI tools for patent examination with several major changes implemented over this past year: in July 2025, use of these AI patent search tools was made mandatory for every patent application; in August 2025, the USPTO deployed new specialized AI tools to support image-based search for Design Patent applications; and, in February 2026, three new enhanced tools for Similarity Search were deployed.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "John A. Squires",
+    "organization_id": "uspto",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:53.172223+00:00",
+      "generation_id": "gen-1794508757-lAT0MuZAZGwWNHe4j3Wy"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:22.723463+00:00",
+      "generation_id": "gen-1794508810-VvyNno9nLSdKaghbdEaf"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:58.671045+00:00",
+      "generation_id": "gen-1794508843-Wbbsk4HglZsAMwmMCuo7"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s18",
+   "date": "2026-03-25",
+   "url": "https://docs.house.gov/meetings/JU/JU03/20260325/119088/HHRG-119-JU03-Wstate-SquiresJ-20260325.pdf",
+   "text": "To that end, the USPTO launched the Artificial Intelligence Search Automated Pilot (ASAP!) Program in October 2025. This pilot uses the internal AI patent search tool to automatically generate a list of potential prior art references for each participating patent application. This list is communicated to applicants at an early stage of prosecution to provide them with the opportunity to assess the patentability of their claims prior to substantive examination.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "John A. Squires",
+    "organization_id": "uspto",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:53.172223+00:00",
+      "generation_id": "gen-1794508757-lAT0MuZAZGwWNHe4j3Wy"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:22.723463+00:00",
+      "generation_id": "gen-1794508810-VvyNno9nLSdKaghbdEaf"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:58.671045+00:00",
+      "generation_id": "gen-1794508843-Wbbsk4HglZsAMwmMCuo7"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s19",
+   "date": "2026-03-25",
+   "url": "https://docs.house.gov/meetings/JU/JU03/20260325/119088/HHRG-119-JU03-Wstate-SquiresJ-20260325.pdf",
+   "text": "In addition to patent search, the USPTO is also developing AI tools to support all aspects of the patent examination process including document quality control on millions of documents per year, patent document classification, AI virtual assistants, Office action creation and review, and increased automation in publishing patent pre-grant publications and patent grants.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "John A. Squires",
+    "organization_id": "uspto",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:53.172223+00:00",
+      "generation_id": "gen-1794508757-lAT0MuZAZGwWNHe4j3Wy"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:22.723463+00:00",
+      "generation_id": "gen-1794508810-VvyNno9nLSdKaghbdEaf"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:58.671045+00:00",
+      "generation_id": "gen-1794508843-Wbbsk4HglZsAMwmMCuo7"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s20",
+   "date": "2026-03-25",
+   "url": "https://docs.house.gov/meetings/JU/JU03/20260325/119088/HHRG-119-JU03-Wstate-SquiresJ-20260325.pdf",
+   "text": "Examples of how the usage of AI at the USPTO has contributed to better efficiencies include: (1) reduced contract dependencies; and (2) increase in the frequency of foreign prior art being made of record, which strengthens patent quality.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "John A. Squires",
+    "organization_id": "uspto",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:53.172223+00:00",
+      "generation_id": "gen-1794508757-lAT0MuZAZGwWNHe4j3Wy"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:22.723463+00:00",
+      "generation_id": "gen-1794508810-VvyNno9nLSdKaghbdEaf"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:58.671045+00:00",
+      "generation_id": "gen-1794508843-Wbbsk4HglZsAMwmMCuo7"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s21",
+   "date": "2026-03-25",
+   "url": "https://docs.house.gov/meetings/JU/JU03/20260325/119088/HHRG-119-JU03-Wstate-SquiresJ-20260325.pdf",
+   "text": "We continue to prioritize the modernization of examiner tools such as leveraging AI to assist in the identification of the most relevant prior art as early as possible during examination for gains in both efficiency and quality.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "John A. Squires",
+    "organization_id": "uspto",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:53.172223+00:00",
+      "generation_id": "gen-1794508757-lAT0MuZAZGwWNHe4j3Wy"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:22.723463+00:00",
+      "generation_id": "gen-1794508810-VvyNno9nLSdKaghbdEaf"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:58.671045+00:00",
+      "generation_id": "gen-1794508843-Wbbsk4HglZsAMwmMCuo7"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s22",
+   "date": "2026-03-25",
+   "url": "https://docs.house.gov/meetings/JU/JU03/20260325/119088/HHRG-119-JU03-Wstate-SquiresJ-20260325.pdf",
+   "text": "Through a combination of improving application forms, increasing examining attorney output, and incorporating AI and automation, the USPTO is making progress in bringing down the unexamined inventory and expects to make even more progress in the coming months.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "John A. Squires",
+    "organization_id": "uspto",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:53.172223+00:00",
+      "generation_id": "gen-1794508757-lAT0MuZAZGwWNHe4j3Wy"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:22.723463+00:00",
+      "generation_id": "gen-1794508810-VvyNno9nLSdKaghbdEaf"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:58.671045+00:00",
+      "generation_id": "gen-1794508843-Wbbsk4HglZsAMwmMCuo7"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s23",
+   "date": "2026-03-25",
+   "url": "https://docs.house.gov/meetings/JU/JU03/20260325/119088/HHRG-119-JU03-Wstate-SquiresJ-20260325.pdf",
+   "text": "AI is rapidly reshaping innovation across sectors, from healthcare and finance to advanced manufacturing, and national security. Effective IP policy is essential to ensure that AI-driven inventions are protected, with clear and balanced IP frameworks that promote legal certainty for innovators and business navigating emerging technologies.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "John A. Squires",
+    "organization_id": "uspto",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {
+     "agi_pilled": 2
+    },
+    "topics": [
+     "other",
+     "copyright"
+    ],
+    "confidence": {},
+    "escalated": [
+     "agi_pilled"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:53.172223+00:00",
+      "generation_id": "gen-1794508757-lAT0MuZAZGwWNHe4j3Wy"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 2
+      },
+      "topics": [
+       "AGI/transformative",
+       "copyright"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:22.723463+00:00",
+      "generation_id": "gen-1794508810-VvyNno9nLSdKaghbdEaf"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "copyright",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:58.671045+00:00",
+      "generation_id": "gen-1794508843-Wbbsk4HglZsAMwmMCuo7"
+     },
+     "sol": {
+      "labels": {
+       "agi_pilled": 2
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "copyright"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T18:41:10.592230+00:00",
+      "generation_id": "gen-1794508865-xIlIknphnHjCoCODif1a"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s24",
+   "date": "2026-03-25",
+   "url": "https://docs.house.gov/meetings/JU/JU03/20260325/119088/HHRG-119-JU03-Wstate-SquiresJ-20260325.pdf",
+   "text": "For example, in November 2025, the USPTO issued revised inventorship guidance specific to AI-assisted inventions. The revised guidance provided certainty by making clear that the same legal standard applies for all inventions regardless of whether AI was used.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "John A. Squires",
+    "organization_id": "uspto",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other",
+     "copyright"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:53.172223+00:00",
+      "generation_id": "gen-1794508757-lAT0MuZAZGwWNHe4j3Wy"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "copyright"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:22.723463+00:00",
+      "generation_id": "gen-1794508810-VvyNno9nLSdKaghbdEaf"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "copyright",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:58.671045+00:00",
+      "generation_id": "gen-1794508843-Wbbsk4HglZsAMwmMCuo7"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s25",
+   "date": "2026-03-25",
+   "url": "https://docs.house.gov/meetings/JU/JU03/20260325/119088/HHRG-119-JU03-Wstate-SquiresJ-20260325.pdf",
+   "text": "In furtherance of my AI IP policy agenda, I established a new AI Policy Working Group (AIPWG) made up of AI policy experts across the USPTO.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "John A. Squires",
+    "organization_id": "uspto",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:53.172223+00:00",
+      "generation_id": "gen-1794508757-lAT0MuZAZGwWNHe4j3Wy"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "copyright"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:22.723463+00:00",
+      "generation_id": "gen-1794508810-VvyNno9nLSdKaghbdEaf"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:58.671045+00:00",
+      "generation_id": "gen-1794508843-Wbbsk4HglZsAMwmMCuo7"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s26",
+   "date": "2026-03-25",
+   "url": "https://docs.house.gov/meetings/JU/JU03/20260325/119088/HHRG-119-JU03-Wstate-SquiresJ-20260325.pdf",
+   "text": "The AIPWG objectives include: (1) reporting on USPTO IP policy issues, programs, and initiatives; (2) tracking pending AI legal policy issues and initiatives; and (3) identifying future and emerging AI IP Issues.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "John A. Squires",
+    "organization_id": "uspto",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:53.172223+00:00",
+      "generation_id": "gen-1794508757-lAT0MuZAZGwWNHe4j3Wy"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "copyright"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:22.723463+00:00",
+      "generation_id": "gen-1794508810-VvyNno9nLSdKaghbdEaf"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:58.671045+00:00",
+      "generation_id": "gen-1794508843-Wbbsk4HglZsAMwmMCuo7"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s27",
+   "date": "2026-03-25",
+   "url": "https://docs.house.gov/meetings/JU/JU03/20260325/119088/HHRG-119-JU03-Wstate-SquiresJ-20260325.pdf",
+   "text": "The AIPWG is also instrumental in driving US AI policy in the myriad of multilateral IP fora that we participate in including the World Intellectual Property Organization, the G7, the IP5 Cooperation (a cooperation of the USPTO, the European Patent Office, the Japan Patent Office, South Korea’s Ministry of Intellectual Property and the China National Intellectual Property Administration), and the Trilateral Cooperation (a cooperation of only the USPTO, the European Patent Office, and the Japan Patent Office).",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "John A. Squires",
+    "organization_id": "uspto",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "china_race": 1
+    },
+    "b": {
+     "china_race": 1
+    },
+    "topics": [
+     "China/competition",
+     "copyright"
+    ],
+    "confidence": {
+     "china_race": 2.0
+    },
+    "escalated": [
+     "china_race"
+    ],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:53.172223+00:00",
+      "generation_id": "gen-1794508757-lAT0MuZAZGwWNHe4j3Wy"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "copyright"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:22.723463+00:00",
+      "generation_id": "gen-1794508810-VvyNno9nLSdKaghbdEaf"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 2
+      },
+      "topics": [
+       "China/competition",
+       "copyright"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:58.671045+00:00",
+      "generation_id": "gen-1794508843-Wbbsk4HglZsAMwmMCuo7"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 1
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "copyright"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-12T18:41:10.592230+00:00",
+      "generation_id": "gen-1794508865-xIlIknphnHjCoCODif1a"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s28",
+   "date": "2026-03-25",
+   "url": "https://docs.house.gov/meetings/JU/JU03/20260325/119088/HHRG-119-JU03-Wstate-SquiresJ-20260325.pdf",
+   "text": "In October 2025, the USPTO hosted the 43 rd Trilateral Conference, where the participating Offices agreed to create a Trilateral AI Working Group to collaborate on an AI Vision and shared AI IP goals.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "John A. Squires",
+    "organization_id": "uspto",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:53.172223+00:00",
+      "generation_id": "gen-1794508757-lAT0MuZAZGwWNHe4j3Wy"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "copyright"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:22.723463+00:00",
+      "generation_id": "gen-1794508810-VvyNno9nLSdKaghbdEaf"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:58.671045+00:00",
+      "generation_id": "gen-1794508843-Wbbsk4HglZsAMwmMCuo7"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s29",
+   "date": "2026-03-25",
+   "url": "https://docs.house.gov/meetings/JU/JU03/20260325/119088/HHRG-119-JU03-Wstate-SquiresJ-20260325.pdf",
+   "text": "In March 2026, the USPTO established an Emerging Technologies Office in San Francisco as part of our efforts to advance the use of artificial intelligence and engage with the AI industry. For this initiative, the USPTO is working with our partners in ITA. This office has three objectives: (1) to convene stakeholders in AI; (2) to promote AI companies to do business with the government, and (3) to help U.S. companies export AI to other countries.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "John A. Squires",
+    "organization_id": "uspto",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:53.172223+00:00",
+      "generation_id": "gen-1794508757-lAT0MuZAZGwWNHe4j3Wy"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:22.723463+00:00",
+      "generation_id": "gen-1794508810-VvyNno9nLSdKaghbdEaf"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:58.671045+00:00",
+      "generation_id": "gen-1794508843-Wbbsk4HglZsAMwmMCuo7"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s30",
+   "date": "2026-03-25",
+   "url": "https://docs.house.gov/meetings/JU/JU03/20260325/119088/HHRG-119-JU03-Wstate-SquiresJ-20260325.pdf",
+   "text": "The USPTO has been at the forefront of AI adoption in the federal space for several years. AI technology can fuel new efficiency in the patent examination process and ensure consistency in patent workflows.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "John A. Squires",
+    "organization_id": "uspto",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:53.172223+00:00",
+      "generation_id": "gen-1794508757-lAT0MuZAZGwWNHe4j3Wy"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:22.723463+00:00",
+      "generation_id": "gen-1794508810-VvyNno9nLSdKaghbdEaf"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:58.671045+00:00",
+      "generation_id": "gen-1794508843-Wbbsk4HglZsAMwmMCuo7"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s31",
+   "date": "2026-03-25",
+   "url": "https://docs.house.gov/meetings/JU/JU03/20260325/119088/HHRG-119-JU03-Wstate-SquiresJ-20260325.pdf",
+   "text": "deployment of a risk framework to ensure AI use cases align with technology guardrails, meets mission demands, and produces tangible outcomes",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "John A. Squires",
+    "organization_id": "uspto",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "regulation"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:53.172223+00:00",
+      "generation_id": "gen-1794508757-lAT0MuZAZGwWNHe4j3Wy"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:22.723463+00:00",
+      "generation_id": "gen-1794508810-VvyNno9nLSdKaghbdEaf"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:58.671045+00:00",
+      "generation_id": "gen-1794508843-Wbbsk4HglZsAMwmMCuo7"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s32",
+   "date": "2026-03-25",
+   "url": "https://docs.house.gov/meetings/JU/JU03/20260325/119088/HHRG-119-JU03-Wstate-SquiresJ-20260325.pdf",
+   "text": "investing in artificial intelligence (AI) to improve examination and our information technology (IT) infrastructure",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "John A. Squires",
+    "organization_id": "uspto",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+     "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:53.172223+00:00",
+      "generation_id": "gen-1794508757-lAT0MuZAZGwWNHe4j3Wy"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:22.723463+00:00",
+      "generation_id": "gen-1794508810-VvyNno9nLSdKaghbdEaf"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:58.671045+00:00",
+      "generation_id": "gen-1794508843-Wbbsk4HglZsAMwmMCuo7"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+      "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
      }
     }
    }
@@ -1990,12 +3586,12 @@
    "date": "2026-03-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 1.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 1.0,
     "regulation": null
    },
-   "n_statements": 6,
+   "n_statements": 24,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2003,12 +3599,12 @@
    "date": "2026-04-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 1.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 1.0,
     "regulation": null
    },
-   "n_statements": 6,
+   "n_statements": 24,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2016,12 +3612,12 @@
    "date": "2026-05-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 1.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 1.0,
     "regulation": null
    },
-   "n_statements": 6,
+   "n_statements": 24,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2029,12 +3625,12 @@
    "date": "2026-06-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 1.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 1.0,
     "regulation": null
    },
-   "n_statements": 6,
+   "n_statements": 24,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2042,12 +3638,12 @@
    "date": "2026-07-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 1.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 1.0,
     "regulation": null
    },
-   "n_statements": 6,
+   "n_statements": 24,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2055,12 +3651,12 @@
    "date": "2026-08-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 1.0,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 1.0,
     "regulation": null
    },
-   "n_statements": 6,
+   "n_statements": 24,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2068,12 +3664,12 @@
    "date": "2026-09-30",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 1.0,
     "x_risk": null,
-    "china_race": 1.0,
+    "china_race": 1.5,
     "regulation": null
    },
-   "n_statements": 9,
+   "n_statements": 27,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2081,12 +3677,12 @@
    "date": "2026-10-31",
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 1.0,
     "x_risk": null,
-    "china_race": 1.0,
+    "china_race": 1.5,
     "regulation": null
    },
-   "n_statements": 9,
+   "n_statements": 27,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2117,5 +3713,19 @@
    "kind": "observed"
   }
  ],
- "changes": []
+ "changes": [
+  {
+   "id": "exec_john_a_squires",
+   "date": "2026-11-12",
+   "dimension": "china_race",
+   "old": 1.0,
+   "new": 1.5,
+   "kind": "small",
+   "cause": "evidence or assessment changed",
+   "sids": [
+    "s5",
+    "s27"
+   ]
+  }
+ ]
 }

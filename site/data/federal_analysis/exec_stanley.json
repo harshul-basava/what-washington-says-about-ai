@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "exec_stanley",
- "revision": "70c0ded46ac95857a6c9d73ca0f315e710a2e9a17e248330f9c5b7f27a70e701",
+ "revision": "47f0b3d12cee8b24b919f22245460a2415a54050f4464f09e4bf4e3a383ec347",
  "profile": {
   "id": "exec_stanley",
   "name": "Cameron Stanley",
@@ -71,77 +71,100 @@
     }
    }
   },
-  "n_statements": 2,
-  "n_labeled": 2,
+  "n_statements": 10,
+  "n_labeled": 10,
   "scores": {
    "ai_overall": null,
    "agi_pilled": null,
    "x_risk": null,
-   "china_race": null,
+   "china_race": 3.0,
    "regulation": null
   },
   "score_details": {
    "ai_overall": {
     "score": null,
-    "reason_a": "insufficient_evidence",
-    "reason_b": "insufficient_evidence",
+    "reason_a": "no_statements",
+    "reason_b": "no_statements",
     "sids": [],
     "label_count": 0
    },
    "agi_pilled": {
     "score": null,
-    "reason_a": "insufficient_evidence",
-    "reason_b": "insufficient_evidence",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "x_risk": {
     "score": null,
-    "reason_a": "insufficient_evidence",
-    "reason_b": "insufficient_evidence",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "china_race": {
-    "score": null,
-    "reason_a": "insufficient_evidence",
-    "reason_b": "insufficient_evidence",
-    "sids": [],
-    "label_count": 0
+    "score": 3.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s7"
+    ],
+    "label_count": 3
    },
    "regulation": {
     "score": null,
-    "reason_a": "insufficient_evidence",
-    "reason_b": "insufficient_evidence",
+    "reason_a": "no_statements",
+    "reason_b": "no_statements",
     "sids": [],
     "label_count": 0
    }
   },
   "summary": {
    "status": "complete",
-   "text": "Cameron Stanley was reported saying, “You don’t need to use an F-35 to deliver the mail.” He was also reported saying that the U.S. tech sector is ahead and “is going to stay ahead.”",
+   "text": "On May 14, 2026, Cameron Stanley described the Department of War’s January 12, 2026 AI Acceleration Strategy as laying out how CDAO will integrate AI across warfighting, enterprise, and intelligence functions in support of the National Defense Strategy. He also said CDAO must leverage commercial innovation rather than compete with or outspend the private sector, and he cited reduced Other Transaction Authority contract timelines since the July 2025 AI Action Plan. Stanley described the AI Arsenal as a modular ecosystem with a three-tiered deployment strategy intended to make compute available at the right place and time, and said its primary benefit is speed. He also described GenAI.mil as CDAO’s official platform for frontier AI capabilities, citing over 1.2 million users and more than 60,000 deployed AI agents.",
    "sids": [
-    "s1",
-    "s2"
+    "s3",
+    "s4",
+    "s5",
+    "s8",
+    "s9",
+    "s10"
    ],
    "sentences": [
     {
-     "text": "Cameron Stanley was reported saying, “You don’t need to use an F-35 to deliver the mail.”",
+     "text": "On May 14, 2026, Cameron Stanley described the Department of War’s January 12, 2026 AI Acceleration Strategy as laying out how CDAO will integrate AI across warfighting, enterprise, and intelligence functions in support of the National Defense Strategy.",
      "sids": [
-      "s1"
+      "s3"
      ]
     },
     {
-     "text": "He was also reported saying that the U.S. tech sector is ahead and “is going to stay ahead.”",
+     "text": "He also said CDAO must leverage commercial innovation rather than compete with or outspend the private sector, and he cited reduced Other Transaction Authority contract timelines since the July 2025 AI Action Plan.",
      "sids": [
-      "s2"
+      "s4",
+      "s5"
+     ]
+    },
+    {
+     "text": "Stanley described the AI Arsenal as a modular ecosystem with a three-tiered deployment strategy intended to make compute available at the right place and time, and said its primary benefit is speed.",
+     "sids": [
+      "s8",
+      "s9"
+     ]
+    },
+    {
+     "text": "He also described GenAI.mil as CDAO’s official platform for frontier AI capabilities, citing over 1.2 million users and more than 60,000 deployed AI agents.",
+     "sids": [
+      "s10"
      ]
     }
    ]
   },
   "topics": {
-   "other": 1.0,
-   "China/competition": 1.0
+   "other": 2.5,
+   "China/competition": 2.167,
+   "national security": 3.167,
+   "jobs/economy": 0.5,
+   "energy/data centers": 1.667
   },
   "regulation": {
    "status": "complete",
@@ -263,6 +286,20 @@
     }
    },
    "disputed": []
+  },
+  "stance_review": {
+   "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+   "dimension": "ai_overall",
+   "status": "complete",
+   "reason": "The supplied excerpts concern defense applications, procurement, infrastructure, commercial innovation, and technological competition rather than AI’s overall effects on Americans. None establishes an ai_overall stance. The source for s1 is explicitly unavailable, leaving its analogy’s context unresolved; the excerpt alone does not support a general AI assessment.",
+   "confidence": 4,
+   "n_statements": 10,
+   "n_contexts": 1,
+   "accepted_sids": [],
+   "finding_count": 0,
+   "model": "openai/gpt-6-astra",
+   "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+   "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
   }
  },
  "statements": [
@@ -288,8 +325,22 @@
     ],
     "confidence": {},
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+     "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -321,6 +372,18 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-09T03:09:05.382298+00:00",
       "generation_id": "gen-1794193741-8JH4C0WUJ9be7BJqZBuq"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+      "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
      }
     }
    }
@@ -347,8 +410,22 @@
     ],
     "confidence": {},
     "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+     "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
+    },
     "models": {
-     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
     },
     "assessments": {
      "ds_0": {
@@ -380,6 +457,787 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-09T03:09:05.382298+00:00",
       "generation_id": "gen-1794193741-8JH4C0WUJ9be7BJqZBuq"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+      "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s3",
+   "date": "2026-05-14",
+   "url": "https://docs.house.gov/meetings/AS/AS35/20260514/119184/HHRG-119-AS35-Wstate-StanleyC-20260514.pdf",
+   "text": "On January 12, 2026, the Department of War released its AI Acceleration Strategy, laying out how CDAO will integrate AI across warfighting, enterprise, and intelligence functions in support of the aims of our National Defense Strategy: defending the homeland, deterring China in the Indo-Pacific, strengthening alliances, and supercharging the defense industrial base.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Cameron Stanley",
+    "organization_id": "cdao",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "china_race": 2
+    },
+    "b": {
+     "china_race": 2
+    },
+    "topics": [
+     "China/competition",
+     "national security"
+    ],
+    "confidence": {
+     "china_race": 3.33
+    },
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+     "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:20.078298+00:00",
+      "generation_id": "gen-1794508744-qd8xRyInjwBCI2aVIL2z"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:06.267958+00:00",
+      "generation_id": "gen-1794508799-i9n76Ii7yEmF3WGcfcSD"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "national security",
+       "China/competition"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:43.426001+00:00",
+      "generation_id": "gen-1794508833-mqJIOmWDGoQOctY3PeyA"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+      "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s4",
+   "date": "2026-05-14",
+   "url": "https://docs.house.gov/meetings/AS/AS35/20260514/119184/HHRG-119-AS35-Wstate-StanleyC-20260514.pdf",
+   "text": "First, American economic history teaches us that the Department must leverage – not compete with – commercial innovation. In 2025 alone, frontier AI labs raised over $120 billion, and private sector capital expenditure on AI infrastructure exceeded $400 billion. CDAO must not outspend our thriving entrepreneurial ecosystem but instead harness its economic and technological dynamism for national defense.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Cameron Stanley",
+    "organization_id": "cdao",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "jobs/economy",
+     "national security"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+     "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:20.078298+00:00",
+      "generation_id": "gen-1794508744-qd8xRyInjwBCI2aVIL2z"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:06.267958+00:00",
+      "generation_id": "gen-1794508799-i9n76Ii7yEmF3WGcfcSD"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "jobs/economy",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:43.426001+00:00",
+      "generation_id": "gen-1794508833-mqJIOmWDGoQOctY3PeyA"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+      "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s5",
+   "date": "2026-05-14",
+   "url": "https://docs.house.gov/meetings/AS/AS35/20260514/119184/HHRG-119-AS35-Wstate-StanleyC-20260514.pdf",
+   "text": "For example, since the President’s AI Action Plan in July 2025, CDAO has reduced timelines for awarding Other Transaction Authority (OTA) contracts from years to as little as 45 days.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Cameron Stanley",
+    "organization_id": "cdao",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+     "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:20.078298+00:00",
+      "generation_id": "gen-1794508744-qd8xRyInjwBCI2aVIL2z"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:06.267958+00:00",
+      "generation_id": "gen-1794508799-i9n76Ii7yEmF3WGcfcSD"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:43.426001+00:00",
+      "generation_id": "gen-1794508833-mqJIOmWDGoQOctY3PeyA"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+      "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s6",
+   "date": "2026-05-14",
+   "url": "https://docs.house.gov/meetings/AS/AS35/20260514/119184/HHRG-119-AS35-Wstate-StanleyC-20260514.pdf",
+   "text": "The final lesson comes from our adversaries. In recent decades, experts estimate that the Chinese state has invested upwards of $150–300 billion in the energy and compute infrastructure that underpins AI, compared to tens of billions in coordinated federal investment in the United States.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Cameron Stanley",
+    "organization_id": "cdao",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "china_race": 2
+    },
+    "b": {
+     "china_race": 2
+    },
+    "topics": [
+     "China/competition",
+     "energy/data centers",
+     "national security"
+    ],
+    "confidence": {
+     "china_race": 3.33
+    },
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+     "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:20.078298+00:00",
+      "generation_id": "gen-1794508744-qd8xRyInjwBCI2aVIL2z"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:06.267958+00:00",
+      "generation_id": "gen-1794508799-i9n76Ii7yEmF3WGcfcSD"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 2
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:43.426001+00:00",
+      "generation_id": "gen-1794508833-mqJIOmWDGoQOctY3PeyA"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+      "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s7",
+   "date": "2026-05-14",
+   "url": "https://docs.house.gov/meetings/AS/AS35/20260514/119184/HHRG-119-AS35-Wstate-StanleyC-20260514.pdf",
+   "text": "Our adversaries understand where their only advantage lies. The United States Armed Forces excel at adoption and fielding; their only winning strategy is to compete by controlling the means of AI production. DoW’s response is simple: as we speak the Department is commanding its immense resources and requirements to co-invest in joint infrastructure projects, transcend Title 10 and Title 50 stovepipes, and break ground on energy and AI infrastructure projects on the 640 million acres of DOW-owned federal land in alignment with the Department of Energy’s Genesis Mission, the Intelligence Community, and the rest of the interagency.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Cameron Stanley",
+    "organization_id": "cdao",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "china_race": 3
+    },
+    "b": {
+     "china_race": 3
+    },
+    "topics": [
+     "China/competition",
+     "energy/data centers",
+     "national security"
+    ],
+    "confidence": {
+     "china_race": 3.67
+    },
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+     "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:20.078298+00:00",
+      "generation_id": "gen-1794508744-qd8xRyInjwBCI2aVIL2z"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 3
+      },
+      "topics": [
+       "China/competition",
+       "national security",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:06.267958+00:00",
+      "generation_id": "gen-1794508799-i9n76Ii7yEmF3WGcfcSD"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3
+      },
+      "confidence": {
+       "china_race": 4
+      },
+      "topics": [
+       "China/competition",
+       "energy/data centers",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:43.426001+00:00",
+      "generation_id": "gen-1794508833-mqJIOmWDGoQOctY3PeyA"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+      "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s8",
+   "date": "2026-05-14",
+   "url": "https://docs.house.gov/meetings/AS/AS35/20260514/119184/HHRG-119-AS35-Wstate-StanleyC-20260514.pdf",
+   "text": "Together, the United States Government is building the AI Arsenal—a modular ecosystem with a three-tiered deployment strategy to ensure that compute power is available at the right place at the right time.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Cameron Stanley",
+    "organization_id": "cdao",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "national security",
+     "energy/data centers"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+     "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:20.078298+00:00",
+      "generation_id": "gen-1794508744-qd8xRyInjwBCI2aVIL2z"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:06.267958+00:00",
+      "generation_id": "gen-1794508799-i9n76Ii7yEmF3WGcfcSD"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:43.426001+00:00",
+      "generation_id": "gen-1794508833-mqJIOmWDGoQOctY3PeyA"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+      "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s9",
+   "date": "2026-05-14",
+   "url": "https://docs.house.gov/meetings/AS/AS35/20260514/119184/HHRG-119-AS35-Wstate-StanleyC-20260514.pdf",
+   "text": "The primary benefit of AI Arsenal’s approach is speed. The Department will no longer wait 3–5 years for new infrastructure to come online. Instead, as DoW builds out our Tier 1 infrastructure on federal land, it is simultaneously collaborating with industry to leverage compute capacity that is already available today, optimizing our investments and timeline.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Cameron Stanley",
+    "organization_id": "cdao",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "energy/data centers",
+     "national security"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+     "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:20.078298+00:00",
+      "generation_id": "gen-1794508744-qd8xRyInjwBCI2aVIL2z"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:06.267958+00:00",
+      "generation_id": "gen-1794508799-i9n76Ii7yEmF3WGcfcSD"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:43.426001+00:00",
+      "generation_id": "gen-1794508833-mqJIOmWDGoQOctY3PeyA"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+      "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s10",
+   "date": "2026-05-14",
+   "url": "https://docs.house.gov/meetings/AS/AS35/20260514/119184/HHRG-119-AS35-Wstate-StanleyC-20260514.pdf",
+   "text": "CDAO’s enterprise PSPs include GenAI.mil, the Department’s official platform for frontier AI capabilities, which has scaled to over 1.2 million users and delivered training to more than 30,000 personnel. Through its Agent Factory, the platform has deployed over 60,000 AI agents across the Department. Whether querying the U.S. Code to meet legislative requirements in record time or providing real-time guidance on the law of armed conflict, these agents are replacing static manuals with dynamic, responsible tools that improve effectiveness, reduce costs, and enhance security.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "personal",
+    "speaker": "Cameron Stanley",
+    "organization_id": "cdao",
+    "basis": "document_author",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "national security",
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "stance_review": {
+     "reviewed_dimension": "ai_overall",
+     "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+     "decision": "no_stance",
+     "labels": {},
+     "confidence": {},
+     "review_confidence": 4,
+     "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+     "accepted": false,
+     "model": "openai/gpt-6-astra",
+     "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+     "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
+    },
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "astra_stance_review": "openai/gpt-6-astra"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:39:20.078298+00:00",
+      "generation_id": "gen-1794508744-qd8xRyInjwBCI2aVIL2z"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:06.267958+00:00",
+      "generation_id": "gen-1794508799-i9n76Ii7yEmF3WGcfcSD"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-12T18:40:43.426001+00:00",
+      "generation_id": "gen-1794508833-mqJIOmWDGoQOctY3PeyA"
+     },
+     "astra_stance_review": {
+      "reviewed_dimension": "ai_overall",
+      "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+      "decision": "no_stance",
+      "labels": {},
+      "confidence": {},
+      "review_confidence": 4,
+      "reason": "Astra found no qualifying AI overall stance in this excerpt.",
+      "model": "openai/gpt-6-astra",
+      "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+      "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
      }
     }
    }
@@ -912,11 +1770,11 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 8,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -925,11 +1783,11 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 8,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -938,11 +1796,11 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 8,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -951,11 +1809,11 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 8,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -964,11 +1822,11 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 8,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -977,11 +1835,11 @@
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
-   "n_statements": 0,
-   "status": "no_evidence",
+   "n_statements": 8,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {

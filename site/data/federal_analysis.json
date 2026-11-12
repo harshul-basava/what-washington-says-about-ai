@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "built_on": "2026-11-12",
- "revision": "70c0ded46ac95857a6c9d73ca0f315e710a2e9a17e248330f9c5b7f27a70e701",
+ "revision": "47f0b3d12cee8b24b919f22245460a2415a54050f4464f09e4bf4e3a383ec347",
  "dimensions": [
   {
    "id": "ai_overall",
@@ -165,17 +165,13 @@
  },
  "coverage": {
   "profiles": 535,
-  "statements": 5834,
-  "labeled_statements": 5813,
-  "pending_labels": 21,
-  "pending_regulation": 11,
-  "pending_summaries": 11,
-  "pending_stages": {
-   "ds_0": 21,
-   "ds_1": 21,
-   "ds_2": 21
-  },
-  "status": "partial"
+  "statements": 5872,
+  "labeled_statements": 5872,
+  "pending_labels": 0,
+  "pending_regulation": 0,
+  "pending_summaries": 0,
+  "pending_stages": {},
+  "status": "ok"
  },
  "roster_coverage": {
   "status": "available",
@@ -14225,8 +14221,8 @@
   "summary": {
    "people": 500,
    "institutions": 35,
-   "statements": 5834,
-   "unique_source_pages": 3891,
+   "statements": 5872,
+   "unique_source_pages": 3898,
    "official_source_pages_checked": 743,
    "people_median_statements": 1.0,
    "people_without_evidence": 237,
@@ -16980,7 +16976,7 @@
    "party": null,
    "state": "",
    "chamber": "",
-   "status": "partial",
+   "status": "complete",
    "entity_type": "person",
    "branch": "executive",
    "organization_id": "white_house",
@@ -17034,70 +17030,282 @@
     }
    },
    "n_statements": 115,
-   "n_labeled": 113,
+   "n_labeled": 115,
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 3.0,
+    "agi_pilled": 2.5,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.5,
+    "regulation": 1.5
    },
    "score_details": {
     "ai_overall": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 3.0,
+     "reason_a": "median_of_8",
+     "reason_b": "median_of_8",
+     "sids": [
+      "s17",
+      "s12",
+      "s84",
+      "s89"
+     ],
+     "label_count": 11
     },
     "agi_pilled": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 2.5,
+     "reason_a": "one_off_capped",
+     "reason_b": "consistent",
+     "sids": [
+      "s72",
+      "s31",
+      "s77",
+      "s28"
+     ],
+     "label_count": 12
     },
     "x_risk": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "china_race": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 3.5,
+     "reason_a": "one_off_capped",
+     "reason_b": "consistent",
+     "sids": [
+      "s92",
+      "s65"
+     ],
+     "label_count": 33
     },
     "regulation": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 1.5,
+     "reason_a": "consistent",
+     "reason_b": "one_off_capped",
+     "sids": [
+      "s7",
+      "s70",
+      "s5"
+     ],
+     "label_count": 31
     }
    },
    "summary": {
-    "status": "pending",
-    "text": "",
-    "sids": []
+    "status": "complete",
+    "text": "On July 23, 2025, Trump described American AI as contributing to a richer and stronger country and called for a federal standard superseding state rules. On June 2, 2026, he paired AI's contribution to national strength with security considerations, directed development of a voluntary developer framework, and excluded mandatory model licensing under that section. On September 29, 2026, he predicted broadly positive AI outcomes and expressed confidence in industry self-policing and enforcement against misuse.",
+    "sids": [
+     "s28",
+     "s87",
+     "s67",
+     "s61",
+     "s62",
+     "s12",
+     "s15",
+     "s17"
+    ],
+    "sentences": [
+     {
+      "text": "On July 23, 2025, Trump described American AI as contributing to a richer and stronger country and called for a federal standard superseding state rules.",
+      "sids": [
+       "s28",
+       "s87"
+      ]
+     },
+     {
+      "text": "On June 2, 2026, he paired AI's contribution to national strength with security considerations, directed development of a voluntary developer framework, and excluded mandatory model licensing under that section.",
+      "sids": [
+       "s67",
+       "s61",
+       "s62"
+      ]
+     },
+     {
+      "text": "On September 29, 2026, he predicted broadly positive AI outcomes and expressed confidence in industry self-policing and enforcement against misuse.",
+      "sids": [
+       "s12",
+       "s15",
+       "s17"
+      ]
+     }
+    ]
    },
    "topics": {
-    "China/competition": 20.833,
-    "other": 15.5,
-    "regulation": 25.333,
+    "China/competition": 21.333,
+    "other": 16.0,
+    "regulation": 25.833,
     "AGI/transformative": 12.833,
     "energy/data centers": 9.333,
     "jobs/economy": 8.667,
-    "national security": 18.667,
+    "national security": 19.167,
     "copyright": 1.5,
     "misuse (bio/cyber)": 0.333
    },
    "regulation": {
-    "status": "pending",
-    "areas": {}
+    "status": "complete",
+    "areas": {
+     "kids_chatbots": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "deepfakes": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "election_ads": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "labeling": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "layoff_reporting": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "bias_audits": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "training_consent": {
+      "stance": -2,
+      "sids": [
+       "s103",
+       "s104"
+      ],
+      "why": "Trump says AI should learn from articles and books without paying or negotiating contracts, opposing consent or pay for training data."
+     },
+     "preemption": {
+      "stance": 2,
+      "sids": [
+       "s4",
+       "s87",
+       "s75"
+      ],
+      "why": "Trump explicitly calls for one federal AI standard that supersedes state regulation."
+     },
+     "chips": {
+      "stance": -2,
+      "sids": [
+       "s90",
+       "s91",
+       "s107"
+      ],
+      "why": "Trump criticizes AI export restrictions and signed an order to expand chip and AI exports, opposing stricter controls."
+     },
+     "testing_mandate": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "transparency": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "whistleblowers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "liability": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "misuse": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "nuclear": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "autonomous_weapons": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "licensing": {
+      "stance": -2,
+      "sids": [
+       "s62"
+      ],
+      "why": "Trump's order explicitly bars mandatory governmental licensing, preclearance, or permitting for AI models."
+     },
+     "intl_agreement": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "rsi": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_moratorium": {
+      "stance": 0,
+      "sids": [],
+      "why": "Supports data center construction, but does not explicitly reject a construction pause or moratorium in the supplied evidence."
+     },
+     "dc_ratepayers": {
+      "stance": 0,
+      "sids": [],
+      "why": "Allows companies to build their own power plants, but does not propose or oppose rules requiring data centers rather than households to bear power costs."
+     },
+     "pause": {
+      "stance": 0,
+      "sids": [],
+      "why": "Promotes AI growth and criticizes restrictive regulation, but does not specifically address a pause or slowdown on frontier AI development."
+     },
+     "superintelligence": {
+      "stance": 0,
+      "sids": [],
+      "why": "Promotes the term and leadership in 'Super Intelligence,' but does not address a ban on building AI smarter than humans at nearly everything."
+     }
+    },
+    "disputed": [
+     "dc_moratorium",
+     "dc_ratepayers",
+     "pause",
+     "superintelligence"
+    ]
+   },
+   "stance_review": {
+    "review_id": "9a598100f8f8c8f252bf275d14e2efa20db8f177d6c02911be1e4ce885b7f5e9",
+    "dimension": "ai_overall",
+    "status": "complete",
+    "reason": "The supplied evidence establishes a predominantly optimistic general outlook, sometimes accompanied by safety qualifications. Most excerpts instead concern competition, regulation, infrastructure, terminology, or particular applications and do not independently establish an overall stance. Supplied source context resolves the ambiguous exchanges reviewed here; findings do not transfer other speakers' views to Trump or assign dates to undated excerpts.",
+    "confidence": 4,
+    "n_statements": 115,
+    "n_contexts": 44,
+    "accepted_sids": [
+     "s12",
+     "s15",
+     "s17",
+     "s28",
+     "s30",
+     "s32",
+     "s59",
+     "s67",
+     "s77",
+     "s84",
+     "s89"
+    ],
+    "finding_count": 11,
+    "model": "openai/gpt-6-astra",
+    "assessed_at": "2026-11-12T18:47:09.456530+00:00",
+    "generation_id": "gen-1794509167-w9vxS1VXKlxXJOZgN6uh"
    }
   },
   {
@@ -17429,7 +17637,7 @@
    "party": null,
    "state": "",
    "chamber": "",
-   "status": "partial",
+   "status": "complete",
    "entity_type": "person",
    "branch": "executive",
    "organization_id": "ostp",
@@ -17506,72 +17714,302 @@
     }
    },
    "n_statements": 280,
-   "n_labeled": 278,
+   "n_labeled": 280,
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "ai_overall": 3.0,
+    "agi_pilled": 4.0,
+    "x_risk": 0.5,
+    "china_race": 3.0,
+    "regulation": 2.0
    },
    "score_details": {
     "ai_overall": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 3.0,
+     "reason_a": "median_of_9",
+     "reason_b": "median_of_9",
+     "sids": [
+      "s69",
+      "s86",
+      "s207",
+      "s190",
+      "s249"
+     ],
+     "label_count": 11
     },
     "agi_pilled": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 4.0,
+     "reason_a": "consistent",
+     "reason_b": "consistent",
+     "sids": [
+      "s35",
+      "s36",
+      "s206",
+      "s19",
+      "s17",
+      "s38"
+     ],
+     "label_count": 18
     },
     "x_risk": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 0.5,
+     "reason_a": "consistent",
+     "reason_b": "dismissive",
+     "sids": [
+      "s3",
+      "s159"
+     ],
+     "label_count": 2
     },
     "china_race": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 3.0,
+     "reason_a": "consistent",
+     "reason_b": "consistent",
+     "sids": [
+      "s42",
+      "s80",
+      "s10",
+      "s231",
+      "s230",
+      "s222"
+     ],
+     "label_count": 39
     },
     "regulation": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 2.0,
+     "reason_a": "consistent",
+     "reason_b": "consistent",
+     "sids": [
+      "s30",
+      "s271",
+      "s12",
+      "s4",
+      "s220",
+      "s257",
+      "s83"
+     ],
+     "label_count": 42
     }
    },
    "summary": {
-    "status": "pending",
-    "text": "",
-    "sids": []
+    "status": "complete",
+    "text": "In February 2026, Kratsios described AI as an opportunity for a historic revolution benefiting humanity and argued against prioritizing speculative risks over concrete opportunities. He advocated sector-specific regulation and rejected global AI governance in his February 2026 remarks. He also promoted AI-enabled scientific research, describing the Genesis Mission as a way to accelerate experiments, simulations, and discoveries. In June 2019, he wrote that advances in AI would grow the economy, strengthen national security, and improve quality of life.",
+    "sids": [
+     "s209",
+     "s3",
+     "s4",
+     "s13",
+     "s15",
+     "s275"
+    ],
+    "sentences": [
+     {
+      "text": "In February 2026, Kratsios described AI as an opportunity for a historic revolution benefiting humanity and argued against prioritizing speculative risks over concrete opportunities.",
+      "sids": [
+       "s209",
+       "s3"
+      ]
+     },
+     {
+      "text": "He advocated sector-specific regulation and rejected global AI governance in his February 2026 remarks.",
+      "sids": [
+       "s4",
+       "s13"
+      ]
+     },
+     {
+      "text": "He also promoted AI-enabled scientific research, describing the Genesis Mission as a way to accelerate experiments, simulations, and discoveries.",
+      "sids": [
+       "s15"
+      ]
+     },
+     {
+      "text": "In June 2019, he wrote that advances in AI would grow the economy, strengthen national security, and improve quality of life.",
+      "sids": [
+       "s275"
+      ]
+     }
+    ]
    },
    "topics": {
     "China/competition": 47.167,
-    "jobs/economy": 16.833,
-    "national security": 16.833,
+    "jobs/economy": 17.333,
+    "national security": 17.333,
     "regulation": 48.167,
     "x-risk/loss of control": 1.0,
     "kids/online safety": 2.333,
     "copyright": 2.167,
     "other": 115.333,
     "AGI/transformative": 14.833,
-    "energy/data centers": 12.833,
+    "energy/data centers": 13.833,
     "misuse (bio/cyber)": 0.5
    },
    "regulation": {
-    "status": "pending",
-    "areas": {}
+    "status": "complete",
+    "areas": {
+     "kids_chatbots": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "deepfakes": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "election_ads": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "labeling": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_moratorium": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_ratepayers": {
+      "stance": 1,
+      "sids": [
+       "s90",
+       "s119"
+      ],
+      "why": "He endorses data centers bringing or buying their own power and commits to AI expansion without raising Americans’ electricity prices, implying support for protecting households from those costs."
+     },
+     "layoff_reporting": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "training_consent": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "preemption": {
+      "stance": 2,
+      "sids": [
+       "s244",
+       "s86",
+       "s218"
+      ],
+      "why": "Explicitly calls for preemption of state AI regulations and a single federal AI framework."
+     },
+     "chips": {
+      "stance": 2,
+      "sids": [
+       "s222",
+       "s230",
+       "s231"
+      ],
+      "why": "Supports keeping top-end AI chips export-controlled and caps exports to the PRC."
+     },
+     "testing_mandate": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "transparency": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "whistleblowers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "liability": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "nuclear": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "autonomous_weapons": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "licensing": {
+      "stance": -2,
+      "sids": [
+       "s215"
+      ],
+      "why": "Explicitly says there should not be a new government AI agency."
+     },
+     "intl_agreement": {
+      "stance": -1,
+      "sids": [
+       "s207",
+       "s13",
+       "s40"
+      ],
+      "why": "Rejects global governance of AI and warns international dialogue must not drift toward it, implying opposition to binding international AI agreements."
+     },
+     "pause": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "rsi": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "bias_audits": {
+      "stance": 0,
+      "sids": [],
+      "why": "Criticism of 'woke AI' does not establish support for or opposition to discrimination-testing or bias-audit requirements."
+     },
+     "misuse": {
+      "stance": 0,
+      "sids": [],
+      "why": "The biological-risk screening excerpt does not establish a position on required safeguards; general cybersecurity advocacy also does not establish support for weapons-misuse rules."
+     },
+     "superintelligence": {
+      "stance": 0,
+      "sids": [],
+      "why": "Advocacy for developing and using superintelligence does not explicitly reject a ban, and no support for a ban appears in the supplied evidence."
+     }
+    },
+    "disputed": [
+     "bias_audits",
+     "misuse",
+     "superintelligence"
+    ]
+   },
+   "stance_review": {
+    "review_id": "df704179d86e6039743054b497c36b840ab881b1da9da8beeffd4c6d2e63c065",
+    "dimension": "ai_overall",
+    "status": "complete",
+    "reason": "The supplied evidence contains several clear general optimistic views of AI, including expectations of widespread prosperity and improved quality of life. Most other excerpts concern particular applications, governance, exports, competition, or announcements and do not independently establish an AI-overall stance. Supplied source context was reviewed only for its corresponding statements; other truncated excerpts were not expanded by inference. Historical evidence remains separately dated.",
+    "confidence": 4,
+    "n_statements": 280,
+    "n_contexts": 8,
+    "accepted_sids": [
+     "s3",
+     "s8",
+     "s41",
+     "s42",
+     "s69",
+     "s86",
+     "s190",
+     "s207",
+     "s209",
+     "s249",
+     "s275"
+    ],
+    "finding_count": 11,
+    "model": "openai/gpt-6-astra",
+    "assessed_at": "2026-11-12T18:50:21.119842+00:00",
+    "generation_id": "gen-1794509356-9OTAwM66g9PEI6se2ui2"
    }
   },
   {
@@ -18915,8 +19353,8 @@
      }
     }
    },
-   "n_statements": 55,
-   "n_labeled": 55,
+   "n_statements": 63,
+   "n_labeled": 63,
    "scores": {
     "ai_overall": 3.0,
     "agi_pilled": 3.0,
@@ -18976,37 +19414,39 @@
    },
    "summary": {
     "status": "complete",
-    "text": "On September 28, 2026, Michael endorsed engineering solutions to superintelligence safety concerns and predicted that new industries would develop around it. On October 4, 2026, he described superintelligence as transformative and said he wanted it to serve all Americans. On May 20, 2026, he advocated embedding AI in military systems to improve precision and decision-making, shorten conflicts, and protect warfighters.",
+    "text": "In May 2026, Michael advocated integrating AI into military decision-making, intelligence analysis, and departmental operations. In September 2026, he endorsed engineering solutions to AI safety concerns and predicted that new industries would emerge around superintelligence. In October 2026, he described his Super Intelligence Force role as helping secure American leadership and ensuring the technology serves all Americans.",
     "sids": [
+     "s58",
+     "s59",
      "s18",
-     "s17",
-     "s10"
+     "s17"
     ],
     "sentences": [
      {
-      "text": "On September 28, 2026, Michael endorsed engineering solutions to superintelligence safety concerns and predicted that new industries would develop around it.",
+      "text": "In May 2026, Michael advocated integrating AI into military decision-making, intelligence analysis, and departmental operations.",
+      "sids": [
+       "s58",
+       "s59"
+      ]
+     },
+     {
+      "text": "In September 2026, he endorsed engineering solutions to AI safety concerns and predicted that new industries would emerge around superintelligence.",
       "sids": [
        "s18"
       ]
      },
      {
-      "text": "On October 4, 2026, he described superintelligence as transformative and said he wanted it to serve all Americans.",
+      "text": "In October 2026, he described his Super Intelligence Force role as helping secure American leadership and ensuring the technology serves all Americans.",
       "sids": [
        "s17"
-      ]
-     },
-     {
-      "text": "On May 20, 2026, he advocated embedding AI in military systems to improve precision and decision-making, shorten conflicts, and protect warfighters.",
-      "sids": [
-       "s10"
       ]
      }
     ]
    },
    "topics": {
     "regulation": 6.0,
-    "other": 21.5,
-    "national security": 21.5,
+    "other": 24.5,
+    "national security": 26.5,
     "AGI/transformative": 2.5,
     "jobs/economy": 1.0,
     "China/competition": 2.5
@@ -19017,130 +19457,131 @@
      "kids_chatbots": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "No statement on limits on AI chatbots for minors."
      },
      "deepfakes": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "No statement on penalties for harmful deepfakes or likeness rights."
      },
      "election_ads": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "No statement on deceptive AI in election ads."
      },
      "labeling": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "No statement on labeling or watermarking AI content."
      },
      "dc_moratorium": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "No statement on pausing data center construction."
      },
      "dc_ratepayers": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "No statement on data centers paying power costs."
      },
      "layoff_reporting": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "No statement on reporting AI-caused layoffs."
      },
      "bias_audits": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "No statement on bias audits or discriminatory AI."
      },
      "training_consent": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "No statement on consent or payment for AI training data."
      },
      "chips": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "Export-control remarks (s7, s8) concern an AI model, not chip or chip-tool export controls."
      },
      "testing_mandate": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "No statement on mandatory safety testing; general 'red tape' and speed comments do not name testing rules."
      },
      "transparency": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "No statement on safety plans or incident reporting."
      },
      "whistleblowers": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "No statement on AI whistleblower protections."
      },
      "liability": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "No statement on developer liability for AI harms."
      },
      "misuse": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "No statement on safeguards against AI weapons help."
      },
      "nuclear": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "No statement on human control of nuclear launch."
      },
      "autonomous_weapons": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "He seeks partners for autonomous systems (s6) but does not address human-in-the-loop limits or bans on lethal autonomous weapons."
      },
      "licensing": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "No statement on licensing or a new AI agency; general anti-red-tape remarks do not name these."
      },
      "intl_agreement": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "No statement on an international AI safety agreement."
      },
      "pause": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "He urges speed and 'keep building,' but never addresses a pause or slowdown on frontier AI development."
      },
      "rsi": {
       "stance": 0,
       "sids": [],
-      "why": "No stance in the supplied evidence."
-     },
-     "superintelligence": {
-      "stance": 0,
-      "sids": [],
-      "why": "No stance in the supplied evidence."
+      "why": "No statement on limits on self-improving AI or automated research."
      },
      "preemption": {
       "stance": 0,
       "sids": [],
-      "why": "Concern about local rules slowing companies and support for congressional action do not establish support for overriding or suspending state AI laws."
+      "why": "Concern about local rules slowing companies and a preference for congressional action do not establish support for overriding state AI laws."
+     },
+     "superintelligence": {
+      "stance": 0,
+      "sids": [],
+      "why": "Encouragement to build a superintelligence ecosystem does not establish a position on a ban; no supplied statement explicitly rejects or supports such a ban."
      }
     },
     "disputed": [
-     "preemption"
+     "preemption",
+     "superintelligence"
     ]
    },
    "stance_review": {
-    "review_id": "569cd366dcff9c7058833822ca89e7d514f29b5ac4673e37a6aa7c8dd56e800c",
+    "review_id": "ad85a97c9a1ca788ce42845f12538736956a9a0464e3e60e22fb0534809bdef1",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "Two supplied full-post contexts support a general opportunity-oriented stance. Most other excerpts concern military applications, particular companies, regulation, or leadership ambitions rather than AI's overall effects on Americans. The manifest-destiny language in s52 remains framed around deployment and dominance without clearly establishing broader benefits. Several excerpts are truncated; their narrow claims do not independently establish an overall stance.",
+    "reason": "Two supplied complete X posts support a general opportunity-oriented stance. Most other statements concern military applications, particular companies, regulatory authority, or technological competition rather than AI's overall effects on Americans. The supplied contexts were reviewed only for their corresponding statement IDs; remaining short excerpts were assessed without inventing omitted material.",
     "confidence": 4,
-    "n_statements": 55,
+    "n_statements": 63,
     "n_contexts": 4,
     "accepted_sids": [
      "s17",
@@ -19148,8 +19589,8 @@
     ],
     "finding_count": 2,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-12T18:22:53.816618+00:00",
-    "generation_id": "gen-1794507750-jypQFDuXMJKRn0D8OMan"
+    "assessed_at": "2026-11-12T18:47:39.040298+00:00",
+    "generation_id": "gen-1794509230-otdyrwzoHkugqenmE04q"
    }
   },
   {
@@ -27857,8 +28298,8 @@
      }
     }
    },
-   "n_statements": 3,
-   "n_labeled": 3,
+   "n_statements": 4,
+   "n_labeled": 4,
    "scores": {
     "ai_overall": null,
     "agi_pilled": null,
@@ -27905,36 +28346,38 @@
    },
    "summary": {
     "status": "complete",
-    "text": "David Peters described chip smuggling as ongoing and among top enforcement priorities, saying the problem is being actively addressed. In a June 2025 official statement, he shared concern about potential unlawful transshipment or re-export of sensitive technologies to adversaries and noted that ECRA proscribes such conduct. In the same June 2025 statement, he said that if confirmed he would commit to vigorous and fair enforcement and consider the full range of ECRA and EAR penalties where appropriate.",
+    "text": "In a June 2025 official statement, David Peters said he shared concern about potential unlawful transshipment or re-export of sensitive technologies to adversaries and noted that ECRA proscribes such conduct. In the same statement, he committed, if confirmed, to vigorous and fair enforcement and to consider the full range of penalties available under ECRA and the EAR where appropriate. In February 2026, he described chip smuggling as ongoing and among top enforcement priorities, and pointed to recent indictments and arrests involving smuggling and unlicensed exports of advanced AI chips and GPUs.",
     "sids": [
-     "s1",
      "s2",
-     "s3"
+     "s3",
+     "s1",
+     "s4"
     ],
     "sentences": [
      {
-      "text": "David Peters described chip smuggling as ongoing and among top enforcement priorities, saying the problem is being actively addressed.",
-      "sids": [
-       "s1"
-      ]
-     },
-     {
-      "text": "In a June 2025 official statement, he shared concern about potential unlawful transshipment or re-export of sensitive technologies to adversaries and noted that ECRA proscribes such conduct.",
+      "text": "In a June 2025 official statement, David Peters said he shared concern about potential unlawful transshipment or re-export of sensitive technologies to adversaries and noted that ECRA proscribes such conduct.",
       "sids": [
        "s2"
       ]
      },
      {
-      "text": "In the same June 2025 statement, he said that if confirmed he would commit to vigorous and fair enforcement and consider the full range of ECRA and EAR penalties where appropriate.",
+      "text": "In the same statement, he committed, if confirmed, to vigorous and fair enforcement and to consider the full range of penalties available under ECRA and the EAR where appropriate.",
       "sids": [
        "s3"
+      ]
+     },
+     {
+      "text": "In February 2026, he described chip smuggling as ongoing and among top enforcement priorities, and pointed to recent indictments and arrests involving smuggling and unlicensed exports of advanced AI chips and GPUs.",
+      "sids": [
+       "s1",
+       "s4"
       ]
      }
     ]
    },
    "topics": {
-    "national security": 1.5,
-    "regulation": 1.5
+    "national security": 2.0,
+    "regulation": 2.0
    },
    "regulation": {
     "status": "complete",
@@ -28052,7 +28495,7 @@
      "chips": {
       "stance": 0,
       "sids": [],
-      "why": "The supplied statements prioritize enforcement against chip smuggling and unlawful technology transfers, but do not call for stricter controls on AI chip or chip-making tool exports to China or other rivals."
+      "why": "The statements support enforcing existing export laws against chip smuggling, but do not call for stricter or looser AI chip export controls."
      }
     },
     "disputed": [
@@ -28060,18 +28503,18 @@
     ]
    },
    "stance_review": {
-    "review_id": "dfb46be1e28c6ca086c89338a8cc69707811db2859686e73f8c38cac5ff2dce3",
+    "review_id": "2a52ac2decbc65eff5f2781d2b2b2ba9fdd476a41e965c73cfa3ad40aaeb3399",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "All three excerpts address export-control enforcement rather than AI's overall effects on Americans. None supports an ai_overall label; this conclusion is limited to the supplied excerpts and does not establish Peters's views elsewhere.",
+    "reason": "The supplied excerpts address chip smuggling, unlawful technology transfers, and export-control enforcement. None expresses a view about AI's overall benefits or harms for Americans. This conclusion is limited to the supplied excerpts.",
     "confidence": 5,
-    "n_statements": 3,
+    "n_statements": 4,
     "n_contexts": 0,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-11T08:40:40.019184+00:00",
-    "generation_id": "gen-1794386436-L6JWeavtYPVd3ULbqgXu"
+    "assessed_at": "2026-11-12T18:47:24.119956+00:00",
+    "generation_id": "gen-1794509239-1wJ4jqBZzvvIKHdzsQTs"
    }
   },
   {
@@ -34669,77 +35112,100 @@
      }
     }
    },
-   "n_statements": 2,
-   "n_labeled": 2,
+   "n_statements": 10,
+   "n_labeled": 10,
    "scores": {
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
+    "china_race": 3.0,
     "regulation": null
    },
    "score_details": {
     "ai_overall": {
      "score": null,
-     "reason_a": "insufficient_evidence",
-     "reason_b": "insufficient_evidence",
+     "reason_a": "no_statements",
+     "reason_b": "no_statements",
      "sids": [],
      "label_count": 0
     },
     "agi_pilled": {
      "score": null,
-     "reason_a": "insufficient_evidence",
-     "reason_b": "insufficient_evidence",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "x_risk": {
      "score": null,
-     "reason_a": "insufficient_evidence",
-     "reason_b": "insufficient_evidence",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "china_race": {
-     "score": null,
-     "reason_a": "insufficient_evidence",
-     "reason_b": "insufficient_evidence",
-     "sids": [],
-     "label_count": 0
+     "score": 3.0,
+     "reason_a": "consistent",
+     "reason_b": "consistent",
+     "sids": [
+      "s7"
+     ],
+     "label_count": 3
     },
     "regulation": {
      "score": null,
-     "reason_a": "insufficient_evidence",
-     "reason_b": "insufficient_evidence",
+     "reason_a": "no_statements",
+     "reason_b": "no_statements",
      "sids": [],
      "label_count": 0
     }
    },
    "summary": {
     "status": "complete",
-    "text": "Cameron Stanley was reported saying, “You don’t need to use an F-35 to deliver the mail.” He was also reported saying that the U.S. tech sector is ahead and “is going to stay ahead.”",
+    "text": "On May 14, 2026, Cameron Stanley described the Department of War’s January 12, 2026 AI Acceleration Strategy as laying out how CDAO will integrate AI across warfighting, enterprise, and intelligence functions in support of the National Defense Strategy. He also said CDAO must leverage commercial innovation rather than compete with or outspend the private sector, and he cited reduced Other Transaction Authority contract timelines since the July 2025 AI Action Plan. Stanley described the AI Arsenal as a modular ecosystem with a three-tiered deployment strategy intended to make compute available at the right place and time, and said its primary benefit is speed. He also described GenAI.mil as CDAO’s official platform for frontier AI capabilities, citing over 1.2 million users and more than 60,000 deployed AI agents.",
     "sids": [
-     "s1",
-     "s2"
+     "s3",
+     "s4",
+     "s5",
+     "s8",
+     "s9",
+     "s10"
     ],
     "sentences": [
      {
-      "text": "Cameron Stanley was reported saying, “You don’t need to use an F-35 to deliver the mail.”",
+      "text": "On May 14, 2026, Cameron Stanley described the Department of War’s January 12, 2026 AI Acceleration Strategy as laying out how CDAO will integrate AI across warfighting, enterprise, and intelligence functions in support of the National Defense Strategy.",
       "sids": [
-       "s1"
+       "s3"
       ]
      },
      {
-      "text": "He was also reported saying that the U.S. tech sector is ahead and “is going to stay ahead.”",
+      "text": "He also said CDAO must leverage commercial innovation rather than compete with or outspend the private sector, and he cited reduced Other Transaction Authority contract timelines since the July 2025 AI Action Plan.",
       "sids": [
-       "s2"
+       "s4",
+       "s5"
+      ]
+     },
+     {
+      "text": "Stanley described the AI Arsenal as a modular ecosystem with a three-tiered deployment strategy intended to make compute available at the right place and time, and said its primary benefit is speed.",
+      "sids": [
+       "s8",
+       "s9"
+      ]
+     },
+     {
+      "text": "He also described GenAI.mil as CDAO’s official platform for frontier AI capabilities, citing over 1.2 million users and more than 60,000 deployed AI agents.",
+      "sids": [
+       "s10"
       ]
      }
     ]
    },
    "topics": {
-    "other": 1.0,
-    "China/competition": 1.0
+    "other": 2.5,
+    "China/competition": 2.167,
+    "national security": 3.167,
+    "jobs/economy": 0.5,
+    "energy/data centers": 1.667
    },
    "regulation": {
     "status": "complete",
@@ -34861,6 +35327,20 @@
      }
     },
     "disputed": []
+   },
+   "stance_review": {
+    "review_id": "9ad412851a1937b0fc39e20952f36ef44c8ed4a1814e90d44cf57779204cb161",
+    "dimension": "ai_overall",
+    "status": "complete",
+    "reason": "The supplied excerpts concern defense applications, procurement, infrastructure, commercial innovation, and technological competition rather than AI’s overall effects on Americans. None establishes an ai_overall stance. The source for s1 is explicitly unavailable, leaving its analogy’s context unresolved; the excerpt alone does not support a general AI assessment.",
+    "confidence": 4,
+    "n_statements": 10,
+    "n_contexts": 1,
+    "accepted_sids": [],
+    "finding_count": 0,
+    "model": "openai/gpt-6-astra",
+    "assessed_at": "2026-11-12T18:49:25.404719+00:00",
+    "generation_id": "gen-1794509356-bhaiT9zpZWzNBf2Eb5hl"
    }
   },
   {
@@ -36713,7 +37193,7 @@
    "party": null,
    "state": "",
    "chamber": "",
-   "status": "partial",
+   "status": "complete",
    "entity_type": "person",
    "branch": "executive",
    "organization_id": "energy",
@@ -36765,59 +37245,116 @@
     }
    },
    "n_statements": 103,
-   "n_labeled": 102,
+   "n_labeled": 103,
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
+    "ai_overall": 4.0,
+    "agi_pilled": 2.0,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.0,
+    "regulation": 0.0
    },
    "score_details": {
     "ai_overall": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 4.0,
+     "reason_a": "median_of_9",
+     "reason_b": "median_of_9",
+     "sids": [
+      "s12",
+      "s17",
+      "s41",
+      "s48",
+      "s49",
+      "s67"
+     ],
+     "label_count": 9
     },
     "agi_pilled": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 2.0,
+     "reason_a": "consistent",
+     "reason_b": "consistent",
+     "sids": [
+      "s12",
+      "s30",
+      "s49",
+      "s56",
+      "s57",
+      "s64",
+      "s72"
+     ],
+     "label_count": 13
     },
     "x_risk": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "china_race": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 3.0,
+     "reason_a": "consistent",
+     "reason_b": "consistent",
+     "sids": [
+      "s46",
+      "s56",
+      "s66",
+      "s77",
+      "s94",
+      "s82",
+      "s24",
+      "s1",
+      "s61"
+     ],
+     "label_count": 23
     },
     "regulation": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 0.0,
+     "reason_a": "dismissive",
+     "reason_b": "no_statements",
+     "sids": [
+      "s81"
+     ],
+     "label_count": 1
     }
    },
    "summary": {
-    "status": "pending",
-    "text": "",
-    "sids": []
+    "status": "complete",
+    "text": "Wright describes AI as broadly empowering people and potentially improving society through greater effectiveness and productivity. He advocates expanding electricity production to accommodate AI growth while limiting increases in electricity prices. In June 2025, he described winning the AI race as necessary for national security, citing the risk of China getting ahead.",
+    "sids": [
+     "s17",
+     "s48",
+     "s49",
+     "s93",
+     "s96",
+     "s94"
+    ],
+    "sentences": [
+     {
+      "text": "Wright describes AI as broadly empowering people and potentially improving society through greater effectiveness and productivity.",
+      "sids": [
+       "s17",
+       "s48",
+       "s49"
+      ]
+     },
+     {
+      "text": "He advocates expanding electricity production to accommodate AI growth while limiting increases in electricity prices.",
+      "sids": [
+       "s93",
+       "s96"
+      ]
+     },
+     {
+      "text": "In June 2025, he described winning the AI race as necessary for national security, citing the risk of China getting ahead.",
+      "sids": [
+       "s94"
+      ]
+     }
+    ]
    },
    "topics": {
-    "other": 16.333,
-    "China/competition": 13.833,
+    "other": 16.833,
+    "China/competition": 14.333,
     "energy/data centers": 41.333,
     "AGI/transformative": 11.167,
     "national security": 3.667,
@@ -36825,8 +37362,153 @@
     "regulation": 1.833
    },
    "regulation": {
-    "status": "pending",
-    "areas": {}
+    "status": "complete",
+    "areas": {
+     "kids_chatbots": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "deepfakes": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "election_ads": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "labeling": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_moratorium": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_ratepayers": {
+      "stance": 2,
+      "sids": [
+       "s11"
+      ],
+      "why": "Wright explicitly promotes a Ratepayer Protection Pledge under which corporations, not Americans, bear data center costs."
+     },
+     "layoff_reporting": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "bias_audits": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "training_consent": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "preemption": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "chips": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "testing_mandate": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "transparency": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "whistleblowers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "liability": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "misuse": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "nuclear": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "autonomous_weapons": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "licensing": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "intl_agreement": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "rsi": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "superintelligence": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "pause": {
+      "stance": 0,
+      "sids": [],
+      "why": "The supplied evidence promotes AI development and U.S. leadership but does not address a pause, moratorium, or limits on frontier AI development."
+     }
+    },
+    "disputed": [
+     "pause"
+    ]
+   },
+   "stance_review": {
+    "review_id": "a8feb9a1bfa30d1e32c80f1df134d4fb68ec19088dc8beb16649cd245caff43e",
+    "dimension": "ai_overall",
+    "status": "complete",
+    "reason": "The supplied evidence includes clear, predominantly enthusiastic general views of AI's benefits. Most other excerpts concern energy supply, scientific applications, infrastructure, or international leadership and do not independently establish an overall stance. All four supplied source contexts were reviewed; only s76 establishes a general-benefit finding. Other classifications remain bounded by the supplied excerpts.",
+    "confidence": 4,
+    "n_statements": 103,
+    "n_contexts": 4,
+    "accepted_sids": [
+     "s12",
+     "s17",
+     "s41",
+     "s48",
+     "s49",
+     "s56",
+     "s67",
+     "s76",
+     "s78"
+    ],
+    "finding_count": 9,
+    "model": "openai/gpt-6-astra",
+    "assessed_at": "2026-11-12T18:48:13.440874+00:00",
+    "generation_id": "gen-1794509256-M4VK0hVvGKfvqKImAOol"
    }
   },
   {
@@ -36835,7 +37517,7 @@
    "party": null,
    "state": "",
    "chamber": "",
-   "status": "partial",
+   "status": "complete",
    "entity_type": "person",
    "branch": "executive",
    "organization_id": "energy",
@@ -36888,8 +37570,8 @@
      }
     }
    },
-   "n_statements": 127,
-   "n_labeled": 127,
+   "n_statements": 128,
+   "n_labeled": 128,
    "scores": {
     "ai_overall": 3.0,
     "agi_pilled": 2.5,
@@ -36948,21 +37630,180 @@
     }
    },
    "summary": {
-    "status": "pending",
-    "text": "",
-    "sids": []
+    "status": "complete",
+    "text": "In March 2024, as IBM Research SVP and Director, Gil described AI as an internet-like foundation for economic opportunity and argued that an open ecosystem would improve safety and broaden prosperity. In December 2025, Gil said the convergence of AI, high-performance computing, and quantum computing would fundamentally transform scientific practice and research and development. He also called for mobilizing America's science and technology ecosystem to win the AI race and described competition with China as serious.",
+    "sids": [
+     "s2",
+     "s3",
+     "s1",
+     "s8"
+    ],
+    "sentences": [
+     {
+      "text": "In March 2024, as IBM Research SVP and Director, Gil described AI as an internet-like foundation for economic opportunity and argued that an open ecosystem would improve safety and broaden prosperity.",
+      "sids": [
+       "s2"
+      ]
+     },
+     {
+      "text": "In December 2025, Gil said the convergence of AI, high-performance computing, and quantum computing would fundamentally transform scientific practice and research and development.",
+      "sids": [
+       "s3"
+      ]
+     },
+     {
+      "text": "He also called for mobilizing America's science and technology ecosystem to win the AI race and described competition with China as serious.",
+      "sids": [
+       "s1",
+       "s8"
+      ]
+     }
+    ]
    },
    "topics": {
     "China/competition": 4.833,
-    "other": 83.833,
+    "other": 84.833,
     "jobs/economy": 5.667,
     "AGI/transformative": 11.833,
     "national security": 7.5,
     "energy/data centers": 13.333
    },
    "regulation": {
-    "status": "pending",
-    "areas": {}
+    "status": "complete",
+    "areas": {
+     "kids_chatbots": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "deepfakes": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "election_ads": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "labeling": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_moratorium": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_ratepayers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "layoff_reporting": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "bias_audits": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "training_consent": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "preemption": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "chips": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "testing_mandate": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "transparency": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "whistleblowers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "liability": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "misuse": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "nuclear": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "autonomous_weapons": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "licensing": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "intl_agreement": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "pause": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "rsi": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "superintelligence": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     }
+    },
+    "disputed": []
+   },
+   "stance_review": {
+    "review_id": "371ad96ac7e25257b818db0313f1f8d48f11faf244d26fd1adfa691a2a0a23d8",
+    "dimension": "ai_overall",
+    "status": "complete",
+    "reason": "The supplied interview context establishes a general opportunity-oriented AI stance in Gil's former IBM role. The remaining evidence emphasizes scientific applications, infrastructure, partnerships, technological capability, and competition rather than AI's overall balance of benefits and harms. Supplied source contexts were reviewed only for their corresponding statements. Many X excerpts are truncated, but their visible application-specific or announcement content does not independently establish a general stance; the historical finding is not treated as a current federal position.",
+    "confidence": 4,
+    "n_statements": 128,
+    "n_contexts": 6,
+    "accepted_sids": [
+     "s2"
+    ],
+    "finding_count": 1,
+    "model": "openai/gpt-6-astra",
+    "assessed_at": "2026-11-12T18:49:53.707397+00:00",
+    "generation_id": "gen-1794509366-xT8DObvssL328GIcrQpc"
    }
   },
   {
@@ -46040,7 +46881,7 @@
    "party": null,
    "state": "",
    "chamber": "",
-   "status": "partial",
+   "status": "complete",
    "entity_type": "person",
    "branch": "executive",
    "organization_id": "fcc",
@@ -46091,58 +46932,96 @@
     }
    },
    "n_statements": 46,
-   "n_labeled": 45,
+   "n_labeled": 46,
    "scores": {
-    "ai_overall": null,
-    "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "ai_overall": 3.0,
+    "agi_pilled": 1.0,
+    "x_risk": 0.0,
+    "china_race": 2.5,
+    "regulation": 1.0
    },
    "score_details": {
     "ai_overall": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 3.0,
+     "reason_a": "median_of_1",
+     "reason_b": "median_of_1",
+     "sids": [
+      "s22"
+     ],
+     "label_count": 1
     },
     "agi_pilled": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 1.0,
+     "reason_a": "silent",
+     "reason_b": "consistent",
+     "sids": [
+      "s22"
+     ],
+     "label_count": 1
     },
     "x_risk": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 0.0,
+     "reason_a": "dismissive",
+     "reason_b": "dismissive",
+     "sids": [
+      "s11",
+      "s12"
+     ],
+     "label_count": 2
     },
     "china_race": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 2.5,
+     "reason_a": "consistent",
+     "reason_b": "consistent",
+     "sids": [
+      "s41",
+      "s21"
+     ],
+     "label_count": 5
     },
     "regulation": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 1.0,
+     "reason_a": "one_off_capped",
+     "reason_b": "one_off_capped",
+     "sids": [
+      "s38"
+     ],
+     "label_count": 14
     }
    },
    "summary": {
-    "status": "pending",
-    "text": "",
-    "sids": []
+    "status": "complete",
+    "text": "On March 3, 2025, Carr expressed optimism that the AI technology revolution would benefit the economy. On August 7, 2024, Carr rejected a no-regulation approach to AI while warning against early overregulation and rules based purely on speculative harms. On December 17, 2025, Carr said the FCC would initiate a proceeding on potential federal AI reporting and disclosure standards and possible preemption, taking comments on all sides.",
+    "sids": [
+     "s22",
+     "s2",
+     "s3",
+     "s42"
+    ],
+    "sentences": [
+     {
+      "text": "On March 3, 2025, Carr expressed optimism that the AI technology revolution would benefit the economy.",
+      "sids": [
+       "s22"
+      ]
+     },
+     {
+      "text": "On August 7, 2024, Carr rejected a no-regulation approach to AI while warning against early overregulation and rules based purely on speculative harms.",
+      "sids": [
+       "s2",
+       "s3"
+      ]
+     },
+     {
+      "text": "On December 17, 2025, Carr said the FCC would initiate a proceeding on potential federal AI reporting and disclosure standards and possible preemption, taking comments on all sides.",
+      "sids": [
+       "s42"
+      ]
+     }
+    ]
    },
    "topics": {
-    "regulation": 15.833,
+    "regulation": 16.833,
     "other": 9.5,
     "deepfakes/elections": 7.0,
     "China/competition": 3.5,
@@ -46153,8 +47032,149 @@
     "AGI/transformative": 0.5
    },
    "regulation": {
-    "status": "pending",
-    "areas": {}
+    "status": "complete",
+    "areas": {
+     "kids_chatbots": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "deepfakes": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "election_ads": {
+      "stance": -2,
+      "sids": [
+       "s24",
+       "s10"
+      ],
+      "why": "Carr explicitly dissented from and called the FCC plan to regulate AI-generated political ads misguided and unlawful."
+     },
+     "labeling": {
+      "stance": -2,
+      "sids": [
+       "s32",
+       "s30"
+      ],
+      "why": "He explicitly criticized the proposed government-mandated AI-content disclaimer as failing to promote transparency and creating confusion."
+     },
+     "dc_moratorium": {
+      "stance": -2,
+      "sids": [
+       "s13"
+      ],
+      "why": "He criticized New York’s total ban on AI production plants as causing fewer jobs and lost revenues while praising Trump’s data-center approach."
+     },
+     "dc_ratepayers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "layoff_reporting": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "bias_audits": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "training_consent": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "preemption": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "chips": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "testing_mandate": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "transparency": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "whistleblowers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "liability": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "misuse": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "nuclear": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "autonomous_weapons": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "licensing": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "intl_agreement": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "pause": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "rsi": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "superintelligence": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     }
+    },
+    "disputed": []
+   },
+   "stance_review": {
+    "review_id": "9abb063ae304754213044b7abe7d0526ad97bad7c4d3434f32aab43dc7b1e7e5",
+    "dimension": "ai_overall",
+    "status": "complete",
+    "reason": "The supplied evidence contains one clear general positive assessment of AI's economic effects. Other statements concern regulation, political advertising, infrastructure, international leadership, or criticism of AI pessimists without establishing an overall benefits-versus-harms assessment. The supplied full X contexts for s13, s21, and s23 remain focused on infrastructure and policy or leadership framing. Several excerpts are partial; the finding is limited to the explicit optimism present in s22.",
+    "confidence": 4,
+    "n_statements": 46,
+    "n_contexts": 3,
+    "accepted_sids": [
+     "s22"
+    ],
+    "finding_count": 1,
+    "model": "openai/gpt-6-astra",
+    "assessed_at": "2026-11-12T18:48:31.308345+00:00",
+    "generation_id": "gen-1794509291-96CKq0AAFVPJeAHEYtdr"
    }
   },
   {
@@ -48567,8 +49587,8 @@
      }
     }
    },
-   "n_statements": 4,
-   "n_labeled": 4,
+   "n_statements": 5,
+   "n_labeled": 5,
    "scores": {
     "ai_overall": null,
     "agi_pilled": null,
@@ -48617,43 +49637,41 @@
    },
    "summary": {
     "status": "complete",
-    "text": "Duffey described AI as a key enabler and said adversaries are embracing it, requiring quick work to apply it operationally. He identified opportunities to apply AI internally at the Pentagon, including AI-enabled design and resource optimization. He said AI offers tremendous opportunity to accelerate and improve work and to enable operations, while noting less visibility and expertise in responsible deployment and operations. He separately cited specific and very great vulnerabilities associated with AI and the need for continued updates from companies.",
+    "text": "Duffey described artificial intelligence as a key enabler and said adversaries are embracing it, so the U.S. must move quickly to apply it operationally. He cited opportunities for AI in internal Pentagon operations, AI-enabled design, and resource optimization, while noting that applying AI responsibly in deployment and operations is an area where he has less visibility and expertise. He also identified AI vulnerabilities requiring continued updates from companies and, in a March 4, 2026 statement, described AI-powered LYNX as helping small businesses reduce barriers to defense work.",
     "sids": [
      "s2",
      "s3",
      "s4",
-     "s1"
+     "s1",
+     "s5"
     ],
     "sentences": [
      {
-      "text": "Duffey described AI as a key enabler and said adversaries are embracing it, requiring quick work to apply it operationally.",
+      "text": "Duffey described artificial intelligence as a key enabler and said adversaries are embracing it, so the U.S. must move quickly to apply it operationally.",
       "sids": [
        "s2"
       ]
      },
      {
-      "text": "He identified opportunities to apply AI internally at the Pentagon, including AI-enabled design and resource optimization.",
+      "text": "He cited opportunities for AI in internal Pentagon operations, AI-enabled design, and resource optimization, while noting that applying AI responsibly in deployment and operations is an area where he has less visibility and expertise.",
       "sids": [
-       "s3"
-      ]
-     },
-     {
-      "text": "He said AI offers tremendous opportunity to accelerate and improve work and to enable operations, while noting less visibility and expertise in responsible deployment and operations.",
-      "sids": [
+       "s3",
        "s4"
       ]
      },
      {
-      "text": "He separately cited specific and very great vulnerabilities associated with AI and the need for continued updates from companies.",
+      "text": "He also identified AI vulnerabilities requiring continued updates from companies and, in a March 4, 2026 statement, described AI-powered LYNX as helping small businesses reduce barriers to defense work.",
       "sids": [
-       "s1"
+       "s1",
+       "s5"
       ]
      }
     ]
    },
    "topics": {
-    "national security": 3.5,
-    "China/competition": 0.5
+    "national security": 4.0,
+    "China/competition": 0.5,
+    "jobs/economy": 0.5
    },
    "regulation": {
     "status": "complete",
@@ -48777,18 +49795,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "ac17c89f52c5ba4b01f152d6851f4f04fa858d624899133ed8c50af9f366f1f9",
+    "review_id": "f683e64225f9d189d6bec958d950b1f604395ea0001854404335442a418bdb31",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied excerpts address AI vulnerabilities, operational competition, and opportunities within Pentagon administration and military operations. None establishes Duffey's view of AI's overall effects on Americans, society, or the economy; enthusiasm for these specific applications does not establish a general stance.",
+    "reason": "The supplied excerpts address AI vulnerabilities, defense applications, and a specific business-support tool. None establishes Duffey's view of AI's overall effects on Americans. Positive assessments of Pentagon applications and concerns about vulnerabilities do not independently qualify as general AI stances.",
     "confidence": 5,
-    "n_statements": 4,
+    "n_statements": 5,
     "n_contexts": 0,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-11T03:58:57.812007+00:00",
-    "generation_id": "gen-1794369529-bGOajwEpDAhapNE3CVFm"
+    "assessed_at": "2026-11-12T18:48:22.291135+00:00",
+    "generation_id": "gen-1794509294-uCy3YZNFdt0JPpu0LJYn"
    }
   },
   {
@@ -57196,7 +58214,7 @@
    "party": null,
    "state": "",
    "chamber": "",
-   "status": "partial",
+   "status": "complete",
    "entity_type": "person",
    "branch": "executive",
    "organization_id": "fdic",
@@ -57247,62 +58265,228 @@
     }
    },
    "n_statements": 5,
-   "n_labeled": 2,
+   "n_labeled": 5,
    "scores": {
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
     "china_race": null,
-    "regulation": null
+    "regulation": 1.0
    },
    "score_details": {
     "ai_overall": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "no_statements",
+     "reason_b": "no_statements",
      "sids": [],
      "label_count": 0
     },
     "agi_pilled": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "x_risk": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "china_race": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "regulation": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 1.0,
+     "reason_a": "consistent",
+     "reason_b": "consistent",
+     "sids": [
+      "s2",
+      "s5"
+     ],
+     "label_count": 2
     }
    },
    "summary": {
-    "status": "pending",
-    "text": "",
-    "sids": []
+    "status": "complete",
+    "text": "In a January 2025 statement, Travis Hill said the FDIC should consider issuing additional guidance on topics including artificial intelligence, fintech partnerships, and digital assets and tokenization. In a June 2024 statement, he cited artificial intelligence and blockchain as examples of technology that could increase the effectiveness and efficiency of transaction monitoring. In March 2026, he said AI and other new technologies can improve the BSA regime by identifying suspicious activity and reducing false positives, and that the FDIC wants banks to innovate in this space with a supervisory approach that encourages it. In June 2026, he said a proposal encourages responsible innovation and the use of emerging technologies such as artificial intelligence to detect and disrupt illicit finance activity more effectively.",
+    "sids": [
+     "s2",
+     "s3",
+     "s5",
+     "s4"
+    ],
+    "sentences": [
+     {
+      "text": "In a January 2025 statement, Travis Hill said the FDIC should consider issuing additional guidance on topics including artificial intelligence, fintech partnerships, and digital assets and tokenization.",
+      "sids": [
+       "s2"
+      ]
+     },
+     {
+      "text": "In a June 2024 statement, he cited artificial intelligence and blockchain as examples of technology that could increase the effectiveness and efficiency of transaction monitoring.",
+      "sids": [
+       "s3"
+      ]
+     },
+     {
+      "text": "In March 2026, he said AI and other new technologies can improve the BSA regime by identifying suspicious activity and reducing false positives, and that the FDIC wants banks to innovate in this space with a supervisory approach that encourages it.",
+      "sids": [
+       "s5"
+      ]
+     },
+     {
+      "text": "In June 2026, he said a proposal encourages responsible innovation and the use of emerging technologies such as artificial intelligence to detect and disrupt illicit finance activity more effectively.",
+      "sids": [
+       "s4"
+      ]
+     }
+    ]
    },
    "topics": {
-    "regulation": 2.0
+    "regulation": 3.5,
+    "other": 1.5
    },
    "regulation": {
-    "status": "pending",
-    "areas": {}
+    "status": "complete",
+    "areas": {
+     "kids_chatbots": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "deepfakes": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "election_ads": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "labeling": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_moratorium": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_ratepayers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "layoff_reporting": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "bias_audits": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "training_consent": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "preemption": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "chips": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "testing_mandate": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "transparency": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "whistleblowers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "liability": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "misuse": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "nuclear": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "autonomous_weapons": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "licensing": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "intl_agreement": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "pause": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "rsi": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "superintelligence": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     }
+    },
+    "disputed": []
+   },
+   "stance_review": {
+    "review_id": "58ed145a6d3d97ada09e49240cb26c2eeca365e8a71e3a104b68c434a8d253ce",
+    "dimension": "ai_overall",
+    "status": "complete",
+    "reason": "The supplied excerpts do not establish a stance on AI's overall effects on Americans. They concern possible guidance or specific benefits for banking compliance and illicit-finance detection. Enthusiasm for those applications does not establish general AI optimism. This conclusion is limited to the supplied excerpts.",
+    "confidence": 5,
+    "n_statements": 5,
+    "n_contexts": 0,
+    "accepted_sids": [],
+    "finding_count": 0,
+    "model": "openai/gpt-6-astra",
+    "assessed_at": "2026-11-12T18:48:32.064515+00:00",
+    "generation_id": "gen-1794509302-Tzgf6ui0VwGUttYXWiFR"
    }
   },
   {
@@ -65358,13 +66542,13 @@
      }
     }
    },
-   "n_statements": 13,
-   "n_labeled": 13,
+   "n_statements": 31,
+   "n_labeled": 31,
    "scores": {
     "ai_overall": null,
-    "agi_pilled": null,
+    "agi_pilled": 1.0,
     "x_risk": null,
-    "china_race": 1.0,
+    "china_race": 1.5,
     "regulation": null
    },
    "score_details": {
@@ -65376,11 +66560,13 @@
      "label_count": 0
     },
     "agi_pilled": {
-     "score": null,
+     "score": 1.0,
      "reason_a": "silent",
-     "reason_b": "silent",
-     "sids": [],
-     "label_count": 0
+     "reason_b": "consistent",
+     "sids": [
+      "s23"
+     ],
+     "label_count": 1
     },
     "x_risk": {
      "score": null,
@@ -65390,13 +66576,14 @@
      "label_count": 0
     },
     "china_race": {
-     "score": 1.0,
+     "score": 1.5,
      "reason_a": "consistent",
-     "reason_b": "silent",
+     "reason_b": "consistent",
      "sids": [
-      "s5"
+      "s5",
+      "s27"
      ],
-     "label_count": 1
+     "label_count": 2
     },
     "regulation": {
      "score": null,
@@ -65408,61 +66595,53 @@
    },
    "summary": {
     "status": "complete",
-    "text": "John A. Squires said AI cannot be excluded from any discussion of the future of intellectual property and described IP protection in AI, quantum, biotechnology, advanced materials, and semiconductors as essential national-security functions. In September 2026 remarks, he described the USPTO's new Emerging Technologies Office in San Francisco as a hub to advance AI use, steer AI adoption, and help U.S. companies enter the federal marketplace and export AI products. In March 2026 congressional testimony, he described agency AI efforts including the ASAP! prior-art pilot, AI agents assisting examiners on eligibility issues with a human in the loop, and AI tools used to identify fraudulent filings. He also outlined a vision of examiners deploying AI agents at scale, cited task-directed AI agents for trademark classification, and welcomed a new chief artificial intelligence officer to help aggressively modernize agency systems and workflows.",
+    "text": "John A. Squires said AI cannot be excluded from discussions about the future of intellectual property and described IP protection in AI and other emerging fields as essential national-security functions. He said the USPTO has been leveraging AI in patent examination through a human-in-the-loop approach and has accelerated deployment of AI search tools for examiners. Squires said the USPTO established an Emerging Technologies Office in San Francisco to convene AI stakeholders, promote AI companies' business with the government, and help U.S. companies export AI. In March 2026 testimony, he cited the creation of an AI Policy Working Group and revised inventorship guidance for AI-assisted inventions.",
     "sids": [
      "s1",
      "s2",
-     "s3",
-     "s4",
-     "s5",
-     "s8",
-     "s9",
-     "s11",
-     "s10",
-     "s13",
-     "s14"
+     "s15",
+     "s17",
+     "s29",
+     "s24",
+     "s25"
     ],
     "sentences": [
      {
-      "text": "John A. Squires said AI cannot be excluded from any discussion of the future of intellectual property and described IP protection in AI, quantum, biotechnology, advanced materials, and semiconductors as essential national-security functions.",
+      "text": "John A. Squires said AI cannot be excluded from discussions about the future of intellectual property and described IP protection in AI and other emerging fields as essential national-security functions.",
       "sids": [
        "s1",
        "s2"
       ]
      },
      {
-      "text": "In September 2026 remarks, he described the USPTO's new Emerging Technologies Office in San Francisco as a hub to advance AI use, steer AI adoption, and help U.S. companies enter the federal marketplace and export AI products.",
+      "text": "He said the USPTO has been leveraging AI in patent examination through a human-in-the-loop approach and has accelerated deployment of AI search tools for examiners.",
       "sids": [
-       "s3",
-       "s4",
-       "s5"
+       "s15",
+       "s17"
       ]
      },
      {
-      "text": "In March 2026 congressional testimony, he described agency AI efforts including the ASAP! prior-art pilot, AI agents assisting examiners on eligibility issues with a human in the loop, and AI tools used to identify fraudulent filings.",
+      "text": "Squires said the USPTO established an Emerging Technologies Office in San Francisco to convene AI stakeholders, promote AI companies' business with the government, and help U.S. companies export AI.",
       "sids": [
-       "s8",
-       "s9",
-       "s11"
+       "s29"
       ]
      },
      {
-      "text": "He also outlined a vision of examiners deploying AI agents at scale, cited task-directed AI agents for trademark classification, and welcomed a new chief artificial intelligence officer to help aggressively modernize agency systems and workflows.",
+      "text": "In March 2026 testimony, he cited the creation of an AI Policy Working Group and revised inventorship guidance for AI-assisted inventions.",
       "sids": [
-       "s10",
-       "s13",
-       "s14"
+       "s24",
+       "s25"
       ]
      }
     ]
    },
    "topics": {
-    "copyright": 2.0,
+    "copyright": 3.5,
     "national security": 0.5,
-    "other": 8.0,
+    "other": 21.0,
     "jobs/economy": 1.5,
-    "China/competition": 0.5,
-    "regulation": 0.5
+    "China/competition": 1.0,
+    "regulation": 3.5
    },
    "regulation": {
     "status": "complete",
@@ -65510,7 +66689,7 @@
      "training_consent": {
       "stance": 0,
       "sids": [],
-      "why": "Statements about IP protection and national security (s2) do not address consent or payment for AI training data."
+      "why": "No stance in the supplied evidence."
      },
      "preemption": {
       "stance": 0,
@@ -65520,7 +66699,7 @@
      "chips": {
       "stance": 0,
       "sids": [],
-      "why": "Mention of semiconductors as an IP/security field (s2) is not a position on chip export controls."
+      "why": "No stance in the supplied evidence."
      },
      "testing_mandate": {
       "stance": 0,
@@ -65586,18 +66765,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "bb4b1129e65d9b1db5f4fe9e16b36ed0cf4bd0f6e858b4eff6b98230ed9e4ac5",
+    "review_id": "cf881a694da2428b6055902fa8efac2614cd90b6091db7a75377f52bf6edb01e",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied excerpts discuss AI in intellectual property, agency modernization, national security, and commercial adoption, but do not establish a general assessment of AI's overall effects on Americans. Enthusiasm for advancing emerging technologies in s12 does not by itself establish that assessment. This conclusion is limited to the supplied excerpts.",
-    "confidence": 5,
-    "n_statements": 13,
+    "reason": "The supplied excerpts support favorable views of specific AI applications, intellectual-property policy, and industry engagement, but do not establish an assessment of AI's overall effects on Americans. The enthusiasm for emerging technologies in s12 concerns technological advancement, while s23 describes AI's cross-sector trajectory and the need for IP protection rather than its overall benefits and harms. These distinctions do not justify an ai_overall label. This conclusion is limited to the supplied excerpts; no additional source context was provided.",
+    "confidence": 4,
+    "n_statements": 31,
     "n_contexts": 0,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-12T18:21:23.076908+00:00",
-    "generation_id": "gen-1794507673-T2QFZm1gG09nGGDfnoJy"
+    "assessed_at": "2026-11-12T18:48:45.073722+00:00",
+    "generation_id": "gen-1794509311-SdBQqK5TtTX2N1jKkyRI"
    }
   },
   {
@@ -71804,8 +72983,8 @@
      }
     }
    },
-   "n_statements": 14,
-   "n_labeled": 14,
+   "n_statements": 15,
+   "n_labeled": 15,
    "scores": {
     "ai_overall": null,
     "agi_pilled": 2.0,
@@ -71854,7 +73033,7 @@
    },
    "summary": {
     "status": "complete",
-    "text": "Ryan Billingsley said it is essential to enable banks to adopt AI and other technologies while maintaining expectations that they manage risks, operate safely and soundly, and comply with consumer protection laws. He described banks increasingly using AI and machine learning for fraud detection, AML/CFT processes, and credit underwriting, and said banks are testing GenAI for tasks such as answering customer questions, summarizing calls, writing code, and summarizing loan applicant information. Billingsley said the FDIC is piloting GenAI for internal staff use, expects to roll the tools out to its workforce by the middle of the year, and is investing in training on AI fundamentals, GenAI concepts, governance, critical evaluation of outputs, data protection, and human oversight.",
+    "text": "In March 2026 remarks, Billingsley said it is essential to enable banks to adopt AI and distributed ledger technology while maintaining safe-and-sound and consumer-protection expectations. He described banks increasingly using AI and machine learning for fraud detection, AML/CFT, and credit underwriting, and testing GenAI for tasks such as answering customer questions, summarizing calls, writing code, and summarizing loan applicant information. He said the FDIC is piloting GenAI for internal staff use and expects to roll it out to its workforce by mid-year, while investing in AI workforce training and emphasizing human oversight. He said FDIC training aligns with an AI posture of responsibly scaling projects and that the FDIC will seek to support innovative technology through a more tailored, risk-based approach as agencies review model risk management guidance.",
     "sids": [
      "s1",
      "s9",
@@ -71863,20 +73042,20 @@
      "s10",
      "s4",
      "s5",
-     "s6",
      "s7",
-     "s14"
+     "s14",
+     "s15"
     ],
     "sentences": [
      {
-      "text": "Ryan Billingsley said it is essential to enable banks to adopt AI and other technologies while maintaining expectations that they manage risks, operate safely and soundly, and comply with consumer protection laws.",
+      "text": "In March 2026 remarks, Billingsley said it is essential to enable banks to adopt AI and distributed ledger technology while maintaining safe-and-sound and consumer-protection expectations.",
       "sids": [
        "s1",
        "s9"
       ]
      },
      {
-      "text": "He described banks increasingly using AI and machine learning for fraud detection, AML/CFT processes, and credit underwriting, and said banks are testing GenAI for tasks such as answering customer questions, summarizing calls, writing code, and summarizing loan applicant information.",
+      "text": "He described banks increasingly using AI and machine learning for fraud detection, AML/CFT, and credit underwriting, and testing GenAI for tasks such as answering customer questions, summarizing calls, writing code, and summarizing loan applicant information.",
       "sids": [
        "s2",
        "s3",
@@ -71884,20 +73063,25 @@
       ]
      },
      {
-      "text": "Billingsley said the FDIC is piloting GenAI for internal staff use, expects to roll the tools out to its workforce by the middle of the year, and is investing in training on AI fundamentals, GenAI concepts, governance, critical evaluation of outputs, data protection, and human oversight.",
+      "text": "He said the FDIC is piloting GenAI for internal staff use and expects to roll it out to its workforce by mid-year, while investing in AI workforce training and emphasizing human oversight.",
       "sids": [
        "s4",
        "s5",
-       "s6",
-       "s7",
-       "s14"
+       "s7"
+      ]
+     },
+     {
+      "text": "He said FDIC training aligns with an AI posture of responsibly scaling projects and that the FDIC will seek to support innovative technology through a more tailored, risk-based approach as agencies review model risk management guidance.",
+      "sids": [
+       "s14",
+       "s15"
       ]
      }
     ]
    },
    "topics": {
-    "regulation": 2.5,
-    "other": 8.0,
+    "regulation": 3.0,
+    "other": 8.5,
     "AGI/transformative": 0.5,
     "jobs/economy": 3.0
    },
@@ -71942,7 +73126,7 @@
      "bias_audits": {
       "stance": 0,
       "sids": [],
-      "why": "Statements note banks use AI in credit underwriting and must comply with consumer protection laws, but do not call for bias testing or audits."
+      "why": "No stance in the supplied evidence."
      },
      "training_consent": {
       "stance": 0,
@@ -72023,18 +73207,18 @@
     "disputed": []
    },
    "stance_review": {
-    "review_id": "34d3e9847bfeed170f3d987bcdcd9a53152686655454f2f087406c40c7675a40",
+    "review_id": "c1de9858220c73dd91ccf8242ee287e3ade2631f7065f33a36f7dd1bae2c4abe",
     "dimension": "ai_overall",
     "status": "complete",
-    "reason": "The supplied statements do not establish a general judgment about whether AI will be good for Americans overall. They address banking applications, FDIC operations, training, risk management, and coordination. The claim about transforming everyday life describes AI's potential scale without judging its overall benefits or harms. The supplied context for s12 confirms that his agreement concerns supervisory data analysis, not AI's overall effects. These conclusions are limited to the supplied evidence.",
+    "reason": "The supplied statements concern banking applications, FDIC operations, training, and risk management rather than whether AI will benefit Americans overall. The claim that generative AI could transform everyday life describes its potential scale without establishing a positive or negative overall judgment. Supplied source context confirms that s12 adopts a colleague's assessment of supervisory analytics benefits, not a general AI stance. These conclusions are limited to the supplied evidence.",
     "confidence": 5,
-    "n_statements": 14,
+    "n_statements": 15,
     "n_contexts": 4,
     "accepted_sids": [],
     "finding_count": 0,
     "model": "openai/gpt-6-astra",
-    "assessed_at": "2026-11-12T17:32:29.880317+00:00",
-    "generation_id": "gen-1794504737-X5hFMQswhExdyCdI9Tug"
+    "assessed_at": "2026-11-12T18:48:46.727227+00:00",
+    "generation_id": "gen-1794509312-rQ5KI2rE2eI0P39zzY9x"
    }
   },
   {
@@ -85044,7 +86228,7 @@
    "party": null,
    "state": "",
    "chamber": "",
-   "status": "partial",
+   "status": "complete",
    "entity_type": "person",
    "branch": "executive",
    "organization_id": "hhs",
@@ -85097,7 +86281,7 @@
     }
    },
    "n_statements": 2,
-   "n_labeled": 1,
+   "n_labeled": 2,
    "scores": {
     "ai_overall": null,
     "agi_pilled": null,
@@ -85108,52 +86292,200 @@
    "score_details": {
     "ai_overall": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "insufficient_evidence",
+     "reason_b": "insufficient_evidence",
      "sids": [],
      "label_count": 0
     },
     "agi_pilled": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "insufficient_evidence",
+     "reason_b": "insufficient_evidence",
      "sids": [],
      "label_count": 0
     },
     "x_risk": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "insufficient_evidence",
+     "reason_b": "insufficient_evidence",
      "sids": [],
      "label_count": 0
     },
     "china_race": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "insufficient_evidence",
+     "reason_b": "insufficient_evidence",
      "sids": [],
      "label_count": 0
     },
     "regulation": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "insufficient_evidence",
+     "reason_b": "insufficient_evidence",
      "sids": [],
      "label_count": 0
     }
    },
    "summary": {
-    "status": "pending",
-    "text": "",
-    "sids": []
+    "status": "complete",
+    "text": "In a September 30, 2026 X post, Brian Christine said the Trump administration is harnessing super intelligence to make it easier for Americans to access information that can help them lead healthier lives. In a November 9, 2026 HHS statement, he said the TOPx challenges innovators to use AI and federal open data for patients and called the winning prototypes a promising step toward tools that help patients navigate care and clinicians better understand their needs.",
+    "sids": [
+     "s1",
+     "s2"
+    ],
+    "sentences": [
+     {
+      "text": "In a September 30, 2026 X post, Brian Christine said the Trump administration is harnessing super intelligence to make it easier for Americans to access information that can help them lead healthier lives.",
+      "sids": [
+       "s1"
+      ]
+     },
+     {
+      "text": "In a November 9, 2026 HHS statement, he said the TOPx challenges innovators to use AI and federal open data for patients and called the winning prototypes a promising step toward tools that help patients navigate care and clinicians better understand their needs.",
+      "sids": [
+       "s2"
+      ]
+     }
+    ]
    },
    "topics": {
     "AGI/transformative": 0.5,
-    "other": 0.5
+    "other": 1.5
    },
    "regulation": {
-    "status": "pending",
-    "areas": {}
+    "status": "complete",
+    "areas": {
+     "kids_chatbots": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "deepfakes": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "election_ads": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "labeling": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_moratorium": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_ratepayers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "layoff_reporting": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "bias_audits": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "training_consent": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "preemption": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "chips": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "testing_mandate": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "transparency": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "whistleblowers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "liability": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "misuse": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "nuclear": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "autonomous_weapons": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "licensing": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "intl_agreement": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "pause": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "rsi": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "superintelligence": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     }
+    },
+    "disputed": []
+   },
+   "stance_review": {
+    "review_id": "166ad10c4ae4c09cdd6a20f97f9c034d24abbd5f9c59e3ba072db352dc54e34e",
+    "dimension": "ai_overall",
+    "status": "complete",
+    "reason": "Both excerpts describe specific health-related benefits of AI, not its overall effects on Americans. The first excerpt is truncated, but its supplied claim is clearly about access to health information; neither excerpt supports an ai_overall label.",
+    "confidence": 5,
+    "n_statements": 2,
+    "n_contexts": 0,
+    "accepted_sids": [],
+    "finding_count": 0,
+    "model": "openai/gpt-6-astra",
+    "assessed_at": "2026-11-12T18:48:53.888580+00:00",
+    "generation_id": "gen-1794509325-WtAjSVrCmPsZTrNvlSWI"
    }
   },
   {
@@ -98961,7 +100293,7 @@
    "party": null,
    "state": "",
    "chamber": "",
-   "status": "partial",
+   "status": "complete",
    "entity_type": "person",
    "branch": "executive",
    "organization_id": "war",
@@ -99014,7 +100346,7 @@
     }
    },
    "n_statements": 5,
-   "n_labeled": 3,
+   "n_labeled": 5,
    "scores": {
     "ai_overall": null,
     "agi_pilled": null,
@@ -99025,52 +100357,211 @@
    "score_details": {
     "ai_overall": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "no_statements",
+     "reason_b": "no_statements",
      "sids": [],
      "label_count": 0
     },
     "agi_pilled": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "x_risk": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "china_race": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "regulation": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "no_statements",
+     "reason_b": "no_statements",
      "sids": [],
      "label_count": 0
     }
    },
    "summary": {
-    "status": "pending",
-    "text": "",
-    "sids": []
+    "status": "complete",
+    "text": "Troy E. Meink described autonomy as one of the key technologies enabling cost-effective combat power and said that while it is \"a little bit scary,\" \"we need to lean into it.\" In a 2024 official statement, he said growing the workforce to take full advantage of AI, machine learning, and automation is a critical example of the capability needed to deliver to users. As Secretary of the Air Force, Meink wrote that the focus is not on developing AI for its own sake but on rapidly delivering combat-ready capabilities, and he expected leaders to champion delivering AI-powered capabilities to operators.",
+    "sids": [
+     "s1",
+     "s3",
+     "s4",
+     "s5",
+     "s6"
+    ],
+    "sentences": [
+     {
+      "text": "Troy E. Meink described autonomy as one of the key technologies enabling cost-effective combat power and said that while it is \"a little bit scary,\" \"we need to lean into it.\"",
+      "sids": [
+       "s1",
+       "s3"
+      ]
+     },
+     {
+      "text": "In a 2024 official statement, he said growing the workforce to take full advantage of AI, machine learning, and automation is a critical example of the capability needed to deliver to users.",
+      "sids": [
+       "s4"
+      ]
+     },
+     {
+      "text": "As Secretary of the Air Force, Meink wrote that the focus is not on developing AI for its own sake but on rapidly delivering combat-ready capabilities, and he expected leaders to champion delivering AI-powered capabilities to operators.",
+      "sids": [
+       "s5",
+       "s6"
+      ]
+     }
+    ]
    },
    "topics": {
-    "national security": 2.5,
+    "national security": 4.5,
     "jobs/economy": 0.5
    },
    "regulation": {
-    "status": "pending",
-    "areas": {}
+    "status": "complete",
+    "areas": {
+     "kids_chatbots": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "deepfakes": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "election_ads": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "labeling": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_moratorium": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_ratepayers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "layoff_reporting": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "bias_audits": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "training_consent": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "preemption": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "chips": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "testing_mandate": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "transparency": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "whistleblowers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "liability": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "misuse": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "nuclear": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "autonomous_weapons": {
+      "stance": 0,
+      "sids": [],
+      "why": "Statements praise autonomy as combat-enabling technology but do not address limits or bans on lethal autonomous weapons."
+     },
+     "licensing": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "intl_agreement": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "pause": {
+      "stance": 0,
+      "sids": [],
+      "why": "General calls to lean into and deliver AI do not name or plainly mean a pause or slowdown policy."
+     },
+     "rsi": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "superintelligence": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     }
+    },
+    "disputed": []
+   },
+   "stance_review": {
+    "review_id": "9c0c7cc0ea5eec6a8f541e0cb9b74ff73418e31d2ce77034d6a4d5b1603b13f7",
+    "dimension": "ai_overall",
+    "status": "complete",
+    "reason": "The supplied statements support military and operational applications of AI, not a judgment about AI's overall effects on Americans. The supplied source context resolves s3 as referring to greater AI decision-making in the Air Force; its cautious endorsement does not establish a general AI stance. Other speakers' broader claims in that source are not attributable to Meink.",
+    "confidence": 5,
+    "n_statements": 5,
+    "n_contexts": 2,
+    "accepted_sids": [],
+    "finding_count": 0,
+    "model": "openai/gpt-6-astra",
+    "assessed_at": "2026-11-12T18:48:54.326764+00:00",
+    "generation_id": "gen-1794509327-L13MzK1MSm2Lv29U2Km6"
    }
   },
   {
@@ -99642,7 +101133,7 @@
    "party": null,
    "state": "",
    "chamber": "",
-   "status": "partial",
+   "status": "complete",
    "entity_type": "person",
    "branch": "executive",
    "organization_id": "war",
@@ -99695,7 +101186,7 @@
     }
    },
    "n_statements": 2,
-   "n_labeled": 1,
+   "n_labeled": 2,
    "scores": {
     "ai_overall": null,
     "agi_pilled": null,
@@ -99706,51 +101197,199 @@
    "score_details": {
     "ai_overall": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "insufficient_evidence",
+     "reason_b": "insufficient_evidence",
      "sids": [],
      "label_count": 0
     },
     "agi_pilled": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "insufficient_evidence",
+     "reason_b": "insufficient_evidence",
      "sids": [],
      "label_count": 0
     },
     "x_risk": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "insufficient_evidence",
+     "reason_b": "insufficient_evidence",
      "sids": [],
      "label_count": 0
     },
     "china_race": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "insufficient_evidence",
+     "reason_b": "insufficient_evidence",
      "sids": [],
      "label_count": 0
     },
     "regulation": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "insufficient_evidence",
+     "reason_b": "insufficient_evidence",
      "sids": [],
      "label_count": 0
     }
    },
    "summary": {
-    "status": "pending",
-    "text": "",
-    "sids": []
+    "status": "complete",
+    "text": "In an August 2026 post as Chief of the National Guard Bureau, Nordhaus said defense industry partners test AI-driven technologies through Northern Strike to help define tomorrow's battlespace. In a March 2025 statement, Nordhaus described harnessing artificial intelligence for real-time decision-making and turning drones into force multipliers as capabilities for anticipating threats.",
+    "sids": [
+     "s1",
+     "s2"
+    ],
+    "sentences": [
+     {
+      "text": "In an August 2026 post as Chief of the National Guard Bureau, Nordhaus said defense industry partners test AI-driven technologies through Northern Strike to help define tomorrow's battlespace.",
+      "sids": [
+       "s1"
+      ]
+     },
+     {
+      "text": "In a March 2025 statement, Nordhaus described harnessing artificial intelligence for real-time decision-making and turning drones into force multipliers as capabilities for anticipating threats.",
+      "sids": [
+       "s2"
+      ]
+     }
+    ]
    },
    "topics": {
-    "national security": 1.0
+    "national security": 2.0
    },
    "regulation": {
-    "status": "pending",
-    "areas": {}
+    "status": "complete",
+    "areas": {
+     "kids_chatbots": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "deepfakes": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "election_ads": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "labeling": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_moratorium": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_ratepayers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "layoff_reporting": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "bias_audits": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "training_consent": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "preemption": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "chips": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "testing_mandate": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "transparency": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "whistleblowers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "liability": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "misuse": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "nuclear": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "autonomous_weapons": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "licensing": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "intl_agreement": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "pause": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "rsi": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "superintelligence": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     }
+    },
+    "disputed": []
+   },
+   "stance_review": {
+    "review_id": "29c27f80f46ca3d989fd1a361164e0c0d572420b5a7f81732820c2b0083ea2d5",
+    "dimension": "ai_overall",
+    "status": "complete",
+    "reason": "Both excerpts describe military applications or benefits of AI, not its overall effects on Americans, the economy, or society. Neither supports an ai_overall label; this conclusion is limited to the supplied excerpts.",
+    "confidence": 5,
+    "n_statements": 2,
+    "n_contexts": 0,
+    "accepted_sids": [],
+    "finding_count": 0,
+    "model": "openai/gpt-6-astra",
+    "assessed_at": "2026-11-12T18:48:59.937253+00:00",
+    "generation_id": "gen-1794509334-WeBgb230Y6oI29DXsOfY"
    }
   },
   {
@@ -116923,7 +118562,7 @@
    "party": null,
    "state": "",
    "chamber": "",
-   "status": "partial",
+   "status": "complete",
    "entity_type": "person",
    "branch": "executive",
    "organization_id": "justice_antitrust",
@@ -116975,7 +118614,7 @@
     }
    },
    "n_statements": 7,
-   "n_labeled": 0,
+   "n_labeled": 7,
    "scores": {
     "ai_overall": null,
     "agi_pilled": null,
@@ -116986,49 +118625,220 @@
    "score_details": {
     "ai_overall": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "no_statements",
+     "reason_b": "no_statements",
      "sids": [],
      "label_count": 0
     },
     "agi_pilled": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "x_risk": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "china_race": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "regulation": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "no_statements",
+     "reason_b": "no_statements",
      "sids": [],
      "label_count": 0
     }
    },
    "summary": {
-    "status": "pending",
-    "text": "",
-    "sids": []
+    "status": "complete",
+    "text": "Daniel Glad said companies cannot claim mature AI governance or serious antitrust compliance without examining whether AI tools facilitate competitor coordination and understanding how pricing technology works. He said antitrust rules do not change when conduct moves to software, that software cannot launder collusion, and that Sherman Act accountability remains for corporations and individuals. He described the key question as whether there is an agreement among competitors, regardless of whether the hub is a spreadsheet, platform, or large language model, and said detection capability grows as conduct migrates to software because automated bids, data inputs, and queries leave records. He said the Whistleblower Rewards Program is well-positioned for AI and algorithmic risks and identified software platforms that aggregate competitor data and return pricing recommendations as the most developed area of algorithmic antitrust enforcement.",
+    "sids": [
+     "s1",
+     "s2",
+     "s5",
+     "s3",
+     "s4",
+     "s6",
+     "s7"
+    ],
+    "sentences": [
+     {
+      "text": "Daniel Glad said companies cannot claim mature AI governance or serious antitrust compliance without examining whether AI tools facilitate competitor coordination and understanding how pricing technology works.",
+      "sids": [
+       "s1"
+      ]
+     },
+     {
+      "text": "He said antitrust rules do not change when conduct moves to software, that software cannot launder collusion, and that Sherman Act accountability remains for corporations and individuals.",
+      "sids": [
+       "s2",
+       "s5"
+      ]
+     },
+     {
+      "text": "He described the key question as whether there is an agreement among competitors, regardless of whether the hub is a spreadsheet, platform, or large language model, and said detection capability grows as conduct migrates to software because automated bids, data inputs, and queries leave records.",
+      "sids": [
+       "s3",
+       "s4"
+      ]
+     },
+     {
+      "text": "He said the Whistleblower Rewards Program is well-positioned for AI and algorithmic risks and identified software platforms that aggregate competitor data and return pricing recommendations as the most developed area of algorithmic antitrust enforcement.",
+      "sids": [
+       "s6",
+       "s7"
+      ]
+     }
+    ]
    },
-   "topics": {},
+   "topics": {
+    "regulation": 3.5,
+    "other": 3.5
+   },
    "regulation": {
-    "status": "pending",
-    "areas": {}
+    "status": "complete",
+    "areas": {
+     "kids_chatbots": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "deepfakes": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "election_ads": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "labeling": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_moratorium": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_ratepayers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "layoff_reporting": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "bias_audits": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "training_consent": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "preemption": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "chips": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "testing_mandate": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "transparency": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "whistleblowers": {
+      "stance": 0,
+      "sids": [],
+      "why": "s6 mentions the Antitrust Division's Whistleblower Rewards Program as a detection tool for algorithmic collusion, not protections for AI workers reporting AI risks."
+     },
+     "liability": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "misuse": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "nuclear": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "autonomous_weapons": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "licensing": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "intl_agreement": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "pause": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "rsi": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "superintelligence": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     }
+    },
+    "disputed": []
+   },
+   "stance_review": {
+    "review_id": "c77afa489cd9aa1c627e81c90fe477ab58876f83355c5ab5473c28dd8a8946a9",
+    "dimension": "ai_overall",
+    "status": "complete",
+    "reason": "All seven excerpts concern antitrust compliance, liability, or detection involving AI and software. None expresses a view of AI's overall effects on Americans. The narrow risks and enforcement benefits described do not establish an ai_overall stance. This conclusion is limited to the supplied excerpts.",
+    "confidence": 5,
+    "n_statements": 7,
+    "n_contexts": 0,
+    "accepted_sids": [],
+    "finding_count": 0,
+    "model": "openai/gpt-6-astra",
+    "assessed_at": "2026-11-12T18:49:01.830255+00:00",
+    "generation_id": "gen-1794509335-7I26QT9ssVaG6Eep7Hsp"
    }
   },
   {
@@ -123968,7 +125778,7 @@
    "party": null,
    "state": "",
    "chamber": "",
-   "status": "partial",
+   "status": "complete",
    "entity_type": "person",
    "branch": "executive",
    "organization_id": "army",
@@ -124020,58 +125830,103 @@
     }
    },
    "n_statements": 9,
-   "n_labeled": 8,
+   "n_labeled": 9,
    "scores": {
     "ai_overall": null,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 1.0,
+    "regulation": 2.0
    },
    "score_details": {
     "ai_overall": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "no_statements",
+     "reason_b": "no_statements",
      "sids": [],
      "label_count": 0
     },
     "agi_pilled": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "x_risk": {
      "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
+     "reason_a": "silent",
+     "reason_b": "silent",
      "sids": [],
      "label_count": 0
     },
     "china_race": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 1.0,
+     "reason_a": "consistent",
+     "reason_b": "consistent",
+     "sids": [
+      "s6"
+     ],
+     "label_count": 1
     },
     "regulation": {
-     "score": null,
-     "reason_a": "pending",
-     "reason_b": "pending",
-     "sids": [],
-     "label_count": 0
+     "score": 2.0,
+     "reason_a": "consistent",
+     "reason_b": "consistent",
+     "sids": [
+      "s3"
+     ],
+     "label_count": 1
     }
    },
    "summary": {
-    "status": "pending",
-    "text": "",
-    "sids": []
+    "status": "complete",
+    "text": "Brandon Pugh said that not examining AI’s role in cyber defense puts one at a huge disadvantage and called leveraging AI a national security imperative. In June 2024 testimony, he said AI requires guardrails to protect consumer privacy and secure data, while noting many current uses of AI for cyber defense. He also identified risks in the energy space and described U.S.-China rivalry as having a digital nature and including artificial intelligence. In later statements, he described seeking scalable AI-driven capabilities for cyber defenders, pointed to the nexus of AI and cyber, and said SI-enabled cyber tools would be swiftly implemented.",
+    "sids": [
+     "s1",
+     "s2",
+     "s3",
+     "s4",
+     "s5",
+     "s6",
+     "s7",
+     "s9",
+     "s10"
+    ],
+    "sentences": [
+     {
+      "text": "Brandon Pugh said that not examining AI’s role in cyber defense puts one at a huge disadvantage and called leveraging AI a national security imperative.",
+      "sids": [
+       "s1",
+       "s2"
+      ]
+     },
+     {
+      "text": "In June 2024 testimony, he said AI requires guardrails to protect consumer privacy and secure data, while noting many current uses of AI for cyber defense.",
+      "sids": [
+       "s3",
+       "s4"
+      ]
+     },
+     {
+      "text": "He also identified risks in the energy space and described U.S.-China rivalry as having a digital nature and including artificial intelligence.",
+      "sids": [
+       "s5",
+       "s6"
+      ]
+     },
+     {
+      "text": "In later statements, he described seeking scalable AI-driven capabilities for cyber defenders, pointed to the nexus of AI and cyber, and said SI-enabled cyber tools would be swiftly implemented.",
+      "sids": [
+       "s7",
+       "s9",
+       "s10"
+      ]
+     }
+    ]
    },
    "topics": {
-    "national security": 5.0,
+    "national security": 6.0,
     "regulation": 0.5,
     "other": 0.5,
     "energy/data centers": 1.0,
@@ -124079,8 +125934,139 @@
     "misuse (bio/cyber)": 0.5
    },
    "regulation": {
-    "status": "pending",
-    "areas": {}
+    "status": "complete",
+    "areas": {
+     "kids_chatbots": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "deepfakes": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "election_ads": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "labeling": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_moratorium": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "dc_ratepayers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "layoff_reporting": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "bias_audits": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "training_consent": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "preemption": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "chips": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "testing_mandate": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "transparency": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "whistleblowers": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "liability": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "misuse": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "nuclear": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "autonomous_weapons": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "licensing": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "intl_agreement": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "pause": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "rsi": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     },
+     "superintelligence": {
+      "stance": 0,
+      "sids": [],
+      "why": "No stance in the supplied evidence."
+     }
+    },
+    "disputed": []
+   },
+   "stance_review": {
+    "review_id": "86a24b74c35ff6453f29bc3c31298ee3d4d2138f556f92f1de196e962cbb90e6",
+    "dimension": "ai_overall",
+    "status": "complete",
+    "reason": "The supplied statements address cyber defense, national security, technology competition, privacy, or energy-sector risks rather than AI’s overall effects on Americans. The supplied source context for s5 also remains focused on specific risks and privacy protections. None establishes a general AI stance under this rubric; this conclusion is limited to the supplied evidence.",
+    "confidence": 5,
+    "n_statements": 9,
+    "n_contexts": 1,
+    "accepted_sids": [],
+    "finding_count": 0,
+    "model": "openai/gpt-6-astra",
+    "assessed_at": "2026-11-12T18:49:10.242238+00:00",
+    "generation_id": "gen-1794509340-eG1A5vlQ1k2cp15QRlxg"
    }
   },
   {
