@@ -273,16 +273,27 @@
      "note": "Assistant source review confirmed the exact quote, author and date. Personal attribution does not assert the exact registered office title."
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "not_relevant",
+    "judges": {
+     "deepseek": {
+      "stance": "not_relevant",
+      "reason": "The statement refers to an AI race and energy abundance but does not mention China or make competition with China a policy priority.",
+      "facets": [],
+      "confidence": 0.92,
+      "confidence_reason": "The target is specifically China race dynamics, and the statement lacks any China reference or China-competition policy claim.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-12T15:08:52.909713+00:00",
+      "generation_id": "gen-1794496118-fGaa89udQ8dPtcLCcTGu"
+     }
+    },
+    "confidence": 0.92,
+    "final_judge": "deepseek",
     "facets_final": [],
     "facet_disagreement": false,
     "model_disagreement": false,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "primary_accepted",
+    "review_reason": "DeepSeek confidence meets the threshold."
    },
    {
     "sid": "s47",

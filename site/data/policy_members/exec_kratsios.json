@@ -2973,16 +2973,37 @@
      "note": "Assistant source review confirmed the exact quote, author and date. Personal attribution does not assert the exact registered office title."
     },
     "strategy": "confidence_cascade",
-    "stance": "pending",
-    "judges": {},
-    "confidence": null,
-    "final_judge": null,
+    "stance": "unclear",
+    "judges": {
+     "deepseek": {
+      "stance": "neutral",
+      "reason": "The speaker cites the AI Action Plan as the basis for an open-source commitment but does not explicitly endorse the plan as a whole.",
+      "facets": [],
+      "confidence": 0.62,
+      "confidence_reason": "The statement positively references the plan but only for one component, so overall plan support is not clear.",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "judged_at": "2026-11-12T15:08:52.909867+00:00",
+      "generation_id": "gen-1794496118-fGaa89udQ8dPtcLCcTGu"
+     },
+     "astra": {
+      "stance": "unclear",
+      "reason": "Kratsios affirms the plan’s open-model objective without endorsing the plan overall.",
+      "facets": [],
+      "confidence": 0.85,
+      "confidence_reason": "The commitment is explicit but limited to one component of the named plan.",
+      "model": "openai/gpt-6-astra",
+      "judged_at": "2026-11-12T15:09:12.236002+00:00",
+      "generation_id": "gen-1794496138-9reSugnv5Pls91Miywxt"
+     }
+    },
+    "confidence": 0.85,
+    "final_judge": "astra",
     "facets_final": [],
     "facet_disagreement": false,
-    "model_disagreement": false,
+    "model_disagreement": true,
     "review_required": false,
-    "review_status": "awaiting_deepseek",
-    "review_reason": "Awaiting the first assessment."
+    "review_status": "astra_reviewed",
+    "review_reason": "DeepSeek confidence 0.62 is below 0.8."
    },
    {
     "sid": "s172",
