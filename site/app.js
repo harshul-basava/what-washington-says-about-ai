@@ -89,6 +89,7 @@ function alignEvToggle(){
   const edge = bar.getBoundingClientRect().right - parseFloat(getComputedStyle(bar).paddingRight);
   let target = edge - 24;
   if (pie && innerWidth > 720) target = Math.min(target, pie.getBoundingClientRect().right);   // narrow screens: pies wrap into a centered row
+  if (innerWidth <= 600) { t.style.marginRight = "0"; return; }
   t.style.marginRight = Math.max(0, Math.round(edge - target - 4)) + "px";   // 4px = button padding
 }
 // keep the reader's place: remember where the heading nearest the top of the view sits, redraw, then scroll back
@@ -102,6 +103,7 @@ function keepPlace(fn){
 function drawAll(){ keepPlace(drawCharts); }
 function drawCharts(){
   const d = DIMS.find(x=>x[0]===S.dim);
+  if ($("tbl")) $("tbl").dataset.di = DIMS.indexOf(d);   // phones show only the selected question's column
   document.querySelectorAll(".dimname").forEach(e=>e.textContent=d[1]);
   // each page has only some of the charts; draw the ones whose container is on this page
   [["hemi",drawHemis],["evtoggle",alignEvToggle],["ideo",drawIdeology],["partydist",drawPartyDist],["trend",drawTrend],["changelist",drawChanges],
@@ -159,9 +161,11 @@ function drawHemis(){
       .attr("stroke",x=>lvl(x.m)<0?css("--muted"):"none").attr("stroke-width",1.2).classed("hit",true)
       .on("mousemove",(e,x)=>showTip(e, memberTip(x.m))).on("mouseleave",hideTip).on("click",(e,x)=>{hideTip(); goMember(x.m);});
     // chamber name sits in the empty center of its own half
-    const ly = ch==="senate" ? ySen - Rad*0.14 : yHouse + Rad*0.18;
-    svg.append("text").attr("x",cx).attr("y",ly).attr("text-anchor","middle").attr("fill",css("--fg")).attr("font-size",15).attr("font-weight",600).text(ch==="senate"?"Senate":"House");
-    svg.append("text").attr("x",cx).attr("y",ly+17).attr("text-anchor","middle").attr("fill",css("--muted")).attr("font-size",12).text(`${order.length} seats`);
+    // on phones the Senate's center is too small for the name, so it moves to the left of the arc
+    const side = W < 500 && ch==="senate", lx = side ? 0 : cx, anchor = side ? "start" : "middle";
+    const ly = side ? ySen - 22 : ch==="senate" ? ySen - Rad*0.14 : yHouse + Rad*0.18, fs = W < 500 ? 13 : 15;
+    svg.append("text").attr("x",lx).attr("y",ly).attr("text-anchor",anchor).attr("fill",css("--fg")).attr("font-size",fs).attr("font-weight",600).text(ch==="senate"?"Senate":"House");
+    svg.append("text").attr("x",lx).attr("y",ly+fs+2).attr("text-anchor",anchor).attr("fill",css("--muted")).attr("font-size",fs-2).text(`${order.length} seats`);
   }
   setTitle("chamber", `Congress by ${d[1]} score`);
   document.getElementById("hemi-sub").textContent = `Each dot is one seat in ${S.cong==="119"?"the 119th Congress (today)":"the 120th Congress, which starts in January 2027"}, from the lowest score on the left to the highest on the right.`;
@@ -258,7 +262,8 @@ function drawRegFocus(){
     for (const m of ms){ const v=src.get(m,a); if (v) c[v]++; }
     return {a, name, g, sup, opp, c, s:(c[2]+c[1])/N, o:(c[-1]+c[-2])/N}; });
   const groups = ["harms","frontier"].map(g=>({g, rows: rows.filter(r=>r.g===g).sort((x,y)=>y.s-x.s || x.o-y.o)}));
-  const W = widthOf(el), narrow = W < 560, LW = narrow ? 128 : 262, RH = 26, GH = 30, PADR = 44, PADL = 40;
+  const W = widthOf(el), narrow = W < 560, LW = narrow ? 0 : 262, RH = narrow ? 42 : 26, GH = 30, PADR = 44, PADL = 40;
+  const BY = narrow ? 20 : 5, BH = 16;   // narrow screens: the policy name sits on its own line above the bar
   const maxS = d3.max(rows, r=>r.s) || .01, maxO = d3.max(rows, r=>r.o) || .01;
   const plotW = W - LW - PADL - PADR;
   const x0 = LW + PADL + plotW * maxO / (maxS + maxO);
@@ -272,25 +277,26 @@ function drawRegFocus(){
     svg.append("text").attr("x",0).attr("y",y+GH-9).attr("fill",fg).attr("font-size",13).attr("font-weight",600).text(RFGROUP[G.g]);
     y += GH;
     for (const r of G.rows){
-      const cy = y + RH/2;
-      svg.append("text").attr("x",LW).attr("y",cy).attr("dy","0.35em").attr("text-anchor","end").attr("fill",fg).attr("font-size",narrow?11:12.5)
-        .text(narrow && r.name.length>21 ? r.name.slice(0,20)+"…" : r.name).append("title").text(r.name);
+      const cy = y + BY + BH/2;
+      if (narrow) svg.append("text").attr("x",0).attr("y",y+12).attr("fill",fg).attr("font-size",12.5).text(r.name);
+      else svg.append("text").attr("x",LW).attr("y",cy).attr("dy","0.35em").attr("text-anchor","end").attr("fill",fg).attr("font-size",12.5).text(r.name);
       // explicit next to the center line, implied outside it
       let xr = x0, xl = x0;
-      for (const v of [2,1]){ const w = xs(r.c[v]/N); if (w>0){ segs.push({r, v, x:xr, w, y:y+5}); xr += w; } }
-      for (const v of [-2,-1]){ const w = xs(r.c[v]/N); if (w>0){ xl -= w; segs.push({r, v, x:xl, w, y:y+5}); } }
+      for (const v of [2,1]){ const w = xs(r.c[v]/N); if (w>0){ segs.push({r, v, x:xr, w, y:y+BY}); xr += w; } }
+      for (const v of [-2,-1]){ const w = xs(r.c[v]/N); if (w>0){ xl -= w; segs.push({r, v, x:xl, w, y:y+BY}); } }
       if (r.s>0) svg.append("text").attr("x",xr+5).attr("y",cy).attr("dy","0.35em").attr("fill",mu).attr("font-size",11).text(pct(r.s));
       if (r.o>0) svg.append("text").attr("x",xl-5).attr("y",cy).attr("dy","0.35em").attr("text-anchor","end").attr("fill",mu).attr("font-size",11).text(pct(r.o));
+      if (narrow) svg.append("line").attr("x1",x0).attr("x2",x0).attr("y1",y+BY-3).attr("y2",y+BY+BH+3).attr("stroke",mu).attr("stroke-width",1);
       y += RH;
     }
   }
-  svg.append("line").attr("x1",x0).attr("x2",x0).attr("y1",GH-6).attr("y2",y).attr("stroke",css("--muted")).attr("stroke-width",1);
+  if (!narrow) svg.append("line").attr("x1",x0).attr("x2",x0).attr("y1",GH-6).attr("y2",y).attr("stroke",css("--muted")).attr("stroke-width",1);
   svg.append("text").attr("x",x0-6).attr("y",y+16).attr("text-anchor","end").attr("fill",mu).attr("font-size",11).text("← oppose");
   svg.append("text").attr("x",x0+6).attr("y",y+16).attr("fill",mu).attr("font-size",11).text("support →");
   const pc = (n)=>`${n} (${Math.round(n/N*100)}%)`;
   const party = (r, sgn)=>src.fed ? "" : ["D","R","I"].map(p=>{ const n=ms.filter(m=>m.party===p && Math.sign(rfStance(m,r.a))===sgn).length; return n?`${p} ${n}`:""; }).filter(Boolean).join(" · ");
   svg.append("g").selectAll("rect").data(segs).join("rect")
-    .attr("x",d=>d.x+(d.v>0?1:0)).attr("y",d=>d.y).attr("width",d=>Math.max(1,d.w-1)).attr("height",RH-10).attr("rx",2)
+    .attr("x",d=>d.x+(d.v>0?1:0)).attr("y",d=>d.y).attr("width",d=>Math.max(1,d.w-1)).attr("height",BH).attr("rx",2)
     .attr("fill",d=>rfColor(d.v)).classed("hit",true)
     .on("mousemove",(e,d)=>{ const r=d.r; showTip(e, `<b>${esc(r.name)}</b><br><span class="note">Support means: ${esc(r.sup)}</span><br>`+
       `Support: <b>${pc(r.c[2]+r.c[1])}</b>: ${r.c[2]} explicit, ${r.c[1]} implied${party(r,1)?` · ${party(r,1)}`:""}<br>`+

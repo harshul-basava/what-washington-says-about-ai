@@ -371,7 +371,7 @@
     const TOPIC_NAME={'jobs/economy':'jobs and the economy','AGI/transformative':'AGI and transformative AI','x-risk/loss of control':'x-risk and loss of control','China/competition':'China and competition','regulation':'AI rules'};
     const HIGH={ai_overall:'are optimistic about AI',agi_pilled:'expect AGI',x_risk:'want action on AI x-risk',china_race:'say the China race drives their AI views',regulation:'want substantial AI rules'};
     const who=()=>state.scope==='institutions'?'Institutions':'Officials';
-    root.innerHTML = `<section class="fc-controlbar" aria-label="Chart settings"><label>Question <select id="fc-dimension">${dimensionOptions(state.chartDimension)}</select></label><div class="fa-scope" role="group" aria-label="Profile type"><button type="button" data-scope="officials" aria-pressed="true">Executive officials</button><button type="button" data-scope="institutions" aria-pressed="false">Institutions</button></div></section>
+    root.innerHTML = `<section class="fc-controlbar" aria-label="Chart settings"><label><span class="lbl">Question</span> <select id="fc-dimension">${dimensionOptions(state.chartDimension)}</select></label><div class="fa-scope" role="group" aria-label="Profile type"><button type="button" data-scope="officials" aria-pressed="true"><span class="nlong">Executive </span><span class="ncap">officials</span></button><button type="button" data-scope="institutions" aria-pressed="false">Institutions</button></div></section>
 <nav class="fc-toc" aria-label="Contents"><a href="#fc-cohort">Profiles by score</a><a href="#fc-agency-section">Scores by agency</a><a href="#fc-timeline-section">Scores over time</a><a href="#fc-recent-section">Recent changes</a><a href="#fc-topic-section">Topics</a><a href="#fc-members-section">All profiles</a></nav>
 <section class="fc-section" id="fa-roster-coverage"><details><summary>Officials and offices covered</summary><label class="fc-control">Agency or office<select id="fa-agency"><option value="all">All organizations</option>${(data.organizations || []).map(o=>`<option value="${esc(o.id)}" ${o.id===state.organization ? 'selected' : ''}>${esc(o.name)}</option>`).join('')}</select></label><div id="fa-roster-table"></div></details></section>
       <section class="fc-section" id="fc-cohort"><h2 id="fc-cohort-title"></h2><p class="fc-description">Each dot is one profile, colored by the selected score.</p><div id="fc-dots"></div></section>
@@ -424,7 +424,7 @@
     function renderTable() {
       const q=state.search.trim().toLowerCase();
       const rows=selectedMembers().filter(m=>!q || [m.name,m.organization_name,...(m.aliases||[]),...(m.roles||[]).map(r=>r.title)].join(' ').toLowerCase().includes(q));
-      get('fc-members').innerHTML=rows.length?charts.renderMembers(rows,data.dimensions):'<p class="fa-empty">No profile matches this search.</p>';
+      get('fc-members').dataset.di=data.dimensions.findIndex(d=>d.id===state.chartDimension); get('fc-members').innerHTML=rows.length?charts.renderMembers(rows,data.dimensions):'<p class="fa-empty">No profile matches this search.</p>';
       const tr=[...get('fc-members').querySelectorAll('tr')].find(r=>r.querySelector(`[data-profile="${CSS.escape(state.selected||'')}"]`));
       if (tr) { tr.classList.add('fa-selected'); tr.insertAdjacentHTML('afterend',`<tr class="fa-detail"><td colspan="${tr.children.length}"><div id="fa-profile-panel" class="fa-profile-panel" aria-live="polite"></div></td></tr>`); }
       if (tr && currentDetail?.id===state.selected) { const m=data.members.find(x=>x.id===state.selected); if (m) renderProfile(m,currentDetail); }
@@ -517,7 +517,7 @@
     get('fa-agency').addEventListener('change',event=>{ state.organization=event.target.value; render(); });
     get('fa-search').addEventListener('input',event=>{ state.search=event.target.value; renderTable(); });
     root.addEventListener('change',event=>{
-      if (event.target.id==='fc-dimension') { state.chartDimension=event.target.value; keepPlace(renderCharts); }
+      if (event.target.id==='fc-dimension') { state.chartDimension=event.target.value; get('fc-members').dataset.di=data.dimensions.findIndex(d=>d.id===state.chartDimension); keepPlace(renderCharts); }
     });
     root.addEventListener('click',event=>{
       const tr=event.target.closest('[data-trange]'), tp=event.target.closest('[data-topicrange]');

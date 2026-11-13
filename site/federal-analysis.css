@@ -87,3 +87,20 @@ details.method summary{color:var(--fg)}
 .fa-range button[aria-checked="true"]{background:var(--raised);color:var(--fg);box-shadow:0 1px 2px rgba(0,0,0,.12),0 0 0 1px rgba(0,0,0,.04)}
 .fc-plot svg{max-width:100%;height:auto;overflow:visible}
 #fc-timeline svg text{font-size:11px}
+/* ---------- phones ---------- */
+@media(max-width:600px){
+  .fc-controlbar{flex-wrap:nowrap;gap:8px;padding-top:8px;padding-bottom:8px}
+  .fc-controlbar>label{flex:1;min-width:0;width:auto}
+  .fc-controlbar .lbl{display:none}
+  .fc-controlbar select{width:100%;max-width:none;min-width:0}
+  .fa-scope{width:auto;flex-shrink:0}.fa-scope button{flex:none;padding:7px 10px}
+  .fc-dot-layout{grid-template-columns:1fr;gap:16px}
+  .fc-dots{grid-template-columns:repeat(auto-fill,18px);gap:2px}
+  .fc-dot{width:18px;height:18px}.fc-dot::before{inset:2px}
+  .fc-pie-wrap{justify-self:center}
+  html{scroll-padding-top:130px}[id],.fa-profile-block,.fa-quote{scroll-margin-top:130px}
+  #fc-members tr>:nth-child(n+2):nth-child(-n+6){display:none}
+  #fc-members tr.fa-detail>td{display:table-cell}
+  #fc-members[data-di="0"] tr>:nth-child(2),#fc-members[data-di="1"] tr>:nth-child(3),#fc-members[data-di="2"] tr>:nth-child(4),#fc-members[data-di="3"] tr>:nth-child(5),#fc-members[data-di="4"] tr>:nth-child(6){display:table-cell}
+}
+@media(max-width:600px){.fc-member-table table{min-width:0;width:100%}.fc-member-table th small{white-space:normal}.fc-member-table td{text-align:right}}

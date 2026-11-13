@@ -11,15 +11,15 @@
 <script>try{if(localStorage.getItem("theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=7">
-<link rel="stylesheet" href="chrome.css?v=3">
+<link rel="stylesheet" href="site.css?v=8">
+<link rel="stylesheet" href="chrome.css?v=4">
 </head>
 <body data-page="congress">
 <header class="topbar">
   <div class="topin">
     <a class="brand" href="index.html" id="brand"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><g fill="currentColor"><rect x="11.4" y="1.5" width="1.2" height="3" rx=".4"/><path d="M7.2 9.6a4.8 4.8 0 0 1 9.6 0z"/><rect x="6.4" y="9.6" width="11.2" height="1.6" rx=".3"/><rect x="2.8" y="11.6" width="18.4" height="1.6" rx=".3"/><rect x="4.2" y="13.6" width="1.6" height="5.2"/><rect x="8.1" y="13.6" width="1.6" height="5.2"/><rect x="11.2" y="13.6" width="1.6" height="5.2"/><rect x="14.3" y="13.6" width="1.6" height="5.2"/><rect x="18.2" y="13.6" width="1.6" height="5.2"/><rect x="2" y="19.2" width="20" height="2" rx=".4"/></g></svg><span>DC on AI</span></a>
     <nav aria-label="Sections">
-      <a href="index.html" aria-current="page">Congress</a><a href="federal.html">Federal analysis</a><a href="policies.html">Policies</a><div class="navmenu">
+      <a href="index.html" aria-current="page">Congress</a><a href="federal.html">Federal<span class="nlong"> analysis</span></a><a href="policies.html">Policies</a><div class="navmenu">
         <a href="method.html" class="navmenu-btn" aria-haspopup="true">About<svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <div class="navmenu-list" role="menu">
           <a href="method.html" role="menuitem">Method</a>
@@ -42,10 +42,10 @@
 <div class="controlbar" role="toolbar" aria-label="Chart settings">
   <label class="ctl"><span class="lbl">Question</span><select id="dimsel" aria-label="Question"></select></label>
   <div class="segmented" role="radiogroup" aria-label="Congress">
-    <button type="button" role="radio" data-cong="119" aria-checked="true">119th Congress<small>today</small></button>
-    <button type="button" role="radio" data-cong="120" aria-checked="false">120th Congress<small>from Jan 2027</small></button>
+    <button type="button" role="radio" data-cong="119" aria-checked="true">119th<span class="nlong"> Congress</span><small>today</small></button>
+    <button type="button" role="radio" data-cong="120" aria-checked="false">120th<span class="nlong"> Congress</span><small>from Jan 2027</small></button>
   </div>
-  <button type="button" class="evtoggle" id="evtoggle" role="switch" aria-checked="false" title="Show key AI events on the time charts"><span class="lbl">Key events</span><span class="sw" aria-hidden="true"></span></button>
+  <button type="button" class="evtoggle" id="evtoggle" role="switch" aria-checked="false" title="Show key AI events on the time charts"><span class="lbl"><span class="nlong">Key </span>events</span><span class="sw" aria-hidden="true"></span></button>
 </div>
 
 <div class="withtoc">
@@ -141,6 +141,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.16/dist/plot.umd.min.js"></script>
 <script src="common.js?v=3"></script>
 <script src="congress-history.js?v=1"></script>
-<script src="app.js?v=8"></script>
+<script src="app.js?v=10"></script>
 </body>
 </html>
