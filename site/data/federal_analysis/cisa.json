@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "cisa",
- "revision": "21eb1c77f27081061fc46e20fae35b27c7abcab4d17b78d77a8fa93f6fc9be40",
+ "revision": "580b43c3eccdf7209120fa79bd4b97ca8fcf381b06d1e31139e6f1d02dd1fd8e",
  "profile": {
   "id": "cisa",
   "name": "Cybersecurity and Infrastructure Security Agency",
@@ -38,20 +38,20 @@
     "web": {
      "group": "homeland",
      "named_query": "(\"Department of Homeland Security\" OR \"Cybersecurity and Infrastructure Security Agency\") AI artificial intelligence superintelligence policy statements",
-     "last_success_on": null,
-     "age_days": null,
-     "pending_named_queries": 1,
-     "group_pending_pages": 13
+     "last_success_on": "2026-11-13",
+     "age_days": 0,
+     "pending_named_queries": 0,
+     "group_pending_pages": 20
     },
     "x": {
-     "last_successful_cutoff": "2026-11-10T18:49:25.528729Z",
+     "last_successful_cutoff": "2026-11-13T18:43:35.820656Z",
      "pending_windows": 0,
-     "accounts_due_for_daily_check": 1
+     "accounts_due_for_daily_check": 0
     }
    }
   },
-  "n_statements": 155,
-  "n_labeled": 155,
+  "n_statements": 157,
+  "n_labeled": 157,
   "scores": {
    "ai_overall": 3.0,
    "agi_pilled": 1.5,
@@ -120,49 +120,52 @@
   },
   "summary": {
    "status": "complete",
-   "text": "CISA describes itself as playing a key role in addressing risks at the nexus of AI, cybersecurity, and critical infrastructure, and says it will use AI-enabled software tools to strengthen cyber defense. CISA has published guidance and best practices for secure AI development and deployment, including secure-by-design principles and principles for integrating AI into operational technology while reducing risk. CISA has also warned about AI-related threats, such as China-based AI companies extracting data from U.S. AI models and risks from unmanaged token consumption, and has recommended mitigations.",
+   "text": "CISA describes itself as playing a key role in addressing risks at the intersection of AI, cybersecurity, and critical infrastructure. It states that AI system manufacturers should follow secure-by-design principles and says it will develop best practices and guidance for secure AI acquisition, development, and operation. CISA reports participation in AI testing efforts, including as a founding member of the TRAINS Taskforce, and has issued joint advisories on AI-related threats. In 2026, CISA and partners released guidance on adopting agentic AI and on managing AI token consumption for operational resilience.",
    "sids": [
     "s1",
-    "s6",
     "s2",
-    "s3",
     "s11",
-    "s15",
-    "s18",
-    "s19"
+    "s4",
+    "s145",
+    "s157",
+    "s16"
    ],
    "sentences": [
     {
-     "text": "CISA describes itself as playing a key role in addressing risks at the nexus of AI, cybersecurity, and critical infrastructure, and says it will use AI-enabled software tools to strengthen cyber defense.",
+     "text": "CISA describes itself as playing a key role in addressing risks at the intersection of AI, cybersecurity, and critical infrastructure.",
      "sids": [
-      "s1",
-      "s6"
+      "s1"
      ]
     },
     {
-     "text": "CISA has published guidance and best practices for secure AI development and deployment, including secure-by-design principles and principles for integrating AI into operational technology while reducing risk.",
+     "text": "It states that AI system manufacturers should follow secure-by-design principles and says it will develop best practices and guidance for secure AI acquisition, development, and operation.",
      "sids": [
       "s2",
-      "s3",
       "s11"
      ]
     },
     {
-     "text": "CISA has also warned about AI-related threats, such as China-based AI companies extracting data from U.S. AI models and risks from unmanaged token consumption, and has recommended mitigations.",
+     "text": "CISA reports participation in AI testing efforts, including as a founding member of the TRAINS Taskforce, and has issued joint advisories on AI-related threats.",
      "sids": [
-      "s15",
-      "s18",
-      "s19"
+      "s4",
+      "s145"
+     ]
+    },
+    {
+     "text": "In 2026, CISA and partners released guidance on adopting agentic AI and on managing AI token consumption for operational resilience.",
+     "sids": [
+      "s157",
+      "s16"
      ]
     }
    ]
   },
   "topics": {
-   "national security": 54.833,
-   "regulation": 19.333,
+   "national security": 55.5,
+   "regulation": 20.0,
    "China/competition": 2.167,
    "other": 53.5,
-   "AGI/transformative": 3.667,
+   "AGI/transformative": 4.333,
    "misuse (bio/cyber)": 11.167,
    "x-risk/loss of control": 0.833,
    "jobs/economy": 2.5,
@@ -232,12 +235,12 @@
     "testing_mandate": {
      "stance": 0,
      "sids": [],
-     "why": "No stance in the supplied evidence."
+     "why": "CISA discusses testing and red-teaming AI, but the supplied statements describe voluntary guidance and government testing participation, not a legal testing mandate."
     },
     "transparency": {
      "stance": 0,
      "sids": [],
-     "why": "No stance in the supplied evidence."
+     "why": "CISA publishes voluntary guidance and transparency principles, but no supplied statement calls for mandatory safety plans or incident reporting."
     },
     "whistleblowers": {
      "stance": 0,
@@ -272,7 +275,7 @@
     "intl_agreement": {
      "stance": 0,
      "sids": [],
-     "why": "No stance in the supplied evidence."
+     "why": "CISA collaborates on international AI security guidance, but no supplied statement calls for a treaty or formal AI safety agreement."
     },
     "pause": {
      "stance": 0,
@@ -287,7 +290,7 @@
     "superintelligence": {
      "stance": 0,
      "sids": [],
-     "why": "No stance in the supplied evidence."
+     "why": "CISA discusses superintelligence risks and resilience, but no supplied statement calls for or rejects a ban on superintelligence."
     }
    },
    "disputed": []
@@ -11207,6 +11210,140 @@
      }
     }
    }
+  },
+  {
+   "sid": "s156",
+   "date": null,
+   "url": "https://www.cisa.gov/topics/cybersecurity-best-practices/super-intelligence/partner-products",
+   "text": "CISA is providing input to and coordinating with DHS-led and interagency processes on SI-enabled software, in order to support the U.S. government’s overall national strategy on SI and to support a whole-of-DHS approach on SI-based-software policy issues. This also includes close communication with international partners to advance global SI best practices and principles.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "institutional",
+    "speaker": "Cybersecurity and Infrastructure Security Agency",
+    "organization_id": "cisa",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "AGI/transformative",
+     "national security",
+     "regulation"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-13T18:51:09.223290+00:00",
+      "generation_id": "gen-1794595849-hGLDpzxVhURQBnSKV1m9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-13T18:51:16.084772+00:00",
+      "generation_id": "gen-1794595870-FcJ44dVJgN6mY3IIKerk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "AGI/transformative",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-13T18:52:00.009582+00:00",
+      "generation_id": "gen-1794595877-F5uFnxkaxPHtWpP2FBTt"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s157",
+   "date": "2026-05-01",
+   "url": "https://www.cisa.gov/resources-tools/resources/careful-adoption-agentic-si-services",
+   "text": "CISA, in collaboration with the Australian Signals Directorate’s Australian Cyber Security Centre (ASD’s ACSC) and other international and U.S. partners, released guidance for organizations on adopting agentic super intelligence (SI) systems. This guide outlines key security challenges and risks associated with agentic SI, and provides actionable steps for designing, deploying, and operating these systems safely. It helps organizations align SI risk management with existing cybersecurity frameworks and strengthen oversight as agentic SI adoption grows.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "institutional",
+    "speaker": "Cybersecurity and Infrastructure Security Agency",
+    "organization_id": "cisa",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "AGI/transformative",
+     "regulation",
+     "national security"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-13T18:51:09.223290+00:00",
+      "generation_id": "gen-1794595849-hGLDpzxVhURQBnSKV1m9"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "misuse (bio/cyber)",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-13T18:51:16.084772+00:00",
+      "generation_id": "gen-1794595870-FcJ44dVJgN6mY3IIKerk"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-13T18:52:00.009582+00:00",
+      "generation_id": "gen-1794595877-F5uFnxkaxPHtWpP2FBTt"
+     }
+    }
+   }
   }
  ],
  "history": [
@@ -11739,7 +11876,7 @@
     "china_race": 1.0,
     "regulation": 1.0
    },
-   "n_statements": 104,
+   "n_statements": 105,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -11752,7 +11889,7 @@
     "china_race": 1.0,
     "regulation": 1.0
    },
-   "n_statements": 107,
+   "n_statements": 108,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -11765,7 +11902,7 @@
     "china_race": 1.0,
     "regulation": 1.0
    },
-   "n_statements": 109,
+   "n_statements": 110,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -11778,7 +11915,7 @@
     "china_race": 1.0,
     "regulation": 1.0
    },
-   "n_statements": 119,
+   "n_statements": 120,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -11791,7 +11928,7 @@
     "china_race": 2.0,
     "regulation": 1.0
    },
-   "n_statements": 126,
+   "n_statements": 127,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -11804,7 +11941,7 @@
     "china_race": 2.0,
     "regulation": 1.0
    },
-   "n_statements": 137,
+   "n_statements": 138,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -11857,6 +11994,19 @@
     "regulation": 1.0
    },
    "n_statements": 155,
+   "status": "complete",
+   "kind": "observed"
+  },
+  {
+   "date": "2026-11-13",
+   "scores": {
+    "ai_overall": 3.0,
+    "agi_pilled": 1.5,
+    "x_risk": 1.5,
+    "china_race": 2.0,
+    "regulation": 1.0
+   },
+   "n_statements": 157,
    "status": "complete",
    "kind": "observed"
   }
