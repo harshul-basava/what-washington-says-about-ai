@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "cia",
- "revision": "580b43c3eccdf7209120fa79bd4b97ca8fcf381b06d1e31139e6f1d02dd1fd8e",
+ "revision": "dd5dc1d4a29de979ced1e155f9e03dd16ab922ded5827275b0ccf4aee23525e6",
  "profile": {
   "id": "cia",
   "name": "Central Intelligence Agency",
@@ -38,22 +38,22 @@
      "group": "intelligence",
      "named_query": "(\"Central Intelligence Agency\" OR \"Michael Ellis\") AI artificial intelligence superintelligence policy statements",
      "last_success_on": "2026-11-13",
-     "age_days": 0,
-     "pending_named_queries": 0,
-     "group_pending_pages": 19
+     "age_days": 1,
+     "pending_named_queries": 1,
+     "group_pending_pages": 16
     },
     "x": {
-     "last_successful_cutoff": "2026-11-13T18:43:29.614264Z",
+     "last_successful_cutoff": "2026-11-14T17:10:19.924398Z",
      "pending_windows": 0,
      "accounts_due_for_daily_check": 0
     }
    }
   },
-  "n_statements": 7,
-  "n_labeled": 7,
+  "n_statements": 8,
+  "n_labeled": 8,
   "scores": {
    "ai_overall": null,
-   "agi_pilled": null,
+   "agi_pilled": 1.5,
    "x_risk": null,
    "china_race": null,
    "regulation": null
@@ -67,11 +67,13 @@
     "label_count": 0
    },
    "agi_pilled": {
-    "score": null,
-    "reason_a": "silent",
+    "score": 1.5,
+    "reason_a": "consistent",
     "reason_b": "silent",
-    "sids": [],
-    "label_count": 0
+    "sids": [
+     "s8"
+    ],
+    "label_count": 1
    },
    "x_risk": {
     "score": null,
@@ -97,39 +99,47 @@
   },
   "summary": {
    "status": "complete",
-   "text": "In a June 2026 post, the CIA listed \"broad AI adoption\" among factors it said were accelerating the Agency's mission speed and commercial access. The agency has highlighted AI-related expertise and leadership, including a 2025 recruitment post for people skilled in using AI to gain insights from data and 2024 references to its Chief Artificial Intelligence Officer. Earlier posts described AI and machine learning as part of the CIA's future and its partnership efforts.",
+   "text": "In February 2026, the CIA announced a new Acquisition Framework to accelerate and streamline collaboration with U.S. commercial partners (s1). In June 2026, the CIA said quicker acquisitions, broad AI adoption, streamlined commercial access, and a new Directorate were accelerating the Agency’s mission speed (s2). A 2025 CIA post highlighted expertise in using AI to gain insights from data as relevant to a CIA career (s3), and a 2023 post described AI and machine learning as a bright future at the CIA and expressed interest in partnerships (s6). A CIA page says the intelligence profession is evolving with super intelligence changing how information is collected, analyzed, and acted upon, and that the CIA created DMS in June 2026 as part of its technology transformation (s8).",
    "sids": [
+    "s1",
     "s2",
     "s3",
-    "s4",
-    "s6"
+    "s6",
+    "s8"
    ],
    "sentences": [
     {
-     "text": "In a June 2026 post, the CIA listed \"broad AI adoption\" among factors it said were accelerating the Agency's mission speed and commercial access.",
+     "text": "In February 2026, the CIA announced a new Acquisition Framework to accelerate and streamline collaboration with U.S. commercial partners (s1).",
+     "sids": [
+      "s1"
+     ]
+    },
+    {
+     "text": "In June 2026, the CIA said quicker acquisitions, broad AI adoption, streamlined commercial access, and a new Directorate were accelerating the Agency’s mission speed (s2).",
      "sids": [
       "s2"
      ]
     },
     {
-     "text": "The agency has highlighted AI-related expertise and leadership, including a 2025 recruitment post for people skilled in using AI to gain insights from data and 2024 references to its Chief Artificial Intelligence Officer.",
+     "text": "A 2025 CIA post highlighted expertise in using AI to gain insights from data as relevant to a CIA career (s3), and a 2023 post described AI and machine learning as a bright future at the CIA and expressed interest in partnerships (s6).",
      "sids": [
       "s3",
-      "s4"
+      "s6"
      ]
     },
     {
-     "text": "Earlier posts described AI and machine learning as part of the CIA's future and its partnership efforts.",
+     "text": "A CIA page says the intelligence profession is evolving with super intelligence changing how information is collected, analyzed, and acted upon, and that the CIA created DMS in June 2026 as part of its technology transformation (s8).",
      "sids": [
-      "s6"
+      "s8"
      ]
     }
    ]
   },
   "topics": {
    "other": 4.0,
-   "national security": 2.5,
-   "jobs/economy": 0.5
+   "national security": 3.0,
+   "jobs/economy": 0.5,
+   "AGI/transformative": 0.5
   },
   "regulation": {
    "status": "complete",
@@ -247,24 +257,10 @@
     "superintelligence": {
      "stance": 0,
      "sids": [],
-     "why": "No stance in the supplied evidence."
+     "why": "s8 neutrally describes superintelligence as changing intelligence work; it does not call for a ban or limits, so no stance."
     }
    },
    "disputed": []
-  },
-  "stance_review": {
-   "review_id": "0b1a47011e61a96b5e82a120242d135c9b130dfc42d08167236c29183aca9590",
-   "dimension": "ai_overall",
-   "status": "complete",
-   "reason": "The supplied statements describe CIA operations, recruitment, partnerships, and promotional material rather than AI’s overall effects on Americans. The supplied fuller context for s2 and s6 remains focused on agency capabilities and opportunities. Optimism about AI at CIA does not establish a general AI stance under this rubric.",
-   "confidence": 5,
-   "n_statements": 7,
-   "n_contexts": 2,
-   "accepted_sids": [],
-   "finding_count": 0,
-   "model": "openai/gpt-6-astra",
-   "assessed_at": "2026-11-09T06:45:21.009403+00:00",
-   "generation_id": "gen-1794206713-t1BDqPmfPE8bJ6YPXpY9"
   }
  },
  "statements": [
@@ -879,6 +875,99 @@
       "model": "openai/gpt-6-astra",
       "assessed_at": "2026-11-09T06:45:21.009403+00:00",
       "generation_id": "gen-1794206713-t1BDqPmfPE8bJ6YPXpY9"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s8",
+   "date": null,
+   "url": "https://www.cia.gov/about/organization/directorate-of-mission-systems/",
+   "text": "The intelligence profession is quickly evolving, with the volume of data growing exponentially and super intelligence changing how information is collected, analyzed, and acted upon. CIA revolutionized our approach to technology and created DMS in June 2026 as a fundamental part of this transformation.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "institutional",
+    "speaker": "Central Intelligence Agency",
+    "organization_id": "cia",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "agi_pilled": 3
+    },
+    "b": {},
+    "topics": [
+     "AGI/transformative",
+     "national security"
+    ],
+    "confidence": {
+     "agi_pilled": 3.0
+    },
+    "escalated": [
+     "agi_pilled"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-14T17:25:26.971577+00:00",
+      "generation_id": "gen-1794677114-ahuMimEzjuV2yqvuhcWc"
+     },
+     "ds_1": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-14T17:25:36.139223+00:00",
+      "generation_id": "gen-1794677129-rRdNhLbXGc7pCuRHvFpc"
+     },
+     "ds_2": {
+      "labels": {
+       "agi_pilled": 3
+      },
+      "confidence": {
+       "agi_pilled": 3
+      },
+      "topics": [
+       "AGI/transformative",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-14T17:25:45.715840+00:00",
+      "generation_id": "gen-1794677138-RdJmGyNWeDCwmrSrwva8"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "national security",
+       "AGI/transformative"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-14T17:25:53.079133+00:00",
+      "generation_id": "gen-1794677148-RftPGXm8dLQo95yo5bMb"
      }
     }
    }
@@ -1545,6 +1634,19 @@
     "regulation": null
    },
    "n_statements": 7,
+   "status": "complete",
+   "kind": "observed"
+  },
+  {
+   "date": "2026-11-14",
+   "scores": {
+    "ai_overall": null,
+    "agi_pilled": 1.5,
+    "x_risk": null,
+    "china_race": null,
+    "regulation": null
+   },
+   "n_statements": 8,
    "status": "complete",
    "kind": "observed"
   }

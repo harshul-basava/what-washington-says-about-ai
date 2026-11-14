@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "sisc",
- "revision": "580b43c3eccdf7209120fa79bd4b97ca8fcf381b06d1e31139e6f1d02dd1fd8e",
+ "revision": "dd5dc1d4a29de979ced1e155f9e03dd16ab922ded5827275b0ccf4aee23525e6",
  "profile": {
   "id": "sisc",
   "name": "Super Intelligence Security Center (SISC)",
@@ -41,10 +41,10 @@
     "web": {
      "group": "nsa",
      "named_query": "(\"Super Intelligence Security Center (SISC)\" OR \"Timothy Kosiba\") AI artificial intelligence superintelligence policy statements",
-     "last_success_on": "2026-11-13",
+     "last_success_on": "2026-11-14",
      "age_days": 0,
      "pending_named_queries": 0,
-     "group_pending_pages": 20
+     "group_pending_pages": 22
     },
     "x": {
      "last_successful_cutoff": null,
@@ -53,8 +53,8 @@
     }
    }
   },
-  "n_statements": 22,
-  "n_labeled": 22,
+  "n_statements": 23,
+  "n_labeled": 23,
   "scores": {
    "ai_overall": 2.0,
    "agi_pilled": 3.0,
@@ -114,52 +114,52 @@
   },
   "summary": {
    "status": "complete",
-   "text": "The Super Intelligence Security Center states that super intelligence brings opportunity but also opens a large and volatile attack surface that must be carefully addressed. It describes aims to detect and counter SI vulnerabilities, promote SI security best practices, and collaborate with industry, academia, and government partners. Its statements describe releasing joint guidance on AI data security and planning further AI security guidance intended to reduce risk while supporting safe innovation. It also states that established cyber defense strategies do not adequately address new risks and that protecting data used in AI systems is critical to successful development and deployment.",
+   "text": "SISC describes its mission as promoting secure development, integration, and adoption of super intelligence capabilities within U.S. National Security Systems and the Defense Industrial Base, while collaborating with industry, academia, the intelligence community, and government partners. The center says it detects and counters super intelligence vulnerabilities and develops, evaluates, and promotes security best practices. SISC states that super intelligence creates opportunity but also a large and volatile attack surface, and that adversaries are using and testing tools against it. The center has publicized guidance including AI data security best practices, incident readiness and response for super intelligence training and evaluation, and security design considerations for AI-driven automation.",
    "sids": [
-    "s1",
-    "s11",
+    "s14",
     "s19",
+    "s11",
+    "s1",
+    "s9",
     "s2",
-    "s5",
-    "s6",
-    "s7",
-    "s10"
+    "s13",
+    "s23"
    ],
    "sentences": [
     {
-     "text": "The Super Intelligence Security Center states that super intelligence brings opportunity but also opens a large and volatile attack surface that must be carefully addressed.",
+     "text": "SISC describes its mission as promoting secure development, integration, and adoption of super intelligence capabilities within U.S. National Security Systems and the Defense Industrial Base, while collaborating with industry, academia, the intelligence community, and government partners.",
      "sids": [
-      "s1"
-     ]
-    },
-    {
-     "text": "It describes aims to detect and counter SI vulnerabilities, promote SI security best practices, and collaborate with industry, academia, and government partners.",
-     "sids": [
-      "s11",
+      "s14",
       "s19"
      ]
     },
     {
-     "text": "Its statements describe releasing joint guidance on AI data security and planning further AI security guidance intended to reduce risk while supporting safe innovation.",
+     "text": "The center says it detects and counters super intelligence vulnerabilities and develops, evaluates, and promotes security best practices.",
      "sids": [
-      "s2",
-      "s5",
-      "s6"
+      "s11"
      ]
     },
     {
-     "text": "It also states that established cyber defense strategies do not adequately address new risks and that protecting data used in AI systems is critical to successful development and deployment.",
+     "text": "SISC states that super intelligence creates opportunity but also a large and volatile attack surface, and that adversaries are using and testing tools against it.",
      "sids": [
-      "s7",
-      "s10"
+      "s1",
+      "s9"
+     ]
+    },
+    {
+     "text": "The center has publicized guidance including AI data security best practices, incident readiness and response for super intelligence training and evaluation, and security design considerations for AI-driven automation.",
+     "sids": [
+      "s2",
+      "s13",
+      "s23"
      ]
     }
    ]
   },
   "topics": {
-   "AGI/transformative": 2.667,
+   "AGI/transformative": 3.167,
    "national security": 10.167,
-   "regulation": 6.167,
+   "regulation": 6.667,
    "China/competition": 0.5,
    "other": 2.5
   },
@@ -1995,6 +1995,69 @@
      }
     }
    }
+  },
+  {
+   "sid": "s23",
+   "date": "2026-10-20",
+   "url": "https://www.nsa.gov/Press-Room/News-Highlights/Tag/116894/ai/",
+   "text": "The National Security Agency's Super Intelligence Security Center joins the National Institute of Standards and Technology’s Center for Advancing Innovation and Standards for Super Intelligence , the Cybersecurity and Infrastructure Security Agency, and others in releasing the guidance, “Key Practices for Incident Readiness and Response in Super Intelligence Training and Evaluation.”",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "institutional",
+    "speaker": "Super Intelligence Security Center (SISC)",
+    "organization_id": "sisc",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "AGI/transformative",
+     "regulation"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "x-risk/loss of control"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-14T17:23:21.940173+00:00",
+      "generation_id": "gen-1794676999-ONM4KTSI2s0hsGGDFGXB"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-14T17:23:26.510455+00:00",
+      "generation_id": "gen-1794677004-iAIM50bfqIHTQgZMrDFF"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "AGI/transformative",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-14T17:23:34.894136+00:00",
+      "generation_id": "gen-1794677008-Cdm9hnk2m0Hk817WuObf"
+     }
+    }
+   }
   }
  ],
  "history": [
@@ -2592,7 +2655,7 @@
     "china_race": null,
     "regulation": 1.0
    },
-   "n_statements": 13,
+   "n_statements": 14,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -2658,6 +2721,19 @@
     "regulation": 1.0
    },
    "n_statements": 22,
+   "status": "complete",
+   "kind": "observed"
+  },
+  {
+   "date": "2026-11-14",
+   "scores": {
+    "ai_overall": 2.0,
+    "agi_pilled": 3.0,
+    "x_risk": null,
+    "china_race": 0.5,
+    "regulation": 1.0
+   },
+   "n_statements": 23,
    "status": "complete",
    "kind": "observed"
   }
