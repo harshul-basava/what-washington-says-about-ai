@@ -1,14 +1,14 @@
 {
  "schema_version": 1,
  "id": "bis",
- "revision": "dd5dc1d4a29de979ced1e155f9e03dd16ab922ded5827275b0ccf4aee23525e6",
+ "revision": "3bab0d4ea914a5099344ec72b23a5c79ef6bc97facf6a84360dd34d7a8cc908c",
  "profile": {
   "id": "bis",
   "name": "Bureau of Industry and Security (BIS)",
   "party": null,
   "state": "",
   "chamber": "",
-  "status": "partial",
+  "status": "complete",
   "entity_type": "institution",
   "branch": "executive",
   "organization_id": "bis",
@@ -39,127 +39,141 @@
     "web": {
      "group": "commerce",
      "named_query": "(\"Bureau of Industry and Security (BIS)\" OR \"National Institute of Standards and Technology (NIST)\") AI artificial intelligence superintelligence policy statements",
-     "last_success_on": "2026-11-14",
+     "last_success_on": "2026-11-15",
      "age_days": 0,
      "pending_named_queries": 0,
-     "group_pending_pages": 91
+     "group_pending_pages": 94
     },
     "x": {
-     "last_successful_cutoff": "2026-11-14T17:10:07.950104Z",
+     "last_successful_cutoff": "2026-11-15T17:49:35.790418Z",
      "pending_windows": 0,
      "accounts_due_for_daily_check": 0
     }
    }
   },
-  "n_statements": 56,
-  "n_labeled": 55,
+  "n_statements": 57,
+  "n_labeled": 57,
   "scores": {
-   "ai_overall": null,
+   "ai_overall": 2.0,
    "agi_pilled": null,
-   "x_risk": null,
-   "china_race": null,
-   "regulation": null
+   "x_risk": 2.5,
+   "china_race": 3.0,
+   "regulation": 2.5
   },
   "score_details": {
    "ai_overall": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 2.0,
+    "reason_a": "median_of_1",
+    "reason_b": "median_of_1",
+    "sids": [
+     "s36"
+    ],
+    "label_count": 1
    },
    "agi_pilled": {
     "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
+    "reason_a": "silent",
+    "reason_b": "silent",
     "sids": [],
     "label_count": 0
    },
    "x_risk": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 2.5,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s57",
+     "s17",
+     "s7"
+    ],
+    "label_count": 3
    },
    "china_race": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 3.0,
+    "reason_a": "consistent",
+    "reason_b": "consistent",
+    "sids": [
+     "s14",
+     "s20",
+     "s19",
+     "s55",
+     "s18",
+     "s7",
+     "s4",
+     "s1"
+    ],
+    "label_count": 20
    },
    "regulation": {
-    "score": null,
-    "reason_a": "pending",
-    "reason_b": "pending",
-    "sids": [],
-    "label_count": 0
+    "score": 2.5,
+    "reason_a": "consistent",
+    "reason_b": "one_off_capped",
+    "sids": [
+     "s14",
+     "s2",
+     "s20",
+     "s17",
+     "s4",
+     "s11"
+    ],
+    "label_count": 29
    }
   },
   "summary": {
    "status": "complete",
-   "text": "BIS has issued guidance and export-control actions aimed at restricting PRC access to advanced computing chips and AI models, citing national-security and military end-use risks. In May 2025, BIS announced the rescission of the Biden-era AI Diffusion Rule, said it planned to formalize the rescission and issue a replacement rule, and announced strengthened export controls for overseas SI chips. In January 2026, BIS said it would review export license applications for Nvidia H200, AMD MI325X, and similar chips case-by-case if certain security requirements are met. BIS also proposed mandatory reporting requirements for leading AI developers and computing providers.",
+   "text": "In May 2025, BIS announced guidance warning about the potential consequences of allowing U.S. SI chips to be used for training and inference of Chinese SI models, as part of actions to strengthen export controls for overseas SI chips. BIS also said it will review export license applications for Nvidia H200, AMD MI325X, and similar chips case-by-case if certain security requirements are met, including demonstrated compliance procedures and third-party testing. In September 2024, BIS proposed mandatory reporting requirements for developers of the most powerful AI models and computing clusters. BIS has added entities to the Entity List for activities related to advanced AI and computing for China-based end-users with close ties to the country’s military-industrial complex.",
    "sids": [
-    "s3",
-    "s7",
-    "s53",
-    "s55",
+    "s1",
     "s4",
-    "s5",
-    "s6",
-    "s50",
+    "s55",
     "s2",
     "s14",
-    "s12",
     "s21",
     "s22",
     "s23",
-    "s24"
+    "s11",
+    "s31",
+    "s56"
    ],
    "sentences": [
     {
-     "text": "BIS has issued guidance and export-control actions aimed at restricting PRC access to advanced computing chips and AI models, citing national-security and military end-use risks.",
+     "text": "In May 2025, BIS announced guidance warning about the potential consequences of allowing U.S. SI chips to be used for training and inference of Chinese SI models, as part of actions to strengthen export controls for overseas SI chips.",
      "sids": [
-      "s3",
-      "s7",
-      "s53",
+      "s1",
+      "s4",
       "s55"
      ]
     },
     {
-     "text": "In May 2025, BIS announced the rescission of the Biden-era AI Diffusion Rule, said it planned to formalize the rescission and issue a replacement rule, and announced strengthened export controls for overseas SI chips.",
-     "sids": [
-      "s4",
-      "s5",
-      "s6",
-      "s50"
-     ]
-    },
-    {
-     "text": "In January 2026, BIS said it would review export license applications for Nvidia H200, AMD MI325X, and similar chips case-by-case if certain security requirements are met.",
+     "text": "BIS also said it will review export license applications for Nvidia H200, AMD MI325X, and similar chips case-by-case if certain security requirements are met, including demonstrated compliance procedures and third-party testing.",
      "sids": [
       "s2",
       "s14"
      ]
     },
     {
-     "text": "BIS also proposed mandatory reporting requirements for leading AI developers and computing providers.",
+     "text": "In September 2024, BIS proposed mandatory reporting requirements for developers of the most powerful AI models and computing clusters.",
      "sids": [
-      "s12",
       "s21",
       "s22",
-      "s23",
-      "s24"
+      "s23"
+     ]
+    },
+    {
+     "text": "BIS has added entities to the Entity List for activities related to advanced AI and computing for China-based end-users with close ties to the country’s military-industrial complex.",
+     "sids": [
+      "s11",
+      "s31",
+      "s56"
      ]
     }
    ]
   },
   "topics": {
-   "China/competition": 7.333,
-   "national security": 20.833,
+   "China/competition": 8.167,
+   "national security": 21.667,
    "regulation": 21.5,
-   "misuse (bio/cyber)": 1.5,
+   "misuse (bio/cyber)": 1.833,
    "jobs/economy": 0.5,
    "energy/data centers": 0.333,
    "other": 1.5,
@@ -230,7 +244,7 @@
       "s22",
       "s24"
      ],
-     "why": "BIS proposed a mandatory reporting requirement for leading AI developers and compute providers to give detailed information to the federal government."
+     "why": "BIS proposed and supported a mandatory reporting requirement for leading AI developers and cloud providers to provide detailed information to the federal government."
     },
     "whistleblowers": {
      "stance": 0,
@@ -243,12 +257,12 @@
      "why": "No stance in the supplied evidence."
     },
     "misuse": {
-     "stance": 2,
+     "stance": 1,
      "sids": [
       "s7",
       "s17"
      ],
-     "why": "BIS policy statements impose license requirements when an SI model is known to be destined for WMD or military-intelligence end uses, a safeguard against AI-enabled WMD misuse."
+     "why": "BIS identifies WMD and military-intelligence end uses from AI model training and imposes license requirements when such use is known, implying support for safeguards against weapons-related misuse."
     },
     "nuclear": {
      "stance": 0,
@@ -291,7 +305,7 @@
       "s2",
       "s14"
      ],
-     "why": "BIS’s January 13, 2026 statements adopt case-by-case licensing for H200, MI325X and similar chip exports to China subject to security requirements, supporting conditional advanced-chip sales; this is the most recent clear China-specific position and takes precedence over earlier tightening."
+     "why": "The most recent clear China-specific policy, dated January 13, 2026, permits case-by-case export licensing for Nvidia H200, AMD MI325X and similar chips subject to security requirements, supporting conditional advanced-chip sales to China rather than tighter restrictions."
     }
    },
    "disputed": [
@@ -6702,10 +6716,13 @@
     "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
    },
    "analysis": {
-    "status": "pending",
+    "status": "complete",
     "a": {},
     "b": {},
-    "topics": [],
+    "topics": [
+     "China/competition",
+     "national security"
+    ],
     "confidence": {},
     "escalated": [],
     "models": {
@@ -6733,6 +6750,138 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "assessed_at": "2026-11-14T17:24:29.305874+00:00",
       "generation_id": "gen-1794677057-9dRoJwiv6XhJmNBYCORJ"
+     },
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-15T18:04:54.033890+00:00",
+      "generation_id": "gen-1794765874-pKXPQfg8hR490Bk50bRZ"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s57",
+   "date": "2025-05-13",
+   "url": "https://www.bis.gov/media/documents/si-policy-statement-training-si-models-may-13-2025",
+   "text": "Specifically, BIS has determined that access to advanced computing integrated circuits (ICs) and commodities subject to the EAR for training SI models has the potential to enable military-intelligence and weapons of mass destruction (WMD) end uses in Country Group D:5 countries (including China) or Macau.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "institutional",
+    "speaker": "Bureau of Industry and Security (BIS)",
+    "organization_id": "bis",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "x_risk": 3,
+     "china_race": 1,
+     "regulation": 2
+    },
+    "b": {
+     "x_risk": 2,
+     "china_race": 1
+    },
+    "topics": [
+     "China/competition",
+     "national security",
+     "misuse (bio/cyber)"
+    ],
+    "confidence": {
+     "x_risk": 3.33,
+     "china_race": 2.0,
+     "regulation": 3.0
+    },
+    "escalated": [
+     "x_risk",
+     "china_race",
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "x_risk": 3
+      },
+      "confidence": {
+       "x_risk": 3
+      },
+      "topics": [
+       "China/competition",
+       "national security",
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-15T18:04:54.033890+00:00",
+      "generation_id": "gen-1794765874-pKXPQfg8hR490Bk50bRZ"
+     },
+     "ds_1": {
+      "labels": {
+       "x_risk": 3,
+       "china_race": 1,
+       "regulation": 2
+      },
+      "confidence": {
+       "x_risk": 3,
+       "china_race": 2,
+       "regulation": 3
+      },
+      "topics": [
+       "China/competition",
+       "national security",
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-15T18:05:13.826500+00:00",
+      "generation_id": "gen-1794765895-boCNIEcIdYjm8Hg2q9lb"
+     },
+     "ds_2": {
+      "labels": {
+       "x_risk": 3,
+       "china_race": 1,
+       "regulation": 2
+      },
+      "confidence": {
+       "x_risk": 4,
+       "china_race": 2,
+       "regulation": 3
+      },
+      "topics": [
+       "national security",
+       "China/competition",
+       "misuse (bio/cyber)"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-15T18:05:27.073077+00:00",
+      "generation_id": "gen-1794765915-8M5D9TErtZ3woaLT6GKO"
+     },
+     "sol": {
+      "labels": {
+       "x_risk": 2,
+       "china_race": 1
+      },
+      "confidence": {
+       "x_risk": 4,
+       "china_race": 4
+      },
+      "topics": [
+       "national security",
+       "China/competition",
+       "misuse (bio/cyber)"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-15T18:05:32.203242+00:00",
+      "generation_id": "gen-1794765928-2SfKkDukDkbMp90Zon5j"
      }
     }
    }
@@ -7080,261 +7229,261 @@
   {
    "date": "2025-03-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.0,
+    "regulation": 3.0
    },
    "n_statements": 34,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-04-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
     "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "china_race": 3.0,
+    "regulation": 3.0
    },
    "n_statements": 34,
-   "status": "pending",
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-05-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "x_risk": 2.5,
+    "china_race": 3.0,
+    "regulation": 3.0
    },
-   "n_statements": 46,
-   "status": "pending",
+   "n_statements": 47,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-06-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "x_risk": 2.5,
+    "china_race": 3.0,
+    "regulation": 3.0
    },
-   "n_statements": 46,
-   "status": "pending",
+   "n_statements": 47,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-07-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "x_risk": 2.5,
+    "china_race": 3.0,
+    "regulation": 3.0
    },
-   "n_statements": 46,
-   "status": "pending",
+   "n_statements": 47,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-08-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "x_risk": 2.5,
+    "china_race": 3.0,
+    "regulation": 3.0
    },
-   "n_statements": 48,
-   "status": "pending",
+   "n_statements": 49,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-09-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "x_risk": 2.5,
+    "china_race": 3.0,
+    "regulation": 3.0
    },
-   "n_statements": 49,
-   "status": "pending",
+   "n_statements": 50,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-10-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "x_risk": 2.5,
+    "china_race": 3.0,
+    "regulation": 3.0
    },
-   "n_statements": 49,
-   "status": "pending",
+   "n_statements": 50,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-11-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "x_risk": 2.5,
+    "china_race": 3.0,
+    "regulation": 3.0
    },
-   "n_statements": 49,
-   "status": "pending",
+   "n_statements": 50,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2025-12-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "x_risk": 2.5,
+    "china_race": 3.0,
+    "regulation": 3.0
    },
-   "n_statements": 49,
-   "status": "pending",
+   "n_statements": 50,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-01-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "x_risk": 2.5,
+    "china_race": 3.0,
+    "regulation": 3.0
    },
-   "n_statements": 51,
-   "status": "pending",
+   "n_statements": 52,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-02-28",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "x_risk": 2.5,
+    "china_race": 3.0,
+    "regulation": 3.0
    },
-   "n_statements": 51,
-   "status": "pending",
+   "n_statements": 52,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-03-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "x_risk": 2.5,
+    "china_race": 3.0,
+    "regulation": 3.0
    },
-   "n_statements": 51,
-   "status": "pending",
+   "n_statements": 52,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-04-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "x_risk": 2.5,
+    "china_race": 3.0,
+    "regulation": 3.0
    },
-   "n_statements": 51,
-   "status": "pending",
+   "n_statements": 52,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-05-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "x_risk": 2.5,
+    "china_race": 3.0,
+    "regulation": 3.0
    },
-   "n_statements": 51,
-   "status": "pending",
+   "n_statements": 52,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-06-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "x_risk": 2.5,
+    "china_race": 3.0,
+    "regulation": 3.0
    },
-   "n_statements": 51,
-   "status": "pending",
+   "n_statements": 52,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-07-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "x_risk": 2.5,
+    "china_race": 3.0,
+    "regulation": 3.0
    },
-   "n_statements": 52,
-   "status": "pending",
+   "n_statements": 53,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-08-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "x_risk": 2.5,
+    "china_race": 3.0,
+    "regulation": 3.0
    },
-   "n_statements": 52,
-   "status": "pending",
+   "n_statements": 53,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-09-30",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "x_risk": 2.5,
+    "china_race": 3.0,
+    "regulation": 2.5
    },
-   "n_statements": 52,
-   "status": "pending",
+   "n_statements": 53,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
    "date": "2026-10-31",
    "scores": {
-    "ai_overall": null,
+    "ai_overall": 2.0,
     "agi_pilled": null,
-    "x_risk": null,
-    "china_race": null,
-    "regulation": null
+    "x_risk": 2.5,
+    "china_race": 3.0,
+    "regulation": 2.5
    },
-   "n_statements": 52,
-   "status": "pending",
+   "n_statements": 53,
+   "status": "complete",
    "kind": "reconstructed"
   },
   {
@@ -7399,6 +7548,19 @@
     "regulation": 2.5
    },
    "n_statements": 55,
+   "status": "complete",
+   "kind": "observed"
+  },
+  {
+   "date": "2026-11-15",
+   "scores": {
+    "ai_overall": 2.0,
+    "agi_pilled": null,
+    "x_risk": 2.5,
+    "china_race": 3.0,
+    "regulation": 2.5
+   },
+   "n_statements": 57,
    "status": "complete",
    "kind": "observed"
   }
