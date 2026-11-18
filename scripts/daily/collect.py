@@ -3,9 +3,9 @@
 Sources:
   x     X full-archive search (paid API), many members' handles per query, since the last run.
   crec  Congressional Record (govinfo API), speaker identified by bioguide ID.
-  chrg  Committee hearing transcripts (govinfo API), weekly; speakers matched by surname.
+  chrg  Committee hearing transcripts (govinfo API), every run; speakers matched by surname.
   web   Exa search (direct with EXA_API_KEY, else via OpenRouter) over a fixed pool of domains (official .gov sites + the news sites that produced
-        quotes in the original collection), last 48 hours; DeepSeek extracts the member's own words,
+        quotes in the original collection), last 17 days; DeepSeek extracts the member's own words,
         and every quote is checked against the page (verify.py).
 
 Usage: python scripts/daily/collect.py [--sources x,crec,chrg,web] [--since YYYY-MM-DD] [--dry-run]
@@ -35,7 +35,8 @@ X_QUERY_MAX = 1024
 GOVINFO = "https://api.govinfo.gov"
 EXTRACT_MODEL = "deepseek/deepseek-v4.1-flash"
 MAX_EXCERPT = 900
-MAX_WEB_PAGES = 80        # pages sent to the extraction model per run (newest-looking and official sites first)
+MAX_WEB_PAGES = 250       # pages sent to the extraction model per run (newest-looking and official sites first)
+WEB_WINDOW_DAYS = 17      # runs are ~2 weeks apart (1st and 15th); 2 extra days of overlap; seen URLs are skipped
 WEB_MINUTES = 20          # time budget for page extraction
 MONTHS = "January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec"
 DATE_RX = re.compile(rf"\b(?:({MONTHS})\.?\s+(\d{{1,2}}),?\s+(20\d\d))\b|\b(20\d\d)-(\d\d)-(\d\d)\b", re.I)
@@ -397,7 +398,7 @@ def search_pages(q, doms, start):
         d = llm.exa_search({"query": q, "type": "auto", "numResults": 10, "includeDomains": doms, "startPublishedDate": start,
                             "contents": {"text": {"maxCharacters": 30000}}}, tag="daily_web_search")
         return d.get("results") or []
-    tool = {"type": "openrouter:web_search", "parameters": {"engine": "exa", "max_results": 10, "max_uses": 3, "max_characters": 30000}}
+    tool = {"type": "openrouter:web_search", "parameters": {"engine": "exa", "max_results": 25, "max_uses": 3, "max_characters": 30000}}
     prompt = WEB_SEARCH_PROMPT.format(since=start[:10], query=q, domains=", ".join(doms))
     d = llm.chat([{"role": "user", "content": prompt}], tag="daily_web_search", tools=[tool], model=WEB_SEARCH_MODEL, max_tokens=2000)
     pages = {}
@@ -410,7 +411,7 @@ def search_pages(q, doms, start):
 
 
 def collect_web(st, since=None, dry=False):
-    start = since or (datetime.now(timezone.utc) - timedelta(hours=48)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    start = since or (datetime.now(timezone.utc) - timedelta(days=WEB_WINDOW_DAYS)).strftime("%Y-%m-%dT%H:%M:%SZ")
     seen = set(st["web"]["seen"])
     owners, pats = site_owners(), name_patterns()
     name_of = {pid: nm for pid, nm, _ in pats}
@@ -472,7 +473,7 @@ FUNCS = {"x": collect_x, "crec": collect_crec, "chrg": collect_chrg, "web": coll
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--sources", default="x,crec,web" + (",chrg" if date.today().weekday() == 0 else ""))
+    ap.add_argument("--sources", default="x,crec,chrg,web")
     ap.add_argument("--since", help="override the start date for every source (YYYY-MM-DD)")
     ap.add_argument("--dry-run", action="store_true", help="plan the queries but do not call paid APIs or write evidence")
     a = ap.parse_args(argv)

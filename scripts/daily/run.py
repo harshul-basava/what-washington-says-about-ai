@@ -152,9 +152,8 @@ def run_congress(argv=None):
 
 def main(argv=None):
     """Run independent federal and congressional pipelines, retaining both failure signals."""
-    from datetime import date
     ap = argparse.ArgumentParser()
-    ap.add_argument('--sources', default='x,crec,web,federal' + (',chrg' if date.today().weekday() == 0 else ''))
+    ap.add_argument('--sources', default='x,crec,chrg,web,federal')
     ap.add_argument('--since')
     ap.add_argument('--skip-collect', action='store_true')
     ap.add_argument('--dry-run', action='store_true')

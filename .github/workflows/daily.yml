@@ -1,4 +1,4 @@
-# Daily update: collect federal statements; update policy positions, five scores,
+# Twice-monthly update (1st and 15th): collect federal statements; update policy positions, five scores,
 # regulation categories, summaries, topics, and histories; then update Congress and publish.
 # Vercel redeploys on the push when the project permits deployment.
 # Forks default to federal-only updates. Explicit sources override this default.
@@ -7,7 +7,7 @@ name: Daily update
 
 on:
   schedule:
-    - cron: "0 11 * * *"   # about 6-7am US Eastern
+    - cron: "0 11 1,15 * *"   # 1st and 15th of each month, about 6-7am US Eastern
   workflow_dispatch:
     inputs:
       sources:
@@ -28,7 +28,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 240
     env:
       IN_SOURCES: ${{ inputs.sources || (github.event.repository.fork && 'federal') || '' }}
     steps:
