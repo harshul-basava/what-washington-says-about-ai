@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "bis",
- "revision": "39805015699af35509e4902fbbb0e8454921410b29e0d97bf0db29a7d2f5c1ee",
+ "revision": "7168a5746118f0025442b1cecc4176d1d731df2599bf001636439a92a0591a5e",
  "profile": {
   "id": "bis",
   "name": "Bureau of Industry and Security (BIS)",
@@ -39,20 +39,20 @@
     "web": {
      "group": "commerce",
      "named_query": "(\"Bureau of Industry and Security (BIS)\" OR \"National Institute of Standards and Technology (NIST)\") AI artificial intelligence superintelligence policy statements",
-     "last_success_on": "2026-11-15",
-     "age_days": 2,
+     "last_success_on": "2026-11-18",
+     "age_days": 1,
      "pending_named_queries": 1,
-     "group_pending_pages": 94
+     "group_pending_pages": 103
     },
     "x": {
-     "last_successful_cutoff": "2026-11-17T19:37:34.701563Z",
+     "last_successful_cutoff": "2026-11-18T23:58:38.162163Z",
      "pending_windows": 0,
-     "accounts_due_for_daily_check": 0
+     "accounts_due_for_daily_check": 1
     }
    }
   },
-  "n_statements": 57,
-  "n_labeled": 57,
+  "n_statements": 62,
+  "n_labeled": 62,
   "scores": {
    "ai_overall": 2.0,
    "agi_pilled": null,
@@ -96,13 +96,12 @@
      "s14",
      "s20",
      "s19",
+     "s61",
      "s55",
      "s18",
-     "s7",
-     "s4",
-     "s1"
+     "s4"
     ],
-    "label_count": 20
+    "label_count": 22
    },
    "regulation": {
     "score": 2.5,
@@ -116,68 +115,74 @@
      "s4",
      "s11"
     ],
-    "label_count": 29
+    "label_count": 34
    }
   },
   "summary": {
    "status": "complete",
-   "text": "In May 2025, BIS announced guidance warning about the potential consequences of allowing U.S. SI chips to be used for training and inference of Chinese SI models, as part of actions to strengthen export controls for overseas SI chips. BIS also said it will review export license applications for Nvidia H200, AMD MI325X, and similar chips case-by-case if certain security requirements are met, including demonstrated compliance procedures and third-party testing. In September 2024, BIS proposed mandatory reporting requirements for developers of the most powerful AI models and computing clusters. BIS has added entities to the Entity List for activities related to advanced AI and computing for China-based end-users with close ties to the country’s military-industrial complex.",
+   "text": "BIS has issued guidance and export-control actions aimed at limiting access to advanced computing chips and AI technology that could support military-intelligence or weapons-of-mass-destruction end uses in China and Macau. In May 2025, BIS announced it was rescinding the Biden-era AI Diffusion Rule, citing diplomatic and innovation concerns, and said it planned to publish a formal rescission and a replacement rule. BIS also described strengthened controls for overseas SI chips, including guidance on PRC advanced computing ICs and additional licensing requirements for exports to Malaysia and Thailand. BIS proposed reporting requirements for frontier AI developers and computing clusters, and in 2026 described case-by-case license review for certain Nvidia and AMD chips subject to security conditions.",
    "sids": [
-    "s1",
+    "s7",
+    "s17",
+    "s18",
+    "s5",
+    "s6",
+    "s10",
     "s4",
     "s55",
-    "s2",
-    "s14",
+    "s61",
     "s21",
     "s22",
     "s23",
-    "s11",
-    "s31",
-    "s56"
+    "s2",
+    "s14"
    ],
    "sentences": [
     {
-     "text": "In May 2025, BIS announced guidance warning about the potential consequences of allowing U.S. SI chips to be used for training and inference of Chinese SI models, as part of actions to strengthen export controls for overseas SI chips.",
+     "text": "BIS has issued guidance and export-control actions aimed at limiting access to advanced computing chips and AI technology that could support military-intelligence or weapons-of-mass-destruction end uses in China and Macau.",
      "sids": [
-      "s1",
+      "s7",
+      "s17",
+      "s18"
+     ]
+    },
+    {
+     "text": "In May 2025, BIS announced it was rescinding the Biden-era AI Diffusion Rule, citing diplomatic and innovation concerns, and said it planned to publish a formal rescission and a replacement rule.",
+     "sids": [
+      "s5",
+      "s6",
+      "s10"
+     ]
+    },
+    {
+     "text": "BIS also described strengthened controls for overseas SI chips, including guidance on PRC advanced computing ICs and additional licensing requirements for exports to Malaysia and Thailand.",
+     "sids": [
       "s4",
-      "s55"
+      "s55",
+      "s61"
      ]
     },
     {
-     "text": "BIS also said it will review export license applications for Nvidia H200, AMD MI325X, and similar chips case-by-case if certain security requirements are met, including demonstrated compliance procedures and third-party testing.",
-     "sids": [
-      "s2",
-      "s14"
-     ]
-    },
-    {
-     "text": "In September 2024, BIS proposed mandatory reporting requirements for developers of the most powerful AI models and computing clusters.",
+     "text": "BIS proposed reporting requirements for frontier AI developers and computing clusters, and in 2026 described case-by-case license review for certain Nvidia and AMD chips subject to security conditions.",
      "sids": [
       "s21",
       "s22",
-      "s23"
-     ]
-    },
-    {
-     "text": "BIS has added entities to the Entity List for activities related to advanced AI and computing for China-based end-users with close ties to the country’s military-industrial complex.",
-     "sids": [
-      "s11",
-      "s31",
-      "s56"
+      "s23",
+      "s2",
+      "s14"
      ]
     }
    ]
   },
   "topics": {
-   "China/competition": 8.167,
-   "national security": 21.667,
-   "regulation": 21.5,
+   "China/competition": 8.833,
+   "national security": 23.167,
+   "regulation": 23.5,
    "misuse (bio/cyber)": 1.833,
    "jobs/economy": 0.5,
    "energy/data centers": 0.333,
-   "other": 1.5,
-   "AGI/transformative": 1.5
+   "other": 2.0,
+   "AGI/transformative": 1.833
   },
   "regulation": {
    "status": "complete",
@@ -232,6 +237,15 @@
      "sids": [],
      "why": "No stance in the supplied evidence."
     },
+    "chips": {
+     "stance": 2,
+     "sids": [
+      "s3",
+      "s4",
+      "s53"
+     ],
+     "why": "BIS repeatedly strengthened export controls on advanced AI chips and chip-making tools to China, including restricting CCP access to high-performance computing and impairing PRC advanced-node semiconductor production."
+    },
     "testing_mandate": {
      "stance": 0,
      "sids": [],
@@ -242,9 +256,9 @@
      "sids": [
       "s21",
       "s22",
-      "s24"
+      "s23"
      ],
-     "why": "BIS proposed and supported a mandatory reporting requirement for leading AI developers and cloud providers to provide detailed information to the federal government."
+     "why": "BIS proposed and described a mandatory reporting requirement for developers of the most powerful AI models and computing clusters to provide detailed information to the federal government."
     },
     "whistleblowers": {
      "stance": 0,
@@ -255,14 +269,6 @@
      "stance": 0,
      "sids": [],
      "why": "No stance in the supplied evidence."
-    },
-    "misuse": {
-     "stance": 1,
-     "sids": [
-      "s7",
-      "s17"
-     ],
-     "why": "BIS identifies WMD and military-intelligence end uses from AI model training and imposes license requirements when such use is known, implying support for safeguards against weapons-related misuse."
     },
     "nuclear": {
      "stance": 0,
@@ -299,17 +305,18 @@
      "sids": [],
      "why": "No stance in the supplied evidence."
     },
-    "chips": {
-     "stance": -2,
+    "misuse": {
+     "stance": 2,
      "sids": [
-      "s2",
-      "s14"
+      "s17",
+      "s8",
+      "s18"
      ],
-     "why": "The most recent clear China-specific policy, dated January 13, 2026, permits case-by-case export licensing for Nvidia H200, AMD MI325X and similar chips subject to security requirements, supporting conditional advanced-chip sales to China rather than tighter restrictions."
+     "why": "In its May 13, 2025 guidance, BIS implements safeguards against WMD-related model use through potentially applicable licensing requirements, warnings of enforcement for unauthorized violations, and compliance guidance."
     }
    },
    "disputed": [
-    "chips"
+    "misuse"
    ]
   }
  },
@@ -6885,6 +6892,482 @@
      }
     }
    }
+  },
+  {
+   "sid": "s58",
+   "date": "2026-11-16",
+   "url": "https://www.bis.gov/news-updates",
+   "text": "Today, the U.S. Commerce Department’s Bureau of Industry and Security (BIS) released an interim final rule (IFR)—written by and at the direction of the Department of Treasury and the National Security Council—to address remote access to advanced super intelligence (SI) chips and servers.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "institutional",
+    "speaker": "Bureau of Industry and Security (BIS)",
+    "organization_id": "bis",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 2
+    },
+    "b": {
+     "regulation": 2
+    },
+    "topics": [
+     "regulation",
+     "national security",
+     "AGI/transformative"
+    ],
+    "confidence": {
+     "regulation": 3.0
+    },
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "national security",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-19T00:24:45.212150+00:00",
+      "generation_id": "gen-1795047866-N0jXkygirxS4WjBb7YE2"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "national security",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-19T00:25:09.422352+00:00",
+      "generation_id": "gen-1795047886-XuZrBMss5rmdWsCQEiTb"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "national security",
+       "AGI/transformative"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-19T00:25:42.706811+00:00",
+      "generation_id": "gen-1795047912-So2yWSEzfvZ7Nf7p1F95"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s59",
+   "date": "2026-11-16",
+   "url": "https://www.bis.gov/news-updates",
+   "text": "The rule is designed to ensure that existing restrictions on access to sensitive American technology cannot be circumvented through remote computing arrangements involving data centers in third countries.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "institutional",
+    "speaker": "Bureau of Industry and Security (BIS)",
+    "organization_id": "bis",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "regulation": 2
+    },
+    "b": {
+     "regulation": 2
+    },
+    "topics": [
+     "regulation",
+     "national security"
+    ],
+    "confidence": {
+     "regulation": 3.0
+    },
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-19T00:24:45.212150+00:00",
+      "generation_id": "gen-1795047866-N0jXkygirxS4WjBb7YE2"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "national security",
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-19T00:25:09.422352+00:00",
+      "generation_id": "gen-1795047886-XuZrBMss5rmdWsCQEiTb"
+     },
+     "ds_2": {
+      "labels": {
+       "regulation": 2
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-19T00:25:42.706811+00:00",
+      "generation_id": "gen-1795047912-So2yWSEzfvZ7Nf7p1F95"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s60",
+   "date": "2025-05-13",
+   "url": "https://www.bis.gov/news-updates",
+   "text": "The AI Diffusion Rule also would have undermined U.S. diplomatic relations with dozens of countries by downgrading them to second-tier status. BIS plans to publish a regulation formalizing the rescission and will issue a replacement rule in the future.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "institutional",
+    "speaker": "Bureau of Industry and Security (BIS)",
+    "organization_id": "bis",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {
+     "regulation": 0
+    },
+    "topics": [
+     "regulation",
+     "other"
+    ],
+    "confidence": {},
+    "escalated": [
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-19T00:24:45.212150+00:00",
+      "generation_id": "gen-1795047866-N0jXkygirxS4WjBb7YE2"
+     },
+     "ds_1": {
+      "labels": {
+       "regulation": 1
+      },
+      "confidence": {
+       "regulation": 2
+      },
+      "topics": [
+       "regulation",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-19T00:25:09.422352+00:00",
+      "generation_id": "gen-1795047886-XuZrBMss5rmdWsCQEiTb"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "regulation",
+       "national security"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-19T00:25:42.706811+00:00",
+      "generation_id": "gen-1795047912-So2yWSEzfvZ7Nf7p1F95"
+     },
+     "sol": {
+      "labels": {
+       "regulation": 0
+      },
+      "confidence": {
+       "regulation": 3
+      },
+      "topics": [
+       "regulation"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-19T00:25:50.617754+00:00",
+      "generation_id": "gen-1795047944-YfON8KUlGvqkBpgQp850"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s61",
+   "date": "2025-05-13",
+   "url": "https://www.bis.gov/news-updates",
+   "text": "In addition, BIS today announced actions to strengthen export controls for overseas SI chips, including: Issuing guidance alerting industry to the risks of using PRC advanced computing ICs, including specific Huawei Ascend chips.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "institutional",
+    "speaker": "Bureau of Industry and Security (BIS)",
+    "organization_id": "bis",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "china_race": 3,
+     "regulation": 2
+    },
+    "b": {
+     "china_race": 3,
+     "regulation": 2
+    },
+    "topics": [
+     "China/competition",
+     "national security",
+     "regulation"
+    ],
+    "confidence": {
+     "china_race": 3.33,
+     "regulation": 2.67
+    },
+    "escalated": [
+     "china_race",
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 2,
+       "regulation": 2
+      },
+      "confidence": {
+       "china_race": 3,
+       "regulation": 3
+      },
+      "topics": [
+       "China/competition",
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-19T00:24:45.212150+00:00",
+      "generation_id": "gen-1795047866-N0jXkygirxS4WjBb7YE2"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 3,
+       "regulation": 2
+      },
+      "confidence": {
+       "china_race": 4,
+       "regulation": 3
+      },
+      "topics": [
+       "China/competition",
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-19T00:25:09.422352+00:00",
+      "generation_id": "gen-1795047886-XuZrBMss5rmdWsCQEiTb"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3,
+       "regulation": 2
+      },
+      "confidence": {
+       "china_race": 3,
+       "regulation": 2
+      },
+      "topics": [
+       "China/competition",
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-19T00:25:42.706811+00:00",
+      "generation_id": "gen-1795047912-So2yWSEzfvZ7Nf7p1F95"
+     },
+     "sol": {
+      "labels": {
+       "china_race": 3,
+       "regulation": 2
+      },
+      "confidence": {
+       "china_race": 3,
+       "regulation": 3
+      },
+      "topics": [
+       "China/competition",
+       "regulation",
+       "national security"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-19T00:25:50.617754+00:00",
+      "generation_id": "gen-1795047944-YfON8KUlGvqkBpgQp850"
+     }
+    }
+   }
+  },
+  {
+   "sid": "s62",
+   "date": "2025-03-25",
+   "url": "https://www.bis.gov/news-updates",
+   "text": "As part of these measures, BIS is working toward the following objectives: • Restrict the Chinese Communist Party’s (CCP) ability to acquire and develop high-performance and exascale computing capabilities, as well as quantum technologies, for military applications;",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "institutional",
+    "speaker": "Bureau of Industry and Security (BIS)",
+    "organization_id": "bis",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {
+     "china_race": 3,
+     "regulation": 2
+    },
+    "b": {
+     "china_race": 3
+    },
+    "topics": [
+     "China/competition",
+     "national security",
+     "regulation"
+    ],
+    "confidence": {
+     "china_race": 3.67,
+     "regulation": 2.67
+    },
+    "escalated": [
+     "regulation"
+    ],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017",
+     "sol": "openai/gpt-6.1-sol"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {
+       "china_race": 3,
+       "regulation": 2
+      },
+      "confidence": {
+       "china_race": 3,
+       "regulation": 3
+      },
+      "topics": [
+       "China/competition",
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-19T00:24:45.212150+00:00",
+      "generation_id": "gen-1795047866-N0jXkygirxS4WjBb7YE2"
+     },
+     "ds_1": {
+      "labels": {
+       "china_race": 3,
+       "regulation": 2
+      },
+      "confidence": {
+       "china_race": 4,
+       "regulation": 3
+      },
+      "topics": [
+       "China/competition",
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-19T00:25:09.422352+00:00",
+      "generation_id": "gen-1795047886-XuZrBMss5rmdWsCQEiTb"
+     },
+     "ds_2": {
+      "labels": {
+       "china_race": 3,
+       "regulation": 2
+      },
+      "confidence": {
+       "china_race": 4,
+       "regulation": 2
+      },
+      "topics": [
+       "China/competition",
+       "national security",
+       "regulation"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-19T00:25:42.706811+00:00",
+      "generation_id": "gen-1795047912-So2yWSEzfvZ7Nf7p1F95"
+     },
+     "sol": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "China/competition",
+       "national security"
+      ],
+      "model": "openai/gpt-6.1-sol",
+      "assessed_at": "2026-11-19T00:25:50.617754+00:00",
+      "generation_id": "gen-1795047944-YfON8KUlGvqkBpgQp850"
+     }
+    }
+   }
   }
  ],
  "history": [
@@ -7235,7 +7718,7 @@
     "china_race": 3.0,
     "regulation": 3.0
    },
-   "n_statements": 34,
+   "n_statements": 35,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -7248,7 +7731,7 @@
     "china_race": 3.0,
     "regulation": 3.0
    },
-   "n_statements": 34,
+   "n_statements": 35,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -7261,7 +7744,7 @@
     "china_race": 3.0,
     "regulation": 3.0
    },
-   "n_statements": 47,
+   "n_statements": 50,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -7274,7 +7757,7 @@
     "china_race": 3.0,
     "regulation": 3.0
    },
-   "n_statements": 47,
+   "n_statements": 50,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -7287,7 +7770,7 @@
     "china_race": 3.0,
     "regulation": 3.0
    },
-   "n_statements": 47,
+   "n_statements": 50,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -7300,7 +7783,7 @@
     "china_race": 3.0,
     "regulation": 3.0
    },
-   "n_statements": 49,
+   "n_statements": 52,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -7313,7 +7796,7 @@
     "china_race": 3.0,
     "regulation": 3.0
    },
-   "n_statements": 50,
+   "n_statements": 53,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -7326,7 +7809,7 @@
     "china_race": 3.0,
     "regulation": 3.0
    },
-   "n_statements": 50,
+   "n_statements": 53,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -7339,7 +7822,7 @@
     "china_race": 3.0,
     "regulation": 3.0
    },
-   "n_statements": 50,
+   "n_statements": 53,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -7352,7 +7835,7 @@
     "china_race": 3.0,
     "regulation": 3.0
    },
-   "n_statements": 50,
+   "n_statements": 53,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -7365,7 +7848,7 @@
     "china_race": 3.0,
     "regulation": 3.0
    },
-   "n_statements": 52,
+   "n_statements": 55,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -7378,7 +7861,7 @@
     "china_race": 3.0,
     "regulation": 3.0
    },
-   "n_statements": 52,
+   "n_statements": 55,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -7391,7 +7874,7 @@
     "china_race": 3.0,
     "regulation": 3.0
    },
-   "n_statements": 52,
+   "n_statements": 55,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -7404,7 +7887,7 @@
     "china_race": 3.0,
     "regulation": 3.0
    },
-   "n_statements": 52,
+   "n_statements": 55,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -7417,7 +7900,7 @@
     "china_race": 3.0,
     "regulation": 3.0
    },
-   "n_statements": 52,
+   "n_statements": 55,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -7430,7 +7913,7 @@
     "china_race": 3.0,
     "regulation": 3.0
    },
-   "n_statements": 52,
+   "n_statements": 55,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -7443,7 +7926,7 @@
     "china_race": 3.0,
     "regulation": 3.0
    },
-   "n_statements": 53,
+   "n_statements": 56,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -7456,7 +7939,7 @@
     "china_race": 3.0,
     "regulation": 3.0
    },
-   "n_statements": 53,
+   "n_statements": 56,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -7469,7 +7952,7 @@
     "china_race": 3.0,
     "regulation": 2.5
    },
-   "n_statements": 53,
+   "n_statements": 56,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -7482,7 +7965,7 @@
     "china_race": 3.0,
     "regulation": 2.5
    },
-   "n_statements": 53,
+   "n_statements": 56,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -7587,6 +8070,19 @@
     "regulation": 2.5
    },
    "n_statements": 57,
+   "status": "complete",
+   "kind": "observed"
+  },
+  {
+   "date": "2026-11-19",
+   "scores": {
+    "ai_overall": 2.0,
+    "agi_pilled": null,
+    "x_risk": 2.5,
+    "china_race": 3.0,
+    "regulation": 2.5
+   },
+   "n_statements": 62,
    "status": "complete",
    "kind": "observed"
   }

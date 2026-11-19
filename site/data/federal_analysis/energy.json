@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "id": "energy",
- "revision": "39805015699af35509e4902fbbb0e8454921410b29e0d97bf0db29a7d2f5c1ee",
+ "revision": "7168a5746118f0025442b1cecc4176d1d731df2599bf001636439a92a0591a5e",
  "profile": {
   "id": "energy",
   "name": "Department of Energy",
@@ -38,20 +38,20 @@
     "web": {
      "group": "energy",
      "named_query": "(\"Helena Fu\" OR \"Department of Energy\") AI artificial intelligence superintelligence policy statements",
-     "last_success_on": "2026-11-15",
-     "age_days": 2,
+     "last_success_on": "2026-11-18",
+     "age_days": 1,
      "pending_named_queries": 1,
-     "group_pending_pages": 29
+     "group_pending_pages": 32
     },
     "x": {
-     "last_successful_cutoff": "2026-11-17T19:38:11.294696Z",
+     "last_successful_cutoff": "2026-11-18T23:59:13.395293Z",
      "pending_windows": 0,
-     "accounts_due_for_daily_check": 0
+     "accounts_due_for_daily_check": 1
     }
    }
   },
-  "n_statements": 185,
-  "n_labeled": 185,
+  "n_statements": 186,
+  "n_labeled": 186,
   "scores": {
    "ai_overall": 3.0,
    "agi_pilled": 2.0,
@@ -130,50 +130,44 @@
   },
   "summary": {
    "status": "complete",
-   "text": "The Department of Energy has announced funding and partnerships for its Genesis Mission to advance AI capabilities for scientific discovery and national security. DOE has described the FASST initiative as harnessing AI for science, energy, and national security, and has outlined plans to use federal sites for AI data centers and energy infrastructure. DOE has also described AI safety and risk-management work, including testbeds for red-teaming and collaboration with NIST on safety research, testing, and evaluation. In October 2026, DOE described expanding Super Intelligence-enabled research through the Genesis Mission.",
+   "text": "The Department of Energy announced over $320 million in investments to advance the Genesis Mission’s artificial intelligence capabilities and launched a Genesis Mission Consortium as a public-private partnership. DOE describes the Genesis Mission as mobilizing its national laboratories, industry, and academia to build an integrated discovery platform and as using AI to accelerate discovery science, strengthen national security, and drive energy innovation. DOE has selected federal sites and released a request for information to explore AI data center and energy infrastructure development on DOE lands. DOE also reports work on AI safety and risk management, including testbeds for red teaming and a memorandum with the Department of Commerce and NIST on safety research, testing, and evaluation of advanced AI models and systems.",
    "sids": [
     "s1",
     "s9",
+    "s2",
     "s162",
-    "s4",
-    "s16",
     "s7",
+    "s8",
     "s20",
-    "s30",
-    "s11",
-    "s46",
-    "s47"
+    "s30"
    ],
    "sentences": [
     {
-     "text": "The Department of Energy has announced funding and partnerships for its Genesis Mission to advance AI capabilities for scientific discovery and national security.",
+     "text": "The Department of Energy announced over $320 million in investments to advance the Genesis Mission’s artificial intelligence capabilities and launched a Genesis Mission Consortium as a public-private partnership.",
      "sids": [
       "s1",
-      "s9",
+      "s9"
+     ]
+    },
+    {
+     "text": "DOE describes the Genesis Mission as mobilizing its national laboratories, industry, and academia to build an integrated discovery platform and as using AI to accelerate discovery science, strengthen national security, and drive energy innovation.",
+     "sids": [
+      "s2",
       "s162"
      ]
     },
     {
-     "text": "DOE has described the FASST initiative as harnessing AI for science, energy, and national security, and has outlined plans to use federal sites for AI data centers and energy infrastructure.",
+     "text": "DOE has selected federal sites and released a request for information to explore AI data center and energy infrastructure development on DOE lands.",
      "sids": [
-      "s4",
-      "s16",
-      "s7"
+      "s7",
+      "s8"
      ]
     },
     {
-     "text": "DOE has also described AI safety and risk-management work, including testbeds for red-teaming and collaboration with NIST on safety research, testing, and evaluation.",
+     "text": "DOE also reports work on AI safety and risk management, including testbeds for red teaming and a memorandum with the Department of Commerce and NIST on safety research, testing, and evaluation of advanced AI models and systems.",
      "sids": [
       "s20",
-      "s30",
-      "s11"
-     ]
-    },
-    {
-     "text": "In October 2026, DOE described expanding Super Intelligence-enabled research through the Genesis Mission.",
-     "sids": [
-      "s46",
-      "s47"
+      "s30"
      ]
     }
    ]
@@ -181,7 +175,7 @@
   "topics": {
    "other": 44.833,
    "national security": 21.333,
-   "energy/data centers": 53.167,
+   "energy/data centers": 54.167,
    "China/competition": 23.333,
    "regulation": 16.0,
    "misuse (bio/cyber)": 0.5,
@@ -262,11 +256,6 @@
      "sids": [],
      "why": "No stance in the supplied evidence."
     },
-    "misuse": {
-     "stance": 0,
-     "sids": [],
-     "why": "No stance in the supplied evidence."
-    },
     "nuclear": {
      "stance": 0,
      "sids": [],
@@ -305,11 +294,17 @@
     "dc_ratepayers": {
      "stance": 0,
      "sids": [],
-     "why": "The supplied excerpts praise the Ratepayer Protection Pledge, lower electricity costs, and Meta-funded infrastructure, but do not specify a rule requiring data centers to pay their own power costs or limiting data-center-driven rate increases."
+     "why": "DOE praises ratepayer protection and company-funded energy infrastructure, but the supplied excerpts do not establish support for a rule requiring data centers to bear their power costs."
+    },
+    "misuse": {
+     "stance": 0,
+     "sids": [],
+     "why": "DOE describes risk research and weapons-related AI testing, but does not adopt or advocate rules requiring safeguards against AI weapons assistance in the supplied evidence."
     }
    },
    "disputed": [
-    "dc_ratepayers"
+    "dc_ratepayers",
+    "misuse"
    ]
   }
  },
@@ -14009,6 +14004,66 @@
      }
     }
    }
+  },
+  {
+   "sid": "s186",
+   "date": "2026-02-26",
+   "url": "https://www.govinfo.gov/content/pkg/FR-2026-02-26/pdf/2026-03862.pdf",
+   "text": "This revision to the data collection will collect data on additional priority industries including the critical materials and data center supply chains, study the adoption of Artificial Intelligence (AI) in the energy sector, and promote technology neutrality throughout the survey.",
+   "source_type": "official_statement",
+   "attribution": {
+    "kind": "institutional",
+    "speaker": "Department of Energy",
+    "organization_id": "energy",
+    "basis": "local_span",
+    "note": "Automated extraction; exact quote and attribution span matched the retrieved source."
+   },
+   "analysis": {
+    "status": "complete",
+    "a": {},
+    "b": {},
+    "topics": [
+     "energy/data centers"
+    ],
+    "confidence": {},
+    "escalated": [],
+    "models": {
+     "deepseek": "deepseek/deepseek-v4.1-flash-1017"
+    },
+    "assessments": {
+     "ds_0": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers",
+       "other"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-19T00:29:08.107230+00:00",
+      "generation_id": "gen-1795048146-czufb6l6lgGdCrF5V4vp"
+     },
+     "ds_1": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-19T00:29:11.118733+00:00",
+      "generation_id": "gen-1795048149-pGwEH5LUPp1BXpPKHT11"
+     },
+     "ds_2": {
+      "labels": {},
+      "confidence": {},
+      "topics": [
+       "energy/data centers"
+      ],
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "assessed_at": "2026-11-19T00:29:13.320286+00:00",
+      "generation_id": "gen-1795048152-NePZBLXfzwdi8isHzMWP"
+     }
+    }
+   }
   }
  ],
  "history": [
@@ -14502,7 +14557,7 @@
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 123,
+   "n_statements": 124,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -14515,7 +14570,7 @@
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 130,
+   "n_statements": 131,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -14528,7 +14583,7 @@
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 132,
+   "n_statements": 133,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -14541,7 +14596,7 @@
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 135,
+   "n_statements": 136,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -14554,7 +14609,7 @@
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 135,
+   "n_statements": 136,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -14567,7 +14622,7 @@
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 139,
+   "n_statements": 140,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -14580,7 +14635,7 @@
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 140,
+   "n_statements": 141,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -14593,7 +14648,7 @@
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 140,
+   "n_statements": 141,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -14606,7 +14661,7 @@
     "china_race": 3.0,
     "regulation": 2.0
    },
-   "n_statements": 150,
+   "n_statements": 151,
    "status": "complete",
    "kind": "reconstructed"
   },
@@ -14724,6 +14779,19 @@
     "regulation": 2.0
    },
    "n_statements": 185,
+   "status": "complete",
+   "kind": "observed"
+  },
+  {
+   "date": "2026-11-19",
+   "scores": {
+    "ai_overall": 3.0,
+    "agi_pilled": 2.0,
+    "x_risk": 3.0,
+    "china_race": 3.0,
+    "regulation": 2.0
+   },
+   "n_statements": 186,
    "status": "complete",
    "kind": "observed"
   }
