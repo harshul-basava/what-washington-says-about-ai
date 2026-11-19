@@ -179,8 +179,16 @@ def main(argv=None):
             failure = failure or exc
     if failure:
         raise failure
-    if report.get('federal', {}).get('status') == 'partial' and not args.dry_run:
-        raise RuntimeError('Federal update is partial; see data/federal_status.json')
+    fed = report.get('federal', {})
+    if fed.get('status') == 'partial' and not args.dry_run:
+        # A backlog, blocked pages or an unfinished batch is normal and carries over to the next run.
+        # Fail only when a whole federal stage crashed, could not start, or the site build broke.
+        crashed = [s for s in ('collection', 'x', 'judgments', 'analysis')
+                   if isinstance(fed.get(s), dict) and (fed[s].get('error')
+                       or any(e.get('stage') == 'setup' for e in fed[s].get('errors') or [] if isinstance(e, dict)))]
+        if crashed or fed.get('build_error'):
+            raise RuntimeError(f"Federal stage failed ({', '.join(crashed) or 'build'}); see data/federal_status.json")
+        print('::warning::Federal update is partial (backlog or page errors carry over); see data/federal_status.json')
     return report
 
 

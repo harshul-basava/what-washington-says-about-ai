@@ -151,7 +151,7 @@ jobs:
           git push
 
       - name: Open an issue for big score changes
-        if: steps.keys.outputs.skip != 'true' && env.IN_SOURCES != 'federal' && hashFiles('data/issue.md') != ''
+        if: always() && steps.keys.outputs.skip != 'true' && env.IN_SOURCES != 'federal' && hashFiles('data/issue.md') != ''
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
